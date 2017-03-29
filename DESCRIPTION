@@ -1,0 +1,13 @@
+Package: codemetar
+Type: Package
+Title: Generate CodeMeta Metadata for R Packages
+Version: 0.1.0
+Authors@R: person("Carl", "Boettiger", role=c("aut", "cre"), email="cboettig@gmail.com")
+Description: Codemeta defines a 'JSON-LD' format for describing software metadata.
+    This package provides utilities to generate, parse, and modify codemeta.jsonld
+    files automatically for R packages.
+License: BSD-2
+Encoding: UTF-8
+LazyData: true
+Imports: jsonld,
+    jsonlite
