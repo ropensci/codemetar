@@ -9,21 +9,32 @@ write_codemeta <- function(pkg = ".", x = NULL, path, ...) {
 }
 
 
+
+
 ## based on devtools::read_dcf
 read_dcf <- function(path) {
   fields <- colnames(read.dcf(path))
   as.list(read.dcf(path, keep.white = fields)[1, ])
 }
 
+
+
+## generate codemeta.json from a DESCRIPTION file
+
+## FIXME parse and use crosswalk to reference DESCRIPTION terms?
 create_codemeta <- function(pkg = "."){
 
   path <- paste(pkg, "DESCRIPTION", sep = "/")
   descr <- read_dcf(path)
 
-  ## Assumes package is installed, pkg is Character string naming a single package.  Handles encoding, a little handling of Authors@R (actually done by install.packages step)
+  ## Alternate approach:
+  ## utils::packageDescription assumes package is installed, takes pkg name not path.
+  ## Advantages: Handles encoding, a little handling of Authors@R (actually done by install.packages step)
   ##descr <- utils::packageDescription(pkg)
 
-    ## Use example as a template for now.
+  ## FIXME define an S3 class based on the codemeta list of lists?
+
+  ## Just use example template for now.
   ex <- "https://raw.githubusercontent.com/codemeta/codemeta/master/examples/example-codemeta-full.json"
   codemeta <- jsonlite::read_json(ex)
 
@@ -33,14 +44,20 @@ create_codemeta <- function(pkg = "."){
   ## codemeta <- jsonlite::fromJSON(jsonld::jsonld_compact(ex))
 
 
-  ## FIXME define an S3 class based on the codemeta list of lists?
 
+  ## Fill in basic info from description -- FIXME Confirm this obeys crosswalk!
   codemeta$title <- descr$Title
   codemeta$description <- descr$Description
   codemeta$name <- descr$Package
-  codemeta$codeRepository <- descr$URL # Not necessarily
+  codemeta$codeRepository <- descr$URL # Not necessarily -- check CrossWalk
   codemeta$issueTracker <- descr$BugReports
-  codemeta$datePublished <- descr$Date # probably not avaialable as descr$Date.
+
+  ## Better to choose just one?  Use published only if on CRAN? Or published to zenodo counts?
+  codemeta$datePublished <- descr$Date # probably not avaialable as descr$Date. check CrossWalk
+  codemeta$dateCreated <- descr$Date # probably not avaialable as descr$Date.
+  codemeta$dateModified <- descr$Date
+
+
   codemeta$licenseId <- as.character(descr$License)
   codemeta$version <- descr$Version
   codemeta$programmingLanguage <- list(name = R.version$language,
@@ -79,4 +96,9 @@ parse_depends <- function(deps){
          version =  versions,
          packageSystem = "http://cran.r-project.org")
   })
+}
+
+
+parse_agents <- function(agents){
+
 }
