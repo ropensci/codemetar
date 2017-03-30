@@ -1,0 +1,176 @@
+{
+  "@graph": [
+    {
+      "@id": "_:b0",
+      "@type": "http://schema.org/SoftwareSourceCode",
+      "http://purl.org/dc/terms/identifier": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "http://dx.doi.org/10.6084/m9.figshare.828487"
+      },
+      "http://purl.org/dc/terms/title": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "CodeMeta, a minimal convention for software metadata"
+      },
+      "http://schema.org/agent": [
+        {
+          "@id": "http://orcid.org/0000-0003-0077-4738"
+        },
+        {
+          "@id": "http://orcid.org/0000-0002-3957-2474"
+        },
+        {
+          "@id": "http://orcid.org/0000-0002-2192-403X"
+        }
+      ],
+      "http://schema.org/codeRepository": {
+        "@type": "http://schema.org/URL",
+        "@value": "https://github.com/codemeta/codemeta"
+      },
+      "http://schema.org/dateCreated": {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2014-08-06"
+      },
+      "http://schema.org/dateModified": {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2014-08-15"
+      },
+      "http://schema.org/datePublished": {
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2014-09-06"
+      },
+      "http://schema.org/description": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "Codemeta is a metadata content standard for software.  It includes schemas in JSON-LD and XML Schema for providing semantics and validation."
+      },
+      "http://schema.org/keywords": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "publishing, DOI, credit for code"
+      },
+      "http://schema.org/license": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "Apache-2.0"
+      },
+      "http://schema.org/requirements": [
+        {
+          "@type": "http://schema.org/URL",
+          "@value": "https://dx.doi.org/10.6084/m9.figshare.1164194.v13"
+        },
+        {
+          "@type": "http://schema.org/Text",
+          "@value": "python version 2.7.10 or higher"
+        }
+      ],
+      "http://schema.org/version": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "2.1.0-rc.2"
+      },
+      "https://codemeta.github.io/terms/uploadedBy": {
+        "@id": "http://orcid.org/0000-0003-0077-4738"
+      }
+    },
+    {
+      "@id": "_:b1",
+      "https://codemeta.github.io/terms/namespace": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+      },
+      "https://codemeta.github.io/terms/roleCode": [
+        {
+          "@type": "http://www.w3.org/2001/XMLSchema#string",
+          "@value": "originator"
+        },
+        {
+          "@type": "http://www.w3.org/2001/XMLSchema#string",
+          "@value": "resourceProvider"
+        }
+      ]
+    },
+    {
+      "@id": "_:b2",
+      "https://codemeta.github.io/terms/namespace": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+      },
+      "https://codemeta.github.io/terms/roleCode": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "copyrightHolder"
+      }
+    },
+    {
+      "@id": "_:b3",
+      "https://codemeta.github.io/terms/namespace": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+      },
+      "https://codemeta.github.io/terms/roleCode": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "contributor"
+      }
+    },
+    {
+      "@id": "http://orcid.org/0000-0002-2192-403X",
+      "@type": "http://schema.org/Person",
+      "http://schema.org/affiliation": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "NCEAS"
+      },
+      "http://schema.org/email": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "slaughter@nceas.ucsb.edu"
+      },
+      "http://schema.org/name": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "Peter Slaughter"
+      },
+      "https://codemeta.github.io/terms/Role": {
+        "@id": "_:b3"
+      }
+    },
+    {
+      "@id": "http://orcid.org/0000-0002-3957-2474",
+      "@type": "http://schema.org/Organization",
+      "http://schema.org/email": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "info@ucop.edu"
+      },
+      "http://schema.org/name": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "University of California, Santa Barbara"
+      },
+      "https://codemeta.github.io/terms/Role": {
+        "@id": "_:b2"
+      }
+    },
+    {
+      "@id": "http://orcid.org/0000-0003-0077-4738",
+      "@type": "http://schema.org/Person",
+      "http://schema.org/affiliation": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "NCEAS"
+      },
+      "http://schema.org/email": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "jones@nceas.ucsb.edu"
+      },
+      "http://schema.org/name": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "Matt Jones"
+      },
+      "https://codemeta.github.io/terms/Role": {
+        "@id": "_:b1"
+      },
+      "https://codemeta.github.io/terms/isMaintainer": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": true
+      },
+      "https://codemeta.github.io/terms/isRightsHolder": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": true
+      },
+      "https://codemeta.github.io/terms/mustBeCited": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": true
+      }
+    }
+  ]
+}
