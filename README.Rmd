@@ -34,5 +34,9 @@ devtools::install_github("codemeta/codemetar")
 This is a basic example which shows you how to generate a `codemeta.json` for your R package:
 
 ```{r example}
-## basic example code
+codemetar::write_codemeta("testthat")
+```
+
+```{r include=FALSE}
+unlink("codemeta.json")
 ```
