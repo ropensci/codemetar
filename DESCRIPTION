@@ -9,9 +9,8 @@ Description: Codemeta defines a 'JSON-LD' format for describing software metadat
 License: FreeBSD
 Encoding: UTF-8
 LazyData: true
-Imports: jsonlite (>= 1.3),
-    uuid
 RoxygenNote: 6.0.1
+Imports: jsonlite (>= 1.3)
 Suggests: testthat,
     jsonvalidate,
     jsonld,

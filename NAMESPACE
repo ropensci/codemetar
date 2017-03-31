@@ -2,4 +2,3 @@
 
 export(write_codemeta)
 importFrom(jsonlite,write_json)
-importFrom(uuid,UUIDgenerate)

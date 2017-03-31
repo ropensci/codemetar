@@ -4,8 +4,8 @@
 \alias{write_codemeta}
 \title{write_codemeta}
 \usage{
-write_codemeta(pkg = ".", id = uuid::UUIDgenerate(),
-  path = "codemeta.json", pretty = TRUE, auto_unbox = TRUE, ...)
+write_codemeta(pkg = ".", id = NULL, path = "codemeta.json",
+  pretty = TRUE, auto_unbox = TRUE, ...)
 }
 \arguments{
 \item{pkg}{package description file, can be path or package name.}
