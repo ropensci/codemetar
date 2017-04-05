@@ -81,18 +81,7 @@ Using a simple frame:
 ```{r}
 ex_frame <- '{
   "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
-  "@type": "Code",
-  "@explicit": "true",
-  "dcterms:title": {},
-  "schema:description": {},
-  "agents": {
-    "@type": [
-      "person",
-      "organization"
-    ],
-    "@explicit": "true",
-    "name": {}
-  }
+  "@type": "Code"
 }'
 ```
 
