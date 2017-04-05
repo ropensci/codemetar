@@ -1,0 +1,115 @@
+---
+title: "Framing with JSON-LD"
+author: "Carl Boettiger"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Framing with JSON-LD}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r}
+library(codemetar)
+library(magrittr)
+library(jsonlite)
+library(jsonvalidate)
+library(jsonld)
+```
+
+
+We begin with an example of a relatively thorough `codemeta.json` file.  Note that the original file conforms to our schema, meaning that the data conforms to the expected tree structure.  
+
+```{r}
+ex <- system.file("examples/full-codemeta.json", package = "codemetar")
+schema <- system.file("schema/codemeta_schema.json", package = "codemetar")
+
+
+json_validate(ex, schema)
+```
+
+A predictable tree structure is very useful in programmatic applications of the data, e.g. we can find the email of the first author as: 
+
+```{r}
+codemeta <- read_json(ex)
+codemeta$agents[[1]]$email
+```
+
+However, this puts the burden on the data provider to be familiar with and conform to our schema.  It is important to bear in mind that some of these restrictions are, in a sense, arbitrary: the data could be formatted in some different manner without any change to it's information content.  A different format may be more convenient for the user to provide, and a different application may prefer a different tree structure from the one imposed on the data by our schema.  With JSON-LD framing, we can avoid putting this burden on the data provider and instead allow the developer/consumer to request the data in whatever tree structure is most convenient.
+
+To illustrate this, let's first transform the data into an equivalent alternative representation with a flat structure:
+
+
+```{r}
+doc <- paste(readLines(ex), collapse = "\n")
+flat <- jsonld_flatten(doc)
+```
+
+Note that though this is a lossless conversion (no information is lost, and we can transform back to the original format if requested), the resulting flat structure does not confrom to our schema:
+
+
+```{r}
+json_validate(flat, schema)
+```
+
+and consequently, we can no longer assume the prior structure to extract information of interest:
+
+
+```{r}
+codemeta <- fromJSON(flat, simplifyVector = FALSE) # same as writeLines(flat, "flat.json"); read_json("flat.json")
+codemeta$agents[[1]]$email
+```
+
+This looks like bad news.  Fortunately, we can reconstruct the data in whatever format we need using the appropriate transformations:
+
+
+## Exploring the transformations
+
+Expanding the flat document doesn't change the structure at all, but expanding from the original document gives a different tree:
+
+```{r}
+expanded <- jsonld_expand(flat)
+identical(flat, expanded)
+
+expanded2 <- jsonld_expand(doc)
+identical(expanded, expanded2)
+```
+
+Using a simple frame:
+
+```{r}
+ex_frame <- '{
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@type": "Code",
+  "@explicit": "true",
+  "dcterms:title": {},
+  "schema:description": {},
+  "agents": {
+    "@type": [
+      "person",
+      "organization"
+    ],
+    "@explicit": "true",
+    "name": {}
+  }
+}'
+```
+
+Framing the flat file and the expanded version of the flat file give
+
+
+```{r}
+framed <- jsonld_frame(expanded, ex_frame) 
+framed2 <- jsonld_frame(expanded2, ex_frame) 
+
+identical(framed, framed2)
+```
+
+Likewise, we still get the same thing had we started with the `flat` file or the original `doc`:
+
+```{r}
+identical(framed, jsonld_frame(flat, ex_frame))
+identical(framed, jsonld_frame(doc, ex_frame))
+```
+
