@@ -12,7 +12,6 @@ vignette: >
 
 ```{r}
 library(codemetar)
-library(magrittr)
 library(jsonlite)
 library(jsonvalidate)
 library(jsonld)
@@ -83,15 +82,12 @@ ex_frame <- '{
   "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
   "@type": "SoftwareSourceCode",
   "@explicit": "true",
-  "dcterms:title": {},
-  "schema:description": {},
+  "title": {},
+  "description": {},
   "agents": {
-    "@type": [
-      "person",
-      "organization"
-    ],
     "@explicit": "true",
-    "name": {}
+    "name": {},
+    "email": {}
   }
 }'
 ```
@@ -111,5 +107,11 @@ Likewise, we still get the same thing had we started with the `flat` file or the
 ```{r}
 identical(framed, jsonld_frame(flat, ex_frame))
 identical(framed, jsonld_frame(doc, ex_frame))
+```
+
+Note this resulting document contains only the information explicitly requested in the above frame (since we used `"@explicit": "true"`),
+
+```{r}
+framed
 ```
 
