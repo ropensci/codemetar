@@ -115,3 +115,25 @@ Note this resulting document contains only the information explicitly requested 
 framed
 ```
 
+
+As a result of the framing, our desired codemeta document appears as the first (and only) graph (`[["@graph"]][[1]]`) in the resulting document (note that we could have begun with a flat file that had triples from a collection of multiple `codemeta.json` files, which would have corresponded to multiple graphs all sharing the same context, hence we must specify which graph here).  Importantly, the codemeta file now has the desired tree structure we requested:
+
+```{r}
+codemeta <- fromJSON(framed, FALSE)[["@graph"]][[1]]
+codemeta$agents[[1]]$email
+```
+
+
+
+
+<!--
+Experimenting with simpler default context files, not entirely clear what's happening here, seems some data gets lost?
+
+```{r}
+simple_frame <- '{"@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld", "@type": "SoftwareSourceCode"}'
+
+codemeta <- fromJSON(jsonld_frame(doc, simple_frame), FALSE)[["@graph"]][[1]]
+codemeta$agents
+```
+
+-->
