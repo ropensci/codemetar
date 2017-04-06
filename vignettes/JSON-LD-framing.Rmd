@@ -125,9 +125,32 @@ codemeta$agents[[1]]$email
 
 
 
+## A proposed frame for matching the codemeta schema:
+
+```{r}
+
+# Load the frame from the package.  Alternatively we might want to only use URLs for defining the schema and frame schema
+frame_schema <- paste(readLines(system.file("schema/frame_schema.json", package="codemetar")),collapse = "\n")
+
+## Apply the frame and render as JSON
+framed <- jsonld_frame(flat, frame_schema)
+obj <- fromJSON(framed, FALSE)
+
+## Output of frame always contains the context and 1 or more graphs separately; we add the context back to our graph to get codemeta.json:
+codemeta <- obj[["@graph"]][[1]]
+codemeta$`@context` <- obj$`@context`
+
+## Write out as JSON and validate
+write_json(codemeta, "ex.json", pretty = TRUE, auto_unbox = TRUE)
+json_validate("ex.json", schema, verbose = TRUE)
+```
+
+Currently, validation fails becuase all nodes get ids in the course of being framed (actually in the course of being flattened, which would happen implicitly anway
+since framing always works on flattened data).  The schema file does not permit additional fields, so this raises the validation flag being shown.  
+
 
 <!--
-Experimenting with simpler default context files, not entirely clear what's happening here, seems some data gets lost?
+Experimenting with simpler default context files, need to set embed to always
 
 ```{r}
 simple_frame <- '{"@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld", "@type": "SoftwareSourceCode"}'

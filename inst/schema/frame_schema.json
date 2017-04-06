@@ -1,0 +1,77 @@
+{
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@type": "SoftwareSourceCode",
+  "@explicit": "true",
+  "@embed": "@always",
+  "identifier": {},
+  "name": {},
+  "title": {},
+  "description": {},
+  "agents": {
+    "@embed": "@always",
+    "@explicit": "true",
+    "name": {},
+    "email": {},
+    "affiliation": {},
+    "mustBeCited": {},
+    "isMaintainer": {},
+    "isRightsHolder": {},
+    "role": {
+      "@embed": "@always",
+      "roleCode": {},
+      "namespace": {}
+    }
+  },
+  "depends": {
+      "@explicit": "true",
+      "identifier": {},
+      "name": {},
+      "version": {},
+      "packageSystem": {},
+      "operatingSystems": {}
+  },
+  "codeRepository": {},
+  "controlledTerms": {},
+  "datePublished": {},
+  "dateModified": {},
+  "dateCreated": {},
+  "developmentStatus": {},
+  "embargoDate": {},
+  "isAutomatedBuild": {},
+  "publisher": {},
+  "tags": {},
+  "licenseId": {},
+  "version": {},
+  "uploadedBy": {
+      "@id": {},
+      "@type": {},
+      "email": {},
+      "name": {}
+  },
+  "buildInstructions": {},
+  "contIntegration": {},
+  "downloadLink": {},
+  "funding": {},
+  "programmingLanguage": {
+      "name": {},
+      "version": {},
+      "URL": {}
+  },
+  "readme": {},
+  "issueTracker": {},
+  "relatedLink": {},
+  "relatedPublications": {},
+  "relationships": {
+      "relationshipType": {},
+      "relatedIdentifier": {},
+      "relatedIdentifierType": {}
+  },
+  "softwarePaperCitationIdentifiers": {},
+  "suggests": {
+      "name": {},
+      "version": {},
+      "packageSystem": {},
+      "operatingSystems": {}
+  },
+  "zippedCode": {}
+}
