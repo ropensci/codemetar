@@ -6,7 +6,7 @@ Authors@R: person("Carl", "Boettiger", role=c("aut", "cre"), email="cboettig@gma
 Description: Codemeta defines a 'JSON-LD' format for describing software metadata.
     This package provides utilities to generate, parse, and modify codemeta.jsonld
     files automatically for R packages.
-License: FreeBSD
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1

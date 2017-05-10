@@ -5,3 +5,6 @@
 ^codecov\.yml$
 ^appveyor\.yml$
 ^CONDUCT\.md$
+^\.httr-oauth$
+^docs$
+codemeta.json

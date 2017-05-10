@@ -5,7 +5,7 @@
 \title{write_codemeta}
 \usage{
 write_codemeta(pkg = ".", id = NULL, path = "codemeta.json",
-  pretty = TRUE, auto_unbox = TRUE, ...)
+  pretty = TRUE, auto_unbox = TRUE, version = "2", ...)
 }
 \arguments{
 \item{pkg}{package description file, can be path or package name.}
@@ -17,6 +17,8 @@ write_codemeta(pkg = ".", id = NULL, path = "codemeta.json",
 \item{pretty}{formatting option to \code{\link{write_json}}}
 
 \item{auto_unbox}{formatting  option to \code{\link{write_json}}}
+
+\item{version}{schema version}
 
 \item{...}{additional arguments to \code{\link{write_json}}}
 }

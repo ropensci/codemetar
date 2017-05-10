@@ -1,0 +1,40 @@
+{
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@type": "SoftwareSourceCode",
+  "identifier": "codemetar",
+  "title": "Generate CodeMeta Metadata for R Packages",
+  "description": "Codemeta defines a 'JSON-LD' format for describing software metadata.\n    This package provides utilities to generate, parse, and modify codemeta.jsonld\n    files automatically for R packages.",
+  "name": "codemetar",
+  "license": "https://spdx.org/licenses/BSD-2-Clause",
+  "version": "0.1.0",
+  "programmingLanguage": {
+    "name": "R",
+    "version": "3.4.0",
+    "URL": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 3.4.0 (2017-04-21)",
+  "author": [
+    {
+      "givenName": "Carl",
+      "familyName": "Boettiger",
+      "email": "cboettig@gmail.com"
+    }
+  ],
+  "copyrightHolder": [],
+  "maintainer": {
+    "givenName": "Carl",
+    "familyName": "Boettiger",
+    "email": "cboettig@gmail.com"
+  },
+  "suggests": [
+    "testthat",
+    "jsonvalidate",
+    "jsonld",
+    "covr",
+    "knitr",
+    "rmarkdown"
+  ],
+  "depends": [
+    "jsonlite"
+  ]
+}
