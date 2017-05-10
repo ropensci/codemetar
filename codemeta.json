@@ -5,7 +5,9 @@
   "title": "Generate CodeMeta Metadata for R Packages",
   "description": "Codemeta defines a 'JSON-LD' format for describing software metadata.\n    This package provides utilities to generate, parse, and modify codemeta.jsonld\n    files automatically for R packages.",
   "name": "codemetar",
-  "license": "https://spdx.org/licenses/BSD-2-Clause",
+  "codeRepository": "https://github.com/codemeta/codemetar",
+  "issueTracker": "https://github.com/codemeta/codemetar/issues",
+  "license": "https://spdx.org/licenses/MIT",
   "version": "0.1.0",
   "programmingLanguage": {
     "name": "R",
@@ -15,26 +17,36 @@
   "runtimePlatform": "R version 3.4.0 (2017-04-21)",
   "author": [
     {
+      "@id": "http://orcid.org/0000-0002-1642-628X",
       "givenName": "Carl",
       "familyName": "Boettiger",
       "email": "cboettig@gmail.com"
     }
   ],
-  "copyrightHolder": [],
+  "contributor": [],
+  "copyrightHolder": [
+    {
+      "@id": "http://orcid.org/0000-0002-1642-628X",
+      "givenName": "Carl",
+      "familyName": "Boettiger",
+      "email": "cboettig@gmail.com"
+    }
+  ],
   "maintainer": {
+    "@id": "http://orcid.org/0000-0002-1642-628X",
     "givenName": "Carl",
     "familyName": "Boettiger",
     "email": "cboettig@gmail.com"
   },
   "suggests": [
-    "testthat",
-    "jsonvalidate",
-    "jsonld",
-    "covr",
-    "knitr",
-    "rmarkdown"
+    "https://cran.r-project.org/package=testthat",
+    "https://cran.r-project.org/package=jsonvalidate",
+    "https://cran.r-project.org/package=jsonld",
+    "https://cran.r-project.org/package=covr",
+    "https://cran.r-project.org/package=knitr",
+    "https://cran.r-project.org/package=rmarkdown"
   ],
   "depends": [
-    "jsonlite"
+    "https://cran.r-project.org/package=jsonlite"
   ]
 }

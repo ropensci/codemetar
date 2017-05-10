@@ -24,7 +24,6 @@ We begin with an example of a relatively thorough `codemeta.json` file.  Note th
 ex <- system.file("examples/full-codemeta.json", package = "codemetar")
 schema <- system.file("schema/codemeta_schema.json", package = "codemetar")
 
-
 json_validate(ex, schema)
 ```
 

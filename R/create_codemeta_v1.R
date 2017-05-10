@@ -1,6 +1,5 @@
-create_codemeta_v1 <- function(pkg = ".", id = NULL){
+create_codemeta_v1 <- function(descr, id = NULL){
 
-  descr <- read_dcf(pkg)
   ## FIXME define an S3 class based on the codemeta list of lists?
   if(is.null(id))
     id <- descr$Package
@@ -26,8 +25,8 @@ create_codemeta_v1 <- function(pkg = ".", id = NULL){
 
   ## FIXME Need to deal with: descr$Author, descr$Maintainer, and descr$Authors@R
   codemeta$agents <- parse_agents(descr)
-  codemeta$suggests <- parse_depends(descr$Suggests)
-  codemeta$depends <- c(parse_depends(descr$Imports), parse_depends(descr$Depends))
+  codemeta$suggests <- parse_depends_v1(descr$Suggests)
+  codemeta$depends <- c(parse_depends_v1(descr$Imports), parse_depends_v1(descr$Depends))
 
   codemeta
 }
@@ -35,31 +34,8 @@ create_codemeta_v1 <- function(pkg = ".", id = NULL){
 ######### Helper functions #########
 
 
-## based on devtools::read_dcf
-read_dcf <- function(pkg) {
 
-  ## Takes path to DESCRIPTION, to package root, or the package name as an argument
-  path <- paste(pkg, "DESCRIPTION", sep="/")
-  if(basename(pkg) == "DESCRIPTION")
-    dcf <- pkg
-  else if(file.exists(path)){
-    dcf <- path
-  } else {
-    dcf <- system.file("DESCRIPTION", package = pkg)
-  }
-
-  fields <- colnames(read.dcf(dcf))
-  as.list(read.dcf(dcf, keep.white = fields)[1, ])
-
-  ## Alternate approach:
-  ## utils::packageDescription assumes package is installed, takes pkg name not path.
-  ## Advantages: Handles encoding, a little handling of Authors@R (actually done by install.packages step)
-  ##descr <- utils::packageDescription(pkg)
-
-}
-
-
-parse_depends <- function(deps){
+parse_depends_v1 <- function(deps){
   if(!is.null(deps))
     str <- strsplit(deps, ",\n*")[[1]]
   else

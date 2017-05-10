@@ -21,10 +21,12 @@ write_codemeta <- function(pkg = ".",
                            version = "2",
                            ...) {
 
-  x <- import_pkg_description(pkg = pkg, id = id, version = version)
-  jsonlite::write_json(x, path, pretty = pretty, auto_unbox = auto_unbox, ...)
+  descr <- read_dcf(pkg)
+  cm <- import_pkg_description(descr = descr, id = id, version = version)
 
-  }
+  jsonlite::write_json(cm, path, pretty = pretty, auto_unbox = auto_unbox, ...)
+
+}
 
 
 
@@ -32,18 +34,17 @@ write_codemeta <- function(pkg = ".",
 ## generate codemeta.json from a DESCRIPTION file
 ## FIXME parse and use crosswalk to reference DESCRIPTION terms?
 import_pkg_description <-
-  function(pkg = ".",
+  function(descr,
            id = NULL,
            codemeta = new_codemeta(),
            version = "2") {
     version <- as.character(version)
 
 
+
     switch(version,
-           "2" = create_codemeta_v2(pkg = pkg, id = id, codemeta = codemeta),
-           "1" = create_codemeta_v1(pkg, id))
+           "2" = codemeta_description(descr, id = id, codemeta = codemeta),
+           "1" = create_codemeta_v1(descr, id))
 
   }
 
-## deprecated alias
-create_codemeta <- import_pkg_description

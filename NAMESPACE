@@ -2,3 +2,5 @@
 
 export(write_codemeta)
 importFrom(jsonlite,write_json)
+importFrom(utils,available.packages)
+importFrom(utils,contrib.url)
