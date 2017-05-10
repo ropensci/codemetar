@@ -10,14 +10,16 @@
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.1.0",
   "programmingLanguage": {
+    "@type": "ComputerLanguage",
     "name": "R",
     "version": "3.4.0",
-    "URL": "https://r-project.org"
+    "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 3.4.0 (2017-04-21)",
   "author": [
     {
       "@id": "http://orcid.org/0000-0002-1642-628X",
+      "@type": "Person",
       "givenName": "Carl",
       "familyName": "Boettiger",
       "email": "cboettig@gmail.com"
@@ -27,6 +29,7 @@
   "copyrightHolder": [
     {
       "@id": "http://orcid.org/0000-0002-1642-628X",
+      "@type": "Person",
       "givenName": "Carl",
       "familyName": "Boettiger",
       "email": "cboettig@gmail.com"
@@ -34,6 +37,7 @@
   ],
   "maintainer": {
     "@id": "http://orcid.org/0000-0002-1642-628X",
+    "@type": "Person",
     "givenName": "Carl",
     "familyName": "Boettiger",
     "email": "cboettig@gmail.com"
@@ -48,5 +52,6 @@
   ],
   "depends": [
     "https://cran.r-project.org/package=jsonlite"
-  ]
+  ],
+  "contIntegration": "https://travis-ci.org/codemeta/codemetar"
 }

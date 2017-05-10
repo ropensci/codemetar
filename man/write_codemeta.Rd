@@ -4,13 +4,13 @@
 \alias{write_codemeta}
 \title{write_codemeta}
 \usage{
-write_codemeta(pkg = ".", id = NULL, path = "codemeta.json",
+write_codemeta(pkg = ".", cm = NULL, path = "codemeta.json",
   pretty = TRUE, auto_unbox = TRUE, version = "2", ...)
 }
 \arguments{
 \item{pkg}{package description file, can be path or package name.}
 
-\item{id}{an id for the package, such as the Zenodo DOI. a UUID will be generated if none is provided}
+\item{cm}{a codemeta list object, e.g. from \code{\link{create_codemeta}}}
 
 \item{path}{file name of the output, leave at default "codemeta.json"}
 
