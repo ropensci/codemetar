@@ -1,41 +1,35 @@
 ## internal method for parsing a list of package dependencies into pkg URLs
 
 
-## cache avail packages
-avail <- utils::available.packages(utils::contrib.url("https://cran.rstudio.com", "source"))
 
-
-## FIXME: makes a list of package URLs.  Technically we could declare a different type for these, e.g. SoftwareApplication or SoftwareSourceCode
-## Revisit with SoftwareSourceCode and just implement fields suggested in schema v1
-#' @importFrom utils available.packages contrib.url
 parse_depends <- function(deps){
   if(!is.null(deps))
     str <- strsplit(deps, ",\n*")[[1]]
   else
     str <- NULL
 
-  out <- lapply(str, function(str){
+  lapply(str, function(str){
 
-    ## this is vectorized, though we apply it pkg by pkg anyhow
+    if(length(str) > 1){
+      warning(paste0("package depends", str, "may be multiple packages?"))
+      }
 
-    pkgs <- gsub("\\s*(\\w+)\\s.*", "\\1", str)
+    pkg <- gsub("\\s*(\\w+)\\s.*", "\\1", str)
+    pkg <- gsub("\\s+", "", pkg)
+
+    out <- list("@type" = "SoftwareApplication",
+                name = pkg)
+
+    ## Add Version if available
     pattern <- "\\s*\\w+\\s+\\([><=]+\\s([1-9.\\-]*)\\)*"
-    versions <- gsub(pattern, "\\1", str)
-    ## We want a NULL, not the full string, if no match is found
-    nomatch  <- !grepl(pattern, str)
-    versions[nomatch] <- NA
+    version <- gsub(pattern, "\\1", str)
+    has_version  <- grepl(pattern, str)
+    if(has_version)
+      out$version <- version
 
-    pkgs <- gsub("\\s+", "", pkgs)
+    out$provider <- guess_provider(pkg)
 
-    ## Check if pkg is on CRAN
-    if(all(pkgs %in% avail[,"Package"])){
-      pkgs <- paste0("https://cran.r-project.org/package=", pkgs)
-    } else {
-      ## Consider suppressing message (and fixing url) for R & base packages?
-   #   message(paste("could not find URL for package", pkgs, "since it is not available on CRAN."))
-    }
-    pkgs
+    out
   })
-
-  out
 }
+

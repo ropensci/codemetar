@@ -7,7 +7,7 @@
   "name": "codemetar",
   "codeRepository": "https://github.com/codemeta/codemetar",
   "issueTracker": "https://github.com/codemeta/codemetar/issues",
-  "license": "https://spdx.org/licenses/MIT",
+  "licenseId": "MIT + file LICENSE",
   "version": "0.1.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
@@ -18,42 +18,106 @@
   "runtimePlatform": "R version 3.4.0 (2017-04-21)",
   "author": [
     {
-      "@id": "http://orcid.org/0000-0002-1642-628X",
       "@type": "Person",
       "givenName": "Carl",
       "familyName": "Boettiger",
-      "email": "cboettig@gmail.com"
+      "email": "cboettig@gmail.com",
+      "@id": "http://orcid.org/0000-0002-1642-628X"
     }
   ],
-  "contributor": [],
   "copyrightHolder": [
     {
-      "@id": "http://orcid.org/0000-0002-1642-628X",
       "@type": "Person",
       "givenName": "Carl",
       "familyName": "Boettiger",
-      "email": "cboettig@gmail.com"
+      "email": "cboettig@gmail.com",
+      "@id": "http://orcid.org/0000-0002-1642-628X"
     }
   ],
   "maintainer": {
-    "@id": "http://orcid.org/0000-0002-1642-628X",
     "@type": "Person",
     "givenName": "Carl",
     "familyName": "Boettiger",
-    "email": "cboettig@gmail.com"
+    "email": "cboettig@gmail.com",
+    "@id": "http://orcid.org/0000-0002-1642-628X"
   },
   "suggests": [
-    "https://cran.r-project.org/package=testthat",
-    "https://cran.r-project.org/package=jsonvalidate",
-    "https://cran.r-project.org/package=jsonld",
-    "https://cran.r-project.org/package=covr",
-    "https://cran.r-project.org/package=knitr",
-    "https://cran.r-project.org/package=rmarkdown"
+    {
+      "@type": "SoftwareApplication",
+      "name": "testthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "jsonvalidate",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "jsonld",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "covr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    }
   ],
   "depends": [
-    "https://cran.r-project.org/package=jsonlite"
+    {
+      "@type": "SoftwareApplication",
+      "name": "jsonlite",
+      "version": "1.3",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    }
   ],
   "contIntegration": "https://travis-ci.org/codemeta/codemetar",
+  "developmentStatus": "Project Status: WIP - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public",
   "keywords": [
     "metadata",
     "ropensci"

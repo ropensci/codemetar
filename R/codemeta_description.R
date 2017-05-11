@@ -75,24 +75,26 @@ codemeta_description <-  function(descr, id = NULL, codemeta = new_codemeta()){
 read_dcf <- function(pkg) {
 
   ## Takes path to DESCRIPTION, to package root, or the package name as an argument
-  path <- paste(pkg, "DESCRIPTION", sep="/")
-  if(basename(pkg) == "DESCRIPTION")
+  if(basename(pkg) == "DESCRIPTION"){ #so read_dcf can take a dcf file as argument, instead of just a path.
     dcf <- pkg
-  else if(file.exists(path)){
-    dcf <- path
   } else {
-    dcf <- system.file("DESCRIPTION", package = pkg)
+    dcf <- get_file("DESCRIPTION", pkg)
   }
 
   fields <- colnames(read.dcf(dcf))
   as.list(read.dcf(dcf, keep.white = fields)[1, ])
-
-  ## Alternate approach:
-  ## utils::packageDescription assumes package is installed, takes pkg name not path.
-  ## Advantages: Handles encoding, a little handling of Authors@R (actually done by install.packages step)
-  ##descr <- utils::packageDescription(pkg)
-
 }
+
+## Like system.file, but pkg can instead be path to package root directory
+get_file <- function(FILE, pkg = "."){
+  f <- file.path(pkg, FILE)
+  if(file.exists(f))
+    f
+  else {
+    f <- system.file(FILE, package = pkg)
+  }
+}
+
 
 
 

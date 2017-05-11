@@ -46,15 +46,22 @@ person_to_schema <- function(p){
   else
     type <- "Person"
 
-  switch(type,
-         "Person" =   list("@id" = id,
-                           "@type" = type,
+  out <- switch(type,
+         "Person" =   list("@type" = type,
                            givenName = p$given,
-                           familyName = p$family,
-                           email = p$email),
-         "Organization" = list("@id" = id,
-                               "@type" = type,
-                               name = c(p$given,p$family),
-                               email = p$email)
+                           familyName = p$family),
+         "Organization" = list("@type" = type,
+                               name = c(p$given,p$family))
   )
+
+  ## we don't want `{}` if none is found
+  if(!is.null(p$email)){
+    out$email <- p$email
+  }
+  if(!is.null(id)){
+    out$`@id` <- id
+  }
+
+  out
+
 }

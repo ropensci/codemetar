@@ -1,58 +1,59 @@
 ## Methods that guess additional metadata fields based on README badges and realted information
 
 
-guess_published <- function(codemeta){
 
-  ## Currently only considers if published to CRAN
-  cran_published(codemeta)
-}
+## cache avail packages
+CRAN <- utils::available.packages(utils::contrib.url("https://cran.rstudio.com", "source"))
+BIOC <- utils::available.packages(utils::contrib.url("https://www.bioconductor.org/packages/release/bioc", "source"))
 
-cran_published <- function(codemeta){
-  if(codemeta$name %in% avail[,"Package"]){
-    codemeta$publisher <-
-      list("@type" = "Organization",
-           "name" = "CRAN",
-           "url" = "https://cran.r-project.org")
-  }
-  codemeta
 
-}
+guess_provider <- function(pkg){
 
-## Do not run if we're not in the working directory of the package!
-at_pkg_root <- function(cm, path){
-  if(file.exists(paste0(path, "/DESCRIPTION"))){
-    descr <- read_dcf(path)
-    cm$name == descr$Package
+  ## Assumes a single provider
+
+  if(pkg %in% CRAN[,"Package"]){
+    list("@id" = "https://cran.r-project.org",
+         "@type" = "Organization",
+         "name" = "Central R Archive Network (CRAN)",
+         "url" = "https://cran.r-project.org")
+
+
+
+  } else if(pkg %in% BIOC[,"Package"]){
+    list("@id" = "https://www.bioconductor.org/",
+         "@type" = "Organization",
+         "name" = "BioConductor",
+         "url" = "https://www.bioconductor.org/packages/")
+
   } else {
-    FALSE
+    NULL
   }
 
 }
+
 
 
 ## look for .travis.yml ? GREP .travis badge so we can guess repo name.
-guess_ci <- function(codemeta, pkg = "."){
+guess_ci <- function(readme){
   link <- NULL
-  if(at_pkg_root(codemeta, ".") && file.exists("README.md")){
-    txt <- readLines("README.md")
+  if(file.exists(readme)){
+    txt <- readLines(readme)
     badge <- txt[grepl("travis-ci", txt)]
     link <- gsub(".*(https://travis-ci.org/\\w+/\\w+).*", "\\1", badge)
+    if(length(link)>1) link <- link[[1]]
   }
-  codemeta$contIntegration <- link[[1]]
-
-  codemeta
+  link
 }
 
-guess_devStatus <- function(codemeta, pkg = "."){
-
-  link <- NULL
-  if(at_pkg_root(codemeta, ".") && file.exists("README.md")){
-    txt <- readLines("README.md")
+guess_devStatus <- function(readme){
+  status <- NULL
+  if(file.exists(readme)){
+    txt <- readLines(readme)
     badge <- txt[grepl("Project Status", txt)]
     status <- gsub(".*\\[!\\[(Project Status: .*)\\.\\].*", "\\1", badge)
   }
-  codemeta$developmentStatus <- status
-  codemeta
+  status
+
 }
 
 
