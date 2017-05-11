@@ -49,7 +49,7 @@ create_codemeta <- function(pkg = ".",
   cm <- import_pkg_description(descr = descr, cm = cm, version = version)
 
   if(version != "1"){
-    cm <- guess_ci(cm, pkg)
+    #cm <- guess_ci(cm, pkg)
     cm <- guess_published(cm)
   }
 
