@@ -32,7 +32,7 @@ parse_depends <- function(deps){
       pkgs <- paste0("https://cran.r-project.org/package=", pkgs)
     } else {
       ## Consider suppressing message (and fixing url) for R & base packages?
-      message(paste("could not find URL for package", pkgs, "since it is not available on CRAN."))
+   #   message(paste("could not find URL for package", pkgs, "since it is not available on CRAN."))
     }
     pkgs
   })
