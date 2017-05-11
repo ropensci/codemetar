@@ -26,7 +26,7 @@ guess_ci <- function(codemeta, pkg = "."){
     badge <- txt[grepl("travis-ci", txt)]
     link <- gsub(".*(https://travis-ci.org/\\w+/\\w+).*", "\\1", badge)
   }
-  codemeta$contIntegration <- link
+  codemeta$contIntegration <- link[[1]]
 
   codemeta
 }
