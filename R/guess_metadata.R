@@ -20,8 +20,13 @@ cran_published <- function(codemeta){
 
 ## Do not run if we're not in the working directory of the package!
 at_pkg_root <- function(cm, path){
-  descr <- read_dcf(path)
-  cm$name == descr$Package
+  if(file.exists(paste0(path, "/DESCRIPTION"))){
+    descr <- read_dcf(path)
+    cm$name == descr$Package
+  } else {
+    FALSE
+  }
+
 }
 
 

@@ -33,13 +33,12 @@ codemeta_description <-  function(descr, id = NULL, codemeta = new_codemeta()){
   ## According to crosswalk, codemeta$dateModified and codemeta$dateCreated are not crosswalked in R
   codemeta$datePublished <- descr$Date # probably not avaialable as descr$Date.
 
+  ## FIXME consider parsing into a valid SPDX string?
   codemeta$licenseId <- as.character(descr$License)
-
 
   ## license is a URL in schema.org, assume SPDX ID (though not all recognized CRAN abbreviations are valid SPDX strings).
   ## FIXME need a function to map known R license strings into SPDX codes
-  codemeta$license <- paste0("https://spdx.org/licenses/", gsub("^(\\w+).*", "\\1", as.character(descr$License)))
-
+  ## codemeta$license <- paste0("https://spdx.org/licenses/", gsub("^(\\w+).*", "\\1", as.character(descr$License)))
 
   codemeta$version <- descr$Version
   codemeta$programmingLanguage <-

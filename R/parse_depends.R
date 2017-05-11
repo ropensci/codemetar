@@ -6,7 +6,7 @@ avail <- utils::available.packages(utils::contrib.url("https://cran.rstudio.com"
 
 
 ## FIXME: makes a list of package URLs.  Technically we could declare a different type for these, e.g. SoftwareApplication or SoftwareSourceCode
-
+## Revisit with SoftwareSourceCode and just implement fields suggested in schema v1
 #' @importFrom utils available.packages contrib.url
 parse_depends <- function(deps){
   if(!is.null(deps))
@@ -28,9 +28,10 @@ parse_depends <- function(deps){
     pkgs <- gsub("\\s+", "", pkgs)
 
     ## Check if pkg is on CRAN
-    if(all(pkgs %in% avail[,"Package"]))
+    if(all(pkgs %in% avail[,"Package"])){
       pkgs <- paste0("https://cran.r-project.org/package=", pkgs)
-    else{
+    } else {
+      ## Consider suppressing message (and fixing url) for R & base packages?
       message(paste("could not find URL for package", pkgs, "since it is not available on CRAN."))
     }
     pkgs
