@@ -6,13 +6,25 @@
 parse_people <- function(people, codemeta){
 
   ## listing same person under multiple fields is inelegant?
-  codemeta$author <- lapply(people[ locate_role(people, "aut") ], person_to_schema)
-  codemeta$contributor <- lapply(people[ locate_role(people, "ctb") ], person_to_schema)
-  codemeta$copyrightHolder <- lapply(people[ locate_role(people, "cph") ], person_to_schema)
-  codemeta$maintainer <- person_to_schema(people[ locate_role(people, "cre") ])
+  codemeta$author <- people_with_role(people, "aut")
+  codemeta$contributor <- people_with_role(people, "ctb")
+  codemeta$copyrightHolder <- people_with_role(people, "cph")
+  codemeta$maintainer <- people_with_role(people, "cre")
   codemeta
 }
 
+people_with_role <- function(people, role = "aut"){
+  has_role <- locate_role(people, role)
+  if(any(has_role)){
+    out <- lapply(people[has_role], person_to_schema)
+  } else {
+    out <- NULL
+  }
+  if(role == "cre"){ # Can have only single maintainer, not list
+    out <- out[[1]]
+  }
+  out
+}
 
 locate_role <- function(people, role = "aut"){
   vapply(people, function(p) any(grepl(role, p$role)), logical(1))
@@ -29,13 +41,20 @@ person_to_schema <- function(p){
   }
 
   ## assume type is Organization if family name is null
-  if(is.null(p$family))
+  if(is.null(p$family) || is.null(p$given))
     type <- "Organization"
   else
     type <- "Person"
-  list("@id" = id,
-       "@type" = type,
-       givenName = p$given,
-       familyName = p$family,
-       email = p$email)
+
+  switch(type,
+         "Person" =   list("@id" = id,
+                           "@type" = type,
+                           givenName = p$given,
+                           familyName = p$family,
+                           email = p$email),
+         "Organization" = list("@id" = id,
+                               "@type" = type,
+                               name = c(p$given,p$family),
+                               email = p$email)
+  )
 }

@@ -13,18 +13,25 @@ testthat::test_that("We can parse author lists that use Authors@R, Authors, or b
   dcf <- system.file("examples/example.dcf", package="codemetar")
   descr <- as.list(read.dcf(dcf)[1,])
   codemeta <- new_codemeta()
-
-  if("Authors@R" %in% names(descr)){
-    codemeta <- parse_people(eval(parse(text=descr$`Authors@R`)), codemeta)
-  } else {
-    codemeta <- parse_people(as.person(descr$Maintainer), codemeta)
-    codemeta <- parse_people(as.person(descr$Author), codemeta)
-  }
+  codemeta <- parse_people(eval(parse(text=descr$`Authors@R`)), codemeta)
 
   write_codemeta(cm = codemeta, path = "test.json")
-
   testthat::expect_true(file.exists("test.json"))
 
+  codemeta2 <- codemeta
+  descr2 <- descr
+  descr2$`Authors@R` <- NULL
+
+  ## parse without Authors@R:
+  codemeta2 <- parse_people(as.person(descr2$Author), codemeta2)
+  codemeta2$maintainer <- person_to_schema(as.person(descr2$Maintainer))
+
+  write_codemeta(cm = codemeta2, path = "test2.json")
+  testthat::expect_true(file.exists("test2.json"))
+
+
   unlink("test.json")
+  unlink("test2.json")
+
 
 })

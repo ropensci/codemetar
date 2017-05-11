@@ -18,10 +18,17 @@ cran_published <- function(codemeta){
 
 }
 
+## Do not run if we're not in the working directory of the package!
+at_pkg_root <- function(cm, path){
+  descr <- read_dcf(path)
+  cm$name == descr$Package
+}
+
+
 ## look for .travis.yml ? GREP .travis badge so we can guess repo name.
 guess_ci <- function(codemeta, pkg = "."){
   link <- NULL
-  if(file.exists("README.md")){
+  if(at_pkg_root(codemeta, ".") && file.exists("README.md")){
     txt <- readLines("README.md")
     badge <- txt[grepl("travis-ci", txt)]
     link <- gsub(".*(https://travis-ci.org/\\w+/\\w+).*", "\\1", badge)
@@ -34,7 +41,7 @@ guess_ci <- function(codemeta, pkg = "."){
 guess_devStatus <- function(codemeta, pkg = "."){
 
   link <- NULL
-  if(file.exists("README.md")){
+  if(at_pkg_root(codemeta, ".") && file.exists("README.md")){
     txt <- readLines("README.md")
     badge <- txt[grepl("Project Status", txt)]
     status <- gsub(".*\\[!\\[(Project Status: .*)\\.\\].*", "\\1", badge)

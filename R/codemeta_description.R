@@ -33,8 +33,14 @@ codemeta_description <-  function(descr, id = NULL, codemeta = new_codemeta()){
   ## According to crosswalk, codemeta$dateModified and codemeta$dateCreated are not crosswalked in R
   codemeta$datePublished <- descr$Date # probably not avaialable as descr$Date.
 
-  ## license is a URL in schema.org, assume SPDX ID (though not all recognized CRAN abbreviations are valid SPDX strings)
+  codemeta$licenseId <- as.character(descr$License)
+
+
+  ## license is a URL in schema.org, assume SPDX ID (though not all recognized CRAN abbreviations are valid SPDX strings).
+  ## FIXME need a function to map known R license strings into SPDX codes
   codemeta$license <- paste0("https://spdx.org/licenses/", gsub("^(\\w+).*", "\\1", as.character(descr$License)))
+
+
   codemeta$version <- descr$Version
   codemeta$programmingLanguage <-
     list("@type" = "ComputerLanguage",
@@ -48,8 +54,10 @@ codemeta_description <-  function(descr, id = NULL, codemeta = new_codemeta()){
   if("Authors@R" %in% names(descr)){
     codemeta <- parse_people(eval(parse(text=descr$`Authors@R`)), codemeta)
   } else {
-    codemeta <- parse_people(as.person(descr$Maintainer), codemeta)
     codemeta <- parse_people(as.person(descr$Author), codemeta)
+    ## maintainer must come second in case Author list also specifies maintainer by role [cre] without email
+    codemeta$maintainer <- person_to_schema(as.person(descr$Maintainer))
+
   }
 
   codemeta$suggests <- parse_depends(descr$Suggests)
