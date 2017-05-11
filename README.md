@@ -91,7 +91,7 @@ write_codemeta(".")
       "depends": [
         "https://cran.r-project.org/package=jsonlite"
       ],
-      "contIntegration": ["https://travis-ci.org/codemeta/codemetar", "https://travis-ci.org/codemeta/codemetar"]
+      "contIntegration": "https://travis-ci.org/codemeta/codemetar"
     }
 
 Enriching CodeMeta metadata
