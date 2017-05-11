@@ -36,7 +36,7 @@ write_codemeta <- function(pkg = ".",
 #' @return a codemeta list object
 #' @export
 #' @examples
-#' cm <- create_codemeta()
+#' cm <- create_codemeta("codemetar")
 #' cm$keywords <- list("metadata", "ropensci")
 #' write_codemeta(cm = cm)
 create_codemeta <- function(pkg = ".",

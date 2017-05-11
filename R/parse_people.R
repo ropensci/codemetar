@@ -1,6 +1,8 @@
 ## internal method, takes R person object and turns to codemeta / json-ld
 
 ## FIXME if @id is available, avoid replicate listing of node?
+
+#' @importFrom utils as.person
 parse_people <- function(people, codemeta){
 
   ## listing same person under multiple fields is inelegant?

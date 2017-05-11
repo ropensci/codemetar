@@ -22,7 +22,7 @@ a codemeta list object
 create a codemeta list object in R for further manipulation
 }
 \examples{
-cm <- create_codemeta()
+cm <- create_codemeta("codemetar")
 cm$keywords <- list("metadata", "ropensci")
 write_codemeta(cm = cm)
 }
