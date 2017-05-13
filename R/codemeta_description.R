@@ -20,13 +20,11 @@ codemeta_description <-  function(descr, id = NULL, codemeta = new_codemeta()){
 
   if(is_IRI(id)){
     codemeta$`@id` <- id
-  } else {
-    codemeta$identifier <- id
   }
 
-  codemeta$title <- descr$Title
+  codemeta$identifier <- descr$Package
   codemeta$description <- descr$Description
-  codemeta$name <- descr$Package
+  codemeta$name <- paste0(descr$Package, ": ", descr$Title)
   codemeta$codeRepository <- descr$URL # descr$URL isn't necessarily a code repository, but crosswalk says this
   codemeta$issueTracker <- descr$BugReports
 

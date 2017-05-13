@@ -52,6 +52,8 @@ guess_devStatus <- function(readme){
     badge <- txt[grepl("Project Status", txt)]
     status <- gsub(".*\\[!\\[(Project Status: .*)\\.\\].*", "\\1", badge)
   }
+  if(length(status)>1) status <- status[[1]]
+
   status
 
 }
