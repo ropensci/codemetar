@@ -1,0 +1,44 @@
+---
+title: "CodeMeta for rOpenSci packages"
+author: "Carl Boettiger"
+date: "5/13/2017"
+output: html_document
+---
+
+
+All rOpenSci packages via GitHub API:
+
+```{r}
+# remotes::install_github("r-pkgs/gh")
+library("gh")
+
+repos <- gh("/users/:username/repos", username = "ropensci", .limit = Inf)
+repo_names <- vapply(repos, "[[", "", "name")
+not_a_pkg <- grepl("[-_]", repo_names)
+pkgs <- repo_names[!not_a_pkg]
+writeLines(paste("ropensci", pkgs, sep="/"), "ropensci_gh.txt")
+
+```
+
+All rOpenSci packages via ropkgs: 
+
+```{r}
+library("ropkgs")
+out <- ro_pkgs()
+good <- out$packages$status == "good"
+installable <- out$packages$installable
+
+pkgs <- gsub("https://github.com/", "", out$packages$url)[installable & good]
+root <- out$packages$root[installable & good]
+writeLines(paste(pkgs, root, sep="/"), "ropensci.txt")
+```
+
+```{r}
+source("drat_builder_utils.R")
+pkgs <- read_packages("ropensci.txt")
+fetch_package_sources(pkgs)
+  
+
+
+
+```

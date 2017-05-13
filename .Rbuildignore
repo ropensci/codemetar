@@ -7,4 +7,6 @@
 ^CONDUCT\.md$
 ^\.httr-oauth$
 ^docs$
-codemeta.json
+^codemeta\.json$
+^inst/notebook/packages_src$
+
