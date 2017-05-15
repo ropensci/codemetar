@@ -151,10 +151,18 @@ write_codemeta(".")
             "name": "Central R Archive Network (CRAN)",
             "url": "https://cran.r-project.org"
           }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "utils"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "methods"
         }
       ],
       "contIntegration": "https://travis-ci.org/codemeta/codemetar",
-      "developmentStatus": "Project Status: WIP - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public"
+      "developmentStatus": "wip"
     }
 
 Enriching CodeMeta metadata
@@ -173,5 +181,5 @@ Additional metadata can be added by creating and manipulating a `codemeta` list 
 ``` r
 cm <- create_codemeta(".")
 cm$keywords <- list("metadata", "ropensci")
-write_codemeta(cm = cm)
+write_codemeta(cm)
 ```

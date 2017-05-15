@@ -113,10 +113,18 @@
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "utils"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "methods"
     }
   ],
   "contIntegration": "https://travis-ci.org/codemeta/codemetar",
-  "developmentStatus": "Project Status: WIP - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public",
+  "developmentStatus": "wip",
   "keywords": [
     "metadata",
     "ropensci"

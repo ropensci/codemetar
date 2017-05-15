@@ -72,7 +72,7 @@ Additional metadata can be added by creating and manipulating a `codemeta` list 
 ```{r}
 cm <- create_codemeta(".")
 cm$keywords <- list("metadata", "ropensci")
-write_codemeta(cm = cm)
+write_codemeta(cm)
 ```
 
 

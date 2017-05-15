@@ -40,9 +40,12 @@ guess_ci <- function(readme){
     txt <- readLines(readme)
     badge <- txt[grepl("travis-ci", txt)]
     link <- gsub(".*(https://travis-ci.org/\\w+/\\w+).*", "\\1", badge)
-    if(length(link)>1) link <- link[[1]]
   }
-  link
+  if(length(link) >= 1){
+    link[[1]]
+  } else {
+    NULL
+  }
 }
 
 ## Currently looks for a repostatus.org link and returns the abbreviation.
@@ -56,9 +59,11 @@ guess_devStatus <- function(readme){
     ## use \\2 for repostatus.org term, \\1 for repostatus.org term link
     status <- gsub(".*(http://www.repostatus.org/#(\\w+)).*", "\\2", badge)
   }
-  if(length(status)>1) status <- status[[1]]
-
-  status
+  if(length(status) >= 1){
+    status[[1]]
+  } else {
+    NULL
+  }
 
 }
 
