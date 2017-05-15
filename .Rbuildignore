@@ -8,5 +8,5 @@
 ^\.httr-oauth$
 ^docs$
 ^codemeta\.json$
-^inst/notebook/packages_src$
+^inst/notebook/pkg_src$
 

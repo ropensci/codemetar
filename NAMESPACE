@@ -3,6 +3,5 @@
 export(create_codemeta)
 export(write_codemeta)
 importFrom(jsonlite,write_json)
+importFrom(methods,is)
 importFrom(utils,as.person)
-importFrom(utils,available.packages)
-importFrom(utils,contrib.url)

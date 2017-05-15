@@ -8,7 +8,7 @@
 #' @examples
 #' cm <- create_codemeta("jsonlite")
 #' cm$keywords <- list("metadata", "ropensci")
-#' write_codemeta(cm = cm)
+#' write_codemeta(cm)
 create_codemeta <- function(pkg = ".",
                             path = "codemeta.json",
                             version = "2",

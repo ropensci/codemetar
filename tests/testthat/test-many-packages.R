@@ -17,7 +17,7 @@ testthat::test_that("Test the creation of codemeta for many packages", {
 
   ## fixme avoid repeating context?
   set_meta <- lapply(set, create_codemeta)
-  write_codemeta(cm = set_meta, path = "many.json")
+  write_codemeta(set_meta, path = "many.json")
 
   unlink("many.json")
 

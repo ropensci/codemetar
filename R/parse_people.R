@@ -3,7 +3,12 @@
 ## FIXME if @id is available, avoid replicate listing of node?
 
 #' @importFrom utils as.person
+#' @importFrom methods is
 parse_people <- function(people, codemeta){
+
+  if(!is(people, "person")){
+    people <- as.person(people)
+  }
 
   ## listing same person under multiple fields is inelegant?
   codemeta$author <- people_with_role(people, "aut")

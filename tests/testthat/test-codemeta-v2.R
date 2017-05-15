@@ -15,7 +15,7 @@ testthat::test_that("We can parse author lists that use Authors@R, Authors, or b
   codemeta <- new_codemeta()
   codemeta <- parse_people(eval(parse(text=descr$`Authors@R`)), codemeta)
 
-  write_codemeta(cm = codemeta, path = "test.json")
+  write_codemeta(codemeta, path = "test.json")
   testthat::expect_true(file.exists("test.json"))
 
   codemeta2 <- codemeta
@@ -26,7 +26,7 @@ testthat::test_that("We can parse author lists that use Authors@R, Authors, or b
   codemeta2 <- parse_people(as.person(descr2$Author), codemeta2)
   codemeta2$maintainer <- person_to_schema(as.person(descr2$Maintainer))
 
-  write_codemeta(cm = codemeta2, path = "test2.json")
+  write_codemeta(codemeta2, path = "test2.json")
   testthat::expect_true(file.exists("test2.json"))
 
 
