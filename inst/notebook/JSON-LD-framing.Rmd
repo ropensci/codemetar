@@ -21,7 +21,7 @@ library(jsonld)
 We begin with an example of a relatively thorough `codemeta.json` file.  Note that the original file conforms to our schema, meaning that the data conforms to the expected tree structure.  
 
 ```{r}
-ex <- system.file("examples/full-codemeta.json", package = "codemetar")
+ex <- system.file("examples/codemeta-v1.json", package = "codemetar")
 schema <- system.file("schema/codemeta_schema.json", package = "codemetar")
 
 json_validate(ex, schema)

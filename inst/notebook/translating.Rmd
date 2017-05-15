@@ -1,0 +1,17 @@
+---
+title: "Translating between schema using JSON-LD"
+output: github_document
+---
+
+```{r message=FALSE}
+library("jsonlite")
+library("jsonld")
+
+```
+
+```{r}
+v1 <- read_json("https://raw.githubusercontent.com/codemeta/codemetar/master/inst/examples/codemeta-v1.json")
+```
+
+```{r}
+```
