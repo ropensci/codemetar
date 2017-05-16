@@ -1,0 +1,114 @@
+---
+title: "Translating between schema using JSON-LD"
+output: github_document
+---
+
+```{r message=FALSE}
+library("tidyverse")
+library("stringr")
+library("jsonlite")
+library("jsonld")
+```
+
+Here's a minimal example that uses JSON-LD to translate between two schema:
+
+```{r}
+ex <-
+'{
+"@context":{
+  "shouter": "https://schema.org/name",
+  "txt": "https://schema.org/commentText"
+},
+"shouter": "Jim",
+"txt": "Hello World!"
+}'
+
+bighash <- 
+'{
+"@context":{
+  "user": "https://schema.org/name",
+  "comment": "https://schema.org/commentText"
+}
+}'
+```
+
+```{r}
+ex %>%
+jsonld_expand() %>%
+  jsonld_compact(context = bighash)
+  
+
+```
+
+
+## Codemeta
+
+```{r}
+#crosswalk <- "https://github.com/codemeta/codemeta/raw/master/crosswalk.csv"
+crosswalk <- "../../../codemeta/crosswalk.csv"
+cw <- read_csv(crosswalk)
+
+
+crosswalk <- function(cw, column){
+  
+  def <- function(r){
+    paste(strsplit(r[["Parent Type"]], ":")[[1]][[1]], r[["Property"]], sep=":")
+  }
+
+  
+  cw[c("Parent Type", "Property", column)] %>% 
+    na.omit() %>%
+    by_row(def, .collate = "rows", .to = "def") -> df
+
+  
+  context <- df[["def"]]
+  names(context) <- df[[column]]
+  context <- as.list(context)
+  
+  context
+  #toJSON(list(context = context), pretty = TRUE, auto_unbox = TRUE)
+  }
+
+codemetav1 <- crosswalk(cw, "codemeta-V1")
+
+
+
+
+```
+
+
+To crosswalk a vocabulary, we must use the context the CrossWalk table defines for that vocabulary.  Most vocabularies are not already ontologies with their own base URLs, in which case this is relatively intuitive.  But we also need to use the CrossWalk context even when the data originates in another context (SoftwareOntology, DOAP, codemeta-v1), since otherwise those terms will stay in their original space (e.g `dcterms:identifer` will remain a different kind of property from a `schema:identifer`, etc)
+
+```{r}
+v1 <- "https://raw.githubusercontent.com/codemeta/codemetar/master/inst/examples/codemeta-v1.json"
+v1_obj <- jsonlite::read_json(v1)
+v1_obj$`@context` <- codemetav1
+v1_json <- toJSON(v1_obj, pretty=TRUE, auto_unbox = TRUE)
+#v1_json
+```
+
+
+With a JSON object in place, along with a context file that defines how that vocabulary is expressed in the context of `schema.org` / `codemeta`, we can now perform the exansion and compaction routine as before.  Expansion uses the native context from the file, compaction uses the new context of codemeta terms.  
+
+
+```{r}
+jsonld_expand(v1) %>%
+  jsonld_compact(context = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld") ->
+  v2
+v2
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
