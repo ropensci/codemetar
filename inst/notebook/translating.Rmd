@@ -4,14 +4,101 @@ output: github_document
 ---
 
 ```{r message=FALSE}
+library("tidyverse")
+library("stringr")
 library("jsonlite")
 library("jsonld")
+```
 
+Here's a minimal example that uses JSON-LD to translate between two schema:
+
+```{r}
+ex <-
+'{
+"@context":{
+  "shouter": "https://schema.org/name",
+  "txt": "https://schema.org/commentText"
+},
+"shouter": "Jim",
+"txt": "Hello World!"
+}'
+
+bighash <- 
+'{
+"@context":{
+  "user": "https://schema.org/name",
+  "comment": "https://schema.org/commentText"
+}
+}'
 ```
 
 ```{r}
-v1 <- read_json("https://raw.githubusercontent.com/codemeta/codemetar/master/inst/examples/codemeta-v1.json")
+ex %>%
+jsonld_expand() %>%
+  jsonld_compact(context = bighash)
+  
+
 ```
 
+
+## Codemeta
+
 ```{r}
+crosswalk <- "https://github.com/codemeta/codemeta/raw/master/crosswalk.csv"
+cw <- read_csv(crosswalk)
+
+
+crosswalk <- function(cw, column){
+  
+  def <- function(r){
+    paste(strsplit(r[["Parent Type"]], ":")[[1]][[1]], r[["Property"]], sep=":")
+  }
+
+  
+  cw[c("Parent Type", "Property", column)] %>% 
+    na.omit() %>%
+    by_row(def, .collate = "rows", .to = "def") -> df
+
+  
+  context <- df[["def"]]
+  names(context) <- df[[column]]
+  context <- as.list(context)
+  
+  context
+  toJSON(context, pretty = TRUE, auto_unbox = TRUE)
+}
+
+out <- crosswalk(cw, "codemeta-V1")
+out
+
 ```
+
+
+```{r}
+v1 <- "https://raw.githubusercontent.com/codemeta/codemetar/master/inst/examples/codemeta-v1.json"
+```
+
+
+
+
+```{r}
+jsonld_expand(v1) %>%
+  jsonld_compact(context = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld") ->
+  v2
+v2
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
