@@ -4,17 +4,15 @@
 \alias{write_codemeta}
 \title{write_codemeta}
 \usage{
-write_codemeta(pkg = ".", path = "codemeta.json", pretty = TRUE,
-  auto_unbox = TRUE, version = "2", ...)
+write_codemeta(pkg = ".", path = "codemeta.json", root = ".",
+  version = "2", ...)
 }
 \arguments{
-\item{pkg}{package description file, can be path or package name (character), or a codemeta object (list)}
+\item{pkg}{package path to package root, or package name, or description file (character), or a codemeta object (list)}
 
 \item{path}{file name of the output, leave at default "codemeta.json"}
 
-\item{pretty}{formatting option to \code{\link{write_json}}}
-
-\item{auto_unbox}{formatting  option to \code{\link{write_json}}}
+\item{root}{if pkg is a codemeta object, optionally give the path to package root. Default guess is current dir.}
 
 \item{version}{schema version}
 

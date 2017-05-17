@@ -2,6 +2,7 @@ Translating between schema using JSON-LD
 ================
 
 ``` r
+library("codemetar")
 library("tidyverse")
 library("jsonlite")
 library("jsonld")
@@ -65,62 +66,12 @@ crosswalk <- "../../../codemeta/crosswalk.csv"
 cw <- read_csv(crosswalk)
 ```
 
-    Parsed with column specification:
-    cols(
-      .default = col_character()
-    )
-
-    See spec(...) for full column specifications.
-
-and we will write an R function which turns this data in a context file for the requested column:
-
-``` r
-crosswalk <- function(cw, column){
-  
-  def <- function(r){
-    prefix <- strsplit(r[["Parent Type"]], ":")[[1]][[1]]
-    if(prefix == "schema")
-      out <- paste(prefix, r[["Property"]], sep=":")
-    ## Best to declare type on any property we want to explicitly type in the output version (e.g. codemeta objects)
-    ## Otherwise the compaction aglorithm will not de-reference the `codemeta:` prefix
-    else if(prefix == "codemeta"){
-      type <- gsub("(\\w+).*", "\\1", r[["Type"]])
-      out <- list("@id" = paste0(prefix, ":", r[["Property"]]),
-                  "@type" = paste0("http://schema.org/", type))
-    }
-    out
-  }
-
-  ## apply by row
-  cw[c("Parent Type", "Property", "Type", column)] %>% 
-    na.omit() %>%
-    by_row(def, .to = "def") -> df
-  ## 
-  context <- df[["def"]]
-  names(context) <- gsub("(\\w+).*", "\\1", df[[column]])
-  
-  context <- c(list(schema = "http://schema.org/", 
-                    codemeta = "https://codemeta.github.io/terms/"), 
-               as.list(context))
-  context
-  #toJSON(list(context = context), pretty = TRUE, auto_unbox = TRUE)
-}
-```
-
-With this in place, we can start converting between data formats.
-
 DataCite
 --------
 
-``` r
-cm2_context <- "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld"
-#cm2_context <- "../examples/codemeta-v2.jsonld"
-```
+We can illustrate using the expansion and compaction process to crosswalk DataCite's metadata schema into other formats, such as the native codemeta format or the Zenodo format. First, let's start with some DataCite metadata:
 
 ``` r
-## nope, sadly this is not quite clean json translation 
-# GET("https://doi.org/10.5281/zenodo.573741", add_headers(Accept="application/vnd.datacite.datacite+xml")) %>% content(type="application/xml") %>% xml2::as_list() %>%  toJSON(pretty = TRUE, auto_unbox=TRUE)
-## Read tidy version instead
 datacite_ex <- "../examples/datacite-xml.json"
 cat(readLines(datacite_ex), sep="\n")
 ```
@@ -148,20 +99,28 @@ cat(readLines(datacite_ex), sep="\n")
       ]
     }
 
-Add the crosswalk context
+Note this example uses a JSON-ified representation of DataCite's internal schema, which is XML-based. So far, this is just plain JSON, with no context. We will use the crosswalk table to define the DataCite context with reference to codemeta:
 
 ``` r
+## read the file
 datacite_list <- read_json(datacite_ex)
-datacite_list$`@context` <- crosswalk(cw, "DataCite")
+
+## add context using the codemeta crosswalk function on the current crosswalk table
+datacite_list$`@context` <- codemetar::crosswalk("DataCite", cw)
+
+## serialize as JSON
+datacite_json <-
+datacite_list %>% 
+  toJSON(auto_unbox=TRUE, pretty=TRUE)
 ```
 
-Here we compact into the CodeMeta native context:
+We can now expand this json in terms of DataCite context we just derived from the table, and then compact it into the CodeMeta native context:
 
 ``` r
-  datacite_list %>% 
-  toJSON(auto_unbox=TRUE) %>%
-  jsonld_expand() %>% 
-  jsonld_compact(context = cm2_context) 
+datacite_cm <-
+  jsonld_expand(datacite_json) %>% 
+  jsonld_compact(context = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld") 
+datacite_cm
 ```
 
     {
@@ -187,92 +146,7 @@ Here we compact into the CodeMeta native context:
       "publisher": "Zenodo"
     } 
 
-We could also crosswalk into another standard by compacting into that context instead. For instance, here we translate our datacite record into a zenodo record. First we get the context from the crosswalk:
-
-``` r
-zenodo_context <- 
-  list("@context" = crosswalk(cw, "Zenodo")) %>% 
-  toJSON(pretty = TRUE, auto_unbox = TRUE)
-cat(zenodo_context)
-```
-
-    {
-      "@context": {
-        "schema": "http://schema.org/",
-        "codemeta": "https://codemeta.github.io/terms/",
-        "relatedLink": "schema:codeRepository",
-        "communities": "schema:applicationCategory",
-        "creators": "schema:author",
-        "date_published": "schema:datePublished",
-        "contributors": "schema:funder",
-        "keywords": "schema:keywords",
-        "license": "schema:license",
-        "description": "schema:description",
-        "id": "schema:identifier",
-        "title": "schema:name",
-        "affiliation": "schema:affiliation",
-        "ORCID": "schema:\"@id\"",
-        "name": "schema:name",
-        "license.1": {
-          "@id": "codemeta:licenseId",
-          "@type": "http://schema.org/Text"
-        }
-      }
-    }
-
-then apply it as before:
-
-``` r
-  datacite_list %>% 
-  toJSON(pretty=TRUE, auto_unbox=TRUE) %>%
-  jsonld_expand() %>% 
-  jsonld_compact(context = zenodo_context) 
-```
-
-    {
-      "@context": {
-        "schema": "http://schema.org/",
-        "codemeta": "https://codemeta.github.io/terms/",
-        "relatedLink": "schema:codeRepository",
-        "communities": "schema:applicationCategory",
-        "creators": "schema:author",
-        "date_published": "schema:datePublished",
-        "contributors": "schema:funder",
-        "keywords": "schema:keywords",
-        "license": "schema:license",
-        "description": "schema:description",
-        "id": "schema:identifier",
-        "title": "schema:name",
-        "affiliation": "schema:affiliation",
-        "ORCID": "schema:\"@id\"",
-        "name": "schema:name",
-        "license.1": {
-          "@id": "codemeta:licenseId",
-          "@type": "http://schema.org/Text"
-        }
-      },
-      "creators": [
-        {
-          "schema:familyName": "Helske",
-          "schema:givenName": "Jouni"
-        },
-        {
-          "schema:familyName": "Vihola",
-          "schema:givenName": "Matti"
-        }
-      ],
-      "schema:dateCreated": "2017-05-10",
-      "date_published": "2017",
-      "description": [
-        "Efficient methods for Bayesian inference of state space models via particle Markov chain Monte Carlo and importance sampling type corrected Markov chain Monte Carlo. Currently supports models with Gaussian, Poisson, binomial, or negative binomial observation densities and Gaussian state dynamics, as well as general non-linear Gaussian models.",
-        "Funded by Academy of Finland grant 284513, \"Exact approximate Monte Carlo methods for complex Bayesian inference\"."
-      ],
-      "id": "10.5281/zenodo.573741",
-      "license": "Open Access",
-      "schema:publisher": "Zenodo"
-    } 
-
-Note that data that cannot be crosswalked into Zenodo is not dropped, but rather is left in the original context (`schema:`).
+The result should be a valid `codemeta.json` document.
 
 Comparison to native schema.org translation:
 --------------------------------------------
@@ -292,7 +166,7 @@ datacite_cm <-
   datacite_jsonld %>% 
   toJSON(pretty = TRUE, auto_unbox = TRUE) %>%
   jsonld_expand() %>% 
-  jsonld_compact(context = cm2_context) 
+  jsonld_compact(context = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld") 
 
 datacite_cm
 ```
@@ -342,13 +216,96 @@ datacite_cm
 
 This is very close to the codemeta document we got by translating the DataCite XML using the crosswalk table.
 
+Transforming into other column schema
+-------------------------------------
+
+Note that we can also use this approach to crosswalk into another standard by compacting into the context for the given column. For instance, here we translate our datacite record into a zenodo record. First we get the context from the crosswalk:
+
+``` r
+zenodo_context <- 
+  list("@context" = crosswalk("Zenodo", cw)) %>% 
+  toJSON(pretty = TRUE, auto_unbox = TRUE)
+```
+
+then apply it as before:
+
+``` r
+  jsonld_expand(datacite_cm) %>% 
+  jsonld_compact(context = zenodo_context) 
+```
+
+    {
+      "@context": {
+        "schema": "http://schema.org/",
+        "codemeta": "https://codemeta.github.io/terms/",
+        "relatedLink": "schema:codeRepository",
+        "communities": "schema:applicationCategory",
+        "creators": "schema:author",
+        "date_published": "schema:datePublished",
+        "contributors": "schema:funder",
+        "keywords": "schema:keywords",
+        "license": "schema:license",
+        "description": "schema:description",
+        "id": "schema:identifier",
+        "title": "schema:name",
+        "affiliation": "schema:affiliation",
+        "ORCID": "schema:identifier",
+        "name": "schema:name"
+      },
+      "@id": "https://doi.org/10.5281/zenodo.573741",
+      "@type": "schema:SoftwareSourceCode",
+      "schema:additionalType": {
+        "@id": "Software"
+      },
+      "creators": [
+        {
+          "@type": "schema:Person",
+          "schema:familyName": "Helske",
+          "schema:givenName": "Jouni",
+          "name": "Jouni Helske"
+        },
+        {
+          "@type": "schema:Person",
+          "schema:familyName": "Vihola",
+          "schema:givenName": "Matti",
+          "name": "Matti Vihola"
+        }
+      ],
+      "date_published": {
+        "@type": "schema:Date",
+        "@value": "2017-05-10"
+      },
+      "description": [
+        "Efficient methods for Bayesian inference of state space models via particle Markov chain Monte Carlo and importance sampling type corrected Markov chain Monte Carlo. Currently supports models with Gaussian, Poisson, binomial, or negative binomial observation densities and Gaussian state dynamics, as well as general non-linear Gaussian models.",
+        "Funded by Academy of Finland grant 284513, \"Exact approximate Monte Carlo methods for complex Bayesian inference\"."
+      ],
+      "name": "Bayesian Inference Of State Space Models With The Bssm Package",
+      "schema:provider": {
+        "@type": "schema:Organization",
+        "name": "DataCite"
+      },
+      "schema:publisher": {
+        "@type": "schema:Organization",
+        "name": "Zenodo"
+      },
+      "schema:schemaVersion": {
+        "@id": "http://datacite.org/schema/kernel-3"
+      }
+    } 
+
+This data should be now use valid Zenodo terms (e.g. using `creators` for `schema:author`). Note that we also see explicitly the context that `codemeta::crosswalk` produced as `zenodo_context`, since we passed this information as a json file and not a URL. This provides a nice illustration of what the crosswalk is returning when asked for a context of a given column.
+
+Note that data that many of the fields could not be directly crosswalked into Zenodo terms, because (at least according to the crosswalk table) they have no analog in Zenodo, such as `schema:dateCreated`. Instead of dropping this data, the JSON-LD has retained the information using the original prefix `schema:`, indicating that the term is part of the `schema.org` context but not recognized in the context of Zenodo.
+
+Note this also happens if properties do not have a 1:1 map, since JSON-LD doesn't provide a convenient way to map two separate properties like `givenName`, `familyName` into a single property, `name` either. JSON-LD will also refuse to map a term that has a potentially different type in the new context (since type coercion can also lead to data loss). In this way, compaction is very conservative.
+
 Codemeta
 --------
 
 We can use a similar crosswalk strategy to translate from a JSON-LD file writing using v1 of the codemeta context into the current, v2 context:
 
 ``` r
-codemetav1 <- crosswalk(cw, "codemeta-V1")
+codemetav1 <- crosswalk("codemeta-V1", cw)
 
 ## Add some altered Type definitions from v1
 codemetav1 <- c(codemetav1,

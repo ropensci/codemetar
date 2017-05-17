@@ -4,10 +4,12 @@
 \alias{create_codemeta}
 \title{create_codemeta}
 \usage{
-create_codemeta(pkg = ".", version = "2", ...)
+create_codemeta(pkg = ".", root = ".", version = "2", ...)
 }
 \arguments{
-\item{pkg}{package description file, can be path or package name (character), or a codemeta object (list)}
+\item{pkg}{package path to package root, or package name, or description file (character), or a codemeta object (list)}
+
+\item{root}{if pkg is a codemeta object, optionally give the path to package root. Default guess is current dir.}
 
 \item{version}{schema version}
 
