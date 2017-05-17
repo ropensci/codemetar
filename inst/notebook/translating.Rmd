@@ -58,7 +58,6 @@ We'll start with the actual crosswalk table itself:
 
 ```{r message=FALSE}
 crosswalk <- "https://github.com/codemeta/codemeta/raw/master/crosswalk.csv"
-crosswalk <- "../../../codemeta/crosswalk.csv"
 cw <- read_csv(crosswalk)
 ```
 
@@ -84,7 +83,7 @@ GET("https://doi.org/10.5281/zenodo.573741",
 
 
 ```{r}
-datacite_ex <- "../examples/datacite-xml.json"
+datacite_ex <- "https://raw.githubusercontent.com/codemeta/codemetar/master/inst/examples/datacite-xml.json"
 cat(readLines(datacite_ex), sep="\n")
 ```
 
