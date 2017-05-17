@@ -12,6 +12,9 @@ new_codemeta <- function(){
 # Can add to an existing codemeta document
 codemeta_description <-  function(descr, id = NULL, codemeta = new_codemeta()){
 
+  if(is.null(descr) || length(descr) == 0){
+    return(codemeta)
+  }
 
   ## FIXME define an S3 class based on the codemeta list of lists?
   if(is.null(id)){
@@ -64,41 +67,3 @@ codemeta_description <-  function(descr, id = NULL, codemeta = new_codemeta()){
 
 }
 
-
-
-
-
-
-## based on devtools::read_dcf
-read_dcf <- function(pkg) {
-
-  ## Takes path to DESCRIPTION, to package root, or the package name as an argument
-  if(basename(pkg) == "DESCRIPTION"){ #so read_dcf can take a dcf file as argument, instead of just a path.
-    dcf <- pkg
-  } else {
-    dcf <- get_file("DESCRIPTION", pkg)
-  }
-
-  fields <- colnames(read.dcf(dcf))
-  as.list(read.dcf(dcf, keep.white = fields)[1, ])
-}
-
-## Like system.file, but pkg can instead be path to package root directory
-get_file <- function(FILE, pkg = "."){
-  f <- file.path(pkg, FILE)
-  if(file.exists(f))
-    f
-  else {
-    f <- system.file(FILE, package = pkg)
-  }
-}
-
-
-
-
-
-
-is_IRI <- function(string){
-  ## FIXME IRI can be many other things too, see https://github.com/dgerber/rfc3987 for more formal implementation
-  grepl("^http[s]?://", string)
-}

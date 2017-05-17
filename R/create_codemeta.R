@@ -11,24 +11,38 @@
 #' write_codemeta(cm)
 #' @importFrom jsonlite read_json
 create_codemeta <- function(pkg = ".",
-                            path = "codemeta.json",
+                            root = ".",
                             version = "2",
                             ...){
 
-  if(is.list(pkg)) { ## If we have been given a codemeta object already
+  ## looks like we got a package name/path or Description file in pkg.  Can use this as root path.
+  if(is.character(pkg)){
+    root <- pkg
+
+    ## no cm provided, but codemeta.json found in pkg
+    if(file.exists(get_file("codemeta.json", root))){  ## Our package has an existing codemeta.json to update
+      cm <- jsonlite::read_json(get_file("codemeta.json", root))
+
+    ## no cm, no existing codemeta.json found, start fresh
+    } else {
+      cm <- new_codemeta()
+    }
+
+  ## we got an existing codemeta object as pkg
+  } else if(is.list(pkg)){
     cm <- pkg
-  } else if(file.exists(get_file("codemeta.json", pkg))){  ## Our package has an existing codemeta.json to update
-    cm <- jsonlite::read_json(get_file("codemeta.json", pkg))
-  } else { ## Guess we're starting with a new codemeta object
-    cm <- new_codemeta()
+    ## root should be set already, we might check that root has a DESCRIPTION,
+    ## but if not, methods below should return NULLs rather than error anyhow
   }
-  descr <- read_dcf(pkg)
+
+
+  descr <- read_dcf(root)
   cm <- import_pkg_description(descr = descr, cm = cm, version = version)
 
   ## legacy support only
   if(version == "1") return(cm)
 
-  readme <- get_file("README.md", pkg)
+  readme <- get_file("README.md", root)
 
   cm$contIntegration <- guess_ci(readme)
   cm$developmentStatus <- guess_devStatus(readme)

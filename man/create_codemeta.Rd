@@ -4,12 +4,10 @@
 \alias{create_codemeta}
 \title{create_codemeta}
 \usage{
-create_codemeta(pkg = ".", path = "codemeta.json", version = "2", ...)
+create_codemeta(pkg = ".", version = "2", ...)
 }
 \arguments{
 \item{pkg}{package description file, can be path or package name (character), or a codemeta object (list)}
-
-\item{path}{file name of the output, leave at default "codemeta.json"}
 
 \item{version}{schema version}
 

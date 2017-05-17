@@ -8,7 +8,9 @@ BIOC <- utils::available.packages(utils::contrib.url("https://www.bioconductor.o
 
 
 guess_provider <- function(pkg){
-
+  if(is.null(pkg)){
+    return(NULL)
+  }
   ## Assumes a single provider
 
   if(pkg %in% CRAN[,"Package"]){

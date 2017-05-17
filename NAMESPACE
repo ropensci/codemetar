@@ -2,6 +2,7 @@
 
 export(create_codemeta)
 export(write_codemeta)
+importFrom(jsonlite,read_json)
 importFrom(jsonlite,write_json)
 importFrom(methods,is)
 importFrom(utils,as.person)
