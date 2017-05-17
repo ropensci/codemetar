@@ -187,7 +187,7 @@ Here we compact into the CodeMeta native context:
       "publisher": "Zenodo"
     } 
 
-We could also crosswalk into another standard by compacting into that context instead. For instance:
+We could also crosswalk into another standard by compacting into that context instead. For instance, here we translate our datacite record into a zenodo record. First we get the context from the crosswalk:
 
 ``` r
 zenodo_context <- 
@@ -202,6 +202,7 @@ cat(zenodo_context)
         "codemeta": "https://codemeta.github.io/terms/",
         "relatedLink": "schema:codeRepository",
         "communities": "schema:applicationCategory",
+        "creators": "schema:author",
         "date_published": "schema:datePublished",
         "contributors": "schema:funder",
         "keywords": "schema:keywords",
@@ -211,12 +212,15 @@ cat(zenodo_context)
         "title": "schema:name",
         "affiliation": "schema:affiliation",
         "ORCID": "schema:\"@id\"",
+        "name": "schema:name",
         "license.1": {
           "@id": "codemeta:licenseId",
           "@type": "http://schema.org/Text"
         }
       }
     }
+
+then apply it as before:
 
 ``` r
   datacite_list %>% 
@@ -231,6 +235,7 @@ cat(zenodo_context)
         "codemeta": "https://codemeta.github.io/terms/",
         "relatedLink": "schema:codeRepository",
         "communities": "schema:applicationCategory",
+        "creators": "schema:author",
         "date_published": "schema:datePublished",
         "contributors": "schema:funder",
         "keywords": "schema:keywords",
@@ -240,12 +245,13 @@ cat(zenodo_context)
         "title": "schema:name",
         "affiliation": "schema:affiliation",
         "ORCID": "schema:\"@id\"",
+        "name": "schema:name",
         "license.1": {
           "@id": "codemeta:licenseId",
           "@type": "http://schema.org/Text"
         }
       },
-      "schema:author": [
+      "creators": [
         {
           "schema:familyName": "Helske",
           "schema:givenName": "Jouni"
@@ -265,6 +271,11 @@ cat(zenodo_context)
       "license": "Open Access",
       "schema:publisher": "Zenodo"
     } 
+
+Note that data that cannot be crosswalked into Zenodo is not dropped, but rather is left in the original context (`schema:`).
+
+Comparison to native schema.org translation:
+--------------------------------------------
 
 DataCite actually returns data directly in JSON-LD format using exclusively the schema.org context. We can query that data directly:
 
@@ -328,6 +339,8 @@ datacite_cm
         "@id": "http://datacite.org/schema/kernel-3"
       }
     } 
+
+This is very close to the codemeta document we got by translating the DataCite XML using the crosswalk table.
 
 Codemeta
 --------
@@ -461,7 +474,10 @@ v2_json
 
 Note that certain terms in the `codemeta` namespace are explicitly being typed as such (e.g. `codemeta:maintainer` rather than plain `maintainer`) by the compaction algorithm, because these terms do not have matching types in their original codemeta v1 context vs codemeta v2 context.
 
-We can use a frame to extract particular elements in a particular format. This is most useful when there are highly nested complex types.
+Framing
+-------
+
+We can use a frame to extract particular elements in a particular format. This is most useful when there are highly nested complex types. Framing with the `@explicit` tag is also a good way to filter out fields that we are not interested in, though these are usually less problematic for developers to work around.
 
 ``` r
 frame <- 
