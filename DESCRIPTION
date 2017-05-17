@@ -22,5 +22,7 @@ Suggests: testthat,
     jsonld,
     covr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    httr,
+    tidyverse
 VignetteBuilder: knitr
