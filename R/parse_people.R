@@ -9,6 +9,9 @@ parse_people <- function(people, codemeta){
   if(!is(people, "person")){
     people <- as.person(people)
   }
+  if(length(people) == 0){
+    return(codemeta)
+  }
 
   ## listing same person under multiple fields is inelegant?
   codemeta$author <- people_with_role(people, "aut")
@@ -36,6 +39,13 @@ locate_role <- function(people, role = "aut"){
 }
 
 person_to_schema <- function(p){
+
+  if(!is(p, "person")){
+    p <- as.person(p)
+  }
+  if(length(p) == 0){
+    return(NULL)
+  }
 
   ## Store ORCID id in comment?
   id <- NULL
