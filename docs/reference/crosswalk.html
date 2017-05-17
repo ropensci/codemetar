@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>write_codemeta — write_codemeta • codemetar</title>
+<title>Crosswalk a column to return a JSON-LD context for it based on codemeta — crosswalk • codemetar</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -76,55 +76,85 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>write_codemeta</h1>
+    <h1>Crosswalk a column to return a JSON-LD context for it based on codemeta</h1>
     </div>
 
     
-    <p>write_codemeta</p>
+    <p>Crosswalk a column to return a JSON-LD context for it based on codemeta</p>
     
 
-    <pre class="usage"><span class='fu'>write_codemeta</span>(<span class='kw'>pkg</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"codemeta.json"</span>, <span class='kw'>root</span> <span class='kw'>=</span> <span class='st'>"."</span>,
-  <span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"2"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>crosswalk</span>(<span class='no'>column</span>, <span class='kw'>cw_table</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to_json</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pkg</th>
-      <td><p>package path to package root, or package name, or description file (character), or a codemeta object (list)</p></td>
+      <th>column</th>
+      <td><p>column name from the CrossWalk table (character vector)</p></td>
     </tr>
     <tr>
-      <th>path</th>
-      <td><p>file name of the output, leave at default "codemeta.json"</p></td>
+      <th>cw_table</th>
+      <td><p>A CrossWalk table. call to readr::read_csv("https://github.com/codemeta/codemeta/raw/master/crosswalk.csv") or use default cached copy.</p></td>
     </tr>
     <tr>
-      <th>root</th>
-      <td><p>if pkg is a codemeta object, optionally give the path to package root. Default guess is current dir.</p></td>
-    </tr>
-    <tr>
-      <th>version</th>
-      <td><p>schema version</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>additional arguments to <code>write_json</code></p></td>
+      <th>to_json</th>
+      <td><p>logical, should the result be turned into a json string?
+Default FALSE, which permits easier manipulation such as adding this
+context to an existing list before serializing to JSON</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>writes out the codemeta.json file</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>If pkg is a codemeta object, the function will attempt to
- update any fields it can guess (i.e. from the DESRIPTION file),
- overwriting any existing data in that block. In this case, the package
- root directory should be the current working directory.</p>
+    <p>a context list, which can be converted to a json string</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>write_codemeta</span>(<span class='st'>"codemetar"</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>crosswalk</span>(<span class='st'>"Zenodo"</span>)</div><div class='output co'>#&gt; $schema
+#&gt; [1] "http://schema.org/"
+#&gt; 
+#&gt; $codemeta
+#&gt; [1] "https://codemeta.github.io/terms/"
+#&gt; 
+#&gt; $relatedLink
+#&gt; [1] "schema:codeRepository"
+#&gt; 
+#&gt; $communities
+#&gt; [1] "schema:applicationCategory"
+#&gt; 
+#&gt; $creators
+#&gt; [1] "schema:author"
+#&gt; 
+#&gt; $date_published
+#&gt; [1] "schema:datePublished"
+#&gt; 
+#&gt; $contributors
+#&gt; [1] "schema:funder"
+#&gt; 
+#&gt; $keywords
+#&gt; [1] "schema:keywords"
+#&gt; 
+#&gt; $license
+#&gt; [1] "schema:license"
+#&gt; 
+#&gt; $description
+#&gt; [1] "schema:description"
+#&gt; 
+#&gt; $id
+#&gt; [1] "schema:identifier"
+#&gt; 
+#&gt; $title
+#&gt; [1] "schema:name"
+#&gt; 
+#&gt; $affiliation
+#&gt; [1] "schema:affiliation"
+#&gt; 
+#&gt; $ORCID
+#&gt; [1] "schema:identifier"
+#&gt; 
+#&gt; $name
+#&gt; [1] "schema:name"
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -132,8 +162,6 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

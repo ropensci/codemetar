@@ -138,9 +138,29 @@ write_codemeta(".")
             "name": "Central R Archive Network (CRAN)",
             "url": "https://cran.r-project.org"
           }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "httr",
+          "provider": {
+            "@id": "https://cran.r-project.org",
+            "@type": "Organization",
+            "name": "Central R Archive Network (CRAN)",
+            "url": "https://cran.r-project.org"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "tidyverse",
+          "provider": {
+            "@id": "https://cran.r-project.org",
+            "@type": "Organization",
+            "name": "Central R Archive Network (CRAN)",
+            "url": "https://cran.r-project.org"
+          }
         }
       ],
-      "depends": [
+      "softwareRequirements": [
         {
           "@type": "SoftwareApplication",
           "name": "jsonlite",
@@ -159,6 +179,15 @@ write_codemeta(".")
         {
           "@type": "SoftwareApplication",
           "name": "methods"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "stats"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "R",
+          "version": "3.0.0)"
         }
       ],
       "contIntegration": "https://travis-ci.org/codemeta/codemetar",
