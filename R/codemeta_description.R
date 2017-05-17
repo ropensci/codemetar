@@ -61,7 +61,7 @@ codemeta_description <-  function(descr, id = NULL, codemeta = new_codemeta()){
   }
 
   codemeta$suggests <- parse_depends(descr$Suggests)
-  codemeta$depends <- c(parse_depends(descr$Imports), parse_depends(descr$Depends))
+  codemeta$softwareRequirements <- c(parse_depends(descr$Imports), parse_depends(descr$Depends))
 
   codemeta
 
