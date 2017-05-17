@@ -9,12 +9,19 @@
 #' cm <- create_codemeta("jsonlite")
 #' cm$keywords <- list("metadata", "ropensci")
 #' write_codemeta(cm)
+#' @importFrom jsonlite read_json
 create_codemeta <- function(pkg = ".",
                             path = "codemeta.json",
                             version = "2",
                             ...){
 
-  cm <- new_codemeta()
+  if(is.list(pkg)) { ## If we have been given a codemeta object already
+    cm <- pkg
+  } else if(file.exists(get_file("codemeta.json", pkg))){  ## Our package has an existing codemeta.json to update
+    cm <- jsonlite::read_json(get_file("codemeta.json", pkg))
+  } else { ## Guess we're starting with a new codemeta object
+    cm <- new_codemeta()
+  }
   descr <- read_dcf(pkg)
   cm <- import_pkg_description(descr = descr, cm = cm, version = version)
 

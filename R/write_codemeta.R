@@ -19,11 +19,8 @@ write_codemeta <- function(pkg = ".",
                            version = "2",
                            ...) {
 
-  if(is.list(pkg)) {
-    cm <- pkg
-  } else {
-    cm <- create_codemeta(pkg = pkg, path = path, version = version)
-  }
+
+  cm <- create_codemeta(pkg = pkg, path = path, version = version)
   jsonlite::write_json(cm, path, pretty = pretty, auto_unbox = auto_unbox, ...)
 
 }

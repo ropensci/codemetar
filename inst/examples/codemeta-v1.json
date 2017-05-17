@@ -1,9 +1,9 @@
 {
+    "@context":"https://doi.org/10.5063/SCHEMA/CODEMETA-1.0",
     "title": "CodeMeta, a minimal convention for software metadata",
     "description": "Codemeta is a metadata content standard for software.  It includes schemas in JSON-LD and XML Schema for providing semantics and validation.",
     "identifier": "http://dx.doi.org/10.6084/m9.figshare.828487",
     "name": "codemeta",
-    "@context":"https://doi.org/10.5063/SCHEMA/CODEMETA-1.0",
     "@type": "SoftwareSourceCode",
     "agents": [{
         "@id": "http://orcid.org/0000-0002-2192-403X",
