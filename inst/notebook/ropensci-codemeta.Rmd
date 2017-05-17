@@ -30,22 +30,30 @@ good <- out$packages$status == "good"
 installable <- out$packages$installable
 
 pkgs <- gsub("https://github.com/", "", out$packages$url)[installable & good]
-#root <- out$packages$root[installable & good]
-#gitrepo <- paste0(pkgs, root, sep="/")
-#writeLines(gitrepo, "ropensci.txt")
+
 ```
 
 ```{r}
-pkgs <- pkgs[1:3]
+#pkgs <- pkgs[1:3]
 #dir.create("pkg_src"); 
 setwd("pkg_src")
 for(p in pkgs){
   system(paste0("git clone https://github.com/", p, " ", p))
 }
+```
 
+```{r}
+setwd("pkg_src") # setwd doesn't persist across chunks
 cm <- lapply(pkgs, function(p){
+  message(p)
   codemetar::create_codemeta(p)
 })
 
-write_codemeta(cm = cm, path="ropensci.json")
+
+
+
+codemetar::write_codemeta(cm, path="ropensci.json")
 ```
+
+
+
