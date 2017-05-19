@@ -35,7 +35,7 @@ codemeta_description <-  function(descr, id = NULL, codemeta = new_codemeta()){
   codemeta$datePublished <- descr$Date # probably not avaialable as descr$Date.
 
   ## FIXME consider parsing into a valid SPDX string?
-  codemeta$licenseId <- as.character(descr$License)
+  codemeta$license <- as.character(descr$License)
 
   ## license is a URL in schema.org, assume SPDX ID (though not all recognized CRAN abbreviations are valid SPDX strings).
   ## FIXME need a function to map known R license strings into SPDX codes

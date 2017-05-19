@@ -21,50 +21,23 @@
       "softwareVersion": {},
       "storageRequirements": {},
       "supportingData": {},
-      "author": {
-              "givenName": {},
-              "familyName": {},
-              "email": {},
-              "affiliation": {}
-      },
+      "author": {"@embed": "@always"},
       "citation": {},
       "contributor": {},
       "copyrightHolder": {},
       "copyrightYear": {},
-      "creator": {
-              "givenName": {},
-              "familyName": {},
-              "email": {},
-              "affiliation": {}
-      },
+      "creator": {},
       "dateCreated": {},
       "dateModified": {},
       "datePublished": {},
-      "editor": {
-              "givenName": {},
-              "familyName": {},
-              "email": {},
-              "affiliation": {}
-      },
+      "editor": {},
       "encoding": {},
       "fileFormat": {},
       "funder": {},
       "keywords": {},
       "license": {},
-      "producer": {
-              "givenName": {},
-              "familyName": {},
-              "email": {},
-              "affiliation": {}
-      },
-      "provider": {
-              "givenName": {},
-              "familyName": {},
-              "email": {},
-              "affiliation": {},
-              "name": {},
-              "address": {}
-      },
+      "producer": {},
+      "provider": {},
       "publisher": {},
       "sponsor": {},
       "version": {},
@@ -76,12 +49,14 @@
       "softwareRequirements": {},
       "softwareSuggestions": {},
       "contIntegration": {},
-      "buildInstructions": {},
+      "buildInstructions": {"@default": "NA", "@type": "schema:URL"},
       "developmentStatus": {},
       "embargoDate": {},
       "funding": {},
       "readme": {},
       "issueTracker": {},
       "referencePublication": {},
-      "maintainer": {}
+      "maintainer": {"@explicit": "true",
+                     "email": {}
+      }
 }

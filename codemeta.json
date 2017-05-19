@@ -6,6 +6,7 @@
   "name": "codemetar: Generate CodeMeta Metadata for R Packages",
   "codeRepository": "https://github.com/codemeta/codemetar",
   "issueTracker": "https://github.com/codemeta/codemetar/issues",
+  "buildInstructions": "https://github.com/codemeta/codemetar/blob/master/README.md",
   "licenseId": "MIT + file LICENSE",
   "version": "0.1.0",
   "programmingLanguage": {
@@ -153,5 +154,6 @@
     }
   ],
   "contIntegration": "https://travis-ci.org/codemeta/codemetar",
-  "developmentStatus": "wip"
+  "developmentStatus": "wip",
+  "license": "MIT + file LICENSE"
 }
