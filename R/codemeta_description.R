@@ -3,7 +3,7 @@
 ## Supporting old versions will be a nuciance
 new_codemeta <- function(){
   ## FIXME context should be DOI
-  list(`@context` = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  list(`@context` = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",
        `@type` = "SoftwareSourceCode")
 
 }
@@ -60,7 +60,7 @@ codemeta_description <-  function(descr, id = NULL, codemeta = new_codemeta()){
 
   }
 
-  codemeta$suggests <- parse_depends(descr$Suggests)
+  codemeta$softwareSuggestions <- parse_depends(descr$Suggests)
   codemeta$softwareRequirements <- c(parse_depends(descr$Imports), parse_depends(descr$Depends))
 
   codemeta
