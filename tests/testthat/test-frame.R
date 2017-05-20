@@ -12,13 +12,19 @@ library("jsonlite")
 codemeta <-read_json("framed.json")
 meta <- codemeta[["@graph"]][[1]]
 
-## Ugh, why has this not been compacted fully?:
-meta$`codemeta:maintainer`$email
-meta$maintainer$email
 
-## Frame should result in missing fields being returned with explicit NULLs
-testthat::expect_true("memoryRequirements" %in% names(meta))
-testthat::expect_null(meta$memoryRequirements)
+testthat::test_that(
+  "we have fully compacted `maintainer`:", {
 
+  testthat::expect_null(meta$`codemeta:maintainer`$email)
+  testthat::expect_match(meta$maintainer$email, ".*@gmail.com")
+})
+
+testthat::test_that(
+  "Frame should result in missing fields being returned with explicit NULLs", {
+
+  testthat::expect_true("memoryRequirements" %in% names(meta))
+  testthat::expect_null(meta$memoryRequirements)
+})
 
 unlink("test.json")

@@ -150,10 +150,10 @@
     {
       "@type": "SoftwareApplication",
       "name": "R",
-      "version": "3.0.0)"
+      "version": "3.0.0"
     }
   ],
   "contIntegration": "https://travis-ci.org/codemeta/codemetar",
   "developmentStatus": "wip",
-  "license": "MIT + file LICENSE"
+  "license": "MIT"
 }
