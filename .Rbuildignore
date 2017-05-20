@@ -10,3 +10,4 @@
 ^codemeta\.json$
 ^inst/notebook/pkg_src$
 
+^data-raw$

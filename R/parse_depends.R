@@ -22,7 +22,8 @@ parse_depends <- function(deps){
 
     ## Add Version if available
     pattern <- "\\s*\\w+\\s+\\([><=]+\\s([1-9.\\-]*)\\)*"
-    version <- gsub(pattern, "\\1", str)
+    version <-  gsub(pattern, "\\1", str)
+    version <- gsub("\\)$", "", version)  ## hack, avoid extraneous ending )
     has_version  <- grepl(pattern, str)
     if(has_version)
       out$version <- version
