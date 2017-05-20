@@ -19,10 +19,9 @@ spdx_license <- function(x){
     spdx <- license
   }
 
-  ## URL format (err, )
+  ## Use URL format, as that is the expected type
   paste0("https://spdx.org/licenses/", spdx)
 
-  spdx
 }
 
 
