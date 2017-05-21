@@ -1,5 +1,5 @@
 {
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",
   "@type": "SoftwareSourceCode",
   "identifier": "testthat",
   "description": "A unit testing system designed to be fun, flexible and easy to\n    set up.",
@@ -7,7 +7,7 @@
   "codeRepository": "https://github.com/hadley/testthat",
   "issueTracker": "https://github.com/hadley/testthat/issues",
   "datePublished": "2016-04-23 08:37:40",
-  "licenseId": "MIT + file LICENSE",
+  "license": "https://spdx.org/licenses/MIT",
   "version": "1.0.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
@@ -36,7 +36,7 @@
     "familyName": "Wickham",
     "email": "hadley@rstudio.com"
   },
-  "suggests": [
+  "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
       "name": "devtools",
@@ -126,7 +126,7 @@
     {
       "@type": "SoftwareApplication",
       "name": "R",
-      "version": "3.1.0)"
+      "version": "3.1.0"
     }
   ],
   "keywords": [

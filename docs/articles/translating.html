@@ -57,7 +57,7 @@
       <h1>Translating between schema using JSON-LD</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2017-05-17</h4>
+            <h4 class="date">2017-05-21</h4>
           </div>
 
     
@@ -366,7 +366,7 @@ v2_json</code></pre></div>
     "version": "2.3.1"
   },
   "publisher": "figshare",
-  "schema:softwareRequirements": [
+  "softwareRequirements": [
     {
       "identifier": "http://doi.org/10.xxxx/A324566",
       "name": "export_fig",
@@ -398,18 +398,24 @@ v2_json</code></pre></div>
   "embargoDate": "2014-08-06T10:00:01Z",
   "funding": "National Science Foundation grant #012345678",
   "issueTracker": "https://github.com/codemeta/codemeta/issues",
-  "codemeta:maintainer": {
+  "maintainer": {
     "@id": "http://orcid.org/0000-0002-2192-403X",
     "@type": "Person",
     "email": "slaughter@nceas.ucsb.edu",
     "name": "Peter Slaughter"
   },
   "readme": "https://github.com/codemeta/codemeta/README.md",
-  "referencePublication": [
-    "DOI:10.1177/0165551504045850",
-    "DOI:10.1145/2815833.2816955"
+  "codemeta:referencePublication": [
+    {
+      "@type": "schema:ScholarlyArticle",
+      "@value": "DOI:10.1177/0165551504045850"
+    },
+    {
+      "@type": "schema:ScholarlyArticle",
+      "@value": "DOI:10.1145/2815833.2816955"
+    }
   ],
-  "codemeta:suggests": {
+  "softwareSuggestions": {
     "name": "tokenizertools",
     "operatingSystem": [
       "MacOS",
@@ -442,7 +448,7 @@ v2_json</code></pre></div>
       "@id": "_:b0",
       "@type": "SoftwareSourceCode",
       "description": "Codemeta is a metadata content standard for software.  It includes schemas in JSON-LD and XML Schema for providing semantics and validation.",
-      "codemeta:maintainer": {
+      "maintainer": {
         "@id": "http://orcid.org/0000-0002-2192-403X",
         "@type": "Person",
         "affiliation": "NCEAS",

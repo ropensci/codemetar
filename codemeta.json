@@ -6,8 +6,7 @@
   "name": "codemetar: Generate CodeMeta Metadata for R Packages",
   "codeRepository": "https://github.com/codemeta/codemetar",
   "issueTracker": "https://github.com/codemeta/codemetar/issues",
-  "buildInstructions": "https://github.com/codemeta/codemetar/blob/master/README.md",
-  "licenseId": "MIT + file LICENSE",
+  "license": "https://spdx.org/licenses/MIT",
   "version": "0.1.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
@@ -155,5 +154,8 @@
   ],
   "contIntegration": "https://travis-ci.org/codemeta/codemetar",
   "developmentStatus": "wip",
-  "license": "MIT"
+  "keywords": [
+    "metadata",
+    "ropensci"
+  ]
 }

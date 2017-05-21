@@ -37,14 +37,14 @@ write_codemeta(".")
 ```
 
     {
-      "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+      "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",
       "@type": "SoftwareSourceCode",
       "identifier": "codemetar",
       "description": "Codemeta defines a 'JSON-LD' format for describing software metadata.\n    This package provides utilities to generate, parse, and modify codemeta.jsonld\n    files automatically for R packages.",
       "name": "codemetar: Generate CodeMeta Metadata for R Packages",
       "codeRepository": "https://github.com/codemeta/codemetar",
       "issueTracker": "https://github.com/codemeta/codemetar/issues",
-      "licenseId": "MIT + file LICENSE",
+      "license": "https://spdx.org/licenses/MIT",
       "version": "0.1.0",
       "programmingLanguage": {
         "@type": "ComputerLanguage",
@@ -78,7 +78,7 @@ write_codemeta(".")
         "email": "cboettig@gmail.com",
         "@id": "http://orcid.org/0000-0002-1642-628X"
       },
-      "suggests": [
+      "softwareSuggestions": [
         {
           "@type": "SoftwareApplication",
           "name": "testthat",
@@ -187,7 +187,7 @@ write_codemeta(".")
         {
           "@type": "SoftwareApplication",
           "name": "R",
-          "version": "3.0.0)"
+          "version": "3.0.0"
         }
       ],
       "contIntegration": "https://travis-ci.org/codemeta/codemetar",
