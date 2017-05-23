@@ -37,7 +37,7 @@ Consider the following codemeta document:
 codemeta <- 
 '
 {
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
   "@type": "SoftwareSourceCode",
   "name": "codemetar: Generate CodeMeta Metadata for R Packages",
   "datePublished":" 2017-05-20",
@@ -84,8 +84,12 @@ To solve this issue, we will construct a frame defining what it is we want.  Our
 
 ```{r}
 frame <- '{
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",
-  "author": {"affiliation": {"@default": "@null"} }
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@embed": "@always",
+  "author": {
+    "familyName": {},
+    "affiliation": {"@default": "@null"}
+  }
 }'
 
 meta <- 
@@ -93,6 +97,7 @@ meta <-
   fromJSON(codemeta, simplifyVector = FALSE) %>%   ##  simplify messes with JSON formatting
   getElement("@graph") %>% getElement(1)            ## a piped version of [["@graph"]][[1]]
 
+meta$author[[1]]$familyName
 meta$author[[1]]$affiliation
 ```
 
@@ -104,7 +109,7 @@ By default, frames return all the input data, while our application may only be 
 
 ```{r}
 frame <- '{
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
   "@explicit": "true",
   "@type": "Person",
   "givenName": {},
@@ -141,8 +146,8 @@ We can use a frame with the special directive `"@embed": "always"` to say that w
 
 ```{r}
 frame <- '{
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",
-  "@embed": "always"
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@embed": "@always"
 }'
 
 meta <- 
@@ -173,7 +178,7 @@ that declares that the `buildInstructions` are included as text, which differs f
 codemeta <- 
 '
 {
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
   "@type": "SoftwareSourceCode",
   "name": "codemetar: Generate CodeMeta Metadata for R Packages",
   "buildInstructions": { 
@@ -188,12 +193,12 @@ When we perform a framing or compaction operation, `buildInstructions` gets de-r
 
 ```{r}
 meta <-
-  jsonld_frame(codemeta, '{"@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld"}') %>% 
+  jsonld_frame(codemeta, '{"@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"}') %>% 
   fromJSON(codemeta, simplifyVector = FALSE) %>%  
   getElement("@graph") %>% getElement(1)    
 
 ## above is same as compacting:
-#jsonld_compact(codeemta, "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld") %>% 
+#jsonld_compact(codeemta, "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld") %>% 
 #  fromJSON(codemeta, simplifyVector = FALSE)
 
 meta$buildInstructions

@@ -37,7 +37,7 @@ write_codemeta(".")
 ```
 
     {
-      "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",
+      "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
       "@type": "SoftwareSourceCode",
       "identifier": "codemetar",
       "description": "Codemeta defines a 'JSON-LD' format for describing software metadata.\n    This package provides utilities to generate, parse, and modify codemeta.jsonld\n    files automatically for R packages.",
@@ -151,7 +151,27 @@ write_codemeta(".")
         },
         {
           "@type": "SoftwareApplication",
-          "name": "tidyverse",
+          "name": "magrittr",
+          "provider": {
+            "@id": "https://cran.r-project.org",
+            "@type": "Organization",
+            "name": "Central R Archive Network (CRAN)",
+            "url": "https://cran.r-project.org"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "readr",
+          "provider": {
+            "@id": "https://cran.r-project.org",
+            "@type": "Organization",
+            "name": "Central R Archive Network (CRAN)",
+            "url": "https://cran.r-project.org"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "xml2",
           "provider": {
             "@id": "https://cran.r-project.org",
             "@type": "Organization",

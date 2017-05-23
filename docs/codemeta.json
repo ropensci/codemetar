@@ -1,5 +1,5 @@
 {
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
   "@type": "SoftwareSourceCode",
   "identifier": "testthat",
   "description": "A unit testing system designed to be fun, flexible and easy to\n    set up.",
