@@ -57,17 +57,18 @@
       <h1>Translating between schema using JSON-LD</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2017-05-17</h4>
+            <h4 class="date">2017-05-23</h4>
           </div>
 
     
     
 <div class="contents">
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"codemetar"</span>)
-<span class="kw">library</span>(<span class="st">"tidyverse"</span>)
+<span class="kw">library</span>(<span class="st">"magrittr"</span>)
 <span class="kw">library</span>(<span class="st">"jsonlite"</span>)
 <span class="kw">library</span>(<span class="st">"jsonld"</span>)
-<span class="kw">library</span>(<span class="st">"httr"</span>)</code></pre></div>
+<span class="kw">library</span>(<span class="st">"httr"</span>)
+<span class="kw">library</span>(<span class="st">"readr"</span>)</code></pre></div>
 <p>One of the central motivations of JSON-LD is making it easy to translate between different representations of what are fundamentally the same data types. Doing so uses the two core algorithms of JSON-LD: <em>expansion</em> and <em>compaction</em>, as <a href="https://www.youtube.com/watch?v=Tm3fD89dqRE">this excellent short video by JSON-LD creator Manu Sporny</a> describes.</p>
 <p>Here’s how we would use JSON-LD (from R) to translate between the two examples of JSON data from different providers as shown in the video. First, the JSON from the original provider:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ex &lt;-
@@ -104,7 +105,7 @@
 <p>The CodeMeta Crosswalk table seeks to accomplish a very similar goal. The crosswalk table provides a human-readable mapping of different software metadata providers into the codemeta context (an extension of schema.org).</p>
 <p>We’ll start with the actual crosswalk table itself:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">crosswalk &lt;-<span class="st"> "https://github.com/codemeta/codemeta/raw/master/crosswalk.csv"</span>
-cw &lt;-<span class="st"> </span><span class="kw">read_csv</span>(crosswalk)</code></pre></div>
+cw &lt;-<span class="st"> </span>readr::<span class="kw">read_csv</span>(crosswalk)</code></pre></div>
 </div>
 <div id="datacite" class="section level2">
 <h2 class="hasAnchor">
@@ -148,11 +149,11 @@ datacite_list %&gt;%<span class="st"> </span>
 <p>We can now expand this json in terms of DataCite context we just derived from the table, and then compact it into the CodeMeta native context:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datacite_cm &lt;-
 <span class="st">  </span><span class="kw">jsonld_expand</span>(datacite_json) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">jsonld_compact</span>(<span class="dt">context =</span> <span class="st">"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld"</span>) 
+<span class="st">  </span><span class="kw">jsonld_compact</span>(<span class="dt">context =</span> <span class="st">"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"</span>) 
 datacite_cm</code></pre></div>
 <pre><code>{
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",
-  "author": [
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "schema:author": [
     {
       "familyName": "Helske",
       "givenName": "Jouni"
@@ -178,25 +179,24 @@ datacite_cm</code></pre></div>
 <h2 class="hasAnchor">
 <a href="#comparison-to-native-schema-org-translation" class="anchor"></a>Comparison to native schema.org translation:</h2>
 <p>DataCite actually returns data directly in JSON-LD format using exclusively the schema.org context. We can query that data directly:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"httr"</span>)
-resp &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">"https://doi.org/10.5281/zenodo.573741"</span>, <span class="kw">add_headers</span>(<span class="dt">Accept=</span><span class="st">"application/vnd.schemaorg.ld+json"</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">resp &lt;-<span class="st"> </span>httr::<span class="kw">GET</span>(<span class="st">"https://doi.org/10.5281/zenodo.573741"</span>, httr::<span class="kw">add_headers</span>(<span class="dt">Accept=</span><span class="st">"application/vnd.schemaorg.ld+json"</span>))
 datacite_jsonld &lt;-<span class="st"> </span><span class="kw">content</span>(resp, <span class="dt">type=</span><span class="st">"application/json"</span>)</code></pre></div>
 <p>This time we have no need to invoke the crosswalk context, since the data is already in schema.org context (which codemeta also uses):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datacite_cm &lt;-<span class="st"> </span>
 <span class="st">  </span>datacite_jsonld %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">toJSON</span>(<span class="dt">pretty =</span> <span class="ot">TRUE</span>, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>) %&gt;%
 <span class="st">  </span><span class="kw">jsonld_expand</span>() %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">jsonld_compact</span>(<span class="dt">context =</span> <span class="st">"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld"</span>) 
+<span class="st">  </span><span class="kw">jsonld_compact</span>(<span class="dt">context =</span> <span class="st">"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"</span>) 
 
 datacite_cm</code></pre></div>
 <pre><code>{
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
   "@id": "https://doi.org/10.5281/zenodo.573741",
   "@type": "SoftwareSourceCode",
   "schema:additionalType": {
     "@id": "Software"
   },
-  "author": [
+  "schema:author": [
     {
       "@type": "Person",
       "familyName": "Helske",
@@ -327,12 +327,12 @@ v1_json &lt;-<span class="st"> </span><span class="kw">toJSON</span>(v1_obj, <sp
 <p>With a JSON object in place, along with a context file that defines how that vocabulary is expressed in the context of <code>schema.org</code> / <code>codemeta</code>, we can now perform the exansion and compaction routine as before. Expansion uses the native context from the file, compaction uses the new context of codemeta terms.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v2_json &lt;-<span class="st"> </span>
 <span class="kw">jsonld_expand</span>(v1_json) %&gt;%
-<span class="st">  </span><span class="kw">jsonld_compact</span>(<span class="dt">context =</span> <span class="st">"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld"</span>) 
+<span class="st">  </span><span class="kw">jsonld_compact</span>(<span class="dt">context =</span> <span class="st">"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"</span>) 
 v2_json</code></pre></div>
 <pre><code>{
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
   "@type": "SoftwareSourceCode",
-  "author": [
+  "schema:author": [
     {
       "@id": "http://orcid.org/0000-0002-2192-403X",
       "@type": "Person",
@@ -366,7 +366,7 @@ v2_json</code></pre></div>
     "version": "2.3.1"
   },
   "publisher": "figshare",
-  "schema:softwareRequirements": [
+  "softwareRequirements": [
     {
       "identifier": "http://doi.org/10.xxxx/A324566",
       "name": "export_fig",
@@ -398,18 +398,24 @@ v2_json</code></pre></div>
   "embargoDate": "2014-08-06T10:00:01Z",
   "funding": "National Science Foundation grant #012345678",
   "issueTracker": "https://github.com/codemeta/codemeta/issues",
-  "codemeta:maintainer": {
+  "maintainer": {
     "@id": "http://orcid.org/0000-0002-2192-403X",
     "@type": "Person",
     "email": "slaughter@nceas.ucsb.edu",
     "name": "Peter Slaughter"
   },
   "readme": "https://github.com/codemeta/codemeta/README.md",
-  "referencePublication": [
-    "DOI:10.1177/0165551504045850",
-    "DOI:10.1145/2815833.2816955"
+  "codemeta:referencePublication": [
+    {
+      "@type": "schema:ScholarlyArticle",
+      "@value": "DOI:10.1177/0165551504045850"
+    },
+    {
+      "@type": "schema:ScholarlyArticle",
+      "@value": "DOI:10.1145/2815833.2816955"
+    }
   ],
-  "codemeta:suggests": {
+  "softwareSuggestions": {
     "name": "tokenizertools",
     "operatingSystem": [
       "MacOS",
@@ -426,7 +432,7 @@ v2_json</code></pre></div>
 <p>We can use a frame to extract particular elements in a particular format. This is most useful when there are highly nested complex types. Framing with the <code>@explicit</code> tag is also a good way to filter out fields that we are not interested in, though these are usually less problematic for developers to work around.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">frame &lt;-<span class="st"> </span>
 <span class="st">'{</span>
-<span class="st">  "@context":"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",</span>
+<span class="st">  "@context":"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",</span>
 <span class="st">  "@type": "SoftwareSourceCode",</span>
 <span class="st">  "@explicit": "true",</span>
 <span class="st">  "readme": {},</span>
@@ -436,13 +442,13 @@ v2_json</code></pre></div>
 
 <span class="kw">jsonld_frame</span>(v2_json, frame)</code></pre></div>
 <pre><code>{
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
   "@graph": [
     {
       "@id": "_:b0",
       "@type": "SoftwareSourceCode",
       "description": "Codemeta is a metadata content standard for software.  It includes schemas in JSON-LD and XML Schema for providing semantics and validation.",
-      "codemeta:maintainer": {
+      "maintainer": {
         "@id": "http://orcid.org/0000-0002-2192-403X",
         "@type": "Person",
         "affiliation": "NCEAS",

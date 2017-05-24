@@ -17,10 +17,11 @@ knitr::opts_chunk$set(comment="")
 
 ```{r message=FALSE}
 library("codemetar")
-library("tidyverse")
+library("magrittr")
 library("jsonlite")
 library("jsonld")
 library("httr")
+library("readr")
 ```
 
 One of the central motivations of JSON-LD is making it easy to translate between different representations of what are fundamentally the same data types. Doing so uses the two core algorithms of JSON-LD: *expansion* and *compaction*, as [this excellent short video by JSON-LD creator Manu Sporny](https://www.youtube.com/watch?v=Tm3fD89dqRE) describes.
@@ -66,7 +67,7 @@ We'll start with the actual crosswalk table itself:
 
 ```{r message=FALSE}
 crosswalk <- "https://github.com/codemeta/codemeta/raw/master/crosswalk.csv"
-cw <- read_csv(crosswalk)
+cw <- readr::read_csv(crosswalk)
 ```
 
 
@@ -79,9 +80,9 @@ We can illustrate using the expansion and compaction process to crosswalk DataCi
 ```{r include=FALSE, eval=FALSE}
 ## nope, sadly this is not quite clean json translation 
 
-GET("https://doi.org/10.5281/zenodo.573741", 
-    add_headers(Accept="application/vnd.datacite.datacite+xml")) %>% 
-  content(type="application/xml") %>% 
+httr::GET("https://doi.org/10.5281/zenodo.573741", 
+    httr::add_headers(Accept="application/vnd.datacite.datacite+xml")) %>% 
+  httr::content(type="application/xml") %>% 
   xml2::as_list() %>%  
   toJSON(pretty = TRUE, auto_unbox=TRUE)
 
@@ -119,7 +120,7 @@ We can now expand this json in terms of DataCite context we just derived from th
 ```{r}
 datacite_cm <-
   jsonld_expand(datacite_json) %>% 
-  jsonld_compact(context = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld") 
+  jsonld_compact(context = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld") 
 datacite_cm
 ```
 
@@ -131,8 +132,7 @@ The result should be a valid `codemeta.json` document.
 DataCite actually returns data directly in JSON-LD format using exclusively the schema.org context.  We can query that data directly:
 
 ```{r}
-library("httr")
-resp <- GET("https://doi.org/10.5281/zenodo.573741", add_headers(Accept="application/vnd.schemaorg.ld+json"))
+resp <- httr::GET("https://doi.org/10.5281/zenodo.573741", httr::add_headers(Accept="application/vnd.schemaorg.ld+json"))
 datacite_jsonld <- content(resp, type="application/json")
 ```
 
@@ -143,7 +143,7 @@ datacite_cm <-
   datacite_jsonld %>% 
   toJSON(pretty = TRUE, auto_unbox = TRUE) %>%
   jsonld_expand() %>% 
-  jsonld_compact(context = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld") 
+  jsonld_compact(context = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld") 
 
 datacite_cm
 ```
@@ -221,7 +221,7 @@ With a JSON object in place, along with a context file that defines how that voc
 ```{r}
 v2_json <- 
 jsonld_expand(v1_json) %>%
-  jsonld_compact(context = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld") 
+  jsonld_compact(context = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld") 
 v2_json
 ```
 
@@ -238,7 +238,7 @@ We can use a frame to extract particular elements in a particular format.  This 
 ```{r}
 frame <- 
 '{
-  "@context":"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta-v2.jsonld",
+  "@context":"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
   "@type": "SoftwareSourceCode",
   "@explicit": "true",
   "readme": {},

@@ -24,6 +24,8 @@ Suggests: testthat,
     knitr,
     rmarkdown,
     httr,
-    tidyverse
+    magrittr,
+    readr,
+    xml2
 VignetteBuilder: knitr
 Keywords: metadata, codemeta, ropensci, citation, credit
