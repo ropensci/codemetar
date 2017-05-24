@@ -26,3 +26,4 @@ Suggests: testthat,
     httr,
     tidyverse
 VignetteBuilder: knitr
+Keywords: metadata, codemeta, ropensci, citation, credit
