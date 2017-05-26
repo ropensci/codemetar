@@ -58,6 +58,9 @@ codemeta_description <-  function(f, id = NULL, codemeta = new_codemeta()){
   ## According to schema.org, programmingLanguage doesn't have a version; but runtimePlatform, a plain string, does.  Of course this is less computable/structured:
   codemeta$runtimePlatform <- R.version.string
 
+  if(is.null(codemeta$provider)) codemeta$provider <- guess_provider(descr$Package)
+
+
   ## FIXME Need to deal with: descr$Author, descr$Maintainer, and descr$Authors@R
   if("Authors@R" %in% names(descr)){
     codemeta <- parse_people(eval(parse(text=descr$`Authors@R`)), codemeta)

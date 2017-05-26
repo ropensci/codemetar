@@ -47,7 +47,6 @@ create_codemeta <- function(pkg = ".",
     cm$issuesTracker <- paste(cm$URL, "issues", sep="/")
   if(is.null(cm$contIntegration)) cm$contIntegration <- guess_ci(file.path(root, "README.md"))
   if(is.null(cm$developmentStatus)) cm$developmentStatus <- guess_devStatus(file.path(root, "README.md"))
-  if(is.null(cm$provider)) cm$provider <- guess_provider(cm$name)
   if(is.null(cm$releaseNotes)) cm$releaseNotes <- guess_releaseNotes(root)
   if(is.null(cm$readme)) cm$readme <- guess_readme(root)
   if(is.null(cm$fileSize)) cm$fileSize <- guess_fileSize(root)
