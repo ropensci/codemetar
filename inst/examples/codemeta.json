@@ -15,12 +15,6 @@
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 3.4.0 (2017-04-21)",
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Central R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  },
   "author": [
     {
       "@type": "Person",
@@ -194,9 +188,5 @@
   "developmentStatus": "wip",
   "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/README.md",
   "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
-  "fileSize": "119.263KB",
-  "keywords": [
-    "metadata",
-    "ropensci"
-  ]
+  "fileSize": "119.335KB"
 }
