@@ -6,6 +6,7 @@ output: github_document
 
 ```{r message=FALSE}
 library(jsonld)
+library(magrittr)
 ```
 
 ```{r}
@@ -18,8 +19,11 @@ Digest input with a frame:
 
 ```{r}
 frame <- system.file("schema/frame_schema.json", package="codemetar")
-framed <- jsonld_frame("codemeta.json", frame)
 
+meta <- 
+  jsonld_frame("codemeta.json", frame) %>%
+  jsonld_compact(fromJSON(framed, FALSE)$`@context`) %>%
+ fromJSON(FALSE)
 ```
 
 Construct a citation
@@ -32,16 +36,23 @@ lapply(meta$author,
                 family = author$family, 
                 email = author$email,
                 role = "aut"))
+year <- meta$datePublished
+if(is.null(year)) 
+  year <- format(Sys.Date(), "%Y")
 bibitem <- 
  bibentry(
      bibtype = "Manual",
      title = meta$name,
      author = authors,
-     year = meta$datePublished,
+     year = year,
      note = paste0("R package version ", meta$version),
      url = meta$URL,
      key = meta$identifier
    )
+
+cat(format(bibitem, "bibtex"))
+
+bibitem
 ```
 
 Counts: 
