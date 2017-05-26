@@ -1,0 +1,54 @@
+---
+title: "Parsing codemeta data"
+output: github_document
+---
+
+
+```{r message=FALSE}
+library(jsonld)
+```
+
+```{r}
+write_codemeta("codemetar", "codemeta.json")
+```
+
+
+
+Digest input with a frame:
+
+```{r}
+frame <- system.file("schema/frame_schema.json", package="codemetar")
+framed <- jsonld_frame("codemeta.json", frame)
+
+```
+
+Construct a citation
+
+```{r}
+authors <- 
+lapply(meta$author, 
+       function(author) 
+         person(given = author$given, 
+                family = author$family, 
+                email = author$email,
+                role = "aut"))
+bibitem <- 
+ bibentry(
+     bibtype = "Manual",
+     title = meta$name,
+     author = authors,
+     year = meta$datePublished,
+     note = paste0("R package version ", meta$version),
+     url = meta$URL,
+     key = meta$identifier
+   )
+```
+
+Counts: 
+
+- maintainer : number packages maintained
+- author : number of packages
+- number of authors, author vs contributor 
+
+```{r}
+```

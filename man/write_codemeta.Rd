@@ -4,8 +4,8 @@
 \alias{write_codemeta}
 \title{write_codemeta}
 \usage{
-write_codemeta(pkg = ".", path = "codemeta.json", root = ".",
-  version = "2", ...)
+write_codemeta(pkg = ".", path = "codemeta.json", root = ".", id = NULL,
+  ...)
 }
 \arguments{
 \item{pkg}{package path to package root, or package name, or description file (character), or a codemeta object (list)}
@@ -14,7 +14,7 @@ write_codemeta(pkg = ".", path = "codemeta.json", root = ".",
 
 \item{root}{if pkg is a codemeta object, optionally give the path to package root. Default guess is current dir.}
 
-\item{version}{schema version}
+\item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
 
 \item{...}{additional arguments to \code{\link{write_json}}}
 }
@@ -31,5 +31,5 @@ If pkg is a codemeta object, the function will attempt to
  root directory should be the current working directory.
 }
 \examples{
-write_codemeta("codemetar")
+write_codemeta("codemeta")
 }

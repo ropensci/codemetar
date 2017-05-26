@@ -1,23 +1,25 @@
 
-
-
+#' @importFrom utils installed.packages
+get_root_path <- function(pkg){
+  installed <- installed.packages()
+  if(pkg %in% installed[,1]){
+    root <- base::system.file(".", package = pkg)
+  } else if(file.exists(file.path(pkg, "DESCRIPTION"))){
+    root <- pkg
+  } else {
+    #warning("no package root not found") ## don't warn if input is codemeta list or a DESCRIPTION, since we know these haven't got a root
+    if(is.character(pkg)){
+      root <- pkg # use pkg as guess anyway
+    } else {
+      root <- "." # stick with default
+    }
+  }
+  root
+}
 
 
 ## based on devtools::read_dcf
-read_dcf <- function(pkg) {
-
-  ## Takes path to DESCRIPTION, to package root, or the package name as an argument
-
-
-  dcf <- get_file("DESCRIPTION", pkg)
-
-  if(dcf == ""){
-    if(basename(pkg) == "DESCRIPTION"){ #so read_dcf can take a dcf file as argument, instead of just a path.
-      dcf <- pkg
-    } else {
-      return(NULL)
-    }
-  }
+read_dcf <- function(dcf) {
 
   fields <- colnames(read.dcf(dcf))
   as.list(read.dcf(dcf, keep.white = fields)[1, ])

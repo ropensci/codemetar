@@ -13,12 +13,17 @@ parse_people <- function(people, codemeta){
     return(codemeta)
   }
 
-  ## listing same person under multiple fields is inelegant?
-  codemeta$author <- people_with_role(people, "aut")
+  ## people with no role are assumed to be "Author" role (FIXME confirm R citation() behaves this way)
+  codemeta$author <- c(people_with_role(people, "aut"), people_without_role(people))
   codemeta$contributor <- people_with_role(people, "ctb")
   codemeta$copyrightHolder <- people_with_role(people, "cph")
   codemeta$maintainer <- people_with_role(people, "cre")
   codemeta
+}
+
+people_without_role <- function(people){
+  index <- vapply(people, function(p) is.null(p$role), logical(1))
+  lapply(people[index], person_to_schema)
 }
 
 people_with_role <- function(people, role = "aut"){

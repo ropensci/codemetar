@@ -5,3 +5,4 @@
 inst/doc
 inst/notebook/packages_src
 .httr-oauth
+vignettes/.build.timestamp

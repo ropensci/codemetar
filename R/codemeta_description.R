@@ -10,7 +10,13 @@ new_codemeta <- function(){
 
 
 # Can add to an existing codemeta document
-codemeta_description <-  function(descr, id = NULL, codemeta = new_codemeta()){
+codemeta_description <-  function(f, id = NULL, codemeta = new_codemeta()){
+
+  if(file.exists(f)){
+    descr <- read_dcf(f)
+  } else {
+    return(codemeta)
+  }
 
   if(is.null(descr) || length(descr) == 0){
     return(codemeta)

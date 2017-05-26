@@ -147,6 +147,15 @@ guess_releaseNotes <- function(root="."){
 
 #' @importFrom devtools build
 guess_fileSize <- function(root = "."){
-  f <- devtools::build(root)
-  paste0(file.size(f) / 1e3, "KB")
+
+  if(is.null(root)){
+    return(NULL)
+  } else if(file.exists(file.path(root, "Meta"))){ ## cannot build (or read file size?) on an already installed package
+    return(NULL)
+  } else if(!file.exists(file.path(root, "DESCRIPTION"))){
+    return(NULL)
+  } else {
+    f <- devtools::build(root, vignettes=FALSE, manual = FALSE, quiet = TRUE)
+    paste0(file.size(f) / 1e3, "KB")
+  }
 }

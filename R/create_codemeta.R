@@ -12,12 +12,13 @@
 #' @importFrom jsonlite read_json
 create_codemeta <- function(pkg = ".",
                             root = ".",
-                            version = "2",
+                            id = NULL,
                             ...){
 
-  ## looks like we got a package name/path or Description file in pkg.  Can use this as root path.
+  ## looks like we got a package name/path or Description file in pkg, so we can determine a root path.
   if(is.character(pkg)){
-    root <- pkg
+      root <- get_root_path(pkg)
+
 
     ## no cm provided, but codemeta.json found in pkg
     if(file.exists(get_file("codemeta.json", root))){  ## Our package has an existing codemeta.json to update
@@ -31,31 +32,21 @@ create_codemeta <- function(pkg = ".",
   ## we got an existing codemeta object as pkg
   } else if(is.list(pkg)){
     cm <- pkg
+
     ## root should be set already, we might check that root has a DESCRIPTION,
     ## but if not, methods below should return NULLs rather than error anyhow
-  }
+    root <- get_root_path(root)
 
+    }
 
-  descr <- read_dcf(root)
-  cm <- import_pkg_description(descr = descr, cm = cm, version = version)
-
-  ## legacy support only
-  if(version == "1") return(cm)
-
-  readme <- get_file("README.md", root)
+  cm <- codemeta_description(file.path(root, "DESCRIPTION"), id = id, cm)
 
   ## Guess these if not set in description:
-  if(is.null(cm$codeRepository)){
-    cm$codeRepository <- guess_github(root)
-  }
-
-  if(is.null(cm$issuesTracker) && isTRUE(grepl("github", cm$URL))){
+  if(is.null(cm$codeRepository)) cm$codeRepository <- guess_github(root)
+  if(is.null(cm$issuesTracker) && isTRUE(grepl("github", cm$URL)))
     cm$issuesTracker <- paste(cm$URL, "issues", sep="/")
-  }
-
-  ## Guess these additional fields, only if not provided already
-  if(is.null(cm$contIntegration)) cm$contIntegration <- guess_ci(readme)
-  if(is.null(cm$developmentStatus)) cm$developmentStatus <- guess_devStatus(readme)
+  if(is.null(cm$contIntegration)) cm$contIntegration <- guess_ci(file.path(root, "README.md"))
+  if(is.null(cm$developmentStatus)) cm$developmentStatus <- guess_devStatus(file.path(root, "README.md"))
   if(is.null(cm$provider)) cm$provider <- guess_provider(cm$name)
   if(is.null(cm$releaseNotes)) cm$releaseNotes <- guess_releaseNotes(root)
   if(is.null(cm$readme)) cm$readme <- guess_readme(root)
@@ -66,23 +57,4 @@ create_codemeta <- function(pkg = ".",
   cm
 }
 
-
-
-
-## generate codemeta.json from a DESCRIPTION file
-## FIXME parse and use crosswalk to reference DESCRIPTION terms?
-import_pkg_description <-
-  function(descr,
-           id = NULL,
-           cm = new_codemeta(),
-           version = "2") {
-    version <- as.character(version)
-
-
-
-    switch(version,
-           "2" = codemeta_description(descr, id, cm),
-           "1" = create_codemeta_v1(descr, id))
-
-  }
 

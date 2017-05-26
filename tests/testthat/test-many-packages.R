@@ -1,4 +1,4 @@
-testthat::context("Complex test cases")
+testthat::context("test-many-packages")
 
 
 testthat::test_that("Test the creation of codemeta for many packages", {
@@ -16,8 +16,8 @@ testthat::test_that("Test the creation of codemeta for many packages", {
   set <- df$Package[1:100]
 
   ## fixme avoid repeating context?
-  set_meta <- lapply(set, create_codemeta)
-  write_codemeta(set_meta, path = "many.json")
+ # set_meta <- lapply(set, create_codemeta)
+ # write_codemeta(set_meta, path = "many.json")
 
   unlink("many.json")
 
