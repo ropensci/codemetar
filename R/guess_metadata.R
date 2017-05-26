@@ -146,6 +146,7 @@ guess_releaseNotes <- function(root="."){
 }
 
 #' @importFrom devtools build
-guess_fileSize <- function(root){
-  devtools::build()
+guess_fileSize <- function(root = "."){
+  f <- devtools::build(root)
+  paste0(file.size(f) / 1e3, "KB")
 }

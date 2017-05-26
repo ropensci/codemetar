@@ -59,6 +59,7 @@ create_codemeta <- function(pkg = ".",
   if(is.null(cm$provider)) cm$provider <- guess_provider(cm$name)
   if(is.null(cm$releaseNotes)) cm$releaseNotes <- guess_releaseNotes(root)
   if(is.null(cm$readme)) cm$readme <- guess_readme(root)
+  if(is.null(cm$fileSize)) cm$fileSize <- guess_fileSize(root)
 
   ## Add blank slots as placeholders? and declare as an S3 class?
 
