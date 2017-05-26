@@ -34,6 +34,9 @@
 <li>
   <a href="articles/index.html">Articles</a>
 </li>
+<li>
+  <a href="news/index.html">News</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -69,7 +72,7 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install codemetar from github with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools::<span class="kw">install_github</span>(<span class="st">"codemeta/codemetar"</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"codemeta/codemetar"</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"codemetar"</span>)</code></pre></div>
 </div>
 <div id="example" class="section level2">
@@ -97,6 +100,12 @@ devtools::<span class="kw">install_github</span>(<span class="st">"codemeta/code
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 3.4.0 (2017-04-21)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Central R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -221,7 +230,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">"codemeta/code
 <p>which will allow <code>codemetar</code> to associate an identifier with the person. This is clearly something of a hack since R’s <code>person</code> object lacks an explicit notion of <code>id</code>, and may be frowned upon.</p>
 <p>Additional metadata can be added by creating and manipulating a <code>codemeta</code> list in R:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cm &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_codemeta.html">create_codemeta</a></span>(<span class="st">"."</span>)
-cm$keywords &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">"metadata"</span>, <span class="st">"ropensci"</span>)
+cm<span class="op">$</span>keywords &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">"metadata"</span>, <span class="st">"ropensci"</span>)
 <span class="kw"><a href="reference/write_codemeta.html">write_codemeta</a></span>(cm)</code></pre></div>
 </div>
 </div>

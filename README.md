@@ -53,6 +53,12 @@ write_codemeta(".")
         "url": "https://r-project.org"
       },
       "runtimePlatform": "R version 3.4.0 (2017-04-21)",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
       "author": [
         {
           "@type": "Person",
@@ -92,16 +98,6 @@ write_codemeta(".")
         {
           "@type": "SoftwareApplication",
           "name": "jsonvalidate",
-          "provider": {
-            "@id": "https://cran.r-project.org",
-            "@type": "Organization",
-            "name": "Central R Archive Network (CRAN)",
-            "url": "https://cran.r-project.org"
-          }
-        },
-        {
-          "@type": "SoftwareApplication",
-          "name": "jsonld",
           "provider": {
             "@id": "https://cran.r-project.org",
             "@type": "Organization",
@@ -194,15 +190,37 @@ write_codemeta(".")
         },
         {
           "@type": "SoftwareApplication",
-          "name": "utils"
+          "name": "jsonld",
+          "provider": {
+            "@id": "https://cran.r-project.org",
+            "@type": "Organization",
+            "name": "Central R Archive Network (CRAN)",
+            "url": "https://cran.r-project.org"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "git2r",
+          "provider": {
+            "@id": "https://cran.r-project.org",
+            "@type": "Organization",
+            "name": "Central R Archive Network (CRAN)",
+            "url": "https://cran.r-project.org"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "devtools",
+          "provider": {
+            "@id": "https://cran.r-project.org",
+            "@type": "Organization",
+            "name": "Central R Archive Network (CRAN)",
+            "url": "https://cran.r-project.org"
+          }
         },
         {
           "@type": "SoftwareApplication",
           "name": "methods"
-        },
-        {
-          "@type": "SoftwareApplication",
-          "name": "stats"
         },
         {
           "@type": "SoftwareApplication",
@@ -211,7 +229,10 @@ write_codemeta(".")
         }
       ],
       "contIntegration": "https://travis-ci.org/codemeta/codemetar",
-      "developmentStatus": "wip"
+      "developmentStatus": "wip",
+      "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/README.md",
+      "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
+      "fileSize": "119.263KB"
     }
 
 Enriching CodeMeta metadata
