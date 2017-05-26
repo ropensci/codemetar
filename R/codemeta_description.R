@@ -74,6 +74,11 @@ codemeta_description <-  function(f, id = NULL, codemeta = new_codemeta()){
   codemeta$softwareSuggestions <- parse_depends(descr$Suggests)
   codemeta$softwareRequirements <- c(parse_depends(descr$Imports), parse_depends(descr$Depends))
 
+
+  ## Additional codemeta fields in DESCRIPTION
+  if(!is.null(descr$Keywords))
+    codemeta$keywords <- gsub("\\s+", "", strsplit(descr$Keywords, ",")[[1]]) # comma-separated, strip whitespace
+
   codemeta
 
 }

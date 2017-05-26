@@ -188,5 +188,6 @@
   "developmentStatus": "wip",
   "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/README.md",
   "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
-  "fileSize": "119.335KB"
+  "fileSize": "119.335KB",
+  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit"]
 }

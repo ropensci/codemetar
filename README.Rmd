@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 # codemetar
 
-The goal of codemetar is to generate the JSON-LD file, `codemeta.json` containing software metadata describing an R package
+The goal of codemetar is to generate the JSON-LD file, `codemeta.json` containing software metadata describing an R package.  For more general information about the CodeMeta Project for defining software metadata, see <https://codemeta.github.io>.  
 
 ## Installation
 
@@ -54,7 +54,7 @@ write_codemeta(".")
 cat(readLines("codemeta.json"), sep="\n")
 ```
 
-## Enriching CodeMeta metadata
+## Modifying or enriching CodeMeta metadata
 
 The best way to ensure `codemeta.json` is as complete as possible is to begin by making full use of the fields that can be set in an R package DESCRIPTION file, such as `BugReports` and `URL`.  Using the `Authors@R` notation allows a much richer specification of author roles, correct parsing of given vs family names, and email addresses. 
 
@@ -66,13 +66,23 @@ Authors@R: person("Carl", "Boettiger", role=c("aut", "cre", "cph"), email="cboet
 
 which will allow `codemetar` to associate an identifier with the person.  This is clearly something of a hack since R's `person` object lacks an explicit notion of `id`, and may be frowned upon.  
 
+### Using the Description file
 
-Additional metadata can be added by creating and manipulating a `codemeta` list in R:
+The DESCRIPTION file is the natural place to specify any metadata for an R package.  The `codemetar` package can detect certain additional terms in the [CodeMeta context](https://codemeta.github.io/terms).  At present, the following additional fields are recognized and can be read from DESCRIPTION into a `codemeta.json` file:
+
+- Keywords
+
+See the DESCRIPTION file of the `codemetar` package for an example.  
+
+### Appending the codemeta object
+
+
+Alternatively, additional metadata can be added by creating and manipulating a `codemeta` list in R:
 
 ```{r}
 cm <- create_codemeta(".")
 cm$keywords <- list("metadata", "ropensci")
-write_codemeta(cm)
+#write_codemeta(cm)
 ```
 
 
