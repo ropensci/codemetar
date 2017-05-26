@@ -44,10 +44,21 @@ create_codemeta <- function(pkg = ".",
 
   readme <- get_file("README.md", root)
 
-  cm$contIntegration <- guess_ci(readme)
-  cm$developmentStatus <- guess_devStatus(readme)
-  cm$provider <- guess_provider(cm$name)
+  ## Guess these if not set in description:
+  if(is.null(cm$codeRepository)){
+    cm$codeRepository <- guess_github(root)
+  }
 
+  if(is.null(cm$issuesTracker) && isTRUE(grepl("github", cm$URL))){
+    cm$issuesTracker <- paste(cm$URL, "issues", sep="/")
+  }
+
+  ## Guess these additional fields, only if not provided already
+  if(is.null(cm$contIntegration)) cm$contIntegration <- guess_ci(readme)
+  if(is.null(cm$developmentStatus)) cm$developmentStatus <- guess_devStatus(readme)
+  if(is.null(cm$provider)) cm$provider <- guess_provider(cm$name)
+  if(is.null(cm$releaseNotes)) cm$releaseNotes <- guess_releaseNotes(root)
+  if(is.null(cm$readme)) cm$readme <- guess_readme(root)
 
   ## Add blank slots as placeholders? and declare as an S3 class?
 

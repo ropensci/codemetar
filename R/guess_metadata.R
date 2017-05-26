@@ -77,4 +77,75 @@ guess_orcids <- function(codemeta){
   NULL
 }
 
-### Consider: guess_releastNotes()
+uses_git <- function(root){
+  !is.null(git2r::discover_repository(root, ceiling = 0))
+}
+
+guess_github <- function(root = "."){
+  ## from devtools
+  remote_urls <- function (r){
+    remotes <- git2r::remotes(r)
+    stats::setNames(git2r::remote_url(r, remotes), remotes)
+  }
+
+  if(uses_git(root)){
+    r <- git2r::repository(root, discover = TRUE)
+    r_remote_urls <- grep("github", remote_urls(r), value = TRUE)
+    r_remote_urls[[1]]
+  } else {
+    NULL
+  }
+}
+
+### Consider: guess_releastNotes() (NEWS), guess_readme()
+
+guess_readme <- function(root="."){
+  ## If no local README.md at package root, give up
+  if(!file.exists(file.path(root, "README.md"))){
+    return(NULL)
+  }
+
+  ## point to GitHub page
+  if(uses_git(root)){
+    github_path(root, "README.md")
+  } else {
+    NULL
+  }
+}
+
+#' @importFrom git2r repository branches
+github_path <- function(root, path){
+  base <- guess_github(root)
+  r <- git2r::repository(root, discover = TRUE)
+  branch <- names(git2r::branches(r))[[1]]
+  paste0(base, "/blob/", branch, "/", "README.md")
+}
+
+guess_releaseNotes <- function(root="."){
+
+  ## First look for a local NEWS.md or NEWS, otherwise, give up
+  if(file.exists(file.path(root, "NEWS.md"))){
+    releaseNotes <- "NEWS.md"
+  } else if(file.exists(file.path(root, "NEWS"))){
+    releaseNotes <- "NEWS"
+  } else {
+    return(NULL)
+  }
+
+  ## point to GitHub page
+  if(uses_git(root)){
+    github_path(root, releaseNotes)
+  } else {
+    NULL
+  }
+
+
+
+  ## Consider pointing to CRAN NEWS, BIOC NEWS?
+
+}
+
+#' @importFrom devtools build
+guess_fileSize <- function(root){
+  devtools::build()
+}

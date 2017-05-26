@@ -28,10 +28,12 @@ codemeta_description <-  function(descr, id = NULL, codemeta = new_codemeta()){
   codemeta$identifier <- descr$Package
   codemeta$description <- descr$Description
   codemeta$name <- paste0(descr$Package, ": ", descr$Title)
-  codemeta$codeRepository <- descr$URL # descr$URL isn't necessarily a code repository, but crosswalk says this
+
+  ## Will later guess these these a la devtools::use_github_links method, if not provided
+  codemeta$codeRepository <- descr$URL
   codemeta$issueTracker <- descr$BugReports
 
-  ## According to crosswalk, codemeta$dateModified and codemeta$dateCreated are not crosswalked in R
+  ## According to crosswalk, codemeta$dateModified and codemeta$dateCreated are not crosswalked in DESCRIPTION
   codemeta$datePublished <- descr$Date # probably not avaialable as descr$Date.
 
   ## FIXME consider parsing into a valid SPDX string?
