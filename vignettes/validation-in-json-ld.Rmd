@@ -50,7 +50,7 @@ codemeta <-
       "email": "cboettig@gmail.com",
       "@id": "http://orcid.org/0000-0002-1642-628X"
     }],
-  "maintainer":  "http://orcid.org/0000-0002-1642-628X"
+  "maintainer":  {"@id": "http://orcid.org/0000-0002-1642-628X"}
 }
 '
 ```
@@ -132,6 +132,7 @@ Note that this has only returned the requested fields in the graph (along with t
 The same underlying data can often be expressed in different ways, particularly when dealing with nested data.  Framing can be of great help here to reshape the data into the structure required by the application.  For instance, it would be natural to access the `email` of the `maintainer` in the same manner we did the author, but this fails for our example as `maintainer` is defined only by reference to an ID:
 
 ```{r error=TRUE}
+meta <- fromJSON(codemeta, simplifyVector = FALSE) 
 paste("For complaints, email", meta$maintainer$email)
 ```
 
@@ -142,7 +143,7 @@ meta$maintainer
 ```
 
 
-We can use a frame with the special directive `"@embed": "always"` to say that we want the full maintainer information embedded an not just referred to by id alone.  Then we can subset `maintainer` just like we do author.  
+We can use a frame with the special directive `"@embed": "@always"` to say that we want the full maintainer information embedded an not just referred to by id alone.  Then we can subset `maintainer` just like we do author.  
 
 ```{r}
 frame <- '{

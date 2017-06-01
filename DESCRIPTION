@@ -29,3 +29,4 @@ Suggests: testthat,
     xml2
 VignetteBuilder: knitr
 Keywords: metadata, codemeta, ropensci, citation, credit
+Affiliation: https://ropensci.org
