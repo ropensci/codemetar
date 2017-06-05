@@ -91,7 +91,8 @@ guess_github <- function(root = "."){
   if(uses_git(root)){
     r <- git2r::repository(root, discover = TRUE)
     r_remote_urls <- grep("github", remote_urls(r), value = TRUE)
-    r_remote_urls[[1]]
+    out <- r_remote_urls[[1]]
+    gsub("git@github.com:", "https://github.com/", out)
   } else {
     NULL
   }
@@ -118,7 +119,7 @@ github_path <- function(root, path){
   base <- guess_github(root)
   r <- git2r::repository(root, discover = TRUE)
   branch <- names(git2r::branches(r))[[1]]
-  paste0(base, "/blob/", branch, "/", "README.md")
+  paste0(base, "/blob/", branch, "/", path)
 }
 
 guess_releaseNotes <- function(root="."){
