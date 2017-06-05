@@ -1,0 +1,117 @@
+---
+draft: true
+---
+
+
+```{r message=FALSE}
+library(httr)
+library(magrittr)
+library(jsonld)
+library(jsonlite)
+
+```
+
+
+```{r}
+date_parts <- function(parts)
+  do.call(paste,
+          list(unlist(parts),
+               collapse = "-"))
+
+author_parse <- function(authors){
+  lapply(authors, function(a){
+    list("@type" = "Person",
+      givenName = a$given,
+         familyName = a$family
+  #       affiliation = list("@type" = "Organization", name = a$affiliation[[1]]$name) # handle if empty
+         )
+  })
+}
+```
+
+```{r}
+csl_to_schema <- function(doi, as = "list", silent=FALSE){
+  message(doi)
+csl <-
+  content(
+    GET(doi, add_headers(Accept="application/vnd.citationstyles.csl+json")),
+    as = "parsed", type = "application/json")
+
+schema <- 
+list( "@type" = "ScholarlyArticle",
+  "@id" = paste0("https://doi.org/", csl$DOI),
+  "name" = csl$title,
+  
+  "dateCreated" = date_parts(csl$created$`date-parts`), 
+  "isPartOf" = list(
+    "@type" = "PublicationIssue",
+    "issueNumber" = csl$issue,
+    "datePublished" = date_parts(csl$`published-print`$`date-parts`), 
+    "isPartOf" = list(
+      "@type"= c("Periodical", "PublicationVolume"),
+      "volumeNumber" = csl$volume,
+      "name"= csl$`container-title`, # or csl$`journal-title`
+      "publisher" = csl$publisher
+    )
+  ), 
+  "author" = author_parse(csl$author),
+  "pagination" = csl$page,
+  license = csl$license[[1]]$URL) 
+ 
+  switch(as, 
+         "list" = return(schema),
+         "json" = return(toJSON(schema, auto_unbox=TRUE, pretty=TRUE)),
+         "file" = return(write_json(schema, "csl.json", auto_unbox=TRUE, pretty=TRUE))
+         )
+  
+}
+csl_to_schema(doi = "http://dx.doi.org/10.1002/ece3.2314", as="file")
+
+
+```
+
+
+
+```{r}
+c(
+"https://doi.org/10.1093/biosci/bix025",
+"http://dx.doi.org/10.1002/ece3.2314",
+"http://dx.doi.org/10.1890/15-0236",
+"http://dx.doi.org/10.5334/jors.bu",
+"http://dx.doi.org/10.1111/2041-210X.12469",
+"http://dx.doi.org/10.1145/2723872.2723882",
+"http://dx.doi.org/10.1098/rspb.2014.1631",
+"http://dx.doi.org/10.1098/rspb.2013.1372",
+"http://dx.doi.org/10.1007/s12080-013-0192-6",
+"http://dx.doi.org/10.1038/493157a",
+"http://dx.doi.org/10.1098/rspb.2012.2085",
+"http://dx.doi.org/10.1111/j.1095-8649.2012.03464.x",
+"http://dx.doi.org/10.1111/j.2041-210X.2012.00247.x",
+"http://dx.doi.org/10.1098/rsif.2012.0125",
+"http://dx.doi.org/10.1111/j.1558-5646.2012.01619.x", 
+"http://dx.doi.org/10.1111/j.1558-5646.2011.01574.x",
+"http://dx.doi.org/10.1016/j.tpb.2009.10.003",
+"http://dx.doi.org/10.1086/508600"
+) %>% lapply(csl_to_schema, as="list") -> out
+
+
+out %>%
+  write_json(schema, "csl.json", auto_unbox=TRUE, pretty=TRUE)
+	 
+
+
+
+```
+
+
+
+
+
+
+
+```{r}
+"https://doi.org/10.1093/biosci/bix025" %>%
+  GET(add_headers(Accept="application/rdf+xml")) %>%
+  content(as = "parsed", type = "application/xml") %>%
+  write_xml("rdf.xml")
+```
