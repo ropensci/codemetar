@@ -25,8 +25,7 @@ frame <- system.file("schema/frame_schema.json", package="codemetar")
 
 meta <- 
   jsonld_frame("codemeta.json", frame) %>%
-  jsonld_compact(fromJSON(framed, FALSE)$`@context`) %>%
- fromJSON(FALSE)
+  fromJSON(FALSE) %>% getElement("@graph") %>% getElement(1)
 ```
 
 Construct a citation
@@ -68,6 +67,8 @@ corpus <-
     jsonld_frame("ropensci.json", frame) %>%
     fromJSON(simplifyVector = FALSE) %>%
     getElement("@graph") 
+
+
     
 ```
 
@@ -75,7 +76,15 @@ corpus <-
 Some basics:
 
 ```{r}
-map_chr(corpus, "identifier")
+
+## deal with nulls explicitly by starting with map
+pkgs <- map(corpus, "name") %>% compact() %>% as.character()
+
+# keep only those with package identifiers (names)
+keep <- map_lgl(corpus, ~ length(.x$identifier) > 0)
+corpus <- corpus[keep]
+
+## now we can just do
 map_chr(corpus, "name")
 ```
 
