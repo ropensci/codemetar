@@ -6,7 +6,10 @@ output: github_document
 
 ```{r message=FALSE}
 library(jsonld)
+library(jsonlite)
 library(magrittr)
+library(codemetar)
+library(tidyverse)
 ```
 
 ```{r}
@@ -54,6 +57,61 @@ cat(format(bibitem, "bibtex"))
 
 bibitem
 ```
+
+
+## Parsing the ropensci corpus
+
+Frame, expanding any referenced nodes
+
+```{r}
+corpus <- 
+    jsonld_frame("ropensci.json", frame) %>%
+    fromJSON(simplifyVector = FALSE) %>%
+    getElement("@graph") 
+    
+```
+
+
+Some basics:
+
+```{r}
+map_chr(corpus, "identifier")
+map_chr(corpus, "name")
+```
+
+```{r}
+## 60 unique maintainers
+map_chr(corpus, c("maintainer", "familyName")) %>% unique() %>% length()
+
+## Mostly Scott
+map_chr(corpus, c("maintainer", "familyName")) %>% table() %>% sort(TRUE)
+```
+
+
+```{r}
+## number of co-authors ... 
+map_int(corpus, function(r) length(r$author)) %>% table() %>% sort(TRUE)
+```
+
+```{r}
+## Contributors isn't used as much...
+map_int(corpus, function(r) length(r$contributor)) %>% table() %>% sort(TRUE)
+
+## authors + ctb 
+map_int(corpus, function(r) length(r$author) + length(r$contributor)) %>% table() %>% sort(TRUE)
+
+```
+
+Dependencies
+
+```{r}
+map_int(corpus, function(r) length(r$softwareRequirements))
+
+
+#map_df(corpus, function(r) tibble(pkg = r$identifier, dep = map_chr(r$softwareRequirements, "name")))
+
+```
+
 
 Counts: 
 

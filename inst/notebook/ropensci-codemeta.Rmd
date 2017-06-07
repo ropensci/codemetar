@@ -35,7 +35,7 @@ pkgs <- gsub("https://github.com/", "", out$packages$url)[installable & good]
 
 ```{r}
 #pkgs <- pkgs[1:3]
-#dir.create("pkg_src"); 
+dir.create("pkg_src"); 
 setwd("pkg_src")
 for(p in pkgs){
   system(paste0("git clone https://github.com/", p, " ", p))
@@ -48,10 +48,10 @@ cm <- lapply(pkgs, function(p){
   message(p)
   codemetar::create_codemeta(p)
 })
+```
 
 
-
-
+```{r}
 codemetar::write_codemeta(cm, path="ropensci.json")
 ```
 
