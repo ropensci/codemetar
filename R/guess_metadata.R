@@ -22,10 +22,10 @@ guess_provider <- function(pkg){
 
 
   } else if(pkg %in% BIOC[,"Package"]){
-    list("@id" = "https://www.bioconductor.org/",
+    list("@id" = "https://www.bioconductor.org",
          "@type" = "Organization",
          "name" = "BioConductor",
-         "url" = "https://www.bioconductor.org/packages/")
+         "url" = "https://www.bioconductor.org")
 
   } else {
     NULL

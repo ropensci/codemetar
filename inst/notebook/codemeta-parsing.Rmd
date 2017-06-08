@@ -10,6 +10,7 @@ library(jsonlite)
 library(magrittr)
 library(codemetar)
 library(tidyverse)
+library(printr)
 ```
 
 ```{r}
@@ -85,7 +86,8 @@ keep <- map_lgl(corpus, ~ length(.x$identifier) > 0)
 corpus <- corpus[keep]
 
 ## now we can just do
-map_chr(corpus, "name")
+all_pkgs <- map_chr(corpus, "name")
+head(all_pkgs)
 ```
 
 ```{r}
@@ -93,40 +95,78 @@ map_chr(corpus, "name")
 map_chr(corpus, c("maintainer", "familyName")) %>% unique() %>% length()
 
 ## Mostly Scott
-map_chr(corpus, c("maintainer", "familyName")) %>% table() %>% sort(TRUE)
+map_chr(corpus, c("maintainer", "familyName")) %>% 
+  as_tibble() %>%
+  group_by(value) %>%
+  tally(sort=TRUE)
 ```
 
 
 ```{r}
 ## number of co-authors ... 
-map_int(corpus, function(r) length(r$author)) %>% table() %>% sort(TRUE)
+map_int(corpus, function(r) length(r$author)) %>% 
+  as_tibble() %>%
+  group_by(value) %>%
+  tally(sort=TRUE)
 ```
 
 ```{r}
 ## Contributors isn't used as much...
-map_int(corpus, function(r) length(r$contributor)) %>% table() %>% sort(TRUE)
-
-## authors + ctb 
-map_int(corpus, function(r) length(r$author) + length(r$contributor)) %>% table() %>% sort(TRUE)
+map_int(corpus, function(r) length(r$contributor)) %>% 
+  as_tibble() %>%
+  group_by(value) %>%
+  tally(sort=TRUE)
 
 ```
 
-Dependencies
+Numbers (n) of packages with a total of (value) dependencies:
 
 ```{r}
-map_int(corpus, function(r) length(r$softwareRequirements))
-
-
-#map_df(corpus, function(r) tibble(pkg = r$identifier, dep = map_chr(r$softwareRequirements, "name")))
-
+map_int(corpus, function(r) length(r$softwareRequirements))  %>% 
+  as_tibble() %>%
+  group_by(value) %>%
+  tally(sort=TRUE)
 ```
 
-
-Counts: 
-
-- maintainer : number packages maintained
-- author : number of packages
-- number of authors, author vs contributor 
+which dependencies are used most frequently?
 
 ```{r}
+corpus %>%
+map_df(function(x){
+  ## single, unboxed dep
+  if("name" %in% names(x$softwareRequirements))
+    dep <- x$name
+  else if("name" %in% names(x$softwareRequirements[[1]]))
+    dep <- map_chr(x$softwareRequirements, "name")
+  else { ## No requirementsß
+    dep <- NA
+  }
+  
+  tibble(identifier = x$identifier, dep = dep)
+}) -> dep_df
+
+
+dep_df %>%
+group_by(dep) %>% 
+  tally(sort = TRUE)
+
 ```
+
+Alternate approach using a frame, gets all Depends and suggests (really all `SoftwareApplication` types mentioned)
+
+```{r}
+dep_frame <- '{
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@explicit": "true",
+  "name": {}
+}'
+jsonld_frame("ropensci.json", dep_frame) %>% 
+  fromJSON() %>% 
+  getElement("@graph") %>%
+  filter(type == "SoftwareApplication") %>%
+  group_by(name) %>% 
+  tally(sort = TRUE)
+  
+#  summarise(count(name))
+```
+

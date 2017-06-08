@@ -2,9 +2,12 @@
 title: "CodeMeta for rOpenSci packages"
 author: "Carl Boettiger"
 date: "5/13/2017"
-output: html_document
+output: github_document
 ---
 
+```{r include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+```
 
 All rOpenSci packages via GitHub API:
 

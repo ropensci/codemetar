@@ -17,8 +17,9 @@ parse_depends <- function(deps){
     pkg <- gsub("\\s*(\\w+)\\s.*", "\\1", str)
     pkg <- gsub("\\s+", "", pkg)
 
-    out <- list("@type" = "SoftwareApplication",
-                name = pkg)
+    dep <- list("@type" = "SoftwareApplication",
+                identifier = pkg,
+                name = pkg)      ## FIXME technically the name includes the title, this is just the description
 
     ## Add Version if available
     pattern <- "\\s*\\w+\\s+\\([><=]+\\s([1-9.\\-]*)\\)*"
@@ -26,11 +27,32 @@ parse_depends <- function(deps){
     version <- gsub("\\)$", "", version)  ## hack, avoid extraneous ending )
     has_version  <- grepl(pattern, str)
     if(has_version)
-      out$version <- version
+      dep$version <- version
 
-    out$provider <- guess_provider(pkg)
+    dep$provider <- guess_provider(pkg)
 
-    out
+  ## implemention could be better, e.g. support versioning
+  #  dep$`@id` <- guess_dep_id(dep)
+    dep
   })
 }
 
+
+## FIXME these are not version-specific. That's often not accurate, though does reflect the CRAN assumption that you must be compatible with the latest version...
+guess_dep_id <- function(dep){
+  if(dep$name == "R"){
+    ## FIXME No good identifier for R, particularly none for specific version
+    id <- "https://www.r-project.org"
+  } else if(is.null(dep$provider)){
+    id <- NULL
+  } else if(grepl("cran.r-project.org",dep$provider$url)){
+    id <- paste0(dep$provider$url, "/web/packages/", dep$identifier)
+  } else if(grepl("www.bioconductor.org", dep$provider$url)){
+    id <- paste0(dep$provider$url, "/packages/release/bioc/html/", dep$identifier, ".html")
+  } else {
+    id <- NULL
+  }
+
+  id
+
+}

@@ -99,7 +99,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/AntWeb",
     "releaseNotes": "https://github.com/ropensci/AntWeb/blob/master/NEWS",
     "readme": "https://github.com/ropensci/AntWeb/blob/master/README.md",
-    "fileSize": "13.968KB"
+    "fileSize": "13.971KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -231,7 +231,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/aRxiv",
     "releaseNotes": "https://github.com/ropensci/aRxiv/blob/master/NEWS",
     "readme": "https://github.com/ropensci/aRxiv/blob/master/README.md",
-    "fileSize": "34.457KB"
+    "fileSize": "34.459KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -323,7 +323,7 @@
     "codeRepository": "https://github.com/ropensci/bmc",
     "contIntegration": "https://travis-ci.org/ropensci/bmc",
     "readme": "https://github.com/ropensci/bmc/blob/master/README.md",
-    "fileSize": "5.232KB"
+    "fileSize": "5.234KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -511,7 +511,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/bold",
     "releaseNotes": "https://github.com/ropensci/bold/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/bold/blob/master/README.md",
-    "fileSize": "26.148KB"
+    "fileSize": "26.151KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -698,7 +698,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/clifro",
     "releaseNotes": "https://github.com/ropensci/clifro/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/clifro/blob/master/README.md",
-    "fileSize": "1720.941KB"
+    "fileSize": "1720.942KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -949,7 +949,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/ecoengine",
     "releaseNotes": "https://github.com/ropensci/ecoengine/blob/master/NEWS",
     "readme": "https://github.com/ropensci/ecoengine/blob/master/README.md",
-    "fileSize": "22.606KB"
+    "fileSize": "22.607KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -1067,7 +1067,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/elastic",
     "releaseNotes": "https://github.com/ropensci/elastic/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/elastic/blob/master/README.md",
-    "fileSize": "644.983KB"
+    "fileSize": "644.987KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -1296,7 +1296,7 @@
     ],
     "releaseNotes": "https://github.com/ropensci/EML/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/EML/blob/master/README.md",
-    "fileSize": "629.414KB"
+    "fileSize": "629.409KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -1529,7 +1529,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/fulltext",
     "releaseNotes": "https://github.com/ropensci/fulltext/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/fulltext/blob/master/README.md",
-    "fileSize": "3762.12KB"
+    "fileSize": "3762.123KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -1734,7 +1734,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/geojsonio",
     "releaseNotes": "https://github.com/ropensci/geojsonio/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/geojsonio/blob/master/README.md",
-    "fileSize": "1985.283KB"
+    "fileSize": "1985.289KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -1898,7 +1898,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/gender",
     "releaseNotes": "https://github.com/ropensci/gender/blob/master/NEWS",
     "readme": "https://github.com/ropensci/gender/blob/master/README.md",
-    "fileSize": "77.673KB"
+    "fileSize": "77.674KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -1957,7 +1957,7 @@
     "codeRepository": "https://github.com/ropensci/geonames",
     "contIntegration": "https://travis-ci.org/ropensci/geonames",
     "readme": "https://github.com/ropensci/geonames/blob/master/README.md",
-    "fileSize": "21.22KB"
+    "fileSize": "21.222KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -2116,7 +2116,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/gistr",
     "releaseNotes": "https://github.com/ropensci/gistr/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/gistr/blob/master/README.md",
-    "fileSize": "1257.607KB"
+    "fileSize": "1257.613KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -2188,7 +2188,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/git2r",
     "releaseNotes": "https://github.com/ropensci/git2r/blob/master/NEWS",
     "readme": "https://github.com/ropensci/git2r/blob/master/README.md",
-    "fileSize": "1081.791KB"
+    "fileSize": "1081.817KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -2268,7 +2268,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/historydata",
     "releaseNotes": "https://github.com/ropensci/historydata/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/historydata/blob/master/README.md",
-    "fileSize": "1558.267KB"
+    "fileSize": "1558.271KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -2389,7 +2389,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/IEEER",
     "readme": "https://github.com/ropensci/IEEER/blob/master/README.md",
-    "fileSize": "19.252KB"
+    "fileSize": "19.254KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -2543,7 +2543,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/neotoma",
     "releaseNotes": "https://github.com/ropensci/neotoma/blob/master/NEWS",
     "readme": "https://github.com/ropensci/neotoma/blob/master/README.md",
-    "fileSize": "1303.811KB"
+    "fileSize": "1303.832KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -2646,7 +2646,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/ots",
     "releaseNotes": "https://github.com/ropensci/ots/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/ots/blob/master/README.md",
-    "fileSize": "16.066KB"
+    "fileSize": "16.068KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -2795,7 +2795,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/paleobioDB",
     "releaseNotes": "https://github.com/ropensci/paleobioDB/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/paleobioDB/blob/master/README.md",
-    "fileSize": "29.658KB"
+    "fileSize": "29.662KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -2972,7 +2972,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/pangaear",
     "releaseNotes": "https://github.com/ropensci/pangaear/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/pangaear/blob/master/README.md",
-    "fileSize": "21.4KB"
+    "fileSize": "21.401KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -3113,7 +3113,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/pleiades",
     "releaseNotes": "https://github.com/ropensci/pleiades/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/pleiades/blob/master/README.md",
-    "fileSize": "619.564KB"
+    "fileSize": "619.567KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -3614,7 +3614,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/plotly",
     "releaseNotes": "https://github.com/ropensci/plotly/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/plotly/blob/master/README.md",
-    "fileSize": "1003.174KB"
+    "fileSize": "1003.184KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -3766,7 +3766,7 @@
     "developmentStatus": "active",
     "releaseNotes": "https://github.com/ropensci/rAltmetric/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rAltmetric/blob/master/README.md",
-    "fileSize": "7.538KB"
+    "fileSize": "7.539KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -3943,7 +3943,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rAvis",
     "releaseNotes": "https://github.com/ropensci/rAvis/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rAvis/blob/master/README.md",
-    "fileSize": "4276.449KB"
+    "fileSize": "4276.448KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -4239,7 +4239,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rbison",
     "releaseNotes": "https://github.com/ropensci/rbison/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rbison/blob/master/README.md",
-    "fileSize": "687.155KB"
+    "fileSize": "687.166KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -4444,7 +4444,7 @@
     "developmentStatus": "active",
     "releaseNotes": "https://github.com/ropensci/rcrossref/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rcrossref/blob/master/README.md",
-    "fileSize": "208.798KB"
+    "fileSize": "208.799KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -4532,7 +4532,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rdatacite",
     "releaseNotes": "https://github.com/ropensci/rdatacite/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rdatacite/blob/master/README.md",
-    "fileSize": "12.177KB"
+    "fileSize": "12.178KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -4835,7 +4835,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/europepmc",
     "releaseNotes": "https://github.com/ropensci/europepmc/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/europepmc/blob/master/README.md",
-    "fileSize": "38.592KB"
+    "fileSize": "38.596KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -4973,7 +4973,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rebird",
     "releaseNotes": "https://github.com/ropensci/rebird/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rebird/blob/master/README.md",
-    "fileSize": "108.481KB"
+    "fileSize": "108.482KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -5101,7 +5101,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rentrez",
     "releaseNotes": "https://github.com/ropensci/rentrez/blob/master/NEWS",
     "readme": "https://github.com/ropensci/rentrez/blob/master/README.md",
-    "fileSize": "37.971KB"
+    "fileSize": "37.975KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -5232,7 +5232,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/reol",
     "readme": "https://github.com/ropensci/reol/blob/master/README.md",
-    "fileSize": "396.22KB"
+    "fileSize": "396.227KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -5423,7 +5423,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rfigshare",
     "releaseNotes": "https://github.com/ropensci/rfigshare/blob/master/NEWS",
     "readme": "https://github.com/ropensci/rfigshare/blob/master/README.md",
-    "fileSize": "828.138KB"
+    "fileSize": "828.141KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -5580,7 +5580,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rfishbase",
     "releaseNotes": "https://github.com/ropensci/rfishbase/blob/master/NEWS",
     "readme": "https://github.com/ropensci/rfishbase/blob/master/README.md",
-    "fileSize": "1339.993KB"
+    "fileSize": "1339.998KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -5691,7 +5691,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rfisheries",
     "releaseNotes": "https://github.com/ropensci/rfisheries/blob/master/NEWS",
     "readme": "https://github.com/ropensci/rfisheries/blob/master/README.md",
-    "fileSize": "180.383KB"
+    "fileSize": "180.389KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -5934,7 +5934,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rgbif",
     "releaseNotes": "https://github.com/ropensci/rgbif/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rgbif/blob/master/README.md",
-    "fileSize": "618.389KB"
+    "fileSize": "618.395KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -6033,7 +6033,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rglobi",
     "releaseNotes": "https://github.com/ropensci/rglobi/blob/master/NEWS",
     "readme": "https://github.com/ropensci/rglobi/blob/master/README.md",
-    "fileSize": "14.304KB"
+    "fileSize": "14.305KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -6165,7 +6165,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rinat",
     "releaseNotes": "https://github.com/ropensci/rinat/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rinat/blob/master/README.md",
-    "fileSize": "175.101KB"
+    "fileSize": "175.103KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -6456,7 +6456,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/rmetadata",
     "readme": "https://github.com/ropensci/rmetadata/blob/master/README.md",
-    "fileSize": "214.462KB"
+    "fileSize": "214.463KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -6751,7 +6751,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/RNeXML",
     "releaseNotes": "https://github.com/ropensci/RNeXML/blob/master/NEWS",
     "readme": "https://github.com/ropensci/RNeXML/blob/master/README.md",
-    "fileSize": "224.725KB"
+    "fileSize": "224.73KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -7117,7 +7117,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rnoaa",
     "releaseNotes": "https://github.com/ropensci/rnoaa/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rnoaa/blob/master/README.md",
-    "fileSize": "1794.122KB"
+    "fileSize": "1794.131KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -7255,7 +7255,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rnpn",
     "releaseNotes": "https://github.com/ropensci/rnpn/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rnpn/blob/master/README.md",
-    "fileSize": "142.193KB"
+    "fileSize": "142.194KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -7564,7 +7564,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rplos",
     "releaseNotes": "https://github.com/ropensci/rplos/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rplos/blob/master/README.md",
-    "fileSize": "745.993KB"
+    "fileSize": "745.996KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -7725,7 +7725,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/RSelenium",
     "releaseNotes": "https://github.com/ropensci/RSelenium/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/RSelenium/blob/master/README.md",
-    "fileSize": "2586.804KB"
+    "fileSize": "2586.81KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -7875,7 +7875,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rsnps",
     "releaseNotes": "https://github.com/ropensci/rsnps/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rsnps/blob/master/README.md",
-    "fileSize": "39.528KB"
+    "fileSize": "39.529KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -8149,7 +8149,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/rWBclimate",
     "readme": "https://github.com/ropensci/rWBclimate/blob/master/README.md",
-    "fileSize": "301.382KB"
+    "fileSize": "301.383KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -8306,7 +8306,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/solrium",
     "releaseNotes": "https://github.com/ropensci/solr/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/solr/blob/master/README.md",
-    "fileSize": "104.736KB"
+    "fileSize": "104.742KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -8542,7 +8542,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/spocc",
     "releaseNotes": "https://github.com/ropensci/spocc/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/spocc/blob/master/README.md",
-    "fileSize": "723.293KB"
+    "fileSize": "723.296KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -8871,7 +8871,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/taxize",
     "releaseNotes": "https://github.com/ropensci/taxize/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/taxize/blob/master/README.md",
-    "fileSize": "386.617KB"
+    "fileSize": "386.619KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -9241,7 +9241,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/traits",
     "releaseNotes": "https://github.com/ropensci/traits/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/traits/blob/master/README.md",
-    "fileSize": "1727.297KB"
+    "fileSize": "1727.299KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -9375,7 +9375,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/treeBASE",
     "releaseNotes": "https://github.com/ropensci/treeBASE/blob/master/NEWS",
     "readme": "https://github.com/ropensci/treeBASE/blob/master/README.md",
-    "fileSize": "4269.013KB"
+    "fileSize": "4269.021KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -9482,7 +9482,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/USAboundaries",
     "releaseNotes": "https://github.com/ropensci/USAboundaries/blob/master/NEWS",
     "readme": "https://github.com/ropensci/USAboundaries/blob/master/README.md",
-    "fileSize": "5774.246KB"
+    "fileSize": "5774.254KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -9535,7 +9535,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/USAboundariesData",
     "readme": "https://github.com/ropensci/USAboundariesData/blob/master/README.md",
-    "fileSize": "15338.419KB"
+    "fileSize": "15338.423KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -9751,7 +9751,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/chromer",
     "releaseNotes": "https://github.com/ropensci/chromer/blob/master/NEWS",
     "readme": "https://github.com/ropensci/chromer/blob/master/README.md",
-    "fileSize": "7.451KB"
+    "fileSize": "7.452KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -10086,7 +10086,7 @@
     "codeRepository": "https://github.com/ropensci/dashboard",
     "contIntegration": "https://travis-ci.org/ropensci/dashboard",
     "readme": "https://github.com/ropensci/dashboard/blob/master/README.md",
-    "fileSize": "311.281KB"
+    "fileSize": "311.282KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -10167,7 +10167,7 @@
     "codeRepository": "https://github.com/ropensci/ggit",
     "contIntegration": "https://travis-ci.org/ropensci/ggit",
     "readme": "https://github.com/ropensci/ggit/blob/master/README.md",
-    "fileSize": "4.128KB"
+    "fileSize": "4.13KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -10289,7 +10289,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/musemeta",
     "releaseNotes": "https://github.com/ropensci/musemeta/blob/master/NEWS",
     "readme": "https://github.com/ropensci/musemeta/blob/master/README.md",
-    "fileSize": "25.12KB"
+    "fileSize": "25.121KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -10448,7 +10448,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rdpla",
     "releaseNotes": "https://github.com/ropensci/rdpla/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rdpla/blob/master/README.md",
-    "fileSize": "359.536KB"
+    "fileSize": "359.539KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -10698,7 +10698,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rerddap",
     "releaseNotes": "https://github.com/ropensci/rerddap/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rerddap/blob/master/README.md",
-    "fileSize": "300.944KB"
+    "fileSize": "300.948KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -10780,7 +10780,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/reuropeana",
     "readme": "https://github.com/ropensci/reuropeana/blob/master/README.md",
-    "fileSize": "8.57KB"
+    "fileSize": "8.574KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -10900,7 +10900,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/rGEM",
     "readme": "https://github.com/ropensci/rGEM/blob/master/README.md",
-    "fileSize": "3.677KB"
+    "fileSize": "3.68KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -11053,7 +11053,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/taxizesoap",
     "releaseNotes": "https://github.com/ropensci/taxizesoap/blob/master/NEWS",
     "readme": "https://github.com/ropensci/taxizesoap/blob/master/README.md",
-    "fileSize": "69.239KB"
+    "fileSize": "69.24KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -11196,7 +11196,7 @@
     "developmentStatus": "active",
     "releaseNotes": "https://github.com/ropensci/webmockr/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/webmockr/blob/master/README.md",
-    "fileSize": "28.333KB"
+    "fileSize": "28.332KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -11331,7 +11331,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/binomen",
     "releaseNotes": "https://github.com/ropensci/binomen/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/binomen/blob/master/README.md",
-    "fileSize": "21.518KB"
+    "fileSize": "21.522KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -11457,7 +11457,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/cartographer",
     "releaseNotes": "https://github.com/ropensci/cartographer/blob/master/NEWS",
     "readme": "https://github.com/ropensci/cartographer/blob/master/README.md",
-    "fileSize": "793.855KB"
+    "fileSize": "793.859KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -11539,7 +11539,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/csl",
     "readme": "https://github.com/ropenscilabs/seasl/blob/master/README.md",
-    "fileSize": "6.348KB"
+    "fileSize": "6.347KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -11659,7 +11659,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/elasticdsl",
     "readme": "https://github.com/ropensci/elasticdsl/blob/master/README.md",
-    "fileSize": "20.41KB"
+    "fileSize": "20.412KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -11769,7 +11769,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/etseed",
     "releaseNotes": "https://github.com/ropensci/etseed/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/etseed/blob/master/README.md",
-    "fileSize": "25.623KB"
+    "fileSize": "25.629KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -11929,7 +11929,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/finch",
     "releaseNotes": "https://github.com/ropensci/finch/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/finch/blob/master/README.md",
-    "fileSize": "250.128KB"
+    "fileSize": "250.131KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -11999,7 +11999,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/genderdata",
     "releaseNotes": "https://github.com/ropensci/genderdata/blob/master/NEWS",
     "readme": "https://github.com/ropensci/genderdata/blob/master/README.md",
-    "fileSize": "16313.118KB"
+    "fileSize": "16313.127KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -12079,7 +12079,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/hathi",
     "readme": "https://github.com/ropensci/hathi/blob/master/README.md",
-    "fileSize": "5.305KB"
+    "fileSize": "5.307KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -12183,7 +12183,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/internetarchive",
     "releaseNotes": "https://github.com/ropensci/internetarchive/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/internetarchive/blob/master/README.md",
-    "fileSize": "451.843KB"
+    "fileSize": "451.842KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -12501,7 +12501,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/lawn",
     "releaseNotes": "https://github.com/ropensci/lawn/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/lawn/blob/master/README.md",
-    "fileSize": "6006.142KB"
+    "fileSize": "6006.145KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -12650,7 +12650,7 @@
       }
     ],
     "readme": "https://github.com/ropensci/nodbi/blob/master/README.md",
-    "fileSize": "13.456KB"
+    "fileSize": "13.459KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -12752,7 +12752,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/opencontext",
     "readme": "https://github.com/ropensci/opencontext/blob/master/README.md",
-    "fileSize": "5.14KB"
+    "fileSize": "5.141KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -12861,7 +12861,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/helminthR",
     "readme": "https://github.com/ropensci/helminthR/blob/master/README.md",
-    "fileSize": "36.109KB"
+    "fileSize": "36.112KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -12920,7 +12920,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/proj",
     "readme": "https://github.com/ropensci/proj/blob/master/README.md",
-    "fileSize": "25.236KB"
+    "fileSize": "25.24KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -13008,7 +13008,7 @@
     "codeRepository": "https://github.com/ropensci/rchie",
     "contIntegration": "https://travis-ci.org/ropensci/rchie",
     "readme": "https://github.com/ropensci/rchie/blob/master/README.md",
-    "fileSize": "17.685KB"
+    "fileSize": "17.684KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -13143,7 +13143,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rdopa",
     "releaseNotes": "https://github.com/ropensci/rdopa/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rdopa/blob/master/README.md",
-    "fileSize": "684.416KB"
+    "fileSize": "684.418KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -13230,7 +13230,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/RedisAPI",
     "readme": "https://github.com/ropensci/RedisAPI/blob/master/README.md",
-    "fileSize": "25.064KB"
+    "fileSize": "25.065KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -13425,7 +13425,7 @@
     "codeRepository": "https://github.com/ropensci/rrlite",
     "contIntegration": "https://travis-ci.org/ropensci/rrlite",
     "readme": "https://github.com/ropensci/rrlite/blob/master/README.md",
-    "fileSize": "394.855KB"
+    "fileSize": "394.84KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -13718,7 +13718,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/webchem",
     "releaseNotes": "https://github.com/ropensci/webchem/blob/master/NEWS",
     "readme": "https://github.com/ropensci/webchem/blob/master/README.md",
-    "fileSize": "126.803KB"
+    "fileSize": "126.806KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -13845,7 +13845,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/wellknown",
     "releaseNotes": "https://github.com/ropensci/wellknown/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/wellknown/blob/master/README.md",
-    "fileSize": "90.234KB"
+    "fileSize": "90.239KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -14051,7 +14051,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rotl",
     "releaseNotes": "https://github.com/ropensci/rotl/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rotl/blob/master/README.md",
-    "fileSize": "81.637KB"
+    "fileSize": "81.639KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -14117,7 +14117,7 @@
     ],
     "codeRepository": "https://github.com/ropensci/ropkgs",
     "readme": "https://github.com/ropensci/ropkgs/blob/master/README.md",
-    "fileSize": "3.727KB"
+    "fileSize": "3.729KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -14242,7 +14242,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rusda",
     "releaseNotes": "https://github.com/ropensci/rusda/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rusda/blob/master/README.md",
-    "fileSize": "9.388KB"
+    "fileSize": "9.385KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -14399,7 +14399,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/oai",
     "releaseNotes": "https://github.com/ropensci/oai/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/oai/blob/master/README.md",
-    "fileSize": "122.326KB"
+    "fileSize": "122.323KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -14457,7 +14457,7 @@
       }
     ],
     "readme": "https://github.com/ropenscilabs/apipkgen/blob/master/README.md",
-    "fileSize": "6.43KB"
+    "fileSize": "6.433KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -14568,7 +14568,7 @@
     "contIntegration": "https://travis-ci.org/cboettig/appl",
     "developmentStatus": "wip",
     "readme": "https://github.com/ropensci/appl/blob/master/README.md",
-    "fileSize": "443.845KB"
+    "fileSize": "443.914KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -14640,7 +14640,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/aspacer",
     "readme": "https://github.com/ropenscilabs/aspacer/blob/master/README.md",
-    "fileSize": "5.402KB"
+    "fileSize": "5.405KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -14692,7 +14692,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/atomize",
     "readme": "https://github.com/ropenscilabs/atomize/blob/master/README.md",
-    "fileSize": "3.474KB"
+    "fileSize": "3.476KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -14825,7 +14825,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/brranching",
     "releaseNotes": "https://github.com/ropensci/brranching/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/brranching/blob/master/README.md",
-    "fileSize": "159.167KB"
+    "fileSize": "159.177KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -14999,7 +14999,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/ccafs",
     "releaseNotes": "https://github.com/ropensci/ccafs/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/ccafs/blob/master/README.md",
-    "fileSize": "893.319KB"
+    "fileSize": "893.323KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -15143,7 +15143,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/cmipr",
     "readme": "https://github.com/ropenscilabs/cmipr/blob/master/README.md",
-    "fileSize": "303.398KB"
+    "fileSize": "303.401KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -15335,7 +15335,7 @@
     ],
     "codeRepository": "https://github.com/ropenscilabs/colorpiler",
     "readme": "https://github.com/ropenscilabs/colorpiler/blob/master/README.md",
-    "fileSize": "7.657KB"
+    "fileSize": "7.661KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -15413,7 +15413,7 @@
     "contIntegration": "https://travis-ci.org/GShotwell/convertr",
     "releaseNotes": "https://github.com/ropenscilabs/convertr/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/convertr/blob/master/README.md",
-    "fileSize": "321.37KB"
+    "fileSize": "321.38KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -15544,7 +15544,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rcore",
     "developmentStatus": "wip",
     "readme": "https://github.com/ropensci/rcore/blob/master/README.md",
-    "fileSize": "12.801KB"
+    "fileSize": "12.803KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -15691,7 +15691,7 @@
     "codeRepository": "https://github.com/ropensci/datapack",
     "releaseNotes": "https://github.com/ropensci/datapack/blob/master/NEWS",
     "readme": "https://github.com/ropensci/datapack/blob/master/README.md",
-    "fileSize": "349.047KB"
+    "fileSize": "349.048KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -15798,7 +15798,7 @@
       }
     ],
     "readme": "https://github.com/ropenscilabs/datapkg/blob/master/README.md",
-    "fileSize": "5.345KB"
+    "fileSize": "5.348KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -15891,7 +15891,7 @@
     "codeRepository": "https://github.com/ropenscilabs/dirdf",
     "contIntegration": "https://travis-ci.org/ropenscilabs/dirdf",
     "readme": "https://github.com/ropenscilabs/dirdf/blob/master/README.md",
-    "fileSize": "9.355KB"
+    "fileSize": "9.358KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -16263,7 +16263,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/eechidna",
     "releaseNotes": "https://github.com/ropenscilabs/eechidna/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/eechidna/blob/master/README.md",
-    "fileSize": "3813.037KB"
+    "fileSize": "3813.046KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -16374,7 +16374,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/gdoc",
     "developmentStatus": "wip",
     "readme": "https://github.com/ropenscilabs/gdoc/blob/master/README.md",
-    "fileSize": "39.128KB"
+    "fileSize": "39.131KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -16474,7 +16474,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/geoaxe",
     "releaseNotes": "https://github.com/ropenscilabs/geoaxe/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/geoaxe/blob/master/README.md",
-    "fileSize": "620.608KB"
+    "fileSize": "620.612KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -16643,7 +16643,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/geojson",
     "releaseNotes": "https://github.com/ropensci/geojson/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/geojson/blob/master/README.md",
-    "fileSize": "998.161KB"
+    "fileSize": "998.163KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -16897,7 +16897,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/geoops",
     "readme": "https://github.com/ropenscilabs/geoops/blob/master/README.md",
-    "fileSize": "979.937KB"
+    "fileSize": "979.945KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -17061,7 +17061,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/getlandsat",
     "releaseNotes": "https://github.com/ropenscilabs/getlandsat/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/getlandsat/blob/master/README.md",
-    "fileSize": "593.993KB"
+    "fileSize": "593.996KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -17251,7 +17251,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/gtfsr",
     "releaseNotes": "https://github.com/ropenscilabs/gtfsr/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/gtfsr/blob/master/README.md",
-    "fileSize": "747.309KB"
+    "fileSize": "747.313KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -17423,7 +17423,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/gutenbergr",
     "releaseNotes": "https://github.com/ropenscilabs/gutenbergr/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/gutenbergr/blob/master/README.md",
-    "fileSize": "2085.819KB"
+    "fileSize": "2085.821KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -17558,7 +17558,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/hunspell",
     "releaseNotes": "https://github.com/ropensci/hunspell/blob/master/NEWS",
     "readme": "https://github.com/ropensci/hunspell/blob/master/README.md",
-    "fileSize": "2751.127KB"
+    "fileSize": "2751.141KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -17650,7 +17650,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/jsonvalidate",
     "readme": "https://github.com/ropensci/jsonvalidate/blob/master/README.md",
-    "fileSize": "20.823KB"
+    "fileSize": "20.825KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -17827,7 +17827,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/mapr",
     "releaseNotes": "https://github.com/ropensci/mapr/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/mapr/blob/master/README.md",
-    "fileSize": "508.402KB"
+    "fileSize": "508.405KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -18053,7 +18053,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/mregions",
     "releaseNotes": "https://github.com/ropenscilabs/mregions/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/mregions/blob/master/README.md",
-    "fileSize": "1437.863KB"
+    "fileSize": "1437.87KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -18191,7 +18191,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/opencage",
     "releaseNotes": "https://github.com/ropensci/opencage/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/opencage/blob/master/README.md",
-    "fileSize": "20.706KB"
+    "fileSize": "20.711KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -18331,7 +18331,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/originr",
     "releaseNotes": "https://github.com/ropensci/originr/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/originr/blob/master/README.md",
-    "fileSize": "16.015KB"
+    "fileSize": "16.02KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -18546,7 +18546,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/osmplotr",
     "releaseNotes": "https://github.com/ropensci/osmplotr/blob/master/NEWS",
     "readme": "https://github.com/ropensci/osmplotr/blob/master/README.md",
-    "fileSize": "620.252KB"
+    "fileSize": "620.257KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -18632,7 +18632,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/pdftools",
     "releaseNotes": "https://github.com/ropensci/pdftools/blob/master/NEWS",
     "readme": "https://github.com/ropensci/pdftools/blob/master/README.md",
-    "fileSize": "7.59KB"
+    "fileSize": "7.592KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -18787,7 +18787,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/rgeospatialquality",
     "releaseNotes": "https://github.com/ropenscilabs/rgeospatialquality/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/rgeospatialquality/blob/master/README.md",
-    "fileSize": "25.136KB"
+    "fileSize": "25.142KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -18834,7 +18834,7 @@
     "softwareSuggestions": [],
     "softwareRequirements": [],
     "readme": "https://github.com/ropenscilabs/riodata/blob/master/README.md",
-    "fileSize": "419.271KB"
+    "fileSize": "419.275KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -18960,7 +18960,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/robotstxt",
     "releaseNotes": "https://github.com/ropenscilabs/robotstxt/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/robotstxt/blob/master/README.md",
-    "fileSize": "24.53KB"
+    "fileSize": "24.534KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -19183,7 +19183,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/ropenaq",
     "releaseNotes": "https://github.com/ropensci/ropenaq/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/ropenaq/blob/master/README.md",
-    "fileSize": "366.008KB"
+    "fileSize": "366.009KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -19282,7 +19282,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rredlist",
     "releaseNotes": "https://github.com/ropensci/rredlist/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rredlist/blob/master/README.md",
-    "fileSize": "13.207KB"
+    "fileSize": "13.211KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -19397,7 +19397,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/rwdpa",
     "readme": "https://github.com/ropenscilabs/rwdpa/blob/master/README.md",
-    "fileSize": "4.282KB"
+    "fileSize": "4.285KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -19616,7 +19616,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/scrubr",
     "releaseNotes": "https://github.com/ropensci/scrubr/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/scrubr/blob/master/README.md",
-    "fileSize": "149.904KB"
+    "fileSize": "149.906KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -19672,7 +19672,7 @@
     ],
     "codeRepository": "https://github.com/ropenscilabs/snowball",
     "readme": "https://github.com/ropenscilabs/snowball/blob/master/README.md",
-    "fileSize": "1052.767KB"
+    "fileSize": "1052.769KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -19829,7 +19829,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/solrium",
     "releaseNotes": "https://github.com/ropensci/solrium/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/solrium/blob/master/README.md",
-    "fileSize": "104.731KB"
+    "fileSize": "104.737KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -19960,7 +19960,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/spenv",
     "readme": "https://github.com/ropenscilabs/spenv/blob/master/README.md",
-    "fileSize": "13.983KB"
+    "fileSize": "13.987KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -20028,7 +20028,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/splister",
     "readme": "https://github.com/ropenscilabs/splister/blob/master/README.md",
-    "fileSize": "5.794KB"
+    "fileSize": "5.8KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -20099,7 +20099,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/spplist",
     "readme": "https://github.com/ropenscilabs/spplist/blob/master/README.md",
-    "fileSize": "5.385KB"
+    "fileSize": "5.387KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -20251,7 +20251,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/spplit",
     "readme": "https://github.com/ropenscilabs/spplit/blob/master/README.md",
-    "fileSize": "1446.51KB"
+    "fileSize": "1446.511KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -20584,7 +20584,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/stplanr",
     "releaseNotes": "https://github.com/ropensci/stplanr/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/stplanr/blob/master/README.md",
-    "fileSize": "977.379KB"
+    "fileSize": "977.388KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -20747,7 +20747,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/taxa",
     "developmentStatus": "[![Project Status: WIP - Initial development is in progress, but there",
     "readme": "https://github.com/ropenscilabs/taxa/blob/master/README.md",
-    "fileSize": "192.78KB"
+    "fileSize": "192.783KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -21049,7 +21049,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/vcr",
     "readme": "https://github.com/ropensci/vcr/blob/master/README.md",
-    "fileSize": "41.319KB"
+    "fileSize": "41.322KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -21140,7 +21140,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/dissem",
     "developmentStatus": "wip",
     "readme": "https://github.com/ropenscilabs/dissem/blob/master/README.md",
-    "fileSize": "3.225KB"
+    "fileSize": "3.228KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -21229,7 +21229,7 @@
       }
     ],
     "readme": "https://github.com/ropenscilabs/sparqldsl/blob/master/README.md",
-    "fileSize": "6.207KB"
+    "fileSize": "6.208KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -21405,7 +21405,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/riem",
     "releaseNotes": "https://github.com/ropensci/riem/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/riem/blob/master/README.md",
-    "fileSize": "150.865KB"
+    "fileSize": "150.868KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -21583,7 +21583,7 @@
     "codeRepository": "https://github.com/gmbecker/genbankr",
     "releaseNotes": "https://github.com/gmbecker/genbankr/blob/master/NEWS",
     "readme": "https://github.com/gmbecker/genbankr/blob/master/README.md",
-    "fileSize": "355.053KB"
+    "fileSize": "355.054KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -21726,7 +21726,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/monkeylearn",
     "releaseNotes": "https://github.com/ropensci/monkeylearn/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/monkeylearn/blob/master/README.md",
-    "fileSize": "60.713KB"
+    "fileSize": "60.714KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -21810,7 +21810,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/rnaturalearthdata",
     "releaseNotes": "https://github.com/ropenscilabs/rnaturalearthdata/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/rnaturalearthdata/blob/master/README.md",
-    "fileSize": "3219.734KB"
+    "fileSize": "3219.739KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -21979,7 +21979,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/rnaturalearth",
     "releaseNotes": "https://github.com/ropenscilabs/rnaturalearth/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/rnaturalearth/blob/master/README.md",
-    "fileSize": "171.866KB"
+    "fileSize": "171.87KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -22093,7 +22093,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/assertr",
     "releaseNotes": "https://github.com/ropensci/assertr/blob/master/NEWS",
     "readme": "https://github.com/ropensci/assertr/blob/master/README.md",
-    "fileSize": "96KB"
+    "fileSize": "96.005KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -22260,7 +22260,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/geoparser",
     "releaseNotes": "https://github.com/ropensci/geoparser/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/geoparser/blob/master/README.md",
-    "fileSize": "10.365KB"
+    "fileSize": "10.369KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -22414,7 +22414,7 @@
       }
     ],
     "releaseNotes": "https://github.com/ropensci/magick/blob/master/NEWS",
-    "fileSize": "4945.753KB"
+    "fileSize": "4945.754KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -22564,7 +22564,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/tokenizers",
     "releaseNotes": "https://github.com/ropensci/tokenizers/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/tokenizers/blob/master/README.md",
-    "fileSize": "442.306KB"
+    "fileSize": "442.305KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -22676,7 +22676,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/laselva",
     "readme": "https://github.com/ropenscilabs/laselva/blob/master/README.md",
-    "fileSize": "4.509KB"
+    "fileSize": "4.513KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -22757,7 +22757,7 @@
         }
       }
     ],
-    "fileSize": "2.374KB"
+    "fileSize": "2.377KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -22862,7 +22862,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/ezknitr",
     "releaseNotes": "https://github.com/ropensci/ezknitr/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/ezknitr/blob/master/README.md",
-    "fileSize": "17.875KB"
+    "fileSize": "17.876KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -23017,7 +23017,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/natserv",
     "releaseNotes": "https://github.com/ropensci/natserv/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/natserv/blob/master/README.md",
-    "fileSize": "35.656KB"
+    "fileSize": "35.66KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -23100,7 +23100,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/jaod",
     "readme": "https://github.com/ropenscilabs/jaod/blob/master/README.md",
-    "fileSize": "5.006KB"
+    "fileSize": "5.01KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -23307,7 +23307,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rdefra",
     "releaseNotes": "https://github.com/ropenscilabs/rdefra/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/rdefra/blob/master/README.md",
-    "fileSize": "475.006KB"
+    "fileSize": "475.01KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -23407,7 +23407,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/scitations",
     "readme": "https://github.com/ropenscilabs/scitations/blob/master/README.md",
-    "fileSize": "7.541KB"
+    "fileSize": "7.543KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -23537,7 +23537,7 @@
       }
     ],
     "releaseNotes": "https://github.com/ropensci/tabulizer/blob/master/NEWS.md",
-    "fileSize": "53.278KB"
+    "fileSize": "53.282KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -23649,7 +23649,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/ghql",
     "readme": "https://github.com/ropensci/ghql/blob/master/README.md",
-    "fileSize": "9.935KB"
+    "fileSize": "9.937KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -23747,7 +23747,7 @@
       }
     ],
     "releaseNotes": "https://github.com/ropensci/graphql/blob/master/NEWS",
-    "fileSize": "64.49KB"
+    "fileSize": "64.495KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -23843,7 +23843,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/plater",
     "releaseNotes": "https://github.com/ropenscilabs/plater/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/plater/blob/master/README.md",
-    "fileSize": "87.296KB"
+    "fileSize": "87.298KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -23935,7 +23935,7 @@
     "developmentStatus": "active",
     "releaseNotes": "https://github.com/ropenscilabs/dbhydroR/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/dbhydroR/blob/master/README.md",
-    "fileSize": "182.439KB"
+    "fileSize": "182.441KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -24040,7 +24040,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/crevents",
     "readme": "https://github.com/ropenscilabs/crevents/blob/master/README.md",
-    "fileSize": "5.95KB"
+    "fileSize": "5.952KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -24164,7 +24164,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/nneo",
     "developmentStatus": "wip",
     "readme": "https://github.com/ropenscilabs/nneo/blob/master/README.md",
-    "fileSize": "8.76KB"
+    "fileSize": "8.764KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -24283,7 +24283,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/isdparser",
     "releaseNotes": "https://github.com/ropensci/isdparser/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/isdparser/blob/master/README.md",
-    "fileSize": "204.649KB"
+    "fileSize": "204.652KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -24436,7 +24436,7 @@
     "developmentStatus": "active",
     "releaseNotes": "https://github.com/ropensci/crul/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/crul/blob/master/README.md",
-    "fileSize": "37.669KB"
+    "fileSize": "37.67KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -24568,7 +24568,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/travis",
     "releaseNotes": "https://github.com/ropenscilabs/travis/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/travis/blob/master/README.md",
-    "fileSize": "8.532KB"
+    "fileSize": "8.535KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -24721,7 +24721,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/tic",
     "releaseNotes": "https://github.com/ropenscilabs/tic/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/tic/blob/master/README.md",
-    "fileSize": "9.729KB"
+    "fileSize": "9.732KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -24854,7 +24854,7 @@
     "developmentStatus": "active",
     "releaseNotes": "https://github.com/ropenscilabs/crminer/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/crminer/blob/master/README.md",
-    "fileSize": "956.657KB"
+    "fileSize": "956.66KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -24923,7 +24923,7 @@
       }
     ],
     "readme": "https://github.com/ropenscilabs/phyrmeta/blob/master/README.md",
-    "fileSize": "11.739KB"
+    "fileSize": "11.743KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -25004,7 +25004,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/geojsonrewind",
     "readme": "https://github.com/ropenscilabs/geojsonrewind/blob/master/README.md",
-    "fileSize": "3.565KB"
+    "fileSize": "3.566KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -25110,7 +25110,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/tesseract",
     "releaseNotes": "https://github.com/ropensci/tesseract/blob/master/NEWS",
     "readme": "https://github.com/ropensci/tesseract/blob/master/README.md",
-    "fileSize": "8.399KB"
+    "fileSize": "8.405KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -25175,7 +25175,7 @@
       }
     ],
     "codeRepository": "https://github.com/ropensci/agent",
-    "fileSize": "3.161KB"
+    "fileSize": "3.163KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -25306,7 +25306,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/fauxpas",
     "releaseNotes": "https://github.com/ropenscilabs/fauxpas/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/fauxpas/blob/master/README.md",
-    "fileSize": "14.544KB"
+    "fileSize": "14.546KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -25429,7 +25429,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/camsRad",
     "releaseNotes": "https://github.com/ropenscilabs/camsRad/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/camsRad/blob/master/README.md",
-    "fileSize": "13.255KB"
+    "fileSize": "13.256KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -25546,7 +25546,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/phylocomr",
     "readme": "https://github.com/ropensci/phylocomr/blob/master/README.md",
-    "fileSize": "298.858KB"
+    "fileSize": "298.86KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -25658,7 +25658,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/geofilter",
     "readme": "https://github.com/ropenscilabs/geofilter/blob/master/README.md",
-    "fileSize": "887.731KB"
+    "fileSize": "887.734KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -25730,7 +25730,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/scatr",
     "readme": "https://github.com/ropenscilabs/scatr/blob/master/README.md",
-    "fileSize": "2.158KB"
+    "fileSize": "2.162KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -25833,7 +25833,7 @@
     "contIntegration": "https://travis-ci.org/ropenscilabs/rbace",
     "developmentStatus": "wip",
     "readme": "https://github.com/ropenscilabs/rbace/blob/master/README.md",
-    "fileSize": "7.157KB"
+    "fileSize": "7.161KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -25943,7 +25943,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/ridb",
     "readme": "https://github.com/ropenscilabs/ridb/blob/master/README.md",
-    "fileSize": "4.223KB"
+    "fileSize": "4.227KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -26015,7 +26015,7 @@
       }
     ],
     "releaseNotes": "https://github.com/ropensci/jsonld/blob/master/NEWS",
-    "fileSize": "60.836KB"
+    "fileSize": "60.839KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -26183,7 +26183,7 @@
     "developmentStatus": "wip",
     "releaseNotes": "https://github.com/ropenscilabs/wikitaxa/blob/master/NEWS.md",
     "readme": "https://github.com/ropenscilabs/wikitaxa/blob/master/README.md",
-    "fileSize": "22.887KB"
+    "fileSize": "22.89KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -26305,7 +26305,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/charlatan",
     "readme": "https://github.com/ropenscilabs/charlatan/blob/master/README.md",
-    "fileSize": "216.754KB"
+    "fileSize": "216.756KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -26387,7 +26387,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/zissou",
     "readme": "https://github.com/ropenscilabs/zissou/blob/master/README.md",
-    "fileSize": "2.913KB"
+    "fileSize": "2.917KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -26517,7 +26517,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/worrms",
     "releaseNotes": "https://github.com/ropensci/worrms/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/worrms/blob/master/README.md",
-    "fileSize": "9.525KB"
+    "fileSize": "9.528KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -26581,7 +26581,7 @@
       }
     ],
     "releaseNotes": "https://github.com/ropensci/xslt/blob/master/NEWS",
-    "fileSize": "15.628KB"
+    "fileSize": "15.632KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -26667,7 +26667,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/wicket",
     "releaseNotes": "https://github.com/ropensci/wicket/blob/master/NEWS",
     "readme": "https://github.com/ropensci/wicket/blob/master/README.md",
-    "fileSize": "15.267KB"
+    "fileSize": "15.276KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -26777,7 +26777,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rjsonapi",
     "releaseNotes": "https://github.com/ropensci/rjsonapi/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rjsonapi/blob/master/README.md",
-    "fileSize": "19.681KB"
+    "fileSize": "19.684KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -26897,7 +26897,7 @@
     "developmentStatus": "active",
     "releaseNotes": "https://github.com/ropensci/hoardr/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/hoardr/blob/master/README.md",
-    "fileSize": "7.929KB"
+    "fileSize": "7.932KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -27115,7 +27115,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/hddtools",
     "releaseNotes": "https://github.com/ropensci/hddtools/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/hddtools/blob/master/README.md",
-    "fileSize": "1922.309KB"
+    "fileSize": "1922.314KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/mbjones/codemeta/master/codemeta.jsonld",
@@ -27443,7 +27443,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/GSODR",
     "releaseNotes": "https://github.com/ropensci/GSODR/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/GSODR/blob/master/README.md",
-    "fileSize": "792.186KB"
+    "fileSize": "792.188KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -27544,7 +27544,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/randgeo",
     "releaseNotes": "https://github.com/ropensci/randgeo/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/randgeo/blob/master/README.md",
-    "fileSize": "8.155KB"
+    "fileSize": "8.159KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -27616,7 +27616,7 @@
     ],
     "releaseNotes": "https://github.com/ropensci/rdataretriever/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/rdataretriever/blob/master/README.md",
-    "fileSize": "6.857KB"
+    "fileSize": "6.862KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -27672,7 +27672,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/rzmq",
     "releaseNotes": "https://github.com/ropensci/rzmq/blob/master/NEWS",
     "readme": "https://github.com/ropensci/rzmq/blob/master/README.md",
-    "fileSize": "18.803KB"
+    "fileSize": "18.814KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -27802,7 +27802,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/extractr",
     "readme": "https://github.com/ropensci/extractr/blob/master/README.md",
-    "fileSize": "3657.012KB"
+    "fileSize": "3657.013KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -27884,7 +27884,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropensci/reeack",
     "readme": "https://github.com/ropensci/reeack/blob/master/README.md",
-    "fileSize": "4.766KB"
+    "fileSize": "4.77KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -27976,7 +27976,7 @@
     ],
     "contIntegration": "https://travis-ci.org/ropenscilabs/microdemic",
     "readme": "https://github.com/ropenscilabs/microdemic/blob/master/README.md",
-    "fileSize": "3.22KB"
+    "fileSize": "3.223KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -28130,7 +28130,7 @@
     "codeRepository": "https://github.com/ropensci/seaaroundus",
     "contIntegration": "https://travis-ci.org/ropensci/seaaroundus",
     "readme": "https://github.com/ropensci/seaaroundus/blob/master/README.md",
-    "fileSize": "8.058KB"
+    "fileSize": "8.061KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -28356,7 +28356,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/getCRUCLdata",
     "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/getCRUCLdata/blob/master/README.md",
-    "fileSize": "935.846KB"
+    "fileSize": "935.848KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -28475,7 +28475,7 @@
       }
     ],
     "readme": "https://github.com/ropenscilabs/datastorr/blob/master/README.md",
-    "fileSize": "29.09KB"
+    "fileSize": "29.092KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -28536,7 +28536,7 @@
     "contIntegration": "https://travis-ci.org/ropensci/antiword",
     "releaseNotes": "https://github.com/ropensci/antiword/blob/master/NEWS",
     "readme": "https://github.com/ropensci/antiword/blob/master/README.md",
-    "fileSize": "230.45KB"
+    "fileSize": "230.451KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -28594,7 +28594,7 @@
     ],
     "releaseNotes": "https://github.com/ropensci/tif/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/tif/blob/master/README.md",
-    "fileSize": "6.748KB"
+    "fileSize": "6.751KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -28757,7 +28757,7 @@
     "developmentStatus": "active",
     "releaseNotes": "https://github.com/ropensci/lingtypology/blob/master/NEWS",
     "readme": "https://github.com/ropensci/lingtypology/blob/master/README.md",
-    "fileSize": "2357.496KB"
+    "fileSize": "2357.499KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -29012,7 +29012,7 @@
     "developmentStatus": "active",
     "releaseNotes": "https://github.com/ropensci/osmdata/blob/master/NEWS.md",
     "readme": "https://github.com/ropensci/osmdata/blob/master/README.md",
-    "fileSize": "268.609KB"
+    "fileSize": "268.611KB"
   },
   {
     "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -29093,6 +29093,247 @@
     "contIntegration": "https://travis-ci.org/ropensci/cld2",
     "releaseNotes": "https://github.com/ropensci/cld2/blob/master/NEWS",
     "readme": "https://github.com/ropensci/cld2/blob/master/README.md",
-    "fileSize": "3619.897KB"
+    "fileSize": "3619.894KB"
+  },
+  {
+    "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+    "@type": "SoftwareSourceCode",
+    "identifier": "biomartr",
+    "description": "Perform metagenomic data retrieval and functional annotation\n    retrieval. In detail, this package aims to provide users with a standardized\n    way to automate genome, proteome, coding sequence ('CDS'), 'GFF', and metagenome\n    retrieval from 'NCBI' and 'ENSEMBL' databases. Furthermore, an interface to the 'BioMart' database\n    (Smedley et al. (2009) <doi:10.1186/1471-2164-10-22>) allows users to retrieve\n    functional annotation for genomic loci. Users can download entire databases such\n    as 'NCBI RefSeq' (Pruitt et al. (2007) <doi:10.1093/nar/gkl842>), 'NCBI nr',\n    'NCBI nt' and 'NCBI Genbank' (Benson et al. (2013) <doi:10.1093/nar/gks1195>) as\n    well as 'ENSEMBL' and 'ENSEMBLGENOMES' with only one command.",
+    "name": "biomartr: Genomic Data Retrieval",
+    "codeRepository": "https://github.com/ropensci/biomartr",
+    "issueTracker": "https://github.com/ropensci/biomartr/issues",
+    "license": "https://spdx.org/licenses/GPL-2.0",
+    "version": "0.5.9000",
+    "programmingLanguage": {
+      "@type": "ComputerLanguage",
+      "name": "R",
+      "version": "3.4.0",
+      "url": "https://r-project.org"
+    },
+    "runtimePlatform": "R version 3.4.0 (2017-04-21)",
+    "provider": {
+      "@id": "https://cran.r-project.org",
+      "@type": "Organization",
+      "name": "Central R Archive Network (CRAN)",
+      "url": "https://cran.r-project.org"
+    },
+    "author": [
+      {
+        "@type": "Person",
+        "givenName": "Hajk-Georg",
+        "familyName": "Drost"
+      }
+    ],
+    "maintainer": {
+      "@type": "Person",
+      "givenName": "Hajk-Georg",
+      "familyName": "Drost",
+      "email": "hgd23@cam.ac.uk"
+    },
+    "softwareSuggestions": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "knitr",
+        "version": "1.6",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "rmarkdown",
+        "version": "0.3.3",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "devtools",
+        "version": "1.6.1",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "testthat",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "seqinr",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      }
+    ],
+    "softwareRequirements": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "biomaRt",
+        "provider": {
+          "@id": "https://www.bioconductor.org/",
+          "@type": "Organization",
+          "name": "BioConductor",
+          "url": "https://www.bioconductor.org/packages/"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Biostrings",
+        "provider": {
+          "@id": "https://www.bioconductor.org/",
+          "@type": "Organization",
+          "name": "BioConductor",
+          "url": "https://www.bioconductor.org/packages/"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "curl",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "tibble",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "jsonlite",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "data.table",
+        "version": "    data.1.9.4",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "dplyr",
+        "version": "0.3.0",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "readr",
+        "version": "0.2.2",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "downloader",
+        "version": "0.3",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "RCurl",
+        "version": "1.95-4.5",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "XML",
+        "version": "3.98-1.1",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "httr",
+        "version": "0.6.1",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "stringr",
+        "version": "0.6.2",
+        "provider": {
+          "@id": "https://cran.r-project.org",
+          "@type": "Organization",
+          "name": "Central R Archive Network (CRAN)",
+          "url": "https://cran.r-project.org"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "R",
+        "version": "3.1.1"
+      }
+    ],
+    "contIntegration": "https://travis-ci.org/ropensci/biomartr",
+    "releaseNotes": "https://github.com/ropensci/biomartr/blob/master/NEWS.md",
+    "readme": "https://github.com/ropensci/biomartr/blob/master/README.md",
+    "fileSize": "127.726KB"
   }
 ]
