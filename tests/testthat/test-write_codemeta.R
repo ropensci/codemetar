@@ -8,6 +8,7 @@ testthat::test_that("we can write a codemeta document given a package name", {
 })
 
 
+
 testthat::test_that("we can validate this file", {
   write_codemeta("codemetar")
   testthat::expect_true(codemeta_validate("codemeta.json"))
@@ -16,7 +17,7 @@ testthat::test_that("we can validate this file", {
 })
 
 
-testthat::test_that("we can create and validate codemeta for testthat package", {
+testthat::test_that("we can create & validate codemeta for testthat package", {
   write_codemeta("testthat")
   testthat::expect_true(codemeta_validate("codemeta.json"))
   unlink("codemeta.json")
@@ -25,19 +26,31 @@ testthat::test_that("we can create and validate codemeta for testthat package", 
 
 
 
-testthat::test_that("we can write a codemeta document from a non-root dir", {
+testthat::test_that("we can write a codemeta document from non-root dir", {
   cur <- getwd()
   setwd(tempdir())
+
   write_codemeta("codemetar")
   testthat::expect_true(file.exists("codemeta.json"))
   unlink("codemeta.json")
 
+  on.exit(setwd(cur))
   setwd(cur)
+
+})
+
+
+
+testthat::test_that("We can read an existing codemeta.json file", {
+  write_codemeta(system.file("DESCRIPTION", package = "codemetar"))
+  write_codemeta(".")
+  testthat::expect_true(file.exists("codemeta.json"))
+  unlink("codemeta.json")
+
 })
 
 
 testthat::test_that("We can use either a path or pkg name in writing", {
-
   write_codemeta(system.file("DESCRIPTION", package = "codemetar"))
   testthat::expect_true(file.exists("codemeta.json"))
   unlink("codemeta.json")
@@ -55,11 +68,11 @@ testthat::test_that("we can write codemeta given a codemeta object", {
 
 
 testthat::test_that("We can parse author lists that use Authors@R, Authors, or both", {
-
-  dcf <- system.file("examples/example.dcf", package="codemetar")
-  descr <- as.list(read.dcf(dcf)[1,])
+  dcf <- system.file("examples/example.dcf", package = "codemetar")
+  descr <- as.list(read.dcf(dcf)[1, ])
   codemeta <- new_codemeta()
-  codemeta <- parse_people(eval(parse(text=descr$`Authors@R`)), codemeta)
+  codemeta <-
+    parse_people(eval(parse(text = descr$`Authors@R`)), codemeta)
 
   ## Tests that we can write codemeta given an existing codemeta object, expects a warning
   write_codemeta(codemeta, path = "test.json")
@@ -72,7 +85,8 @@ testthat::test_that("We can parse author lists that use Authors@R, Authors, or b
 
   ## parse without Authors@R:
   codemeta2 <- parse_people(as.person(descr2$Author), codemeta2)
-  codemeta2$maintainer <- person_to_schema(as.person(descr2$Maintainer))
+  codemeta2$maintainer <-
+    person_to_schema(as.person(descr2$Maintainer))
 
   write_codemeta(codemeta2, path = "test2.json")
   testthat::expect_true(file.exists("test2.json"))

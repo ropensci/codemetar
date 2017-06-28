@@ -2,20 +2,23 @@ testthat::context("test-many-packages")
 
 
 testthat::test_that("Test the creation of codemeta for many packages", {
-
   ## Really only want to run this locally
   testthat::skip_on_travis()
   testthat::skip_on_cran()
   testthat::skip_on_appveyor()
   testthat::skip_on_bioc()
 
-  testthat::skip("not also testing against 100 random installed packages today..., consider testing that locally instead")
+  testthat::skip(
+    "not also testing against 100 random installed packages today...,
+    consider testing that locally instead"
+  )
 
-## Test many installed packages
+  ## Test many installed packages
 
 
 
-  df <- as.data.frame(installed.packages(), stringsAsFactors = FALSE)
+  df <-
+    as.data.frame(installed.packages(), stringsAsFactors = FALSE)
   set <- df$Package[1:100]
 
   ## fixme avoid repeating context?

@@ -9,7 +9,9 @@ crosswalk(column, cw_table = NULL, to_json = FALSE)
 \arguments{
 \item{column}{column name from the CrossWalk table (character vector)}
 
-\item{cw_table}{A CrossWalk table. call to readr::read_csv("https://github.com/codemeta/codemeta/raw/master/crosswalk.csv") or use default cached copy.}
+\item{cw_table}{A CrossWalk table. call to
+readr::read_csv("https://github.com/codemeta/codemeta/raw/master/crosswalk.csv")
+ or use default cached copy.}
 
 \item{to_json}{logical, should the result be turned into a json string?
 Default FALSE, which permits easier manipulation such as adding this

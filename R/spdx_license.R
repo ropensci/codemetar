@@ -1,22 +1,26 @@
 
-#' @importFrom utils read.csv
-spdx_license <- function(x){
 
-  ##license <-  gsub("(.*) \\+ file (LICENSE|LICENCE)$", "\\1", tools:::analyze_license(x)$expansions[[1]])
+#' @importFrom utils read.csv
+spdx_license <- function(x) {
+  ##license <-  gsub("(.*) \\+ file (LICENSE|LICENCE)$", "\\1",
+  ## tools:::analyze_license(x)$expansions[[1]])
 
   components <- trimws(unlist(strsplit(x, "|", fixed = TRUE)))
 
   ## Basic attempt to normalize >= or == VERSION statements
-  components <- gsub("\\([=>]= (\\d+\\.*\\d*)\\)", "\\1", components)
+  components <-
+    gsub("\\([=>]= (\\d+\\.*\\d*)\\)", "\\1", components)
 
-  license <- gsub("(.*) \\+ file (LICENSE|LICENCE)$", "\\1", components[[1]])
+  license <-
+    gsub("(.*) \\+ file (LICENSE|LICENCE)$", "\\1", components[[1]])
 
-  cran_to_spdx <- read.csv(system.file("extdata/cran-to-spdx.csv", package="codemetar"))
-  spdx <- cran_to_spdx$SPDX[ cran_to_spdx$CRAN == license ]
+  cran_to_spdx <-
+    read.csv(system.file("extdata/cran-to-spdx.csv", package = "codemetar"))
+  spdx <- cran_to_spdx$SPDX[cran_to_spdx$CRAN == license]
 
   ## Stick with parsed term if we failed to match
-  if(length(spdx) == 0){
-    spdx <- license
+  if (length(spdx) == 0) {
+    return(license)
   }
 
   ## Use URL format, as that is the expected type
@@ -41,5 +45,3 @@ spdx_license <- function(x){
 #  components <- trimws(unlist(strsplit(x, "|", fixed = TRUE)))
 
 #ok <- grepl(components, tools:::R_license_db_vars()$re_component)
-
-

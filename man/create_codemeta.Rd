@@ -7,9 +7,11 @@
 create_codemeta(pkg = ".", root = ".", id = NULL, ...)
 }
 \arguments{
-\item{pkg}{package path to package root, or package name, or description file (character), or a codemeta object (list)}
+\item{pkg}{package path to package root, or package name, or
+description file (character), or a codemeta object (list)}
 
-\item{root}{if pkg is a codemeta object, optionally give the path to package root. Default guess is current dir.}
+\item{root}{if pkg is a codemeta object, optionally give the path
+to package root. Default guess is current dir.}
 
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
 

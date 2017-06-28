@@ -9,7 +9,8 @@ codemeta_validate(codemeta = "codemeta.json", context = NULL)
 \arguments{
 \item{codemeta}{path/filename to a codmeta.json file}
 
-\item{context}{URL (or path or json string) for the codemeta context. Leave as default or use appropriate DOI for the version; see details.}
+\item{context}{URL (or path or json string) for the codemeta context.
+Leave as default or use appropriate DOI for the version; see details.}
 }
 \description{
 Perform basic check of JSON-LD expanding and compacting, verifying that the result

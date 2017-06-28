@@ -7,11 +7,10 @@ get_root_path <- function(pkg){
   } else if(file.exists(file.path(pkg, "DESCRIPTION"))){
     root <- pkg
   } else {
-    #warning("no package root not found") ## don't warn if input is codemeta list or a DESCRIPTION, since we know these haven't got a root
     if(is.character(pkg)){
       root <- pkg # use pkg as guess anyway
-    } else {
-      root <- "." # stick with default
+#    } else {
+#      root <- "." # stick with default
     }
   }
   root
