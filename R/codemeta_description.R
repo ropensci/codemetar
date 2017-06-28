@@ -38,20 +38,16 @@ codemeta_description <-
     codemeta$description <- descr$Description
     codemeta$name <- paste0(descr$Package, ": ", descr$Title)
 
-    ## Will later guess these these a la devtools::use_github_links method, if not provided
+    ## Will later guess these these a la devtools::use_github_links
     codemeta$codeRepository <- descr$URL
     codemeta$issueTracker <- descr$BugReports
 
-    ## According to crosswalk, codemeta$dateModified and codemeta$dateCreated are not crosswalked in DESCRIPTION
+    ## According to crosswalk, codemeta$dateModified and
+    ## codemeta$dateCreated are not crosswalked in DESCRIPTION
     codemeta$datePublished <-
       descr$Date # probably not avaialable as descr$Date.
 
-    ## FIXME consider parsing into a valid SPDX string?
     codemeta$license <- spdx_license(descr$License)
-
-    ## license is a URL in schema.org, assume SPDX ID (though not all recognized CRAN abbreviations are valid SPDX strings).
-    ## FIXME need a function to map known R license strings into SPDX codes
-    ## codemeta$license <- paste0("https://spdx.org/licenses/", gsub("^(\\w+).*", "\\1", as.character(descr$License)))
 
     codemeta$version <- descr$Version
     codemeta$programmingLanguage <-
@@ -62,7 +58,8 @@ codemeta_description <-
         # According to Crosswalk, we just want numvers and not R.version.string
         url = "https://r-project.org"
       )
-    ## According to schema.org, programmingLanguage doesn't have a version; but runtimePlatform, a plain string, does.  Of course this is less computable/structured:
+    ## According to schema.org, programmingLanguage doesn't have a version;
+    ## but runtimePlatform, a plain string, does.
     codemeta$runtimePlatform <- R.version.string
 
     if (is.null(codemeta$provider))
@@ -75,7 +72,8 @@ codemeta_description <-
         parse_people(eval(parse(text = descr$`Authors@R`)), codemeta)
     } else {
       codemeta <- parse_people(as.person(descr$Author), codemeta)
-      ## maintainer must come second in case Author list also specifies maintainer by role [cre] without email
+      ## maintainer must come second in case Author list also specifies
+      ## maintainer by role [cre] without email
       codemeta$maintainer <-
         person_to_schema(as.person(descr$Maintainer))
 

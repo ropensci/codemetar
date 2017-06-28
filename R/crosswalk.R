@@ -28,7 +28,7 @@ crosswalk <- function(column,
       out <- paste(prefix, r[["Property"]], sep = ":")
     ## Best to declare type on any property we want to explicitly
     ## type in the output version (e.g. codemeta objects)
-    ## Otherwise the compaction aglorithm will not de-reference the `codemeta:` prefix
+    ## Otherwise will not de-reference the `codemeta:` prefix
     else if (prefix == "codemeta") {
       type <- gsub("(\\w+).*", "\\1", r[["Type"]])
       out <- list(

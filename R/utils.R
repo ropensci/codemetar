@@ -41,7 +41,8 @@ get_file <- function(FILE, pkg = "."){
 
 
 is_IRI <- function(string){
-  ## FIXME IRI can be many other things too, see https://github.com/dgerber/rfc3987 for more formal implementation
+  ## FIXME IRI can be many other things too,
+  #see https://github.com/dgerber/rfc3987 for more formal implementation
   grepl("^http[s]?://", string)
 }
 

@@ -18,7 +18,8 @@ parse_depends <- function(deps) {
 
     dep <- list("@type" = "SoftwareApplication",
                 identifier = pkg,
-                name = pkg)      ## FIXME technically the name includes the title, this is just the description
+                ## FIXME technically the name includes the title
+                name = pkg)
 
     ## Add Version if available
     pattern <- "\\s*\\w+\\s+\\([><=]+\\s([1-9.\\-]*)\\)*"
