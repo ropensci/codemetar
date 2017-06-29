@@ -1,12 +1,13 @@
 
 
-
+options(codemeta_context =
+  "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld")
 
 
 ## Supporting old versions will be a nuciance
 new_codemeta <- function() {
   ## FIXME context should be DOI
-  list(`@context` = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  list(`@context` = getOption("codemeta_context"),
        `@type` = "SoftwareSourceCode")
 
 }
@@ -64,9 +65,6 @@ codemeta_description <-
 
     if (is.null(codemeta$provider))
       codemeta$provider <- guess_provider(descr$Package)
-
-
-    ## FIXME Need to deal with: descr$Author, descr$Maintainer, and descr$Authors@R
     if ("Authors@R" %in% names(descr)) {
       codemeta <-
         parse_people(eval(parse(text = descr$`Authors@R`)), codemeta)

@@ -9,9 +9,9 @@ parse_depends <- function(deps) {
     str <- NULL
 
   lapply(str, function(str) {
-    if (length(str) > 1) {
-      warning(paste0("package depends", str, "may be multiple packages?"))
-    }
+    #if (length(str) > 1) {
+    #  warning(paste0("package depends", str, "may be multiple packages?"))
+    #}
 
     pkg <- gsub("\\s*(\\w+)\\s.*", "\\1", str)
     pkg <- gsub("\\s+", "", pkg)
