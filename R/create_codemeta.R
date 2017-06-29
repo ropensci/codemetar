@@ -66,7 +66,9 @@ create_codemeta <- function(pkg = ".",
     cm$citation <- guess_citation(pkg)
     ## citations need schema.org context!
     ## see https://github.com/codemeta/codemeta/issues/155
-    cm$`@context` <- c(cm$`@context`, "http://schema.org")
+    if(!grepl("http://schema.org", cm$`@context`)){
+      cm$`@context` <- c(cm$`@context`, "http://schema.org")
+    }
   }
   ## Add blank slots as placeholders? and declare as an S3 class?
 
