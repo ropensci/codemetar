@@ -15,7 +15,7 @@ new_codemeta <- function() {
 codemeta_description <-
   function(f, id = NULL, codemeta = new_codemeta()) {
     if (file.exists(f)) {
-      descr <- read_dcf(f)
+      descr <- cm_read_dcf(f)
     } else {
       return(codemeta)
     }

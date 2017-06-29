@@ -18,7 +18,7 @@ get_root_path <- function(pkg){
 
 
 ## based on devtools::read_dcf
-read_dcf <- function(dcf) {
+cm_read_dcf <- function(dcf) {
 
   fields <- colnames(read.dcf(dcf))
   as.list(read.dcf(dcf, keep.white = fields)[1, ])

@@ -48,10 +48,6 @@ create_codemeta <- function(pkg = ".",
   ## Guess these only if not set in current codemeta:
   if (is.null(cm$codeRepository) | force_update)
     cm$codeRepository <- guess_github(root)
-  if (is.null(cm$issuesTracker)  |
-      force_update &&
-      isTRUE(grepl("github", cm$URL)))
-    cm$issuesTracker <- paste(cm$URL, "issues", sep = "/")
   if (is.null(cm$contIntegration) | force_update)
     cm$contIntegration <- guess_ci(file.path(root, "README.md"))
   if (is.null(cm$developmentStatus) | force_update)
