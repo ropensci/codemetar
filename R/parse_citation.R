@@ -73,8 +73,8 @@ drop_null <- function(x){
 #' @importFrom utils readCitationFile citation
 guess_citation <- function(pkg){
   installed <- installed.packages()
-  if(file.exists(file.path("pkg", "inst/CITATION"))){
-    bib <- readCitationFile(file.path("pkg", "inst/CITATION"))
+  if(file.exists(file.path(pkg, "inst/CITATION"))){
+    bib <- readCitationFile(file.path(pkg, "inst/CITATION"))
     lapply(bib, parse_citation)
   } else if(pkg %in% installed[,1]){
     bib <- suppressWarnings(citation(pkg)) # don't worry if no date
