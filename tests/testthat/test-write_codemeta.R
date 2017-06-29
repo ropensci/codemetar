@@ -9,21 +9,6 @@ testthat::test_that("we can write a codemeta document given a package name", {
 
 
 
-testthat::test_that("we can validate this file", {
-  write_codemeta("codemetar")
-  testthat::expect_true(codemeta_validate("codemeta.json"))
-  unlink("codemeta.json")
-
-})
-
-
-testthat::test_that("we can create & validate codemeta for testthat package", {
-  write_codemeta("testthat")
-  testthat::expect_true(codemeta_validate("codemeta.json"))
-  unlink("codemeta.json")
-
-})
-
 
 
 testthat::test_that("we can write a codemeta document from non-root dir", {

@@ -13,9 +13,7 @@ testthat::test_that("we can generate codemeta
       x <- uses_git(f)
       testthat::expect_true(x)
       x <- guess_github(f)
-
-
-      x <- github_path(".", "README.md")
+      x <- github_path(f, "README.md")
 
     })
 

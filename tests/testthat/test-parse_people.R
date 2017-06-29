@@ -1,6 +1,6 @@
 testthat::context("parse_people.R")
 
-testthat::testthat("parse_people person_to_schema method",{
+testthat::test_that("parse_people person_to_schema method",{
 
   p <- person_to_schema("Carl Boettiger")
   expect_gt(length(p), 1)
@@ -10,7 +10,7 @@ testthat::testthat("parse_people person_to_schema method",{
 
 
 
-testthat::testthat("parse_people",{
+testthat::test_that("parse_people",{
   cm <- new_codemeta()
   p <- parse_people("Carl Boettiger", cm)
   expect_gt(length(p$author), 0)

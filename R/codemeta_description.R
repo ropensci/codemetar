@@ -1,13 +1,13 @@
 
-
-options(codemeta_context =
-  "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld")
+## this appears not to be portable to devtools::check?
+#options(codemeta_context =
+#  "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld")
 
 
 ## Supporting old versions will be a nuciance
 new_codemeta <- function() {
   ## FIXME context should be DOI
-  list(`@context` = getOption("codemeta_context"),
+  list(`@context` = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
        `@type` = "SoftwareSourceCode")
 
 }
