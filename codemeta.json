@@ -1,7 +1,6 @@
 {
   "@context": [
     "https://doi.org/doi:10.5063/schema/codemeta-2.0",
-    "http://schema.org",
     "http://schema.org"
   ],
   "@type": "SoftwareSourceCode",
@@ -214,13 +213,12 @@
       "version": "3.0.0"
     }
   ],
-  "keywords": "metadata, codemeta, ropensci, citation, credit",
-  "issuesTracker": "/issues",
+  "affiliation": "https://ropensci.org",
+  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit"],
+  "relatedLink": "https://codemeta.github.io/codemetar",
   "contIntegration": "https://travis-ci.org/codemeta/codemetar",
   "developmentStatus": "wip",
   "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/NEWS.md",
   "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
-  "fileSize": "105.076KB",
-  "affiliation": "https://ropensci.org",
-  "relatedLink": "https://codemeta.github.io/codemetar"
+  "fileSize": "105.025KB"
 }

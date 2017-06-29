@@ -81,18 +81,12 @@ codemeta_description <-
         parse_depends(descr$Depends))
 
 
-    ## Additional codemeta fields in DESCRIPTION
-    if (!is.null(descr$Keywords)){
-      codemeta$keywords <-
-      # comma-separated, strip whitespace
-      gsub("\\s+", "", strsplit(descr$Keywords, ",")[[1]])
-    }
-
 
     ## add any additional codemeta terms found in the DESCRIPTION metadata
     for(term in additional_codemeta_terms){
       if(!is.null(descr[[term]])){
-        codemeta[[term]] <- descr[[term]]
+        codemeta[[term]] <- gsub("\\s+", "",
+                                 strsplit(descr[[term]], ",")[[1]])
       }
     }
 
