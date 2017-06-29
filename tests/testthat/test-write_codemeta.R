@@ -11,18 +11,17 @@ testthat::test_that("we can write a codemeta document given a package name", {
 
 
 
-testthat::test_that("we can write a codemeta document from non-root dir", {
-  cur <- getwd()
-  setwd(tempdir())
+## Not needed, covered by the git clone test, which also avoids the use of setwd
+#testthat::test_that("we can write a codemeta document from non-root dir", {
+#  cur <- getwd()
+#  setwd(tempdir())
+#
+#  write_codemeta("codemetar")
+#  testthat::expect_true(file.exists("codemeta.json"))
+#  unlink("codemeta.json")
+#  setwd(cur)
 
-  write_codemeta("codemetar")
-  testthat::expect_true(file.exists("codemeta.json"))
-  unlink("codemeta.json")
-
-  on.exit(setwd(cur))
-  setwd(cur)
-
-})
+#})
 
 
 

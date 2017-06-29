@@ -6,10 +6,8 @@
 
 ## Supporting old versions will be a nuciance
 new_codemeta <- function() {
-  ## FIXME context should be DOI
-  list(`@context` = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
-       `@type` = "SoftwareSourceCode")
-
+  list(`@context` = "https://doi.org/doi:10.5063/schema/codemeta-2.0",
+  `@type` = "SoftwareSourceCode")
 }
 
 

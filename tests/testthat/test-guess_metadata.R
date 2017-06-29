@@ -68,7 +68,7 @@ test_that("guess_readme", {
 
   ## expect_null?
   f <- system.file(".", package="codemetar")
-  guess_readme(f)
+  a <- guess_readme(f)
 })
 
 test_that("guess_releaseNotes", {
@@ -81,7 +81,7 @@ test_that("guess_releaseNotes", {
 
 
 test_that("fileSize", {
-
+  guess_fileSize(NULL)
   guess_fileSize(".")
   ## expect_null?
   f <- system.file(".", package="codemetar")
