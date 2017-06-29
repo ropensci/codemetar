@@ -14,6 +14,8 @@
 create_codemeta <- function(pkg = ".",
                             root = ".",
                             id = NULL,
+                            force_update =
+                              getOption("codemeta_force_update", TRUE),
                             ...) {
   ## looks like we got a package name/path or Description file
   if (is.character(pkg)) {
@@ -43,23 +45,33 @@ create_codemeta <- function(pkg = ".",
   cm <-
     codemeta_description(file.path(root, "DESCRIPTION"), id = id, cm)
 
-  ## Guess these if not set in description:
-  if (is.null(cm$codeRepository))
+  ## Guess these only if not set in current codemeta:
+  if (is.null(cm$codeRepository) | force_update)
     cm$codeRepository <- guess_github(root)
-  if (is.null(cm$issuesTracker) && isTRUE(grepl("github", cm$URL)))
+  if (is.null(cm$issuesTracker)  |
+      force_update &&
+      isTRUE(grepl("github", cm$URL)))
     cm$issuesTracker <- paste(cm$URL, "issues", sep = "/")
-  if (is.null(cm$contIntegration))
+  if (is.null(cm$contIntegration) | force_update)
     cm$contIntegration <- guess_ci(file.path(root, "README.md"))
-  if (is.null(cm$developmentStatus))
+  if (is.null(cm$developmentStatus) | force_update)
     cm$developmentStatus <-
     guess_devStatus(file.path(root, "README.md"))
-  if (is.null(cm$releaseNotes))
+  if (is.null(cm$releaseNotes) | force_update)
     cm$releaseNotes <- guess_releaseNotes(root)
-  if (is.null(cm$readme))
+  if (is.null(cm$readme) | force_update)
     cm$readme <- guess_readme(root)
-  if (is.null(cm$fileSize))
+  if (is.null(cm$fileSize) | force_update)
     cm$fileSize <- guess_fileSize(root)
 
+
+  ## Citation metadata
+  if(is.character(pkg)){  ## Doesn't apply if pkg is a list (codemeta object)
+    cm$citation <- guess_citation(pkg)
+    ## citations need schema.org context!
+    ## see https://github.com/codemeta/codemeta/issues/155
+    cm$`@context` <- c(cm$`@context`, "http://schema.org")
+  }
   ## Add blank slots as placeholders? and declare as an S3 class?
 
   cm

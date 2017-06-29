@@ -3,7 +3,8 @@
 testthat::test_that("we can generate codemeta
                     from the root directory of R source code on github",
   {
-    git2r::clone("https://github.com/codemeta/codemetar", "codemetar_copy")
+    git2r::clone("https://github.com/codemeta/codemetar",
+                 "codemetar_copy", progress = FALSE)
     write_codemeta("codemetar_copy/", "test.json")
     expect_true(codemeta_validate("test.json"))
 
@@ -30,3 +31,8 @@ testthat::test_that("we can generate codemeta
     #file.remove(list.files("codemetar_copy", recursive = TRUE))
     #unlink("codemetar_copy")
   })
+
+
+testthat::test_that("parse citation from source repo", {
+  a <- guess_citation(".")
+})

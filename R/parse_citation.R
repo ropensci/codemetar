@@ -66,4 +66,24 @@ drop_null <- function(x){
   x[lapply(x,length)!=0]
 }
 
-## see also; readCitationFile
+## guessCitation referencePublication or citation?
+
+## Handle installed package by name, source pkg by path (inst/CITATION)
+
+#' @importFrom utils readCitationFile citation
+guess_citation <- function(pkg){
+  installed <- installed.packages()
+  if(file.exists(file.path("pkg", "inst/CITATION"))){
+    bib <- readCitationFile(file.path("pkg", "inst/CITATION"))
+    lapply(bib, parse_citation)
+  } else if(pkg %in% installed[,1]){
+    bib <- suppressWarnings(citation(pkg)) # don't worry if no date
+    lapply(bib, parse_citation)
+  } else {
+    NULL
+  }
+
+  ## drop self-citation file?
+
+}
+

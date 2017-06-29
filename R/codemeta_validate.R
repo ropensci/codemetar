@@ -7,24 +7,31 @@
 #' Leave as default or use appropriate DOI for the version; see details.
 #' @details by default, validation will use the original context from the import file.
 #' @importFrom jsonld jsonld_compact jsonld_expand
+#' @importFrom jsonlite toJSON read_json
 #' @export
 #' @examples
 #' ex <- system.file("examples/codemeta.json", package="codemetar")
 #' codemeta_validate(ex)
 #'
-
 codemeta_validate <-
   function(codemeta = "codemeta.json", context = NULL) {
     A <- read_json(codemeta)
-    context <- A$`@context`
-
+    if(is.null(context)){
+      context <- A$`@context`
+      if(length(context) > 1){
+        context <- jsonlite::toJSON(list("@context" = context),
+                                    auto_unbox = TRUE)
+      }
+    }
     ## Expand and Compact
     test <- tempfile(fileext = ".json")
-    writeLines(jsonld_compact(jsonld_expand(codemeta), context), test)
+    writeLines(jsonld::jsonld_compact(
+      jsonld::jsonld_expand(codemeta), context),
+      test)
 
     ## Same properties in each
 
-    B <- read_json(test)
+    B <- jsonlite::read_json(test)
 
     unlink(test)
 

@@ -4,7 +4,8 @@
 \alias{create_codemeta}
 \title{create_codemeta}
 \usage{
-create_codemeta(pkg = ".", root = ".", id = NULL, ...)
+create_codemeta(pkg = ".", root = ".", id = NULL,
+  force_update = getOption("codemeta_force_update", TRUE), ...)
 }
 \arguments{
 \item{pkg}{package path to package root, or package name, or
@@ -14,6 +15,8 @@ description file (character), or a codemeta object (list)}
 to package root. Default guess is current dir.}
 
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
+
+\item{force_update}{Update guessed fields even if they are defined in an existing codemeta.json file}
 
 \item{...}{additional arguments to \code{\link{write_json}}}
 }

@@ -5,6 +5,7 @@
 #' @param root if pkg is a codemeta object, optionally give the path
 #'  to package root. Default guess is current dir.
 #' @param id identifier for the package, e.g. a DOI (or other resolvable URL)
+#' @param force_update Update guessed fields even if they are defined in an existing codemeta.json file
 #' @param ...  additional arguments to \code{\link{write_json}}
 #' @details If pkg is a codemeta object, the function will attempt to
 #'  update any fields it can guess (i.e. from the DESRIPTION file),
@@ -21,6 +22,8 @@ write_codemeta <- function(pkg = ".",
                            path = "codemeta.json",
                            root = ".",
                            id = NULL,
+                           force_update =
+                             getOption("codemeta_force_update", TRUE),
                            ...) {
 
   if(file.exists(file.path(pkg, "DESCRIPTION"))){
