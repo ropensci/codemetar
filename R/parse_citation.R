@@ -9,7 +9,8 @@ parse_citation <- function(bib){
   bibtype <- bib$bibtype
   bibtype <- stringi::stri_trans_general(bibtype, id = "Title")
   ## All recognized bibentry types:
-  ## N.B. none of these types are in the 2.0 context, so would need to include schema.org context
+  ## N.B. none of these types are in the 2.0 context,
+  ## so would need to include schema.org context
   type <- switch(bibtype,
     "Article" = "ScholarlyArticle", "Book" = "Book", "Booklet" = "Book",
     "Inbook" = "Chapter", "Incollection" = "CreativeWork",
@@ -18,7 +19,7 @@ parse_citation <- function(bib){
     "Proceedings" = "ScholarlyArticle", "Techreport" = "ScholarlyArticle",
     "Unpublished" = "CreativeWork")
 
-  ## determine "@id" / "sameas" from doi, converting doi to string
+
   out <-
     drop_null(list(
       "@type" = type,
@@ -29,6 +30,19 @@ parse_citation <- function(bib){
       "url" = bib$url,
       "description" = bib$note,
       "paginiation" = bib$pages))
+
+
+  ## determine "@id" / "sameAs" from doi, converting doi to string
+  doi <- bib$doi
+  if(!is.null(doi)){
+    if(grepl("^10.", doi)){
+      id <- paste0("https://doi.org/", doi)
+    } else if(grepl("^https://doi.org", doi)){
+      id <- doi
+    }
+    out$`@id` <- id
+    out$sameAs <- id
+  }
 
 
   if(!is.null(bib$journal)){
