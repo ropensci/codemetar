@@ -82,11 +82,65 @@ codemeta_description <-
 
 
     ## Additional codemeta fields in DESCRIPTION
-    if (!is.null(descr$Keywords))
+    if (!is.null(descr$Keywords)){
       codemeta$keywords <-
       # comma-separated, strip whitespace
       gsub("\\s+", "", strsplit(descr$Keywords, ",")[[1]])
+    }
+
+
+    ## add any additional codemeta terms found in the DESCRIPTION metadata
+    for(term in additional_codemeta_terms){
+      if(!is.null(descr[[term]])){
+        codemeta[[term]] <- descr[[term]]
+      }
+    }
 
     codemeta
 
   }
+
+
+
+additional_codemeta_terms <-
+  c("affiliation",
+    "applicationCategory",
+    "applicationSubCategory",
+    "copyrightYear",
+    "dateCreated",
+    "dateModified",
+    "downloadUrl",
+    "editor",
+    "fileSize",
+    "funder",
+    "identifier",
+    "installUrl",
+    "isAccessibleForFree",
+    "keywords",
+    "memoryRequirements",
+    "operatingSystem",
+    "permissions",
+    "processorRequirements",
+    "producer",
+    "provider",
+    "publisher",
+    "funding",
+    "relatedLink",
+    "releaseNotes",
+    "sameAs",
+    "softwareHelp",
+    "sponsor",
+    "storageRequirements",
+    "supportingData",
+    "targetProduct",
+    "contIntegration",
+    "buildInstructions",
+    "developmentStatus",
+    "embargoDate",
+    "readme",
+    "issueTracker",
+    "referencePublication"
+  )
+
+
+

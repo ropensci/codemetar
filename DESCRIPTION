@@ -29,5 +29,6 @@ Suggests: testthat,
     readr,
     xml2
 VignetteBuilder: knitr
-Keywords: metadata, codemeta, ropensci, citation, credit
-Affiliation: https://ropensci.org
+keywords: metadata, codemeta, ropensci, citation, credit
+affiliation: https://ropensci.org
+relatedLink: https://codemeta.github.io/codemetar

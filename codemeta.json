@@ -1,5 +1,9 @@
 {
-  "@context": ["https://doi.org/doi:10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/doi:10.5063/schema/codemeta-2.0",
+    "http://schema.org",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "codemetar",
   "description": "Codemeta defines a 'JSON-LD' format for describing software metadata.\n    This package provides utilities to generate, parse, and modify codemeta.jsonld\n    files automatically for R packages.",
@@ -210,11 +214,13 @@
       "version": "3.0.0"
     }
   ],
-  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit"],
+  "keywords": "metadata, codemeta, ropensci, citation, credit",
   "issuesTracker": "/issues",
   "contIntegration": "https://travis-ci.org/codemeta/codemetar",
   "developmentStatus": "wip",
   "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/NEWS.md",
   "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
-  "fileSize": "104.753KB"
+  "fileSize": "105.076KB",
+  "affiliation": "https://ropensci.org",
+  "relatedLink": "https://codemeta.github.io/codemetar"
 }

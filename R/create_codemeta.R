@@ -66,7 +66,7 @@ create_codemeta <- function(pkg = ".",
     cm$citation <- guess_citation(pkg)
     ## citations need schema.org context!
     ## see https://github.com/codemeta/codemeta/issues/155
-    if(!grepl("http://schema.org", cm$`@context`)){
+    if(!any(grepl("http://schema.org", cm$`@context`))){
       cm$`@context` <- c(cm$`@context`, "http://schema.org")
     }
   }
