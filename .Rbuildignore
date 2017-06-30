@@ -9,5 +9,6 @@
 ^docs$
 ^codemeta\.json$
 ^inst/notebook/pkg_src$
-
+^paper\.md$
 ^data-raw$
+^ropensci-onboarding\.md$
