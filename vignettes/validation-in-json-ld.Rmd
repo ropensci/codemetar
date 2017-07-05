@@ -11,11 +11,11 @@ vignette: >
 
 ## Introduction
 
-Schema validation is a useful and important concept to the distribution of metadata in formats such as XML and JSON, in which the standard-provider creates a schema (specified in an XML-schema, XSD, for XML documents, or [json-schema]() for JSON documents).  Schemas allow us to go beyond the basic notation of making sure a file is simply valid XML or valid JSON, a requriement just to be read in by any parser.  By detailing how the metadata must be structured, what elements must, can, and may not be included, and what data types may be used for those elements, schema help developers consuming the data to anticipate these details and thus build applications which know how to process them.  For the data creator, validation is a convenient way to catch data input errors and ensure a consistent data structure.  
+Schema validation is a useful and important concept to the distribution of metadata in formats such as XML and JSON, in which the standard-provider creates a schema (specified in an XML-schema, XSD, for XML documents, or [json-schema](http://json-schema.org/) for JSON documents).  Schemas allow us to go beyond the basic notation of making sure a file is simply valid XML or valid JSON, a requriement just to be read in by any parser.  By detailing how the metadata must be structured, what elements must, can, and may not be included, and what data types may be used for those elements, schema help developers consuming the data to anticipate these details and thus build applications which know how to process them.  For the data creator, validation is a convenient way to catch data input errors and ensure a consistent data structure.  
 
 Because schema validation must ensure predictable behavior without knowledge of what any specific application is going to do with the data, it tends to be very strict.  A simple application may not care if certain fields are missing or if integers are mistaken for characters, while to another application these differences could lead it to throw fatal errors.  
 
-The approach of JSON-LD is less perscriptive.  JSON-LD uses the notion of "framing" to let each application specify how it expects it data to be structured.JSON frames allow each developer consuming the data to handle many of the same issues that schema validation have previously assured.   
+The approach of JSON-LD is less perscriptive.  JSON-LD uses the notion of "framing" to let each application specify how it expects it data to be structured.  JSON frames allow each developer consuming the data to handle many of the same issues that schema validation have previously assured.   Readers should consult the [official json-ld framing](https://json-ld.org/spec/latest/json-ld-framing/) documentation for details on this approach.  
 
 
 
@@ -25,6 +25,11 @@ library(jsonld)
 library(jsonlite)
 library(magrittr)
 library(codemetar)
+```
+
+
+```{r include=FALSE}
+knitr::opts_chunk$set(comment="")
 ```
 
 

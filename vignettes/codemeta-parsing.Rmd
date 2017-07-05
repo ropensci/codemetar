@@ -1,25 +1,44 @@
 ---
-title: "Parsing codemeta data"
+title: "Parsing CodeMeta Data"
 output: github_document
 ---
 
+---
+title: "Parsing Codmeta Data"
+author: "Carl Boettiger"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Parsing CodeMeta Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r include=FALSE}
+knitr::opts_chunk$set(comment="")
+```
+
+
+Here we illustrate some example use cases that involve parsing codemeta data.  
 
 ```{r message=FALSE}
 library(jsonld)
 library(jsonlite)
 library(magrittr)
 library(codemetar)
-library(tidyverse)
+library(purrr)
+library(dplyr)
 library(printr)
 ```
+
+We start with a simple example from the `codemeta.json` file of `codemetar` itself.  First, we'll just generate a copy of the codemeta record for the package:
 
 ```{r}
 write_codemeta("codemetar", "codemeta.json")
 ```
 
-
-
-Digest input with a frame:
+We then digest thus input using a JSON-LD "frame." While not strictly necessary, this helps ensure the data matches the format we expect, even if the original file had errors or missing data.  See the vignette "Validating in JSON-LD" in this package and the official [JSON-LD docs](https://json-ld.org/spec/latest/json-ld-framing/) for details).  The `codemetar` package includes a reasonably explicit frame to get us started:
 
 ```{r}
 frame <- system.file("schema/frame_schema.json", package="codemetar")
@@ -61,23 +80,28 @@ bibitem
 
 ## Parsing the ropensci corpus
 
-Frame, expanding any referenced nodes
+The ropensci corpus consists of a list of codemeta files for all packages provided by the rOpenSci project, <ropensci.org>.  This provides a good test-case for how a large collection of codemeta files can be manipulated to help us get a better picture of the corpus.  
 
 ```{r}
+download.file("https://github.com/codemeta/codemetar/raw/master/inst/notebook/ropensci.json",
+              "ropensci.json")
+```
+
+
+As before, it is helpful, though not essential, to start off by framing the input data.
+
+```{r}
+frame <- system.file("schema/frame_schema.json", package="codemetar")
+
 corpus <- 
     jsonld_frame("ropensci.json", frame) %>%
     fromJSON(simplifyVector = FALSE) %>%
     getElement("@graph") 
-
-
-    
 ```
 
-
-Some basics:
+We're now ready to start exploring.  As usual, functions from `purrr` prove very useful for iterating through large JSON files.  First, we look at some basic summary data:
 
 ```{r}
-
 ## deal with nulls explicitly by starting with map
 pkgs <- map(corpus, "name") %>% compact() %>% as.character()
 
@@ -152,7 +176,7 @@ group_by(dep) %>%
 
 ```
 
-Alternate approach using a frame, gets all Depends and suggests (really all `SoftwareApplication` types mentioned)
+Alternate approach using a frame instead of `purrr` functions for subsetting the data.  Note that this gets all Depends and suggests (really all `SoftwareApplication` types mentioned)
 
 ```{r}
 dep_frame <- '{
@@ -170,3 +194,7 @@ jsonld_frame("ropensci.json", dep_frame) %>%
 #  summarise(count(name))
 ```
 
+```{r include = FALSE}
+unlink("ropensci.json")
+unlink("codemeta.json")
+```

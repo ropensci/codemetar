@@ -185,6 +185,39 @@ write_codemeta(".")
             "name": "Central R Archive Network (CRAN)",
             "url": "https://cran.r-project.org"
           }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "identifier": "dplyr",
+          "name": "dplyr",
+          "provider": {
+            "@id": "https://cran.r-project.org",
+            "@type": "Organization",
+            "name": "Central R Archive Network (CRAN)",
+            "url": "https://cran.r-project.org"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "identifier": "purrr",
+          "name": "purrr",
+          "provider": {
+            "@id": "https://cran.r-project.org",
+            "@type": "Organization",
+            "name": "Central R Archive Network (CRAN)",
+            "url": "https://cran.r-project.org"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "identifier": "printr",
+          "name": "printr",
+          "provider": {
+            "@id": "https://cran.r-project.org",
+            "@type": "Organization",
+            "name": "Central R Archive Network (CRAN)",
+            "url": "https://cran.r-project.org"
+          }
         }
       ],
       "softwareRequirements": [
@@ -261,10 +294,10 @@ write_codemeta(".")
       "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit"],
       "relatedLink": "https://codemeta.github.io/codemetar",
       "contIntegration": "https://travis-ci.org/codemeta/codemetar",
-      "developmentStatus": "wip",
+      "developmentStatus": "active",
       "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/NEWS.md",
       "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
-      "fileSize": "366.241KB"
+      "fileSize": "397.768KB"
     }
 
 Modifying or enriching CodeMeta metadata

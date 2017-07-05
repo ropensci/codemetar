@@ -27,7 +27,10 @@ Suggests: testthat,
     httr,
     magrittr,
     readr,
-    xml2
+    xml2,
+    dplyr,
+    purrr,
+    printr
 VignetteBuilder: knitr
 keywords: metadata, codemeta, ropensci, citation, credit
 affiliation: https://ropensci.org
