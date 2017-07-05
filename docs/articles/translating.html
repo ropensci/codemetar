@@ -29,10 +29,31 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/codemeta-intro.html">Codemeta intro</a>
+    </li>
+    <li>
+      <a href="../articles/translating.html">Translating between schema using JSON-LD</a>
+    </li>
+    <li>
+      <a href="../articles/validation-in-json-ld.html">Validation in JSON-LD</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -60,7 +81,7 @@
       <h1>Translating between schema using JSON-LD</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2017-05-26</h4>
+            <h4 class="date">2017-07-05</h4>
           </div>
 
     
@@ -92,8 +113,8 @@
 <span class="st">}</span>
 <span class="st">}'</span></code></pre></div>
 <p>With this in place, we simply expand the original JSON and then compact using the new context:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">jsonld_expand</span>(ex) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">jsonld_compact</span>(<span class="dt">context =</span> bighash_context)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_expand</a></span>(ex) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_compact</a></span>(<span class="dt">context =</span> bighash_context)</code></pre></div>
 <pre><code>{
   "@context": {
     "user": "http://schema.org/name",
@@ -108,7 +129,7 @@
 <p>The CodeMeta Crosswalk table seeks to accomplish a very similar goal. The crosswalk table provides a human-readable mapping of different software metadata providers into the codemeta context (an extension of schema.org).</p>
 <p>We’ll start with the actual crosswalk table itself:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">crosswalk &lt;-<span class="st"> "https://github.com/codemeta/codemeta/raw/master/crosswalk.csv"</span>
-cw &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(crosswalk)</code></pre></div>
+cw &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/readr/topics/read_delim">read_csv</a></span>(crosswalk)</code></pre></div>
 </div>
 <div id="datacite" class="section level2">
 <h2 class="hasAnchor">
@@ -140,19 +161,19 @@ cw &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw"
 }</code></pre>
 <p>Note this example uses a JSON-ified representation of DataCite’s internal schema, which is XML-based. So far, this is just plain JSON, with no context. We will use the crosswalk table to define the DataCite context with reference to codemeta:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## read the file
-datacite_list &lt;-<span class="st"> </span><span class="kw">read_json</span>(datacite_ex)
+datacite_list &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/read_json">read_json</a></span>(datacite_ex)
 
 ## add context using the codemeta crosswalk function on the current crosswalk table
-datacite_list<span class="op">$</span><span class="st">`</span><span class="dt">@context</span><span class="st">`</span> &lt;-<span class="st"> </span>codemetar<span class="op">::</span><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(<span class="st">"DataCite"</span>, cw)
+datacite_list<span class="op">$</span><span class="st">`</span><span class="dt">@context</span><span class="st">`</span> &lt;-<span class="st"> </span>codemetar<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/codemetar/topics/crosswalk">crosswalk</a></span>(<span class="st">"DataCite"</span>, cw)
 
 ## serialize as JSON
 datacite_json &lt;-
 datacite_list <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">toJSON</span>(<span class="dt">auto_unbox=</span><span class="ot">TRUE</span>, <span class="dt">pretty=</span><span class="ot">TRUE</span>)</code></pre></div>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">toJSON</a></span>(<span class="dt">auto_unbox=</span><span class="ot">TRUE</span>, <span class="dt">pretty=</span><span class="ot">TRUE</span>)</code></pre></div>
 <p>We can now expand this json in terms of DataCite context we just derived from the table, and then compact it into the CodeMeta native context:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datacite_cm &lt;-
-<span class="st">  </span><span class="kw">jsonld_expand</span>(datacite_json) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">jsonld_compact</span>(<span class="dt">context =</span> <span class="st">"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"</span>) 
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_expand</a></span>(datacite_json) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_compact</a></span>(<span class="dt">context =</span> <span class="st">"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"</span>) 
 datacite_cm</code></pre></div>
 <pre><code>{
   "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -172,8 +193,8 @@ datacite_cm</code></pre></div>
     "Efficient methods for Bayesian inference of state space models via particle Markov chain Monte Carlo and importance sampling type corrected Markov chain Monte Carlo. Currently supports models with Gaussian, Poisson, binomial, or negative binomial observation densities and Gaussian state dynamics, as well as general non-linear Gaussian models.",
     "Funded by Academy of Finland grant 284513, \"Exact approximate Monte Carlo methods for complex Bayesian inference\"."
   ],
-  "identifier": "10.5281/zenodo.573741",
-  "license": "Open Access",
+  "schema:identifier": "10.5281/zenodo.573741",
+  "schema:license": "Open Access",
   "publisher": "Zenodo"
 } </code></pre>
 <p>The result should be a valid <code>codemeta.json</code> document.</p>
@@ -182,14 +203,14 @@ datacite_cm</code></pre></div>
 <h2 class="hasAnchor">
 <a href="#comparison-to-native-schema-org-translation" class="anchor"></a>Comparison to native schema.org translation:</h2>
 <p>DataCite actually returns data directly in JSON-LD format using exclusively the schema.org context. We can query that data directly:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">resp &lt;-<span class="st"> </span>httr<span class="op">::</span><span class="kw">GET</span>(<span class="st">"https://doi.org/10.5281/zenodo.573741"</span>, httr<span class="op">::</span><span class="kw">add_headers</span>(<span class="dt">Accept=</span><span class="st">"application/vnd.schemaorg.ld+json"</span>))
-datacite_jsonld &lt;-<span class="st"> </span><span class="kw">content</span>(resp, <span class="dt">type=</span><span class="st">"application/json"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">resp &lt;-<span class="st"> </span>httr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/httr/topics/GET">GET</a></span>(<span class="st">"https://doi.org/10.5281/zenodo.573741"</span>, httr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/httr/topics/add_headers">add_headers</a></span>(<span class="dt">Accept=</span><span class="st">"application/vnd.schemaorg.ld+json"</span>))
+datacite_jsonld &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/httr/topics/content">content</a></span>(resp, <span class="dt">type=</span><span class="st">"application/json"</span>)</code></pre></div>
 <p>This time we have no need to invoke the crosswalk context, since the data is already in schema.org context (which codemeta also uses):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datacite_cm &lt;-<span class="st"> </span>
 <span class="st">  </span>datacite_jsonld <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">toJSON</span>(<span class="dt">pretty =</span> <span class="ot">TRUE</span>, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">jsonld_expand</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">jsonld_compact</span>(<span class="dt">context =</span> <span class="st">"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"</span>) 
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">toJSON</a></span>(<span class="dt">pretty =</span> <span class="ot">TRUE</span>, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_expand</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_compact</a></span>(<span class="dt">context =</span> <span class="st">"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"</span>) 
 
 datacite_cm</code></pre></div>
 <pre><code>{
@@ -214,10 +235,7 @@ datacite_cm</code></pre></div>
     }
   ],
   "datePublished": "2017-05-10",
-  "description": [
-    "Efficient methods for Bayesian inference of state space models via particle Markov chain Monte Carlo and importance sampling type corrected Markov chain Monte Carlo. Currently supports models with Gaussian, Poisson, binomial, or negative binomial observation densities and Gaussian state dynamics, as well as general non-linear Gaussian models.",
-    "Funded by Academy of Finland grant 284513, \"Exact approximate Monte Carlo methods for complex Bayesian inference\"."
-  ],
+  "description": "Efficient methods for Bayesian inference of state space models via particle Markov chain Monte Carlo and importance sampling type corrected Markov chain Monte Carlo. Currently supports models with Gaussian, Poisson, binomial, or negative binomial observation densities and Gaussian state dynamics, as well as general non-linear Gaussian models.",
   "name": "Bayesian Inference Of State Space Models With The Bssm Package",
   "provider": {
     "type": "Organization",
@@ -239,10 +257,10 @@ datacite_cm</code></pre></div>
 <p>Note that we can also use this approach to crosswalk into another standard by compacting into the context for the given column. For instance, here we translate our datacite record into a zenodo record. First we get the context from the crosswalk:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">zenodo_context &lt;-<span class="st"> </span>
 <span class="st">  </span><span class="kw">list</span>(<span class="st">"@context"</span> =<span class="st"> </span><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(<span class="st">"Zenodo"</span>, cw)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">toJSON</span>(<span class="dt">pretty =</span> <span class="ot">TRUE</span>, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">toJSON</a></span>(<span class="dt">pretty =</span> <span class="ot">TRUE</span>, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>then apply it as before:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">jsonld_expand</span>(datacite_cm) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">jsonld_compact</span>(<span class="dt">context =</span> zenodo_context) </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_expand</a></span>(datacite_cm) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_compact</a></span>(<span class="dt">context =</span> zenodo_context) </code></pre></div>
 <pre><code>{
   "@context": {
     "schema": "http://schema.org/",
@@ -284,10 +302,7 @@ datacite_cm</code></pre></div>
     "@type": "schema:Date",
     "@value": "2017-05-10"
   },
-  "description": [
-    "Efficient methods for Bayesian inference of state space models via particle Markov chain Monte Carlo and importance sampling type corrected Markov chain Monte Carlo. Currently supports models with Gaussian, Poisson, binomial, or negative binomial observation densities and Gaussian state dynamics, as well as general non-linear Gaussian models.",
-    "Funded by Academy of Finland grant 284513, \"Exact approximate Monte Carlo methods for complex Bayesian inference\"."
-  ],
+  "description": "Efficient methods for Bayesian inference of state space models via particle Markov chain Monte Carlo and importance sampling type corrected Markov chain Monte Carlo. Currently supports models with Gaussian, Poisson, binomial, or negative binomial observation densities and Gaussian state dynamics, as well as general non-linear Gaussian models.",
   "name": "Bayesian Inference Of State Space Models With The Bssm Package",
   "schema:provider": {
     "@type": "schema:Organization",
@@ -319,15 +334,15 @@ codemetav1 &lt;-<span class="st"> </span><span class="kw">c</span>(codemetav1,
 <p>To crosswalk a vocabulary, we must use the context the CrossWalk table defines for that vocabulary. Most vocabularies are not already ontologies with their own base URLs, in which case this is relatively intuitive. But we also need to use the CrossWalk context even when the data originates in another context (SoftwareOntology, DOAP, codemeta-v1), since otherwise those terms will stay in their original space (e.g <code>dcterms:identifer</code> will remain a different kind of property from a <code>schema:identifer</code>, etc)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1 &lt;-<span class="st"> "https://raw.githubusercontent.com/codemeta/codemetar/master/inst/examples/codemeta-v1.json"</span>
 <span class="co">#v1 &lt;- "../examples/codemeta-v1.json" ## or local path</span>
-v1_obj &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">read_json</span>(v1)
+v1_obj &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/read_json">read_json</a></span>(v1)
 v1_obj<span class="op">$</span><span class="st">`</span><span class="dt">@context</span><span class="st">`</span> &lt;-<span class="st"> </span>codemetav1
-v1_json &lt;-<span class="st"> </span><span class="kw">toJSON</span>(v1_obj, <span class="dt">pretty=</span><span class="ot">TRUE</span>, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>)
+v1_json &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">toJSON</a></span>(v1_obj, <span class="dt">pretty=</span><span class="ot">TRUE</span>, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>)
 
 <span class="co">#write_json(v1_obj, "v1.json", pretty=TRUE, auto_unbox = TRUE)</span></code></pre></div>
 <p>With a JSON object in place, along with a context file that defines how that vocabulary is expressed in the context of <code>schema.org</code> / <code>codemeta</code>, we can now perform the exansion and compaction routine as before. Expansion uses the native context from the file, compaction uses the new context of codemeta terms.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v2_json &lt;-<span class="st"> </span>
-<span class="kw">jsonld_expand</span>(v1_json) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">jsonld_compact</span>(<span class="dt">context =</span> <span class="st">"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"</span>) 
+<span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_expand</a></span>(v1_json) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_compact</a></span>(<span class="dt">context =</span> <span class="st">"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"</span>) 
 v2_json</code></pre></div>
 <pre><code>{
   "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
@@ -348,32 +363,32 @@ v2_json</code></pre></div>
     }
   ],
   "citation": "https://github.com/codemeta/codemeta-paper",
-  "codeRepository": "https://github.com/codemeta/codemeta",
+  "schema:codeRepository": "https://github.com/codemeta/codemeta",
   "schema:dateModified": "2014-08-15",
   "schema:datePublished": "2014-09-06",
   "description": "Codemeta is a metadata content standard for software.  It includes schemas in JSON-LD and XML Schema for providing semantics and validation.",
-  "downloadUrl": "https://github.com/codemeta/codemeta/releases/codemeta_2.1.0-rc.2.tar.gz",
-  "identifier": "http://dx.doi.org/10.6084/m9.figshare.828487",
+  "schema:downloadUrl": "https://github.com/codemeta/codemeta/releases/codemeta_2.1.0-rc.2.tar.gz",
+  "schema:identifier": "http://dx.doi.org/10.6084/m9.figshare.828487",
   "keywords": [
     "software",
     "metadata"
   ],
-  "license": "Apache-2.0",
+  "schema:license": "Apache-2.0",
   "name": "codemeta",
   "programmingLanguage": {
     "name": "ruby",
-    "url": "https://www.ruby-lang.org/en/",
+    "schema:url": "https://www.ruby-lang.org/en/",
     "version": "2.3.1"
   },
   "publisher": "figshare",
   "softwareRequirements": [
     {
-      "identifier": "http://doi.org/10.xxxx/A324566",
+      "schema:identifier": "http://doi.org/10.xxxx/A324566",
       "name": "export_fig",
       "version": "1.99"
     },
     {
-      "identifier": "89766228838383883",
+      "schema:identifier": "89766228838383883",
       "name": "npplus",
       "operatingSystem": [
         "MacOS",
@@ -382,7 +397,7 @@ v2_json</code></pre></div>
       "version": "0.9.4"
     },
     {
-      "identifier": "7777575757757-389349843-90898",
+      "schema:identifier": "7777575757757-389349843-90898",
       "name": "popbio",
       "operatingSystem": [
         "Windows",
@@ -392,15 +407,15 @@ v2_json</code></pre></div>
     }
   ],
   "version": "2.1.0-rc.2",
-  "buildInstructions": {
+  "codemeta:buildInstructions": {
     "type": "URL",
     "@value": "https://github.com/codemeta/codemeta/buildInstructions"
   },
-  "contIntegration": {
+  "codemeta:contIntegration": {
     "type": "URL",
     "@value": "https://github.com/codemeta/codemeta/minitest"
   },
-  "developmentStatus": {
+  "codemeta:developmentStatus": {
     "type": "Text",
     "@value": "active"
   },
@@ -409,7 +424,7 @@ v2_json</code></pre></div>
     "type": "Text",
     "@value": "National Science Foundation grant #012345678"
   },
-  "issueTracker": {
+  "codemeta:issueTracker": {
     "type": "URL",
     "@value": "https://github.com/codemeta/codemeta/issues"
   },
@@ -419,7 +434,7 @@ v2_json</code></pre></div>
     "email": "slaughter@nceas.ucsb.edu",
     "name": "Peter Slaughter"
   },
-  "readme": {
+  "codemeta:readme": {
     "type": "URL",
     "@value": "https://github.com/codemeta/codemeta/README.md"
   },
@@ -458,7 +473,7 @@ v2_json</code></pre></div>
 <span class="st">  "maintainer": {}</span>
 <span class="st">}'</span>
 
-<span class="kw">jsonld_frame</span>(v2_json, frame)</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(v2_json, frame)</code></pre></div>
 <pre><code>{
   "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
   "@graph": [
@@ -473,7 +488,7 @@ v2_json</code></pre></div>
         "email": "slaughter@nceas.ucsb.edu",
         "name": "Peter Slaughter"
       },
-      "readme": {
+      "codemeta:readme": {
         "type": "URL",
         "@value": "https://github.com/codemeta/codemeta/README.md"
       }
@@ -487,11 +502,12 @@ v2_json</code></pre></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
         <div id="tocnav">
-      <h2>Contents</h2>
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#crosswalk-contexts">Crosswalk contexts</a></li>
       <li><a href="#datacite">DataCite</a></li>
-      <li><a href="#comparison-to-native-schema.org-translation">Comparison to native schema.org translation:</a></li>
+      <li><a href="#comparison-to-native-schema-org-translation">Comparison to native schema.org translation:</a></li>
       <li><a href="#transforming-into-other-column-schema">Transforming into other column schema</a></li>
       <li><a href="#codemeta">Codemeta</a></li>
       <li><a href="#framing">Framing</a></li>

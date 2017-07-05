@@ -7,7 +7,6 @@
   "identifier": "codemetar",
   "description": "Codemeta defines a 'JSON-LD' format for describing software metadata.\n    This package provides utilities to generate, parse, and modify codemeta.jsonld\n    files automatically for R packages.",
   "name": "codemetar: Generate CodeMeta Metadata for R Packages",
-  "codeRepository": "https://github.com/codemeta/codemetar",
   "issueTracker": "https://github.com/codemeta/codemetar/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.1.0",
@@ -18,6 +17,12 @@
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 3.4.0 (2017-04-21)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Central R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -213,6 +218,7 @@
       "version": "3.0.0"
     }
   ],
+  "codeRepository": "https://github.com/codemeta/codemetar",
   "affiliation": "https://ropensci.org",
   "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit"],
   "relatedLink": "https://codemeta.github.io/codemetar",
@@ -220,5 +226,5 @@
   "developmentStatus": "wip",
   "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/NEWS.md",
   "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
-  "fileSize": "105.025KB"
+  "fileSize": "366.241KB"
 }
