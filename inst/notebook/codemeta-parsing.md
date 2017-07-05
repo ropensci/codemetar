@@ -1,6 +1,9 @@
 Parsing codemeta data
 ================
 
+
+**NB: sources moved to vignettes**
+
 ``` r
 library(jsonld)
 library(jsonlite)
