@@ -1,8 +1,13 @@
 ## Check out the repo from github and run check in root directory to test.
 
+testthat::context("cloned repo")
+
 testthat::test_that("we can generate codemeta
                     from the root directory of R source code on github",
   {
+
+    testthat::skip_on_appveyor()
+
     git2r::clone("https://github.com/codemeta/codemetar",
                  "codemetar_copy", progress = FALSE)
     write_codemeta("codemetar_copy/", "test.json")
