@@ -28,7 +28,7 @@ Suggests: testthat,
     magrittr,
     readr,
     xml2,
-    dplyr,
+    dplyr (>= 0.7.0),
     purrr,
     printr
 VignetteBuilder: knitr
