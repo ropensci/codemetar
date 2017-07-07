@@ -190,6 +190,7 @@ write_codemeta(".")
           "@type": "SoftwareApplication",
           "identifier": "dplyr",
           "name": "dplyr",
+          "version": "0.7.0",
           "provider": {
             "@id": "https://cran.r-project.org",
             "@type": "Organization",
@@ -297,7 +298,7 @@ write_codemeta(".")
       "developmentStatus": "active",
       "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/NEWS.md",
       "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
-      "fileSize": "335.53KB"
+      "fileSize": "335.535KB"
     }
 
 Modifying or enriching CodeMeta metadata
