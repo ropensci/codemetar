@@ -1,5 +1,5 @@
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Travis-CI Build Status](https://travis-ci.org/codemeta/codemetar.svg?branch=master)](https://travis-ci.org/codemeta/codemetar) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/cboettig/codemetar?branch=master&svg=true)](https://ci.appveyor.com/project/cboettig/codemetar) [![Coverage Status](https://img.shields.io/codecov/c/github/codemeta/codemetar/master.svg)](https://codecov.io/github/codemeta/codemetar?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Travis-CI Build Status](https://travis-ci.org/codemeta/codemetar.svg?branch=master)](https://travis-ci.org/codemeta/codemetar) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/codemeta/codemetar?branch=master&svg=true)](https://ci.appveyor.com/project/cboettig/codemetar) [![Coverage Status](https://img.shields.io/codecov/c/github/codemeta/codemetar/master.svg)](https://codecov.io/github/codemeta/codemetar?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 codemetar
@@ -297,7 +297,7 @@ write_codemeta(".")
       "developmentStatus": "active",
       "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/NEWS.md",
       "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
-      "fileSize": "335.52KB"
+      "fileSize": "335.53KB"
     }
 
 Modifying or enriching CodeMeta metadata
