@@ -31,11 +31,12 @@ testthat::test_that("we can generate codemeta
       guess_readme(f)
       guess_releaseNotes(f)
       guess_fileSize(f)
-      unlink("codemetar-*.tar.gz")
+      file.remove(dir()[grepl(".tar.gz", dir())])
 
-      unlink("test.json")
-      file.remove(list.files("codemetar_copy", recursive = TRUE))
-      unlink("codemetar_copy")
+      file.remove("test.json")
+      file.remove(dir("codemetar_copy", recursive = TRUE,
+                      full.names = TRUE))
+      unlink("codemetar_copy", recursive=TRUE)
     }else{
       write_codemeta("codemetar_copy/", "test.json")
       expect_true(codemeta_validate("test.json"))
