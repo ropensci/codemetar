@@ -28,4 +28,4 @@ testthat::test_that(
   testthat::expect_null(meta$memoryRequirements)
 })
 
-unlink("frame.json")
+unlink("framed.json")
