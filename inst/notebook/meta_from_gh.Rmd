@@ -1,3 +1,4 @@
+```{r}
 library("gh")
 library("jsonlite")
 library("jsonld")
@@ -5,42 +6,106 @@ library("codemetar")
 library("magrittr")
 library("readr")
 library("dplyr")
+library("purrr")
+```
 
-
-codemeta <- "https://doi.org/10.5063/schema/codemeta-2.0"
-#github <- codemetar::crosswalk("GitHub")
-
-github <-
-  "https://github.com/codemeta/codemeta/raw/master/crosswalk.csv" %>%
-  read_csv() %>%
-  select(Property, `GitHub`) %>%
-  filter(!is.na(`GitHub`))
-
-codemeta_context <- read_json(codemeta)
-properties <- names(codemeta_context[[1]])
-
-## replace property names according to crosswalk data.frame
-for(i in 1:dim(github)[2]){
- # properties github
+```{r message=FALSE}
+crosswalk <- function(x,
+                      schema,
+                      codemeta_context = 
+             "https://doi.org/10.5063/schema/codemeta-2.0"
+                      ){
+  
+  df <- crosswalk_table(schema)
+  context <- crosswalk_context(df, codemeta_context)
+  crosswalk_transform(x, 
+                      crosswalk_context = context,
+                      codemeta_context = codemeta_context)
+  
 }
 
+crosswalk_table <- function(schema){
+  df <-
+    read_csv("https://github.com/codemeta/codemeta/raw/master/crosswalk.csv",
+             col_types = cols(.default = "c"))
+  df <- df[c("Property", schema)]
+  df[!is.na(df[[schema]]),] ## stats::na.omit
+}
+
+crosswalk_context <- 
+  function(df, codemeta_context = 
+             "https://doi.org/10.5063/schema/codemeta-2.0"){
+    
+  context <- jsonlite::read_json(codemeta_context)
+  context[[1]][["id"]] <- NULL ## avoid collisions with @id
+  properties <- names(context[[1]])  
+    
+  ## replace property names according to crosswalk data.frame
+  for(i in 1:dim(df)[1]){
+   properties[properties == df[i, 1][[1]] ]  <- df[i,2]
+  }
+  names(context[[1]]) <- properties
+  context
+}
+
+crosswalk_transform <- function(x, 
+                                crosswalk_context = NULL,
+                                codemeta_context = 
+             "https://doi.org/10.5063/schema/codemeta-2.0"){
+  
+  ## FIXME consider case of x is `json` class, and x is file-path / url
+  
+  if(is.null(x$`@context`) && is.null(crosswalk_context)){
+    stop("crosswalk_context required if input json has no '@context' property")
+  }
+  if(is.null(x$`@context`))
+    x$`@context` <- crosswalk_context[[1]]
+
+  y <- toJSON(x, auto_unbox = TRUE, pretty = TRUE)
+  y <- jsonld_expand(y)
+  y <- jsonld_compact(y, context = codemeta_context)
+  y
+}
+
+```
+
+Example: 
+
+```{r}
+owner <- "ropensci"
+repo <- "EML"
+r <- gh("/repos/:owner/:repo", owner = owner, repo = repo)
+crosswalk(r, "GitHub")
+```
 
 
-r <- gh("/repos/:owner/:repo", owner = "ropensci", repo = "EML")
-r$`@context` <- github
+Add Contributor information. Get contributor list, then contributor names
 
-toJSON(r, auto_unbox = TRUE, pretty = TRUE) %>%
-  jsonld_expand() %>%
-  jsonld_compact(context = codemeta) -> out
+```{r}
+contribs <- gh("/repos/:owner/:repo/contributors", owner = owner, repo = repo)
+
+author_threshold <- 2
+authors <- contribs %>% map_int("contributions") >= author_threshold
+
+## Sort authors by contribution number.  Seems contribs already does this?
+contribs[authors] %>%
+  map_chr("login") %>%
+  map(function(user) gh("/users/:user", user = user)) %>%
+  map_chr("name")
+
+```
 
 
+Other mappable info: user:company, user:blog, user:email (API doesn't return email)
 
-toJSON(r, auto_unbox = TRUE, pretty = TRUE) %>%
-  jsonld_expand()
+```{r}
+gh("/users/:user", user = "cboettig")
+```
 
-#l <- fromJSON(j)
+Use the preview version of the API to get license information
 
+```{r}
 
-cm <- codemetar:::new_codemeta()
+r <- gh("/repos/:owner/:repo", owner = owner, repo = repo, .send_headers = c(ACCEPT = "application/vnd.github.drax-preview+json"))
 
-cm$identifier <- r$id
+```
