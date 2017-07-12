@@ -208,11 +208,6 @@ write_codemeta(".")
             "name": "Central R Archive Network (CRAN)",
             "url": "https://cran.r-project.org"
           }
-        },
-        {
-          "@type": "SoftwareApplication",
-          "identifier": "gh",
-          "name": "gh"
         }
       ],
       "softwareRequirements": [
@@ -308,7 +303,7 @@ write_codemeta(".")
       "developmentStatus": "active",
       "releaseNotes": "https://github.com/codemeta/codemetar/blob/crosswalk/NEWS.md",
       "readme": "https://github.com/codemeta/codemetar/blob/crosswalk/README.md",
-      "fileSize": "338.552KB"
+      "fileSize": "338.596KB"
     }
 
 Modifying or enriching CodeMeta metadata

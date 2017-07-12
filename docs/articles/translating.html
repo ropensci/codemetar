@@ -84,7 +84,7 @@
       <h1>Translating between schema using JSON-LD</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2017-07-11</h4>
+            <h4 class="date">2017-07-12</h4>
           </div>
 
     
@@ -137,8 +137,327 @@
 <div id="github" class="section level3">
 <h3 class="hasAnchor">
 <a href="#github" class="anchor"></a>GitHub</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r &lt;-<span class="st"> </span>gh<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/gh/topics/gh">gh</a></span>(<span class="st">"/repos/:owner/:repo"</span>, <span class="dt">owner =</span> <span class="st">"ropensci"</span>, <span class="dt">repo =</span> <span class="st">"EML"</span>)
-github_meta &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(r, <span class="st">"GitHub"</span>)
+<p>Here we crosswalk the JSON data returned as the repository information from the GitHub API:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repo_info &lt;-<span class="st"> </span>gh<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/gh/topics/gh">gh</a></span>(<span class="st">"/repos/:owner/:repo"</span>, <span class="dt">owner =</span> <span class="st">"ropensci"</span>, <span class="dt">repo =</span> <span class="st">"EML"</span>)</code></pre></div>
+<p>Let’s just take a look at what the returned json data looks like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repo_info</code></pre></div>
+<pre><code>$id
+[1] 10894022
+
+$name
+[1] "EML"
+
+$full_name
+[1] "ropensci/EML"
+
+$owner
+$owner$login
+[1] "ropensci"
+
+$owner$id
+[1] 1200269
+
+$owner$avatar_url
+[1] "https://avatars0.githubusercontent.com/u/1200269?v=3"
+
+$owner$gravatar_id
+[1] ""
+
+$owner$url
+[1] "https://api.github.com/users/ropensci"
+
+$owner$html_url
+[1] "https://github.com/ropensci"
+
+$owner$followers_url
+[1] "https://api.github.com/users/ropensci/followers"
+
+$owner$following_url
+[1] "https://api.github.com/users/ropensci/following{/other_user}"
+
+$owner$gists_url
+[1] "https://api.github.com/users/ropensci/gists{/gist_id}"
+
+$owner$starred_url
+[1] "https://api.github.com/users/ropensci/starred{/owner}{/repo}"
+
+$owner$subscriptions_url
+[1] "https://api.github.com/users/ropensci/subscriptions"
+
+$owner$organizations_url
+[1] "https://api.github.com/users/ropensci/orgs"
+
+$owner$repos_url
+[1] "https://api.github.com/users/ropensci/repos"
+
+$owner$events_url
+[1] "https://api.github.com/users/ropensci/events{/privacy}"
+
+$owner$received_events_url
+[1] "https://api.github.com/users/ropensci/received_events"
+
+$owner$type
+[1] "Organization"
+
+$owner$site_admin
+[1] FALSE
+
+
+$private
+[1] FALSE
+
+$html_url
+[1] "https://github.com/ropensci/EML"
+
+$description
+[1] " Ecological Metadata Language interface for R: synthesis and integration of heterogenous data"
+
+$fork
+[1] FALSE
+
+$url
+[1] "https://api.github.com/repos/ropensci/EML"
+
+$forks_url
+[1] "https://api.github.com/repos/ropensci/EML/forks"
+
+$keys_url
+[1] "https://api.github.com/repos/ropensci/EML/keys{/key_id}"
+
+$collaborators_url
+[1] "https://api.github.com/repos/ropensci/EML/collaborators{/collaborator}"
+
+$teams_url
+[1] "https://api.github.com/repos/ropensci/EML/teams"
+
+$hooks_url
+[1] "https://api.github.com/repos/ropensci/EML/hooks"
+
+$issue_events_url
+[1] "https://api.github.com/repos/ropensci/EML/issues/events{/number}"
+
+$events_url
+[1] "https://api.github.com/repos/ropensci/EML/events"
+
+$assignees_url
+[1] "https://api.github.com/repos/ropensci/EML/assignees{/user}"
+
+$branches_url
+[1] "https://api.github.com/repos/ropensci/EML/branches{/branch}"
+
+$tags_url
+[1] "https://api.github.com/repos/ropensci/EML/tags"
+
+$blobs_url
+[1] "https://api.github.com/repos/ropensci/EML/git/blobs{/sha}"
+
+$git_tags_url
+[1] "https://api.github.com/repos/ropensci/EML/git/tags{/sha}"
+
+$git_refs_url
+[1] "https://api.github.com/repos/ropensci/EML/git/refs{/sha}"
+
+$trees_url
+[1] "https://api.github.com/repos/ropensci/EML/git/trees{/sha}"
+
+$statuses_url
+[1] "https://api.github.com/repos/ropensci/EML/statuses/{sha}"
+
+$languages_url
+[1] "https://api.github.com/repos/ropensci/EML/languages"
+
+$stargazers_url
+[1] "https://api.github.com/repos/ropensci/EML/stargazers"
+
+$contributors_url
+[1] "https://api.github.com/repos/ropensci/EML/contributors"
+
+$subscribers_url
+[1] "https://api.github.com/repos/ropensci/EML/subscribers"
+
+$subscription_url
+[1] "https://api.github.com/repos/ropensci/EML/subscription"
+
+$commits_url
+[1] "https://api.github.com/repos/ropensci/EML/commits{/sha}"
+
+$git_commits_url
+[1] "https://api.github.com/repos/ropensci/EML/git/commits{/sha}"
+
+$comments_url
+[1] "https://api.github.com/repos/ropensci/EML/comments{/number}"
+
+$issue_comment_url
+[1] "https://api.github.com/repos/ropensci/EML/issues/comments{/number}"
+
+$contents_url
+[1] "https://api.github.com/repos/ropensci/EML/contents/{+path}"
+
+$compare_url
+[1] "https://api.github.com/repos/ropensci/EML/compare/{base}...{head}"
+
+$merges_url
+[1] "https://api.github.com/repos/ropensci/EML/merges"
+
+$archive_url
+[1] "https://api.github.com/repos/ropensci/EML/{archive_format}{/ref}"
+
+$downloads_url
+[1] "https://api.github.com/repos/ropensci/EML/downloads"
+
+$issues_url
+[1] "https://api.github.com/repos/ropensci/EML/issues{/number}"
+
+$pulls_url
+[1] "https://api.github.com/repos/ropensci/EML/pulls{/number}"
+
+$milestones_url
+[1] "https://api.github.com/repos/ropensci/EML/milestones{/number}"
+
+$notifications_url
+[1] "https://api.github.com/repos/ropensci/EML/notifications{?since,all,participating}"
+
+$labels_url
+[1] "https://api.github.com/repos/ropensci/EML/labels{/name}"
+
+$releases_url
+[1] "https://api.github.com/repos/ropensci/EML/releases{/id}"
+
+$deployments_url
+[1] "https://api.github.com/repos/ropensci/EML/deployments"
+
+$created_at
+[1] "2013-06-23T23:20:03Z"
+
+$updated_at
+[1] "2017-05-11T21:24:40Z"
+
+$pushed_at
+[1] "2017-07-05T18:52:34Z"
+
+$git_url
+[1] "git://github.com/ropensci/EML.git"
+
+$ssh_url
+[1] "git@github.com:ropensci/EML.git"
+
+$clone_url
+[1] "https://github.com/ropensci/EML.git"
+
+$svn_url
+[1] "https://github.com/ropensci/EML"
+
+$homepage
+[1] "https://ropensci.github.io/EML"
+
+$size
+[1] 5094
+
+$stargazers_count
+[1] 48
+
+$watchers_count
+[1] 48
+
+$language
+[1] "HTML"
+
+$has_issues
+[1] TRUE
+
+$has_projects
+[1] TRUE
+
+$has_downloads
+[1] TRUE
+
+$has_wiki
+[1] TRUE
+
+$has_pages
+[1] TRUE
+
+$forks_count
+[1] 17
+
+$mirror_url
+named list()
+
+$open_issues_count
+[1] 35
+
+$forks
+[1] 17
+
+$open_issues
+[1] 35
+
+$watchers
+[1] 48
+
+$default_branch
+[1] "master"
+
+$organization
+$organization$login
+[1] "ropensci"
+
+$organization$id
+[1] 1200269
+
+$organization$avatar_url
+[1] "https://avatars0.githubusercontent.com/u/1200269?v=3"
+
+$organization$gravatar_id
+[1] ""
+
+$organization$url
+[1] "https://api.github.com/users/ropensci"
+
+$organization$html_url
+[1] "https://github.com/ropensci"
+
+$organization$followers_url
+[1] "https://api.github.com/users/ropensci/followers"
+
+$organization$following_url
+[1] "https://api.github.com/users/ropensci/following{/other_user}"
+
+$organization$gists_url
+[1] "https://api.github.com/users/ropensci/gists{/gist_id}"
+
+$organization$starred_url
+[1] "https://api.github.com/users/ropensci/starred{/owner}{/repo}"
+
+$organization$subscriptions_url
+[1] "https://api.github.com/users/ropensci/subscriptions"
+
+$organization$organizations_url
+[1] "https://api.github.com/users/ropensci/orgs"
+
+$organization$repos_url
+[1] "https://api.github.com/users/ropensci/repos"
+
+$organization$events_url
+[1] "https://api.github.com/users/ropensci/events{/privacy}"
+
+$organization$received_events_url
+[1] "https://api.github.com/users/ropensci/received_events"
+
+$organization$type
+[1] "Organization"
+
+$organization$site_admin
+[1] FALSE
+
+
+$network_count
+[1] 17
+
+$subscribers_count
+[1] 18</code></pre>
+<p>We can crosswalk this information into codemeta just by supplying the column name to the <code>crosswalk</code> function. This performs the same expansion of the metadata in the GitHub context, followed by compaction into the codemeta context. Note that terms not recognized/included in the codemeta context will be dropped:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">github_meta &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(repo_info, <span class="st">"GitHub"</span>)
 github_meta</code></pre></div>
 <pre><code>{
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
@@ -152,153 +471,120 @@ github_meta</code></pre></div>
   "programmingLanguage": "https://api.github.com/repos/ropensci/EML/languages",
   "issueTracker": "https://api.github.com/repos/ropensci/EML/issues{/number}"
 } </code></pre>
+<p>We can verify that the result is a valid codemeta document:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/codemeta_validate.html">codemeta_validate</a></span>(github_meta)</code></pre></div>
+<pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <div id="transforming-into-other-column-schema" class="section level2">
 <h2 class="hasAnchor">
 <a href="#transforming-into-other-column-schema" class="anchor"></a>Transforming into other column schema</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(r, <span class="st">"Zenodo"</span>, <span class="st">"GitHub"</span>) <span class="op">%&gt;%</span>
+<p>The above transform showed the process of going from plain JSON data into the codemeta standard serialization. Similarly, we can crosswalk into any of the other columns in the crosswalk table. To do so, the <code>crosswalk</code> function will first expand any of the recognized properties into the codemeta JSON-LD context, just as above. Unrecognized properties are dropped, since there is no consensus context into which we can expand them. Second, the expanded terms are then compacted down into the new context (Zenodo in this case.) This time, any terms that are not part of the codemeta context are kept, but not compacted, since they still have meaningful contexts (that is, full URIs) that can be associated with them:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(repo_info, <span class="st">"GitHub"</span>, <span class="st">"Zenodo"</span>) <span class="op">%&gt;%</span>
 <span class="kw"><a href="../reference/drop_context.html">drop_context</a></span>()</code></pre></div>
 <pre><code>{
-  "id": "10894022",
-  "full_name": "EML"
-} </code></pre>
-</div>
-<div id="datacite" class="section level2">
-<h2 class="hasAnchor">
-<a href="#datacite" class="anchor"></a>DataCite</h2>
-<p>We can illustrate using the expansion and compaction process to crosswalk DataCite’s metadata schema into other formats, such as the native codemeta format or the Zenodo format. First, let’s start with some DataCite metadata:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datacite_ex &lt;-<span class="st"> "https://raw.githubusercontent.com/codemeta/codemetar/master/inst/examples/datacite-xml.json"</span>
-<span class="kw">cat</span>(<span class="kw">readLines</span>(datacite_ex), <span class="dt">sep=</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</code></pre></div>
-<pre><code>{
-  "identifier": "10.5281/zenodo.573741",
-  "creators": [
-    { "givenName": "Jouni",
-      "familyName": "Helske"
-    },
-    {
-      "givenName": "Matti",
-      "familyName": "Vihola"
-    }
-  ],
-  "title": "Bayesian Inference Of State Space Models With The Bssm Package",
-  "publisher": "Zenodo",
-  "publicationYear": "2017",
-  "resourceType": "Software",
-  "date": "2017-05-10",
-  "rights": "Open Access",
-  "description": [
-      "Efficient methods for Bayesian inference of state space models via particle Markov chain Monte Carlo and importance sampling type corrected Markov chain Monte Carlo. Currently supports models with Gaussian, Poisson, binomial, or negative binomial observation densities and Gaussian state dynamics, as well as general non-linear Gaussian models.",
-      "Funded by Academy of Finland grant 284513, \"Exact approximate Monte Carlo methods for complex Bayesian inference\"."
-  ]
-}</code></pre>
-<p>Note this example uses a JSON-ified representation of DataCite’s internal schema, which is XML-based. So far, this is just plain JSON, with no context. We will use the <code><a href="http://www.rdocumentation.org/packages/codemetar/topics/crosswalk">codemetar::crosswalk</a></code> function to translate this into codemeta representation. This function simply creates a context file for the input data, based on the crosswalk table, and then performs the JSON-LD Expansion algorithm followed by the JSON-LD Compaction algorithm into the codemeta context, in just the same manner as illustrated above.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datacite_meta &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/read_json">read_json</a></span>(datacite_ex)
-dc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(datacite_meta,<span class="st">"DataCite"</span>)
-dc</code></pre></div>
-<pre><code>{
-  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
-  "author": [
-    {
-      "familyName": "Helske",
-      "givenName": "Jouni"
-    },
-    {
-      "familyName": "Vihola",
-      "givenName": "Matti"
-    }
-  ],
-  "dateModified": "2017-05-10",
-  "datePublished": "2017",
-  "description": [
-    "Efficient methods for Bayesian inference of state space models via particle Markov chain Monte Carlo and importance sampling type corrected Markov chain Monte Carlo. Currently supports models with Gaussian, Poisson, binomial, or negative binomial observation densities and Gaussian state dynamics, as well as general non-linear Gaussian models.",
-    "Funded by Academy of Finland grant 284513, \"Exact approximate Monte Carlo methods for complex Bayesian inference\"."
-  ],
-  "identifier": "10.5281/zenodo.573741",
-  "license": "Open Access",
-  "publisher": "Zenodo"
-} </code></pre>
-<div id="comparison-to-native-schema-org-translation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#comparison-to-native-schema-org-translation" class="anchor"></a>Comparison to native schema.org translation:</h3>
-<p>DataCite actually returns data directly in JSON-LD format using exclusively the schema.org context. We can query that data directly:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">resp &lt;-<span class="st"> </span>httr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/httr/topics/GET">GET</a></span>(<span class="st">"https://doi.org/10.5281/zenodo.573741"</span>, httr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/httr/topics/add_headers">add_headers</a></span>(<span class="dt">Accept=</span><span class="st">"application/vnd.schemaorg.ld+json"</span>))
-datacite_jsonld &lt;-<span class="st"> </span>httr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/httr/topics/content">content</a></span>(resp, <span class="dt">type=</span><span class="st">"application/json"</span>)</code></pre></div>
-<p>This time we have no need to invoke the crosswalk context, since the data is already in schema.org context (which codemeta also uses):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datacite_cm &lt;-<span class="st"> </span>
-<span class="st">  </span>datacite_jsonld <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">toJSON</a></span>(<span class="dt">pretty =</span> <span class="ot">TRUE</span>, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_expand</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_compact</a></span>(<span class="dt">context =</span> <span class="st">"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"</span>) 
-datacite_cm</code></pre></div>
-<pre><code>{
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
-  "id": "https://doi.org/10.5281/zenodo.573741",
-  "type": "SoftwareSourceCode",
-  "schema:additionalType": {
-    "id": "Software"
+  "relatedLink": "https://github.com/ropensci/EML",
+  "schema:dateCreated": {
+    "@type": "schema:Date",
+    "@value": "2013-06-23T23:20:03Z"
   },
-  "schema:author": [
-    {
-      "type": "Person",
-      "familyName": "Helske",
-      "givenName": "Jouni",
-      "name": "Jouni Helske"
-    },
-    {
-      "type": "Person",
-      "familyName": "Vihola",
-      "givenName": "Matti",
-      "name": "Matti Vihola"
-    }
-  ],
-  "datePublished": "2017-05-10",
-  "description": "Efficient methods for Bayesian inference of state space models via particle Markov chain Monte Carlo and importance sampling type corrected Markov chain Monte Carlo. Currently supports models with Gaussian, Poisson, binomial, or negative binomial observation densities and Gaussian state dynamics, as well as general non-linear Gaussian models.",
-  "name": "Bayesian Inference Of State Space Models With The Bssm Package",
-  "provider": {
-    "type": "Organization",
-    "name": "DataCite"
-  },
-  "publisher": {
-    "type": "Organization",
-    "name": "Zenodo"
-  },
-  "schema:schemaVersion": {
-    "id": "http://datacite.org/schema/kernel-3"
-  }
-} </code></pre>
-<p>This is very close to the codemeta document we got by translating the DataCite XML using the crosswalk table.</p>
-</div>
-<div id="translating-between-arbitrary-columns-in-the-crosswalk" class="section level3">
-<h3 class="hasAnchor">
-<a href="#translating-between-arbitrary-columns-in-the-crosswalk" class="anchor"></a>Translating between arbitrary columns in the crosswalk</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(datacite_meta, <span class="st">"DataCite"</span>, <span class="st">"Zenodo"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="kw"><a href="../reference/drop_context.html">drop_context</a></span>() <span class="co"># show only content</span></code></pre></div>
-<pre><code>{
-  "creators": [
-    {
-      "schema:familyName": "Helske",
-      "schema:givenName": "Jouni"
-    },
-    {
-      "schema:familyName": "Vihola",
-      "schema:givenName": "Matti"
-    }
-  ],
   "schema:dateModified": {
     "@type": "schema:Date",
-    "@value": "2017-05-10"
+    "@value": "2017-05-11T21:24:40Z"
   },
-  "date_published": "2017",
-  "description/notes": ["Efficient methods for Bayesian inference of state space models via particle Markov chain Monte Carlo and importance sampling type corrected Markov chain Monte Carlo. Currently supports models with Gaussian, Poisson, binomial, or negative binomial observation densities and Gaussian state dynamics, as well as general non-linear Gaussian models.", "Funded by Academy of Finland grant 284513, \"Exact approximate Monte Carlo methods for complex Bayesian inference\"."],
-  "id": "10.5281/zenodo.573741",
-  "license": "Open Access",
-  "schema:publisher": "Zenodo"
+  "description/notes": " Ecological Metadata Language interface for R: synthesis and integration of heterogenous data",
+  "schema:downloadUrl": {
+    "@id": "https://api.github.com/repos/ropensci/EML/{archive_format}{/ref}"
+  },
+  "id": "10894022",
+  "name": "ropensci/EML",
+  "schema:programmingLanguage": "https://api.github.com/repos/ropensci/EML/languages",
+  "codemeta:issueTracker": {
+    "@id": "https://api.github.com/repos/ropensci/EML/issues{/number}"
+  }
 } </code></pre>
-<p>This data should be now use valid Zenodo terms (e.g. using <code>creators</code> for <code>schema:author</code>). Note that we also see explicitly the context that <code>codemeta::crosswalk</code> produced as <code>zenodo_context</code>, since we passed this information as a json file and not a URL. This provides a nice illustration of what the crosswalk is returning when asked for a context of a given column.</p>
-<p>Note that data that many of the fields could not be directly crosswalked into Zenodo terms, because (at least according to the crosswalk table) they have no analog in Zenodo, such as <code>schema:dateCreated</code>. Instead of dropping this data, the JSON-LD has retained the information using the original prefix <code>schema:</code>, indicating that the term is part of the <code>schema.org</code> context but not recognized in the context of Zenodo.</p>
-<p>Note this also happens if properties do not have a 1:1 map, since JSON-LD doesn’t provide a convenient way to map two separate properties like <code>givenName</code>, <code>familyName</code> into a single property, <code>name</code> either. JSON-LD will also refuse to map a term that has a potentially different type in the new context (since type coercion can also lead to data loss). In this way, compaction is very conservative.</p>
+<p>Thus terms that still have a uncompacted prefix like <code>schema:</code> or <code>codemeta:</code> reflect properties that we could successfully extract from the input data, but do not have corresponding properties in the Zenodo context. This is the standard behavior of the compaction algorithm: unrecognized fields are not dropped, but it is also not compacted, making it accessible only if referenced explicitly.</p>
 </div>
+<div id="nodejs-example" class="section level2">
+<h2 class="hasAnchor">
+<a href="#nodejs-example" class="anchor"></a>NodeJS example</h2>
+<p>NodeJS uses a <code>package.json</code> format that is very similar to a simple <code>codemeta.json</code> file, though it is not Linked Data as it does not declare a context. Here we crosswalk an example <code>package.json</code> file into proper <code>codemeta</code> standard.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">package.json &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/read_json">read_json</a></span>(
+<span class="st">"https://raw.githubusercontent.com/heroku/node-js-sample/master/package.json"</span>)
+package.json</code></pre></div>
+<pre><code>$name
+[1] "node-js-sample"
+
+$version
+[1] "0.2.0"
+
+$description
+[1] "A sample Node.js app using Express 4"
+
+$main
+[1] "index.js"
+
+$scripts
+$scripts$start
+[1] "node index.js"
+
+
+$dependencies
+$dependencies$express
+[1] "^4.13.3"
+
+
+$engines
+$engines$node
+[1] "4.0.0"
+
+
+$repository
+$repository$type
+[1] "git"
+
+$repository$url
+[1] "https://github.com/heroku/node-js-sample"
+
+
+$keywords
+$keywords[[1]]
+[1] "node"
+
+$keywords[[2]]
+[1] "heroku"
+
+$keywords[[3]]
+[1] "express"
+
+
+$author
+[1] "Mark Pundsack"
+
+$contributors
+$contributors[[1]]
+[1] "Zeke Sikelianos &lt;zeke@sikelianos.com&gt; (http://zeke.sikelianos.com)"
+
+
+$license
+[1] "MIT"</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(package.json, <span class="st">"NodeJS"</span>)</code></pre></div>
+<pre><code>{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "codeRepository": {},
+  "creator": "Mark Pundsack",
+  "description": "A sample Node.js app using Express 4",
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT",
+  "name": "node-js-sample",
+  "version": "0.2.0"
+} </code></pre>
+<p>Note that while nested structures per se pose no special problem, the compaction/expansion paradigm lacks a mechanism to capture differences in nesting between schema. For instance, in <code>codemeta</code> (i.e. in schema.org), a <code>codeRepository</code> is expected to be a URL, while NodeJS <code>package.json</code> permits it to be another object node with sub-properties <code>type</code> and <code>url</code>. There is no way in JSON-LD transforms or context definitions to indicate that the <code>url</code> sub-property in the NodeJS case, e.g. <code>codeRepository.url</code> maps to schema’s <code>codeRepository</code>. (This same limitation is also true of the 2-dimensional table structure of the crosswalk itself, though it is important to keep in mind that this 1:1 mapping requirement is not unique to the the <code>.csv</code> representation but also inherent in JSON-LD contexts.)</p>
+<p>Consequently, a thorough translation between formats that do not provide there own JSON-LD contexts will ultimately requires more manual implementation, which would be expressed within a particular programming language (e.g. R) rather than in the generic algorithms of JSON-LD available in many common programming languages.</p>
 </div>
 </div>
   </div>
@@ -311,7 +597,7 @@ datacite_cm</code></pre></div>
 <li><a href="#json-ld-transforms-expansion-and-compaction">JSON-LD transforms: Expansion and Compaction</a></li>
       <li><a href="#crosswalking">Crosswalking</a></li>
       <li><a href="#transforming-into-other-column-schema">Transforming into other column schema</a></li>
-      <li><a href="#datacite">DataCite</a></li>
+      <li><a href="#nodejs-example">NodeJS example</a></li>
       </ul>
 </div>
       </div>
