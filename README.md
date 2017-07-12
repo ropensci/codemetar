@@ -166,17 +166,6 @@ write_codemeta(".")
         },
         {
           "@type": "SoftwareApplication",
-          "identifier": "readr",
-          "name": "readr",
-          "provider": {
-            "@id": "https://cran.r-project.org",
-            "@type": "Organization",
-            "name": "Central R Archive Network (CRAN)",
-            "url": "https://cran.r-project.org"
-          }
-        },
-        {
-          "@type": "SoftwareApplication",
           "identifier": "xml2",
           "name": "xml2",
           "provider": {
@@ -274,8 +263,24 @@ write_codemeta(".")
         },
         {
           "@type": "SoftwareApplication",
+          "identifier": "stats",
+          "name": "stats"
+        },
+        {
+          "@type": "SoftwareApplication",
           "identifier": "stringi",
           "name": "stringi",
+          "provider": {
+            "@id": "https://cran.r-project.org",
+            "@type": "Organization",
+            "name": "Central R Archive Network (CRAN)",
+            "url": "https://cran.r-project.org"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "identifier": "readr",
+          "name": "readr",
           "provider": {
             "@id": "https://cran.r-project.org",
             "@type": "Organization",
@@ -296,9 +301,9 @@ write_codemeta(".")
       "relatedLink": "https://codemeta.github.io/codemetar",
       "contIntegration": "https://travis-ci.org/codemeta/codemetar",
       "developmentStatus": "active",
-      "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/NEWS.md",
-      "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
-      "fileSize": "335.535KB"
+      "releaseNotes": "https://github.com/codemeta/codemetar/blob/crosswalk/NEWS.md",
+      "readme": "https://github.com/codemeta/codemetar/blob/crosswalk/README.md",
+      "fileSize": "338.596KB"
     }
 
 Modifying or enriching CodeMeta metadata

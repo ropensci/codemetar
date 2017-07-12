@@ -17,9 +17,11 @@ library("gh")
 
 repos <- gh("/users/:username/repos", username = "ropensci", .limit = Inf)
 repo_names <- vapply(repos, "[[", "", "name")
-not_a_pkg <- grepl("[-_]", repo_names)
-pkgs <- repo_names[!not_a_pkg]
-writeLines(paste("ropensci", pkgs, sep="/"), "ropensci_gh.txt")
+#not_a_pkg <- grepl("[-_]", repo_names)
+#pkgs <- repo_names[!not_a_pkg]
+writeLines(paste("ropensci", repo_names, sep="/"), "ropensci_gh.txt")
+
+## Clone all, check for which ones have DESCRIPTION files
 
 ```
 

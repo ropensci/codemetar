@@ -6,7 +6,6 @@ testthat::test_that("we can generate codemeta
                     from the root directory of R source code on github",
   {
 
-    testthat::skip_on_appveyor()
 
     git2r::clone("https://github.com/codemeta/codemetar",
                  "codemetar_copy", progress = FALSE)
