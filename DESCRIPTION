@@ -18,7 +18,9 @@ Imports: jsonlite (>= 1.3),
     git2r,
     devtools,
     methods,
-    stringi
+    stats,
+    stringi,
+    readr
 Suggests: testthat,
     jsonvalidate,
     covr,
@@ -26,11 +28,11 @@ Suggests: testthat,
     rmarkdown,
     httr,
     magrittr,
-    readr,
     xml2,
     dplyr (>= 0.7.0),
     purrr,
-    printr
+    printr,
+    gh
 VignetteBuilder: knitr
 keywords: metadata, codemeta, ropensci, citation, credit
 affiliation: https://ropensci.org

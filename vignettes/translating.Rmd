@@ -24,6 +24,8 @@ library("httr")
 library("readr")
 ```
 
+## JSON-LD transforms: Expansion and Compaction
+
 One of the central motivations of JSON-LD is making it easy to translate between different representations of what are fundamentally the same data types. Doing so uses the two core algorithms of JSON-LD: *expansion* and *compaction*, as [this excellent short video by JSON-LD creator Manu Sporny](https://www.youtube.com/watch?v=Tm3fD89dqRE) describes.
 
 Here's how we would use JSON-LD (from R) to translate between the two examples of JSON data from different providers as shown in the video.  First, the JSON from the original provider:
@@ -59,16 +61,30 @@ jsonld_expand(ex) %>%
   jsonld_compact(context = bighash_context)
 ```
 
-## Crosswalk contexts
+## Crosswalking
 
-The CodeMeta Crosswalk table seeks to accomplish a very similar goal.  The crosswalk table provides a human-readable mapping of different software metadata providers into the codemeta context (an extension of schema.org).  
+The CodeMeta Crosswalk table seeks to accomplish a very similar goal.  The crosswalk table provides a human-readable mapping of different software metadata providers into the codemeta context (an extension of schema.org).  For instance, we'll read in some data from GitHub:
 
-We'll start with the actual crosswalk table itself:
 
-```{r message=FALSE}
-crosswalk <- "https://github.com/codemeta/codemeta/raw/master/crosswalk.csv"
-cw <- readr::read_csv(crosswalk)
+### GitHub
+
+```{r}
+r <- gh::gh("/repos/:owner/:repo", owner = "ropensci", repo = "EML")
+github_meta <- crosswalk(r, "GitHub")
+github_meta
 ```
+
+
+
+## Transforming into other column schema
+
+
+
+```{r}
+crosswalk(r, "Zenodo", "GitHub") %>%
+drop_context()
+```
+
 
 
 ## DataCite
@@ -78,13 +94,14 @@ We can illustrate using the expansion and compaction process to crosswalk DataCi
 
 
 ```{r include=FALSE, eval=FALSE}
-## nope, sadly this is not quite clean json translation 
-
+## nope, sadly this is not quite clean json translation, due to repeated element structure
+datacite_list <-
 httr::GET("https://doi.org/10.5281/zenodo.573741", 
     httr::add_headers(Accept="application/vnd.datacite.datacite+xml")) %>% 
   httr::content(type="application/xml") %>% 
   xml2::as_list() %>%  
-  toJSON(pretty = TRUE, auto_unbox=TRUE)
+  toJSON(pretty = TRUE, auto_unbox=TRUE) #%>%
+#  fromJSON()
 
 ## Read tidy version instead
 ```
@@ -96,44 +113,24 @@ datacite_ex <- "https://raw.githubusercontent.com/codemeta/codemetar/master/inst
 cat(readLines(datacite_ex), sep="\n")
 ```
 
-Note this example uses a JSON-ified representation of DataCite's internal schema, which is XML-based.  So far, this is just plain JSON, with no context.  We will use the crosswalk table to define the DataCite context with reference to codemeta:
+Note this example uses a JSON-ified representation of DataCite's internal schema, which is XML-based.  So far, this is just plain JSON, with no context.  We will use the `codemetar::crosswalk` function to translate this into codemeta representation. This function simply creates a context file for the input data, based on the crosswalk table, and then performs the JSON-LD Expansion algorithm followed by the JSON-LD Compaction algorithm into the codemeta context, in just the same manner as illustrated above.  
 
 
 ```{r}
-## read the file
-datacite_list <- read_json(datacite_ex)
-
-## add context using the codemeta crosswalk function on the current crosswalk table
-datacite_list$`@context` <- codemetar::crosswalk("DataCite", cw)
-
-## serialize as JSON
-datacite_json <-
-datacite_list %>% 
-  toJSON(auto_unbox=TRUE, pretty=TRUE)
-
+datacite_meta <- jsonlite::read_json(datacite_ex)
+dc <- crosswalk(datacite_meta,"DataCite")
+dc
 ```
 
 
 
-We can now expand this json in terms of DataCite context we just derived from the table, and then compact it into the CodeMeta native context:
-
-```{r}
-datacite_cm <-
-  jsonld_expand(datacite_json) %>% 
-  jsonld_compact(context = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld") 
-datacite_cm
-```
-
-The result should be a valid `codemeta.json` document. 
-
-
-## Comparison to native schema.org translation:
+### Comparison to native schema.org translation:
 
 DataCite actually returns data directly in JSON-LD format using exclusively the schema.org context.  We can query that data directly:
 
 ```{r}
 resp <- httr::GET("https://doi.org/10.5281/zenodo.573741", httr::add_headers(Accept="application/vnd.schemaorg.ld+json"))
-datacite_jsonld <- content(resp, type="application/json")
+datacite_jsonld <- httr::content(resp, type="application/json")
 ```
 
 This time we have no need to invoke the crosswalk context, since the data is already in schema.org context (which codemeta also uses):
@@ -144,31 +141,17 @@ datacite_cm <-
   toJSON(pretty = TRUE, auto_unbox = TRUE) %>%
   jsonld_expand() %>% 
   jsonld_compact(context = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld") 
-
 datacite_cm
 ```
 
 
 This is very close to the codemeta document we got by translating the DataCite XML using the crosswalk table.  
 
-
-## Transforming into other column schema
-
-
-Note that we can also use this approach to crosswalk into another standard by compacting into the context for the given column.    For instance, here we translate our datacite record into a zenodo record.  First we get the context from the crosswalk:
+### Translating between arbitrary columns in the crosswalk
 
 ```{r}
-zenodo_context <- 
-  list("@context" = crosswalk("Zenodo", cw)) %>% 
-  toJSON(pretty = TRUE, auto_unbox = TRUE)
-```
-
-then apply it as before:
-
-```{r}
-  jsonld_expand(datacite_cm) %>% 
-  jsonld_compact(context = zenodo_context) 
-
+crosswalk(datacite_meta, "DataCite", "Zenodo") %>% 
+drop_context() # show only content
 ```
 
 This data should be now use valid Zenodo terms (e.g. using `creators` for `schema:author`).  Note that we also see explicitly the context that `codemeta::crosswalk` produced as `zenodo_context`, since we passed this information as a json file and not a URL.  This provides a nice illustration of what the crosswalk is returning when asked for a context of a given column.  
@@ -176,82 +159,6 @@ This data should be now use valid Zenodo terms (e.g. using `creators` for `schem
 Note that data that many of the fields could not be directly crosswalked into Zenodo terms, because (at least according to the crosswalk table) they have no analog in Zenodo, such as `schema:dateCreated`.  Instead of dropping this data, the JSON-LD has retained the information using the original prefix `schema:`, indicating that the term is part of the `schema.org` context but not recognized in the context of Zenodo.  
 
 Note this also happens if properties do not have a 1:1 map, since JSON-LD doesn't provide a convenient way to map two separate properties like `givenName`, `familyName` into a single property, `name` either.  JSON-LD will also refuse to map a term that has a potentially different type in the new context (since type coercion can also lead to data loss).  In this way, compaction is very conservative.  
-
-
-
-
-
-
-
-
-## Codemeta
-
-We can use a similar crosswalk strategy to translate from a JSON-LD file writing using v1 of the codemeta context into the current, v2 context:
-
-```{r}
-codemetav1 <- crosswalk("codemeta-V1", cw)
-
-## Add some altered Type definitions from v1
-codemetav1 <- c(codemetav1,
-                    person = "schema:Person",
-                    organization = "schema:Organization",
-                    SoftwareSoureCode = "schema:SoftwareSourceCode")
-
-
-
-```
-
-
-To crosswalk a vocabulary, we must use the context the CrossWalk table defines for that vocabulary.  Most vocabularies are not already ontologies with their own base URLs, in which case this is relatively intuitive.  But we also need to use the CrossWalk context even when the data originates in another context (SoftwareOntology, DOAP, codemeta-v1), since otherwise those terms will stay in their original space (e.g `dcterms:identifer` will remain a different kind of property from a `schema:identifer`, etc)
-
-```{r}
-v1 <- "https://raw.githubusercontent.com/codemeta/codemetar/master/inst/examples/codemeta-v1.json"
-#v1 <- "../examples/codemeta-v1.json" ## or local path
-v1_obj <- jsonlite::read_json(v1)
-v1_obj$`@context` <- codemetav1
-v1_json <- toJSON(v1_obj, pretty=TRUE, auto_unbox = TRUE)
-
-#write_json(v1_obj, "v1.json", pretty=TRUE, auto_unbox = TRUE)
-```
-
-
-With a JSON object in place, along with a context file that defines how that vocabulary is expressed in the context of `schema.org` / `codemeta`, we can now perform the exansion and compaction routine as before.  Expansion uses the native context from the file, compaction uses the new context of codemeta terms.  
-
-
-```{r}
-v2_json <- 
-jsonld_expand(v1_json) %>%
-  jsonld_compact(context = "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld") 
-v2_json
-```
-
-Note that certain terms in the `codemeta` namespace are explicitly being typed as such (e.g. `codemeta:maintainer` rather than plain `maintainer`) by the compaction algorithm, because these terms do not have matching types in their original codemeta v1 context vs codemeta v2 context.  
-
-
-
-
-## Framing
-
-
-We can use a frame to extract particular elements in a particular format.  This is most useful when there are highly nested complex types.  Framing with the `@explicit` tag is also a good way to filter out fields that we are not interested in, though these are usually less problematic for developers to work around.
-
-```{r}
-frame <- 
-'{
-  "@context":"https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
-  "@type": "SoftwareSourceCode",
-  "@explicit": "true",
-  "readme": {},
-  "description": {},
-  "maintainer": {}
-}'
-
-jsonld_frame(v2_json, frame)
-
-```
-
-
-Note that our frame can refer to `maintainer` even though the compaction has left the Property as `codemeta:maintainer`.  
 
 
 

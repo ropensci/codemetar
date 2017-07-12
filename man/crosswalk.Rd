@@ -2,27 +2,31 @@
 % Please edit documentation in R/crosswalk.R
 \name{crosswalk}
 \alias{crosswalk}
-\title{Crosswalk a column to return a JSON-LD context for it based on codemeta}
+\title{crosswalk}
 \usage{
-crosswalk(column, cw_table = NULL, to_json = FALSE)
+crosswalk(x, from, to = "codemeta",
+  codemeta_context = "https://doi.org/10.5063/schema/codemeta-2.0")
 }
 \arguments{
-\item{column}{column name from the CrossWalk table (character vector)}
+\item{x}{a JSON list of data fields to be crosswalked}
 
-\item{cw_table}{A CrossWalk table. call to
-readr::read_csv("https://github.com/codemeta/codemeta/raw/master/crosswalk.csv")
- or use default cached copy.}
+\item{from}{the corresponding column name from the crosswalk table.}
 
-\item{to_json}{logical, should the result be turned into a json string?
-Default FALSE, which permits easier manipulation such as adding this
-context to an existing list before serializing to JSON}
+\item{to}{the column to translate into, assumes "codemeta" by default}
+
+\item{codemeta_context}{the address or contents of codemeta context. Leave at default}
 }
 \value{
-a context list, which can be converted to a json string
+a `json` object containing a valid codemeta.json file created by crosswalking the input JSON
 }
 \description{
-Crosswalk a column to return a JSON-LD context for it based on codemeta
+crosswalk
 }
 \examples{
-crosswalk("Zenodo")
+\dontrun{
+## Crosswalk data returned by the GitHub API into CodeMeta format
+r <- gh::gh("/repos/:owner/:repo", owner = "ropensci", repo = "EML")
+crosswalk(r, "GitHub")
+}
+
 }

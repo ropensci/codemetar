@@ -2,15 +2,20 @@ testthat::context("crosswalk.R")
 
 testthat::test_that("we can call crosswalk", {
 
-  a <- crosswalk("Zenodo")
-  string <- jsonlite::toJSON(a, auto_unbox = TRUE, pretty = TRUE)
-  testthat::expect_is(string, "json")
 
-  string <- crosswalk("NodeJS", to_json = TRUE)
-  testthat::expect_is(string, "json")
+  f <- read_json(system.file("examples/github_format.json", package = "codemetar"))
+  a <- crosswalk(f, "GitHub")
+  testthat::expect_is(a, "json")
+  writeLines(a, "test.json")
+  v <- codemeta_validate("test.json")
+  testthat::expect_true(v)
+  unlink("test.json")
 
-  string <- crosswalk("codemeta-V1", to_json = TRUE)
-  testthat::expect_is(string, "json")
-
-
+  f <- read_json(system.file("examples/package.json", package = "codemetar"))
+  a <- crosswalk(f, "NodeJS")
+  testthat::expect_is(a, "json")
+  writeLines(a, "nodejs.json")
+  v <- codemeta_validate("nodejs.json")
+  testthat::expect_true(v)
+  unlink("nodejs.json")
 })
