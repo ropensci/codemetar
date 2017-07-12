@@ -7,7 +7,7 @@
 #' Leave as default or use appropriate DOI for the version; see details.
 #' @details by default, validation will use the original context from the import file.
 #' @importFrom jsonld jsonld_compact jsonld_expand
-#' @importFrom jsonlite toJSON read_json
+#' @importFrom jsonlite toJSON read_json fromJSON
 #' @export
 #' @examples
 #' ex <- system.file("examples/codemeta.json", package="codemetar")
@@ -15,7 +15,13 @@
 #'
 codemeta_validate <-
   function(codemeta = "codemeta.json", context = NULL) {
-    A <- read_json(codemeta)
+
+
+    if(file.exists(codemeta)){
+      A <- read_json(codemeta)
+    } else if(is(codemeta, "json")){
+      A <- fromJSON(codemeta)
+    }
     if(is.null(context)){
       context <- A$`@context`
       if(length(context) > 1){

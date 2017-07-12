@@ -18,4 +18,8 @@ testthat::test_that("we can call crosswalk", {
   v <- codemeta_validate("nodejs.json")
   testthat::expect_true(v)
   unlink("nodejs.json")
+
+  b <- drop_context(a)
+  add_context(b, "https://doi.org/doi:10.5063/schema/codemeta-2.0")
+
 })

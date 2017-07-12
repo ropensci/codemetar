@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>crosswalk — crosswalk • codemetar</title>
+<title>add_context — add_context • codemetar</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -104,49 +104,37 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>crosswalk</h1>
+    <h1>add_context</h1>
     </div>
 
     
-    <p>crosswalk</p>
+    <p>add context element to json list or json string</p>
     
 
-    <pre class="usage"><span class='fu'>crosswalk</span>(<span class='no'>x</span>, <span class='no'>from</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"codemeta"</span>,
-  <span class='kw'>codemeta_context</span> <span class='kw'>=</span> <span class='st'>"https://doi.org/10.5063/schema/codemeta-2.0"</span>)</pre>
+    <pre class="usage"><span class='fu'>add_context</span>(<span class='no'>x</span>, <span class='no'>context</span>, <span class='kw'>json_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a JSON list of data fields to be crosswalked</p></td>
+      <td><p>a JSON list (from read_json / fromJSON) or json object (from toJSON)</p></td>
     </tr>
     <tr>
-      <th>from</th>
-      <td><p>the corresponding column name from the crosswalk table.</p></td>
+      <th>context</th>
+      <td><p>context to be added, in same format as x</p></td>
     </tr>
     <tr>
-      <th>to</th>
-      <td><p>the column to translate into, assumes "codemeta" by default</p></td>
-    </tr>
-    <tr>
-      <th>codemeta_context</th>
-      <td><p>the address or contents of codemeta context. Leave at default</p></td>
+      <th>json_output</th>
+      <td><p>logical, should output be a json object or a list?</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a `json` object containing a valid codemeta.json file created by crosswalking the input JSON</p>
+    <p>a list or json object with "@context" element added</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'>## Crosswalk data returned by the GitHub API into CodeMeta format</span>
-<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>gh</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/gh/topics/gh'>gh</a></span>(<span class='st'>"/repos/:owner/:repo"</span>, <span class='kw'>owner</span> <span class='kw'>=</span> <span class='st'>"ropensci"</span>, <span class='kw'>repo</span> <span class='kw'>=</span> <span class='st'>"EML"</span>)
-<span class='fu'>crosswalk</span>(<span class='no'>r</span>, <span class='st'>"GitHub"</span>)
-<span class='co'># }</span><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -154,9 +142,7 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

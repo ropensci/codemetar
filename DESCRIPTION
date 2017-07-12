@@ -31,8 +31,7 @@ Suggests: testthat,
     xml2,
     dplyr (>= 0.7.0),
     purrr,
-    printr,
-    gh
+    printr
 VignetteBuilder: knitr
 keywords: metadata, codemeta, ropensci, citation, credit
 affiliation: https://ropensci.org
