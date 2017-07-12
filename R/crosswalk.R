@@ -40,7 +40,7 @@ crosswalk <- function(x,
 #' @importFrom readr read_csv cols
 crosswalk_table <- function(column,
                             full_crosswalk =
-                            "https://github.com/codemeta/codemeta/raw/master/crosswalk.csv"){
+  "https://github.com/codemeta/codemeta/raw/master/crosswalk.csv"){
   df <-
     readr::read_csv(full_crosswalk,
              col_types = cols(.default = "c"))
@@ -83,7 +83,7 @@ crosswalk_context <-
 crosswalk_transform <- function(x,
                                 crosswalk_context = NULL,
                                 codemeta_context =
-                                  "https://doi.org/10.5063/schema/codemeta-2.0"){
+                                "https://doi.org/10.5063/schema/codemeta-2.0"){
 
   x <- add_context(x, crosswalk_context)
   y <- jsonlite::toJSON(x, auto_unbox = TRUE, pretty = TRUE)
