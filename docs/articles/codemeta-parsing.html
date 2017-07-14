@@ -84,7 +84,7 @@
       <h1>Parsing CodeMeta Data</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2017-07-12</h4>
+            <h4 class="date">2017-07-14</h4>
           </div>
 
     
@@ -104,28 +104,28 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">frame &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"schema/frame_schema.json"</span>, <span class="dt">package=</span><span class="st">"codemetar"</span>)
 
 meta &lt;-<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(<span class="st">"codemeta.json"</span>, frame) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(<span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)</code></pre></div>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(<span class="st">"codemeta.json"</span>, frame) %&gt;%
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(<span class="ot">FALSE</span>) %&gt;%<span class="st"> </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) %&gt;%<span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)</code></pre></div>
 <p>Construct a citation</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">authors &lt;-<span class="st"> </span>
-<span class="kw">lapply</span>(meta<span class="op">$</span>author, 
-       <span class="cf">function</span>(author) 
-         <span class="kw">person</span>(<span class="dt">given =</span> author<span class="op">$</span>given, 
-                <span class="dt">family =</span> author<span class="op">$</span>family, 
-                <span class="dt">email =</span> author<span class="op">$</span>email,
+<span class="kw">lapply</span>(meta$author, 
+       function(author) 
+         <span class="kw">person</span>(<span class="dt">given =</span> author$given, 
+                <span class="dt">family =</span> author$family, 
+                <span class="dt">email =</span> author$email,
                 <span class="dt">role =</span> <span class="st">"aut"</span>))
-year &lt;-<span class="st"> </span>meta<span class="op">$</span>datePublished
-<span class="cf">if</span>(<span class="kw">is.null</span>(year)) 
+year &lt;-<span class="st"> </span>meta$datePublished
+if(<span class="kw">is.null</span>(year)) 
   year &lt;-<span class="st"> </span><span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">"%Y"</span>)
 bibitem &lt;-<span class="st"> </span>
 <span class="st"> </span><span class="kw">bibentry</span>(
      <span class="dt">bibtype =</span> <span class="st">"Manual"</span>,
-     <span class="dt">title =</span> meta<span class="op">$</span>name,
+     <span class="dt">title =</span> meta$name,
      <span class="dt">author =</span> authors,
      <span class="dt">year =</span> year,
-     <span class="dt">note =</span> <span class="kw">paste0</span>(<span class="st">"R package version "</span>, meta<span class="op">$</span>version),
-     <span class="dt">url =</span> meta<span class="op">$</span>URL,
-     <span class="dt">key =</span> meta<span class="op">$</span>identifier
+     <span class="dt">note =</span> <span class="kw">paste0</span>(<span class="st">"R package version "</span>, meta$version),
+     <span class="dt">url =</span> meta$URL,
+     <span class="dt">key =</span> meta$identifier
    )</code></pre></div>
 <pre><code>Warning in bibentry(bibtype = "Manual", title = meta$name, author =
 authors, : Not all arguments are of the same length, the following need to
@@ -149,15 +149,15 @@ package version 0.1.0.</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">frame &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"schema/frame_schema.json"</span>, <span class="dt">package=</span><span class="st">"codemetar"</span>)
 
 corpus &lt;-<span class="st"> </span>
-<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(<span class="st">"ropensci.json"</span>, frame) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(<span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(<span class="st">"ropensci.json"</span>, frame) %&gt;%
+<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(<span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) %&gt;%
 <span class="st">    </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) </code></pre></div>
 <p>We’re now ready to start exploring. As usual, functions from <code>purrr</code> prove very useful for iterating through large JSON files. First, we look at some basic summary data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## deal with nulls explicitly by starting with map
-pkgs &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map</a></span>(corpus, <span class="st">"name"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/keep">compact</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.character</span>()
+pkgs &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map</a></span>(corpus, <span class="st">"name"</span>) %&gt;%<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/keep">compact</a></span>() %&gt;%<span class="st"> </span><span class="kw">as.character</span>()
 
 <span class="co"># keep only those with package identifiers (names)</span>
-keep &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_lgl</a></span>(corpus, <span class="op">~</span><span class="st"> </span><span class="kw">length</span>(.x<span class="op">$</span>identifier) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)
+keep &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_lgl</a></span>(corpus, ~<span class="st"> </span><span class="kw">length</span>(.x$identifier) &gt;<span class="st"> </span><span class="dv">0</span>)
 corpus &lt;-<span class="st"> </span>corpus[keep]
 
 ## now we can just do
@@ -170,12 +170,12 @@ all_pkgs &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdoc
 [5] "dashboard: A package status dashboard"                                       
 [6] "ggit: Git Graphics"                                                          </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## 60 unique maintainers
-<span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_chr</a></span>(corpus, <span class="kw">c</span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>()</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_chr</a></span>(corpus, <span class="kw">c</span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) %&gt;%<span class="st"> </span><span class="kw">unique</span>() %&gt;%<span class="st"> </span><span class="kw">length</span>()</code></pre></div>
 <pre><code>[1] 61</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Mostly Scott
-<span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_chr</a></span>(corpus, <span class="kw">c</span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) <span class="op">%&gt;%</span>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_chr</a></span>(corpus, <span class="kw">c</span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() %&gt;%
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) %&gt;%
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -430,9 +430,9 @@ all_pkgs &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdoc
 </tbody>
 </table>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## number of co-authors ... 
-<span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_int</a></span>(corpus, <span class="cf">function</span>(r) <span class="kw">length</span>(r<span class="op">$</span>author)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) <span class="op">%&gt;%</span>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_int</a></span>(corpus, function(r) <span class="kw">length</span>(r$author)) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() %&gt;%
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) %&gt;%
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -471,9 +471,9 @@ all_pkgs &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdoc
 </tbody>
 </table>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Contributors isn't used as much...
-<span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_int</a></span>(corpus, <span class="cf">function</span>(r) <span class="kw">length</span>(r<span class="op">$</span>contributor)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) <span class="op">%&gt;%</span>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_int</a></span>(corpus, function(r) <span class="kw">length</span>(r$contributor)) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() %&gt;%
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) %&gt;%
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -512,9 +512,9 @@ all_pkgs &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdoc
 </tbody>
 </table>
 <p>Numbers (n) of packages with a total of (value) dependencies:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_int</a></span>(corpus, <span class="cf">function</span>(r) <span class="kw">length</span>(r<span class="op">$</span>softwareRequirements))  <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_int</a></span>(corpus, function(r) <span class="kw">length</span>(r$softwareRequirements))  %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() %&gt;%
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) %&gt;%
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -601,23 +601,23 @@ all_pkgs &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdoc
 </tbody>
 </table>
 <p>which dependencies are used most frequently?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corpus <span class="op">%&gt;%</span>
-<span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_df</a></span>(<span class="cf">function</span>(x){
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corpus %&gt;%
+<span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_df</a></span>(function(x){
   ## single, unboxed dep
-  <span class="cf">if</span>(<span class="st">"name"</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">names</span>(x<span class="op">$</span>softwareRequirements))
-    dep &lt;-<span class="st"> </span>x<span class="op">$</span>name
-  <span class="cf">else</span> <span class="cf">if</span>(<span class="st">"name"</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">names</span>(x<span class="op">$</span>softwareRequirements[[<span class="dv">1</span>]]))
-    dep &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_chr</a></span>(x<span class="op">$</span>softwareRequirements, <span class="st">"name"</span>)
-  <span class="cf">else</span> { ## No requirementsß
+  if(<span class="st">"name"</span> %in%<span class="st"> </span><span class="kw">names</span>(x$softwareRequirements))
+    dep &lt;-<span class="st"> </span>x$name
+  else if(<span class="st">"name"</span> %in%<span class="st"> </span><span class="kw">names</span>(x$softwareRequirements[[<span class="dv">1</span>]]))
+    dep &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_chr</a></span>(x$softwareRequirements, <span class="st">"name"</span>)
+  else { ## No requirementsß
     dep &lt;-<span class="st"> </span><span class="ot">NA</span>
   }
   
-  <span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="dt">identifier =</span> x<span class="op">$</span>identifier, <span class="dt">dep =</span> dep)
+  <span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="dt">identifier =</span> x$identifier, <span class="dt">dep =</span> dep)
 }) -&gt;<span class="st"> </span>dep_df
 
 
-dep_df <span class="op">%&gt;%</span>
-<span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(dep) <span class="op">%&gt;%</span><span class="st"> </span>
+dep_df %&gt;%
+<span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(dep) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -1525,11 +1525,11 @@ dep_df <span class="op">%&gt;%</span>
 <span class="st">  "@explicit": "true",</span>
 <span class="st">  "name": {}</span>
 <span class="st">}'</span>
-<span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(<span class="st">"ropensci.json"</span>, dep_frame) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(type <span class="op">==</span><span class="st"> "SoftwareApplication"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(name) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(<span class="st">"ropensci.json"</span>, dep_frame) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>() %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) %&gt;%
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(type ==<span class="st"> "SoftwareApplication"</span>) %&gt;%
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(name) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <table class="table">
 <thead><tr class="header">

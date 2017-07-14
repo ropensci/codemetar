@@ -84,7 +84,7 @@
       <h1>Translating between schema using JSON-LD</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2017-07-12</h4>
+            <h4 class="date">2017-07-14</h4>
           </div>
 
     
@@ -119,7 +119,7 @@
 <span class="st">}</span>
 <span class="st">}'</span></code></pre></div>
 <p>With this in place, we simply expand the original JSON and then compact using the new context:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_expand</a></span>(ex) <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_expand</a></span>(ex) %&gt;%
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_compact</a></span>(<span class="dt">context =</span> bighash_context)</code></pre></div>
 <pre><code>{
   "@context": {
@@ -138,7 +138,7 @@
 <h3 class="hasAnchor">
 <a href="#github" class="anchor"></a>GitHub</h3>
 <p>Here we crosswalk the JSON data returned as the repository information from the GitHub API:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repo_info &lt;-<span class="st"> </span>gh<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/gh/topics/gh">gh</a></span>(<span class="st">"/repos/:owner/:repo"</span>, <span class="dt">owner =</span> <span class="st">"ropensci"</span>, <span class="dt">repo =</span> <span class="st">"EML"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repo_info &lt;-<span class="st"> </span>gh::<span class="kw">gh</span>(<span class="st">"/repos/:owner/:repo"</span>, <span class="dt">owner =</span> <span class="st">"ropensci"</span>, <span class="dt">repo =</span> <span class="st">"EML"</span>)</code></pre></div>
 <p>Let’s just take a look at what the returned json data looks like:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repo_info</code></pre></div>
 <pre><code>$id
@@ -480,7 +480,7 @@ github_meta</code></pre></div>
 <h2 class="hasAnchor">
 <a href="#transforming-into-other-column-schema" class="anchor"></a>Transforming into other column schema</h2>
 <p>The above transform showed the process of going from plain JSON data into the codemeta standard serialization. Similarly, we can crosswalk into any of the other columns in the crosswalk table. To do so, the <code>crosswalk</code> function will first expand any of the recognized properties into the codemeta JSON-LD context, just as above. Unrecognized properties are dropped, since there is no consensus context into which we can expand them. Second, the expanded terms are then compacted down into the new context (Zenodo in this case.) This time, any terms that are not part of the codemeta context are kept, but not compacted, since they still have meaningful contexts (that is, full URIs) that can be associated with them:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(repo_info, <span class="st">"GitHub"</span>, <span class="st">"Zenodo"</span>) <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(repo_info, <span class="st">"GitHub"</span>, <span class="st">"Zenodo"</span>) %&gt;%
 <span class="kw"><a href="../reference/drop_context.html">drop_context</a></span>()</code></pre></div>
 <pre><code>{
   "relatedLink": "https://github.com/ropensci/EML",
