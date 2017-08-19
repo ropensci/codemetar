@@ -4,7 +4,7 @@ author: "Carl Boettiger"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Translating between schema using JSON LD}
+  %\VignetteIndexEntry{Translating between various software metaata formats with JSON-LD in codemetar}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
