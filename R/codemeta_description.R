@@ -1,3 +1,5 @@
+## Internal functions
+
 
 ## this appears not to be portable to devtools::check?
 #options(codemeta_context =

@@ -1,5 +1,8 @@
 #' crosswalk
 #'
+#' Crosswalk between different metadata fields used by different repositories,
+#' registries and archives. For more details see https://codemeta.github.io/crosswalk
+#'
 #' @param x a JSON list of data fields to be crosswalked
 #' @param from the corresponding column name from the crosswalk table.
 #' @param to the column to translate into, assumes "codemeta" by default
@@ -119,10 +122,12 @@ drop_context <-function(x, json_output = FALSE){
 #' add_context
 #'
 #' add context element to json list or json string
+#'
 #' @param x a JSON list (from read_json / fromJSON) or json object (from toJSON)
 #' @param context context to be added, in same format as x
 #' @param json_output logical, should output be a json object or a list?
 #' @return a list or json object with "@context" element added
+#' @export
 add_context <- function(x, context, json_output = FALSE){
   if(is(x, "json") || is.character(x)){
     x <- fromJSON(x)

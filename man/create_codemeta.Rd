@@ -24,7 +24,9 @@ to package root. Default guess is current dir.}
 a codemeta list object
 }
 \description{
-create a codemeta list object in R for further manipulation
+create a codemeta list object in R for further manipulation. Similar
+to \code{\link{write_codemeta}}, but returns an R list object rather
+than writing directly to a file.  See examples.
 }
 \examples{
 cm <- create_codemeta("jsonlite")

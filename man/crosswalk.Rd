@@ -20,7 +20,8 @@ crosswalk(x, from, to = "codemeta",
 a `json` object containing a valid codemeta.json file created by crosswalking the input JSON
 }
 \description{
-crosswalk
+Crosswalk between different metadata fields used by different repositories,
+registries and archives. For more details see https://codemeta.github.io/crosswalk
 }
 \examples{
 \dontrun{

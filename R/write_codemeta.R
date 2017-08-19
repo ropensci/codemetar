@@ -1,4 +1,7 @@
 #' write_codemeta
+#'
+#' write out a codemeta.json file for a given package.
+#'
 #' @param pkg package path to package root, or package name, or
 #' description file (character), or a codemeta object (list)
 #' @param path file name of the output, leave at default "codemeta.json"

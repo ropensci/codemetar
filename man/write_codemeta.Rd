@@ -26,7 +26,7 @@ to package root. Default guess is current dir.}
 writes out the codemeta.json file
 }
 \description{
-write_codemeta
+write out a codemeta.json file for a given package.
 }
 \details{
 If pkg is a codemeta object, the function will attempt to
