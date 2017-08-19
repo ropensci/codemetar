@@ -30,7 +30,7 @@ To learn more about codemetar, start with the vignettes:
 `browseVignettes(package = "codemetar")`
 
 For more general information about the CodeMeta Project for defining software metadata,
-see \href{https://codemeta.github.io}.  In particular, new users might want to start with
+see https://codemeta.github.io.  In particular, new users might want to start with
 the User Guide (https://codemeta.github.io/user-guide/), while those looking to learn
 more about JSON-LD and consuming existing codemeta files should see the
 Developer Guide (https://codemeta.github.io/developer-guide/).
