@@ -263,7 +263,7 @@
   "relatedLink": "https://codemeta.github.io/codemetar",
   "contIntegration": "https://travis-ci.org/codemeta/codemetar",
   "developmentStatus": "active",
-  "releaseNotes": "https://github.com/codemeta/codemetar/blob/crosswalk/NEWS.md",
-  "readme": "https://github.com/codemeta/codemetar/blob/crosswalk/README.md",
-  "fileSize": "338.596KB"
+  "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/NEWS.md",
+  "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
+  "fileSize": "337.96KB"
 }
