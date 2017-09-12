@@ -49,7 +49,6 @@ crosswalk_table <- function(column,
              col_types = cols(.default = "c"))
   df <- df[c("Property", column)]
   stats::na.omit(df)
-  ## df[!is.na(df[[column]]),] ## stats::na.omit
 }
 
 ## Use a crosswalk table subset to create a context file for the input data

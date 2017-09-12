@@ -8,7 +8,7 @@
 ^\.httr-oauth$
 ^docs$
 ^codemeta\.json$
-^inst/notebook/pkg_src$
+^inst/notebook/$
 ^paper\.md$
 ^data-raw$
 ^ropensci-onboarding\.md$
