@@ -25,6 +25,7 @@ library(codemetar)
 library(purrr)
 library(dplyr)
 library(printr)
+library(tibble)
 ```
 
 We start with a simple example from the `codemeta.json` file of `codemetar` itself.  First, we'll just generate a copy of the codemeta record for the package:
