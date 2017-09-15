@@ -1,7 +1,6 @@
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Travis-CI Build Status](https://travis-ci.org/codemeta/codemetar.svg?branch=master)](https://travis-ci.org/codemeta/codemetar) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/codemeta/codemetar?branch=master&svg=true)](https://ci.appveyor.com/project/cboettig/codemetar) [![Coverage Status](https://img.shields.io/codecov/c/github/codemeta/codemetar/master.svg)](https://codecov.io/github/codemeta/codemetar?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar) [![](http://badges.ropensci.org/130_status.svg)](https://github.com/ropensci/onboarding/issues/130)
 
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 codemetar
 =========
@@ -44,7 +43,7 @@ write_codemeta(".")
       ],
       "@type": "SoftwareSourceCode",
       "identifier": "codemetar",
-      "description": "Codemeta defines a 'JSON-LD' format for describing software metadata.\n    This package provides utilities to generate, parse, and modify codemeta.jsonld\n    files automatically for R packages.",
+      "description": "The 'Codemeta' Project defines a 'JSON-LD' format for describing\n  software metadata, as detailed at <https://codemeta.github.io>. This package\n  provides utilities to generate, parse, and modify 'codemeta.jsonld' files \n  automatically for R packages, as well as tools and examples for working with\n  'codemeta' 'JSON-LD' more generally.",
       "name": "codemetar: Generate CodeMeta Metadata for R Packages",
       "issueTracker": "https://github.com/codemeta/codemetar/issues",
       "license": "https://spdx.org/licenses/MIT",
@@ -52,10 +51,10 @@ write_codemeta(".")
       "programmingLanguage": {
         "@type": "ComputerLanguage",
         "name": "R",
-        "version": "3.4.0",
+        "version": "3.4.1",
         "url": "https://r-project.org"
       },
-      "runtimePlatform": "R version 3.4.0 (2017-04-21)",
+      "runtimePlatform": "R version 3.4.1 (2017-06-30)",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -302,9 +301,9 @@ write_codemeta(".")
       "relatedLink": "https://codemeta.github.io/codemetar",
       "contIntegration": "https://travis-ci.org/codemeta/codemetar",
       "developmentStatus": "active",
-      "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/NEWS.md",
-      "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
-      "fileSize": "337.96KB"
+      "releaseNotes": "https://github.com/codemeta/codemetar/blob/crosswalk/NEWS.md",
+      "readme": "https://github.com/codemeta/codemetar/blob/crosswalk/README.md",
+      "fileSize": "657.886KB"
     }
 
 Modifying or enriching CodeMeta metadata

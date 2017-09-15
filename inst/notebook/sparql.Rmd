@@ -1,0 +1,150 @@
+---
+title: "sparql.Rmd"
+author: "Carl Boettiger"
+date: "8/10/2017"
+output: html_document
+---
+
+```{r message=FALSE}
+library("jsonld")
+library("jsonlite")
+library("redland")
+library("tidyverse")
+library("codemetar")
+```
+
+# Practice examples
+
+We'll start by generating a codemeta json-ld file, and converting this to RDF using the `jsonld` library.  The official `jsonld` serialization uses `nquads` format for RDF, (it is not clear if any others are supported at this time)
+
+```{r}
+write_codemeta("codemetar")
+jsonld::jsonld_to_rdf("codemeta.json") %>% 
+  writeLines("codemeta.nquads")
+```
+
+Now we can use the `redland` library to parse and query the resulting RDF.  Note that the we must tell `rdflib` what parser and mime type to use, matching the names and `q 1.0` recognized mimeTypes as listed here: <http://librdf.org/raptor/api/raptor-formats-types-by-parser.html>.
+
+```{r}
+world <- new("World")
+storage <- new("Storage", world, "hashes", name="", options="hash-type='memory'")
+model <- new("Model", world=world, storage, options="")
+parser <- new("Parser", world, name="nquads", mimeType="text/x-nquads")
+parseFileIntoModel(parser, world, "codemeta.nquads", model)
+```
+
+We now have a `model` object loaded into memory.  We can serialize this into different formats, e.g. rdf+xml:
+
+```{r}
+serializer <- new("Serializer", world, name="rdfxml", mimeType="application/rdf+xml")
+status <- serializeToFile(serializer, world, model, "codemeta.xml")
+```
+
+
+against which we can make SPARQL queries:
+
+
+```{r}
+queryString <- '
+PREFIX schema: <http://schema.org>
+SELECT ?name
+WHERE { 
+  ?a schema:name ?name .
+}'
+query <- new("Query", world, queryString, base_uri=NULL, query_language="sparql", query_uri=NULL)
+queryResult <- executeQuery(query, model)
+result <- getNextResult(queryResult)
+
+result
+```
+
+
+
+
+
+--------
+
+
+```{r}
+xmlrdf <- 
+'<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <rdf:Description rdf:about="http://www.dajobe.org/">
+    <dc:title>Dave Becketts Home Page</dc:title>
+    <rdf:type>Webpage</rdf:type>
+    <dc:creator>Dave Beckett</dc:creator>
+    <dc:address>
+      <dc:state>California</dc:state>
+    </dc:address>
+    <dc:description>The generic home page of Dave Beckett.</dc:description>
+  </rdf:Description> 
+</rdf:RDF>
+'
+writeLines(xmlrdf, "ex.rdf")
+```
+
+```{r}
+#f <- system.file("extdata", "dc.rdf", package="redland")
+#cat(readLines(f), sep="\n")
+f <- "ex.rdf"
+parseFileIntoModel(parser, world, f, model)
+
+```
+
+```{r}
+queryString <- '
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT *
+WHERE { 
+  ?a dc:creator ?creator ;
+     dc:title ?title ;
+     dc:description ?description .
+  FILTER (?title = "Dave Beckett\'s Home Page") .
+
+}'
+query <- new("Query", world, queryString, base_uri=NULL, query_language="sparql", query_uri=NULL)
+queryResult <- executeQuery(query, model)
+result <- getNextResult(queryResult)
+
+result
+```
+
+
+------
+
+# rOpenSci corpus
+
+
+
+```{r}
+#nquads <- jsonld_to_rdf("ropensci.json") 
+#xml <- jsonld_to_rdf("ropensci.json", options = list(format="application/rdf+xml")) 
+#writeLines(nquads, "ropensci.nquads")
+```
+
+```{r}
+world <- new("World")
+storage <- new("Storage", world, "hashes", name="", options="hash-type='memory'")
+model <- new("Model", world, storage, options="")
+# Create the default "rdfxml" parser
+parser <- new("Parser", world)
+parseFileIntoModel(parser, world, "ropensci.rdf", model)
+
+```
+
+
+```{r}
+queryString <- '
+PREFIX schema: <http://schema.org>
+SELECT ?name
+WHERE { 
+  ?a schema:name ?name .
+}'
+query <- new("Query", world, queryString, base_uri=NULL, query_language="sparql", query_uri=NULL)
+queryResult <- executeQuery(query, model)
+result <- getNextResult(queryResult)
+
+result
+```
