@@ -30,4 +30,3 @@ as well as some more advanced applications.
 
 
 
-# References

@@ -1,6 +1,10 @@
 #' write_codemeta
 #'
-#' write out a codemeta.json file for a given package.
+#' write out a codemeta.json file for a given package.  This function
+#' is basically a wrapper around create_codemeta() to both create the
+#' codemeta object and write it out to a JSON-LD-formatted file in one command.
+#' It can also be used simply to write out to JSON-LD any existing object
+#' created with create_codemeta().
 #'
 #' @param pkg package path to package root, or package name, or
 #' description file (character), or a codemeta object (list)

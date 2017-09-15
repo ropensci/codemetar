@@ -2,6 +2,7 @@
 #'
 #' Crosswalk between different metadata fields used by different repositories,
 #' registries and archives. For more details see https://codemeta.github.io/crosswalk
+#' This function requires an internet connection to obtain the latest crosswalk table.
 #'
 #' @param x a JSON list of data fields to be crosswalked
 #' @param from the corresponding column name from the crosswalk table.

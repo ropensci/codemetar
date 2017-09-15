@@ -22,6 +22,7 @@ a `json` object containing a valid codemeta.json file created by crosswalking th
 \description{
 Crosswalk between different metadata fields used by different repositories,
 registries and archives. For more details see https://codemeta.github.io/crosswalk
+This function requires an internet connection to obtain the latest crosswalk table.
 }
 \examples{
 \dontrun{
