@@ -103,7 +103,7 @@ codemeta_validate(github_meta)
 
 
 The above transform showed the process of going from plain JSON data into the codemeta standard serialization.  Similarly, we can crosswalk into any of the other columns in the crosswalk table.  To do so, the `crosswalk` function will first expand any of the recognized properties into the codemeta JSON-LD context, just as above.  Unrecognized properties are dropped, since there is no consensus context into which we can expand them.  Second, the expanded terms are then compacted down into the new context (Zenodo in this case.)  This time,
-any terms that are not part of the codemeta context are kept, but not compacted, since they still have meaningful contexts (that is, full URIs) that can be associated with them:
+any terms that are not part of the codemeta context are kept, but not compacted, since they still have meaningful contexts (that is, full [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)s, e.g. URLs) that can be associated with them:
 
 ```{r}
 crosswalk(repo_info, "GitHub", "Zenodo") %>%
