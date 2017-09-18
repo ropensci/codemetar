@@ -7,7 +7,7 @@
 codemeta_validate(codemeta = "codemeta.json", context = NULL)
 }
 \arguments{
-\item{codemeta}{path/filename to a codmeta.json file}
+\item{codemeta}{path/filename to a codmeta.json file, or json-ld text string}
 
 \item{context}{URL (or path or json string) for the codemeta context.
 Leave as default or use appropriate DOI for the version; see details.}

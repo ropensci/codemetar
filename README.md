@@ -303,7 +303,7 @@ write_codemeta(".")
       "developmentStatus": "active",
       "releaseNotes": "https://github.com/codemeta/codemetar/blob/crosswalk/NEWS.md",
       "readme": "https://github.com/codemeta/codemetar/blob/crosswalk/README.md",
-      "fileSize": "657.886KB"
+      "fileSize": "658.022KB"
     }
 
 Modifying or enriching CodeMeta metadata
