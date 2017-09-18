@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>crosswalk — crosswalk • codemetar</title>
+<title>crosswalk_table — crosswalk_table • codemetar</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -104,53 +104,48 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>crosswalk</h1>
+    <h1>crosswalk_table</h1>
     </div>
 
     
-    <p>Crosswalk between different metadata fields used by different repositories,
-registries and archives. For more details see https://codemeta.github.io/crosswalk
-This function requires an internet connection to obtain the latest crosswalk table.
-This function essentially applies the crosswalk table shown by <code>crosswalk_table</code>
-to a given JSON metadata record.</p>
+    <p>return a subset of the crosswalk table containing codemeta properties and matching column</p>
     
 
-    <pre class="usage"><span class='fu'>crosswalk</span>(<span class='no'>x</span>, <span class='no'>from</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"codemeta"</span>,
-  <span class='kw'>codemeta_context</span> <span class='kw'>=</span> <span class='st'>"https://doi.org/10.5063/schema/codemeta-2.0"</span>)</pre>
+    <pre class="usage"><span class='fu'>crosswalk_table</span>(<span class='no'>from</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>full_crosswalk</span> <span class='kw'>=</span> <span class='st'>"https://github.com/codemeta/codemeta/raw/master/crosswalk.csv"</span>,
+  <span class='kw'>trim</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>a JSON list or file with data fields to be crosswalked</p></td>
-    </tr>
-    <tr>
       <th>from</th>
-      <td><p>the corresponding column name from the crosswalk table.</p></td>
+      <td><p>the name of a column in the crosswalk table to map from.</p></td>
     </tr>
     <tr>
       <th>to</th>
-      <td><p>the column to translate into, assumes "codemeta" by default</p></td>
+      <td><p>the name of one or more columns in the crosswalk table to map into</p></td>
     </tr>
     <tr>
-      <th>codemeta_context</th>
-      <td><p>the address or contents of codemeta context. Leave at default</p></td>
+      <th>full_crosswalk</th>
+      <td><p>Path or URL (requires internet!) of the full crosswalk table.</p></td>
+    </tr>
+    <tr>
+      <th>trim</th>
+      <td><p>drop rows giving properties not found in the 'from' column?</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a `json` object containing a valid codemeta.json file created by crosswalking the input JSON</p>
+    <p>a tibble containing the trimmed crosswalk table, listing property (in CodeMeta),
+and the corresponding terms in both from and to columns.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'>## Crosswalk data returned by the GitHub API into CodeMeta format</span>
-<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>gh</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/gh/topics/gh'>gh</a></span>(<span class='st'>"/repos/:owner/:repo"</span>, <span class='kw'>owner</span> <span class='kw'>=</span> <span class='st'>"ropensci"</span>, <span class='kw'>repo</span> <span class='kw'>=</span> <span class='st'>"EML"</span>)
-<span class='fu'>crosswalk</span>(<span class='no'>r</span>, <span class='st'>"GitHub"</span>)
-<span class='co'># }</span><div class='input'>
-</div></pre>
+<span class='fu'>crosswalk_table</span>(<span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"GitHub"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Zenodo"</span>, <span class='st'>"Figshare"</span>))
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
