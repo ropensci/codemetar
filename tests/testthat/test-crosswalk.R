@@ -31,4 +31,6 @@ testthat::test_that("we can call crosswalk", {
   crosswalk(f, "GitHub", "Zenodo")
 
 
+  crosswalk_table(from = "GitHub", to = c("Zenodo", "Figshare"))
+
 })

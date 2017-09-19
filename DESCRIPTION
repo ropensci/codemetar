@@ -35,9 +35,10 @@ Suggests: testthat,
     magrittr,
     xml2,
     dplyr (>= 0.7.0),
+    tibble,
     purrr,
     printr
 VignetteBuilder: knitr
-keywords: metadata, codemeta, ropensci, citation, credit
-affiliation: https://ropensci.org
-relatedLink: https://codemeta.github.io/codemetar
+X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data
+X-schema.org-affiliation: https://ropensci.org
+X-schema.org-relatedLink: https://codemeta.github.io/codemetar

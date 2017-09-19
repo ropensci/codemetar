@@ -84,7 +84,7 @@
       <h1>Translating between schema using JSON-LD</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2017-09-15</h4>
+            <h4 class="date">2017-09-18</h4>
           </div>
 
     
@@ -479,7 +479,7 @@ github_meta</code></pre></div>
 <div id="transforming-into-other-column-schema" class="section level2">
 <h2 class="hasAnchor">
 <a href="#transforming-into-other-column-schema" class="anchor"></a>Transforming into other column schema</h2>
-<p>The above transform showed the process of going from plain JSON data into the codemeta standard serialization. Similarly, we can crosswalk into any of the other columns in the crosswalk table. To do so, the <code>crosswalk</code> function will first expand any of the recognized properties into the codemeta JSON-LD context, just as above. Unrecognized properties are dropped, since there is no consensus context into which we can expand them. Second, the expanded terms are then compacted down into the new context (Zenodo in this case.) This time, any terms that are not part of the codemeta context are kept, but not compacted, since they still have meaningful contexts (that is, full URIs) that can be associated with them:</p>
+<p>The above transform showed the process of going from plain JSON data into the codemeta standard serialization. Similarly, we can crosswalk into any of the other columns in the crosswalk table. To do so, the <code>crosswalk</code> function will first expand any of the recognized properties into the codemeta JSON-LD context, just as above. Unrecognized properties are dropped, since there is no consensus context into which we can expand them. Second, the expanded terms are then compacted down into the new context (Zenodo in this case.) This time, any terms that are not part of the codemeta context are kept, but not compacted, since they still have meaningful contexts (that is, full <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</a>s, e.g. URLs) that can be associated with them:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(repo_info, <span class="st">"GitHub"</span>, <span class="st">"Zenodo"</span>) <span class="op">%&gt;%</span>
 <span class="kw"><a href="../reference/drop_context.html">drop_context</a></span>()</code></pre></div>
 <pre><code>{

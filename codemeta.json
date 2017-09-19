@@ -151,6 +151,17 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "tibble",
+      "name": "tibble",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
       "provider": {
@@ -258,12 +269,9 @@
     }
   ],
   "codeRepository": "https://github.com/codemeta/codemetar",
-  "affiliation": "https://ropensci.org",
-  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit"],
-  "relatedLink": "https://codemeta.github.io/codemetar",
   "contIntegration": "https://travis-ci.org/codemeta/codemetar",
   "developmentStatus": "active",
-  "releaseNotes": "https://github.com/codemeta/codemetar/blob/crosswalk/NEWS.md",
-  "readme": "https://github.com/codemeta/codemetar/blob/crosswalk/README.md",
-  "fileSize": "658.022KB"
+  "releaseNotes": "https://github.com/codemeta/codemetar/blob/cran-extensions/NEWS.md",
+  "readme": "https://github.com/codemeta/codemetar/blob/cran-extensions/README.md",
+  "fileSize": "657.664KB"
 }

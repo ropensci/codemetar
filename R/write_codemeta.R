@@ -33,7 +33,7 @@ write_codemeta <- function(pkg = ".",
                              getOption("codemeta_force_update", TRUE),
                            ...) {
 
-  if(file.exists(file.path(pkg, "DESCRIPTION"))){
+  if(length(pkg) <= 1 && file.exists(file.path(pkg, "DESCRIPTION"))){
     devtools::use_build_ignore("codemeta.json", pkg = pkg)
   }
   cm <- create_codemeta(pkg = pkg, root = root)

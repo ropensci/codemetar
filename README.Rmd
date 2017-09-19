@@ -53,8 +53,10 @@ write_codemeta("testthat")
 write_codemeta(".")
 ```
 
+Which creates a file looking like so (first 10 lines; see full [codemeta.json here](https://github.com/codemeta/codemetar/blob/master/codemeta.json)):
+
 ```{r echo = FALSE}
-cat(readLines("codemeta.json"), sep="\n")
+cat(readLines("codemeta.json", n = 10), sep="\n")
 ```
 
 ## Modifying or enriching CodeMeta metadata
@@ -71,9 +73,20 @@ which will allow `codemetar` to associate an identifier with the person.  This i
 
 ### Using the DESCRIPTION file
 
-The DESCRIPTION file is the natural place to specify any metadata for an R package.  The `codemetar` package can detect certain additional terms in the [CodeMeta context](https://codemeta.github.io/terms).  Almost any additional codemeta field (see `codemetar:::additional_codemeta_terms` for a list) and can be added to and read from the DESCRIPTION into a `codemeta.json` file.  Where applicable, these will override values otherwise guessed from the source repository.  Use comma-separated lists to separate multiple values to a property, e.g. keywords.  
+The DESCRIPTION file is the natural place to specify any metadata for an R package.  The `codemetar` package can detect certain additional terms in the [CodeMeta context](https://codemeta.github.io/terms).  Almost any additional codemeta field (see `codemetar:::additional_codemeta_terms` for a list) and can be added to and read from the DESCRIPTION into a `codemeta.json` file.  
 
-See the DESCRIPTION file of the `codemetar` package for an example.  
+CRAN requires that you prefix any additional such terms to indicate the use of `schema.org` explicitly, e.g. `keywords` would be specified in a DESCRIPTION file as:
+
+```
+X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data
+```
+
+
+
+
+Where applicable, these will override values otherwise guessed from the source repository.  Use comma-separated lists to separate multiple values to a property, e.g. keywords.  
+
+See the [DESCRIPTION](https://github.com/codemeta/codemetar/blob/master/DESCRIPTION) file of the `codemetar` package for an example.  
 
 
 ```{r include=FALSE}

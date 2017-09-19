@@ -8,7 +8,7 @@ crosswalk(x, from, to = "codemeta",
   codemeta_context = "https://doi.org/10.5063/schema/codemeta-2.0")
 }
 \arguments{
-\item{x}{a JSON list of data fields to be crosswalked}
+\item{x}{a JSON list or file with data fields to be crosswalked}
 
 \item{from}{the corresponding column name from the crosswalk table.}
 
@@ -23,6 +23,8 @@ a `json` object containing a valid codemeta.json file created by crosswalking th
 Crosswalk between different metadata fields used by different repositories,
 registries and archives. For more details see https://codemeta.github.io/crosswalk
 This function requires an internet connection to obtain the latest crosswalk table.
+This function essentially applies the crosswalk table shown by \code{\link{crosswalk_table}}
+to a given JSON metadata record.
 }
 \examples{
 \dontrun{
