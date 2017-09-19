@@ -13,3 +13,4 @@
 ^paper\.md$
 ^data-raw$
 ^ropensci-onboarding\.md$
+^cran-comments\.md$
