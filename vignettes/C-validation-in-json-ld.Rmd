@@ -4,7 +4,7 @@ author: "Carl Boettiger"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Validation in JSON LD}
+  %\VignetteIndexEntry{Validating and consuming in JSON-LD in software development}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -42,7 +42,7 @@ Consider the following codemeta document:
 codemeta <- 
 '
 {
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@context": "https://doi.org/doi:10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "name": "codemetar: Generate CodeMeta Metadata for R Packages",
   "datePublished":" 2017-05-20",
@@ -60,52 +60,6 @@ codemeta <-
 '
 ```
 
-Perhaps our application wants to construct an R `person` object from the author fields of the metadata (e.g. to build up a bibtex citation object).  We might try something like:
-
-```{r }
-meta <- fromJSON(codemeta, simplifyVector = FALSE) # tell fromJSON not to screw with the formatting by simplifying
-lapply(meta$author, 
-                 function(author) 
-                   person(given = author$given, 
-                          family = author$family, 
-                          email = author$email,
-                          role = "aut"))
-
-```
-
-Yay, that works as expected, since our metadata had all the fields we needed.  However, there's other data that is missing in our example that could potentially cause problems for our application.  For instance, our first `author` lists no affiliation, so the following code throws an error:
-
-```{r error=TRUE}
-meta$author[[1]]$affiliation
-```
-
-If we're processing a lot of `codemeta.json` and only one input file is missing the affilation, it could disrupt our whole process.  If `codemeta.json` were perscribed be a JSON schema, we could insist in the schema that `affilation` could not be missing.  But that feels a bit heavy-handed -- many use cases may have no need for `affilation`.  (Of course one we could just leave this problem for each developer to address explicitly with their own error handling logic, but no developer would like that).  
-
-
-## Framing: missing data
-
-
-To solve this issue, we will construct a frame defining what it is we want.  Our frame can set a default value (using the keyword `@default`) for author affiliation to avoid our application throwing such an error.  Here we use the keyword `@null` for JSON `null` type, though we could also give other defaults):
-
-```{r}
-frame <- '{
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
-  "@embed": "@always",
-  "author": {
-    "familyName": {},
-    "affiliation": {"@default": "@null"}
-  }
-}'
-
-meta <- 
-  jsonld_frame(codemeta, frame) %>% 
-  fromJSON(codemeta, simplifyVector = FALSE) %>%   ##  simplify messes with JSON formatting
-  getElement("@graph") %>% getElement(1)            ## a piped version of [["@graph"]][[1]]
-
-meta$author[[1]]$familyName
-meta$author[[1]]$affiliation
-```
-
 ## Framing: subsetting data
 
 By default, frames return all the input data, while our application may only be interested in some subset.  Often it is sufficient just to ignore these additional terms: in the example above it's just as easy for our application to work with author elements whether or not we have dropped other elements such as `meta$version`.  To restrict a frame to returning only the nodes we explicitly mention, we can use the keyword `@explicit`:
@@ -114,7 +68,7 @@ By default, frames return all the input data, while our application may only be 
 
 ```{r}
 frame <- '{
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@context": "https://doi.org/doi:10.5063/schema/codemeta-2.0",
   "@explicit": "true",
   "@type": "Person",
   "givenName": {},
@@ -152,7 +106,7 @@ We can use a frame with the special directive `"@embed": "@always"` to say that 
 
 ```{r}
 frame <- '{
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@context": "https://doi.org/doi:10.5063/schema/codemeta-2.0",
   "@embed": "@always"
 }'
 
@@ -184,7 +138,7 @@ that declares that the `buildInstructions` are included as text, which differs f
 codemeta <- 
 '
 {
-  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@context": "https://doi.org/doi:10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "name": "codemetar: Generate CodeMeta Metadata for R Packages",
   "buildInstructions": { 
@@ -199,12 +153,12 @@ When we perform a framing or compaction operation, `buildInstructions` gets de-r
 
 ```{r}
 meta <-
-  jsonld_frame(codemeta, '{"@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"}') %>% 
+  jsonld_frame(codemeta, '{"@context": "https://doi.org/doi:10.5063/schema/codemeta-2.0"}') %>% 
   fromJSON(codemeta, simplifyVector = FALSE) %>%  
   getElement("@graph") %>% getElement(1)    
 
 ## above is same as compacting:
-#jsonld_compact(codeemta, "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld") %>% 
+#jsonld_compact(codeemta, "https://doi.org/doi:10.5063/schema/codemeta-2.0") %>% 
 #  fromJSON(codemeta, simplifyVector = FALSE)
 
 meta$buildInstructions

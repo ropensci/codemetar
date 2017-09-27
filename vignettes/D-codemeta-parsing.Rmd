@@ -1,15 +1,10 @@
 ---
-title: "Parsing CodeMeta Data"
-output: github_document
----
-
----
 title: "Parsing Codmeta Data"
 author: "Carl Boettiger"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Parsing CodeMeta Data}
+  %\VignetteIndexEntry{Illustrate the kind of information we can discover by parsing collections of codemeta documents programmatically.}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -30,6 +25,7 @@ library(codemetar)
 library(purrr)
 library(dplyr)
 library(printr)
+library(tibble)
 ```
 
 We start with a simple example from the `codemeta.json` file of `codemetar` itself.  First, we'll just generate a copy of the codemeta record for the package:

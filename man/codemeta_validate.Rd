@@ -7,13 +7,15 @@
 codemeta_validate(codemeta = "codemeta.json", context = NULL)
 }
 \arguments{
-\item{codemeta}{path/filename to a codmeta.json file}
+\item{codemeta}{path/filename to a codmeta.json file, or json-ld text string}
 
 \item{context}{URL (or path or json string) for the codemeta context.
 Leave as default or use appropriate DOI for the version; see details.}
 }
 \description{
-Perform basic check of JSON-LD expanding and compacting, verifying that the result
+Checks that a round-trip of expanding and compacting json-ld matches the
+original document.  Incorrect schema terms or types (or spelling errors of properties)
+will cause this round-trip to fail by not fully compacting.
 }
 \details{
 by default, validation will use the original context from the import file.

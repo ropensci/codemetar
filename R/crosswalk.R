@@ -1,6 +1,11 @@
 #' crosswalk
 #'
-#' @param x a JSON list of data fields to be crosswalked
+#' Crosswalk between different metadata fields used by different repositories,
+#' registries and archives. For more details see https://codemeta.github.io/crosswalk
+#' This function requires an internet connection to obtain the latest crosswalk table.
+#' This function essentially applies the crosswalk table shown by \code{\link{crosswalk_table}}
+#' to a given JSON metadata record.
+#' @param x a JSON list or file with data fields to be crosswalked
 #' @param from the corresponding column name from the crosswalk table.
 #' @param to the column to translate into, assumes "codemeta" by default
 #' @param codemeta_context the address or contents of codemeta context. Leave at default
@@ -36,18 +41,33 @@ crosswalk <- function(x,
 
 }
 
-# return a subset of the crosswalk table containing codemeta properties and matching column
+#' crosswalk_table
+#'
+#'  return a subset of the crosswalk table containing codemeta properties and matching column
+#' @param from the name of a column in the crosswalk table to map from.
+#' @param to the name of one or more columns in the crosswalk table to map into
+#' @param full_crosswalk Path or URL (requires internet!) of the full crosswalk table.
+#' @param trim drop rows giving properties not found in the 'from' column?
 #' @importFrom readr read_csv cols
-crosswalk_table <- function(column,
-                            full_crosswalk =
-  "https://github.com/codemeta/codemeta/raw/master/crosswalk.csv"){
+#' @return a tibble containing the trimmed crosswalk table, listing property (in CodeMeta),
+#' and the corresponding terms in both from and to columns.
+#' @examples \dontrun{
+#' crosswalk_table(from = "GitHub", to = c("Zenodo", "Figshare"))
+#' }
+#' @export
+crosswalk_table <- function(from,
+                            to = NULL,
+                          full_crosswalk =
+                            "https://github.com/codemeta/codemeta/raw/master/crosswalk.csv",
+                          trim = TRUE){
   df <-
     readr::read_csv(full_crosswalk,
-             col_types = cols(.default = "c"))
-  df <- df[c("Property", column)]
-  stats::na.omit(df)
-  ## df[!is.na(df[[column]]),] ## stats::na.omit
+                    col_types = cols(.default = "c"))
+  df <- df[c("Property", from, to)]
+  if(trim) df <- df[!is.na(df[,from]),] # trim to `from` argument fields
+  df
 }
+
 
 ## Use a crosswalk table subset to create a context file for the input data
 ## This is a JSON-LD representation of the crosswalk for the desired data.
@@ -119,10 +139,12 @@ drop_context <-function(x, json_output = FALSE){
 #' add_context
 #'
 #' add context element to json list or json string
+#'
 #' @param x a JSON list (from read_json / fromJSON) or json object (from toJSON)
 #' @param context context to be added, in same format as x
 #' @param json_output logical, should output be a json object or a list?
 #' @return a list or json object with "@context" element added
+#' @export
 add_context <- function(x, context, json_output = FALSE){
   if(is(x, "json") || is.character(x)){
     x <- fromJSON(x)

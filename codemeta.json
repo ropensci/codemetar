@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "codemetar",
-  "description": "Codemeta defines a 'JSON-LD' format for describing software metadata.\n    This package provides utilities to generate, parse, and modify codemeta.jsonld\n    files automatically for R packages.",
+  "description": "The 'Codemeta' Project defines a 'JSON-LD' format for describing\n  software metadata, as detailed at <https://codemeta.github.io>. This package\n  provides utilities to generate, parse, and modify 'codemeta.jsonld' files \n  automatically for R packages, as well as tools and examples for working with\n  'codemeta' 'JSON-LD' more generally.",
   "name": "codemetar: Generate CodeMeta Metadata for R Packages",
   "issueTracker": "https://github.com/codemeta/codemetar/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -13,10 +13,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.4.0",
+    "version": "3.4.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.4.0 (2017-04-21)",
+  "runtimePlatform": "R version 3.4.1 (2017-06-30)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -151,6 +151,17 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "tibble",
+      "name": "tibble",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
       "provider": {
@@ -258,12 +269,9 @@
     }
   ],
   "codeRepository": "https://github.com/codemeta/codemetar",
-  "affiliation": "https://ropensci.org",
-  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit"],
-  "relatedLink": "https://codemeta.github.io/codemetar",
   "contIntegration": "https://travis-ci.org/codemeta/codemetar",
   "developmentStatus": "active",
-  "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/NEWS.md",
-  "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
-  "fileSize": "337.96KB"
+  "releaseNotes": "https://github.com/codemeta/codemetar/blob/cran-extensions/NEWS.md",
+  "readme": "https://github.com/codemeta/codemetar/blob/cran-extensions/README.md",
+  "fileSize": "657.664KB"
 }

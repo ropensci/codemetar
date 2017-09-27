@@ -2,10 +2,15 @@ Package: codemetar
 Type: Package
 Title: Generate CodeMeta Metadata for R Packages
 Version: 0.1.0
-Authors@R: person("Carl", "Boettiger", role=c("aut", "cre", "cph"), email="cboettig@gmail.com", comment="http://orcid.org/0000-0002-1642-628X")
-Description: Codemeta defines a 'JSON-LD' format for describing software metadata.
-    This package provides utilities to generate, parse, and modify codemeta.jsonld
-    files automatically for R packages.
+Authors@R: person("Carl", "Boettiger", 
+                  role=c("aut", "cre", "cph"), 
+                  email="cboettig@gmail.com", 
+                  comment="http://orcid.org/0000-0002-1642-628X")
+Description: The 'Codemeta' Project defines a 'JSON-LD' format for describing
+  software metadata, as detailed at <https://codemeta.github.io>. This package
+  provides utilities to generate, parse, and modify 'codemeta.jsonld' files 
+  automatically for R packages, as well as tools and examples for working with
+  'codemeta' 'JSON-LD' more generally.
 License: MIT + file LICENSE
 URL: https://github.com/codemeta/codemetar
 BugReports: https://github.com/codemeta/codemetar/issues
@@ -30,9 +35,10 @@ Suggests: testthat,
     magrittr,
     xml2,
     dplyr (>= 0.7.0),
+    tibble,
     purrr,
     printr
 VignetteBuilder: knitr
-keywords: metadata, codemeta, ropensci, citation, credit
-affiliation: https://ropensci.org
-relatedLink: https://codemeta.github.io/codemetar
+X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data
+X-schema.org-affiliation: https://ropensci.org
+X-schema.org-relatedLink: https://codemeta.github.io/codemetar

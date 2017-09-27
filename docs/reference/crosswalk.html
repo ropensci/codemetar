@@ -68,16 +68,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/codemeta-intro.html">Codemeta intro</a>
+      <a href="../articles/A-codemeta-intro.html">Codemeta intro</a>
     </li>
     <li>
-      <a href="../articles/codemeta-parsing.html">Parsing CodeMeta Data</a>
+      <a href="../articles/B-translating.html">Translating between schema using JSON-LD</a>
     </li>
     <li>
-      <a href="../articles/translating.html">Translating between schema using JSON-LD</a>
+      <a href="../articles/C-validation-in-json-ld.html">Validation in JSON-LD</a>
     </li>
     <li>
-      <a href="../articles/validation-in-json-ld.html">Validation in JSON-LD</a>
+      <a href="../articles/D-codemeta-parsing.html">Parsing Codmeta Data</a>
     </li>
   </ul>
 </li>
@@ -108,7 +108,11 @@
     </div>
 
     
-    <p>crosswalk</p>
+    <p>Crosswalk between different metadata fields used by different repositories,
+registries and archives. For more details see https://codemeta.github.io/crosswalk
+This function requires an internet connection to obtain the latest crosswalk table.
+This function essentially applies the crosswalk table shown by <code>crosswalk_table</code>
+to a given JSON metadata record.</p>
     
 
     <pre class="usage"><span class='fu'>crosswalk</span>(<span class='no'>x</span>, <span class='no'>from</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"codemeta"</span>,
@@ -119,7 +123,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a JSON list of data fields to be crosswalked</p></td>
+      <td><p>a JSON list or file with data fields to be crosswalked</p></td>
     </tr>
     <tr>
       <th>from</th>

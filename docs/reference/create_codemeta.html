@@ -68,16 +68,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/codemeta-intro.html">Codemeta intro</a>
+      <a href="../articles/A-codemeta-intro.html">Codemeta intro</a>
     </li>
     <li>
-      <a href="../articles/codemeta-parsing.html">Parsing CodeMeta Data</a>
+      <a href="../articles/B-translating.html">Translating between schema using JSON-LD</a>
     </li>
     <li>
-      <a href="../articles/translating.html">Translating between schema using JSON-LD</a>
+      <a href="../articles/C-validation-in-json-ld.html">Validation in JSON-LD</a>
     </li>
     <li>
-      <a href="../articles/validation-in-json-ld.html">Validation in JSON-LD</a>
+      <a href="../articles/D-codemeta-parsing.html">Parsing Codmeta Data</a>
     </li>
   </ul>
 </li>
@@ -108,7 +108,9 @@
     </div>
 
     
-    <p>create a codemeta list object in R for further manipulation</p>
+    <p>create a codemeta list object in R for further manipulation. Similar
+to <code><a href='write_codemeta.html'>write_codemeta</a></code>, but returns an R list object rather
+than writing directly to a file.  See examples.</p>
     
 
     <pre class="usage"><span class='fu'>create_codemeta</span>(<span class='kw'>pkg</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>root</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -149,7 +151,7 @@ to package root. Default guess is current dir.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>cm</span> <span class='kw'>&lt;-</span> <span class='fu'>create_codemeta</span>(<span class='st'>"jsonlite"</span>)
 <span class='no'>cm</span>$<span class='no'>keywords</span> <span class='kw'>&lt;-</span> <span class='fu'>list</span>(<span class='st'>"metadata"</span>, <span class='st'>"ropensci"</span>)
-<span class='fu'><a href='write_codemeta.html'>write_codemeta</a></span>(<span class='no'>cm</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: the condition has length &gt; 1 and only the first element will be used</span></div></pre>
+<span class='fu'><a href='write_codemeta.html'>write_codemeta</a></span>(<span class='no'>cm</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

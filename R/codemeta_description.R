@@ -1,3 +1,5 @@
+## Internal functions
+
 
 ## this appears not to be portable to devtools::check?
 #options(codemeta_context =
@@ -84,9 +86,11 @@ codemeta_description <-
 
     ## add any additional codemeta terms found in the DESCRIPTION metadata
     for(term in additional_codemeta_terms){
-      if(!is.null(descr[[term]])){
+      ## in DESCRIPTION, these terms must be *prefixed*:
+      X_term <- paste("X-schema.org-", term)
+      if(!is.null(descr[[X_term]])){
         codemeta[[term]] <- gsub("\\s+", "",
-                                 strsplit(descr[[term]], ",")[[1]])
+                                 strsplit(descr[[X_term]], ",")[[1]])
       }
     }
 

@@ -45,16 +45,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/codemeta-intro.html">Codemeta intro</a>
+      <a href="articles/A-codemeta-intro.html">Codemeta intro</a>
     </li>
     <li>
-      <a href="articles/codemeta-parsing.html">Parsing CodeMeta Data</a>
+      <a href="articles/B-translating.html">Translating between schema using JSON-LD</a>
     </li>
     <li>
-      <a href="articles/translating.html">Translating between schema using JSON-LD</a>
+      <a href="articles/C-validation-in-json-ld.html">Validation in JSON-LD</a>
     </li>
     <li>
-      <a href="articles/validation-in-json-ld.html">Validation in JSON-LD</a>
+      <a href="articles/D-codemeta-parsing.html">Parsing Codmeta Data</a>
     </li>
   </ul>
 </li>
@@ -96,7 +96,7 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install codemetar from github with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools::<span class="kw">install_github</span>(<span class="st">"codemeta/codemetar"</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"codemeta/codemetar"</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"codemetar"</span>)</code></pre></div>
 </div>
 <div id="example" class="section level2">
@@ -106,6 +106,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">"codemeta/code
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/write_codemeta.html">write_codemeta</a></span>(<span class="st">"testthat"</span>)</code></pre></div>
 <p><code>codemetar</code> can take the path to the package root instead. This may allow <code>codemetar</code> to glean some additional information that is not available from the description file alone.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/write_codemeta.html">write_codemeta</a></span>(<span class="st">"."</span>)</code></pre></div>
+<p>Which creates a file looking like so (first 10 lines; see full <a href="https://github.com/codemeta/codemetar/blob/master/codemeta.json">codemeta.json here</a>):</p>
 <pre><code>{
   "@context": [
     "https://doi.org/doi:10.5063/schema/codemeta-2.0",
@@ -115,147 +116,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">"codemeta/code
   "identifier": "testthat",
   "description": "A unit testing system designed to be fun, flexible and easy to\n    set up.",
   "name": "testthat: Unit Testing for R",
-  "issueTracker": "https://github.com/hadley/testthat/issues",
-  "datePublished": "2016-04-23 08:37:40",
-  "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.2",
-  "programmingLanguage": {
-    "@type": "ComputerLanguage",
-    "name": "R",
-    "version": "3.4.0",
-    "url": "https://r-project.org"
-  },
-  "runtimePlatform": "R version 3.4.0 (2017-04-21)",
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Central R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  },
-  "author": [
-    {
-      "@type": "Person",
-      "givenName": "Hadley",
-      "familyName": "Wickham",
-      "email": "hadley@rstudio.com"
-    }
-  ],
-  "copyrightHolder": [
-    {
-      "@type": "Organization",
-      "name": "RStudio"
-    }
-  ],
-  "maintainer": {
-    "@type": "Person",
-    "givenName": "Hadley",
-    "familyName": "Wickham",
-    "email": "hadley@rstudio.com"
-  },
-  "softwareSuggestions": [
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "devtools",
-      "name": "devtools",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "withr",
-      "name": "withr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "covr",
-      "name": "covr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      }
-    }
-  ],
-  "softwareRequirements": [
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "digest",
-      "name": "digest",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "crayon",
-      "name": "crayon",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "praise",
-      "name": "praise",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "magrittr",
-      "name": "magrittr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "R6",
-      "name": "R6",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "methods",
-      "name": "methods"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "R",
-      "name": "R",
-      "version": "3.1.0"
-    }
-  ]
-}</code></pre>
+  "issueTracker": "https://github.com/hadley/testthat/issues",</code></pre>
 </div>
 <div id="modifying-or-enriching-codemeta-metadata" class="section level2">
 <h2 class="hasAnchor">
@@ -267,8 +128,11 @@ devtools::<span class="kw">install_github</span>(<span class="st">"codemeta/code
 <div id="using-the-description-file" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-the-description-file" class="anchor"></a>Using the DESCRIPTION file</h3>
-<p>The DESCRIPTION file is the natural place to specify any metadata for an R package. The <code>codemetar</code> package can detect certain additional terms in the <a href="https://codemeta.github.io/terms">CodeMeta context</a>. Almost any additional codemeta field (see <code>codemetar:::additional_codemeta_terms</code> for a list) and can be added to and read from the DESCRIPTION into a <code>codemeta.json</code> file. Where applicable, these will override values otherwise guessed from the source repository. Use comma-separated lists to separate multiple values to a property, e.g. keywords.</p>
-<p>See the DESCRIPTION file of the <code>codemetar</code> package for an example.</p>
+<p>The DESCRIPTION file is the natural place to specify any metadata for an R package. The <code>codemetar</code> package can detect certain additional terms in the <a href="https://codemeta.github.io/terms">CodeMeta context</a>. Almost any additional codemeta field (see <code>codemetar:::additional_codemeta_terms</code> for a list) and can be added to and read from the DESCRIPTION into a <code>codemeta.json</code> file.</p>
+<p>CRAN requires that you prefix any additional such terms to indicate the use of <code>schema.org</code> explicitly, e.g. <code>keywords</code> would be specified in a DESCRIPTION file as:</p>
+<pre><code>X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data</code></pre>
+<p>Where applicable, these will override values otherwise guessed from the source repository. Use comma-separated lists to separate multiple values to a property, e.g. keywords.</p>
+<p>See the <a href="https://github.com/codemeta/codemetar/blob/master/DESCRIPTION">DESCRIPTION</a> file of the <code>codemetar</code> package for an example.</p>
 </div>
 </div>
 <div id="going-further" class="section level2">
@@ -303,7 +167,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">"codemeta/code
 <li><a href="https://ci.appveyor.com/project/cboettig/codemetar"><img src="https://ci.appveyor.com/api/projects/status/github/codemeta/codemetar?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
 <li><a href="https://codecov.io/github/codemeta/codemetar?branch=master"><img src="https://img.shields.io/codecov/c/github/codemeta/codemetar/master.svg" alt="Coverage Status"></a></li>
 <li><a href="https://cran.r-project.org/package=codemetar"><img src="http://www.r-pkg.org/badges/version/codemetar" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://github.com/ropensci/onboarding/issues/130"><img src="https://ropensci.org/badges/130_status.svg"></a></li>
+<li><a href="https://github.com/ropensci/onboarding/issues/130"><img src="http://badges.ropensci.org/130_status.svg"></a></li>
 </ul>
 </div>
 

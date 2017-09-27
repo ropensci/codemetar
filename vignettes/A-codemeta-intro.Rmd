@@ -1,0 +1,136 @@
+---
+title: "Codemeta intro"
+author: "Carl Boettiger"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{An introduction to the CodeMeta Project and codemetar package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r include=FALSE}
+knitr::opts_chunk$set(comment="")
+```
+
+
+
+# codemetar: generate codemeta metadata for R packages
+
+
+The 'Codemeta' Project defines a 'JSON-LD' format for describing software metadata,
+as detailed at <https://codemeta.github.io>.
+This package provides utilities to generate, parse, and modify codemeta.jsonld
+files automatically for R packages, as well as tools and examples for working
+with codemeta json-ld more generally.
+
+It has three main goals:
+
+- Quickly generate a valid codemeta.json file from any valid R package
+  To do so, we automatically extract as much metadata as possible using
+  the DESCRIPTION file, as well as extracting metadata from other common
+  best-practices such as the presence of Travis and other badges in README, etc.
+- Facilitate the addition of further metadata fields into a codemeta.json
+  file, as well as general manipulation of codemeta files.
+- Support the ability to crosswalk between terms used in other metadata standards,
+  as identified by the Codemeta Project Community, see <https://codemeta.github.io/crosswalk>
+
+
+For more general information about the CodeMeta Project for defining software metadata, see <https://codemeta.github.io>.  In particular, new users might want to start with the [User Guide](https://codemeta.github.io/user-guide/), while those looking to learn more about JSON-LD and consuming existing codemeta files should see the [Developer Guide](https://codemeta.github.io/developer-guide/).   
+
+
+# A brief intro to common terms we'll use:
+
+
+- [Linked data](https://en.wikipedia.org/wiki/Linked_data): We often use different words to mean the same thing. And sometimes the same word to mean different things.  Linked data seeks to address this issue by using [URIs](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) (i.e. URLs) to make this explcit.
+
+- context: No one likes typing out long URLs all the time.  So instead, the *context* of a JSON-LD file (`"@context"` element) gives us the context for the terms we use, that is, the root URL.  Usually schema.org but domain specific ones also (eg codemeta)
+
+Briefly explain the difference between the data types (ie json, codemeta json-ld, codemeta r list) so that users can be cognisant of them when using package.
+
+Describe how project is the convergence of a number of initiatives:
+
+- [Schema.org](http://schema.org): A major initiative led by Google and other search engines to define a simple and widely used context to link data on the web through a catalogue of standard metadata fields
+
+- [The CodeMeta Project](http://codemeta.github.io): an academic led community initiative to formalise the metadata fields included in typical software metadata records and introduce important fields that did not have clear equivalents. The codemeta [crosswalk](https://codemeta.github.io/crosswalk) provides an explicit map between the metadata fields used by a broad range of software repositories, registries and archives
+
+- [JSON-LD](https://json-ld.org): While 'linked data' can be represented in many different formats, these have consistently proven a bit tricky to use, either for consumers or developers or both.  JSON-LD provides a simple adaptation of the JSON format, which has proven much more popular with both audiences, that allows it to express (most) linked-data concepts.  It is now the format of choice for expressing linked data by Google and many others.  Any JSON-LD file is valid JSON, and any JSON file can be treated as JSON-LD.  
+
+- [codemetar](https://codemeta.github.io/codemetar): The CodeMeta Project has created tools in several languages to impelement the CodeMeta Crosswalk (using JSON-LD) and help extract software metadata into `codemeta.json` records.  `codemetar` is one such tool, focused on R and R packages.
+
+
+## Installation
+
+You can install codemetar from github with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("codemeta/codemetar")
+```
+
+```{r}
+library("codemetar")
+```
+
+## Example
+
+This is a basic example which shows you how to generate a `codemeta.json` for an R package (e.g. for `testthat`):
+
+```{r example}
+write_codemeta("testthat")
+```
+
+`codemetar` can take the path to the package root instead.  This may allow `codemetar` to glean some additional information that is not available from the description file alone.  
+
+```{r}
+write_codemeta(".")
+```
+
+```{r echo = FALSE}
+cat(readLines("codemeta.json"), sep="\n")
+```
+
+## Modifying or enriching CodeMeta metadata
+
+The best way to ensure `codemeta.json` is as complete as possible is to begin by making full use of the fields that can be set in an R package DESCRIPTION file, such as `BugReports` and `URL`.  Using the `Authors@R` notation allows a much richer specification of author roles, correct parsing of given vs family names, and email addresses. 
+
+In the current implementation, developers may specify an ORCID url for an author in the optional `comment` field of `Authors@R`, e.g.
+
+```
+Authors@R: person("Carl", "Boettiger", role=c("aut", "cre", "cph"), email="cboettig@gmail.com", comment="http://orcid.org/0000-0002-1642-628X")
+```
+
+which will allow `codemetar` to associate an identifier with the person.  This is clearly something of a hack since R's `person` object lacks an explicit notion of `id`, and may be frowned upon.  
+
+
+
+
+
+
+### Using the DESCRIPTION file
+
+The DESCRIPTION file is the natural place to specify any metadata for an R package.  The `codemetar` package can detect certain additional terms in the [CodeMeta context](https://codemeta.github.io/terms).  Almost any additional codemeta field (see `codemetar:::additional_codemeta_terms` for a list) and can be added to and read from the DESCRIPTION into a `codemeta.json` file.  
+
+CRAN requires that you prefix any additional such terms to indicate the use of `schema.org` explicitly, e.g. `keywords` would be specified in a DESCRIPTION file as:
+
+```
+X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data
+```
+
+
+
+
+Where applicable, these will override values otherwise guessed from the source repository.  Use comma-separated lists to separate multiple values to a property, e.g. keywords.  
+
+See the [DESCRIPTION](https://github.com/codemeta/codemetar/blob/master/DESCRIPTION) file of the `codemetar` package for an example.  
+
+```{r include=FALSE}
+#unlink("codemeta.json")
+```
+
+
+## Going further
+
+Check out all the [codemetar vignettes](https://codemeta.github.io/codemetar/articles/index.html) for tutorials on other cool stuff you can do with codemeta and json-ld.  
+
