@@ -40,5 +40,5 @@ Suggests: testthat,
     printr
 VignetteBuilder: knitr
 X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data
-X-schema.org-affiliation: https://ropensci.org
+X-schema.org-isPartOf: https://ropensci.org
 X-schema.org-relatedLink: https://codemeta.github.io/codemetar
