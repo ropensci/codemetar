@@ -114,6 +114,7 @@ additional_codemeta_terms <-
     "identifier",
     "installUrl",
     "isAccessibleForFree",
+    "isPartOf",
     "keywords",
     "memoryRequirements",
     "operatingSystem",
