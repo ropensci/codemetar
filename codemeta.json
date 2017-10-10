@@ -267,8 +267,9 @@
   "developmentStatus": "active",
   "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/NEWS.md",
   "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
-  "fileSize": "657.336KB",
+  "fileSize": "657.343KB",
   "affiliation": "https://ropensci.org",
   "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data"],
-  "relatedLink": "https://codemeta.github.io/codemetar"
+  "relatedLink": "https://codemeta.github.io/codemetar",
+  "isPartOf": "https://ropensci.org"
 }
