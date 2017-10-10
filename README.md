@@ -58,7 +58,7 @@ In the current implementation, developers may specify an ORCID url for an author
 
     Authors@R: person("Carl", "Boettiger", role=c("aut", "cre", "cph"), email="cboettig@gmail.com", comment="http://orcid.org/0000-0002-1642-628X")
 
-which will allow `codemetar` to associate an identifier with the person. This is clearly something of a hack since R's `person` object lacks an explicit notion of `id`, and may be frowned upon.
+which will allow `codemetar` to associate an identifier with the person. If the package is hosted on CRAN, including the ORCiD in this way will cause an ORCiD logo and link to the ORCiD page to be added to the package CRAN webpage.
 
 ### Using the DESCRIPTION file
 
