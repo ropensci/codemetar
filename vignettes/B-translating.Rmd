@@ -111,8 +111,8 @@ drop_context()
 ```
 
 Thus terms that still have a uncompacted prefix like `schema:` or `codemeta:` reflect properties that we could successfully extract from the input data, but do not have corresponding properties in the Zenodo context.  This is the standard behavior of the 
-compaction algorithm: unrecognized fields are not dropped, but it is also not compacted,
-making it accessible only if referenced explicitly.  
+compaction algorithm: unrecognized fields are not dropped, but are also not compacted,
+making them accessible only if referenced explicitly.  
 
 
 ## NodeJS example
@@ -134,7 +134,7 @@ Note that while nested structures per se pose no special problem, the compaction
 in `codemeta` (i.e. in schema.org), a `codeRepository` is expected to be a URL, while NodeJS `package.json` permits it to be another object node with sub-properties `type` and `url`.  There is no way in JSON-LD transforms or context definitions to indicate that the `url` sub-property in the NodeJS case, e.g. `codeRepository.url` maps to schema's `codeRepository`. 
 (This same limitation is also true of the 2-dimensional table structure of the crosswalk itself, though it is important to keep in mind that this 1:1 mapping requirement is not unique to the the `.csv` representation but also inherent in JSON-LD contexts.)  
 
-Consequently, a thorough translation between formats that do not provide there own JSON-LD contexts will ultimately requires more manual implementation, which would be expressed within a particular programming language (e.g. R) rather than in the generic algorithms of JSON-LD available in many common programming languages.  
+Consequently, a thorough translation between formats that do not provide there own JSON-LD contexts will ultimately require more manual implementation, which would be expressed within a particular programming language (e.g. R) rather than in the generic algorithms of JSON-LD available in many common programming languages.  
 
 
 

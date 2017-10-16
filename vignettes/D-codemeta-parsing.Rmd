@@ -34,7 +34,7 @@ We start with a simple example from the `codemeta.json` file of `codemetar` itse
 write_codemeta("codemetar", "codemeta.json")
 ```
 
-We then digest thus input using a JSON-LD "frame." While not strictly necessary, this helps ensure the data matches the format we expect, even if the original file had errors or missing data.  See the vignette "Validating in JSON-LD" in this package and the official [JSON-LD docs](https://json-ld.org/spec/latest/json-ld-framing/) for details).  The `codemetar` package includes a reasonably explicit frame to get us started:
+We then digest this input using a JSON-LD "frame." While not strictly necessary, this helps ensure the data matches the format we expect, even if the original file had errors or missing data.  See the vignette "Validating in JSON-LD" in this package and the official [JSON-LD docs](https://json-ld.org/spec/latest/json-ld-framing/) for details).  The `codemetar` package includes a reasonably explicit frame to get us started:
 
 ```{r}
 frame <- system.file("schema/frame_schema.json", package="codemetar")
