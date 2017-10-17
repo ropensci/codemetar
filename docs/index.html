@@ -124,7 +124,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <p>The best way to ensure <code>codemeta.json</code> is as complete as possible is to begin by making full use of the fields that can be set in an R package DESCRIPTION file, such as <code>BugReports</code> and <code>URL</code>. Using the <code>Authors@R</code> notation allows a much richer specification of author roles, correct parsing of given vs family names, and email addresses.</p>
 <p>In the current implementation, developers may specify an ORCID url for an author in the optional <code>comment</code> field of <code>Authors@R</code>, e.g.</p>
 <pre><code>Authors@R: person("Carl", "Boettiger", role=c("aut", "cre", "cph"), email="cboettig@gmail.com", comment="http://orcid.org/0000-0002-1642-628X")</code></pre>
-<p>which will allow <code>codemetar</code> to associate an identifier with the person. This is clearly something of a hack since R’s <code>person</code> object lacks an explicit notion of <code>id</code>, and may be frowned upon.</p>
+<p>which will allow <code>codemetar</code> to associate an identifier with the person. If the package is hosted on CRAN, including the ORCiD in this way will cause an ORCiD logo and link to the ORCiD page to be added to the package CRAN webpage.</p>
 <div id="using-the-description-file" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-the-description-file" class="anchor"></a>Using the DESCRIPTION file</h3>
@@ -139,6 +139,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h2 class="hasAnchor">
 <a href="#going-further" class="anchor"></a>Going further</h2>
 <p>Check out all the <a href="https://codemeta.github.io/codemetar/articles/index.html">codemetar vignettes</a> for tutorials on other cool stuff you can do with codemeta and json-ld.</p>
+<p><a href="https://ropensci.org"><img src="https://ropensci.org/public_images/ropensci_footer.png" alt="ropensci_footer"></a></p>
 </div>
 </div>
 </div>

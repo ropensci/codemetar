@@ -84,7 +84,7 @@
       <h1>Parsing Codmeta Data</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2017-09-18</h4>
+            <h4 class="date">2017-10-17</h4>
           </div>
 
     
@@ -101,7 +101,7 @@
 <span class="kw">library</span>(tibble)</code></pre></div>
 <p>We start with a simple example from the <code>codemeta.json</code> file of <code>codemetar</code> itself. First, we’ll just generate a copy of the codemeta record for the package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/write_codemeta.html">write_codemeta</a></span>(<span class="st">"codemetar"</span>, <span class="st">"codemeta.json"</span>)</code></pre></div>
-<p>We then digest thus input using a JSON-LD “frame.” While not strictly necessary, this helps ensure the data matches the format we expect, even if the original file had errors or missing data. See the vignette “Validating in JSON-LD” in this package and the official <a href="https://json-ld.org/spec/latest/json-ld-framing/">JSON-LD docs</a> for details). The <code>codemetar</code> package includes a reasonably explicit frame to get us started:</p>
+<p>We then digest this input using a JSON-LD “frame.” While not strictly necessary, this helps ensure the data matches the format we expect, even if the original file had errors or missing data. See the vignette “Validating in JSON-LD” in this package and the official <a href="https://json-ld.org/spec/latest/json-ld-framing/">JSON-LD docs</a> for details). The <code>codemetar</code> package includes a reasonably explicit frame to get us started:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">frame &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"schema/frame_schema.json"</span>, <span class="dt">package=</span><span class="st">"codemetar"</span>)
 
 meta &lt;-<span class="st"> </span>

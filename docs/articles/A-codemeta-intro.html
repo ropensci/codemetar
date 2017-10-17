@@ -84,7 +84,7 @@
       <h1>Codemeta intro</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2017-09-18</h4>
+            <h4 class="date">2017-10-17</h4>
           </div>
 
     
@@ -149,10 +149,10 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.4.1",
+    "version": "3.4.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.4.1 (2017-06-30)",
+  "runtimePlatform": "R version 3.4.2 (2017-09-28)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -294,7 +294,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div id="using-the-description-file" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-the-description-file" class="anchor"></a>Using the DESCRIPTION file</h3>
-<p>The DESCRIPTION file is the natural place to specify any metadata for an R package. The <code>codemetar</code> package can detect certain additional terms in the <a href="https://codemeta.github.io/terms">CodeMeta context</a>. Almost any additional codemeta field (see <code>codemetar:::additional_codemeta_terms</code> for a list) and can be added to and read from the DESCRIPTION into a <code>codemeta.json</code> file.</p>
+<p>The DESCRIPTION file is the natural place to specify any metadata for an R package. The <code>codemetar</code> package can detect certain additional terms in the <a href="https://codemeta.github.io/terms">CodeMeta context</a>. Almost any additional codemeta field can be added to and read from the DESCRIPTION into a <code>codemeta.json</code> file (see <code>codemetar:::additional_codemeta_terms</code> for a list).</p>
 <p>CRAN requires that you prefix any additional such terms to indicate the use of <code>schema.org</code> explicitly, e.g. <code>keywords</code> would be specified in a DESCRIPTION file as:</p>
 <pre><code>X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data</code></pre>
 <p>Where applicable, these will override values otherwise guessed from the source repository. Use comma-separated lists to separate multiple values to a property, e.g. keywords.</p>

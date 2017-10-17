@@ -84,7 +84,7 @@
       <h1>Translating between schema using JSON-LD</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2017-09-18</h4>
+            <h4 class="date">2017-10-17</h4>
           </div>
 
     
@@ -503,7 +503,7 @@ github_meta</code></pre></div>
     "@id": "https://api.github.com/repos/ropensci/EML/issues{/number}"
   }
 } </code></pre>
-<p>Thus terms that still have a uncompacted prefix like <code>schema:</code> or <code>codemeta:</code> reflect properties that we could successfully extract from the input data, but do not have corresponding properties in the Zenodo context. This is the standard behavior of the compaction algorithm: unrecognized fields are not dropped, but it is also not compacted, making it accessible only if referenced explicitly.</p>
+<p>Thus terms that still have a uncompacted prefix like <code>schema:</code> or <code>codemeta:</code> reflect properties that we could successfully extract from the input data, but do not have corresponding properties in the Zenodo context. This is the standard behavior of the compaction algorithm: unrecognized fields are not dropped, but are also not compacted, making them accessible only if referenced explicitly.</p>
 </div>
 <div id="nodejs-example" class="section level2">
 <h2 class="hasAnchor">
@@ -584,7 +584,7 @@ $license
   "version": "0.2.0"
 } </code></pre>
 <p>Note that while nested structures per se pose no special problem, the compaction/expansion paradigm lacks a mechanism to capture differences in nesting between schema. For instance, in <code>codemeta</code> (i.e. in schema.org), a <code>codeRepository</code> is expected to be a URL, while NodeJS <code>package.json</code> permits it to be another object node with sub-properties <code>type</code> and <code>url</code>. There is no way in JSON-LD transforms or context definitions to indicate that the <code>url</code> sub-property in the NodeJS case, e.g. <code>codeRepository.url</code> maps to schema’s <code>codeRepository</code>. (This same limitation is also true of the 2-dimensional table structure of the crosswalk itself, though it is important to keep in mind that this 1:1 mapping requirement is not unique to the the <code>.csv</code> representation but also inherent in JSON-LD contexts.)</p>
-<p>Consequently, a thorough translation between formats that do not provide there own JSON-LD contexts will ultimately requires more manual implementation, which would be expressed within a particular programming language (e.g. R) rather than in the generic algorithms of JSON-LD available in many common programming languages.</p>
+<p>Consequently, a thorough translation between formats that do not provide there own JSON-LD contexts will ultimately require more manual implementation, which would be expressed within a particular programming language (e.g. R) rather than in the generic algorithms of JSON-LD available in many common programming languages.</p>
 </div>
 </div>
   </div>

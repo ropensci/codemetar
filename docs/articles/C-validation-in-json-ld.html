@@ -84,7 +84,7 @@
       <h1>Validation in JSON-LD</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2017-09-18</h4>
+            <h4 class="date">2017-10-17</h4>
           </div>
 
     
@@ -93,9 +93,9 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>Schema validation is a useful and important concept to the distribution of metadata in formats such as XML and JSON, in which the standard-provider creates a schema (specified in an XML-schema, XSD, for XML documents, or <a href="http://json-schema.org/">json-schema</a> for JSON documents). Schemas allow us to go beyond the basic notation of making sure a file is simply valid XML or valid JSON, a requriement just to be read in by any parser. By detailing how the metadata must be structured, what elements must, can, and may not be included, and what data types may be used for those elements, schema help developers consuming the data to anticipate these details and thus build applications which know how to process them. For the data creator, validation is a convenient way to catch data input errors and ensure a consistent data structure.</p>
+<p>Schema validation is a useful and important concept to the distribution of metadata in formats such as XML and JSON, in which the standard-provider creates a schema (specified in an XML-schema, XSD, for XML documents, or <a href="http://json-schema.org/">json-schema</a> for JSON documents). Schemas allow us to go beyond the basic notation of making sure a file is simply valid XML or valid JSON, a requirement just to be read in by any parser. By detailing how the metadata must be structured, what elements must, can, and may not be included, and what data types may be used for those elements, schema help developers consuming the data to anticipate these details and thus build applications which know how to process them. For the data creator, validation is a convenient way to catch data input errors and ensure a consistent data structure.</p>
 <p>Because schema validation must ensure predictable behavior without knowledge of what any specific application is going to do with the data, it tends to be very strict. A simple application may not care if certain fields are missing or if integers are mistaken for characters, while to another application these differences could lead it to throw fatal errors.</p>
-<p>The approach of JSON-LD is less perscriptive. JSON-LD uses the notion of “framing” to let each application specify how it expects it data to be structured. JSON frames allow each developer consuming the data to handle many of the same issues that schema validation have previously assured. Readers should consult the <a href="https://json-ld.org/spec/latest/json-ld-framing/">official json-ld framing</a> documentation for details on this approach.</p>
+<p>The approach of JSON-LD is less prescriptive. JSON-LD uses the notion of “framing” to let each application specify how it expects it data to be structured. JSON frames allow each developer consuming the data to handle many of the same issues that schema validation have previously assured. Readers should consult the <a href="https://json-ld.org/spec/latest/json-ld-framing/">official json-ld framing</a> documentation for details on this approach.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonld)
 <span class="kw">library</span>(jsonlite)
 <span class="kw">library</span>(magrittr)
@@ -205,7 +205,7 @@ meta &lt;-<span class="st"> </span>
 <span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)    
 
 ## above is same as compacting:
-<span class="co">#jsonld_compact(codeemta, "https://doi.org/doi:10.5063/schema/codemeta-2.0") %&gt;% </span>
+<span class="co">#jsonld_compact(codemeta, "https://doi.org/doi:10.5063/schema/codemeta-2.0") %&gt;% </span>
 <span class="co">#  fromJSON(codemeta, simplifyVector = FALSE)</span>
 
 meta<span class="op">$</span>buildInstructions</code></pre></div>
