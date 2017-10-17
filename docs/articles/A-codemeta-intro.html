@@ -109,10 +109,6 @@
 <ul>
 <li><p><a href="https://en.wikipedia.org/wiki/Linked_data">Linked data</a>: We often use different words to mean the same thing. And sometimes the same word to mean different things. Linked data seeks to address this issue by using <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URIs</a> (i.e. URLs) to make this explcit.</p></li>
 <li><p>context: No one likes typing out long URLs all the time. So instead, the <em>context</em> of a JSON-LD file (<code>"@context"</code> element) gives us the context for the terms we use, that is, the root URL. Usually schema.org but domain specific ones also (eg codemeta)</p></li>
-</ul>
-<p>Briefly explain the difference between the data types (ie json, codemeta json-ld, codemeta r list) so that users can be cognisant of them when using package.</p>
-<p>Describe how project is the convergence of a number of initiatives:</p>
-<ul>
 <li><p><a href="http://schema.org">Schema.org</a>: A major initiative led by Google and other search engines to define a simple and widely used context to link data on the web through a catalogue of standard metadata fields</p></li>
 <li><p><a href="http://codemeta.github.io">The CodeMeta Project</a>: an academic led community initiative to formalise the metadata fields included in typical software metadata records and introduce important fields that did not have clear equivalents. The codemeta <a href="https://codemeta.github.io/crosswalk">crosswalk</a> provides an explicit map between the metadata fields used by a broad range of software repositories, registries and archives</p></li>
 <li><p><a href="https://json-ld.org">JSON-LD</a>: While ‘linked data’ can be represented in many different formats, these have consistently proven a bit tricky to use, either for consumers or developers or both. JSON-LD provides a simple adaptation of the JSON format, which has proven much more popular with both audiences, that allows it to express (most) linked-data concepts. It is now the format of choice for expressing linked data by Google and many others. Any JSON-LD file is valid JSON, and any JSON file can be treated as JSON-LD.</p></li>
