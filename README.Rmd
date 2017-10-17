@@ -3,9 +3,9 @@ output: github_document
 ---
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Travis-CI Build Status](https://travis-ci.org/codemeta/codemetar.svg?branch=master)](https://travis-ci.org/codemeta/codemetar)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/codemeta/codemetar?branch=master&svg=true)](https://ci.appveyor.com/project/cboettig/codemetar)
-[![Coverage Status](https://img.shields.io/codecov/c/github/codemeta/codemetar/master.svg)](https://codecov.io/github/codemeta/codemetar?branch=master)
+[![Travis-CI Build Status](https://travis-ci.org/ropensci/codemetar.svg?branch=master)](https://travis-ci.org/ropensci/codemetar)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/codemetar?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/codemetar)
+[![Coverage Status](https://img.shields.io/codecov/c/github/ropensci/codemetar/master.svg)](https://codecov.io/github/ropensci/codemetar?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar)
 [![](http://badges.ropensci.org/130_status.svg)](https://github.com/ropensci/onboarding/issues/130)
 
