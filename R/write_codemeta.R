@@ -34,7 +34,7 @@ write_codemeta <- function(pkg = ".",
                            ...) {
 
   if(length(pkg) <= 1 && file.exists(file.path(pkg, "DESCRIPTION"))){
-    usethis::use_build_ignore("codemeta.json", pkg = pkg)
+    usethis::use_build_ignore("codemeta.json", base_path = pkg)
   }
   cm <- create_codemeta(pkg = pkg, root = root)
   jsonlite::write_json(cm, path, pretty=TRUE, auto_unbox = TRUE, ...)
