@@ -22,7 +22,7 @@
 #' @export
 #'
 #' @importFrom jsonlite write_json
-#' @importFrom devtools use_build_ignore
+#' @importFrom usethis use_build_ignore
 #' @examples
 #' write_codemeta("codemeta")
 write_codemeta <- function(pkg = ".",
@@ -34,7 +34,7 @@ write_codemeta <- function(pkg = ".",
                            ...) {
 
   if(length(pkg) <= 1 && file.exists(file.path(pkg, "DESCRIPTION"))){
-    devtools::use_build_ignore("codemeta.json", pkg = pkg)
+    usethis::use_build_ignore("codemeta.json", pkg = pkg)
   }
   cm <- create_codemeta(pkg = pkg, root = root)
   jsonlite::write_json(cm, path, pretty=TRUE, auto_unbox = TRUE, ...)

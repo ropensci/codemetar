@@ -7,17 +7,22 @@
   "identifier": "codemetar",
   "description": "The 'Codemeta' Project defines a 'JSON-LD' format for describing\n  software metadata, as detailed at <https://codemeta.github.io>. This package\n  provides utilities to generate, parse, and modify 'codemeta.jsonld' files \n  automatically for R packages, as well as tools and examples for working with\n  'codemeta' 'JSON-LD' more generally.",
   "name": "codemetar: Generate CodeMeta Metadata for R Packages",
-  "codeRepository": "https://github.com/codemeta/codemetar",
   "issueTracker": "https://github.com/codemeta/codemetar/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.1.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.4.1",
+    "version": "3.4.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.4.1 (2017-06-30)",
+  "runtimePlatform": "R version 3.4.2 (2017-09-28)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Central R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -263,13 +268,13 @@
       "version": "3.0.0"
     }
   ],
+  "codeRepository": "https://github.com/codemeta/codemetar",
+  "isPartOf": "https://ropensci.org",
+  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data"],
+  "relatedLink": "https://codemeta.github.io/codemetar",
   "contIntegration": "https://travis-ci.org/codemeta/codemetar",
   "developmentStatus": "active",
   "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/NEWS.md",
   "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
-  "fileSize": "657.343KB",
-  "affiliation": "https://ropensci.org",
-  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data"],
-  "relatedLink": "https://codemeta.github.io/codemetar",
-  "isPartOf": "https://ropensci.org"
+  "fileSize": "657.452KB"
 }
