@@ -268,13 +268,13 @@
       "version": "3.0.0"
     }
   ],
-  "codeRepository": "https://github.com/codemeta/codemetar",
+  "codeRepository": "https://github.com/ropensci/codemetar",
   "isPartOf": "https://ropensci.org",
   "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data"],
   "relatedLink": "https://codemeta.github.io/codemetar",
-  "contIntegration": "https://travis-ci.org/codemeta/codemetar",
+  "contIntegration": "https://travis-ci.org/ropensci/codemetar",
   "developmentStatus": "active",
-  "releaseNotes": "https://github.com/codemeta/codemetar/blob/master/NEWS.md",
-  "readme": "https://github.com/codemeta/codemetar/blob/master/README.md",
-  "fileSize": "657.462KB"
+  "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
+  "fileSize": "657.49KB"
 }
