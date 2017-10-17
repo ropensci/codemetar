@@ -9,7 +9,7 @@
   "name": "codemetar: Generate CodeMeta Metadata for R Packages",
   "issueTracker": "https://github.com/codemeta/codemetar/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
