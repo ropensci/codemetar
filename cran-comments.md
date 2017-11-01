@@ -1,7 +1,7 @@
 Dear CRAN Maintainers,
 
 I am pleased to submit the codemetar package for generating codemeta.json files for R packages. Note that
-this package uses the X-schema.org-* pattern as previously discussed abd recommended by CRAN maintainers (Kurt Hornik, Aug 27),
+this package uses the X-schema.org-* pattern as previously discussed and recommended by CRAN maintainers (Kurt Hornik, Aug 27),
 please let me know if this needs to be revised in any way. Thanks!
 
 Sincerely,
