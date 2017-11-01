@@ -28,9 +28,9 @@ crosswalk <- function(x,
                         "https://doi.org/10.5063/schema/codemeta-2.0"
 ){
 
-  from_context <- crosswalk_context(crosswalk_table(from), codemeta_context)
+  from_context <- get_crosswalk_context(crosswalk_table(from), codemeta_context)
   if(to != "codemeta"){
-    to_context <- crosswalk_context(crosswalk_table(to),  codemeta_context)
+    to_context <- get_crosswalk_context(crosswalk_table(to),  codemeta_context)
     to_context <- toJSON(to_context, auto_unbox = TRUE, pretty = TRUE)
   } else {
     to_context <- codemeta_context
@@ -72,7 +72,7 @@ crosswalk_table <- function(from,
 ## Use a crosswalk table subset to create a context file for the input data
 ## This is a JSON-LD representation of the crosswalk for the desired data.
 #' @importFrom jsonlite read_json
-crosswalk_context <-
+get_crosswalk_context <-
   function(df,
            codemeta_context =
              "https://doi.org/10.5063/schema/codemeta-2.0"){
@@ -108,7 +108,15 @@ crosswalk_transform <- function(x,
   x <- add_context(x, crosswalk_context)
   y <- jsonlite::toJSON(x, auto_unbox = TRUE, pretty = TRUE)
   y <- jsonld::jsonld_expand(y)
-  y <- jsonld::jsonld_compact(y, context = codemeta_context)
+
+  ## Sometimes fails to do remote lookup automatically from DOI, so download
+  if(!file.exists(codemeta_context)) {
+    f <- tempfile("codemeta", fileext="json")
+    download.file(codemeta_context, f)
+  } else {
+    f <- codemeta_context
+  }
+  y <- jsonld::jsonld_compact(y, context = f)
   y
 }
 

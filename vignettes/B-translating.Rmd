@@ -82,7 +82,7 @@ repo_info <- read_json(system.file("examples/github_format.json", package = "cod
 Let's just take a look at what the returned json data looks like:
 
 ```{r}
-repo_info
+repo_info %>% toJSON()
 ```
 
 We can crosswalk this information into codemeta just by supplying the column name to the `crosswalk` function.  This performs the same expansion of the metadata in the GitHub context, followed by compaction into the codemeta context.  Note that terms not recognized/included in the codemeta context will be dropped:
