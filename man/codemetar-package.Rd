@@ -38,8 +38,8 @@ Developer Guide (https://codemeta.github.io/developer-guide/).
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/codemeta/codemetar}
-  \item Report bugs at \url{https://github.com/codemeta/codemetar/issues}
+  \item \url{https://github.com/ropensci/codemetar}
+  \item Report bugs at \url{https://github.com/ropensci/codemetar/issues}
 }
 
 }

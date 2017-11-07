@@ -110,7 +110,7 @@ crosswalk_transform <- function(x,
   y <- jsonld::jsonld_expand(y)
 
   ## Sometimes fails to do remote lookup automatically from DOI, so download
-  if(!file.exists(codemeta_context)) {
+  if(is.character(codemeta_context) & grepl("https://doi", codemeta_context)) {
     f <- tempfile("codemeta", fileext="json")
     download.file(codemeta_context, f)
   } else {
