@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -64,7 +64,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/codemeta/codemetar">
+  <a href="https://github.com/ropensci/codemetar">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -84,7 +84,7 @@
       <h1>Validation in JSON-LD</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2017-10-17</h4>
+            <h4 class="date">2017-11-08</h4>
           </div>
 
     
@@ -108,7 +108,7 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">codemeta &lt;-<span class="st"> </span>
 <span class="st">'</span>
 <span class="st">{</span>
-<span class="st">  "@context": "https://doi.org/doi:10.5063/schema/codemeta-2.0",</span>
+<span class="st">  "@context": "http://purl.org/codemeta/2.0",</span>
 <span class="st">  "@type": "SoftwareSourceCode",</span>
 <span class="st">  "name": "codemetar: Generate CodeMeta Metadata for R Packages",</span>
 <span class="st">  "datePublished":" 2017-05-20",</span>
@@ -124,13 +124,35 @@
 <span class="st">  "maintainer":  {"@id": "http://orcid.org/0000-0002-1642-628X"}</span>
 <span class="st">}</span>
 <span class="st">'</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">jsonld<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_compact</a></span>(codemeta, <span class="st">"http://purl.org/codemeta/2.0"</span>)</code></pre></div>
+<pre><code>{
+  "@context": "http://purl.org/codemeta/2.0",
+  "type": "SoftwareSourceCode",
+  "author": [
+    {
+      "id": "http://orcid.org/0000-0002-1642-628X",
+      "type": "Person",
+      "email": "cboettig@gmail.com",
+      "familyName": "Boettiger",
+      "givenName": "Carl"
+    }
+  ],
+  "datePublished": " 2017-05-20",
+  "name": "codemetar: Generate CodeMeta Metadata for R Packages",
+  "version": 1,
+  "maintainer": {
+    "id": "http://orcid.org/0000-0002-1642-628X"
+  }
+} </code></pre>
 </div>
 <div id="framing-subsetting-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#framing-subsetting-data" class="anchor"></a>Framing: subsetting data</h2>
 <p>By default, frames return all the input data, while our application may only be interested in some subset. Often it is sufficient just to ignore these additional terms: in the example above it’s just as easy for our application to work with author elements whether or not we have dropped other elements such as <code>meta$version</code>. To restrict a frame to returning only the nodes we explicitly mention, we can use the keyword <code>@explicit</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">frame &lt;-<span class="st"> '{</span>
-<span class="st">  "@context": "https://doi.org/doi:10.5063/schema/codemeta-2.0",</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">jsonld_use_accept =</span> <span class="ot">TRUE</span>)
+
+frame &lt;-<span class="st"> '{</span>
+<span class="st">  "@context": "http://purl.org/codemeta/2.0",</span>
 <span class="st">  "@explicit": "true",</span>
 <span class="st">  "@type": "Person",</span>
 <span class="st">  "givenName": {},</span>
@@ -169,9 +191,10 @@ $givenName
 [1] "http://orcid.org/0000-0002-1642-628X"</code></pre>
 <p>We can use a frame with the special directive <code>"@embed": "@always"</code> to say that we want the full maintainer information embedded an not just referred to by id alone. Then we can subset <code>maintainer</code> just like we do author.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">frame &lt;-<span class="st"> '{</span>
-<span class="st">  "@context": "https://doi.org/doi:10.5063/schema/codemeta-2.0",</span>
+<span class="st">  "@context": "http://purl.org/codemeta/2.0",</span>
 <span class="st">  "@embed": "@always"</span>
 <span class="st">}'</span>
+
 
 meta &lt;-<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(codemeta, frame) <span class="op">%&gt;%</span>
@@ -189,7 +212,7 @@ meta &lt;-<span class="st"> </span>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">codemeta &lt;-<span class="st"> </span>
 <span class="st">'</span>
 <span class="st">{</span>
-<span class="st">  "@context": "https://doi.org/doi:10.5063/schema/codemeta-2.0",</span>
+<span class="st">  "@context": "https://purl.org/codemeta/2.0",</span>
 <span class="st">  "@type": "SoftwareSourceCode",</span>
 <span class="st">  "name": "codemetar: Generate CodeMeta Metadata for R Packages",</span>
 <span class="st">  "buildInstructions": { </span>
@@ -200,12 +223,12 @@ meta &lt;-<span class="st"> </span>
 <span class="st">'</span></code></pre></div>
 <p>When we perform a framing or compaction operation, <code>buildInstructions</code> gets de-referenced to <code>codemeta:buildInstructions</code>, because it does not match the context. This means that if our application asks for <code>meta$buildInstructions</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meta &lt;-
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(codemeta, <span class="st">'{"@context": "https://doi.org/doi:10.5063/schema/codemeta-2.0"}'</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(codemeta, <span class="st">'{"@context": "https://purl.org/codemeta/2.0"}'</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st">  </span>
 <span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)    
 
 ## above is same as compacting:
-<span class="co">#jsonld_compact(codemeta, "https://doi.org/doi:10.5063/schema/codemeta-2.0") %&gt;% </span>
+<span class="co">#jsonld_compact(codemeta, "http://purl.org/codemeta/2.0") %&gt;% </span>
 <span class="co">#  fromJSON(codemeta, simplifyVector = FALSE)</span>
 
 meta<span class="op">$</span>buildInstructions</code></pre></div>

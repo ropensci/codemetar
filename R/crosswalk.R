@@ -24,9 +24,9 @@
 crosswalk <- function(x,
                       from,
                       to = "codemeta",
-                      codemeta_context =
-                        "https://doi.org/10.5063/schema/codemeta-2.0"
-){
+                      codemeta_context = getOption("codemeta_context",
+                                                   "http://purl.org/codemeta/2.0")
+                      ){
 
   from_context <- get_crosswalk_context(crosswalk_table(from), codemeta_context)
   if(to != "codemeta"){
@@ -75,7 +75,8 @@ crosswalk_table <- function(from,
 get_crosswalk_context <-
   function(df,
            codemeta_context =
-             "https://doi.org/10.5063/schema/codemeta-2.0"){
+             getOption("codemeta_context",
+                       "http://purl.org/codemeta/2.0")){
 
     context <- jsonlite::read_json(codemeta_context)
     context[[1]][["id"]] <- NULL ## avoid collisions with @id
@@ -103,20 +104,13 @@ get_crosswalk_context <-
 crosswalk_transform <- function(x,
                                 crosswalk_context = NULL,
                                 codemeta_context =
-                                "https://doi.org/10.5063/schema/codemeta-2.0"){
+                                getOption("codemeta_context",
+                                          "http://purl.org/codemeta/2.0")){
 
   x <- add_context(x, crosswalk_context)
   y <- jsonlite::toJSON(x, auto_unbox = TRUE, pretty = TRUE)
   y <- jsonld::jsonld_expand(y)
-
-  ## Sometimes fails to do remote lookup automatically from DOI, so download
-  if(is.character(codemeta_context) & grepl("https://doi", codemeta_context)) {
-    f <- tempfile("codemeta", fileext="json")
-    download.file(codemeta_context, f)
-  } else {
-    f <- codemeta_context
-  }
-  y <- jsonld::jsonld_compact(y, context = f)
+  y <- jsonld::jsonld_compact(y, context = codemeta_context)
   y
 }
 

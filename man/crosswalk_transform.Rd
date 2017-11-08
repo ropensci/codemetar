@@ -5,7 +5,8 @@
 \title{Crosswalk transform}
 \usage{
 crosswalk_transform(x, crosswalk_context = NULL,
-  codemeta_context = "https://doi.org/10.5063/schema/codemeta-2.0")
+  codemeta_context = getOption("codemeta_context",
+  "http://purl.org/codemeta/2.0"))
 }
 \arguments{
 \item{x}{a JSON list or file with data fields to be crosswalked}
