@@ -72,8 +72,6 @@ By default, frames return all the input data, while our application may only be 
 
 
 ```{r}
-options(jsonld_use_accept = TRUE)
-
 frame <- '{
   "@context": "http://purl.org/codemeta/2.0",
   "@explicit": "true",

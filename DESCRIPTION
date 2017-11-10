@@ -5,7 +5,7 @@ Version: 0.1.1
 Authors@R: person("Carl", "Boettiger", 
                   role=c("aut", "cre", "cph"), 
                   email="cboettig@gmail.com", 
-                  comment=c(ORCID = "http://orcid.org/0000-0002-1642-628X"))
+                  comment=c(ORCID = "0000-0002-1642-628X"))
 Description: The 'Codemeta' Project defines a 'JSON-LD' format for describing
   software metadata, as detailed at <https://codemeta.github.io>. This package
   provides utilities to generate, parse, and modify 'codemeta.jsonld' files 

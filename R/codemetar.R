@@ -30,3 +30,5 @@
 #'
 "_PACKAGE"
 
+## JSON-LD needs content negotiation
+options("jsonld_use_accept" = TRUE)
