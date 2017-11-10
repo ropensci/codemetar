@@ -22,7 +22,7 @@ testthat::test_that("we can call crosswalk", {
 
   ## Test add and drop context
   b <- drop_context(a)
-  add_context(b, "https://doi.org/doi:10.5063/schema/codemeta-2.0")
+  add_context(b, getOption("codemeta_context", "http://purl.org/codemeta/2.0"))
 
 
   ## Test transforms between columns
