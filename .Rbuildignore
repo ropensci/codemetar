@@ -11,6 +11,7 @@
 ^codemeta\.json$
 ^inst/notebook/$
 ^paper\.md$
+^paper\.bib$
 ^data-raw$
 ^ropensci-onboarding\.md$
 ^cran-comments\.md$
