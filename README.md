@@ -50,7 +50,7 @@ Which creates a file looking like so (first 10 lines; see full [codemeta.json he
       "identifier": "codemetar",
       "description": "The 'Codemeta' Project defines a 'JSON-LD' format for describing\n  software metadata, as detailed at <https://codemeta.github.io>. This package\n  provides utilities to generate, parse, and modify 'codemeta.jsonld' files \n  automatically for R packages, as well as tools and examples for working with\n  'codemeta' 'JSON-LD' more generally.",
       "name": "codemetar: Generate CodeMeta Metadata for R Packages",
-      "issueTracker": "https://github.com/codemeta/codemetar/issues",
+      "issueTracker": "https://github.com/ropensci/codemetar/issues",
 
 Modifying or enriching CodeMeta metadata
 ----------------------------------------

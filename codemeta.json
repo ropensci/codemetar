@@ -1,6 +1,6 @@
 {
   "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://purl.org/codemeta/2.0",
     "http://schema.org"
   ],
   "@id": "https://doi.org10.5281/zenodo.1048320",
@@ -8,7 +8,7 @@
   "identifier": "codemetar",
   "description": "The 'Codemeta' Project defines a 'JSON-LD' format for describing\n  software metadata, as detailed at <https://codemeta.github.io>. This package\n  provides utilities to generate, parse, and modify 'codemeta.jsonld' files \n  automatically for R packages, as well as tools and examples for working with\n  'codemeta' 'JSON-LD' more generally.",
   "name": "codemetar: Generate CodeMeta Metadata for R Packages",
-  "issueTracker": "https://github.com/codemeta/codemetar/issues",
+  "issueTracker": "https://github.com/ropensci/codemetar/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.1.2",
   "programmingLanguage": {

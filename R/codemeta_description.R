@@ -5,11 +5,11 @@
 #options(codemeta_context =
 #  "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld")
 
-
+options(codemeta_context = "http://purl.org/codemeta/2.0")
 ## Supporting old versions will be a nuciance
 new_codemeta <- function() {
-  list(`@context` = "https://doi.org/doi:10.5063/schema/codemeta-2.0",
-  `@type` = "SoftwareSourceCode")
+  list(`@context` = getOption("codemeta_context","http://purl.org/codemeta/2.0"),
+       `@type` = "SoftwareSourceCode")
 }
 
 
