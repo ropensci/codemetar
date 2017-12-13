@@ -132,7 +132,7 @@ guess_readme <- function(root = ".") {
 github_path <- function(root, path) {
   base <- guess_github(root)
   r <- git2r::repository(root, discover = TRUE)
-  branch <- names(git2r::branches(r))[[1]]
+  branch <- getOption("codemeta_branch", "master")
   paste0(base, "/blob/", branch, "/", path)
 }
 
