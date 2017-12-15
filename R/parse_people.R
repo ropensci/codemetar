@@ -62,8 +62,8 @@ person_to_schema <- function(p) {
       id <- p$comment
     } else if("ORCID" %in% names(p$comment)){
       id <- p$comment[["ORCID"]]
-      if(!grepl("^http", id))
-        id <- paste0("http://orcid.org/", id)
+      if(!grepl("^https?", id))
+        id <- paste0("https://orcid.org/", id)
     }
   }
 
