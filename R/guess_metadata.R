@@ -106,7 +106,7 @@ guess_github <- function(root = ".") {
     r <- git2r::repository(root, discover = TRUE)
     r_remote_urls <- grep("github", remote_urls(r), value = TRUE)
     out <- r_remote_urls[[1]]
-    gsub("git@github.com:", "https://github.com/", out)
+    gsub("\\.git$", "", gsub("git@github.com:", "https://github.com/", out))
   } else {
     NULL
   }
