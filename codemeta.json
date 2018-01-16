@@ -14,10 +14,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.4.2",
+    "version": "3.4.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.4.2 (2017-09-28)",
+  "runtimePlatform": "R version 3.4.3 (2017-11-30)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -30,7 +30,7 @@
       "givenName": "Carl",
       "familyName": "Boettiger",
       "email": "cboettig@gmail.com",
-      "@id": "http://orcid.org/0000-0002-1642-628X"
+      "@id": "https://orcid.org/0000-0002-1642-628X"
     }
   ],
   "copyrightHolder": [
@@ -39,7 +39,7 @@
       "givenName": "Carl",
       "familyName": "Boettiger",
       "email": "cboettig@gmail.com",
-      "@id": "http://orcid.org/0000-0002-1642-628X"
+      "@id": "https://orcid.org/0000-0002-1642-628X"
     }
   ],
   "maintainer": {
@@ -47,7 +47,7 @@
     "givenName": "Carl",
     "familyName": "Boettiger",
     "email": "cboettig@gmail.com",
-    "@id": "http://orcid.org/0000-0002-1642-628X"
+    "@id": "https://orcid.org/0000-0002-1642-628X"
   },
   "softwareSuggestions": [
     {
@@ -277,5 +277,5 @@
   "developmentStatus": "active",
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
-  "fileSize": "662.402KB"
+  "fileSize": "658.045KB"
 }
