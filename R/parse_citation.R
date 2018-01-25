@@ -70,11 +70,12 @@ drop_null <- function(x){
 
 ## Handle installed package by name, source pkg by path (inst/CITATION)
 
-#' @importFrom utils readCitationFile citation
+#' @importFrom utils readCitationFile citation packageDescription
 guess_citation <- function(pkg){
   installed <- installed.packages()
   if(file.exists(file.path(pkg, "inst/CITATION"))){
-    bib <- readCitationFile(file.path(pkg, "inst/CITATION"))
+    bib <- readCitationFile(file.path(pkg, "inst/CITATION"),
+                            meta = cm_read_dcf(file.path(pkg, "DESCRIPTION")))
     lapply(bib, parse_citation)
   } else if(pkg %in% installed[,1]){
     bib <- suppressWarnings(citation(pkg)) # don't worry if no date
