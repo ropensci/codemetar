@@ -84,7 +84,7 @@
       <h1>Codemeta intro</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2017-11-08</h4>
+            <h4 class="date">2018-01-25</h4>
           </div>
 
     
@@ -136,19 +136,19 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "testthat",
-  "description": "A unit testing system designed to be fun, flexible and easy to\n    set up.",
+  "description": "Software testing is important, but, in part because it is \n    frustrating and boring, many of us avoid it. 'testthat' is a testing framework \n    for R that is easy learn and use, and integrates with your existing 'workflow'.",
   "name": "testthat: Unit Testing for R",
-  "issueTracker": "https://github.com/hadley/testthat/issues",
-  "datePublished": "2016-04-23 08:37:40",
+  "issueTracker": "https://github.com/r-lib/testthat/issues",
+  "datePublished": "2017-12-13 09:30:12 UTC",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.4.2",
+    "version": "3.4.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.4.2 (2017-09-28)",
+  "runtimePlatform": "R version 3.4.3 (2017-11-30)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -161,6 +161,12 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
       "givenName": "Hadley",
       "familyName": "Wickham",
       "email": "hadley@rstudio.com"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Organization",
+      "name": "R Core team"
     }
   ],
   "copyrightHolder": [
@@ -178,6 +184,17 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
+      "identifier": "covr",
+      "name": "covr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "devtools",
       "name": "devtools",
       "provider": {
@@ -189,8 +206,8 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "withr",
-      "name": "withr",
+      "identifier": "knitr",
+      "name": "knitr",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -200,8 +217,19 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "covr",
-      "name": "covr",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "xml2",
+      "name": "xml2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -213,8 +241,8 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
   "softwareRequirements": [
     {
       "@type": "SoftwareApplication",
-      "identifier": "digest",
-      "name": "digest",
+      "identifier": "cli",
+      "name": "cli",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -235,8 +263,8 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "praise",
-      "name": "praise",
+      "identifier": "digest",
+      "name": "digest",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -257,8 +285,13 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "R6",
-      "name": "R6",
+      "identifier": "methods",
+      "name": "methods"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "praise",
+      "name": "praise",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -268,14 +301,44 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "methods",
-      "name": "methods"
+      "identifier": "R6",
+      "name": "R6",
+      "version": "2.2.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rlang",
+      "name": "rlang",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "withr",
+      "name": "withr",
+      "version": "2.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
     },
     {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": "3.1.0"
+      "version": "3.1"
     }
   ]
 }</code></pre>
@@ -332,7 +395,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

@@ -34,9 +34,6 @@ write_codemeta("testthat")
 
 ``` r
 write_codemeta(".")
-Warning: 'devtools::use_build_ignore' is deprecated.
-Use 'usethis::use_build_ignore()' instead.
-See help("Deprecated") and help("devtools-deprecated").
 ```
 
 Which creates a file looking like so (first 10 lines; see full [codemeta.json here](https://github.com/codemeta/codemetar/blob/master/codemeta.json)):

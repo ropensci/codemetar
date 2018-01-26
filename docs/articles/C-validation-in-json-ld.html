@@ -84,7 +84,7 @@
       <h1>Validation in JSON-LD</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2017-11-08</h4>
+            <h4 class="date">2018-01-25</h4>
           </div>
 
     
@@ -149,9 +149,7 @@
 <h2 class="hasAnchor">
 <a href="#framing-subsetting-data" class="anchor"></a>Framing: subsetting data</h2>
 <p>By default, frames return all the input data, while our application may only be interested in some subset. Often it is sufficient just to ignore these additional terms: in the example above it’s just as easy for our application to work with author elements whether or not we have dropped other elements such as <code>meta$version</code>. To restrict a frame to returning only the nodes we explicitly mention, we can use the keyword <code>@explicit</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">jsonld_use_accept =</span> <span class="ot">TRUE</span>)
-
-frame &lt;-<span class="st"> '{</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">frame &lt;-<span class="st"> '{</span>
 <span class="st">  "@context": "http://purl.org/codemeta/2.0",</span>
 <span class="st">  "@explicit": "true",</span>
 <span class="st">  "@type": "Person",</span>
@@ -271,7 +269,7 @@ $`codemeta:buildInstructions`$`@value`
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
