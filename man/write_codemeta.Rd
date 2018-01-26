@@ -39,5 +39,5 @@ If pkg is a codemeta object, the function will attempt to
  root directory should be the current working directory.
 }
 \examples{
-write_codemeta("codemeta")
+write_codemeta("codemeta", tempfile())
 }

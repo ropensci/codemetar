@@ -31,5 +31,4 @@ than writing directly to a file.  See examples.
 \examples{
 cm <- create_codemeta("jsonlite")
 cm$keywords <- list("metadata", "ropensci")
-write_codemeta(cm)
 }
