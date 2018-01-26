@@ -26,7 +26,7 @@
 # upcoming devtools release will switch this to:
 # @importFrom usethis use_build_ignore
 #' @examples
-#' write_codemeta("codemeta")
+#' write_codemeta("codemeta", tempfile())
 write_codemeta <- function(pkg = ".",
                            path = "codemeta.json",
                            root = ".",
