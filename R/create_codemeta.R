@@ -11,7 +11,6 @@
 #' @examples
 #' cm <- create_codemeta("jsonlite")
 #' cm$keywords <- list("metadata", "ropensci")
-#' write_codemeta(cm, tempfile())
 #' @importFrom jsonlite read_json
 create_codemeta <- function(pkg = ".",
                             root = ".",
