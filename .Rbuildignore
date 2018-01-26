@@ -8,6 +8,7 @@
 ^CONTRIBUTING\.md$
 ^\.httr-oauth$
 ^docs$
+^docs/$
 ^codemeta\.json$
 ^inst/notebook/$
 ^paper\.md$
