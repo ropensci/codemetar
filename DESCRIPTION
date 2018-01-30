@@ -1,6 +1,6 @@
 Package: codemetar
 Type: Package
-Title: Generate CodeMeta Metadata for R Packages
+Title: Generate 'CodeMeta' Metadata for R Packages
 Version: 0.1.3
 Authors@R: person("Carl", "Boettiger", 
                   role=c("aut", "cre", "cph"), 
