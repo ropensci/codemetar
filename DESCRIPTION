@@ -8,9 +8,9 @@ Authors@R: person("Carl", "Boettiger",
                   comment=c(ORCID = "0000-0002-1642-628X"))
 Description: The 'Codemeta' Project defines a 'JSON-LD' format for describing
   software metadata, as detailed at <https://codemeta.github.io>. This package
-  provides utilities to generate, parse, and modify 'codemeta.jsonld' files 
+  provides utilities to generate, parse, and modify 'codemeta.json' files 
   automatically for R packages, as well as tools and examples for working with
-  'codemeta' 'JSON-LD' more generally.
+  'codemeta.json' 'JSON-LD' more generally.
 License: MIT + file LICENSE
 URL: https://github.com/ropensci/codemetar
 BugReports: https://github.com/ropensci/codemetar/issues
