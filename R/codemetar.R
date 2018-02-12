@@ -1,6 +1,6 @@
 #' codemetar: generate codemeta metadata for R packages
 #'
-#' The 'Codemeta' Project defines a JSON-LD format for describing software metadata,
+#' The 'CodeMeta' Project defines a JSON-LD format for describing software metadata,
 #' as detailed at https://codemeta.github.io.
 #' This package provides utilities to generate, parse, and modify codemeta.jsonld
 #' files automatically for R packages, as well as tools and examples for working
@@ -16,7 +16,7 @@
 #' \item Facilitate the addition of further metadata fields into a codemeta.json
 #'   file, as well as general manipulation of codemeta files.
 #' \item Support the ability to crosswalk between terms used in other metadata standards,
-#'   as identified by the Codemeta Project Community, see https://codemeta.github.io/crosswalk
+#'   as identified by the CodeMeta Project Community, see https://codemeta.github.io/crosswalk
 #' }
 #'
 #' To learn more about codemetar, start with the vignettes:
