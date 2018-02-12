@@ -1,5 +1,11 @@
-# codemetar 0.1.3
+# codemetar 0.1.4 
 
+* Allow vignettes to gracefully handle network timeout errors that
+  may occur on CRAN's Windows build server.
+
+# codemetar 0.1.3 
+
+* CRAN release
 * Switch to <http://purl.org> based URIs for the JSON-LD 
   Context file instead of a DOI, due to frequent failure
   of content negotiation on DataCite servers

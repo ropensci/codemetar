@@ -10,7 +10,8 @@
 ^docs$
 ^docs/$
 ^codemeta\.json$
-^inst/notebook/$
+^inst/notebook$
+inst/notebook/*
 ^paper\.md$
 ^paper\.bib$
 ^data-raw$
