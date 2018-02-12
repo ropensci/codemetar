@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generate CodeMeta Metadata for R Packages • codemetar</title>
+<title>Generate 'CodeMeta' Metadata for R Packages • codemetar</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -54,7 +54,7 @@
       <a href="articles/C-validation-in-json-ld.html">Validation in JSON-LD</a>
     </li>
     <li>
-      <a href="articles/D-codemeta-parsing.html">Parsing Codmeta Data</a>
+      <a href="articles/D-codemeta-parsing.html">Parsing Codemeta Data</a>
     </li>
   </ul>
 </li>
@@ -103,9 +103,9 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example which shows you how to generate a <code>codemeta.json</code> for an R package (e.g. for <code>testthat</code>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/write_codemeta.html">write_codemeta</a></span>(<span class="st">"testthat"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_codemeta</span>(<span class="st">"testthat"</span>)</code></pre></div>
 <p><code>codemetar</code> can take the path to the package root instead. This may allow <code>codemetar</code> to glean some additional information that is not available from the description file alone.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/write_codemeta.html">write_codemeta</a></span>(<span class="st">"."</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_codemeta</span>(<span class="st">"."</span>)</code></pre></div>
 <p>Which creates a file looking like so (first 10 lines; see full <a href="https://github.com/codemeta/codemetar/blob/master/codemeta.json">codemeta.json here</a>):</p>
 <pre><code>{
   "@context": [
@@ -149,6 +149,8 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
     <h2 class="hasAnchor">
 <a href="#sidebar" class="anchor"></a>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cran.r-project.org/package=codemetar">https://​cran.r-project.org/​package=codemetar</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/ropensci/codemetar">https://​github.com/​ropensci/​codemetar</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/ropensci/codemetar/issues">https://​github.com/​ropensci/​codemetar/​issues</a>

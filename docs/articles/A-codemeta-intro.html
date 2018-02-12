@@ -54,7 +54,7 @@
       <a href="../articles/C-validation-in-json-ld.html">Validation in JSON-LD</a>
     </li>
     <li>
-      <a href="../articles/D-codemeta-parsing.html">Parsing Codmeta Data</a>
+      <a href="../articles/D-codemeta-parsing.html">Parsing Codemeta Data</a>
     </li>
   </ul>
 </li>
@@ -84,7 +84,7 @@
       <h1>Codemeta intro</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2018-01-25</h4>
+            <h4 class="date">2018-02-12</h4>
           </div>
 
     
@@ -126,9 +126,9 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example which shows you how to generate a <code>codemeta.json</code> for an R package (e.g. for <code>testthat</code>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/write_codemeta.html">write_codemeta</a></span>(<span class="st">"testthat"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/codemetar/topics/write_codemeta">write_codemeta</a></span>(<span class="st">"testthat"</span>)</code></pre></div>
 <p><code>codemetar</code> can take the path to the package root instead. This may allow <code>codemetar</code> to glean some additional information that is not available from the description file alone.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/write_codemeta.html">write_codemeta</a></span>(<span class="st">"."</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/codemetar/topics/write_codemeta">write_codemeta</a></span>(<span class="st">"."</span>)</code></pre></div>
 <pre><code>{
   "@context": [
     "http://purl.org/codemeta/2.0",
