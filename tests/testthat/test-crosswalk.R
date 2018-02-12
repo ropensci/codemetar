@@ -2,7 +2,7 @@ testthat::context("crosswalk.R")
 
 testthat::test_that("we can call crosswalk", {
 
-
+  skip_on_os("windows")
   f <- read_json(system.file("examples/github_format.json",
                              package = "codemetar"))
   a <- crosswalk(f, "GitHub")
