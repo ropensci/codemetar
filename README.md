@@ -10,11 +10,17 @@ The goal of codemetar is to generate the JSON-LD file, `codemeta.json` containin
 Installation
 ------------
 
-You can install codemetar from github with:
+You can install the latest version from CRAN using:
+
+``` r
+install.packages("codemetar")
+```
+
+You can also install the development version of `codemetar` from github with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("codemeta/codemetar")
+devtools::install_github("ropensci/codemetar")
 ```
 
 ``` r
