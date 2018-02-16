@@ -84,7 +84,7 @@
       <h1>Parsing Codemeta Data</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2018-02-12</h4>
+            <h4 class="date">2018-02-15</h4>
           </div>
 
     
@@ -100,7 +100,7 @@
 <span class="kw">library</span>(printr)
 <span class="kw">library</span>(tibble)</code></pre></div>
 <p>We start with a simple example from the <code>codemeta.json</code> file of <code>codemetar</code> itself. First, we’ll just generate a copy of the codemeta record for the package:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/codemetar/topics/write_codemeta">write_codemeta</a></span>(<span class="st">"codemetar"</span>, <span class="st">"codemeta.json"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/write_codemeta.html">write_codemeta</a></span>(<span class="st">"codemetar"</span>, <span class="st">"codemeta.json"</span>)</code></pre></div>
 <p>We then digest this input using a JSON-LD “frame.” While not strictly necessary, this helps ensure the data matches the format we expect, even if the original file had errors or missing data. See the vignette “Validating in JSON-LD” in this package and the official <a href="https://json-ld.org/spec/latest/json-ld-framing/">JSON-LD docs</a> for details). The <code>codemetar</code> package includes a reasonably explicit frame to get us started:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">frame &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"schema/frame_schema.json"</span>, <span class="dt">package=</span><span class="st">"codemetar"</span>)
 
@@ -133,13 +133,13 @@ authors, : Not all arguments are of the same length, the following need to
 be recycled: author</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="kw">format</span>(bibitem, <span class="st">"bibtex"</span>))</code></pre></div>
 <pre><code>@Manual{codemetar,
-  title = {codemetar: Generate 'CodeMeta' Metadata for R Packages},
+  title = {codemetar: Generate CodeMeta Metadata for R Packages},
   year = {2018},
-  note = {R package version 0.1.4},
+  note = {R package version 0.1.2},
 }</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bibitem</code></pre></div>
-<pre><code>(2018). _codemetar: Generate 'CodeMeta' Metadata for R Packages_.
-R package version 0.1.4.</code></pre>
+<pre><code>(2018). _codemetar: Generate CodeMeta Metadata for R Packages_. R
+package version 0.1.2.</code></pre>
 <div id="parsing-the-ropensci-corpus" class="section level2">
 <h2 class="hasAnchor">
 <a href="#parsing-the-ropensci-corpus" class="anchor"></a>Parsing the ropensci corpus</h2>

@@ -94,18 +94,20 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install codemetar from github with:</p>
+<p>You can install the latest version from CRAN using:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"codemetar"</span>)</code></pre></div>
+<p>You can also install the development version of <code>codemetar</code> from github with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"codemeta/codemetar"</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ropensci/codemetar"</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"codemetar"</span>)</code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example which shows you how to generate a <code>codemeta.json</code> for an R package (e.g. for <code>testthat</code>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/codemetar/topics/write_codemeta">write_codemeta</a></span>(<span class="st">"testthat"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/write_codemeta.html">write_codemeta</a></span>(<span class="st">"testthat"</span>)</code></pre></div>
 <p><code>codemetar</code> can take the path to the package root instead. This may allow <code>codemetar</code> to glean some additional information that is not available from the description file alone.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/codemetar/topics/write_codemeta">write_codemeta</a></span>(<span class="st">"."</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/write_codemeta.html">write_codemeta</a></span>(<span class="st">"."</span>)</code></pre></div>
 <p>Which creates a file looking like so (first 10 lines; see full <a href="https://github.com/codemeta/codemetar/blob/master/codemeta.json">codemeta.json here</a>):</p>
 <pre><code>{
   "@context": [
