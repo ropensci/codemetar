@@ -9,7 +9,7 @@
 #' It has three main goals:
 #'
 #' \itemize{
-#' \item Quickly generate a valid codemeta.json file from any valid R package
+#' \item Quickly generate a valid codemeta.json file from any valid R package.
 #'   To do so, we automatically extract as much metadata as possible using
 #'   the DESCRIPTION file, as well as extracting metadata from other common
 #'   best-practices such as the presence of Travis and other badges in README, etc.
