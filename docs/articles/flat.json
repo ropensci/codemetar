@@ -7,7 +7,7 @@
     "http://purl.org/dc/terms/identifier": [
       {
         "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "http://dx.doi.org/10.6084/m9.figshare.828487"
+        "@value": "https://doi.org/10.6084/m9.figshare.828487"
       }
     ],
     "http://purl.org/dc/terms/title": [
