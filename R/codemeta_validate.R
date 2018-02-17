@@ -4,7 +4,7 @@
 #' original document.  Incorrect schema terms or types (or spelling errors of properties)
 #' will cause this round-trip to fail by not fully compacting.
 #'
-#' @param codemeta path/filename to a codmeta.json file, or json-ld text string
+#' @param codemeta path/filename to a codemeta.json file, or json-ld text string
 #' @param context URL (or path or json string) for the codemeta context.
 #' Leave as default or use appropriate DOI for the version; see details.
 #' @details by default, validation will use the original context from the import file.

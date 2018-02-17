@@ -71,7 +71,7 @@ schema &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span c
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">codemeta &lt;-<span class="st"> </span><span class="kw">read_json</span>(ex)
 codemeta$agents[[<span class="dv">1</span>]]$email</code></pre></div>
 <pre><code>## [1] "slaughter@nceas.ucsb.edu"</code></pre>
-<p>However, this puts the burden on the data provider to be familiar with and conform to our schema. It is important to bear in mind that some of these restrictions are, in a sense, arbitrary: the data could be formatted in some different manner without any change to it’s information content. A different format may be more convenient for the user to provide, and a different application may prefer a different tree structure from the one imposed on the data by our schema. With JSON-LD framing, we can avoid putting this burden on the data provider and instead allow the developer/consumer to request the data in whatever tree structure is most convenient.</p>
+<p>However, this puts the burden on the data provider to be familiar with and conform to our schema. It is important to bear in mind that some of these restrictions are, in a sense, arbitrary: the data could be formatted in some different manner without any change to its information content. A different format may be more convenient for the user to provide, and a different application may prefer a different tree structure from the one imposed on the data by our schema. With JSON-LD framing, we can avoid putting this burden on the data provider and instead allow the developer/consumer to request the data in whatever tree structure is most convenient.</p>
 <p>To illustrate this, let’s first transform the data into an equivalent alternative representation with a flat structure:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">doc &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">readLines</span>(ex), <span class="dt">collapse =</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)
 flat &lt;-<span class="st"> </span><span class="kw">jsonld_flatten</span>(doc)</code></pre></div>
@@ -170,7 +170,7 @@ codemeta$<span class="st">`</span><span class="dt">@context</span><span class="s
 ## attr(,"errors")
 ##   field                   message
 ## 1  data has additional properties</code></pre>
-<p>Currently, validation fails becuase all nodes get ids in the course of being framed (actually in the course of being flattened, which would happen implicitly anway since framing always works on flattened data). The schema file does not permit additional fields, so this raises the validation flag being shown.</p>
+<p>Currently, validation fails because all nodes get ids in the course of being framed (actually in the course of being flattened, which would happen implicitly anway since framing always works on flattened data). The schema file does not permit additional fields, so this raises the validation flag being shown.</p>
 <!--
 Experimenting with simpler default context files, need to set embed to always
 
