@@ -9,6 +9,7 @@ testthat::test_that("we can validate this file", {
 
 
 testthat::test_that("we can create & validate codemeta for testthat package", {
+  skip_on_cran()
   write_codemeta("testthat")
   testthat::expect_true(codemeta_validate("codemeta.json"))
   unlink("codemeta.json")

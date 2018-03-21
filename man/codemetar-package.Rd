@@ -46,4 +46,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Carl Boettiger \email{cboettig@gmail.com} (0000-0002-1642-628X) [copyright holder]
 
+Other contributors:
+\itemize{
+  \item Anna Krystalli (0000-0002-2378-4915) [NA]
+  \item Toph Allen (0000-0003-4580-091X) [NA]
+}
+
 }
