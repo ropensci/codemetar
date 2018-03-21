@@ -1,9 +1,13 @@
-# codemetar 0.1.4 
+# codemetar 0.1.5 
+
+* Default to DOI-based schema. (previous CN issues now resolved)
+
+# codemetar 0.1.4 2018-02-12
 
 * Allow vignettes to gracefully handle network timeout errors that
   may occur on CRAN's Windows build server.
 
-# codemetar 0.1.3 
+# codemetar 0.1.3 2018-02-08
 
 * CRAN release
 * Switch to <http://purl.org> based URIs for the JSON-LD 

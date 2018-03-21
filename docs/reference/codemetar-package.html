@@ -18,13 +18,21 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="codemetar: generate codemeta metadata for R packages — codemetar-package" />
+
+<meta property="og:description" content="The 'CodeMeta' Project defines a JSON-LD format for describing software metadata,
+as detailed at https://codemeta.github.io.
+This package provides utilities to generate, parse, and modify codemeta.jsonld
+files automatically for R packages, as well as tools and examples for working
+with codemeta JSON-LD more generally." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -82,7 +90,7 @@
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -105,6 +113,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>codemetar: generate codemeta metadata for R packages</h1>
+    <small>Source: <a href='https://github.com/ropensci/codemetar/blob/master/R/codemetar.R'><code>R/codemetar.R</code></a></small>
     </div>
 
     
@@ -118,8 +127,9 @@ with codemeta JSON-LD more generally.</p>
         
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>It has three main goals:</p><ul>
-<li><p>Quickly generate a valid codemeta.json file from any valid R package
+    <p>It has three main goals:</p>
+<ul>
+<li><p>Quickly generate a valid codemeta.json file from any valid R package.
   To do so, we automatically extract as much metadata as possible using
   the DESCRIPTION file, as well as extracting metadata from other common
   best-practices such as the presence of Travis and other badges in README, etc.</p></li>
@@ -176,3 +186,4 @@ Developer Guide (https://codemeta.github.io/developer-guide/).</p>
 
   </body>
 </html>
+
