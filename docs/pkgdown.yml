@@ -1,0 +1,9 @@
+pandoc: 2.1.1
+pkgdown: 0.1.0.9000
+pkgdown_sha: 33ed98635ee5aad483501dd1a3f2d5d7b38eab4e
+articles:
+  A-codemeta-intro: A-codemeta-intro.html
+  B-translating: B-translating.html
+  C-validation-in-json-ld: C-validation-in-json-ld.html
+  D-codemeta-parsing: D-codemeta-parsing.html
+

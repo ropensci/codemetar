@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Crosswalk transform — crosswalk_transform • codemetar</title>
+<title>Summary • codemetar</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -22,13 +22,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
-<script src="../pkgdown.js"></script>
-<meta property="og:title" content="Crosswalk transform — crosswalk_transform" />
-
-<meta property="og:description" content="Perform JSON-LD expansion of input, followed by compaction into the codemeta context" />
-<meta name="twitter:card" content="summary" />
+<link href="pkgdown.css" rel="stylesheet">
+<script src="jquery.sticky-kit.min.js"></script>
+<script src="pkgdown.js"></script>
+<meta property="og:title" content="Summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -41,7 +38,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-title-body">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -51,18 +48,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codemetar</a>
+      <a class="navbar-brand" href="index.html">codemetar</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
+  <a href="index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -72,21 +69,21 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/A-codemeta-intro.html">Codemeta intro</a>
+      <a href="articles/A-codemeta-intro.html">Codemeta intro</a>
     </li>
     <li>
-      <a href="../articles/B-translating.html">Translating between schema using JSON-LD</a>
+      <a href="articles/B-translating.html">Translating between schema using JSON-LD</a>
     </li>
     <li>
-      <a href="../articles/C-validation-in-json-ld.html">Validation in JSON-LD</a>
+      <a href="articles/C-validation-in-json-ld.html">Validation in JSON-LD</a>
     </li>
     <li>
-      <a href="../articles/D-codemeta-parsing.html">Parsing Codemeta Data</a>
+      <a href="articles/D-codemeta-parsing.html">Parsing Codemeta Data</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -106,53 +103,37 @@
       </header>
 
       <div class="row">
-  <div class="col-md-9 contents">
+  <div class="contents col-md-9">
     <div class="page-header">
-    <h1>Crosswalk transform</h1>
-    <small>Source: <a href='https://github.com/ropensci/codemetar/blob/master/R/crosswalk.R'><code>R/crosswalk.R</code></a></small>
+      <h1>Summary</h1>
     </div>
 
-    
-    <p>Perform JSON-LD expansion of input, followed by compaction into the codemeta context</p>
-    
 
-    <pre class="usage"><span class='fu'>crosswalk_transform</span>(<span class='no'>x</span>, <span class='kw'>crosswalk_context</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>codemeta_context</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"codemeta_context"</span>,
-  <span class='st'>"https://doi.org/10.5063/schema/codemeta-2.0"</span>))</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>a JSON list or file with data fields to be crosswalked</p></td>
-    </tr>
-    <tr>
-      <th>crosswalk_context</th>
-      <td><p>Context to be added to x</p></td>
-    </tr>
-    <tr>
-      <th>codemeta_context</th>
-      <td><p>the address or contents of codemeta context. Leave at default</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+<hr>
+<p>title: ‘Generating CodeMeta Metadata for R Packages’ tags:</p>
+<ul>
+<li>metadata</li>
+<li>codemeta</li>
+<li>ropensci</li>
+<li>citation</li>
+<li>credit authors:</li>
+<li>name: Carl Boettiger orcid: 0000-0002-1642-628X affiliation: 1 affiliations:</li>
+<li>name: University of California, Berkeley index: 1 date: 2017-06-29 bibliography: paper.bib —</li>
+</ul>
+<div id="summary" class="section level1">
 
-    <p>a valid codemeta json description.</p>
-    
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
-
-  </div>
+<p>The CodeMeta project defines a JSON-LD format [@jsonld] for describing software metadata, based largely on <code>schema.org</code> terms. This metadata format is being adopted by many leading archives for scientific software, including DataCite, Zenodo, and DataONE to address many of the needs identified in the NIH report on the need for a “Software Discovery Index” [@SDI]. Many common software metadata formats have been mapped into CodeMeta by means of a crosswalk table [@codemeta], also implemented in this package. The <code>codemetar</code> package provides utilities to generate and validate these <code>codemeta.json</code> files automatically for R packages by parsing the DESCRIPTION file and other common locations for R metadata. The package also includes utilities and examples for parsing and working with existing codemeta files, and includes several vignettes which illustrate both the basic usage of the package as well as some more advanced applications.</p>
 </div>
+<div id="references" class="section level1">
+<h1 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h1>
+</div>
+
+
+  </div>
+
+</div>
+
 
       <footer>
       <div class="copyright">
