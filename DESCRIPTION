@@ -2,10 +2,16 @@ Package: codemetar
 Type: Package
 Title: Generate 'CodeMeta' Metadata for R Packages
 Version: 0.1.5
-Authors@R: person("Carl", "Boettiger", 
+Authors@R: c(person("Carl", "Boettiger", 
                   role=c("aut", "cre", "cph"), 
                   email="cboettig@gmail.com", 
-                  comment=c(ORCID = "0000-0002-1642-628X"))
+                  comment=c(ORCID = "0000-0002-1642-628X")),
+          person("Anna", "Krystalli", 
+                  role = "rev",
+                  comment=c(ORCID = "0000-0002-2378-4915")),       
+          person("Toph", "Allen", 
+                  role = "rev",
+                  comment=c(ORCID = "0000-0003-4580-091X")))
 Description: The 'Codemeta' Project defines a 'JSON-LD' format for describing
   software metadata, as detailed at <https://codemeta.github.io>. This package
   provides utilities to generate, parse, and modify 'codemeta.json' files 
