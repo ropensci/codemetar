@@ -1,4 +1,4 @@
-# codemetar 0.1.5 
+# codemetar 0.1.5 2018-03-21
 
 * Default to DOI-based schema. (previous CN issues now resolved)
 
