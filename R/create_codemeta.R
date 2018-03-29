@@ -31,6 +31,14 @@ create_codemeta <- function(pkg = ".",
       ## no cm, no existing codemeta.json found, start fresh
     } else {
       cm <- new_codemeta()
+      # add the git pre-commit hook
+      if (uses_git()) {
+        message("Adding a pre-commit git hook ensuring that codemeta.json will be synchronized with DESCRIPTION") # nolint
+        use_git_hook(
+          "pre-commit",
+          render_template("description-codemetajson-pre-commit.sh")
+        )
+      }
     }
 
     ## we got an existing codemeta object as pkg
