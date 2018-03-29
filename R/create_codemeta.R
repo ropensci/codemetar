@@ -34,7 +34,7 @@ create_codemeta <- function(pkg = ".",
       # add the git pre-commit hook
       if (uses_git()) {
         message("Adding a pre-commit git hook ensuring that codemeta.json will be synchronized with DESCRIPTION") # nolint
-        use_git_hook(
+        usethis::use_git_hook(
           "pre-commit",
           render_template("description-codemetajson-pre-commit.sh")
         )
