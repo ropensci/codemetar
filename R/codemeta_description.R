@@ -39,7 +39,7 @@ codemeta_description <-
     codemeta$description <- descr$Description
     codemeta$name <- paste0(descr$Package, ": ", descr$Title)
 
-    ## Will later guess these these a la devtools::use_github_links
+    ## Will later guess these à la usethis::use_github_links
     codemeta$codeRepository <- descr$URL
     codemeta$issueTracker <- descr$BugReports
 
