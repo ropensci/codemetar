@@ -48,17 +48,20 @@ is_IRI <- function(string){
 
 
 # from usethis cf https://github.com/r-lib/usethis/blob/2abb0422a97808cc573fa5900a8efcfed4c2d5b4/R/git.R#L68
+# this is GPL-3 code
 uses_git <- function(path = usethis::proj_get()) {
   !is.null(git2r::discover_repository(path))
 }
 
 # from usethis cf https://github.com/r-lib/usethis/blob/4fb556788d2588facaaa8560242d2c83f2261d6e/R/helpers.R#L55
+# this is GPL-3 code
 render_template <- function(template, data = list(), package = "codemetar") {
   template_path <- find_template(template, package = package)
   strsplit(whisker::whisker.render(readLines(template_path), data), "\n")[[1]]
 }
 
 # from usethis cf https://github.com/r-lib/usethis/blob/4fb556788d2588facaaa8560242d2c83f2261d6e/R/helpers.R#L60
+# this is GPL-3 code
 find_template <- function(template_name, package = "usethis") {
   path <- system.file("templates", template_name, package = package)
   if (identical(path, "")) {
