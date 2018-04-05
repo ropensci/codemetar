@@ -91,6 +91,8 @@ guess_orcids <- function(codemeta) {
   NULL
 }
 
+# from devtools https://github.com/r-lib/devtools/blob/21fe55a912ca4eaa49ef5b7d891ff3e2aae7a370/R/git.R#L1
+# GPL>=2 code
 uses_git <- function(root) {
   !is.null(git2r::discover_repository(root, ceiling = 0))
 }
@@ -104,7 +106,7 @@ guess_github <- function(root = ".") {
     stats::setNames(git2r::remote_url(r, remotes), remotes)
   }
 
-  if (usethis::uses_git(root)) {
+  if (uses_git(root)) {
     r <- git2r::repository(root, discover = TRUE)
     r_remote_urls <- grep("github", remote_urls(r), value = TRUE)
     out <- r_remote_urls[[1]]
