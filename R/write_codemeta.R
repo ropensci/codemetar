@@ -22,9 +22,6 @@
 #' @export
 #'
 #' @importFrom jsonlite write_json
-#' @importFrom devtools use_build_ignore
-# upcoming devtools release will switch this to:
-# @importFrom usethis use_build_ignore
 #' @examples
 #' write_codemeta("codemeta", tempfile())
 #' @details
@@ -43,7 +40,7 @@ write_codemeta <- function(pkg = ".",
                            ...) {
 
   if(length(pkg) <= 1 && file.exists(file.path(pkg, "DESCRIPTION"))){
-    devtools::use_build_ignore("codemeta.json", pkg = pkg)
+    usethis::use_build_ignore("codemeta.json")
     # add the git pre-commit hook
     # https://github.com/r-lib/usethis/blob/master/inst/templates/readme-rmd-pre-commit.sh#L1
     # this is GPL-3 code
@@ -54,7 +51,6 @@ write_codemeta <- function(pkg = ".",
         render_template("description-codemetajson-pre-commit.sh")
       )
     }
-    ## usethis::use_build_ignore("codemeta.json", base_path = pkg)
   }
   cm <- create_codemeta(pkg = pkg, root = root)
   jsonlite::write_json(cm, path, pretty=TRUE, auto_unbox = TRUE, ...)

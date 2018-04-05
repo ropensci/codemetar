@@ -18,6 +18,8 @@ get_root_path <- function(pkg){
 
 
 ## based on devtools::read_dcf
+# https://github.com/r-lib/devtools/blob/50d2dee67922e304f494e2d5ffb1c5e61aa8e860/R/utils.r#L64
+# this is GPL>=2 code
 cm_read_dcf <- function(dcf) {
 
   fields <- colnames(read.dcf(dcf))

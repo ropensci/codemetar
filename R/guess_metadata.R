@@ -97,12 +97,14 @@ uses_git <- function(root) {
 
 guess_github <- function(root = ".") {
   ## from devtools
+  # https://github.com/r-lib/devtools/blob/21fe55a912ca4eaa49ef5b7d891ff3e2aae7a370/R/git.R#L130
+  # GPL>=2 code
   remote_urls <- function (r) {
     remotes <- git2r::remotes(r)
     stats::setNames(git2r::remote_url(r, remotes), remotes)
   }
 
-  if (uses_git(root)) {
+  if (usethis::uses_git(root)) {
     r <- git2r::repository(root, discover = TRUE)
     r_remote_urls <- grep("github", remote_urls(r), value = TRUE)
     out <- r_remote_urls[[1]]
@@ -159,7 +161,6 @@ guess_releaseNotes <- function(root = ".") {
 
 }
 
-#' @importFrom devtools build
 guess_fileSize <- function(root = ".") {
   if (is.null(root)) {
     return(NULL)
