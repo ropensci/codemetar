@@ -11,7 +11,13 @@ Authors@R: c(person("Carl", "Boettiger",
                   comment=c(ORCID = "0000-0002-2378-4915")),       
           person("Toph", "Allen", 
                   role = "rev",
-                  comment=c(ORCID = "0000-0003-4580-091X")))
+                  comment=c(ORCID = "0000-0003-4580-091X")),
+          person("Maëlle", "Salmon",
+                  role = c("ctb"),
+                  comment = c(ORCID = "0000-0002-2815-0399")),
+          person("rOpenSci", 
+                  role = c("fnd"), 
+                  comment = c("https://ropensci.org/")))
 Description: The 'Codemeta' Project defines a 'JSON-LD' format for describing
   software metadata, as detailed at <https://codemeta.github.io>. This package
   provides utilities to generate, parse, and modify 'codemeta.json' files 
