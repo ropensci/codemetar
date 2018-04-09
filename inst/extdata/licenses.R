@@ -9,4 +9,4 @@ spdx <- readxl::read_excel("spdx.xls")
 ## Manual synthesis happens here ##
 
 cran_to_spdx <- readr::read_csv("data-raw/cran-to-spdx.csv")
-devtools::use_data(cran_to_spdx, overwrite = TRUE)
+usethis::use_data(cran_to_spdx, overwrite = TRUE)

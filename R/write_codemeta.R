@@ -22,11 +22,15 @@
 #' @export
 #'
 #' @importFrom jsonlite write_json
-#' @importFrom devtools use_build_ignore
-# upcoming devtools release will switch this to:
-# @importFrom usethis use_build_ignore
 #' @examples
 #' write_codemeta("codemeta", tempfile())
+#' @details
+#'
+#' When creating and writing a codemeta.json for the first time,
+#' the function adds "codemeta.json" to .Rbuildignore and, if the
+#' project uses git, adds a pre-commit hook ensuring that if DESCRIPTION changes,
+#'  the codemeta.json will be updated as well unless the DESCRIPTION change is committed
+#'  with 'git commit --no-verify'.
 write_codemeta <- function(pkg = ".",
                            path = "codemeta.json",
                            root = ".",
@@ -36,8 +40,20 @@ write_codemeta <- function(pkg = ".",
                            ...) {
 
   if(length(pkg) <= 1 && file.exists(file.path(pkg, "DESCRIPTION"))){
-    devtools::use_build_ignore("codemeta.json", pkg = pkg)
-    ## usethis::use_build_ignore("codemeta.json", base_path = pkg)
+    usethis::use_build_ignore("codemeta.json")
+    # add the git pre-commit hook
+    # https://github.com/r-lib/usethis/blob/master/inst/templates/readme-rmd-pre-commit.sh#L1
+    # this is GPL-3 code
+    if (uses_git()) {
+      if(!file.exists(file.path(pkg, "codemeta.json"))){
+        message("Adding a pre-commit git hook ensuring that codemeta.json will be synchronized with DESCRIPTION") # nolint
+        usethis::use_git_hook(
+          "pre-commit",
+          render_template("description-codemetajson-pre-commit.sh")
+        )
+      }
+
+    }
   }
   cm <- create_codemeta(pkg = pkg, root = root)
   jsonlite::write_json(cm, path, pretty=TRUE, auto_unbox = TRUE, ...)

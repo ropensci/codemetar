@@ -50,6 +50,8 @@ Other contributors:
 \itemize{
   \item Anna Krystalli (0000-0002-2378-4915) [reviewer]
   \item Toph Allen (0000-0003-4580-091X) [reviewer]
+  \item MaÃ«lle Salmon (0000-0002-2815-0399) [contributor]
+  \item rOpenSci (https://ropensci.org/) [funder]
 }
 
 }

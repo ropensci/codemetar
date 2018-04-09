@@ -37,9 +37,11 @@ codemeta_description <-
     codemeta$name <- paste0(descr$get("Package"), ": ",
                             descr$get("Title"))
 
+
     ## Will later guess these these a la devtools::use_github_links
     codemeta$codeRepository <- descr$get("URL")
     codemeta$issueTracker <- descr$get("BugReports")
+
 
     ## According to crosswalk, codemeta$dateModified and
     ## codemeta$dateCreated are not crosswalked in DESCRIPTION

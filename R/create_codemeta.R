@@ -31,6 +31,7 @@ create_codemeta <- function(pkg = ".",
       ## no cm, no existing codemeta.json found, start fresh
     } else {
       cm <- new_codemeta()
+
     }
 
     ## we got an existing codemeta object as pkg
