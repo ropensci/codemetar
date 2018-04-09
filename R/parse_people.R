@@ -16,8 +16,13 @@ parse_people <- function(people, codemeta) {
   codemeta$author <-
     c(people_with_role(people, "aut"),
       people_without_role(people))
-  codemeta$contributor <- people_with_role(people, "ctb")
+  codemeta$contributor <- c(people_with_role(people, "ctb"),
+                            people_with_role(people, "com"),
+                            people_with_role(people, "dtc"),
+                            people_with_role(people, "ths"),
+                            people_with_role(people, "trl"))
   codemeta$copyrightHolder <- people_with_role(people, "cph")
+  codemeta$funder <- people_with_role(people, "fnd")
   codemeta$maintainer <- people_with_role(people, "cre")
   codemeta
 }
