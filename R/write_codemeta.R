@@ -45,11 +45,14 @@ write_codemeta <- function(pkg = ".",
     # https://github.com/r-lib/usethis/blob/master/inst/templates/readme-rmd-pre-commit.sh#L1
     # this is GPL-3 code
     if (uses_git()) {
-      message("Adding a pre-commit git hook ensuring that codemeta.json will be synchronized with DESCRIPTION") # nolint
-      usethis::use_git_hook(
-        "pre-commit",
-        render_template("description-codemetajson-pre-commit.sh")
-      )
+      if(!file.exists(file.path(pkg, "codemeta.json"))){
+        message("Adding a pre-commit git hook ensuring that codemeta.json will be synchronized with DESCRIPTION") # nolint
+        usethis::use_git_hook(
+          "pre-commit",
+          render_template("description-codemetajson-pre-commit.sh")
+        )
+      }
+
     }
   }
   cm <- create_codemeta(pkg = pkg, root = root)
