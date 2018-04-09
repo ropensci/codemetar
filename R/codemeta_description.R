@@ -67,7 +67,7 @@ codemeta_description <-
       codemeta <-
         parse_people(authors, codemeta)
     } else {
-      message("No correct Authors@R field in DESCRIPTION, please add authors via Authors@R") # nolint
+      stop("No correct Authors@R field in DESCRIPTION, please add authors via Authors@R") # nolint
 
     }
 
