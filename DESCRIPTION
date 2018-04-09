@@ -11,27 +11,36 @@ Authors@R: c(person("Carl", "Boettiger",
                   comment=c(ORCID = "0000-0002-2378-4915")),       
           person("Toph", "Allen", 
                   role = "rev",
-                  comment=c(ORCID = "0000-0003-4580-091X")))
+                  comment=c(ORCID = "0000-0003-4580-091X")),
+          person("Maëlle", "Salmon",
+                  role = c("ctb"),
+                  comment = c(ORCID = "0000-0002-2815-0399")),
+          person("rOpenSci", 
+                  role = c("fnd"), 
+                  comment = c("https://ropensci.org/")))
 Description: The 'Codemeta' Project defines a 'JSON-LD' format for describing
   software metadata, as detailed at <https://codemeta.github.io>. This package
   provides utilities to generate, parse, and modify 'codemeta.json' files 
   automatically for R packages, as well as tools and examples for working with
   'codemeta.json' 'JSON-LD' more generally.
-License: MIT + file LICENSE
+License: GPL-3
 URL: https://github.com/ropensci/codemetar
 BugReports: https://github.com/ropensci/codemetar/issues
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.0.1.9000
 Depends: R (>= 3.0.0)
-Imports: jsonlite (>= 1.3),
+Imports: 
+    jsonlite (>= 1.3),
     jsonld,
     git2r,
     devtools,
     methods,
     stats,
     stringi,
-    readr
+    readr,
+    usethis,
+    whisker
 Suggests: testthat,
     jsonvalidate,
     covr,

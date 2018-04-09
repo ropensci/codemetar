@@ -37,6 +37,12 @@ If pkg is a codemeta object, the function will attempt to
  update any fields it can guess (i.e. from the DESRIPTION file),
  overwriting any existing data in that block. In this case, the package
  root directory should be the current working directory.
+
+When creating and writing a codemeta.json for the first time,
+the function adds "codemeta.json" to .Rbuildignore and, if the
+project uses git, adds a pre-commit hook ensuring that if DESCRIPTION changes,
+ the codemeta.json will be updated as well unless the DESCRIPTION change is committed
+ with 'git commit --no-verify'.
 }
 \examples{
 write_codemeta("codemeta", tempfile())
