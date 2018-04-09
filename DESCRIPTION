@@ -39,6 +39,7 @@ Imports:
     stats,
     stringi,
     readr,
+    desc,
     usethis,
     whisker
 Suggests: testthat,

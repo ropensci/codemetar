@@ -7,6 +7,6 @@ testthat::test_that("We can use a preset id", {
 
 testthat::test_that("We can parse plain Authors: & Maintainers: entries", {
   f <- system.file("examples/DESCRIPTION_ex1.dcf", package = "codemetar")
-  codemeta_description(f)
+  expect_error(codemeta_description(f))
 })
 

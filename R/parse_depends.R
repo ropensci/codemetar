@@ -1,41 +1,26 @@
 ## internal method for parsing a list of package dependencies into pkg URLs
 
+format_depend <- function(package, version){
+  dep <- list("@type" = "SoftwareApplication",
+              identifier = package,
+              ## FIXME technically the name includes the title
+              name = package)
 
+  ## Add Version if available
+  if (version != "*"){
+    dep$version <- version
+  }
+
+  dep$provider <- guess_provider(package)
+
+  ## implemention could be better, e.g. support versioning
+  #  dep$`@id` <- guess_dep_id(dep)
+  dep
+}
 
 parse_depends <- function(deps) {
-  if (!is.null(deps))
-    str <- strsplit(deps, ",\n*")[[1]]
-  else
-    str <- NULL
 
-  lapply(str, function(str) {
-    #if (length(str) > 1) {
-    #  warning(paste0("package depends", str, "may be multiple packages?"))
-    #}
-
-    pkg <- gsub("\\s*(\\w+)\\s.*", "\\1", str)
-    pkg <- gsub("\\s+", "", pkg)
-
-    dep <- list("@type" = "SoftwareApplication",
-                identifier = pkg,
-                ## FIXME technically the name includes the title
-                name = pkg)
-
-    ## Add Version if available
-    pattern <- "\\s*\\w+\\s+\\([><=]+\\s([1-9.\\-]*)\\)*"
-    version <-  gsub(pattern, "\\1", str)
-    version <-
-      gsub("\\)$", "", version)  ## hack, avoid extraneous ending )
-    has_version  <- grepl(pattern, str)
-    if (has_version)
-      dep$version <- version
-
-    dep$provider <- guess_provider(pkg)
-
-    ## implemention could be better, e.g. support versioning
-    #  dep$`@id` <- guess_dep_id(dep)
-    dep
-  })
+  unname(mapply(format_depend, deps$package, deps$version))
 }
 
 

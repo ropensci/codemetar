@@ -17,40 +17,39 @@ new_codemeta <- function() {
 codemeta_description <-
   function(f, id = NULL, codemeta = new_codemeta()) {
     if (file.exists(f)) {
-      descr <- cm_read_dcf(f)
+      descr <- desc::desc(f)
     } else {
       return(codemeta)
     }
 
-    if (is.null(descr) || length(descr) == 0) {
-      return(codemeta)
-    }
 
     ## FIXME define an S3 class based on the codemeta list of lists?
     if (is.null(id)) {
-      id <- descr$Package
+      id <- descr$get("Package")
     }
 
     if (is_IRI(id)) {
       codemeta$`@id` <- id
     }
 
-    codemeta$identifier <- descr$Package
-    codemeta$description <- descr$Description
-    codemeta$name <- paste0(descr$Package, ": ", descr$Title)
+    codemeta$identifier <- descr$get("Package")
+    codemeta$description <- descr$get("Description")
+    codemeta$name <- paste0(descr$get("Package"), ": ",
+                            descr$get("Title"))
 
-    ## Will later guess these à la usethis::use_github_links
-    codemeta$codeRepository <- descr$URL
-    codemeta$issueTracker <- descr$BugReports
+
+    ## Will later guess these these a la devtools::use_github_links
+    codemeta$codeRepository <- descr$get("URL")
+    codemeta$issueTracker <- descr$get("BugReports")
+
 
     ## According to crosswalk, codemeta$dateModified and
     ## codemeta$dateCreated are not crosswalked in DESCRIPTION
-    codemeta$datePublished <-
-      descr$Date # probably not avaialable as descr$Date.
+    codemeta$datePublished <- NULL
 
-    codemeta$license <- spdx_license(descr$License)
+    codemeta$license <- spdx_license(descr$get("License"))
 
-    codemeta$version <- descr$Version
+    codemeta$version <- as.character(descr$get_version())
     codemeta$programmingLanguage <-
       list(
         "@type" = "ComputerLanguage",
@@ -64,23 +63,23 @@ codemeta_description <-
     codemeta$runtimePlatform <- R.version.string
 
     if (is.null(codemeta$provider))
-      codemeta$provider <- guess_provider(descr$Package)
-    if ("Authors@R" %in% names(descr)) {
+      codemeta$provider <- guess_provider(descr$get("Package"))
+      authors <- try(descr$get_authors(), silent = TRUE)
+    if (!inherits(authors,'try-error')) {
       codemeta <-
-        parse_people(eval(parse(text = descr$`Authors@R`)), codemeta)
+        parse_people(authors, codemeta)
     } else {
-      codemeta <- parse_people(as.person(descr$Author), codemeta)
-      ## maintainer must come second in case Author list also specifies
-      ## maintainer by role [cre] without email
-      codemeta$maintainer <-
-        person_to_schema(as.person(descr$Maintainer))
+      stop("No correct Authors@R field in DESCRIPTION, please add authors via Authors@R") # nolint
 
     }
 
-    codemeta$softwareSuggestions <- parse_depends(descr$Suggests)
-    codemeta$softwareRequirements <-
-      c(parse_depends(descr$Imports),
-        parse_depends(descr$Depends))
+    dependencies <- descr$get_deps()
+    suggests <- dependencies[dependencies$type == "Suggests",]
+    requirements <- dependencies[dependencies$type %in%
+                                   c("Imports", "Depends"),]
+
+    codemeta$softwareSuggestions <- parse_depends(suggests)
+    codemeta$softwareRequirements <- parse_depends(requirements)
 
 
 
