@@ -17,14 +17,6 @@ get_root_path <- function(pkg){
 }
 
 
-## based on devtools::read_dcf
-cm_read_dcf <- function(dcf) {
-
-  fields <- colnames(read.dcf(dcf))
-  as.list(read.dcf(dcf, keep.white = fields)[1, ])
-
-}
-
 ## Like system.file, but pkg can instead be path to package root directory
 get_file <- function(FILE, pkg = "."){
   f <- file.path(pkg, FILE)
