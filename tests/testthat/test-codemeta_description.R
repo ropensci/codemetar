@@ -15,7 +15,15 @@ testthat::test_that("Works R-forge", {
 
 testthat::test_that("We can parse plain Authors: & Maintainers: entries", {
   f <- system.file("examples/DESCRIPTION_ex1.dcf", package = "codemetar")
-  codemeta_description(f)
+  authors <- codemeta_description(f)
+  expect_true(authors$maintainer$familyName == "Boettiger")
+  expect_equal(length(authors$author), 0)
+  f <- system.file("examples/example.dcf", package = "codemetar")
+  authors <- codemeta_description(f)
+  expect_true(authors$maintainer$familyName == "Developer")
+  expect_equal(length(authors$author), 2)
+
+
 })
 
 
