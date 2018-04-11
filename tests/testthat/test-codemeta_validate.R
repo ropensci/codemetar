@@ -8,9 +8,9 @@ testthat::test_that("we can validate this file", {
 })
 
 
-testthat::test_that("we can create & validate codemeta for testthat package", {
+testthat::test_that("we can create & validate codemeta for usethis package", {
   skip_on_cran()
-  write_codemeta("testthat")
+  write_codemeta("usethis")
   testthat::expect_true(codemeta_validate("codemeta.json"))
   unlink("codemeta.json")
 
