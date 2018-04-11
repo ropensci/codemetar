@@ -19,4 +19,4 @@ testthat::test_that("Message if no BugReports", {
 testhat::test_that("No message if ok description",{
   f <- system.file("examples/DESCRIPTION_Rforge", package = "codemetar")
   expect_is(give_opinions_desc(f), NULL)
-}
+})
