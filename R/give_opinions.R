@@ -11,8 +11,17 @@ give_opinions <- function(pkg_path = .){
   descr_issues <- give_opinions_desc(descr_path)
 
 
-  fixmes <- descr_issues
-  fixmes$package <- as.character(descr$get("Package"))
+  fixmes <- rbind(descr_issues, NULL)
+
+  if(nrow(fixmes) >0){
+    descr <- desc::desc(descr_path)
+    fixmes$package <- as.character(descr$get("Package"))
+    return(fixmes)
+  }else{
+    return(NULL)
+  }
+
+
 }
 
 give_opinions_desc <- function(descr_path){
