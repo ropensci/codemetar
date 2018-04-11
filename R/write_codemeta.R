@@ -24,7 +24,7 @@
 #'
 #' @importFrom jsonlite write_json
 #' @examples
-#' write_codemeta("codemeta", tempfile())
+#' write_codemeta("codemetar", tempfile())
 #' @details
 #'
 #' When creating and writing a codemeta.json for the first time,
