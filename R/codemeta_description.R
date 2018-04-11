@@ -38,9 +38,26 @@ codemeta_description <-
                             descr$get("Title"))
 
 
-    ## Will later guess these these a la devtools::use_github_links
-    codemeta$codeRepository <- descr$get("URL")
-    codemeta$issueTracker <- descr$get("BugReports")
+    ## Enforce good practice
+    code_repo <- descr$get_urls()
+    if (!is.na(code_repo[1])){
+      if(length(code_repo) == 1){
+        codemeta$codeRepository <- code_repo
+      }else{
+        codemeta$codeRepository <- code_repo[grepl("github\\.com", code_repo)|
+                                 grepl("gitlab\\.com", code_repo)][1]
+      }
+    }else{
+      stop("Please enter a valid URL field in DESCRIPION")
+    }
+
+    issue_tracker <- descr$get("BugReports")
+    if (!is.na(issue_tracker)){
+      codemeta$issueTracker <- issue_tracker
+    }else{
+      warning("Please enter a valid issueTracker field in DESCRIPION")
+    }
+
 
 
     ## According to crosswalk, codemeta$dateModified and
