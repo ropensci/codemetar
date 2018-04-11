@@ -48,11 +48,14 @@ write_codemeta <- function(pkg = ".",
     # this is GPL-3 code
     if (uses_git()) {
       if(!file.exists(file.path(pkg, "codemeta.json"))){
-        message("Adding a pre-commit git hook ensuring that codemeta.json will be synchronized with DESCRIPTION") # nolint
+        message("* Adding a pre-commit git hook ensuring that codemeta.json will be synchronized with DESCRIPTION") # nolint
         usethis::use_git_hook(
           "pre-commit",
           render_template("description-codemetajson-pre-commit.sh")
         )
+        message(
+          "* Include the following code somewhere in R/ in your package, this way devtools::release() will remind you to update codemeta.json.\n",
+          '  release_questions <- function() "Have you updated codemeta.json with codemetar::write_codemeta()?"')
       }
 
     }
