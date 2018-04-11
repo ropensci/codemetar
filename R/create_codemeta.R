@@ -9,7 +9,7 @@
 #' @return a codemeta list object
 #' @export
 #' @examples
-#' cm <- create_codemeta("jqr")
+#' cm <- create_codemeta("jsonlite")
 #' cm$keywords <- list("metadata", "ropensci")
 #' @importFrom jsonlite read_json
 create_codemeta <- function(pkg = ".",

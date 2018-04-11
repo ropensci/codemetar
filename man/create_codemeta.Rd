@@ -32,6 +32,6 @@ to \code{\link{write_codemeta}}, but returns an R list object rather
 than writing directly to a file.  See examples.
 }
 \examples{
-cm <- create_codemeta("jqr")
+cm <- create_codemeta("jsonlite")
 cm$keywords <- list("metadata", "ropensci")
 }

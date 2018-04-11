@@ -1,6 +1,6 @@
 #' Function giving opinions about a package
 #'
-#' @param pkg_path
+#' @param pkg_path Path to the package root
 #'
 #' @return A data.frame of opinions
 #' @export

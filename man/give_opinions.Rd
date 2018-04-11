@@ -7,7 +7,7 @@
 give_opinions(pkg_path = .)
 }
 \arguments{
-\item{pkg_path}{}
+\item{pkg_path}{Path to the package root}
 }
 \value{
 A data.frame of opinions
