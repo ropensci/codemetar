@@ -1,12 +1,11 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
   "@type": "SoftwareSourceCode",
   "identifier": "codemetar",
   "description": "The 'Codemeta' Project defines a 'JSON-LD' format for describing\n  software metadata, as detailed at <https://codemeta.github.io>. This package\n  provides utilities to generate, parse, and modify 'codemeta.json' files \n  automatically for R packages, as well as tools and examples for working with\n  'codemeta.json' 'JSON-LD' more generally.",
   "name": "codemetar: Generate 'CodeMeta' Metadata for R Packages",
+  "codeRepository": "https://github.com/ropensci/codemetar",
+  "issueTracker": "https://github.com/ropensci/codemetar/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "0.1.5",
   "programmingLanguage": {
@@ -31,6 +30,14 @@
       "@id": "https://orcid.org/0000-0002-1642-628X"
     }
   ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Maëlle",
+      "familyName": "Salmon",
+      "@id": "https://orcid.org/0000-0002-2815-0399"
+    }
+  ],
   "copyrightHolder": [
     {
       "@type": "Person",
@@ -38,6 +45,12 @@
       "familyName": "Boettiger",
       "email": "cboettig@gmail.com",
       "@id": "https://orcid.org/0000-0002-1642-628X"
+    }
+  ],
+  "funder": [
+    {
+      "@type": "Organization",
+      "name": "rOpenSci"
     }
   ],
   "maintainer": {
@@ -300,35 +313,9 @@
       }
     }
   ],
-  "isPartOf": "https://ropensci.org",
-  "keywords": [
-    "metadata",
-    "codemeta",
-    "ropensci",
-    "citation",
-    "credit",
-    "linked-data"
-  ],
-  "relatedLink": "https://codemeta.github.io/codemetar",
   "contIntegration": "https://travis-ci.org/ropensci/codemetar",
   "developmentStatus": "active",
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
-  "fileSize": "269.888KB",
-  "codeRepository": "https://github.com/ropensci/codemetar",
-  "issueTracker": "https://github.com/ropensci/codemetar/issues",
-  "contributor": [
-    {
-      "@type": "Person",
-      "givenName": "Maëlle",
-      "familyName": "Salmon",
-      "@id": "https://orcid.org/0000-0002-2815-0399"
-    }
-  ],
-  "funder": [
-    {
-      "@type": "Organization",
-      "name": "rOpenSci"
-    }
-  ]
+  "fileSize": "269.89KB"
 }
