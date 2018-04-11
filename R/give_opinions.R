@@ -13,7 +13,7 @@ give_opinions <- function(pkg_path = .){
 
   fixmes <- rbind(descr_issues, NULL)
 
-  if(nrow(fixmes) >0){
+  if(!is.null(fixmes)){
     descr <- desc::desc(descr_path)
     fixmes$package <- as.character(descr$get("Package"))
     return(fixmes)
