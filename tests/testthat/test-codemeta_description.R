@@ -23,11 +23,11 @@ testthat::test_that("We can parse plain Authors: & Maintainers: entries", {
   expect_true(authors$maintainer$familyName == "Developer")
   expect_equal(length(authors$author), 2)
 
+  f <- system.file("examples/DESCRIPTION_jsonlite", package = "codemetar")
+  authors <- codemeta_description(f)
+  expect_true(authors$maintainer$familyName == "Ooms")
+  expect_equal(length(authors$author), 2)
+
 
 })
 
-
-testthat::test_that("Choose GitHub", {
-  f <- system.file("examples/DESCRIPTION_ex1.dcf", package = "codemetar")
-  expect_error(codemeta_description(f))
-})
