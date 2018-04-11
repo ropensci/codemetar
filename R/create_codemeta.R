@@ -17,6 +17,7 @@ create_codemeta <- function(pkg = ".",
                             id = NULL,
                             force_update =
                               getOption("codemeta_force_update", TRUE),
+                            verbose = TRUE,
                             ...) {
   ## looks like we got a package name/path or Description file
   if (is.character(pkg)) {
@@ -42,6 +43,12 @@ create_codemeta <- function(pkg = ".",
     ## but if not, methods below should return NULLs rather than error anyhow
     root <- get_root_path(root)
 
+  }
+
+  if(verbose){
+    opinions <- give_opinions(root)
+    if(!is.null(opinions))
+    message(paste0("Some elements could be improved, see our opinions via give_opinions('", root, "')"))
   }
 
   cm <-

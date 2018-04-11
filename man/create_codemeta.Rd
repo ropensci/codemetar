@@ -5,7 +5,8 @@
 \title{create_codemeta}
 \usage{
 create_codemeta(pkg = ".", root = ".", id = NULL,
-  force_update = getOption("codemeta_force_update", TRUE), ...)
+  force_update = getOption("codemeta_force_update", TRUE), verbose = TRUE,
+  ...)
 }
 \arguments{
 \item{pkg}{package path to package root, or package name, or
@@ -17,6 +18,8 @@ to package root. Default guess is current dir.}
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
 
 \item{force_update}{Update guessed fields even if they are defined in an existing codemeta.json file}
+
+\item{verbose}{Whether to print messages indicating opinions e.g. when DESCRIPTION has no URL. See \code{\link{give_opinions}}.}
 
 \item{...}{additional arguments to \code{\link{write_json}}}
 }

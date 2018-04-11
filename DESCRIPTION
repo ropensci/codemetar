@@ -41,8 +41,10 @@ Imports:
     readr,
     desc,
     usethis,
-    whisker
-Suggests: testthat,
+    whisker,
+    tibble
+Suggests: 
+    testthat,
     jsonvalidate,
     covr,
     knitr,
@@ -51,7 +53,6 @@ Suggests: testthat,
     magrittr,
     xml2,
     dplyr (>= 0.7.0),
-    tibble,
     purrr,
     printr
 VignetteBuilder: knitr

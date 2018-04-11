@@ -47,15 +47,11 @@ codemeta_description <-
         codemeta$codeRepository <- code_repo[grepl("github\\.com", code_repo)|
                                  grepl("gitlab\\.com", code_repo)][1]
       }
-    }else{
-      stop("Please enter a valid URL field in DESCRIPION")
     }
 
     issue_tracker <- descr$get("BugReports")
     if (!is.na(issue_tracker)){
       codemeta$issueTracker <- issue_tracker
-    }else{
-      warning("Please enter a valid issueTracker field in DESCRIPION")
     }
 
 
@@ -86,8 +82,15 @@ codemeta_description <-
       codemeta <-
         parse_people(authors, codemeta)
     } else {
-      stop("No correct Authors@R field in DESCRIPTION, please add authors via Authors@R") # nolint
-
+      # get authors and maintainer from their fields
+      # and don't get maintainer twice!
+      authors <- as.person(descr$get("Author"))
+      maintainer <- descr$get_maintainer()
+      maintainer <- as.person(paste(maintainer, "[cre]"))
+      authors <- authors[!(authors$given == maintainer$given & authors$family == maintainer$family)]
+      authors <- c(authors, maintainer)
+      codemeta <-
+        parse_people(authors, codemeta)
     }
 
     dependencies <- descr$get_deps()
