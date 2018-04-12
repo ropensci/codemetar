@@ -42,14 +42,14 @@ Imports:
     desc,
     usethis,
     whisker,
-    tibble
+    tibble,
+    crul
 Suggests: 
     testthat,
     jsonvalidate,
     covr,
     knitr,
     rmarkdown,
-    crul,
     magrittr,
     xml2,
     dplyr (>= 0.7.0),

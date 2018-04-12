@@ -38,9 +38,10 @@ codemeta_description <-
                             descr$get("Title"))
 
 
-    ## Enforce good practice
+    ## Get URLs
     code_repo <- descr$get_urls()
     if (!is.na(code_repo[1])){
+
       if(length(code_repo) == 1){
         codemeta$codeRepository <- code_repo
       }else{
