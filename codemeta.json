@@ -121,17 +121,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "crul",
-      "name": "crul",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
       "provider": {
@@ -314,11 +303,22 @@
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "crul",
+      "name": "crul",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
     }
   ],
   "contIntegration": "https://travis-ci.org/ropensci/codemetar",
   "developmentStatus": "active",
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
-  "fileSize": "270.002KB"
+  "fileSize": "270.648KB"
 }

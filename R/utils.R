@@ -65,3 +65,37 @@ find_template <- function(template_name, package = "usethis") {
   }
   path
 }
+
+get_url_status_code <- function(url){
+  if(!is.null(url)){
+    if(!is.na(url)){
+      result <- try(crul::HttpClient$new(url)$get(), silent = TRUE)
+      if (!inherits(result,'try-error')){
+        code <- result$status_code
+        if(code == 200){
+          message <- "All good"
+        }else{
+          message <- paste("Error code:", code)
+        }
+      }else{
+        message <- "No connection was possible"
+      }
+      return(data.frame(message = message, url = url))
+    }else{
+      return(NULL)
+    }
+  }else{
+    return(NULL)
+  }
+
+}
+
+check_urls <- function(urls){
+  messages <- do.call(rbind, lapply(urls, get_url_status_code))
+  if(any(messages$message != "All good")){
+    paste("Problematic URLs\n", apply(messages[messages$message != "All good",],
+                  1, toString))
+  }else{
+    ""
+  }
+}

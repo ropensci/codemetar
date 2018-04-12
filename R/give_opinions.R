@@ -38,14 +38,26 @@ give_opinions_desc <- function(descr_path){
   if(is.na(descr$get("URL"))){
     url_fixme <- "URL field. Indicate the URL to your code repository."
   }else{
-    url_fixme <- NULL
+    checkurls <- check_urls(descr$get("URL"))
+    if(checkurls != ""){
+      url_fixme <- checkurls
+    }else{
+      url_fixme <- NULL
+    }
+
   }
 
   # BugReports
   if(is.na(descr$get("BugReports"))){
     bugreports_fixme <- "BugReports field. Indicate where to report bugs, e.g. GitHub issue tracker."
   }else{
-    bugreports_fixme <- NULL
+    checkurls <- check_urls(descr$get("BugReports"))
+    if(checkurls != ""){
+      bugreports_fixme <- checkurls
+    }else{
+      bugreports_fixme <- NULL
+    }
+
   }
 
   fixmes <- c(authors_fixme, url_fixme, bugreports_fixme)

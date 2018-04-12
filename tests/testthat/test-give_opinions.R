@@ -20,3 +20,9 @@ testthat::test_that("No message if ok description",{
   f <- system.file("examples/DESCRIPTION_Rforge", package = "codemetar")
   expect_null(give_opinions_desc(f))
 })
+
+test_that("Message if bad URLS", {
+  f <- system.file("examples/DESCRIPTION_wrongURLS", package = "codemetar")
+  desc_fixmes <- give_opinions_desc(f)
+  expect_true(any(grepl("Problematic URLs", desc_fixmes$fixme)))
+})
