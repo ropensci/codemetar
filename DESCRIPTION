@@ -49,7 +49,7 @@ Suggests:
     covr,
     knitr,
     rmarkdown,
-    httr,
+    crul,
     magrittr,
     xml2,
     dplyr (>= 0.7.0),
