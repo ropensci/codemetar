@@ -12,7 +12,7 @@ testthat::test_that("Message if no BugReports", {
   f <- system.file("examples/DESCRIPTION_no_bugreports", package = "codemetar")
   desc_fixmes <- give_opinions_desc(f)
   expect_is(desc_fixmes, "data.frame")
-  expect_equal(desc_fixmes$where, "DESCRIPTION")
+  expect_equal(desc_fixmes$where[1], "DESCRIPTION")
   expect_true(any(grepl("BugReports", desc_fixmes$fixme)))
 })
 
