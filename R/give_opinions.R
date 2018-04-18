@@ -38,7 +38,7 @@ give_opinions_desc <- function(descr_path){
   if(is.na(descr$get("URL"))){
     url_fixme <- "URL field. Indicate the URL to your code repository."
   }else{
-    checkurls <- check_urls(descr$get("URL"))
+    checkurls <- check_urls(descr$descr$get_urls)
     if(checkurls != ""){
       url_fixme <- checkurls
     }else{
