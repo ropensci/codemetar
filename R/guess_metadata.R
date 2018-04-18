@@ -83,6 +83,37 @@ guess_devStatus <- function(readme) {
 
 }
 
+# looks for a rOpenSci peer review badge
+guess_ropensci_review <- function(readme) {
+  status <- NULL
+  if (file.exists(readme)) {
+    txt <- readLines(readme)
+    badge <- txt[grepl("badges\\.ropensci\\.org", txt)]
+
+  }
+  if (length(badge) >= 1) {
+    review <-
+      gsub(".*https://github.com/ropensci/onboarding/issues/", "", badge)
+    review <- gsub(").*", "", review)
+    review <- as.numeric(review)
+    issue <- gh::gh("GET /repos/:owner/:repo/issues/:number",
+                    owner = "ropensci",
+                    repo = "onboarding",
+                    number = review)
+    if(issue$state == "closed"){
+      list("@type" = "Review",
+           "url" = paste0("https://github.com/ropensci/onboarding/issues/",
+                          review),
+           "provider" = "http://ropensci.org")
+    }else{
+      NULL
+    }
+  } else {
+    NULL
+  }
+
+}
+
 
 ## use rorcid / ORCID API to infer ORCID ID from name?
 ## (Can't use email since only 2% of ORCID users expose email)

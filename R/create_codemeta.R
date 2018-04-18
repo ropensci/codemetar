@@ -68,6 +68,11 @@ create_codemeta <- function(pkg = ".",
     guess_devStatus(file.path(root, "README.md"))
   }
 
+  if ((is.null(cm$review) | force_update)){
+    cm$review <-
+      guess_ropensci_review(file.path(root, "README.md"))
+  }
+
   if ((is.null(cm$releaseNotes) | force_update)){
     cm$releaseNotes <- guess_releaseNotes(root)
   }
