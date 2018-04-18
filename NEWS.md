@@ -1,3 +1,15 @@
+# codemetar 0.1.6 2018-04
+
+* Use desc to parse DESCRIPTION files.
+
+* Writing codemeta.json for the first time adds a git pre-commit hook and suggests adding a release question for devtools::release.
+
+* License changed to GPL because of code borrowed from usethis
+
+* Add give_opinion function giving opiniated advice about package metadata
+
+* Replace httr with crul and use crul to check URLs.
+
 # codemetar 0.1.5 2018-03-21
 
 * Default to DOI-based schema. (previous CN issues now resolved)

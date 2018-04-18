@@ -1,7 +1,8 @@
 Dear CRAN Maintainers,
 
-This release migrates the default schema to a DOI-based URL rather than a purl.org based URL. 
-Package reviewer contributions are also now acknowledged with the newly supported `rev` MARC code.
+This release follows the release of jsonld that introduced a bug. 
+
+More details in the release summary below.
 
 Thanks!
 
@@ -12,6 +13,8 @@ Carl
 
 * local OS X install, R 3.4.4
 * ubuntu 16.04 (on travis-ci), R 3.4.4
+* Windows (on Appveyor CI), dev and release
+* local Windows install, R 3.4.4
 * win-builder (devel and release)
 
 ## R CMD check results
