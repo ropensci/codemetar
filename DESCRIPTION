@@ -43,7 +43,8 @@ Imports:
     usethis,
     whisker,
     tibble,
-    crul
+    crul,
+    gh
 Suggests: 
     testthat,
     jsonvalidate,
