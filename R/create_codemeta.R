@@ -55,20 +55,30 @@ create_codemeta <- function(pkg = ".",
     codemeta_description(file.path(root, "DESCRIPTION"), id = id, cm)
 
   ## Guess these only if not set in current codemeta:
-  if (is.null(cm$codeRepository) | force_update)
+  if ((is.null(cm$codeRepository) | force_update)){
     cm$codeRepository <- guess_github(root)
-  if (is.null(cm$contIntegration) | force_update)
+  }
+
+  if ((is.null(cm$contIntegration) | force_update)){
     cm$contIntegration <- guess_ci(file.path(root, "README.md"))
-  if (is.null(cm$developmentStatus) | force_update)
+  }
+
+  if ((is.null(cm$developmentStatus) | force_update)){
     cm$developmentStatus <-
     guess_devStatus(file.path(root, "README.md"))
-  if (is.null(cm$releaseNotes) | force_update)
-    cm$releaseNotes <- guess_releaseNotes(root)
-  if (is.null(cm$readme) | force_update)
-    cm$readme <- guess_readme(root)
-  if (is.null(cm$fileSize) | force_update)
-    cm$fileSize <- guess_fileSize(root)
+  }
 
+  if ((is.null(cm$releaseNotes) | force_update)){
+    cm$releaseNotes <- guess_releaseNotes(root)
+  }
+
+  if ((is.null(cm$readme) | force_update)){
+    cm$readme <- guess_readme(root)
+  }
+
+  if ((is.null(cm$fileSize) | force_update)){
+    cm$fileSize <- guess_fileSize(root)
+  }
 
   ## Citation metadata
   if(is.character(pkg)){  ## Doesn't apply if pkg is a list (codemeta object)
