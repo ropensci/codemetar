@@ -89,28 +89,30 @@ guess_ropensci_review <- function(readme) {
   if (file.exists(readme)) {
     txt <- readLines(readme)
     badge <- txt[grepl("badges\\.ropensci\\.org", txt)]
-
-  }
-  if (length(badge) >= 1) {
-    review <-
-      gsub(".*https://github.com/ropensci/onboarding/issues/", "", badge)
-    review <- gsub(").*", "", review)
-    review <- as.numeric(review)
-    issue <- gh::gh("GET /repos/:owner/:repo/issues/:number",
-                    owner = "ropensci",
-                    repo = "onboarding",
-                    number = review)
-    if(issue$state == "closed"){
-      list("@type" = "Review",
-           "url" = paste0("https://github.com/ropensci/onboarding/issues/",
-                          review),
-           "provider" = "http://ropensci.org")
-    }else{
+    if (length(badge) >= 1) {
+      review <-
+        gsub(".*https://github.com/ropensci/onboarding/issues/", "", badge)
+      review <- gsub(").*", "", review)
+      review <- as.numeric(review)
+      issue <- gh::gh("GET /repos/:owner/:repo/issues/:number",
+                      owner = "ropensci",
+                      repo = "onboarding",
+                      number = review)
+      if(issue$state == "closed"){
+        list("@type" = "Review",
+             "url" = paste0("https://github.com/ropensci/onboarding/issues/",
+                            review),
+             "provider" = "http://ropensci.org")
+      }else{
+        NULL
+      }
+    } else {
       NULL
     }
-  } else {
+  }else{
     NULL
   }
+
 
 }
 
