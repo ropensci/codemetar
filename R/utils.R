@@ -99,3 +99,24 @@ check_urls <- function(urls){
     ""
   }
 }
+
+extract_badges <- function(path){
+  txt <- readLines(path)
+  badges1 <- unlist(stringr::str_match_all(txt, "\\[!\\[\\]\\(.*?\\)\\]\\(.*?\\)"))
+  badges2 <- unlist(stringr::str_match_all(txt, "\\[!\\[.*?\\]\\(.*?\\)\\]\\(.*?\\)"))
+  badges <- c(badges1, badges2)
+  badges[!is.na(badges)]
+
+  unique(do.call(rbind,
+          lapply(badges, parse_badge)))
+}
+
+parse_badge <- function(badge){
+  text <- stringr::str_match(badge, "\\[!\\[(.*?)\\]")[,2]
+  link <- stringr::str_match(badge, "\\)\\]\\((.*?)\\)")[,2]
+  image_link <- stringr::str_match(badge, "\\]\\((.*?)\\)\\]")[,2]
+  tibble::tibble(text = text,
+                 link = link,
+                 image_link = image_link)
+}
+
