@@ -353,10 +353,11 @@
   "developmentStatus": "active",
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
-  "fileSize": "271.27KB",
+  "fileSize": "271.377KB",
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/onboarding/issues/130",
     "provider": "http://ropensci.org"
-  }
+  },
+  "relatedLink": "https://CRAN.R-project.org/package=codemetar"
 }
