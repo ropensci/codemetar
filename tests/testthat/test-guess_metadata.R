@@ -32,7 +32,11 @@ testthat::test_that("guess_ci",{
 testthat::test_that("guess_devStatus",{
   f <- system.file("examples/README_ex.md", package="codemetar")
   a <- guess_devStatus(f)
-  expect_gt(length(a), 0)
+  expect_equal(a, "wip")
+
+  f <- system.file("examples/README_codemetar_bad.md", package="codemetar")
+  a <- guess_devStatus(f)
+  expect_null(a)
 
   f2 <- system.file("examples/README_ex2.md", package="codemetar")
   a2 <- guess_devStatus(f2)

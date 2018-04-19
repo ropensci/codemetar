@@ -32,3 +32,17 @@ test_that("Message if bad URLS", {
   desc_fixmes <- give_opinions_desc(f)
   expect_true(any(grepl("Problematic URLs", desc_fixmes$fixme)))
 })
+
+test_that("badges in README", {
+  f <- system.file("examples/README_codemetar_bad.md", package = "codemetar")
+  readme_fixmes <- give_opinions_readme(f, "codemetar")
+  expect_equal(nrow(readme_fixmes), 2)
+  expect_true(any(grepl("status",
+                        readme_fixmes$fixme)))
+  expect_true(any(grepl("CRAN",
+                        readme_fixmes$fixme)))
+
+  readme_fixmes <- give_opinions_readme(f, "a4")
+  expect_true(any(grepl("BioConductor",
+                        readme_fixmes$fixme)))
+})
