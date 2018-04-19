@@ -97,16 +97,20 @@ create_codemeta <- function(pkg = ".",
 
   # Add provider link as relatedLink
   provider <- guess_provider(cm$identifier)
-
-  if(provider$name == "Central R Archive Network (CRAN)"){
-    cm$relatedLink <- c(cm$relatedLink,
-                        paste0("https://CRAN.R-project.org/package=",
-                         cm$identifier))
-  }else{
-    if(provider$name == "BioConductor"){
+  badges <- extract_badges(guess_readme(root))
+  if(!is.null(provider) &
+     whether_provider_badge(badges,
+                            provider$name)){
+    if(provider$name == "Central R Archive Network (CRAN)"){
       cm$relatedLink <- c(cm$relatedLink,
-                          paste0("https://bioconductor.org/packages/release/bioc/html/",
-                           cm$identifier, ".html"))
+                          paste0("https://CRAN.R-project.org/package=",
+                                 cm$identifier))
+    }else{
+      if(provider$name == "BioConductor"){
+        cm$relatedLink <- c(cm$relatedLink,
+                            paste0("https://bioconductor.org/packages/release/bioc/html/",
+                                   cm$identifier, ".html"))
+      }
     }
   }
 

@@ -100,14 +100,8 @@ give_opinions_readme <- function(readme_path,
   # provider
   provider <- guess_provider(pkg_name)
   if(!is.null(provider)){
-    if(provider$name == "Central R Archive Network (CRAN)"){
-      provider_badge <- any(grepl("CRAN", badges$text))
-    }else{
-      if(provider$name == "BioConductor"){
-        provider_badge <- any(grepl("bioconductor",
-                                    badges$link))
-      }
-    }
+    provider_badge <- whether_provider_badge(badges,
+                                             provider$name)
 
     if(!provider_badge){
       provider_fixme <- paste0("There is a package called ",
