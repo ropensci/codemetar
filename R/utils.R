@@ -55,15 +55,8 @@ render_template <- function(template, data = list(), package = "codemetar") {
 # from usethis cf https://github.com/r-lib/usethis/blob/4fb556788d2588facaaa8560242d2c83f2261d6e/R/helpers.R#L60
 # this is GPL-3 code
 find_template <- function(template_name, package = "usethis") {
-  path <- system.file("templates", template_name, package = package)
-  if (identical(path, "")) {
-    stop(
-      "Could not find template ", value(template_name),
-      " in package ", value(package),
-      call. = FALSE
-    )
-  }
-  path
+   system.file("templates", template_name, package = package)
+
 }
 
 get_url_status_code <- function(url){

@@ -5,7 +5,7 @@
 #' @return A data.frame of opinions
 #' @export
 #'
-give_opinions <- function(pkg_path = .){
+give_opinions <- function(pkg_path = getwd()){
   descr_path <- file.path(pkg_path, "DESCRIPTION")
   # opinions about DESCRIPTION
   descr_issues <- give_opinions_desc(descr_path)
