@@ -120,3 +120,15 @@ parse_badge <- function(badge){
                  image_link = image_link)
 }
 
+whether_provider_badge <- function(badges, provider_name){
+  if(provider_name == "Central R Archive Network (CRAN)"){
+    provider_badge <- any(grepl("CRAN", badges$text))
+  }else{
+    if(provider_name == "BioConductor"){
+      provider_badge <- any(grepl("bioconductor",
+                                  badges$link))
+    }
+  }
+
+  provider_badge
+}

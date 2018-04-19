@@ -98,17 +98,26 @@ create_codemeta <- function(pkg = ".",
   # Add provider link as relatedLink
   provider <- guess_provider(cm$identifier)
 
-  if(provider$name == "Central R Archive Network (CRAN)"){
-    cm$relatedLink <- c(cm$relatedLink,
-                        paste0("https://CRAN.R-project.org/package=",
-                         cm$identifier))
-  }else{
-    if(provider$name == "BioConductor"){
-      cm$relatedLink <- c(cm$relatedLink,
-                          paste0("https://bioconductor.org/packages/release/bioc/html/",
-                           cm$identifier, ".html"))
+  readme <- guess_readme(root)
+  if(!is.null(readme)){
+    badges <- extract_badges(readme)
+    if(!is.null(provider) &
+       whether_provider_badge(badges,
+                              provider$name)){
+      if(provider$name == "Central R Archive Network (CRAN)"){
+        cm$relatedLink <- c(cm$relatedLink,
+                            paste0("https://CRAN.R-project.org/package=",
+                                   cm$identifier))
+      }else{
+        if(provider$name == "BioConductor"){
+          cm$relatedLink <- c(cm$relatedLink,
+                              paste0("https://bioconductor.org/packages/release/bioc/html/",
+                                     cm$identifier, ".html"))
+        }
+      }
     }
   }
+
 
   ## Add blank slots as placeholders? and declare as an S3 class?
 
