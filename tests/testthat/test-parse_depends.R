@@ -5,9 +5,15 @@ testthat::test_that("Test the various cases for dependencies", {
   testthat::expect_error(format_depend(NULL))
   a <- format_depend(package = "a4",
                      version = "*")  # BIOC provider
+  testthat::expect_equal(a$sameAs, "https://bioconductor.org/packages/release/bioc/html/a4.html")
+
+
   testthat::expect_equal(a$provider$`@id`, "https://www.bioconductor.org")
   a <- format_depend(package = "httr",
                      version = "*") # CRAN provider
+  testthat::expect_equal(a$sameAs, "https://CRAN.R-project.org/package=httr")
+
+
   testthat::expect_equal(a$provider$`@id`, "https://cran.r-project.org")
   a <- format_depend(package = "R",
                      version = ">= 3.0.0")
