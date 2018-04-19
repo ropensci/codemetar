@@ -73,7 +73,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
     },
     {
       "@type": "SoftwareApplication",
@@ -84,7 +85,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonvalidate"
     },
     {
       "@type": "SoftwareApplication",
@@ -95,7 +97,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=covr"
     },
     {
       "@type": "SoftwareApplication",
@@ -106,7 +109,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
     },
     {
       "@type": "SoftwareApplication",
@@ -117,7 +121,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
     },
     {
       "@type": "SoftwareApplication",
@@ -128,7 +133,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=magrittr"
     },
     {
       "@type": "SoftwareApplication",
@@ -139,7 +145,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=xml2"
     },
     {
       "@type": "SoftwareApplication",
@@ -151,7 +158,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=dplyr"
     },
     {
       "@type": "SoftwareApplication",
@@ -162,7 +170,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
     {
       "@type": "SoftwareApplication",
@@ -173,7 +182,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=printr"
     }
   ],
   "softwareRequirements": [
@@ -193,7 +203,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
     },
     {
       "@type": "SoftwareApplication",
@@ -204,7 +215,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonld"
     },
     {
       "@type": "SoftwareApplication",
@@ -215,7 +227,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=git2r"
     },
     {
       "@type": "SoftwareApplication",
@@ -226,7 +239,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=devtools"
     },
     {
       "@type": "SoftwareApplication",
@@ -247,7 +261,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=stringi"
     },
     {
       "@type": "SoftwareApplication",
@@ -258,7 +273,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=readr"
     },
     {
       "@type": "SoftwareApplication",
@@ -269,7 +285,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=desc"
     },
     {
       "@type": "SoftwareApplication",
@@ -280,7 +297,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=usethis"
     },
     {
       "@type": "SoftwareApplication",
@@ -291,7 +309,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=whisker"
     },
     {
       "@type": "SoftwareApplication",
@@ -302,7 +321,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tibble"
     },
     {
       "@type": "SoftwareApplication",
@@ -313,7 +333,8 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=crul"
     },
     {
       "@type": "SoftwareApplication",
@@ -324,14 +345,15 @@
         "@type": "Organization",
         "name": "Central R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=gh"
     }
   ],
   "contIntegration": "https://travis-ci.org/ropensci/codemetar",
   "developmentStatus": "active",
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
-  "fileSize": "272.562KB",
+  "fileSize": "271.27KB",
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/onboarding/issues/130",

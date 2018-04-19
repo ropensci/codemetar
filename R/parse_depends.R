@@ -15,7 +15,23 @@ format_depend <- function(package, version){
 
   ## implemention could be better, e.g. support versioning
   #  dep$`@id` <- guess_dep_id(dep)
-  dep
+
+  # CRAN canonical URL
+  if(!is.null(dep$provider)){
+    if(dep$provider$name == "Central R Archive Network (CRAN)"){
+      dep$sameAs <- paste0("https://CRAN.R-project.org/package=",
+                           dep$identifier)
+    }else{
+      if(dep$provider$name == "BioConductor"){
+        dep$sameAs <- paste0("https://bioconductor.org/packages/release/bioc/html/",
+                             dep$identifier, ".html")
+      }
+    }
+  }
+
+
+  return(dep)
+
 }
 
 parse_depends <- function(deps) {
