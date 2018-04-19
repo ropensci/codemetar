@@ -67,16 +67,12 @@ guess_ci <- function(readme) {
 guess_devStatus <- function(readme) {
   status <- NULL
   if (file.exists(readme)) {
-    txt <- readLines(readme)
-    badge <- txt[grepl("\\[Project Status", txt)]
-    ## Text-based status line
-    # status <- gsub(".*\\[!\\[(Project Status: .*)\\.\\].*", "\\1", badge)
-    ## use \\2 for repostatus.org term, \\1 for repostatus.org term link
-    status <-
-      gsub(".*(http://www.repostatus.org/#(\\w+)).*", "\\2", badge)
-  }
-  if (length(status) >= 1) {
-    status[[1]]
+    badges <- extract_badges(readme)
+    status_badge <- badges[grepl("Project Status", badges$text),]
+      }
+  if (nrow(status_badge) == 1) {
+    gsub(".*(http://www.repostatus.org/#(\\w+)).*", "\\2",
+         status_badge$link)[[1]]
   } else {
     NULL
   }
