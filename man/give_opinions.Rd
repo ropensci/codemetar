@@ -4,7 +4,7 @@
 \alias{give_opinions}
 \title{Function giving opinions about a package}
 \usage{
-give_opinions(pkg_path = .)
+give_opinions(pkg_path = getwd())
 }
 \arguments{
 \item{pkg_path}{Path to the package root}
