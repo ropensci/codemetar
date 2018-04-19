@@ -20,6 +20,8 @@ environment:
     matrix:
     - R_VERSION: stable
 
+    - R_VERSION: patched
+
     - R_VERSION: devel
 
 build_script:
