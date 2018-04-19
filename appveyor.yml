@@ -15,8 +15,6 @@ cache:
 
 # Adapt as necessary starting from here
 environment:
-    USE_RTOOLS: true
-
     matrix:
     - R_VERSION: stable
 
@@ -27,7 +25,6 @@ environment:
 build_script:
   - travis-tool.sh install_deps
   - travis-tool.sh install_github r-lib/desc
-  - travis-tool.sh install_github jeroen/jsonlite
 
 test_script:
   - travis-tool.sh run_tests
