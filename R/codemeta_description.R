@@ -48,7 +48,7 @@ codemeta_description <-
       }else{
         # try to identify a GitHub or Gitlab repo
         actual_code_repo <- code_repo[grepl("github\\.com", code_repo)|
-                                 grepl("gitlab\\.com", code_repo)][1]
+                                        grepl("gitlab\\.com", code_repo)][1]
         # otherwise take the first URL arbitrarily
         if(is.null(codemeta$Repository)){
           codemeta$codeRepository <- actual_code_repo
@@ -56,7 +56,7 @@ codemeta_description <-
 
         # add other URLs as related links
         codemeta$relatedLink <- unique(c(codemeta$relatedLink,
-                                  code_repo[code_repo != actual_code_repo]))
+                                         code_repo[code_repo != actual_code_repo]))
       }
     }
 
@@ -88,7 +88,7 @@ codemeta_description <-
 
     if (is.null(codemeta$provider))
       codemeta$provider <- guess_provider(descr$get("Package"))
-      authors <- try(descr$get_authors(), silent = TRUE)
+    authors <- try(descr$get_authors(), silent = TRUE)
     if (!inherits(authors,'try-error')) {
       codemeta <-
         parse_people(authors, codemeta)
@@ -108,8 +108,8 @@ codemeta_description <-
                      maintainer[2:length(maintainer)])
         maintainer <- maintainer[1]
       }else{
-          authors <- authors[!authors_strings %in% maintainer_strings]
-        }
+        authors <- authors[!authors_strings %in% maintainer_strings]
+      }
 
       authors <- c(authors, maintainer)
       codemeta <-
@@ -126,7 +126,7 @@ codemeta_description <-
     suggests$remote_provider <- unlist(lapply(suggests$package,
                                               add_remote_to_dep, remotes = remotes))
     requirements$remote_provider <- unlist(lapply(requirements$package,
-                                              add_remote_to_dep, remotes = remotes))
+                                                  add_remote_to_dep, remotes = remotes))
 
     codemeta$softwareSuggestions <- parse_depends(suggests)
     codemeta$softwareRequirements <- parse_depends(requirements)
@@ -134,12 +134,13 @@ codemeta_description <-
 
 
     ## add any additional codemeta terms found in the DESCRIPTION metadata
+
     for(term in additional_codemeta_terms){
       ## in DESCRIPTION, these terms must be *prefixed*:
       X_term <- paste0("X-schema.org-", term)
-      if(!is.null(descr[[X_term]])){
+      if(!is.na(descr$get(X_term))){
         codemeta[[term]] <- gsub("\\s+", "",
-                                 strsplit(descr[[X_term]], ",")[[1]])
+                                 strsplit(descr$get(X_term), ",")[[1]])
       }
     }
 

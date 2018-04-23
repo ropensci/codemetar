@@ -29,5 +29,5 @@ Suggests: testthat,
     readr,
     xml2
 VignetteBuilder: knitr
-Keywords: metadata, codemeta, ropensci, citation, credit
-Affiliation: https://ropensci.org
+X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data
+X-schema.org-isPartOf: https://ropensci.org
