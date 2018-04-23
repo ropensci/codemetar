@@ -20,6 +20,8 @@
 
 * if there is a badge for an rOpenSci onboarding review and the review issue is closed, basic review metadata is added to codemeta.json
 
+* For dependencies, if the provider guessed is CRAN or BioConductor, their canonic CRAN/BioConductor URL is added to codemeta.json as sameAs, unless there's a GitHub repo mentioned for them in Remotes in DESCRIPTION, in which case sameAs is that GitHub repo.
+
 # codemetar 0.1.5 2018-03-21
 
 * Default to DOI-based schema. (previous CN issues now resolved)
