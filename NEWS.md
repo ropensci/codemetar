@@ -10,6 +10,8 @@
 
 * Replace httr with crul and use crul to check URLs.
 
+* relatedLink field now include provider URL and URL(s) from DESCRIPTION that are not the code repository
+
 # codemetar 0.1.5 2018-03-21
 
 * Default to DOI-based schema. (previous CN issues now resolved)
