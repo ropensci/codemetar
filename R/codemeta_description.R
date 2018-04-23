@@ -121,6 +121,13 @@ codemeta_description <-
     requirements <- dependencies[dependencies$type %in%
                                    c("Imports", "Depends"),]
 
+    remotes <- descr$get_remotes()
+
+    suggests$remote_provider <- unlist(lapply(suggests$package,
+                                              add_remote_to_dep, remotes = remotes))
+    requirements$remote_provider <- unlist(lapply(requirements$package,
+                                              add_remote_to_dep, remotes = remotes))
+
     codemeta$softwareSuggestions <- parse_depends(suggests)
     codemeta$softwareRequirements <- parse_depends(requirements)
 

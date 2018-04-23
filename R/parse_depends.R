@@ -1,6 +1,6 @@
 ## internal method for parsing a list of package dependencies into pkg URLs
 
-format_depend <- function(package, version){
+format_depend <- function(package, version, remote_provider){
   dep <- list("@type" = "SoftwareApplication",
               identifier = package,
               ## FIXME technically the name includes the title
@@ -29,6 +29,9 @@ format_depend <- function(package, version){
     }
   }
 
+  if(remote_provider != ""){
+      dep$sameAs <- paste0("https://github.com/", remote_provider)
+  }
 
   return(dep)
 
@@ -36,7 +39,8 @@ format_depend <- function(package, version){
 
 parse_depends <- function(deps) {
 
-  unname(mapply(format_depend, deps$package, deps$version))
+  unname(mapply(format_depend, deps$package, deps$version,
+                deps$remote_provider))
 }
 
 
@@ -61,4 +65,14 @@ guess_dep_id <- function(dep) {
 
   id
 
+}
+
+add_remote_to_dep <- function(package, remotes){
+  remote_provider <- remotes[grepl(paste0("/", package, "$"),
+                                   remotes)]
+  if(length(remote_provider) == 0){
+    ""
+  }else{
+    remote_provider
+  }
 }

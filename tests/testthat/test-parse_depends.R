@@ -4,19 +4,32 @@ testthat::test_that("Test the various cases for dependencies", {
 
   testthat::expect_error(format_depend(NULL))
   a <- format_depend(package = "a4",
-                     version = "*")  # BIOC provider
+                     version = "*",
+                     remote_provider = "")  # BIOC provider
   testthat::expect_equal(a$sameAs, "https://bioconductor.org/packages/release/bioc/html/a4.html")
 
 
   testthat::expect_equal(a$provider$`@id`, "https://www.bioconductor.org")
+
   a <- format_depend(package = "httr",
-                     version = "*") # CRAN provider
+                     version = "*",
+                     remote_provider = "") # CRAN provider
   testthat::expect_equal(a$sameAs, "https://CRAN.R-project.org/package=httr")
 
+  a <- format_depend(package = "desc",
+                     version = "*",
+                     remote_provider = "r-lib/desc") # CRAN provider
+  testthat::expect_equal(a$sameAs, "https://github.com/r-lib/desc")
+
+  f <- system.file("examples/DESCRIPTION_with_remote", package = "codemetar")
+  descr <- codemeta_description(f)
+  testthat::expect_equal(descr$softwareRequirements[6, 1][[1]],
+                         "https://github.com/r-lib/desc")
 
   testthat::expect_equal(a$provider$`@id`, "https://cran.r-project.org")
   a <- format_depend(package = "R",
-                     version = ">= 3.0.0")
+                     version = ">= 3.0.0",
+                     remote_provider = "")
   testthat::expect_equal(a$name, "R")
 
 })
