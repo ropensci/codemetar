@@ -97,8 +97,20 @@ codemeta_description <-
       # and don't get maintainer twice!
       authors <- as.person(descr$get("Author"))
       maintainer <- descr$get_maintainer()
-      maintainer <- as.person(paste(maintainer, "[cre]"))
-      authors <- authors[!(authors$given == maintainer$given & authors$family == maintainer$family)]
+      maintainer <- as.person(paste(maintainer))
+      maintainer$role <- "cre"
+      authors_strings <- paste(authors$given, authors$family)
+      maintainer_strings <- paste(maintainer$given, maintainer$family)
+      # for now only one maintainer
+      if(length(maintainer) > 1){
+
+        authors <- c(authors[!authors_strings %in% maintainer_strings[1]],
+                     maintainer[2:length(maintainer)])
+        maintainer <- maintainer[1]
+      }else{
+          authors <- authors[!authors_strings %in% maintainer_strings]
+        }
+
       authors <- c(authors, maintainer)
       codemeta <-
         parse_people(authors, codemeta)
