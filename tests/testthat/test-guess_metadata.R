@@ -17,12 +17,16 @@ testthat::test_that("guess_provider",{
 testthat::test_that("guess_ci",{
  f <- system.file("examples/README_ex.md", package="codemetar")
  a <- guess_ci(f)
- expect_gt(length(a), 0)
+ testthat::expect_equal(a, "https://travis-ci.org/codemeta/codemetar")
 
  f2 <- system.file("examples/README_ex2.md", package="codemetar")
  a2 <- guess_ci(f2)
  expect_null(a2)
 
+ f <- system.file("examples/README_usethis.md", package="codemetar")
+ a3 <- guess_ci(f)
+ testthat::expect_equal(length(a3), 2)
+ testthat::expect_equal(a3[1], "https://travis-ci.org/r-lib/usethis")
 
 })
 

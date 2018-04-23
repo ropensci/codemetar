@@ -49,16 +49,17 @@ guess_provider <- function(pkg) {
 
 ## look for .travis.yml ? GREP .travis badge so we can guess repo name.
 guess_ci <- function(readme) {
-  link <- NULL
   if (file.exists(readme)) {
-    txt <- readLines(readme)
-    badge <- txt[grepl("travis-ci", txt)]
-    link <-
-      gsub(".*(https://travis-ci.org/\\w+/\\w+).*", "\\1", badge)
-  }
-  if (length(link) >= 1) {
-    link[[1]]
-  } else {
+    badges <- extract_badges(readme)
+    ci_badge <- badges[grepl("travis", badges$link)|
+                         grepl("appveyor", badges$link)|
+                         grepl("circleci", badges$link),]
+    if (!is.null(ci_badge)) {
+      ci_badge$link
+    } else {
+      NULL
+    }
+  }else{
     NULL
   }
 }
