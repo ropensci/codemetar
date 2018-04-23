@@ -13,6 +13,14 @@ testthat::test_that("Works R-forge", {
   expect_equal(cm$codeRepository, "https://github.com/ropensci/essurvey")
 })
 
+testthat::test_that("several URLs", {
+  f <- system.file("DESCRIPTION", package = "codemetar")
+  cm <- codemeta_description(f)
+  expect_equal(cm$codeRepository, "https://github.com/ropensci/codemetar")
+  expect_true("https://codemeta.github.io/codemetar" %in%
+                cm$relatedLink)
+})
+
 testthat::test_that("We can parse plain Authors: & Maintainers: entries", {
   f <- system.file("examples/DESCRIPTION_ex1.dcf", package = "codemetar")
   authors <- codemeta_description(f)
