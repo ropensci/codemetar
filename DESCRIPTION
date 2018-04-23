@@ -59,7 +59,8 @@ Imports:
     tibble,
     crul,
     gh,
-    stringr
+    stringr,
+    sessioninfo
 Suggests: 
     testthat,
     jsonvalidate,

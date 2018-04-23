@@ -96,23 +96,40 @@ create_codemeta <- function(pkg = ".",
   }
 
   # Add provider link as relatedLink
-  provider <- guess_provider(cm$identifier)
-
-  readme <- guess_readme(root)
-  if(!is.null(readme)){
-    badges <- extract_badges(readme)
-    if(!is.null(provider) &
-       whether_provider_badge(badges,
-                              provider$name)){
-      if(provider$name == "Central R Archive Network (CRAN)"){
+  if(is.character(pkg)){
+    pkg_info <- sessioninfo::package_info(pkg)
+    pkg_info <- pkg_info[pkg_info$package == pkg,]
+    provider_name <- pkg_info$source
+    if(grepl("CRAN", provider_name)){
+      cm$relatedLink <- unique(c(cm$relatedLink,
+                                 paste0("https://CRAN.R-project.org/package=",
+                                        cm$identifier)))
+    }else{
+      if(grepl("Bioconductor", provider_name)){
         cm$relatedLink <- unique(c(cm$relatedLink,
-                            paste0("https://CRAN.R-project.org/package=",
-                                   cm$identifier)))
-      }else{
-        if(provider$name == "BioConductor"){
+                                   paste0("https://bioconductor.org/packages/release/bioc/html/",
+                                          cm$identifier, ".html")))
+      }
+    }
+  }else{
+    provider <- guess_provider(cm$identifier)
+
+    readme <- guess_readme(root)
+    if(!is.null(readme)){
+      badges <- extract_badges(readme)
+      if(!is.null(provider) &
+         whether_provider_badge(badges,
+                                provider$name)){
+        if(provider$name == "Central R Archive Network (CRAN)"){
           cm$relatedLink <- unique(c(cm$relatedLink,
-                              paste0("https://bioconductor.org/packages/release/bioc/html/",
-                                     cm$identifier, ".html")))
+                                     paste0("https://CRAN.R-project.org/package=",
+                                            cm$identifier)))
+        }else{
+          if(provider$name == "BioConductor"){
+            cm$relatedLink <- unique(c(cm$relatedLink,
+                                       paste0("https://bioconductor.org/packages/release/bioc/html/",
+                                              cm$identifier, ".html")))
+          }
         }
       }
     }

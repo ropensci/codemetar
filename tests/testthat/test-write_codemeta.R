@@ -39,6 +39,10 @@ testthat::test_that("We can use either a path or pkg name in writing", {
   testthat::expect_true(file.exists("codemeta.json"))
   unlink("codemeta.json")
 
+  usethis_cm <- create_codemeta("usethis")
+  testthat::expect_equal(usethis_cm$relatedLink,
+                         "https://CRAN.R-project.org/package=usethis")
+
 })
 
 ## Test that we can write codemeta from a temp working dir (e.g. non-root dir)

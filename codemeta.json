@@ -386,13 +386,25 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=stringr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "sessioninfo",
+      "name": "sessioninfo",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=sessioninfo"
     }
   ],
   "contIntegration": "https://travis-ci.org/ropensci/codemetar",
   "developmentStatus": "active",
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
-  "fileSize": "272.594KB",
+  "fileSize": "272.551KB",
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/onboarding/issues/130",
