@@ -6,18 +6,11 @@ testthat::test_that("We can use a preset id", {
 })
 
 
-
-testthat::test_that("Works R-forge", {
+testthat::test_that("several URLs", {
   f <- system.file("examples/DESCRIPTION_two_URLs", package = "codemetar")
   cm <- codemeta_description(f)
   expect_equal(cm$codeRepository, "https://github.com/ropensci/essurvey")
-})
-
-testthat::test_that("several URLs", {
-  f <- system.file("DESCRIPTION", package = "codemetar")
-  cm <- codemeta_description(f)
-  expect_equal(cm$codeRepository, "https://github.com/ropensci/codemetar")
-  expect_true("https://codemeta.github.io/codemetar" %in%
+  expect_true("https://ropensci.github.io/essurvey/" %in%
                 cm$relatedLink)
 })
 
