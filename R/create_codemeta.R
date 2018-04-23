@@ -109,6 +109,19 @@ create_codemeta <- function(pkg = ".",
         cm$relatedLink <- unique(c(cm$relatedLink,
                                    paste0("https://bioconductor.org/packages/release/bioc/html/",
                                           cm$identifier, ".html")))
+      }else{
+        # if GitHub try to build the URL to commit or to repo in general
+        if(grepl("Github", provider_name)){
+          if(grepl("@", provider_name)){
+            commit <- gsub(".*@", "", provider_name)
+            commit <- gsub("\\)", "", commit)
+            link <- gsub(".*\\(", "", provider_name)
+            link <- gsub("@.*", "", link)
+            cm$relatedLink <- unique(c(cm$relatedLink,
+                                       paste0("https://github.com/", link,
+                           "/commit/", commit)))
+          }
+        }
       }
     }
   }else{
