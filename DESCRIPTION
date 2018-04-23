@@ -2,22 +2,36 @@ Package: codemetar
 Type: Package
 Title: Generate 'CodeMeta' Metadata for R Packages
 Version: 0.1.6
-Authors@R: c(person("Carl", "Boettiger", 
-                  role=c("aut", "cre", "cph"), 
-                  email="cboettig@gmail.com", 
-                  comment=c(ORCID = "0000-0002-1642-628X")),
-          person("Anna", "Krystalli", 
-                  role = "rev",
-                  comment=c(ORCID = "0000-0002-2378-4915")),       
-          person("Toph", "Allen", 
-                  role = "rev",
-                  comment=c(ORCID = "0000-0003-4580-091X")),
-          person("Maëlle", "Salmon",
-                  role = c("ctb"),
-                  comment = c(ORCID = "0000-0002-2815-0399")),
-          person("rOpenSci", 
-                  role = c("fnd"), 
-                  comment = c("https://ropensci.org/")))
+Authors@R: 
+    c(person(given = "Carl",
+             family = "Boettiger",
+             role = c("aut", "cre", "cph"),
+             email = "cboettig@gmail.com",
+             comment = structure("0000-0002-1642-628X", .Names = "ORCID")),
+      person(given = "Anna",
+             family = "Krystalli",
+             role = c("rev", "ctb"),
+             comment = structure("0000-0002-2378-4915", .Names = "ORCID")),
+      person(given = "Toph",
+             family = "Allen",
+             role = "rev",
+             comment = structure("0000-0003-4580-091X", .Names = "ORCID")),
+      person(given = "Maëlle",
+             family = "Salmon",
+             role = c("ctb", "aut"),
+             comment = structure("0000-0002-2815-0399", .Names = "ORCID")),
+      person(given = "rOpenSci",
+             role = "fnd",
+             comment = "https://ropensci.org/"),
+      person(given = "Katrin",
+             family = "Leinweber",
+             role = "ctb"),
+      person(given = "Noam",
+             family = "Ross",
+             role = "ctb"),
+      person(given = "Arfon",
+             family = "Smith",
+             role = "ctb"))
 Description: The 'Codemeta' Project defines a 'JSON-LD' format for describing
   software metadata, as detailed at <https://codemeta.github.io>. This package
   provides utilities to generate, parse, and modify 'codemeta.json' files 

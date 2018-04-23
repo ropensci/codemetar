@@ -31,14 +31,41 @@
       "familyName": "Boettiger",
       "email": "cboettig@gmail.com",
       "@id": "https://orcid.org/0000-0002-1642-628X"
-    }
-  ],
-  "contributor": [
+    },
     {
       "@type": "Person",
       "givenName": "Maëlle",
       "familyName": "Salmon",
       "@id": "https://orcid.org/0000-0002-2815-0399"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Anna",
+      "familyName": "Krystalli",
+      "@id": "https://orcid.org/0000-0002-2378-4915"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Maëlle",
+      "familyName": "Salmon",
+      "@id": "https://orcid.org/0000-0002-2815-0399"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Katrin",
+      "familyName": "Leinweber"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Noam",
+      "familyName": "Ross"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Arfon",
+      "familyName": "Smith"
     }
   ],
   "copyrightHolder": [
@@ -365,11 +392,14 @@
   "developmentStatus": "active",
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
-  "fileSize": "271.641KB",
+  "fileSize": "272.337KB",
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/onboarding/issues/130",
     "provider": "http://ropensci.org"
   },
-  "relatedLink": ["https://CRAN.R-project.org/package=codemetar", "https://CRAN.R-project.org/package=codemetar"]
+  "relatedLink": [
+    "https://CRAN.R-project.org/package=codemetar",
+    "https://CRAN.R-project.org/package=codemetar"
+  ]
 }
