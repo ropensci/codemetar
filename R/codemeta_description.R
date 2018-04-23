@@ -55,8 +55,8 @@ codemeta_description <-
         }
 
         # add other URLs as related links
-        codemeta$relatedLink <- c(codemeta$relatedLink,
-                                  code_repo[code_repo != codemeta$codeRepository])
+        codemeta$relatedLink <- unique(c(codemeta$relatedLink,
+                                  code_repo[code_repo != codemeta$codeRepository]))
       }
     }
 
