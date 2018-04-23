@@ -71,8 +71,7 @@ guess_devStatus <- function(readme) {
     status_badge <- badges[grepl("Project Status", badges$text),]
     if (!is.null(status_badge)) {
       if(nrow(status_badge) >0){
-        gsub(".*(http://www.repostatus.org/#(\\w+)).*", "\\2",
-             status_badge$link)[[1]]
+        status_badge$link[1]
       }
     } else {
       NULL
