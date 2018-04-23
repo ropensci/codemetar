@@ -17,7 +17,7 @@ testthat::test_that("several URLs", {
 testthat::test_that("We can parse additional terms", {
   f <- system.file("examples/DESCRIPTION_ex1.dcf", package = "codemetar")
   cm <- codemeta_description(f)
-  testthat::expect_true(length(cm$keywords), 6)
+  testthat::expect_equal(length(cm$keywords), 6)
   testthat::expect_equal(cm$isPartOf, "https://ropensci.org")
   })
 
