@@ -12,6 +12,8 @@
 
 * relatedLink field now include provider URL and URL(s) from DESCRIPTION that are not the code repository
 
+* add an extract_badges function for extracting information from all badges in a Markdown file.
+
 # codemetar 0.1.5 2018-03-21
 
 * Default to DOI-based schema. (previous CN issues now resolved)

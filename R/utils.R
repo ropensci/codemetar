@@ -93,6 +93,15 @@ check_urls <- function(urls){
   }
 }
 
+#' Extract all badges from Markdown file
+#'
+#' @param path Path to Markdown file
+#'
+#' @return A tibble with for each badge its text, link and link to
+#' its image.
+#' @export
+#'
+#' @examples
 extract_badges <- function(path){
   txt <- readLines(path)
   badges1 <- unlist(stringr::str_match_all(txt, "\\[!\\[\\]\\(.*?\\)\\]\\(.*?\\)"))
