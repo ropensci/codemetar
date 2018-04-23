@@ -47,16 +47,16 @@ codemeta_description <-
         codemeta$codeRepository <- code_repo
       }else{
         # try to identify a GitHub or Gitlab repo
-        codemeta$codeRepository <- code_repo[grepl("github\\.com", code_repo)|
+        actual_code_repo <- code_repo[grepl("github\\.com", code_repo)|
                                  grepl("gitlab\\.com", code_repo)][1]
         # otherwise take the first URL arbitrarily
         if(is.null(codemeta$Repository)){
-          codemeta$codeRepository <- code_repo[1]
+          codemeta$codeRepository <- actual_code_repo
         }
 
         # add other URLs as related links
         codemeta$relatedLink <- unique(c(codemeta$relatedLink,
-                                  code_repo[code_repo != codemeta$codeRepository]))
+                                  code_repo[code_repo != actual_code_repo]))
       }
     }
 
