@@ -1,0 +1,37 @@
+Package: HIBPwned
+Title: Bindings for the 'HaveIBeenPwned.com' Data Breach API
+Version: 0.1.7
+Authors@R: c(person("Steph", "Locke"
+             , email = "stephanie.g.locke@gmail.com"
+             , role = c("aut", "cre"))
+             ,person("Troy", "Hunt"
+             , email = "troyhunt@hotmail.com"
+             , role = c("aut")
+             , comment="HaveIBeenPwned.com"
+             ),
+             person("Locke Data", role = c("fnd")),
+             person("Maëlle", "Salmon", role = c("ctb")))
+Description: Utilising the 'Have I been pwned?' API (see <https://haveibeenpwned.com/API/v2>
+    for more information), check whether email addresses and/or user names have been present
+    in a publicly disclosed data breach.
+Depends:
+    R (>= 3.2.3)
+License: MIT + file LICENSE
+LazyData: true
+Suggests:
+    testthat,
+    knitr,
+    rmarkdown,
+    lintr,
+    webmockr
+Imports:
+    crul,
+    urltools,
+    jsonlite,
+    ratelimitr,
+    memoise
+RoxygenNote: 6.0.1.9000
+VignetteBuilder: knitr
+URL: https://github.com/lockedata/HIBPwned, https://itsalocke.com/hibpwned/
+BugReports: https://github.com/lockedata/HIBPwned/issues
+Encoding: UTF-8

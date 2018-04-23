@@ -17,40 +17,63 @@ new_codemeta <- function() {
 codemeta_description <-
   function(f, id = NULL, codemeta = new_codemeta()) {
     if (file.exists(f)) {
-      descr <- cm_read_dcf(f)
+      descr <- desc::desc(f)
     } else {
       return(codemeta)
     }
 
-    if (is.null(descr) || length(descr) == 0) {
-      return(codemeta)
-    }
 
     ## FIXME define an S3 class based on the codemeta list of lists?
     if (is.null(id)) {
-      id <- descr$Package
+      id <- descr$get("Package")
     }
 
     if (is_IRI(id)) {
       codemeta$`@id` <- id
     }
 
-    codemeta$identifier <- descr$Package
-    codemeta$description <- descr$Description
-    codemeta$name <- paste0(descr$Package, ": ", descr$Title)
+    codemeta$identifier <- descr$get("Package")
+    codemeta$description <- descr$get("Description")
+    codemeta$name <- paste0(descr$get("Package"), ": ",
+                            descr$get("Title"))
 
-    ## Will later guess these these a la devtools::use_github_links
-    codemeta$codeRepository <- descr$URL
-    codemeta$issueTracker <- descr$BugReports
+
+    ## Get URLs
+    code_repo <- descr$get_urls()
+    if (!is.na(code_repo[1])){
+
+      if(length(code_repo) == 1){
+        # only one, easy
+        codemeta$codeRepository <- code_repo
+      }else{
+        # try to identify a GitHub or Gitlab repo
+        actual_code_repo <- code_repo[grepl("github\\.com", code_repo)|
+                                        grepl("gitlab\\.com", code_repo)][1]
+        # otherwise take the first URL arbitrarily
+        if(is.null(codemeta$Repository)){
+          codemeta$codeRepository <- actual_code_repo
+        }
+
+        # add other URLs as related links
+        codemeta$relatedLink <- unique(c(codemeta$relatedLink,
+                                         code_repo[code_repo != actual_code_repo]))
+      }
+    }
+
+    issue_tracker <- descr$get("BugReports")
+    if (!is.na(issue_tracker)){
+      codemeta$issueTracker <- issue_tracker
+    }
+
+
 
     ## According to crosswalk, codemeta$dateModified and
     ## codemeta$dateCreated are not crosswalked in DESCRIPTION
-    codemeta$datePublished <-
-      descr$Date # probably not avaialable as descr$Date.
+    codemeta$datePublished <- NULL
 
-    codemeta$license <- spdx_license(descr$License)
+    codemeta$license <- spdx_license(descr$get("License"))
 
-    codemeta$version <- descr$Version
+    codemeta$version <- as.character(descr$get_version())
     codemeta$programmingLanguage <-
       list(
         "@type" = "ComputerLanguage",
@@ -64,33 +87,60 @@ codemeta_description <-
     codemeta$runtimePlatform <- R.version.string
 
     if (is.null(codemeta$provider))
-      codemeta$provider <- guess_provider(descr$Package)
-    if ("Authors@R" %in% names(descr)) {
+      codemeta$provider <- guess_provider(descr$get("Package"))
+    authors <- try(descr$get_authors(), silent = TRUE)
+    if (!inherits(authors,'try-error')) {
       codemeta <-
-        parse_people(eval(parse(text = descr$`Authors@R`)), codemeta)
+        parse_people(authors, codemeta)
     } else {
-      codemeta <- parse_people(as.person(descr$Author), codemeta)
-      ## maintainer must come second in case Author list also specifies
-      ## maintainer by role [cre] without email
-      codemeta$maintainer <-
-        person_to_schema(as.person(descr$Maintainer))
+      # get authors and maintainer from their fields
+      # and don't get maintainer twice!
+      authors <- as.person(descr$get("Author"))
+      maintainer <- descr$get_maintainer()
+      maintainer <- as.person(paste(maintainer))
+      maintainer$role <- "cre"
+      authors_strings <- paste(authors$given, authors$family)
+      maintainer_strings <- paste(maintainer$given, maintainer$family)
+      # for now only one maintainer
+      if(length(maintainer) > 1){
 
+        authors <- c(authors[!authors_strings %in% maintainer_strings[1]],
+                     maintainer[2:length(maintainer)])
+        maintainer <- maintainer[1]
+      }else{
+        authors <- authors[!authors_strings %in% maintainer_strings]
+      }
+
+      authors <- c(authors, maintainer)
+      codemeta <-
+        parse_people(authors, codemeta)
     }
 
-    codemeta$softwareSuggestions <- parse_depends(descr$Suggests)
-    codemeta$softwareRequirements <-
-      c(parse_depends(descr$Imports),
-        parse_depends(descr$Depends))
+    dependencies <- descr$get_deps()
+    suggests <- dependencies[dependencies$type == "Suggests",]
+    requirements <- dependencies[dependencies$type %in%
+                                   c("Imports", "Depends"),]
+
+    remotes <- descr$get_remotes()
+
+    suggests$remote_provider <- unlist(lapply(suggests$package,
+                                              add_remote_to_dep, remotes = remotes))
+    requirements$remote_provider <- unlist(lapply(requirements$package,
+                                                  add_remote_to_dep, remotes = remotes))
+
+    codemeta$softwareSuggestions <- parse_depends(suggests)
+    codemeta$softwareRequirements <- parse_depends(requirements)
 
 
 
     ## add any additional codemeta terms found in the DESCRIPTION metadata
+
     for(term in additional_codemeta_terms){
       ## in DESCRIPTION, these terms must be *prefixed*:
       X_term <- paste0("X-schema.org-", term)
-      if(!is.null(descr[[X_term]])){
+      if(!is.na(descr$get(X_term))){
         codemeta[[term]] <- gsub("\\s+", "",
-                                 strsplit(descr[[X_term]], ",")[[1]])
+                                 strsplit(descr$get(X_term), ",")[[1]])
       }
     }
 

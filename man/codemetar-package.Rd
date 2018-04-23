@@ -38,7 +38,7 @@ Developer Guide (https://codemeta.github.io/developer-guide/).
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/ropensci/codemetar}
+  \item \url{https://github.com/ropensci/codemetar,https://codemeta.github.io/codemetar}
   \item Report bugs at \url{https://github.com/ropensci/codemetar/issues}
 }
 
@@ -46,10 +46,19 @@ Useful links:
 \author{
 \strong{Maintainer}: Carl Boettiger \email{cboettig@gmail.com} (0000-0002-1642-628X) [copyright holder]
 
+Authors:
+\itemize{
+  \item Maëlle Salmon (0000-0002-2815-0399) [contributor]
+}
+
 Other contributors:
 \itemize{
-  \item Anna Krystalli (0000-0002-2378-4915) [NA]
-  \item Toph Allen (0000-0003-4580-091X) [NA]
+  \item Anna Krystalli (0000-0002-2378-4915) [reviewer, contributor]
+  \item Toph Allen (0000-0003-4580-091X) [reviewer]
+  \item rOpenSci (https://ropensci.org/) [funder]
+  \item Katrin Leinweber [contributor]
+  \item Noam Ross [contributor]
+  \item Arfon Smith [contributor]
 }
 
 }

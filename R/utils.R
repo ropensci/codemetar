@@ -17,14 +17,6 @@ get_root_path <- function(pkg){
 }
 
 
-## based on devtools::read_dcf
-cm_read_dcf <- function(dcf) {
-
-  fields <- colnames(read.dcf(dcf))
-  as.list(read.dcf(dcf, keep.white = fields)[1, ])
-
-}
-
 ## Like system.file, but pkg can instead be path to package root directory
 get_file <- function(FILE, pkg = "."){
   f <- file.path(pkg, FILE)
@@ -46,3 +38,99 @@ is_IRI <- function(string){
   grepl("^http[s]?://", string)
 }
 
+
+# from usethis cf https://github.com/r-lib/usethis/blob/2abb0422a97808cc573fa5900a8efcfed4c2d5b4/R/git.R#L68
+# this is GPL-3 code
+uses_git <- function(path = usethis::proj_get()) {
+  !is.null(git2r::discover_repository(path))
+}
+
+# from usethis cf https://github.com/r-lib/usethis/blob/4fb556788d2588facaaa8560242d2c83f2261d6e/R/helpers.R#L55
+# this is GPL-3 code
+render_template <- function(template, data = list(), package = "codemetar") {
+  template_path <- find_template(template, package = package)
+  strsplit(whisker::whisker.render(readLines(template_path), data), "\n")[[1]]
+}
+
+# from usethis cf https://github.com/r-lib/usethis/blob/4fb556788d2588facaaa8560242d2c83f2261d6e/R/helpers.R#L60
+# this is GPL-3 code
+find_template <- function(template_name, package = "usethis") {
+   system.file("templates", template_name, package = package)
+
+}
+
+get_url_status_code <- function(url){
+  if(!is.null(url)){
+    if(!is.na(url)){
+      result <- try(crul::HttpClient$new(url)$get(), silent = TRUE)
+      if (!inherits(result,'try-error')){
+        code <- result$status_code
+        if(code == 200){
+          message <- "All good"
+        }else{
+          message <- paste("Error code:", code)
+        }
+      }else{
+        message <- "No connection was possible"
+      }
+      return(data.frame(message = message, url = url))
+    }else{
+      return(NULL)
+    }
+  }else{
+    return(NULL)
+  }
+
+}
+
+check_urls <- function(urls){
+  messages <- do.call(rbind, lapply(urls, get_url_status_code))
+  if(any(messages$message != "All good")){
+    paste("Problematic URLs\n", apply(messages[messages$message != "All good",],
+                  1, toString))
+  }else{
+    ""
+  }
+}
+
+#' Extract all badges from Markdown file
+#'
+#' @param path Path to Markdown file
+#'
+#' @return A tibble with for each badge its text, link and link to
+#' its image.
+#' @export
+#'
+#' @examples
+extract_badges <- function(path){
+  txt <- readLines(path)
+  badges1 <- unlist(stringr::str_match_all(txt, "\\[!\\[\\]\\(.*?\\)\\]\\(.*?\\)"))
+  badges2 <- unlist(stringr::str_match_all(txt, "\\[!\\[.*?\\]\\(.*?\\)\\]\\(.*?\\)"))
+  badges <- c(badges1, badges2)
+  badges[!is.na(badges)]
+
+  unique(do.call(rbind,
+          lapply(badges, parse_badge)))
+}
+
+parse_badge <- function(badge){
+  text <- stringr::str_match(badge, "\\[!\\[(.*?)\\]")[,2]
+  link <- stringr::str_match(badge, "\\)\\]\\((.*?)\\)")[,2]
+  image_link <- stringr::str_match(badge, "\\]\\((.*?)\\)\\]")[,2]
+  tibble::tibble(text = text,
+                 link = link,
+                 image_link = image_link)
+}
+
+whether_provider_badge <- function(badges, provider_name){
+  if(provider_name == "Central R Archive Network (CRAN)"){
+    provider_badge <- any(grepl("CRAN", badges$text))
+  }else{
+    if(provider_name == "BioConductor"){
+      provider_badge <- any(grepl("bioconductor",
+                                  badges$link))
+    }
+  }
+
+  provider_badge
+}

@@ -49,16 +49,17 @@ guess_provider <- function(pkg) {
 
 ## look for .travis.yml ? GREP .travis badge so we can guess repo name.
 guess_ci <- function(readme) {
-  link <- NULL
   if (file.exists(readme)) {
-    txt <- readLines(readme)
-    badge <- txt[grepl("travis-ci", txt)]
-    link <-
-      gsub(".*(https://travis-ci.org/\\w+/\\w+).*", "\\1", badge)
-  }
-  if (length(link) >= 1) {
-    link[[1]]
-  } else {
+    badges <- extract_badges(readme)
+    ci_badge <- badges[grepl("travis", badges$link)|
+                         grepl("appveyor", badges$link)|
+                         grepl("circleci", badges$link),]
+    if (!is.null(ci_badge)) {
+      ci_badge$link
+    } else {
+      NULL
+    }
+  }else{
     NULL
   }
 }
@@ -67,19 +68,53 @@ guess_ci <- function(readme) {
 guess_devStatus <- function(readme) {
   status <- NULL
   if (file.exists(readme)) {
+    badges <- extract_badges(readme)
+    status_badge <- badges[grepl("Project Status", badges$text)|
+                             grepl("lifecycle", badges$text),]
+    if (!is.null(status_badge)) {
+      if(nrow(status_badge) >0){
+        status_badge$link[1]
+      }
+    } else {
+      NULL
+    }
+  }else{
+        NULL
+      }
+
+
+}
+
+# looks for a rOpenSci peer review badge
+guess_ropensci_review <- function(readme) {
+  status <- NULL
+  if (file.exists(readme)) {
     txt <- readLines(readme)
-    badge <- txt[grepl("Project Status", txt)]
-    ## Text-based status line
-    # status <- gsub(".*\\[!\\[(Project Status: .*)\\.\\].*", "\\1", badge)
-    ## use \\2 for repostatus.org term, \\1 for repostatus.org term link
-    status <-
-      gsub(".*(http://www.repostatus.org/#(\\w+)).*", "\\2", badge)
-  }
-  if (length(status) >= 1) {
-    status[[1]]
-  } else {
+    badge <- txt[grepl("badges\\.ropensci\\.org", txt)]
+    if (length(badge) >= 1) {
+      review <-
+        gsub(".*https://github.com/ropensci/onboarding/issues/", "", badge)
+      review <- gsub(").*", "", review)
+      review <- as.numeric(review)
+      issue <- gh::gh("GET /repos/:owner/:repo/issues/:number",
+                      owner = "ropensci",
+                      repo = "onboarding",
+                      number = review)
+      if(issue$state == "closed"){
+        list("@type" = "Review",
+             "url" = paste0("https://github.com/ropensci/onboarding/issues/",
+                            review),
+             "provider" = "http://ropensci.org")
+      }else{
+        NULL
+      }
+    } else {
+      NULL
+    }
+  }else{
     NULL
   }
+
 
 }
 
@@ -91,12 +126,16 @@ guess_orcids <- function(codemeta) {
   NULL
 }
 
+# from devtools https://github.com/r-lib/devtools/blob/21fe55a912ca4eaa49ef5b7d891ff3e2aae7a370/R/git.R#L1
+# GPL>=2 code
 uses_git <- function(root) {
   !is.null(git2r::discover_repository(root, ceiling = 0))
 }
 
 guess_github <- function(root = ".") {
   ## from devtools
+  # https://github.com/r-lib/devtools/blob/21fe55a912ca4eaa49ef5b7d891ff3e2aae7a370/R/git.R#L130
+  # GPL>=2 code
   remote_urls <- function (r) {
     remotes <- git2r::remotes(r)
     stats::setNames(git2r::remote_url(r, remotes), remotes)
@@ -159,7 +198,6 @@ guess_releaseNotes <- function(root = ".") {
 
 }
 
-#' @importFrom devtools build
 guess_fileSize <- function(root = ".") {
   if (is.null(root)) {
     return(NULL)

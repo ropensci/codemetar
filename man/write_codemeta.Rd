@@ -5,7 +5,8 @@
 \title{write_codemeta}
 \usage{
 write_codemeta(pkg = ".", path = "codemeta.json", root = ".", id = NULL,
-  force_update = getOption("codemeta_force_update", TRUE), ...)
+  force_update = getOption("codemeta_force_update", TRUE), verbose = TRUE,
+  ...)
 }
 \arguments{
 \item{pkg}{package path to package root, or package name, or
@@ -19,6 +20,8 @@ to package root. Default guess is current dir.}
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
 
 \item{force_update}{Update guessed fields even if they are defined in an existing codemeta.json file}
+
+\item{verbose}{Whether to print messages indicating opinions e.g. when DESCRIPTION has no URL. See \code{\link{give_opinions}}.}
 
 \item{...}{additional arguments to \code{\link{write_json}}}
 }
@@ -37,7 +40,13 @@ If pkg is a codemeta object, the function will attempt to
  update any fields it can guess (i.e. from the DESRIPTION file),
  overwriting any existing data in that block. In this case, the package
  root directory should be the current working directory.
+
+When creating and writing a codemeta.json for the first time,
+the function adds "codemeta.json" to .Rbuildignore and, if the
+project uses git, adds a pre-commit hook ensuring that if DESCRIPTION changes,
+ the codemeta.json will be updated as well unless the DESCRIPTION change is committed
+ with 'git commit --no-verify'.
 }
 \examples{
-write_codemeta("codemeta", tempfile())
+write_codemeta("codemetar", tempfile())
 }

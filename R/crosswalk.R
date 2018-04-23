@@ -35,6 +35,13 @@ crosswalk <- function(x,
   } else {
     to_context <- codemeta_context
   }
+
+  # ids need to be coerced to character
+  # in order to be compacted by jsonld
+  x[["id"]] <- as.character(x[["id"]])
+  x$owner$id <- as.character(x$owner$id)
+  x$organization$id <- as.character(x$organization$id)
+
   crosswalk_transform(x,
                       crosswalk_context = from_context,
                       codemeta_context = to_context)
