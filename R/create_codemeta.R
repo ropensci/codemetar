@@ -97,8 +97,8 @@ create_codemeta <- function(pkg = ".",
 
   # Add provider link as relatedLink
   if(is.character(pkg)){
-    pkg_info <- sessioninfo::package_info(pkg)
-    pkg_info <- pkg_info[pkg_info$package == pkg,]
+    pkg_info <- sessioninfo::package_info(cm$identifier)
+    pkg_info <- pkg_info[pkg_info$package == cm$identifier,]
     provider_name <- pkg_info$source
     if(grepl("CRAN", provider_name)){
       cm$relatedLink <- unique(c(cm$relatedLink,
