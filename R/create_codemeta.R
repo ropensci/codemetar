@@ -105,14 +105,14 @@ create_codemeta <- function(pkg = ".",
        whether_provider_badge(badges,
                               provider$name)){
       if(provider$name == "Central R Archive Network (CRAN)"){
-        cm$relatedLink <- c(cm$relatedLink,
+        cm$relatedLink <- unique(c(cm$relatedLink,
                             paste0("https://CRAN.R-project.org/package=",
-                                   cm$identifier))
+                                   cm$identifier)))
       }else{
         if(provider$name == "BioConductor"){
-          cm$relatedLink <- c(cm$relatedLink,
+          cm$relatedLink <- unique(c(cm$relatedLink,
                               paste0("https://bioconductor.org/packages/release/bioc/html/",
-                                     cm$identifier, ".html"))
+                                     cm$identifier, ".html")))
         }
       }
     }
