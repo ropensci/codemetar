@@ -33,11 +33,20 @@ testthat::test_that("We can read an existing codemeta.json file", {
 
 })
 
-
 testthat::test_that("We can use either a path or pkg name in writing", {
+
   write_codemeta(path.package("codemetar"))
   testthat::expect_true(file.exists("codemeta.json"))
   unlink("codemeta.json")
+
+  write_codemeta("codemetar")
+  testthat::expect_true(file.exists("codemeta.json"))
+  unlink("codemeta.json")
+
+})
+
+testthat::test_that("We can deduce relatedLink from installed pkg", {
+  skip_on_travis()
 
   usethis_cm <- create_codemeta(find.package("usethis"))
   testthat::expect_equal(usethis_cm$relatedLink,
