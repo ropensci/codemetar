@@ -34,6 +34,10 @@ testthat::test_that("guess_devStatus",{
   a <- guess_devStatus(f)
   expect_equal(a, "http://www.repostatus.org/#wip")
 
+  f <- system.file("examples/README_usethis.md", package="codemetar")
+  a <- guess_devStatus(f)
+  expect_equal(a, "https://www.tidyverse.org/lifecycle/#stable")
+
   f <- system.file("examples/README_codemetar_bad.md", package="codemetar")
   a <- guess_devStatus(f)
   expect_null(a)
