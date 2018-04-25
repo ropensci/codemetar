@@ -22,8 +22,6 @@ library("codemetar")
 library("magrittr")
 library("jsonlite")
 library("jsonld")
-library("httr")
-library("readr")
 ```
 
 ## JSON-LD transforms: Expansion and Compaction
