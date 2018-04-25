@@ -40,10 +40,6 @@ people_with_role <- function(people, role = "aut") {
   } else {
     out <- NULL
   }
-  if (role == "cre") {
-    # Can have only single maintainer, not list
-    out <- out[[1]]
-  }
   out
 }
 
