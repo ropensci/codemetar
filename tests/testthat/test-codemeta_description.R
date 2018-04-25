@@ -36,6 +36,12 @@ testthat::test_that("We can parse plain Authors: & Maintainers: entries", {
   expect_true(authors$maintainer$familyName == "Ooms")
   expect_equal(length(authors$author), 2)
 
+  f <- system.file("examples/DESCRIPTION_a4", package = "codemetar")
+  authors <- codemeta_description(f)
+  expect_equal(length(authors$author), 2)
+  expect_equal(length(authors$maintainer), 2)
+
+
 
 })
 
