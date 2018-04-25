@@ -2,22 +2,21 @@
 
 * New functions
 
-    * extract_badges for extracting information from all
-    badges in a Markdown file.
+    * extract_badges for extracting information from all badges in a Markdown file.
     
     * give_opinion giving opiniated advice about package metadata
     
 * Changes to the create_codemeta output
 
-    * relatedLink field now include provider URL and URL(s) from
-    DESCRIPTION that are not the code repository
+    * relatedLink field now include provider URL and URL(s) from DESCRIPTION that are not the code repository
     
-    * maintainer is now a list allowing for several maintainers since
-    e.g. the BioConductor a4 package has two maintainers.
+    * maintainer is now a list allowing for several maintainers since e.g. the BioConductor a4 package has two maintainers.
     
-    * if more than one CI service among Travis, Appveyor and
-    Circle CI are used and shown via a README badge they're all added
-    to the contIntegration field.
+    * if more than one CI service among Travis, Appveyor and Circle CI are used and shown via a README badge they're all added to the contIntegration field.
+    
+    * repo status inferred from the README now 1) is an URL instead of a word 2) recognizes either repostatus.org or Tidyverse lifecycle badges.
+    
+    * if present, priority is given to the Repository and BugReports fields of DESCRIPTION for filling the codeRepository and issueTracker fields of codemeta.json (which means working on a fork won't change these).
     
     * ability to parse all CRAN-allowed MARC roles.
     
@@ -31,8 +30,7 @@
 
     * Now uses desc to parse DESCRIPTION files.
 
-    * Package license changed to GPL because of code borrowed from
-    usethis
+    * Package license changed to GPL because of code borrowed from usethis
     
     * Uses crul instead of httr and use crul to check some URLs.
 
