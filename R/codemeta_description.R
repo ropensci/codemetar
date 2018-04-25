@@ -88,32 +88,24 @@ codemeta_description <-
 
     if (is.null(codemeta$provider))
       codemeta$provider <- guess_provider(descr$get("Package"))
-    authors <- try(descr$get_authors(), silent = TRUE)
-    if (!inherits(authors,'try-error')) {
+    author <- try(descr$get_authors(), silent = TRUE)
+    if (!inherits(author,'try-error')) {
       codemeta <-
-        parse_people(authors, codemeta)
+        parse_people(author, codemeta)
     } else {
-      # get authors and maintainer from their fields
+      # get author and maintainer from their fields
       # and don't get maintainer twice!
-      authors <- as.person(descr$get("Author"))
+      author <- as.person(descr$get("Author"))
       maintainer <- descr$get_maintainer()
       maintainer <- as.person(paste(maintainer))
       maintainer$role <- "cre"
-      authors_strings <- paste(authors$given, authors$family)
+      author_strings <- paste(author$given, author$family)
       maintainer_strings <- paste(maintainer$given, maintainer$family)
-      # for now only one maintainer
-      if(length(maintainer) > 1){
+      author <- author[!author_strings %in% maintainer_strings]
 
-        authors <- c(authors[!authors_strings %in% maintainer_strings[1]],
-                     maintainer[2:length(maintainer)])
-        maintainer <- maintainer[1]
-      }else{
-        authors <- authors[!authors_strings %in% maintainer_strings]
-      }
-
-      authors <- c(authors, maintainer)
+      author <- c(author, maintainer)
       codemeta <-
-        parse_people(authors, codemeta)
+        parse_people(author, codemeta)
     }
 
     dependencies <- descr$get_deps()

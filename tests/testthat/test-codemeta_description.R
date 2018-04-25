@@ -24,17 +24,23 @@ testthat::test_that("We can parse additional terms", {
 testthat::test_that("We can parse plain Authors: & Maintainers: entries", {
   f <- system.file("examples/DESCRIPTION_ex1.dcf", package = "codemetar")
   authors <- codemeta_description(f)
-  expect_true(authors$maintainer$familyName == "Boettiger")
+  expect_true(authors$maintainer[[1]]$familyName == "Boettiger")
   expect_equal(length(authors$author), 0)
   f <- system.file("examples/example.dcf", package = "codemetar")
   authors <- codemeta_description(f)
-  expect_true(authors$maintainer$familyName == "Developer")
+  expect_true(authors$maintainer[[1]]$familyName == "Developer")
   expect_equal(length(authors$author), 2)
 
   f <- system.file("examples/DESCRIPTION_jsonlite", package = "codemetar")
   authors <- codemeta_description(f)
-  expect_true(authors$maintainer$familyName == "Ooms")
+  expect_true(authors$maintainer[[1]]$familyName == "Ooms")
   expect_equal(length(authors$author), 2)
+
+  f <- system.file("examples/DESCRIPTION_a4", package = "codemetar")
+  authors <- codemeta_description(f)
+  expect_equal(length(authors$author), 1)
+  expect_equal(length(authors$maintainer), 2)
+
 
 
 })
