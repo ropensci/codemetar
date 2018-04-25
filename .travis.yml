@@ -6,6 +6,8 @@ cache: packages
 apt_packages:
     - libv8-dev
 
+before_install: Rscript -e 'install.packages("devtools")'
+
 after_success:
   - Rscript -e 'covr::codecov()'
 
