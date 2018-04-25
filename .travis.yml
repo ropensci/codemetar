@@ -2,10 +2,17 @@
 
 language: R
 sudo: required
+cache: packages
 apt_packages:
     - libv8-dev
 
 after_success:
   - Rscript -e 'covr::codecov()'
 
-r_github_packages: ropensci/jsonld
+matrix:
+  include:
+    - os: linux
+      r: release
+    - os: linux
+      r: oldrel
+      r_github_packages: ropensci/jsonld
