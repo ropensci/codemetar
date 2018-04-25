@@ -65,8 +65,6 @@ write_codemeta <- function(pkg = ".",
 }
 
 # from https://github.com/jeroen/jsonlite/blob/1f9e609e7d0ed702ede9c82aa5482ba08d5e5ab2/R/read_json.R#L22
-#' @param x an object to be serialized to JSON
-#' @param ... additional arguments passed to \link{toJSON} or \link{fromJSON}
 write_json <- function(x, path, ...) {
   json <- jsonlite::toJSON(x, ...)
   writeLines(json, path, useBytes = TRUE)
