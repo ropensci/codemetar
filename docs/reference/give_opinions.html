@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Crosswalk transform — crosswalk_transform • codemetar</title>
+<title>Function giving opinions about a package — give_opinions • codemetar</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,9 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Crosswalk transform — crosswalk_transform" />
+<meta property="og:title" content="Function giving opinions about a package — give_opinions" />
 
-<meta property="og:description" content="Perform JSON-LD expansion of input, followed by compaction into the codemeta context" />
+<meta property="og:description" content="Function giving opinions about a package" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -114,38 +114,28 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Crosswalk transform</h1>
-    <small>Source: <a href='https://github.com/ropensci/codemetar/blob/master/R/crosswalk.R'><code>R/crosswalk.R</code></a></small>
+    <h1>Function giving opinions about a package</h1>
+    <small>Source: <a href='https://github.com/ropensci/codemetar/blob/master/R/give_opinions.R'><code>R/give_opinions.R</code></a></small>
     </div>
 
     
-    <p>Perform JSON-LD expansion of input, followed by compaction into the codemeta context</p>
+    <p>Function giving opinions about a package</p>
     
 
-    <pre class="usage"><span class='fu'>crosswalk_transform</span>(<span class='no'>x</span>, <span class='kw'>crosswalk_context</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>codemeta_context</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"codemeta_context"</span>,
-  <span class='st'>"https://doi.org/10.5063/schema/codemeta-2.0"</span>))</pre>
+    <pre class="usage"><span class='fu'>give_opinions</span>(<span class='kw'>pkg_path</span> <span class='kw'>=</span> <span class='fu'>getwd</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>a JSON list or file with data fields to be crosswalked</p></td>
-    </tr>
-    <tr>
-      <th>crosswalk_context</th>
-      <td><p>Context to be added to x</p></td>
-    </tr>
-    <tr>
-      <th>codemeta_context</th>
-      <td><p>the address or contents of codemeta context. Leave at default</p></td>
+      <th>pkg_path</th>
+      <td><p>Path to the package root</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a valid codemeta json description.</p>
+    <p>A data.frame of opinions</p>
     
 
   </div>

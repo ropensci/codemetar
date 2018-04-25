@@ -27,8 +27,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codemetar</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">codemetar</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.6</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
@@ -87,7 +91,7 @@
       <h1>Parsing Codemeta Data</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2018-03-21</h4>
+            <h4 class="date">2018-04-25</h4>
       
       <small>Source: <a href="https://github.com/ropensci/codemetar/blob/master/vignettes/D-codemeta-parsing.Rmd"><code>vignettes/D-codemeta-parsing.Rmd</code></a></small>
 
@@ -111,8 +115,8 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">frame &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"schema/frame_schema.json"</span>, <span class="dt">package=</span><span class="st">"codemetar"</span>)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">meta &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(<span class="st">"codemeta.json"</span>, frame) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(<span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw">jsonld_frame</span>(<span class="st">"codemeta.json"</span>, frame) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw">fromJSON</span>(<span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)</a></code></pre></div>
 <p>Construct a citation</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">authors &lt;-<span class="st"> </span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">lapply</span>(meta<span class="op">$</span>author, </a>
@@ -138,14 +142,14 @@
 authors, : Not all arguments are of the same length, the following need to
 be recycled: author</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">cat</span>(<span class="kw">format</span>(bibitem, <span class="st">"bibtex"</span>))</a></code></pre></div>
-<pre><code>@Manual{codemetar,
+<pre><code>@Manual{/codemetar,
   title = {codemetar: Generate 'CodeMeta' Metadata for R Packages},
   year = {2018},
-  note = {R package version 0.1.5},
+  note = {R package version 0.1.6},
 }</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">bibitem</a></code></pre></div>
 <pre><code>(2018). _codemetar: Generate 'CodeMeta' Metadata for R Packages_.
-R package version 0.1.5.</code></pre>
+R package version 0.1.6.</code></pre>
 <div id="parsing-the-ropensci-corpus" class="section level2">
 <h2 class="hasAnchor">
 <a href="#parsing-the-ropensci-corpus" class="anchor"></a>Parsing the ropensci corpus</h2>
@@ -156,19 +160,19 @@ R package version 0.1.5.</code></pre>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">frame &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"schema/frame_schema.json"</span>, <span class="dt">package=</span><span class="st">"codemetar"</span>)</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb11-3" data-line-number="3">corpus &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(<span class="st">"ropensci.json"</span>, frame) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(<span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">    </span><span class="kw">jsonld_frame</span>(<span class="st">"ropensci.json"</span>, frame) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">    </span><span class="kw">fromJSON</span>(<span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb11-6" data-line-number="6"><span class="st">    </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) </a></code></pre></div>
 <p>We’re now ready to start exploring. As usual, functions from <code>purrr</code> prove very useful for iterating through large JSON files. First, we look at some basic summary data:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">## deal with nulls explicitly by starting with map</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">pkgs &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map</a></span>(corpus, <span class="st">"name"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/keep">compact</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.character</span>()</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">pkgs &lt;-<span class="st"> </span><span class="kw">map</span>(corpus, <span class="st">"name"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">compact</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.character</span>()</a>
 <a class="sourceLine" id="cb12-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co"># keep only those with package identifiers (names)</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5">keep &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_lgl</a></span>(corpus, <span class="op">~</span><span class="st"> </span><span class="kw">length</span>(.x<span class="op">$</span>identifier) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">keep &lt;-<span class="st"> </span><span class="kw">map_lgl</span>(corpus, <span class="op">~</span><span class="st"> </span><span class="kw">length</span>(.x<span class="op">$</span>identifier) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a>
 <a class="sourceLine" id="cb12-6" data-line-number="6">corpus &lt;-<span class="st"> </span>corpus[keep]</a>
 <a class="sourceLine" id="cb12-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb12-8" data-line-number="8">## now we can just do</a>
-<a class="sourceLine" id="cb12-9" data-line-number="9">all_pkgs &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_chr</a></span>(corpus, <span class="st">"name"</span>)</a>
+<a class="sourceLine" id="cb12-9" data-line-number="9">all_pkgs &lt;-<span class="st"> </span><span class="kw">map_chr</span>(corpus, <span class="st">"name"</span>)</a>
 <a class="sourceLine" id="cb12-10" data-line-number="10"><span class="kw">head</span>(all_pkgs)</a></code></pre></div>
 <pre><code>[1] "AntWeb: programmatic interface to the AntWeb"                                
 [2] "aRxiv: Interface to the arXiv API"                                           
@@ -177,13 +181,13 @@ R package version 0.1.5.</code></pre>
 [5] "dashboard: A package status dashboard"                                       
 [6] "ggit: Git Graphics"                                                          </code></pre>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">## 60 unique maintainers</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_chr</a></span>(corpus, <span class="kw">c</span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">map_chr</span>(corpus, <span class="kw">c</span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>()</a></code></pre></div>
 <pre><code>[1] 61</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">## Mostly Scott</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_chr</a></span>(corpus, <span class="kw">c</span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">map_chr</span>(corpus, <span class="kw">c</span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(value) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">value</th>
@@ -227,11 +231,11 @@ R package version 0.1.5.</code></pre>
 <td align="right">2</td>
 </tr>
 <tr class="even">
-<td align="left">Marwick</td>
+<td align="left">MÃ¼ller</td>
 <td align="right">2</td>
 </tr>
 <tr class="odd">
-<td align="left">Müller</td>
+<td align="left">Marwick</td>
 <td align="right">2</td>
 </tr>
 <tr class="even">
@@ -419,7 +423,7 @@ R package version 0.1.5.</code></pre>
 <td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="left">Szöcs</td>
+<td align="left">SzÃ¶cs</td>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
@@ -437,10 +441,10 @@ R package version 0.1.5.</code></pre>
 </tbody>
 </table>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">## number of co-authors ... </a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_int</a></span>(corpus, <span class="cf">function</span>(r) <span class="kw">length</span>(r<span class="op">$</span>author)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">map_int</span>(corpus, <span class="cf">function</span>(r) <span class="kw">length</span>(r<span class="op">$</span>author)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(value) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">value</th>
@@ -478,10 +482,10 @@ R package version 0.1.5.</code></pre>
 </tbody>
 </table>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">## Contributors isn't used as much...</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_int</a></span>(corpus, <span class="cf">function</span>(r) <span class="kw">length</span>(r<span class="op">$</span>contributor)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">map_int</span>(corpus, <span class="cf">function</span>(r) <span class="kw">length</span>(r<span class="op">$</span>contributor)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(value) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">value</th>
@@ -497,32 +501,28 @@ R package version 0.1.5.</code></pre>
 <td align="right">13</td>
 </tr>
 <tr class="odd">
-<td align="right">4</td>
-<td align="right">9</td>
+<td align="right">3</td>
+<td align="right">12</td>
 </tr>
 <tr class="even">
-<td align="right">3</td>
-<td align="right">7</td>
+<td align="right">4</td>
+<td align="right">5</td>
 </tr>
 <tr class="odd">
-<td align="right">5</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
 <td align="right">6</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">8</td>
 <td align="right">1</td>
 </tr>
 </tbody>
 </table>
 <p>Numbers (n) of packages with a total of (value) dependencies:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_int</a></span>(corpus, <span class="cf">function</span>(r) <span class="kw">length</span>(r<span class="op">$</span>softwareRequirements))  <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">map_int</span>(corpus, <span class="cf">function</span>(r) <span class="kw">length</span>(r<span class="op">$</span>softwareRequirements))  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(value) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">value</th>
@@ -530,19 +530,19 @@ R package version 0.1.5.</code></pre>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">4</td>
-<td align="right">39</td>
+<td align="right">3</td>
+<td align="right">37</td>
 </tr>
 <tr class="even">
-<td align="right">5</td>
-<td align="right">35</td>
+<td align="right">4</td>
+<td align="right">31</td>
 </tr>
 <tr class="odd">
-<td align="right">2</td>
-<td align="right">25</td>
+<td align="right">5</td>
+<td align="right">31</td>
 </tr>
 <tr class="even">
-<td align="right">3</td>
+<td align="right">2</td>
 <td align="right">25</td>
 </tr>
 <tr class="odd">
@@ -609,23 +609,23 @@ R package version 0.1.5.</code></pre>
 </table>
 <p>which dependencies are used most frequently?</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">corpus <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_df</a></span>(<span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw">map_df</span>(<span class="cf">function</span>(x){</a>
 <a class="sourceLine" id="cb20-3" data-line-number="3">  ## single, unboxed dep</a>
 <a class="sourceLine" id="cb20-4" data-line-number="4">  <span class="cf">if</span>(<span class="st">"name"</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">names</span>(x<span class="op">$</span>softwareRequirements))</a>
 <a class="sourceLine" id="cb20-5" data-line-number="5">    dep &lt;-<span class="st"> </span>x<span class="op">$</span>name</a>
 <a class="sourceLine" id="cb20-6" data-line-number="6">  <span class="cf">else</span> <span class="cf">if</span>(<span class="st">"name"</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">names</span>(x<span class="op">$</span>softwareRequirements[[<span class="dv">1</span>]]))</a>
-<a class="sourceLine" id="cb20-7" data-line-number="7">    dep &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_chr</a></span>(x<span class="op">$</span>softwareRequirements, <span class="st">"name"</span>)</a>
+<a class="sourceLine" id="cb20-7" data-line-number="7">    dep &lt;-<span class="st"> </span><span class="kw">map_chr</span>(x<span class="op">$</span>softwareRequirements, <span class="st">"name"</span>)</a>
 <a class="sourceLine" id="cb20-8" data-line-number="8">  <span class="cf">else</span> { ## No requirementsß</a>
 <a class="sourceLine" id="cb20-9" data-line-number="9">    dep &lt;-<span class="st"> </span><span class="ot">NA</span></a>
 <a class="sourceLine" id="cb20-10" data-line-number="10">  }</a>
 <a class="sourceLine" id="cb20-11" data-line-number="11">  </a>
-<a class="sourceLine" id="cb20-12" data-line-number="12">  <span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="dt">identifier =</span> x<span class="op">$</span>identifier, <span class="dt">dep =</span> dep)</a>
+<a class="sourceLine" id="cb20-12" data-line-number="12">  <span class="kw">tibble</span>(<span class="dt">identifier =</span> x<span class="op">$</span>identifier, <span class="dt">dep =</span> dep)</a>
 <a class="sourceLine" id="cb20-13" data-line-number="13">}) -&gt;<span class="st"> </span>dep_df</a>
 <a class="sourceLine" id="cb20-14" data-line-number="14"></a>
 <a class="sourceLine" id="cb20-15" data-line-number="15"></a>
 <a class="sourceLine" id="cb20-16" data-line-number="16">dep_df <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-17" data-line-number="17"><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(dep) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb20-18" data-line-number="18"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb20-17" data-line-number="17"><span class="kw">group_by</span>(dep) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-18" data-line-number="18"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">dep</th>
@@ -1532,12 +1532,12 @@ R package version 0.1.5.</code></pre>
 <a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  "@explicit": "true",</span></a>
 <a class="sourceLine" id="cb21-4" data-line-number="4"><span class="st">  "name": {}</span></a>
 <a class="sourceLine" id="cb21-5" data-line-number="5"><span class="st">}'</span></a>
-<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(<span class="st">"ropensci.json"</span>, dep_frame) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="kw">jsonld_frame</span>(<span class="st">"ropensci.json"</span>, dep_frame) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="st">  </span><span class="kw">fromJSON</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb21-8" data-line-number="8"><span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(type <span class="op">==</span><span class="st"> "SoftwareApplication"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(name) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="st">  </span><span class="kw">filter</span>(type <span class="op">==</span><span class="st"> "SoftwareApplication"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-10" data-line-number="10"><span class="st">  </span><span class="kw">group_by</span>(name) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-11" data-line-number="11"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -2709,7 +2709,7 @@ R package version 0.1.5.</code></pre>
 
 
       <footer><div class="copyright">
-  <p>Developed by Carl Boettiger.</p>
+  <p>Developed by Carl Boettiger, Maëlle Salmon, rOpenSci.</p>
 </div>
 
 <div class="pkgdown">

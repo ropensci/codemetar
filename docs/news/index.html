@@ -26,6 +26,8 @@
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 <meta property="og:title" content="Changelog" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -48,8 +50,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codemetar</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">codemetar</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.6</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -111,9 +117,27 @@
     </div>
 
     <div class="contents">
-    <div id="codemetar-0-1-5" class="section level1">
+    <div id="codemetar-0-1-6-2018-04" class="section level1">
 <h1 class="page-header">
-<a href="#codemetar-0-1-5" class="anchor"></a>codemetar 0.1.5<small> Unreleased </small>
+<a href="#codemetar-0-1-6-2018-04" class="anchor"></a>codemetar 0.1.6 2018-04<small> Unreleased </small>
+</h1>
+<ul>
+<li><p>Use desc to parse DESCRIPTION files.</p></li>
+<li><p>Writing codemeta.json for the first time adds a git pre-commit hook and suggests adding a release question for devtools::release.</p></li>
+<li><p>License changed to GPL because of code borrowed from usethis</p></li>
+<li><p>Add give_opinion function giving opiniated advice about package metadata</p></li>
+<li><p>Replace httr with crul and use crul to check URLs.</p></li>
+<li><p>relatedLink field now include provider URL and URL(s) from DESCRIPTION that are not the code repository</p></li>
+<li><p>add an extract_badges function for extracting information from all badges in a Markdown file.</p></li>
+<li><p>now if more than one CI service among Travis, Appveyor and Circle CI are used and shown via a README badge they’re all added to the contIntegration field.</p></li>
+<li><p>now ability to parse all CRAN-allowed MARC roles.</p></li>
+<li><p>if there is a badge for an rOpenSci onboarding review and the review issue is closed, basic review metadata is added to codemeta.json</p></li>
+<li><p>For dependencies, if the provider guessed is CRAN or BioConductor, their canonic CRAN/BioConductor URL is added to codemeta.json as sameAs, unless there’s a GitHub repo mentioned for them in Remotes in DESCRIPTION, in which case sameAs is that GitHub repo.</p></li>
+</ul>
+</div>
+    <div id="codemetar-0-1-5-2018-03-21" class="section level1">
+<h1 class="page-header">
+<a href="#codemetar-0-1-5-2018-03-21" class="anchor"></a>codemetar 0.1.5 2018-03-21<small> 2018-03-21 </small>
 </h1>
 <ul>
 <li>Default to DOI-based schema. (previous CN issues now resolved)</li>
@@ -170,7 +194,8 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#codemetar-0-1-5">0.1.5</a></li>
+        <li><a href="#codemetar-0-1-6-2018-04">0.1.6</a></li>
+        <li><a href="#codemetar-0-1-5-2018-03-21">0.1.5</a></li>
         <li><a href="#codemetar-0-1-4-2018-02-12">0.1.4</a></li>
         <li><a href="#codemetar-0-1-3-2018-02-08">0.1.3</a></li>
         <li><a href="#codemetar-0-1-2">0.1.2</a></li>
@@ -184,7 +209,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Carl Boettiger.</p>
+  <p>Developed by Carl Boettiger, Maëlle Salmon, rOpenSci.</p>
 </div>
 
 <div class="pkgdown">

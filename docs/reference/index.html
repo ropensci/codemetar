@@ -26,6 +26,8 @@
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 <meta property="og:title" content="Function reference" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -48,8 +50,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codemetar</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">codemetar</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.6</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -105,10 +111,7 @@
       <div class="row">
   <div class="col-md-9">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.1.5</small>
-      </h1>
+      <h1>Reference</h1>
     </div>
 
     <div class="contents">
@@ -135,15 +138,15 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="codemeta_validate.html">codemeta_validate()</a></code> </p>
-          </td>
-          <td><p>codemeta validate</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
             <p><code><a href="codemetar-package.html">codemetar-package</a></code> </p>
           </td>
           <td><p>codemetar: generate codemeta metadata for R packages</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="codemeta_validate.html">codemeta_validate()</a></code> </p>
+          </td>
+          <td><p>codemeta validate</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -177,6 +180,18 @@
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="extract_badges.html">extract_badges()</a></code> </p>
+          </td>
+          <td><p>Extract all badges from Markdown file</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="give_opinions.html">give_opinions()</a></code> </p>
+          </td>
+          <td><p>Function giving opinions about a package</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="write_codemeta.html">write_codemeta()</a></code> </p>
           </td>
           <td><p>write_codemeta</p></td>
@@ -196,7 +211,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Carl Boettiger.</p>
+  <p>Developed by Carl Boettiger, Maëlle Salmon, rOpenSci.</p>
 </div>
 
 <div class="pkgdown">

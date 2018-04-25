@@ -27,8 +27,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codemetar</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">codemetar</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.6</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
@@ -87,7 +91,7 @@
       <h1>Translating between schema using JSON-LD</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2018-03-21</h4>
+            <h4 class="date">2018-04-25</h4>
       
       <small>Source: <a href="https://github.com/ropensci/codemetar/blob/master/vignettes/B-translating.Rmd"><code>vignettes/B-translating.Rmd</code></a></small>
 
@@ -125,8 +129,8 @@
 <a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">}</span></a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="st">}'</span></a></code></pre></div>
 <p>With this in place, we simply expand the original JSON and then compact using the new context:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_expand</a></span>(ex) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_compact</a></span>(<span class="dt">context =</span> bighash_context)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">jsonld_expand</span>(ex) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">jsonld_compact</span>(<span class="dt">context =</span> bighash_context)</a></code></pre></div>
 <pre><code>{
   "@context": {
     "user": "http://schema.org/name",
@@ -146,7 +150,7 @@
 <p>Here we crosswalk the JSON data returned as the repository information from the GitHub API:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">repo_info &lt;-<span class="st"> </span>gh<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/gh/topics/gh">gh</a></span>(<span class="st">"/repos/:owner/:repo"</span>, <span class="dt">owner =</span> <span class="st">"ropensci"</span>, <span class="dt">repo =</span> <span class="st">"EML"</span>)</a></code></pre></div>
 <p>Let’s just take a look at what the returned json data looks like:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">repo_info <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">toJSON</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">repo_info <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">toJSON</span>()</a></code></pre></div>
 <pre><code>{"id":[10894022],"name":["EML"],"full_name":["ropensci/EML"],"owner":{"login":["ropensci"],"id":[1200269],"avatar_url":["https://avatars0.githubusercontent.com/u/1200269?v=3"],"gravatar_id":[""],"url":["https://api.github.com/users/ropensci"],"html_url":["https://github.com/ropensci"],"followers_url":["https://api.github.com/users/ropensci/followers"],"following_url":["https://api.github.com/users/ropensci/following{/other_user}"],"gists_url":["https://api.github.com/users/ropensci/gists{/gist_id}"],"starred_url":["https://api.github.com/users/ropensci/starred{/owner}{/repo}"],"subscriptions_url":["https://api.github.com/users/ropensci/subscriptions"],"organizations_url":["https://api.github.com/users/ropensci/orgs"],"repos_url":["https://api.github.com/users/ropensci/repos"],"events_url":["https://api.github.com/users/ropensci/events{/privacy}"],"received_events_url":["https://api.github.com/users/ropensci/received_events"],"type":["Organization"],"site_admin":[false]},"private":[false],"html_url":["https://github.com/ropensci/EML"],"description":[" Ecological Metadata Language interface for R: synthesis and integration of heterogenous data"],"fork":[false],"url":["https://api.github.com/repos/ropensci/EML"],"forks_url":["https://api.github.com/repos/ropensci/EML/forks"],"keys_url":["https://api.github.com/repos/ropensci/EML/keys{/key_id}"],"collaborators_url":["https://api.github.com/repos/ropensci/EML/collaborators{/collaborator}"],"teams_url":["https://api.github.com/repos/ropensci/EML/teams"],"hooks_url":["https://api.github.com/repos/ropensci/EML/hooks"],"issue_events_url":["https://api.github.com/repos/ropensci/EML/issues/events{/number}"],"events_url":["https://api.github.com/repos/ropensci/EML/events"],"assignees_url":["https://api.github.com/repos/ropensci/EML/assignees{/user}"],"branches_url":["https://api.github.com/repos/ropensci/EML/branches{/branch}"],"tags_url":["https://api.github.com/repos/ropensci/EML/tags"],"blobs_url":["https://api.github.com/repos/ropensci/EML/git/blobs{/sha}"],"git_tags_url":["https://api.github.com/repos/ropensci/EML/git/tags{/sha}"],"git_refs_url":["https://api.github.com/repos/ropensci/EML/git/refs{/sha}"],"trees_url":["https://api.github.com/repos/ropensci/EML/git/trees{/sha}"],"statuses_url":["https://api.github.com/repos/ropensci/EML/statuses/{sha}"],"languages_url":["https://api.github.com/repos/ropensci/EML/languages"],"stargazers_url":["https://api.github.com/repos/ropensci/EML/stargazers"],"contributors_url":["https://api.github.com/repos/ropensci/EML/contributors"],"subscribers_url":["https://api.github.com/repos/ropensci/EML/subscribers"],"subscription_url":["https://api.github.com/repos/ropensci/EML/subscription"],"commits_url":["https://api.github.com/repos/ropensci/EML/commits{/sha}"],"git_commits_url":["https://api.github.com/repos/ropensci/EML/git/commits{/sha}"],"comments_url":["https://api.github.com/repos/ropensci/EML/comments{/number}"],"issue_comment_url":["https://api.github.com/repos/ropensci/EML/issues/comments{/number}"],"contents_url":["https://api.github.com/repos/ropensci/EML/contents/{+path}"],"compare_url":["https://api.github.com/repos/ropensci/EML/compare/{base}...{head}"],"merges_url":["https://api.github.com/repos/ropensci/EML/merges"],"archive_url":["https://api.github.com/repos/ropensci/EML/{archive_format}{/ref}"],"downloads_url":["https://api.github.com/repos/ropensci/EML/downloads"],"issues_url":["https://api.github.com/repos/ropensci/EML/issues{/number}"],"pulls_url":["https://api.github.com/repos/ropensci/EML/pulls{/number}"],"milestones_url":["https://api.github.com/repos/ropensci/EML/milestones{/number}"],"notifications_url":["https://api.github.com/repos/ropensci/EML/notifications{?since,all,participating}"],"labels_url":["https://api.github.com/repos/ropensci/EML/labels{/name}"],"releases_url":["https://api.github.com/repos/ropensci/EML/releases{/id}"],"deployments_url":["https://api.github.com/repos/ropensci/EML/deployments"],"created_at":["2013-06-23T23:20:03Z"],"updated_at":["2017-05-11T21:24:40Z"],"pushed_at":["2017-07-05T18:52:34Z"],"git_url":["git://github.com/ropensci/EML.git"],"ssh_url":["git@github.com:ropensci/EML.git"],"clone_url":["https://github.com/ropensci/EML.git"],"svn_url":["https://github.com/ropensci/EML"],"homepage":["https://ropensci.github.io/EML"],"size":[5094],"stargazers_count":[48],"watchers_count":[48],"language":["HTML"],"has_issues":[true],"has_projects":[true],"has_downloads":[true],"has_wiki":[true],"has_pages":[true],"forks_count":[17],"mirror_url":{},"open_issues_count":[35],"forks":[17],"open_issues":[35],"watchers":[48],"default_branch":["master"],"organization":{"login":["ropensci"],"id":[1200269],"avatar_url":["https://avatars0.githubusercontent.com/u/1200269?v=3"],"gravatar_id":[""],"url":["https://api.github.com/users/ropensci"],"html_url":["https://github.com/ropensci"],"followers_url":["https://api.github.com/users/ropensci/followers"],"following_url":["https://api.github.com/users/ropensci/following{/other_user}"],"gists_url":["https://api.github.com/users/ropensci/gists{/gist_id}"],"starred_url":["https://api.github.com/users/ropensci/starred{/owner}{/repo}"],"subscriptions_url":["https://api.github.com/users/ropensci/subscriptions"],"organizations_url":["https://api.github.com/users/ropensci/orgs"],"repos_url":["https://api.github.com/users/ropensci/repos"],"events_url":["https://api.github.com/users/ropensci/events{/privacy}"],"received_events_url":["https://api.github.com/users/ropensci/received_events"],"type":["Organization"],"site_admin":[false]},"network_count":[17],"subscribers_count":[18]} </code></pre>
 <p>We can crosswalk this information into codemeta just by supplying the column name to the <code>crosswalk</code> function. This performs the same expansion of the metadata in the GitHub context, followed by compaction into the codemeta context. Note that terms not recognized/included in the codemeta context will be dropped:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">github_meta &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(repo_info, <span class="st">"GitHub"</span>)</a>
@@ -158,7 +162,7 @@
   "dateModified": "2017-05-11T21:24:40Z",
   "description": " Ecological Metadata Language interface for R: synthesis and integration of heterogenous data",
   "downloadUrl": "https://api.github.com/repos/ropensci/EML/{archive_format}{/ref}",
-  "identifier": "10894022",
+  "identifier": "/10894022",
   "name": "ropensci/EML",
   "programmingLanguage": "https://api.github.com/repos/ropensci/EML/languages",
   "issueTracker": "https://api.github.com/repos/ropensci/EML/issues{/number}"
@@ -188,7 +192,7 @@
   "schema:downloadUrl": {
     "@id": "https://api.github.com/repos/ropensci/EML/{archive_format}{/ref}"
   },
-  "id": "10894022",
+  "id": "/10894022",
   "name": "ropensci/EML",
   "schema:programmingLanguage": "https://api.github.com/repos/ropensci/EML/languages",
   "codemeta:issueTracker": {
@@ -201,7 +205,7 @@
 <h2 class="hasAnchor">
 <a href="#nodejs-example" class="anchor"></a>NodeJS example</h2>
 <p>NodeJS uses a <code>package.json</code> format that is very similar to a simple <code>codemeta.json</code> file, though it is not Linked Data as it does not declare a context. Here we crosswalk an example <code>package.json</code> file into proper <code>codemeta</code> standard.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">package.json &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/read_json">read_json</a></span>(</a>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">package.json &lt;-<span class="st"> </span><span class="kw">read_json</span>(</a>
 <a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">"https://raw.githubusercontent.com/heroku/node-js-sample/master/package.json"</span>)</a>
 <a class="sourceLine" id="cb15-3" data-line-number="3">package.json</a></code></pre></div>
 <pre><code>$name
@@ -271,7 +275,7 @@ $license
     "heroku",
     "express"
   ],
-  "license": "MIT",
+  "license": "/MIT",
   "name": "node-js-sample",
   "version": "0.2.0"
 } </code></pre>
@@ -298,7 +302,7 @@ $license
 
 
       <footer><div class="copyright">
-  <p>Developed by Carl Boettiger.</p>
+  <p>Developed by Carl Boettiger, Maëlle Salmon, rOpenSci.</p>
 </div>
 
 <div class="pkgdown">

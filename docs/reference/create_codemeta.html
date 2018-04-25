@@ -31,6 +31,8 @@
 to write_codemeta, but returns an R list object rather
 than writing directly to a file.  See examples." />
 <meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -53,8 +55,12 @@ than writing directly to a file.  See examples." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codemetar</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">codemetar</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.6</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -121,9 +127,10 @@ than writing directly to a file.  See examples.</p>
     
 
     <pre class="usage"><span class='fu'>create_codemeta</span>(<span class='kw'>pkg</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>root</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>force_update</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"codemeta_force_update"</span>, <span class='fl'>TRUE</span>), <span class='no'>...</span>)</pre>
+  <span class='kw'>force_update</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"codemeta_force_update"</span>, <span class='fl'>TRUE</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -145,6 +152,10 @@ to package root. Default guess is current dir.</p></td>
       <td><p>Update guessed fields even if they are defined in an existing codemeta.json file</p></td>
     </tr>
     <tr>
+      <th>verbose</th>
+      <td><p>Whether to print messages indicating opinions e.g. when DESCRIPTION has no URL. See <code><a href='give_opinions.html'>give_opinions</a></code>.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>additional arguments to <code>write_json</code></p></td>
     </tr>
@@ -156,8 +167,7 @@ to package root. Default guess is current dir.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>cm</span> <span class='kw'>&lt;-</span> <span class='fu'>create_codemeta</span>(<span class='st'>"jsonlite"</span>)
-<span class='no'>cm</span>$<span class='no'>keywords</span> <span class='kw'>&lt;-</span> <span class='fu'>list</span>(<span class='st'>"metadata"</span>, <span class='st'>"ropensci"</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>cm</span> <span class='kw'>&lt;-</span> <span class='fu'>create_codemeta</span>(<span class='st'>"jsonlite"</span>)</div><div class='output co'>#&gt; <span class='message'>Some elements could be improved, see our opinions via give_opinions('C:/Users/Maelle/Documents/R/win-library/3.4/jsonlite/.')</span></div><div class='input'><span class='no'>cm</span>$<span class='no'>keywords</span> <span class='kw'>&lt;-</span> <span class='fu'>list</span>(<span class='st'>"metadata"</span>, <span class='st'>"ropensci"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -174,7 +184,7 @@ to package root. Default guess is current dir.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Carl Boettiger.</p>
+  <p>Developed by Carl Boettiger, Maëlle Salmon, rOpenSci.</p>
 </div>
 
 <div class="pkgdown">
