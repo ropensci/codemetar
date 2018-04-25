@@ -88,13 +88,15 @@
       "name": "rOpenSci"
     }
   ],
-  "maintainer": {
-    "@type": "Person",
-    "givenName": "Carl",
-    "familyName": "Boettiger",
-    "email": "cboettig@gmail.com",
-    "@id": "https://orcid.org/0000-0002-1642-628X"
-  },
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Carl",
+      "familyName": "Boettiger",
+      "email": "cboettig@gmail.com",
+      "@id": "https://orcid.org/0000-0002-1642-628X"
+    }
+  ],
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
@@ -416,5 +418,5 @@
   },
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
-  "fileSize": "275.299KB"
+  "fileSize": "275.713KB"
 }
