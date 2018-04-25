@@ -1,26 +1,40 @@
 # codemetar 0.1.6 2018-04
 
-* Use desc to parse DESCRIPTION files.
+* New functions
 
-* Writing codemeta.json for the first time adds a git pre-commit hook and suggests adding a release question for devtools::release.
+    * extract_badges for extracting information from all
+    badges in a Markdown file.
+    
+    * give_opinion giving opiniated advice about package metadata
+    
+* Changes to the create_codemeta output
 
-* License changed to GPL because of code borrowed from usethis
+    * relatedLink field now include provider URL and URL(s) from
+    DESCRIPTION that are not the code repository
+    
+    * maintainer is now a list allowing for several maintainers since
+    e.g. the BioConductor a4 package has two maintainers.
+    
+    * if more than one CI service among Travis, Appveyor and
+    Circle CI are used and shown via a README badge they're all added
+    to the contIntegration field.
+    
+    * ability to parse all CRAN-allowed MARC roles.
+    
+    * if there is a badge for an rOpenSci onboarding review and the review issue is closed, basic review metadata is added to codemeta.json
+    
+    * For dependencies, if the provider guessed is CRAN or BioConductor, their canonic CRAN/BioConductor URL is added to codemeta.json as sameAs, unless there's a GitHub repo mentioned for them in Remotes in DESCRIPTION, in which case sameAs is that GitHub repo.
 
-* Add give_opinion function giving opiniated advice about package metadata
+* Help to remind to update codemeta.json regularly: Writing codemeta.json for the first time adds a git pre-commit hook and suggests adding a release question for devtools::release.
 
-* Replace httr with crul and use crul to check URLs.
+* Internal changes
 
-* relatedLink field now include provider URL and URL(s) from DESCRIPTION that are not the code repository
+    * Now uses desc to parse DESCRIPTION files.
 
-* add an extract_badges function for extracting information from all badges in a Markdown file.
-
-* now if more than one CI service among Travis, Appveyor and Circle CI are used and shown via a README badge they're all added to the contIntegration field.
-
-* now ability to parse all CRAN-allowed MARC roles.
-
-* if there is a badge for an rOpenSci onboarding review and the review issue is closed, basic review metadata is added to codemeta.json
-
-* For dependencies, if the provider guessed is CRAN or BioConductor, their canonic CRAN/BioConductor URL is added to codemeta.json as sameAs, unless there's a GitHub repo mentioned for them in Remotes in DESCRIPTION, in which case sameAs is that GitHub repo.
+    * Package license changed to GPL because of code borrowed from
+    usethis
+    
+    * Uses crul instead of httr and use crul to check some URLs.
 
 # codemetar 0.1.5 2018-03-21
 
