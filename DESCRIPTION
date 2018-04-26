@@ -49,6 +49,7 @@ Imports:
     jsonld,
     git2r,
     devtools,
+    memoise,
     methods,
     stats,
     stringi,
