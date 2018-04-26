@@ -43,11 +43,16 @@ write_codemeta <- function(pkg = ".",
 
   # things that only happen inside a package folder
   if(length(pkg) <= 1 && is_package(pkg)){
-    usethis::use_build_ignore("codemeta.json")
+
+    if(path == "codemeta.json"){
+      # if path is something else hopefully the user know what they are doing
+      usethis::use_build_ignore("codemeta.json")
+    }
+
     # add the git pre-commit hook
     # https://github.com/r-lib/usethis/blob/master/inst/templates/readme-rmd-pre-commit.sh#L1
     # this is GPL-3 code
-    if (uses_git()) {
+    if (uses_git() & path == "codemeta.json") {
       if(!file.exists(file.path(pkg, "codemeta.json"))){
         message("* Adding a pre-commit git hook ensuring that codemeta.json will be synchronized with DESCRIPTION") # nolint
         usethis::use_git_hook(
@@ -63,6 +68,7 @@ write_codemeta <- function(pkg = ".",
   }
   cm <- create_codemeta(pkg = pkg, root = root)
   write_json(cm, path, pretty=TRUE, auto_unbox = TRUE, ...)
+
 
 }
 
