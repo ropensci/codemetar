@@ -18,7 +18,7 @@ format_depend <- function(package, version, remote_provider){
 
   # CRAN canonical URL
   if(!is.null(dep$provider)){
-    if(dep$provider$name == "Central R Archive Network (CRAN)"){
+    if(dep$provider$name == "Comprehensive R Archive Network (CRAN)"){
       dep$sameAs <- paste0("https://CRAN.R-project.org/package=",
                            dep$identifier)
     }else{

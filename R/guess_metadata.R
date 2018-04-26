@@ -1,4 +1,4 @@
-## Methods that guess additional metadata fields based on README badges and realted information
+## Methods that guess additional metadata fields based on README badges and related information
 
 
 
@@ -33,7 +33,7 @@ guess_provider <- function(pkg) {
     list(
       "@id" = "https://cran.r-project.org",
       "@type" = "Organization",
-      "name" = "Central R Archive Network (CRAN)",
+      "name" = "Comprehensive R Archive Network (CRAN)",
       "url" = "https://cran.r-project.org"
     )
 
