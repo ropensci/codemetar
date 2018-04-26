@@ -163,8 +163,17 @@ guess_github <- function(root = ".") {
 
 guess_readme <- function(root = ".") {
   ## If no local README.md at package root, give up
-  if (!file.exists(file.path(root, "README.md"))) {
-    return(NULL)
+  contents <- dir(root)
+  readmes <- contents[grepl("[Rr][Ee][Aa][Dd][Mm][Ee]\\.R?md", contents)]
+  if(length(readmes) == 0){
+    NULL
+  }else{
+    readme_rmd <- readmes[grepl("\\.Rmd", readmes)]
+    if(is.null(readme_rmd)){
+      file.path(root, readmes[grepl("\\.md", readmes)])
+    }else{
+      file.path(root, readme_rmd)
+    }
   }
 
   ## point to GitHub page
