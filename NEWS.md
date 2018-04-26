@@ -35,6 +35,8 @@
     * Package license changed to GPL because of code borrowed from usethis
     
     * Uses crul instead of httr and use crul to check some URLs.
+    
+    * The calls to available.packages() for guess_provider now happen inside memoised functions.
 
 # codemetar 0.1.5 2018-03-21
 
