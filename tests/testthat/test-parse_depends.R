@@ -23,7 +23,7 @@ testthat::test_that("Test the various cases for dependencies", {
 
   f <- system.file("examples/DESCRIPTION_with_remote", package = "codemetar")
   descr <- codemeta_description(f)
-  testthat::expect_equal(descr$softwareRequirements[6, 1][[1]],
+  testthat::expect_equal(descr$softwareRequirements[[1]]$sameAs,
                          "https://github.com/hadley/readr")
 
   testthat::expect_equal(a$provider$`@id`, "https://cran.r-project.org")
