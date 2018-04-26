@@ -34,7 +34,9 @@
 
     * Package license changed to GPL because of code borrowed from usethis
     
-    * Uses crul instead of httr and use crul to check some URLs.
+    * Uses crul instead of httr and uses crul to check some URLs.
+    
+    * write_codemeta only uses Rbuildignore and a pre-commit git hook if the function is called from a package folder directly and with the path argument equal to "codemeta.json"
     
     * The calls to available.packages() for guess_provider now happen inside memoised functions.
 

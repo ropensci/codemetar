@@ -49,6 +49,8 @@ There are no reverse dependencies.
     * if there is a badge for an rOpenSci onboarding review and the review issue is closed, basic review metadata is added to codemeta.json
     
     * For dependencies, if the provider guessed is CRAN or BioConductor, their canonic CRAN/BioConductor URL is added to codemeta.json as sameAs, unless there's a GitHub repo mentioned for them in Remotes in DESCRIPTION, in which case sameAs is that GitHub repo.
+    
+    * CRAN is now correctly translated as "Comprehensive R Archive Network"
 
 * Help to remind to update codemeta.json regularly: Writing codemeta.json for the first time adds a git pre-commit hook and suggests adding a release question for devtools::release.
 
@@ -58,7 +60,11 @@ There are no reverse dependencies.
 
     * Package license changed to GPL because of code borrowed from usethis
     
-    * Uses crul instead of httr and use crul to check some URLs.
+    * Uses crul instead of httr and uses crul to check some URLs.
+    
+    * write_codemeta only uses Rbuildignore and a pre-commit git hook if the function is called from a package folder directly and with the path argument equal to "codemeta.json"
+    
+    * The calls to available.packages() for guess_provider now happen inside memoised functions.
 
 * Default to DOI-based schema. (previous CN issues now resolved)
 
