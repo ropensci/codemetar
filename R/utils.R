@@ -134,3 +134,11 @@ whether_provider_badge <- function(badges, provider_name){
 
   provider_badge
 }
+
+# helper to find whether a path is a package project
+is_package <- function(path){
+  all(c("DESCRIPTION", "NAMESPACE", "man", "R") %in%
+    dir(path))
+}
+
+
