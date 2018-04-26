@@ -61,7 +61,8 @@ Imports:
     crul,
     gh,
     stringr,
-    sessioninfo
+    sessioninfo,
+    purrr
 Suggests: 
     testthat,
     jsonvalidate,
@@ -71,7 +72,6 @@ Suggests:
     magrittr,
     xml2,
     dplyr (>= 0.7.0),
-    purrr,
     printr
 VignetteBuilder: knitr
 X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data

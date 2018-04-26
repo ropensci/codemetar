@@ -39,8 +39,9 @@ format_depend <- function(package, version, remote_provider){
 
 parse_depends <- function(deps) {
 
-  unname(mapply(format_depend, deps$package, deps$version,
-                deps$remote_provider))
+  purrr::pmap(list(deps$package, deps$version,
+                deps$remote_provider),
+  format_depend)
 }
 
 
