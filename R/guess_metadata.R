@@ -3,16 +3,24 @@
 
 
 ## cache avail packages
-CRAN <-
+.CRAN <- function(){
   utils::available.packages(
     utils::contrib.url("https://cran.rstudio.com", "source"))
-BIOC <-
+}
+
+CRAN <- memoise::memoise(.CRAN)
+
+.BIOC <- function(){
   utils::available.packages(
     utils::contrib.url(
       "https://www.bioconductor.org/packages/release/bioc",
       "source"
     )
   )
+}
+
+BIOC <- memoise::memoise(.BIOC)
+
 
 
 guess_provider <- function(pkg) {
@@ -21,7 +29,7 @@ guess_provider <- function(pkg) {
   }
   ## Assumes a single provider
 
-  if (pkg %in% CRAN[, "Package"]) {
+  if (pkg %in% CRAN()[, "Package"]) {
     list(
       "@id" = "https://cran.r-project.org",
       "@type" = "Organization",
@@ -31,7 +39,7 @@ guess_provider <- function(pkg) {
 
 
 
-  } else if (pkg %in% BIOC[, "Package"]) {
+  } else if (pkg %in% BIOC()[, "Package"]) {
     list(
       "@id" = "https://www.bioconductor.org",
       "@type" = "Organization",
