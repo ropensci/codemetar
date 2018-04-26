@@ -42,7 +42,7 @@ write_codemeta <- function(pkg = ".",
                            ...) {
 
   # things that only happen inside a package folder
-  if(length(pkg) <= 1 && is_package(pkg) && pkg == getwd()){
+  if(length(pkg) <= 1 && is_package(pkg) && pkg %in% c(getwd(), ".")){
 
     if(path == "codemeta.json"){
       # if path is something else hopefully the user know what they are doing
