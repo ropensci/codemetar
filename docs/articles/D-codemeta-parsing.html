@@ -91,7 +91,7 @@
       <h1>Parsing Codemeta Data</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2018-04-25</h4>
+            <h4 class="date">2018-04-26</h4>
       
       <small>Source: <a href="https://github.com/ropensci/codemetar/blob/master/vignettes/D-codemeta-parsing.Rmd"><code>vignettes/D-codemeta-parsing.Rmd</code></a></small>
 
@@ -111,83 +111,91 @@
 <a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">library</span>(tibble)</a></code></pre></div>
 <p>We start with a simple example from the <code>codemeta.json</code> file of <code>codemetar</code> itself. First, we’ll just generate a copy of the codemeta record for the package:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/write_codemeta.html">write_codemeta</a></span>(<span class="st">"codemetar"</span>, <span class="st">"codemeta.json"</span>)</a></code></pre></div>
+<pre><code>Warning in grep("^[^\\s]+:$", lines, perl = TRUE, value = TRUE): input
+string 19 is invalid UTF-8</code></pre>
+<pre><code>Warning in grep("^[^\\s]+:$", lines, perl = TRUE, value = TRUE): input
+string 60 is invalid UTF-8</code></pre>
+<pre><code>Warning in grep("^[^\\s]+:$", lines, perl = TRUE, value = TRUE): input
+string 19 is invalid UTF-8</code></pre>
+<pre><code>Warning in grep("^[^\\s]+:$", lines, perl = TRUE, value = TRUE): input
+string 60 is invalid UTF-8</code></pre>
 <p>We then digest this input using a JSON-LD “frame.” While not strictly necessary, this helps ensure the data matches the format we expect, even if the original file had errors or missing data. See the vignette “Validating in JSON-LD” in this package and the official <a href="https://json-ld.org/spec/latest/json-ld-framing/">JSON-LD docs</a> for details). The <code>codemetar</code> package includes a reasonably explicit frame to get us started:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">frame &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"schema/frame_schema.json"</span>, <span class="dt">package=</span><span class="st">"codemetar"</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">meta &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw">jsonld_frame</span>(<span class="st">"codemeta.json"</span>, frame) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw">fromJSON</span>(<span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">frame &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"schema/frame_schema.json"</span>, <span class="dt">package=</span><span class="st">"codemetar"</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">meta &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span><span class="kw">jsonld_frame</span>(<span class="st">"codemeta.json"</span>, frame) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="st">  </span><span class="kw">fromJSON</span>(<span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)</a></code></pre></div>
 <p>Construct a citation</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">authors &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">lapply</span>(meta<span class="op">$</span>author, </a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">       <span class="cf">function</span>(author) </a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">         <span class="kw">person</span>(<span class="dt">given =</span> author<span class="op">$</span>given, </a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">                <span class="dt">family =</span> author<span class="op">$</span>family, </a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">                <span class="dt">email =</span> author<span class="op">$</span>email,</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">                <span class="dt">role =</span> <span class="st">"aut"</span>))</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">year &lt;-<span class="st"> </span>meta<span class="op">$</span>datePublished</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="cf">if</span>(<span class="kw">is.null</span>(year)) </a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">  year &lt;-<span class="st"> </span><span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">"%Y"</span>)</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">bibitem &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="st"> </span><span class="kw">bibentry</span>(</a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">     <span class="dt">bibtype =</span> <span class="st">"Manual"</span>,</a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">     <span class="dt">title =</span> meta<span class="op">$</span>name,</a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">     <span class="dt">author =</span> authors,</a>
-<a class="sourceLine" id="cb4-16" data-line-number="16">     <span class="dt">year =</span> year,</a>
-<a class="sourceLine" id="cb4-17" data-line-number="17">     <span class="dt">note =</span> <span class="kw">paste0</span>(<span class="st">"R package version "</span>, meta<span class="op">$</span>version),</a>
-<a class="sourceLine" id="cb4-18" data-line-number="18">     <span class="dt">url =</span> meta<span class="op">$</span>URL,</a>
-<a class="sourceLine" id="cb4-19" data-line-number="19">     <span class="dt">key =</span> meta<span class="op">$</span>identifier</a>
-<a class="sourceLine" id="cb4-20" data-line-number="20">   )</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">authors &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">lapply</span>(meta<span class="op">$</span>author, </a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">       <span class="cf">function</span>(author) </a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">         <span class="kw">person</span>(<span class="dt">given =</span> author<span class="op">$</span>given, </a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">                <span class="dt">family =</span> author<span class="op">$</span>family, </a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">                <span class="dt">email =</span> author<span class="op">$</span>email,</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">                <span class="dt">role =</span> <span class="st">"aut"</span>))</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">year &lt;-<span class="st"> </span>meta<span class="op">$</span>datePublished</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="cf">if</span>(<span class="kw">is.null</span>(year)) </a>
+<a class="sourceLine" id="cb8-10" data-line-number="10">  year &lt;-<span class="st"> </span><span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">"%Y"</span>)</a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">bibitem &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="st"> </span><span class="kw">bibentry</span>(</a>
+<a class="sourceLine" id="cb8-13" data-line-number="13">     <span class="dt">bibtype =</span> <span class="st">"Manual"</span>,</a>
+<a class="sourceLine" id="cb8-14" data-line-number="14">     <span class="dt">title =</span> meta<span class="op">$</span>name,</a>
+<a class="sourceLine" id="cb8-15" data-line-number="15">     <span class="dt">author =</span> authors,</a>
+<a class="sourceLine" id="cb8-16" data-line-number="16">     <span class="dt">year =</span> year,</a>
+<a class="sourceLine" id="cb8-17" data-line-number="17">     <span class="dt">note =</span> <span class="kw">paste0</span>(<span class="st">"R package version "</span>, meta<span class="op">$</span>version),</a>
+<a class="sourceLine" id="cb8-18" data-line-number="18">     <span class="dt">url =</span> meta<span class="op">$</span>URL,</a>
+<a class="sourceLine" id="cb8-19" data-line-number="19">     <span class="dt">key =</span> meta<span class="op">$</span>identifier</a>
+<a class="sourceLine" id="cb8-20" data-line-number="20">   )</a></code></pre></div>
 <pre><code>Warning in bibentry(bibtype = "Manual", title = meta$name, author =
 authors, : Not all arguments are of the same length, the following need to
 be recycled: author</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">cat</span>(<span class="kw">format</span>(bibitem, <span class="st">"bibtex"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">cat</span>(<span class="kw">format</span>(bibitem, <span class="st">"bibtex"</span>))</a></code></pre></div>
 <pre><code>@Manual{/codemetar,
   title = {codemetar: Generate 'CodeMeta' Metadata for R Packages},
   year = {2018},
   note = {R package version 0.1.6},
 }</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">bibitem</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">bibitem</a></code></pre></div>
 <pre><code>(2018). _codemetar: Generate 'CodeMeta' Metadata for R Packages_.
 R package version 0.1.6.</code></pre>
 <div id="parsing-the-ropensci-corpus" class="section level2">
 <h2 class="hasAnchor">
 <a href="#parsing-the-ropensci-corpus" class="anchor"></a>Parsing the ropensci corpus</h2>
 <p>The ropensci corpus consists of a list of codemeta files for all packages provided by the rOpenSci project, &lt;ropensci.org&gt;. This provides a good test-case for how a large collection of codemeta files can be manipulated to help us get a better picture of the corpus.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">download.file</span>(<span class="st">"https://github.com/codemeta/codemetar/raw/master/inst/notebook/ropensci.json"</span>,</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">              <span class="st">"ropensci.json"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">download.file</span>(<span class="st">"https://github.com/codemeta/codemetar/raw/master/inst/notebook/ropensci.json"</span>,</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">              <span class="st">"ropensci.json"</span>)</a></code></pre></div>
 <p>As before, it is helpful, though not essential, to start off by framing the input data.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">frame &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"schema/frame_schema.json"</span>, <span class="dt">package=</span><span class="st">"codemetar"</span>)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">corpus &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">    </span><span class="kw">jsonld_frame</span>(<span class="st">"ropensci.json"</span>, frame) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">    </span><span class="kw">fromJSON</span>(<span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="st">    </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">frame &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"schema/frame_schema.json"</span>, <span class="dt">package=</span><span class="st">"codemetar"</span>)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">corpus &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">    </span><span class="kw">jsonld_frame</span>(<span class="st">"ropensci.json"</span>, frame) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="st">    </span><span class="kw">fromJSON</span>(<span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="st">    </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) </a></code></pre></div>
 <p>We’re now ready to start exploring. As usual, functions from <code>purrr</code> prove very useful for iterating through large JSON files. First, we look at some basic summary data:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">## deal with nulls explicitly by starting with map</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">pkgs &lt;-<span class="st"> </span><span class="kw">map</span>(corpus, <span class="st">"name"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">compact</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.character</span>()</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co"># keep only those with package identifiers (names)</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5">keep &lt;-<span class="st"> </span><span class="kw">map_lgl</span>(corpus, <span class="op">~</span><span class="st"> </span><span class="kw">length</span>(.x<span class="op">$</span>identifier) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb12-6" data-line-number="6">corpus &lt;-<span class="st"> </span>corpus[keep]</a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb12-8" data-line-number="8">## now we can just do</a>
-<a class="sourceLine" id="cb12-9" data-line-number="9">all_pkgs &lt;-<span class="st"> </span><span class="kw">map_chr</span>(corpus, <span class="st">"name"</span>)</a>
-<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="kw">head</span>(all_pkgs)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">## deal with nulls explicitly by starting with map</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">pkgs &lt;-<span class="st"> </span><span class="kw">map</span>(corpus, <span class="st">"name"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">compact</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.character</span>()</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co"># keep only those with package identifiers (names)</span></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">keep &lt;-<span class="st"> </span><span class="kw">map_lgl</span>(corpus, <span class="op">~</span><span class="st"> </span><span class="kw">length</span>(.x<span class="op">$</span>identifier) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">corpus &lt;-<span class="st"> </span>corpus[keep]</a>
+<a class="sourceLine" id="cb16-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb16-8" data-line-number="8">## now we can just do</a>
+<a class="sourceLine" id="cb16-9" data-line-number="9">all_pkgs &lt;-<span class="st"> </span><span class="kw">map_chr</span>(corpus, <span class="st">"name"</span>)</a>
+<a class="sourceLine" id="cb16-10" data-line-number="10"><span class="kw">head</span>(all_pkgs)</a></code></pre></div>
 <pre><code>[1] "AntWeb: programmatic interface to the AntWeb"                                
 [2] "aRxiv: Interface to the arXiv API"                                           
 [3] "chromer: Interface to Chromosome Counts Database API"                        
 [4] "ckanr: Client for the Comprehensive Knowledge Archive Network ('CKAN') 'API'"
 [5] "dashboard: A package status dashboard"                                       
 [6] "ggit: Git Graphics"                                                          </code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">## 60 unique maintainers</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">map_chr</span>(corpus, <span class="kw">c</span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">## 60 unique maintainers</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">map_chr</span>(corpus, <span class="kw">c</span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>()</a></code></pre></div>
 <pre><code>[1] 61</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">## Mostly Scott</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">map_chr</span>(corpus, <span class="kw">c</span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">## Mostly Scott</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw">map_chr</span>(corpus, <span class="kw">c</span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(value) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">value</th>
@@ -440,11 +448,11 @@ R package version 0.1.6.</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">## number of co-authors ... </a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">map_int</span>(corpus, <span class="cf">function</span>(r) <span class="kw">length</span>(r<span class="op">$</span>author)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">## number of co-authors ... </a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">map_int</span>(corpus, <span class="cf">function</span>(r) <span class="kw">length</span>(r<span class="op">$</span>author)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(value) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">value</th>
@@ -481,11 +489,11 @@ R package version 0.1.6.</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">## Contributors isn't used as much...</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">map_int</span>(corpus, <span class="cf">function</span>(r) <span class="kw">length</span>(r<span class="op">$</span>contributor)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">## Contributors isn't used as much...</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw">map_int</span>(corpus, <span class="cf">function</span>(r) <span class="kw">length</span>(r<span class="op">$</span>contributor)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(value) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">value</th>
@@ -519,10 +527,10 @@ R package version 0.1.6.</code></pre>
 </tbody>
 </table>
 <p>Numbers (n) of packages with a total of (value) dependencies:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">map_int</span>(corpus, <span class="cf">function</span>(r) <span class="kw">length</span>(r<span class="op">$</span>softwareRequirements))  <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">map_int</span>(corpus, <span class="cf">function</span>(r) <span class="kw">length</span>(r<span class="op">$</span>softwareRequirements))  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(value) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">value</th>
@@ -608,24 +616,24 @@ R package version 0.1.6.</code></pre>
 </tbody>
 </table>
 <p>which dependencies are used most frequently?</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">corpus <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw">map_df</span>(<span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb20-3" data-line-number="3">  ## single, unboxed dep</a>
-<a class="sourceLine" id="cb20-4" data-line-number="4">  <span class="cf">if</span>(<span class="st">"name"</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">names</span>(x<span class="op">$</span>softwareRequirements))</a>
-<a class="sourceLine" id="cb20-5" data-line-number="5">    dep &lt;-<span class="st"> </span>x<span class="op">$</span>name</a>
-<a class="sourceLine" id="cb20-6" data-line-number="6">  <span class="cf">else</span> <span class="cf">if</span>(<span class="st">"name"</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">names</span>(x<span class="op">$</span>softwareRequirements[[<span class="dv">1</span>]]))</a>
-<a class="sourceLine" id="cb20-7" data-line-number="7">    dep &lt;-<span class="st"> </span><span class="kw">map_chr</span>(x<span class="op">$</span>softwareRequirements, <span class="st">"name"</span>)</a>
-<a class="sourceLine" id="cb20-8" data-line-number="8">  <span class="cf">else</span> { ## No requirementsß</a>
-<a class="sourceLine" id="cb20-9" data-line-number="9">    dep &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb20-10" data-line-number="10">  }</a>
-<a class="sourceLine" id="cb20-11" data-line-number="11">  </a>
-<a class="sourceLine" id="cb20-12" data-line-number="12">  <span class="kw">tibble</span>(<span class="dt">identifier =</span> x<span class="op">$</span>identifier, <span class="dt">dep =</span> dep)</a>
-<a class="sourceLine" id="cb20-13" data-line-number="13">}) -&gt;<span class="st"> </span>dep_df</a>
-<a class="sourceLine" id="cb20-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb20-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb20-16" data-line-number="16">dep_df <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-17" data-line-number="17"><span class="kw">group_by</span>(dep) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb20-18" data-line-number="18"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">corpus <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw">map_df</span>(<span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">  ## single, unboxed dep</a>
+<a class="sourceLine" id="cb24-4" data-line-number="4">  <span class="cf">if</span>(<span class="st">"name"</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">names</span>(x<span class="op">$</span>softwareRequirements))</a>
+<a class="sourceLine" id="cb24-5" data-line-number="5">    dep &lt;-<span class="st"> </span>x<span class="op">$</span>name</a>
+<a class="sourceLine" id="cb24-6" data-line-number="6">  <span class="cf">else</span> <span class="cf">if</span>(<span class="st">"name"</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">names</span>(x<span class="op">$</span>softwareRequirements[[<span class="dv">1</span>]]))</a>
+<a class="sourceLine" id="cb24-7" data-line-number="7">    dep &lt;-<span class="st"> </span><span class="kw">map_chr</span>(x<span class="op">$</span>softwareRequirements, <span class="st">"name"</span>)</a>
+<a class="sourceLine" id="cb24-8" data-line-number="8">  <span class="cf">else</span> { ## No requirementsß</a>
+<a class="sourceLine" id="cb24-9" data-line-number="9">    dep &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb24-10" data-line-number="10">  }</a>
+<a class="sourceLine" id="cb24-11" data-line-number="11">  </a>
+<a class="sourceLine" id="cb24-12" data-line-number="12">  <span class="kw">tibble</span>(<span class="dt">identifier =</span> x<span class="op">$</span>identifier, <span class="dt">dep =</span> dep)</a>
+<a class="sourceLine" id="cb24-13" data-line-number="13">}) -&gt;<span class="st"> </span>dep_df</a>
+<a class="sourceLine" id="cb24-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb24-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb24-16" data-line-number="16">dep_df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb24-17" data-line-number="17"><span class="kw">group_by</span>(dep) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb24-18" data-line-number="18"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">dep</th>
@@ -1527,17 +1535,17 @@ R package version 0.1.6.</code></pre>
 </tbody>
 </table>
 <p>Alternate approach using a frame instead of <code>purrr</code> functions for subsetting the data. Note that this gets all Depends and suggests (really all <code>SoftwareApplication</code> types mentioned)</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">dep_frame &lt;-<span class="st"> '{</span></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="st">  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",</span></a>
-<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  "@explicit": "true",</span></a>
-<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="st">  "name": {}</span></a>
-<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="st">}'</span></a>
-<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="kw">jsonld_frame</span>(<span class="st">"ropensci.json"</span>, dep_frame) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="st">  </span><span class="kw">fromJSON</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-8" data-line-number="8"><span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="st">  </span><span class="kw">filter</span>(type <span class="op">==</span><span class="st"> "SoftwareApplication"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-10" data-line-number="10"><span class="st">  </span><span class="kw">group_by</span>(name) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-11" data-line-number="11"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">dep_frame &lt;-<span class="st"> '{</span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="st">  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",</span></a>
+<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="st">  "@explicit": "true",</span></a>
+<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="st">  "name": {}</span></a>
+<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="st">}'</span></a>
+<a class="sourceLine" id="cb25-6" data-line-number="6"><span class="kw">jsonld_frame</span>(<span class="st">"ropensci.json"</span>, dep_frame) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-7" data-line-number="7"><span class="st">  </span><span class="kw">fromJSON</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-8" data-line-number="8"><span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb25-9" data-line-number="9"><span class="st">  </span><span class="kw">filter</span>(type <span class="op">==</span><span class="st"> "SoftwareApplication"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="st">  </span><span class="kw">group_by</span>(name) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-11" data-line-number="11"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -2690,7 +2698,7 @@ R package version 0.1.6.</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co">#  summarise(count(name))</span></a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co">#  summarise(count(name))</span></a></code></pre></div>
 </div>
 </div>
   </div>
