@@ -133,7 +133,7 @@ create_codemeta <- function(pkg = ".",
       if(!is.null(provider) &
          whether_provider_badge(badges,
                                 provider$name)){
-        if(provider$name == "Central R Archive Network (CRAN)"){
+        if(provider$name == "Comprehensive R Archive Network (CRAN)"){
           cm$relatedLink <- unique(c(cm$relatedLink,
                                      paste0("https://CRAN.R-project.org/package=",
                                             cm$identifier)))
