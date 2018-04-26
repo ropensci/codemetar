@@ -4,7 +4,7 @@ get_root_path <- function(pkg){
   installed <- installed.packages()
   if(pkg %in% installed[,1]){
     root <- base::system.file(".", package = pkg)
-  } else if(file.exists(file.path(pkg, "DESCRIPTION"))){
+  } else if(is_package(file.path(pkg))){
     root <- pkg
   } else {
     if(is.character(pkg)){
