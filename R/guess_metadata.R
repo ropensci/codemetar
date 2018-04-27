@@ -171,23 +171,24 @@ guess_readme <- function(root = ".") {
     readme <- gh::gh("GET /repos/:owner/:repo/readme",
                      owner = github[1], repo = github[2])
     readme_url <- readme$html_url
-    readme_path <- readme$download_url
 
-  } else {
+  } else{
     readme_url <- NULL
-    contents <- dir(root)
-    readmes <- contents[grepl("[Rr][Ee][Aa][Dd][Mm][Ee]\\.R?md", contents)]
-    if(length(readmes) == 0){
-      readme_path <- NULL
+  }
+
+  contents <- dir(root)
+  readmes <- contents[grepl("[Rr][Ee][Aa][Dd][Mm][Ee]\\.R?md", contents)]
+  if(length(readmes) == 0){
+    readme_path <- NULL
+  }else{
+    readme_rmd <- readmes[grepl("\\.Rmd", readmes)]
+    if(length(readme_rmd) == 0){
+      readme_path <- file.path(root, readmes[grepl("\\.md", readmes)])
     }else{
-      readme_rmd <- readmes[grepl("\\.Rmd", readmes)]
-      if(is.null(readme_rmd)){
-        readme_path <- file.path(root, readmes[grepl("\\.md", readmes)])
-      }else{
-        readme_path <- file.path(root, readme_rmd)
-      }
+      readme_path <- file.path(root, readme_rmd)
     }
   }
+
 
   return(list(readme_path = readme_path,
               readme_url = readme_url))
