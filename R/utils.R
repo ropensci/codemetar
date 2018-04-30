@@ -96,12 +96,16 @@ check_urls <- function(urls){
 
 
 whether_provider_badge <- function(badges, provider_name){
-  if(provider_name == "Comprehensive R Archive Network (CRAN)"){
-    provider_badge <- any(grepl("CRAN", badges$text))
+  if(is.null(provider_name)){
+    provider_badge <- FALSE
   }else{
-    if(provider_name == "BioConductor"){
-      provider_badge <- any(grepl("bioconductor",
-                                  badges$link))
+    if(provider_name == "Comprehensive R Archive Network (CRAN)"){
+      provider_badge <- any(grepl("CRAN", badges$text))
+    }else{
+      if(provider_name == "BioConductor"){
+        provider_badge <- any(grepl("bioconductor",
+                                    badges$link))
+      }
     }
   }
 
