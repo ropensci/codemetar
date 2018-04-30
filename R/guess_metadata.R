@@ -21,8 +21,6 @@ CRAN <- memoise::memoise(.CRAN)
 
 BIOC <- memoise::memoise(.BIOC)
 
-
-
 guess_provider <- function(pkg) {
   if (is.null(pkg)) {
     return(NULL)
@@ -53,9 +51,8 @@ guess_provider <- function(pkg) {
 
 }
 
-
-
-## look for .travis.yml ? GREP .travis badge so we can guess repo name.
+## Based on CI badges, not config files
+# only Travis, Appveyor and Circle CI
 guess_ci <- function(readme) {
   if (file.exists(readme)) {
     badges <- extract_badges(readme)
@@ -72,7 +69,7 @@ guess_ci <- function(readme) {
   }
 }
 
-## Currently looks for a repostatus.org link and returns the abbreviation.
+## Either repostatus.org or lifecycle badge
 guess_devStatus <- function(readme) {
   status <- NULL
   if (file.exists(readme)) {
