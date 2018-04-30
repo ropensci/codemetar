@@ -61,17 +61,17 @@ create_codemeta <- function(pkg = ".",
   }
 
   if ((is.null(cm$contIntegration) | force_update)){
-    cm$contIntegration <- guess_ci(file.path(root, "README.md"))
+    cm$contIntegration <- guess_ci(root)
   }
 
   if ((is.null(cm$developmentStatus) | force_update)){
     cm$developmentStatus <-
-    guess_devStatus(file.path(root, "README.md"))
+    guess_devStatus(root)
   }
 
   if ((is.null(cm$review) | force_update)){
     cm$review <-
-      guess_ropensci_review(file.path(root, "README.md"))
+      guess_ropensci_review(root)
   }
 
   if ((is.null(cm$releaseNotes) | force_update)){

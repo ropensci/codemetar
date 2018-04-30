@@ -54,8 +54,9 @@ guess_provider <- function(pkg) {
 ## Based on CI badges, not config files
 # only Travis, Appveyor and Circle CI
 # also uses code coverage
-guess_ci <- function(readme) {
-  if (file.exists(readme)) {
+guess_ci <- function(root) {
+  readme <- guess_readme(root)$readme_path
+  if (!is.null(readme)) {
     badges <- extract_badges(readme)
     ci_badge <- badges[grepl("travis", badges$link)|
                          grepl("appveyor", badges$link)|
@@ -73,9 +74,10 @@ guess_ci <- function(readme) {
 }
 
 ## Either repostatus.org or lifecycle badge
-guess_devStatus <- function(readme) {
+guess_devStatus <- function(root) {
   status <- NULL
-  if (file.exists(readme)) {
+  readme <- guess_readme(root)$readme_path
+  if (!is.null(readme)) {
     badges <- extract_badges(readme)
     status_badge <- badges[grepl("Project Status", badges$text)|
                              grepl("lifecycle", badges$text),]
@@ -94,9 +96,9 @@ guess_devStatus <- function(readme) {
 }
 
 # looks for a rOpenSci peer review badge
-guess_ropensci_review <- function(readme) {
-  status <- NULL
-  if (file.exists(readme)) {
+guess_ropensci_review <- function(root) {
+  readme <- guess_readme(root)$readme_path
+  if (!is.null(readme)) {
     txt <- readLines(readme)
     badge <- txt[grepl("badges\\.ropensci\\.org", txt)]
     if (length(badge) >= 1) {
@@ -161,8 +163,9 @@ guess_github <- function(root = ".") {
 
 ### Consider: guess_releastNotes() (NEWS), guess_readme()
 
+guess_readme <- memoise::memoise(.guess_readme)
 
-guess_readme <- function(root = ".") {
+.guess_readme <- function(root = ".") {
   ## point to GitHub page
   if (uses_git(root)) {
     github <- guess_github(root)
