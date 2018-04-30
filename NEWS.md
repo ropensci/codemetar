@@ -12,7 +12,7 @@
     
     * maintainer is now a list allowing for several maintainers since e.g. the BioConductor a4 package has two maintainers.
     
-    * if more than one CI service among Travis, Appveyor and Circle CI are used and shown via a README badge they're all added to the contIntegration field.
+    * if more than one CI service among Travis, Appveyor and Circle CI are used and shown via a README badge they're all added to the contIntegration field. URLs from codecov and coveralls badges are also added to the contIntegration field.
     
     * repo status inferred from the README now 1) is an URL instead of a word 2) recognizes either repostatus.org or Tidyverse lifecycle badges.
     
@@ -39,6 +39,8 @@
     * write_codemeta only uses Rbuildignore and a pre-commit git hook if the function is called from a package folder directly and with the path argument equal to "codemeta.json"
     
     * The calls to available.packages() for guess_provider now happen inside memoised functions.
+    
+    * codemeta_readme function.
 
 # codemetar 0.1.5 2018-03-21
 
