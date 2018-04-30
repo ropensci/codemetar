@@ -46,6 +46,7 @@ create_codemeta <- function(pkg = ".",
   }
 
   if(verbose){
+    root <- get_root_path(pkg)
     opinions <- give_opinions(root)
     if(!is.null(opinions))
     message(paste0("Some elements could be improved, see our opinions via give_opinions('", root, "')"))
@@ -55,23 +56,9 @@ create_codemeta <- function(pkg = ".",
   cm <-
     codemeta_description(file.path(root, "DESCRIPTION"), id = id, cm)
 
-  ## Guess these only if not set in current codemeta:
+  ## Guess these only if not set in current codemeta
   if ((is.null(cm$codeRepository) & force_update)){
     cm$codeRepository <- guess_github(root)
-  }
-
-  if ((is.null(cm$contIntegration) | force_update)){
-    cm$contIntegration <- guess_ci(root)
-  }
-
-  if ((is.null(cm$developmentStatus) | force_update)){
-    cm$developmentStatus <-
-    guess_devStatus(root)
-  }
-
-  if ((is.null(cm$review) | force_update)){
-    cm$review <-
-      guess_ropensci_review(root)
   }
 
   if ((is.null(cm$releaseNotes) | force_update)){
@@ -85,6 +72,14 @@ create_codemeta <- function(pkg = ".",
   if ((is.null(cm$fileSize) | force_update)){
     cm$fileSize <- guess_fileSize(root)
   }
+  # and if there's a readme
+  readme <- guess_readme(root)$readme_path
+  if (!is.null(readme) & force_update) {
+    cm <-
+      codemeta_readme(readme, codemeta = cm)
+  }
+
+
 
   ## Citation metadata
   if(is.character(pkg)){  ## Doesn't apply if pkg is a list (codemeta object)
@@ -97,6 +92,8 @@ create_codemeta <- function(pkg = ".",
   }
 
   ## Add provider link as relatedLink
+  # Priority is given to the README
+  # alternatively to installed packages
 
     provider <- guess_provider(cm$identifier)
 
@@ -118,7 +115,38 @@ create_codemeta <- function(pkg = ".",
           }
         }
       }
+    }else{
+      pkg_info <- sessioninfo::package_info(cm$identifier)
+      pkg_info <- pkg_info[pkg_info$package == cm$identifier,]
+      provider_name <- pkg_info$source
+      if(cm$version == pkg_info$ondiskversion){
+        if(grepl("CRAN", provider_name)){
+          cm$relatedLink <- unique(c(cm$relatedLink,
+                                     paste0("https://CRAN.R-project.org/package=",
+                                            cm$identifier)))
+        }else{
+          if(grepl("Bioconductor", provider_name)){
+            cm$relatedLink <- unique(c(cm$relatedLink,
+                                       paste0("https://bioconductor.org/packages/release/bioc/html/",
+                                              cm$identifier, ".html")))
+          }else{
+            # if GitHub try to build the URL to commit or to repo in general
+            if(grepl("Github", provider_name)){
+              if(grepl("@", provider_name)){
+                commit <- gsub(".*@", "", provider_name)
+                commit <- gsub("\\)", "", commit)
+                link <- gsub(".*\\(", "", provider_name)
+                link <- gsub("@.*", "", link)
+                cm$relatedLink <- unique(c(cm$relatedLink,
+                                           paste0("https://github.com/", link,
+                                                  "/commit/", commit)))
+              }
+            }
+          }
+        }
+      }
     }
+
 
 
 

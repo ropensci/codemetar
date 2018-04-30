@@ -16,7 +16,7 @@
 #' @param verbose Whether to print messages indicating opinions e.g. when DESCRIPTION has no URL. See \code{\link{give_opinions}}.
 #' @param ...  additional arguments to \code{\link{write_json}}
 #' @details If pkg is a codemeta object, the function will attempt to
-#'  update any fields it can guess (i.e. from the DESRIPTION file),
+#'  update any fields it can guess (i.e. from the DESCRIPTION file),
 #'  overwriting any existing data in that block. In this case, the package
 #'  root directory should be the current working directory.
 #'

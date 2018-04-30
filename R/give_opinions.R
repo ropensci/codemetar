@@ -11,7 +11,7 @@ give_opinions <- function(pkg_path = getwd()){
   descr_issues <- give_opinions_desc(descr_path)
 
   # opinions about README
-  readme <- guess_readme(root)$readme_path
+  readme <- guess_readme(pkg_path)$readme_path
   if (is.null(readme)) {
     readme_issues <- NULL
   }else{

@@ -54,51 +54,40 @@ guess_provider <- function(pkg) {
 ## Based on CI badges, not config files
 # only Travis, Appveyor and Circle CI
 # also uses code coverage
-guess_ci <- function(root) {
-  readme <- guess_readme(root)$readme_path
-  if (!is.null(readme)) {
-    badges <- extract_badges(readme)
-    ci_badge <- badges[grepl("travis", badges$link)|
-                         grepl("appveyor", badges$link)|
-                         grepl("circleci", badges$link)|
-                         grepl("codecov", badges$link)|
-                         grepl("coveralls", badges$link),]
-    if (!is.null(ci_badge)) {
-      ci_badge$link
-    } else {
-      NULL
-    }
-  }else{
+guess_ci <- function(readme) {
+
+  badges <- extract_badges(readme)
+  ci_badge <- badges[grepl("travis", badges$link)|
+                       grepl("appveyor", badges$link)|
+                       grepl("circleci", badges$link)|
+                       grepl("codecov", badges$link)|
+                       grepl("coveralls", badges$link),]
+  if (!is.null(ci_badge)) {
+    ci_badge$link
+  } else {
     NULL
   }
+
 }
 
 ## Either repostatus.org or lifecycle badge
-guess_devStatus <- function(root) {
-  status <- NULL
-  readme <- guess_readme(root)$readme_path
-  if (!is.null(readme)) {
-    badges <- extract_badges(readme)
-    status_badge <- badges[grepl("Project Status", badges$text)|
-                             grepl("lifecycle", badges$text),]
-    if (!is.null(status_badge)) {
-      if(nrow(status_badge) >0){
-        status_badge$link[1]
-      }
-    } else {
-      NULL
+guess_devStatus <- function(readme) {
+  badges <- extract_badges(readme)
+  status_badge <- badges[grepl("Project Status", badges$text)|
+                           grepl("lifecycle", badges$text),]
+  if (!is.null(status_badge)) {
+    if(nrow(status_badge) >0){
+      status_badge$link[1]
     }
-  }else{
-        NULL
-      }
+  } else {
+    NULL
+  }
 
 
 }
 
 # looks for a rOpenSci peer review badge
 guess_ropensci_review <- function(root) {
-  readme <- guess_readme(root)$readme_path
-  if (!is.null(readme)) {
     txt <- readLines(readme)
     badge <- txt[grepl("badges\\.ropensci\\.org", txt)]
     if (length(badge) >= 1) {
@@ -121,9 +110,6 @@ guess_ropensci_review <- function(root) {
     } else {
       NULL
     }
-  }else{
-    NULL
-  }
 
 
 }
