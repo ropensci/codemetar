@@ -163,8 +163,6 @@ guess_github <- function(root = ".") {
 
 ### Consider: guess_releastNotes() (NEWS), guess_readme()
 
-guess_readme <- memoise::memoise(.guess_readme)
-
 .guess_readme <- function(root = ".") {
   ## point to GitHub page
   if (uses_git(root)) {
@@ -197,6 +195,10 @@ guess_readme <- memoise::memoise(.guess_readme)
               readme_url = readme_url))
 
 }
+
+
+guess_readme <- memoise::memoise(.guess_readme)
+
 
 #' @importFrom git2r repository branches
 github_path <- function(root, path) {
