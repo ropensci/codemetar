@@ -155,9 +155,15 @@ guess_github <- function(root = ".") {
     github <- guess_github(root)
     github <- gsub(".*com\\/", "", github)
     github <- strsplit(github, "/")[[1]]
-    readme <- gh::gh("GET /repos/:owner/:repo/readme",
-                     owner = github[1], repo = github[2])
-    readme_url <- readme$html_url
+    readme <- try(gh::gh("GET /repos/:owner/:repo/readme",
+                     owner = github[1], repo = github[2]),
+                  silent = TRUE)
+    if(inherits(readme, "try-error")){
+      readme_url <- NULL
+    }else{
+      readme_url <- readme$html_url
+    }
+
 
   } else{
     readme_url <- NULL
