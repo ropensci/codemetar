@@ -11,12 +11,12 @@ give_opinions <- function(pkg_path = getwd()){
   descr_issues <- give_opinions_desc(descr_path)
 
   # opinions about README
-  if (!file.exists(file.path(pkg_path, "README.md"))) {
+  readme <- guess_readme(root)$readme_path
+  if (is.null(readme)) {
     readme_issues <- NULL
   }else{
     desc_info <- codemeta_description(descr_path)
-    readme_issues <- give_opinions_readme(file.path(pkg_path,
-                                                    "README.md"),
+    readme_issues <- give_opinions_readme(readme,
                                           desc_info$identifier)
   }
 
