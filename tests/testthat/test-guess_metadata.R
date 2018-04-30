@@ -25,7 +25,7 @@ testthat::test_that("guess_ci",{
 
  f <- system.file("examples/README_usethis.md", package="codemetar")
  a3 <- guess_ci(f)
- testthat::expect_equal(length(a3), 2)
+ testthat::expect_equal(length(a3), 3)
  testthat::expect_equal(a3[1], "https://travis-ci.org/r-lib/usethis")
 
 })
