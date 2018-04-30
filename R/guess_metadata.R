@@ -88,12 +88,11 @@ guess_devStatus <- function(readme) {
 
 # looks for a rOpenSci peer review badge
 guess_ropensci_review <- function(readme) {
-    txt <- readLines(readme)
-    badge <- txt[grepl("badges\\.ropensci\\.org", txt)]
+    badges <- extract_badges(readme)
+    badge <- badges[grepl("github.com/ropensci/onboarding/issues/", badges$link),]$link
     if (length(badge) >= 1) {
       review <-
         gsub(".*https://github.com/ropensci/onboarding/issues/", "", badge)
-      review <- gsub(").*", "", review)
       review <- as.numeric(review)
       issue <- gh::gh("GET /repos/:owner/:repo/issues/:number",
                       owner = "ropensci",
