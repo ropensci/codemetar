@@ -48,5 +48,7 @@ project uses git, adds a pre-commit hook ensuring that if DESCRIPTION changes,
  with 'git commit --no-verify'.
 }
 \examples{
-write_codemeta("codemetar", tempfile())
+\dontrun{
+write_codemeta("codemetar", path = "example_codemetar_codemeta.json")
+}
 }

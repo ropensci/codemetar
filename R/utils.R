@@ -4,7 +4,7 @@ get_root_path <- function(pkg){
   installed <- installed.packages()
   if(pkg %in% installed[,1]){
     root <- base::system.file(".", package = pkg)
-  } else if(file.exists(file.path(pkg, "DESCRIPTION"))){
+  } else if(is_package(file.path(pkg))){
     root <- pkg
   } else {
     if(is.character(pkg)){
@@ -123,7 +123,7 @@ parse_badge <- function(badge){
 }
 
 whether_provider_badge <- function(badges, provider_name){
-  if(provider_name == "Central R Archive Network (CRAN)"){
+  if(provider_name == "Comprehensive R Archive Network (CRAN)"){
     provider_badge <- any(grepl("CRAN", badges$text))
   }else{
     if(provider_name == "BioConductor"){
@@ -134,3 +134,11 @@ whether_provider_badge <- function(badges, provider_name){
 
   provider_badge
 }
+
+# helper to find whether a path is a package project
+is_package <- function(path){
+  all(c("DESCRIPTION", "NAMESPACE", "man", "R") %in%
+    dir(path))
+}
+
+

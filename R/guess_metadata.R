@@ -1,18 +1,26 @@
-## Methods that guess additional metadata fields based on README badges and realted information
+## Methods that guess additional metadata fields based on README badges and related information
 
 
 
 ## cache avail packages
-CRAN <-
+.CRAN <- function(){
   utils::available.packages(
     utils::contrib.url("https://cran.rstudio.com", "source"))
-BIOC <-
+}
+
+CRAN <- memoise::memoise(.CRAN)
+
+.BIOC <- function(){
   utils::available.packages(
     utils::contrib.url(
       "https://www.bioconductor.org/packages/release/bioc",
       "source"
     )
   )
+}
+
+BIOC <- memoise::memoise(.BIOC)
+
 
 
 guess_provider <- function(pkg) {
@@ -21,17 +29,17 @@ guess_provider <- function(pkg) {
   }
   ## Assumes a single provider
 
-  if (pkg %in% CRAN[, "Package"]) {
+  if (pkg %in% CRAN()[, "Package"]) {
     list(
       "@id" = "https://cran.r-project.org",
       "@type" = "Organization",
-      "name" = "Central R Archive Network (CRAN)",
+      "name" = "Comprehensive R Archive Network (CRAN)",
       "url" = "https://cran.r-project.org"
     )
 
 
 
-  } else if (pkg %in% BIOC[, "Package"]) {
+  } else if (pkg %in% BIOC()[, "Package"]) {
     list(
       "@id" = "https://www.bioconductor.org",
       "@type" = "Organization",
@@ -155,8 +163,17 @@ guess_github <- function(root = ".") {
 
 guess_readme <- function(root = ".") {
   ## If no local README.md at package root, give up
-  if (!file.exists(file.path(root, "README.md"))) {
-    return(NULL)
+  contents <- dir(root)
+  readmes <- contents[grepl("[Rr][Ee][Aa][Dd][Mm][Ee]\\.R?md", contents)]
+  if(length(readmes) == 0){
+    NULL
+  }else{
+    readme_rmd <- readmes[grepl("\\.Rmd", readmes)]
+    if(is.null(readme_rmd)){
+      file.path(root, readmes[grepl("\\.md", readmes)])
+    }else{
+      file.path(root, readme_rmd)
+    }
   }
 
   ## point to GitHub page

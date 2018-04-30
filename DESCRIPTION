@@ -7,19 +7,19 @@ Authors@R:
              family = "Boettiger",
              role = c("aut", "cre", "cph"),
              email = "cboettig@gmail.com",
-             comment = structure("0000-0002-1642-628X", .Names = "ORCID")),
+             comment = c(ORCID = "0000-0002-1642-628X")),
       person(given = "Anna",
              family = "Krystalli",
              role = c("rev", "ctb"),
-             comment = structure("0000-0002-2378-4915", .Names = "ORCID")),
+             comment = c(ORCID = "0000-0002-2378-4915")),
       person(given = "Toph",
              family = "Allen",
              role = "rev",
-             comment = structure("0000-0003-4580-091X", .Names = "ORCID")),
+             comment = c(ORCID = "0000-0003-4580-091X")),
       person(given = "Maëlle",
              family = "Salmon",
              role = c("ctb", "aut"),
-             comment = structure("0000-0002-2815-0399", .Names = "ORCID")),
+             comment = c(ORCID = "0000-0002-2815-0399")),
       person(given = "rOpenSci",
              role = "fnd",
              comment = "https://ropensci.org/"),
@@ -38,7 +38,7 @@ Description: The 'Codemeta' Project defines a 'JSON-LD' format for describing
   automatically for R packages, as well as tools and examples for working with
   'codemeta.json' 'JSON-LD' more generally.
 License: GPL-3
-URL: https://github.com/ropensci/codemetar,https://codemeta.github.io/codemetar
+URL: https://github.com/ropensci/codemetar, https://ropensci.github.io/codemetar
 BugReports: https://github.com/ropensci/codemetar/issues
 Encoding: UTF-8
 LazyData: true
@@ -49,6 +49,7 @@ Imports:
     jsonld,
     git2r,
     devtools,
+    memoise,
     methods,
     stats,
     stringi,
@@ -60,7 +61,8 @@ Imports:
     crul,
     gh,
     stringr,
-    sessioninfo
+    sessioninfo,
+    purrr
 Suggests: 
     testthat,
     jsonvalidate,
@@ -70,7 +72,6 @@ Suggests:
     magrittr,
     xml2,
     dplyr (>= 0.7.0),
-    purrr,
     printr
 VignetteBuilder: knitr
 X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data

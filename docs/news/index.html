@@ -122,17 +122,38 @@
 <a href="#codemetar-0-1-6-2018-04" class="anchor"></a>codemetar 0.1.6 2018-04<small> Unreleased </small>
 </h1>
 <ul>
-<li><p>Use desc to parse DESCRIPTION files.</p></li>
-<li><p>Writing codemeta.json for the first time adds a git pre-commit hook and suggests adding a release question for devtools::release.</p></li>
-<li><p>License changed to GPL because of code borrowed from usethis</p></li>
-<li><p>Add give_opinion function giving opiniated advice about package metadata</p></li>
-<li><p>Replace httr with crul and use crul to check URLs.</p></li>
+<li>
+<p>New functions</p>
+<ul>
+<li><p>extract_badges for extracting information from all badges in a Markdown file.</p></li>
+<li><p>give_opinion giving opiniated advice about package metadata</p></li>
+</ul>
+</li>
+<li>
+<p>Changes to the create_codemeta output</p>
+<ul>
 <li><p>relatedLink field now include provider URL and URL(s) from DESCRIPTION that are not the code repository</p></li>
-<li><p>add an extract_badges function for extracting information from all badges in a Markdown file.</p></li>
-<li><p>now if more than one CI service among Travis, Appveyor and Circle CI are used and shown via a README badge they’re all added to the contIntegration field.</p></li>
-<li><p>now ability to parse all CRAN-allowed MARC roles.</p></li>
+<li><p>maintainer is now a list allowing for several maintainers since e.g. the BioConductor a4 package has two maintainers.</p></li>
+<li><p>if more than one CI service among Travis, Appveyor and Circle CI are used and shown via a README badge they’re all added to the contIntegration field.</p></li>
+<li><p>repo status inferred from the README now 1) is an URL instead of a word 2) recognizes either repostatus.org or Tidyverse lifecycle badges.</p></li>
+<li><p>if present, priority is given to the Repository and BugReports fields of DESCRIPTION for filling the codeRepository and issueTracker fields of codemeta.json (which means working on a fork won’t change these).</p></li>
+<li><p>ability to parse all CRAN-allowed MARC roles.</p></li>
 <li><p>if there is a badge for an rOpenSci onboarding review and the review issue is closed, basic review metadata is added to codemeta.json</p></li>
 <li><p>For dependencies, if the provider guessed is CRAN or BioConductor, their canonic CRAN/BioConductor URL is added to codemeta.json as sameAs, unless there’s a GitHub repo mentioned for them in Remotes in DESCRIPTION, in which case sameAs is that GitHub repo.</p></li>
+<li><p>CRAN is now correctly translated as “Comprehensive R Archive Network”</p></li>
+</ul>
+</li>
+<li><p>Help to remind to update codemeta.json regularly: Writing codemeta.json for the first time adds a git pre-commit hook and suggests adding a release question for devtools::release.</p></li>
+<li>
+<p>Internal changes</p>
+<ul>
+<li><p>Now uses desc to parse DESCRIPTION files.</p></li>
+<li><p>Package license changed to GPL because of code borrowed from usethis</p></li>
+<li><p>Uses crul instead of httr and uses crul to check some URLs.</p></li>
+<li><p>write_codemeta only uses Rbuildignore and a pre-commit git hook if the function is called from a package folder directly and with the path argument equal to “codemeta.json”</p></li>
+<li><p>The calls to available.packages() for guess_provider now happen inside memoised functions.</p></li>
+</ul>
+</li>
 </ul>
 </div>
     <div id="codemetar-0-1-5-2018-03-21" class="section level1">
