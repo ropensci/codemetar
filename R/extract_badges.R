@@ -4,11 +4,20 @@
   txt <- readLines(path)
   badges1 <- unlist(stringr::str_match_all(txt, "\\[!\\[\\]\\(.*?\\)\\]\\(.*?\\)"))
   badges2 <- unlist(stringr::str_match_all(txt, "\\[!\\[.*?\\]\\(.*?\\)\\]\\(.*?\\)"))
-  badges <- c(badges1, badges2)
-  badges[!is.na(badges)]
 
-  unique(do.call(rbind,
-                 lapply(badges, parse_badge)))
+  md_badges <- c(badges1, badges2)
+
+  md_badges <- unique(do.call(rbind,
+                 lapply(md_badges[!is.na(md_badges)], parse_md_badge)))
+  '"<td align=\"left\"><a href=\"https://ci.appveyor.com/project/ropensci/drake\"><img src=\"https://ci.appveyor.com/api/projects/status/4ypc9xnmqt70j94e?svg=true&amp;branch=master\" alt=\"AppVeyor\"></a></td>"'
+  html_badges <- unlist(stringr::str_match_all(txt,
+                                               '<a href.*?><img.*?>'))
+
+  html_badges <- unique(do.call(rbind,
+                                lapply(html_badges[!is.na(html_badges)],
+                                       parse_html_badge)))
+
+  rbind(md_badges, html_badges)
 }
 
 #' Extract all badges from Markdown file
@@ -23,10 +32,19 @@
 #' extract_badges(system.file("README.md", package = "codemetar"))
 extract_badges <- memoise::memoise(.extract_badges)
 
-parse_badge <- function(badge){
+parse_md_badge <- function(badge){
   text <- stringr::str_match(badge, "\\[!\\[(.*?)\\]")[,2]
   link <- stringr::str_match(badge, "\\)\\]\\((.*?)\\)")[,2]
   image_link <- stringr::str_match(badge, "\\]\\((.*?)\\)\\]")[,2]
+  tibble::tibble(text = text,
+                 link = link,
+                 image_link = image_link)
+}
+
+parse_html_badge <- function(badge){
+  text <- stringr::str_match(badge, 'alt=\\\"(.*?)\\\"')[,2]
+  link <- stringr::str_match(badge, 'href=\\\"(.*?)\\\"')[,2]
+  image_link <- stringr::str_match(badge, 'src=\\\"(.*?)\\\"')[,2]
   tibble::tibble(text = text,
                  link = link,
                  image_link = image_link)
