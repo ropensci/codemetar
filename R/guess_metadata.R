@@ -55,48 +55,39 @@ guess_provider <- function(pkg) {
 # only Travis, Appveyor and Circle CI
 # also uses code coverage
 guess_ci <- function(readme) {
-  if (file.exists(readme)) {
-    badges <- extract_badges(readme)
-    ci_badge <- badges[grepl("travis", badges$link)|
-                         grepl("appveyor", badges$link)|
-                         grepl("circleci", badges$link)|
-                         grepl("codecov", badges$link)|
-                         grepl("coveralls", badges$link),]
-    if (!is.null(ci_badge)) {
-      ci_badge$link
-    } else {
-      NULL
-    }
-  }else{
+
+  badges <- extract_badges(readme)
+  ci_badge <- badges[grepl("travis", badges$link)|
+                       grepl("appveyor", badges$link)|
+                       grepl("circleci", badges$link)|
+                       grepl("codecov", badges$link)|
+                       grepl("coveralls", badges$link),]
+  if (!is.null(ci_badge)) {
+    ci_badge$link
+  } else {
     NULL
   }
+
 }
 
 ## Either repostatus.org or lifecycle badge
 guess_devStatus <- function(readme) {
-  status <- NULL
-  if (file.exists(readme)) {
-    badges <- extract_badges(readme)
-    status_badge <- badges[grepl("Project Status", badges$text)|
-                             grepl("lifecycle", badges$text),]
-    if (!is.null(status_badge)) {
-      if(nrow(status_badge) >0){
-        status_badge$link[1]
-      }
-    } else {
-      NULL
+  badges <- extract_badges(readme)
+  status_badge <- badges[grepl("Project Status", badges$text)|
+                           grepl("lifecycle", badges$text),]
+  if (!is.null(status_badge)) {
+    if(nrow(status_badge) >0){
+      status_badge$link[1]
     }
-  }else{
-        NULL
-      }
+  } else {
+    NULL
+  }
 
 
 }
 
 # looks for a rOpenSci peer review badge
-guess_ropensci_review <- function(readme) {
-  status <- NULL
-  if (file.exists(readme)) {
+guess_ropensci_review <- function(root) {
     txt <- readLines(readme)
     badge <- txt[grepl("badges\\.ropensci\\.org", txt)]
     if (length(badge) >= 1) {
@@ -119,9 +110,6 @@ guess_ropensci_review <- function(readme) {
     } else {
       NULL
     }
-  }else{
-    NULL
-  }
 
 
 }
@@ -161,8 +149,7 @@ guess_github <- function(root = ".") {
 
 ### Consider: guess_releastNotes() (NEWS), guess_readme()
 
-
-guess_readme <- function(root = ".") {
+.guess_readme <- function(root = ".") {
   ## point to GitHub page
   if (uses_git(root)) {
     github <- guess_github(root)
@@ -194,6 +181,10 @@ guess_readme <- function(root = ".") {
               readme_url = readme_url))
 
 }
+
+
+guess_readme <- memoise::memoise(.guess_readme)
+
 
 #' @importFrom git2r repository branches
 github_path <- function(root, path) {
