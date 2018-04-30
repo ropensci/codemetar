@@ -87,7 +87,7 @@ guess_devStatus <- function(readme) {
 }
 
 # looks for a rOpenSci peer review badge
-guess_ropensci_review <- function(root) {
+guess_ropensci_review <- function(readme) {
     txt <- readLines(readme)
     badge <- txt[grepl("badges\\.ropensci\\.org", txt)]
     if (length(badge) >= 1) {
