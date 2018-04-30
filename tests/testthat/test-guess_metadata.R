@@ -75,12 +75,8 @@ test_that("git utils", {
 
 
 test_that("guess_readme", {
-
-  guess_readme(".")
-
-  ## expect_null?
-  f <- system.file(".", package="codemetar")
-  a <- guess_readme(f)
+  testthat::expect_is(guess_readme(find.package("codemetar")), "list")
+  testthat::expect_is(guess_readme(find.package("jsonlite")), "list")
 })
 
 test_that("guess_releaseNotes", {

@@ -161,27 +161,38 @@ guess_github <- function(root = ".") {
 
 ### Consider: guess_releastNotes() (NEWS), guess_readme()
 
+
 guess_readme <- function(root = ".") {
-  ## If no local README.md at package root, give up
+  ## point to GitHub page
+  if (uses_git(root)) {
+    github <- guess_github(root)
+    github <- gsub(".*com\\/", "", github)
+    github <- strsplit(github, "/")[[1]]
+    readme <- gh::gh("GET /repos/:owner/:repo/readme",
+                     owner = github[1], repo = github[2])
+    readme_url <- readme$html_url
+
+  } else{
+    readme_url <- NULL
+  }
+
   contents <- dir(root)
   readmes <- contents[grepl("[Rr][Ee][Aa][Dd][Mm][Ee]\\.R?md", contents)]
   if(length(readmes) == 0){
-    NULL
+    readme_path <- NULL
   }else{
     readme_rmd <- readmes[grepl("\\.Rmd", readmes)]
-    if(is.null(readme_rmd)){
-      file.path(root, readmes[grepl("\\.md", readmes)])
+    if(length(readme_rmd) == 0){
+      readme_path <- file.path(root, readmes[grepl("\\.md", readmes)])
     }else{
-      file.path(root, readme_rmd)
+      readme_path <- file.path(root, readme_rmd)
     }
   }
 
-  ## point to GitHub page
-  if (uses_git(root)) {
-    github_path(root, "README.md")
-  } else {
-    NULL
-  }
+
+  return(list(readme_path = readme_path,
+              readme_url = readme_url))
+
 }
 
 #' @importFrom git2r repository branches

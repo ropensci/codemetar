@@ -78,7 +78,7 @@ create_codemeta <- function(pkg = ".",
   }
 
   if ((is.null(cm$readme) | force_update)){
-    cm$readme <- guess_readme(root)
+    cm$readme <- guess_readme(root)$readme_url
   }
 
   if ((is.null(cm$fileSize) | force_update)){
@@ -130,7 +130,7 @@ create_codemeta <- function(pkg = ".",
   }else{
     provider <- guess_provider(cm$identifier)
 
-    readme <- guess_readme(root)
+    readme <- guess_readme(root)$readme_path
     if(!is.null(readme)){
       badges <- extract_badges(readme)
       if(!is.null(provider) &
