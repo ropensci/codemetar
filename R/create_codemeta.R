@@ -97,38 +97,7 @@ create_codemeta <- function(pkg = ".",
   }
 
   ## Add provider link as relatedLink
-  if(is.character(pkg)){
 
-    if(cm$identifier %in% installed.packages()){
-      pkg_info <- sessioninfo::package_info(cm$identifier)
-      pkg_info <- pkg_info[pkg_info$package == cm$identifier,]
-      provider_name <- pkg_info$source
-      if(grepl("CRAN", provider_name)){
-        cm$relatedLink <- unique(c(cm$relatedLink,
-                                   paste0("https://CRAN.R-project.org/package=",
-                                          cm$identifier)))
-      }else{
-        if(grepl("Bioconductor", provider_name)){
-          cm$relatedLink <- unique(c(cm$relatedLink,
-                                     paste0("https://bioconductor.org/packages/release/bioc/html/",
-                                            cm$identifier, ".html")))
-        }else{
-          # if GitHub try to build the URL to commit or to repo in general
-          if(grepl("Github", provider_name)){
-            if(grepl("@", provider_name)){
-              commit <- gsub(".*@", "", provider_name)
-              commit <- gsub("\\)", "", commit)
-              link <- gsub(".*\\(", "", provider_name)
-              link <- gsub("@.*", "", link)
-              cm$relatedLink <- unique(c(cm$relatedLink,
-                                         paste0("https://github.com/", link,
-                                                "/commit/", commit)))
-            }
-          }
-        }
-      }
-    }
-  }else{
     provider <- guess_provider(cm$identifier)
 
     readme <- guess_readme(root)$readme_path
@@ -150,7 +119,7 @@ create_codemeta <- function(pkg = ".",
         }
       }
     }
-  }
+
 
 
   ## Add blank slots as placeholders? and declare as an S3 class?
