@@ -76,7 +76,7 @@ test_that("git utils", {
 
 test_that("guess_readme", {
   testthat::expect_is(guess_readme(find.package("codemetar")), "list")
-  testthat::expect_is(guess_readme(find.package("ggplot2")), "list")
+  testthat::expect_is(guess_readme(find.package("jsonlite")), "list")
 })
 
 test_that("guess_releaseNotes", {
