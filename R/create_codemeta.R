@@ -51,6 +51,7 @@ create_codemeta <- function(pkg = ".",
     message(paste0("Some elements could be improved, see our opinions via give_opinions('", root, "')"))
   }
 
+  ## get information from DESCRIPTION
   cm <-
     codemeta_description(file.path(root, "DESCRIPTION"), id = id, cm)
 
@@ -95,7 +96,7 @@ create_codemeta <- function(pkg = ".",
     }
   }
 
-  # Add provider link as relatedLink
+  ## Add provider link as relatedLink
   if(is.character(pkg)){
 
     if(cm$identifier %in% installed.packages()){
