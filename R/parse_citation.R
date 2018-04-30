@@ -76,8 +76,13 @@ guess_citation <- function(pkg){
   installed <- installed.packages()
   if(file.exists(file.path(root, "inst/CITATION"))){
     encoding <- desc::desc(file.path(root, "DESCRIPTION"))$get("Encoding")
-    bib <- utils::readCitationFile(file.path(root, "inst/CITATION"),
-                            meta = list(Encoding = encoding))
+    if(!is.na(encoding)){
+      bib <- utils::readCitationFile(file.path(root, "inst/CITATION"),
+                                     meta = list(Encoding = encoding))
+    }else{
+      bib <- utils::readCitationFile(file.path(root, "inst/CITATION"))
+    }
+
     lapply(bib, parse_citation)
   } else if(pkg %in% installed[,1]){
     bib <- suppressWarnings(utils::citation(pkg)) # don't worry if no date
