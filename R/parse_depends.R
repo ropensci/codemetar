@@ -77,3 +77,22 @@ add_remote_to_dep <- function(package, remotes){
     remote_provider
   }
 }
+
+
+# helper to get system dependencies
+get_sys_links <- function(pkg, description = ""){
+  out1 <- jsonlite::fromJSON(sprintf("https://sysreqs.r-hub.io/pkg/%s", pkg), simplifyVector = FALSE)
+  out2 <- jsonlite::fromJSON(sprintf("https://sysreqs.r-hub.io/map/%s", curl::curl_escape(description)), simplifyVector = FALSE)
+  sysreqs <- unique(c(sapply(out1, names), sapply(out2, names)))
+  sprintf("https://sysreqs.r-hub.io/get/%s", sysreqs)
+}
+
+format_sys_req <- function(url){
+  list("@type" = "SoftwareApplication",
+       identifier = url)
+}
+
+parse_sys_reqs <- function(pkg, sys_reqs){
+  urls <- get_sys_links(pkg, description = sys_reqs)
+  purrr::map(urls, format_sys_req)
+}
