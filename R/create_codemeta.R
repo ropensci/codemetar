@@ -78,7 +78,10 @@ create_codemeta <- function(pkg = ".",
       codemeta_readme(readme, codemeta = cm)
   }
 
-
+  ## If code repo is GitHub
+  if(grepl("github.com\\/.*\\/.*", cm$codeRepository)){
+    cm <- add_github_topics(cm)
+  }
 
   ## Citation metadata
   if(is.character(pkg)){  ## Doesn't apply if pkg is a list (codemeta object)

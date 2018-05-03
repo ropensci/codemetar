@@ -90,9 +90,21 @@ test_that("guess_releaseNotes", {
 
 
 test_that("fileSize", {
-  guess_fileSize(NULL)
-  guess_fileSize(".")
+  expect_null(guess_fileSize(NULL))
+  expect_null(guess_fileSize("."))
   ## expect_null?
   f <- system.file(".", package="codemetar")
-  guess_fileSize(f)
+  expect_null(guess_fileSize(f))
+})
+
+test_that("add_github_topics",{
+  cm <- NULL
+  cm$codeRepository <- "https://github.com/ropensci/codemetar"
+  cm <- add_github_topics(cm)
+  testthat::expect_is(cm$keywords, "character")
+
+  cm <- NULL
+  cm$codeRepository <- "https://github.com/ropensci/codemetar#readme"
+  cm <- add_github_topics(cm)
+  testthat::expect_is(cm$keywords, "character")
 })

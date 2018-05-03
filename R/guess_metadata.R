@@ -239,3 +239,20 @@ guess_fileSize <- function(root = ".") {
     paste0(file.size(f) / 1e3, "KB")
   }
 }
+
+# add GitHub topics
+add_github_topics <- function(cm){
+  github <- stringr::str_remove(cm$codeRepository, ".*github\\.com\\/")
+  github <- stringr::str_remove(github, "#.*")
+  github <- stringr::str_split(github, "/")[[1]]
+  owner <- github[1]
+  repo <- github[2]
+
+  topics <- gh::gh("GET /repos/:owner/:repo/topics",
+                   repo = repo, owner = owner,
+                   .send_headers = c(Accept = "application/vnd.github.mercy-preview+json"))
+  topics <- unlist(topics$names)
+
+  cm$keywords <- unique(c(cm$keywords, topics))
+  cm
+}
