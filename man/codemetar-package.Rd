@@ -58,8 +58,9 @@ Other contributors:
   \item Toph Allen (0000-0003-4580-091X) [reviewer]
   \item rOpenSci (https://ropensci.org/) [funder]
   \item Katrin Leinweber [contributor]
-  \item Noam Ross [contributor]
+  \item Noam Ross (0000-0002-2136-0000) [contributor]
   \item Arfon Smith [contributor]
+  \item Jeroen Ooms (0000-0002-4035-0289) [contributor]
 }
 
 }
