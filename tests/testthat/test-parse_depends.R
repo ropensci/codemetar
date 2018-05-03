@@ -23,8 +23,8 @@ testthat::test_that("Test the various cases for dependencies", {
 
   f <- system.file("examples/DESCRIPTION_with_remote", package = "codemetar")
   descr <- codemeta_description(f)
-  testthat::expect_equal(descr$softwareRequirements[[1]]$sameAs,
-                         "https://github.com/hadley/readr")
+  testthat::expect_equal(descr$softwareRequirements[[3]]$sameAs,
+                         "https://github.com/lala/jsonld")
 
   testthat::expect_equal(a$provider$`@id`, "https://cran.r-project.org")
   a <- format_depend(package = "R",
@@ -41,4 +41,11 @@ testthat::test_that("Test the various cases for ids (NOT used currently)", {
   # a <- guess_dep_id(parse_depends("R")[[1]])
   # a <- guess_dep_id(parse_depends("not-a-package")[[1]])
 
+})
+
+testthat::test_that("Sys requirements", {
+  f <- system.file("examples/DESCRIPTION_sysreqs", package = "codemetar")
+  descr <- codemeta_description(f)
+  testthat::expect_equal(descr$softwareRequirements[[22]]$identifier,
+                         "https://sysreqs.r-hub.io/get/imagemagick")
 })

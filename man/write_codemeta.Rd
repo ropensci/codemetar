@@ -37,7 +37,7 @@ created with create_codemeta().
 }
 \details{
 If pkg is a codemeta object, the function will attempt to
- update any fields it can guess (i.e. from the DESRIPTION file),
+ update any fields it can guess (i.e. from the DESCRIPTION file),
  overwriting any existing data in that block. In this case, the package
  root directory should be the current working directory.
 

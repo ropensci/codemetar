@@ -16,7 +16,7 @@
 #' @param verbose Whether to print messages indicating opinions e.g. when DESCRIPTION has no URL. See \code{\link{give_opinions}}.
 #' @param ...  additional arguments to \code{\link{write_json}}
 #' @details If pkg is a codemeta object, the function will attempt to
-#'  update any fields it can guess (i.e. from the DESRIPTION file),
+#'  update any fields it can guess (i.e. from the DESCRIPTION file),
 #'  overwriting any existing data in that block. In this case, the package
 #'  root directory should be the current working directory.
 #'
@@ -42,37 +42,36 @@ write_codemeta <- function(pkg = ".",
                            ...) {
 
   # things that only happen inside a package folder
+  # and when the output file is codemeta.json
   if(length(pkg) <= 1 && is_package(pkg) && pkg %in% c(getwd(), ".")){
 
     if(path == "codemeta.json"){
       # if path is something else hopefully the user know what they are doing
       usethis::use_build_ignore("codemeta.json")
-    }
-
-    # add the git pre-commit hook
-    # https://github.com/r-lib/usethis/blob/master/inst/templates/readme-rmd-pre-commit.sh#L1
-    # this is GPL-3 code
-    if (uses_git() & path == "codemeta.json") {
-      if(!file.exists(file.path(pkg, "codemeta.json"))){
-        message("* Adding a pre-commit git hook ensuring that codemeta.json will be synchronized with DESCRIPTION") # nolint
-        usethis::use_git_hook(
-          "pre-commit",
-          render_template("description-codemetajson-pre-commit.sh")
-        )
-        message(
-          "* Include the following code somewhere in R/ in your package, this way devtools::release() will remind you to update codemeta.json.\n",
-          '  release_questions <- function() "Have you updated codemeta.json with codemetar::write_codemeta()?"')
+      # add the git pre-commit hook
+      # https://github.com/r-lib/usethis/blob/master/inst/templates/readme-rmd-pre-commit.sh#L1
+      # this is GPL-3 code
+      if(uses_git()){
+        if(!file.exists(file.path(pkg, "codemeta.json"))){
+          message("* Adding a pre-commit git hook ensuring that codemeta.json will be synchronized with DESCRIPTION") # nolint
+          usethis::use_git_hook(
+            "pre-commit",
+            render_template("description-codemetajson-pre-commit.sh")
+          )
+                 }
       }
-
     }
-  }
-  cm <- create_codemeta(pkg = pkg, root = root)
-  write_json(cm, path, pretty=TRUE, auto_unbox = TRUE, ...)
 
+  }
+  # create or update codemeta
+  cm <- create_codemeta(pkg = pkg, root = root)
+  # save to disk
+  write_json(cm, path, pretty=TRUE, auto_unbox = TRUE, ...)
 
 }
 
 # from https://github.com/jeroen/jsonlite/blob/1f9e609e7d0ed702ede9c82aa5482ba08d5e5ab2/R/read_json.R#L22
+# only until new jsonlite version on CRAN (encoding fix)
 write_json <- function(x, path, ...) {
   json <- jsonlite::toJSON(x, ...)
   writeLines(json, path, useBytes = TRUE)

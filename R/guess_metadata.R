@@ -21,8 +21,6 @@ CRAN <- memoise::memoise(.CRAN)
 
 BIOC <- memoise::memoise(.BIOC)
 
-
-
 guess_provider <- function(pkg) {
   if (is.null(pkg)) {
     return(NULL)
@@ -53,56 +51,48 @@ guess_provider <- function(pkg) {
 
 }
 
-
-
-## look for .travis.yml ? GREP .travis badge so we can guess repo name.
+## Based on CI badges, not config files
+# only Travis, Appveyor and Circle CI
+# also uses code coverage
 guess_ci <- function(readme) {
-  if (file.exists(readme)) {
-    badges <- extract_badges(readme)
-    ci_badge <- badges[grepl("travis", badges$link)|
-                         grepl("appveyor", badges$link)|
-                         grepl("circleci", badges$link),]
-    if (!is.null(ci_badge)) {
-      ci_badge$link
-    } else {
-      NULL
-    }
-  }else{
+
+  badges <- extract_badges(readme)
+  ci_badge <- badges[grepl("travis", badges$link)|
+                       grepl("appveyor", badges$link)|
+                       grepl("circleci", badges$link)|
+                       grepl("codecov", badges$link)|
+                       grepl("coveralls", badges$link),]
+  if (!is.null(ci_badge)) {
+    ci_badge$link
+  } else {
     NULL
   }
+
 }
 
-## Currently looks for a repostatus.org link and returns the abbreviation.
+## Either repostatus.org or lifecycle badge
 guess_devStatus <- function(readme) {
-  status <- NULL
-  if (file.exists(readme)) {
-    badges <- extract_badges(readme)
-    status_badge <- badges[grepl("Project Status", badges$text)|
-                             grepl("lifecycle", badges$text),]
-    if (!is.null(status_badge)) {
-      if(nrow(status_badge) >0){
-        status_badge$link[1]
-      }
-    } else {
-      NULL
+  badges <- extract_badges(readme)
+  status_badge <- badges[grepl("Project Status", badges$text)|
+                           grepl("lifecycle", badges$text),]
+  if (!is.null(status_badge)) {
+    if(nrow(status_badge) >0){
+      status_badge$link[1]
     }
-  }else{
-        NULL
-      }
+  } else {
+    NULL
+  }
 
 
 }
 
 # looks for a rOpenSci peer review badge
 guess_ropensci_review <- function(readme) {
-  status <- NULL
-  if (file.exists(readme)) {
-    txt <- readLines(readme)
-    badge <- txt[grepl("badges\\.ropensci\\.org", txt)]
+    badges <- extract_badges(readme)
+    badge <- badges[grepl("github.com/ropensci/onboarding/issues/", badges$link),]$link
     if (length(badge) >= 1) {
       review <-
         gsub(".*https://github.com/ropensci/onboarding/issues/", "", badge)
-      review <- gsub(").*", "", review)
       review <- as.numeric(review)
       issue <- gh::gh("GET /repos/:owner/:repo/issues/:number",
                       owner = "ropensci",
@@ -119,9 +109,6 @@ guess_ropensci_review <- function(readme) {
     } else {
       NULL
     }
-  }else{
-    NULL
-  }
 
 
 }
@@ -161,28 +148,48 @@ guess_github <- function(root = ".") {
 
 ### Consider: guess_releastNotes() (NEWS), guess_readme()
 
-guess_readme <- function(root = ".") {
-  ## If no local README.md at package root, give up
+.guess_readme <- function(root = ".") {
+  ## point to GitHub page
+  if (uses_git(root)) {
+    github <- guess_github(root)
+    github <- gsub(".*com\\/", "", github)
+    github <- strsplit(github, "/")[[1]]
+    readme <- try(gh::gh("GET /repos/:owner/:repo/readme",
+                     owner = github[1], repo = github[2]),
+                  silent = TRUE)
+    if(inherits(readme, "try-error")){
+      readme_url <- NULL
+    }else{
+      readme_url <- readme$html_url
+    }
+
+
+  } else{
+    readme_url <- NULL
+  }
+
   contents <- dir(root)
   readmes <- contents[grepl("[Rr][Ee][Aa][Dd][Mm][Ee]\\.R?md", contents)]
   if(length(readmes) == 0){
-    NULL
+    readme_path <- NULL
   }else{
     readme_rmd <- readmes[grepl("\\.Rmd", readmes)]
-    if(is.null(readme_rmd)){
-      file.path(root, readmes[grepl("\\.md", readmes)])
+    if(length(readme_rmd) == 0){
+      readme_path <- file.path(root, readmes[grepl("\\.md", readmes)])
     }else{
-      file.path(root, readme_rmd)
+      readme_path <- file.path(root, readme_rmd)
     }
   }
 
-  ## point to GitHub page
-  if (uses_git(root)) {
-    github_path(root, "README.md")
-  } else {
-    NULL
-  }
+
+  return(list(readme_path = readme_path,
+              readme_url = readme_url))
+
 }
+
+
+guess_readme <- memoise::memoise(.guess_readme)
+
 
 #' @importFrom git2r repository branches
 github_path <- function(root, path) {
@@ -231,4 +238,21 @@ guess_fileSize <- function(root = ".") {
                       quiet = TRUE)
     paste0(file.size(f) / 1e3, "KB")
   }
+}
+
+# add GitHub topics
+add_github_topics <- function(cm){
+  github <- stringr::str_remove(cm$codeRepository, ".*github\\.com\\/")
+  github <- stringr::str_remove(github, "#.*")
+  github <- stringr::str_split(github, "/")[[1]]
+  owner <- github[1]
+  repo <- github[2]
+
+  topics <- gh::gh("GET /repos/:owner/:repo/topics",
+                   repo = repo, owner = owner,
+                   .send_headers = c(Accept = "application/vnd.github.mercy-preview+json"))
+  topics <- unlist(topics$names)
+
+  cm$keywords <- unique(c(cm$keywords, topics))
+  cm
 }

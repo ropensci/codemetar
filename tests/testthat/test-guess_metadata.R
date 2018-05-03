@@ -17,16 +17,17 @@ testthat::test_that("guess_provider",{
 testthat::test_that("guess_ci",{
  f <- system.file("examples/README_ex.md", package="codemetar")
  a <- guess_ci(f)
- testthat::expect_equal(a, "https://travis-ci.org/codemeta/codemetar")
+ testthat::expect_equal(a[1], "https://travis-ci.org/codemeta/codemetar")
+ testthat::expect_equal(a[2], "https://codecov.io/github/codemeta/codemetar?branch=master")
 
  f2 <- system.file("examples/README_ex2.md", package="codemetar")
  a2 <- guess_ci(f2)
  expect_null(a2)
 
- f <- system.file("examples/README_usethis.md", package="codemetar")
+ f <- system.file("examples/README_fakepackage.md", package="codemetar")
  a3 <- guess_ci(f)
- testthat::expect_equal(length(a3), 2)
- testthat::expect_equal(a3[1], "https://travis-ci.org/r-lib/usethis")
+ testthat::expect_equal(length(a3), 3)
+ testthat::expect_equal(a3[1], "https://travis-ci.org/fakeorg/fakepackage")
 
 })
 
@@ -38,7 +39,7 @@ testthat::test_that("guess_devStatus",{
   a <- guess_devStatus(f)
   expect_equal(a, "http://www.repostatus.org/#wip")
 
-  f <- system.file("examples/README_usethis.md", package="codemetar")
+  f <- system.file("examples/README_fakepackage.md", package="codemetar")
   a <- guess_devStatus(f)
   expect_equal(a, "https://www.tidyverse.org/lifecycle/#stable")
 
@@ -75,12 +76,8 @@ test_that("git utils", {
 
 
 test_that("guess_readme", {
-
-  guess_readme(".")
-
-  ## expect_null?
-  f <- system.file(".", package="codemetar")
-  a <- guess_readme(f)
+  testthat::expect_is(guess_readme(find.package("codemetar")), "list")
+  testthat::expect_is(guess_readme(find.package("jsonlite")), "list")
 })
 
 test_that("guess_releaseNotes", {
@@ -93,9 +90,21 @@ test_that("guess_releaseNotes", {
 
 
 test_that("fileSize", {
-  guess_fileSize(NULL)
-  guess_fileSize(".")
+  expect_null(guess_fileSize(NULL))
+  expect_null(guess_fileSize("."))
   ## expect_null?
   f <- system.file(".", package="codemetar")
-  guess_fileSize(f)
+  expect_null(guess_fileSize(f))
+})
+
+test_that("add_github_topics",{
+  cm <- NULL
+  cm$codeRepository <- "https://github.com/ropensci/codemetar"
+  cm <- add_github_topics(cm)
+  testthat::expect_is(cm$keywords, "character")
+
+  cm <- NULL
+  cm$codeRepository <- "https://github.com/ropensci/codemetar#readme"
+  cm <- add_github_topics(cm)
+  testthat::expect_is(cm$keywords, "character")
 })

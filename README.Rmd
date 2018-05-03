@@ -51,13 +51,13 @@ library("codemetar")
 
 This is a basic example which shows you how to generate a `codemeta.json` for an R package (e.g. for `testthat`):
 
-```{r example}
+```r
 write_codemeta("testthat")
 ```
 
 `codemetar` can take the path to the package root instead.  This may allow `codemetar` to glean some additional information that is not available from the description file alone.  
 
-```{r}
+```r
 write_codemeta(".")
 ```
 

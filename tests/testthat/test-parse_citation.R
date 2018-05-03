@@ -24,3 +24,10 @@ testthat::test_that("We can parse citations", {
 
 
 })
+
+testthat::test_that("We can use encoding", {
+  f <- system.file("examples/CITATION_osmdata", package = "codemetar")
+  bib <- utils::readCitationFile(f,
+                                 meta = list(Encoding = "UTF-8"))
+  testthat::expect_silent(parse_citation(bib))
+})

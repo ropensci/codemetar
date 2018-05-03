@@ -1,6 +1,6 @@
 context("test-give_opinions.R")
 testthat::test_that("Silent if ok URLs", {
-  f <- system.file("examples/DESCRIPTION_HIBPwned", package = "codemetar")
+  f <- system.file("examples/DESCRIPTION_good", package = "codemetar")
   desc_fixmes <- give_opinions_desc(f)
   expect_null(desc_fixmes)
 })

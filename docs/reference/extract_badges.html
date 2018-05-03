@@ -115,7 +115,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Extract all badges from Markdown file</h1>
-    <small>Source: <a href='https://github.com/ropensci/codemetar/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <small>Source: <a href='https://github.com/ropensci/codemetar/blob/master/R/extract_badges.R'><code>R/extract_badges.R</code></a></small>
     </div>
 
     
@@ -139,6 +139,14 @@
 its image.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>extract_badges</span>(<span class='fu'>system.file</span>(<span class='st'>"README.md"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"codemetar"</span>))</div><div class='output co'>#&gt; # A tibble: 4 x 3
+#&gt;   text                    link                     image_link                  
+#&gt;   &lt;chr&gt;                   &lt;chr&gt;                    &lt;chr&gt;                       
+#&gt; 1 ""                      https://github.com/rope~ http://badges.ropensci.org/~
+#&gt; 2 "CRAN\\_Status\\_Badge" https://cran.r-project.~ http://www.r-pkg.org/badges~
+#&gt; 3 DOI                     https://zenodo.org/badg~ https://zenodo.org/badge/86~
+#&gt; 4 "ropensci\\_footer"     https://ropensci.org     https://ropensci.org/public~</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -146,7 +154,9 @@ its image.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
