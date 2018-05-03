@@ -9,7 +9,7 @@
 
   md_badges <- unique(do.call(rbind,
                  lapply(md_badges[!is.na(md_badges)], parse_md_badge)))
-  '"<td align=\"left\"><a href=\"https://ci.appveyor.com/project/ropensci/drake\"><img src=\"https://ci.appveyor.com/api/projects/status/4ypc9xnmqt70j94e?svg=true&amp;branch=master\" alt=\"AppVeyor\"></a></td>"'
+
   html_badges <- unlist(stringr::str_match_all(txt,
                                                '<a href.*?><img.*?>'))
 

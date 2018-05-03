@@ -24,10 +24,10 @@ testthat::test_that("guess_ci",{
  a2 <- guess_ci(f2)
  expect_null(a2)
 
- f <- system.file("examples/README_usethis.md", package="codemetar")
+ f <- system.file("examples/README_fakepackage.md", package="codemetar")
  a3 <- guess_ci(f)
  testthat::expect_equal(length(a3), 3)
- testthat::expect_equal(a3[1], "https://travis-ci.org/r-lib/usethis")
+ testthat::expect_equal(a3[1], "https://travis-ci.org/fakeorg/fakepackage")
 
 })
 
@@ -39,7 +39,7 @@ testthat::test_that("guess_devStatus",{
   a <- guess_devStatus(f)
   expect_equal(a, "http://www.repostatus.org/#wip")
 
-  f <- system.file("examples/README_usethis.md", package="codemetar")
+  f <- system.file("examples/README_fakepackage.md", package="codemetar")
   a <- guess_devStatus(f)
   expect_equal(a, "https://www.tidyverse.org/lifecycle/#stable")
 

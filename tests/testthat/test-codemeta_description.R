@@ -31,12 +31,12 @@ testthat::test_that("We can parse plain Authors: & Maintainers: entries", {
   expect_true(authors$maintainer[[1]]$familyName == "Developer")
   expect_equal(length(authors$author), 2)
 
-  f <- system.file("examples/DESCRIPTION_jsonlite", package = "codemetar")
+  f <- system.file("examples/DESCRIPTION_plainauthors", package = "codemetar")
   authors <- codemeta_description(f)
-  expect_true(authors$maintainer[[1]]$familyName == "Ooms")
+  expect_true(authors$maintainer[[1]]$familyName == "Ok")
   expect_equal(length(authors$author), 2)
 
-  f <- system.file("examples/DESCRIPTION_a4", package = "codemetar")
+  f <- system.file("examples/DESCRIPTION_twomaintainers", package = "codemetar")
   authors <- codemeta_description(f)
   expect_equal(length(authors$author), 1)
   expect_equal(length(authors$maintainer), 2)

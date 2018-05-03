@@ -73,8 +73,6 @@ Suggests:
     xml2,
     dplyr (>= 0.7.0),
     printr
-Remotes: lala/jsonld
 VignetteBuilder: knitr
 X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data
 X-schema.org-isPartOf: https://ropensci.org
-
