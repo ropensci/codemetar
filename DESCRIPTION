@@ -67,7 +67,8 @@ Imports:
     gh,
     stringr,
     sessioninfo,
-    purrr
+    purrr,
+    curl
 Suggests: 
     testthat,
     jsonvalidate,
