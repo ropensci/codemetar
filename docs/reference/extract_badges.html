@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Extract all badges from Markdown file — extract_badges" />
 
 <meta property="og:description" content="Extract all badges from Markdown file" />
@@ -78,16 +81,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/A-codemeta-intro.html">Codemeta intro</a>
+      <a href="../articles/articles/examples-parsing-codemeta.html">Parsing Codemeta Data</a>
     </li>
     <li>
-      <a href="../articles/B-translating.html">Translating between schema using JSON-LD</a>
+      <a href="../articles/articles/translating-codemeta.html">Translating between schema using JSON-LD</a>
     </li>
     <li>
-      <a href="../articles/C-validation-in-json-ld.html">Validation in JSON-LD</a>
+      <a href="../articles/articles/validation-in-json-ld.html">Validation in JSON-LD</a>
     </li>
     <li>
-      <a href="../articles/D-codemeta-parsing.html">Parsing Codemeta Data</a>
+      <a href="../articles/codemeta-intro.html">Codemeta intro</a>
     </li>
   </ul>
 </li>
@@ -104,6 +107,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -111,16 +115,19 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Extract all badges from Markdown file</h1>
-    <small>Source: <a href='https://github.com/ropensci/codemetar/blob/master/R/extract_badges.R'><code>R/extract_badges.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/codemetar/blob/master/R/extract_badges.R'><code>R/extract_badges.R</code></a></small>
+    <div class="hidden name"><code>extract_badges.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Extract all badges from Markdown file</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>extract_badges</span>(<span class='no'>path</span>)</pre>
     
@@ -143,10 +150,10 @@ its image.</p>
     <pre class="examples"><div class='input'><span class='fu'>extract_badges</span>(<span class='fu'>system.file</span>(<span class='st'>"README.md"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"codemetar"</span>))</div><div class='output co'>#&gt; # A tibble: 4 x 3
 #&gt;   text                    link                     image_link                  
 #&gt;   &lt;chr&gt;                   &lt;chr&gt;                    &lt;chr&gt;                       
-#&gt; 1 ""                      https://github.com/rope~ http://badges.ropensci.org/~
-#&gt; 2 "CRAN\\_Status\\_Badge" https://cran.r-project.~ http://www.r-pkg.org/badges~
-#&gt; 3 DOI                     https://zenodo.org/badg~ https://zenodo.org/badge/86~
-#&gt; 4 "ropensci\\_footer"     https://ropensci.org     https://ropensci.org/public~</div></pre>
+#&gt; 1 ""                      https://github.com/rope… http://badges.ropensci.org/…
+#&gt; 2 "CRAN\\_Status\\_Badge" https://cran.r-project.… http://www.r-pkg.org/badges…
+#&gt; 3 DOI                     https://zenodo.org/badg… https://zenodo.org/badge/86…
+#&gt; 4 "ropensci\\_footer"     https://ropensci.org     https://ropensci.org/public…</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -172,6 +179,8 @@ its image.</p>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>
