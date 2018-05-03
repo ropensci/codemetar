@@ -42,3 +42,10 @@ testthat::test_that("Test the various cases for ids (NOT used currently)", {
   # a <- guess_dep_id(parse_depends("not-a-package")[[1]])
 
 })
+
+testthat::test_that("Sys requirements", {
+  f <- system.file("examples/DESCRIPTION_sysreqs", package = "codemetar")
+  descr <- codemeta_description(f)
+  testthat::expect_equal(descr$softwareRequirements[[22]]$identifier,
+                         "https://sysreqs.r-hub.io/get/imagemagick")
+})

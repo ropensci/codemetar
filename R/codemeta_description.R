@@ -122,7 +122,9 @@ codemeta_description <-
 
     codemeta$softwareSuggestions <- parse_depends(suggests)
     codemeta$softwareRequirements <- parse_depends(requirements)
-
+    codemeta$softwareRequirements <- c(codemeta$softwareRequirements,
+                                       parse_sys_reqs(descr$get("Package"),
+                                                      descr$get("SystemRequirements")))
 
 
     ## add any additional codemeta terms found in the DESCRIPTION metadata

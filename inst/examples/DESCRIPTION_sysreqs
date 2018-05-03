@@ -2,7 +2,7 @@ Package: codemetar
 Type: Package
 Title: Generate 'CodeMeta' Metadata for R Packages
 Version: 0.1.6
-Authors@R: 
+Authors@R:
     c(person(given = "Carl",
              family = "Boettiger",
              role = c("aut", "cre", "cph"),
@@ -28,18 +28,13 @@ Authors@R:
              role = "ctb"),
       person(given = "Noam",
              family = "Ross",
-             role = "ctb",
-             comment=c(ORCID = "0000-0002-2136-0000")),
+             role = "ctb"),
       person(given = "Arfon",
              family = "Smith",
-             role = "ctb"),
-      person(given = "Jeroen", 
-             family = "Ooms", 
-             role = "ctb",
-             comment = c(ORCID = "0000-0002-4035-0289")))
+             role = "ctb"))
 Description: The 'Codemeta' Project defines a 'JSON-LD' format for describing
   software metadata, as detailed at <https://codemeta.github.io>. This package
-  provides utilities to generate, parse, and modify 'codemeta.json' files 
+  provides utilities to generate, parse, and modify 'codemeta.json' files
   automatically for R packages, as well as tools and examples for working with
   'codemeta.json' 'JSON-LD' more generally.
 License: GPL-3
@@ -49,7 +44,7 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1.9000
 Depends: R (>= 3.0.0)
-Imports: 
+Imports:
     jsonlite (>= 1.3),
     jsonld,
     git2r,
@@ -67,9 +62,8 @@ Imports:
     gh,
     stringr,
     sessioninfo,
-    purrr,
-    curl
-Suggests: 
+    purrr
+Suggests:
     testthat,
     jsonvalidate,
     covr,
@@ -79,6 +73,7 @@ Suggests:
     xml2,
     dplyr (>= 0.7.0),
     printr
+SystemRequirements: ImageMagick++: ImageMagick-c++-devel (rpm) or libmagick++-dev (deb)
 VignetteBuilder: knitr
 X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data
 X-schema.org-isPartOf: https://ropensci.org
