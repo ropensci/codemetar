@@ -1,6 +1,6 @@
 pandoc: 2.1.1
 pkgdown: 1.0.0
-pkgdown_sha: ~
+pkgdown_sha: d43ca38c74827d1d6babc3a80d48cd3a8e8fad8c
 articles:
   examples-parsing-codemeta: articles/examples-parsing-codemeta.html
   translating-codemeta: articles/translating-codemeta.html
