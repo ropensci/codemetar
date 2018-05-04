@@ -29,7 +29,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' write_codemeta("codemetar", path = "example_codemetar_codemeta.json")
 #' }
 write_codemeta <- function(pkg = ".",

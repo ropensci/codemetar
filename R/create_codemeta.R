@@ -9,7 +9,7 @@
 #' @return a codemeta list object
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cm <- create_codemeta("jsonlite")
 #' cm$keywords <- list("metadata", "ropensci")
 #' }
