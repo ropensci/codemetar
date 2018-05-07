@@ -25,7 +25,7 @@ and the corresponding terms in both from and to columns.
 return a subset of the crosswalk table containing codemeta properties and matching column
 }
 \examples{
-\dontrun{
+\donttest{
 crosswalk_table(from = "GitHub", to = c("Zenodo", "Figshare"))
 }
 }

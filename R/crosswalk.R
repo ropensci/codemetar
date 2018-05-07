@@ -58,7 +58,7 @@ crosswalk <- function(x,
 #' @importFrom readr read_csv cols
 #' @return a tibble containing the trimmed crosswalk table, listing property (in CodeMeta),
 #' and the corresponding terms in both from and to columns.
-#' @examples \dontrun{
+#' @examples \donttest{
 #' crosswalk_table(from = "GitHub", to = c("Zenodo", "Figshare"))
 #' }
 #' @export

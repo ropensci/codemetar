@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="codemeta validate — codemeta_validate" />
 
 <meta property="og:description" content="Checks that a round-trip of expanding and compacting json-ld matches the
@@ -80,16 +83,16 @@ will cause this round-trip to fail by not fully compacting." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/A-codemeta-intro.html">Codemeta intro</a>
+      <a href="../articles/articles/examples-parsing-codemeta.html">Parsing Codemeta Data</a>
     </li>
     <li>
-      <a href="../articles/B-translating.html">Translating between schema using JSON-LD</a>
+      <a href="../articles/articles/translating-codemeta.html">Translating between schema using JSON-LD</a>
     </li>
     <li>
-      <a href="../articles/C-validation-in-json-ld.html">Validation in JSON-LD</a>
+      <a href="../articles/articles/validation-in-json-ld.html">Validation in JSON-LD</a>
     </li>
     <li>
-      <a href="../articles/D-codemeta-parsing.html">Parsing Codemeta Data</a>
+      <a href="../articles/codemeta-intro.html">Codemeta intro</a>
     </li>
   </ul>
 </li>
@@ -106,6 +109,7 @@ will cause this round-trip to fail by not fully compacting." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -113,18 +117,21 @@ will cause this round-trip to fail by not fully compacting." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>codemeta validate</h1>
-    <small>Source: <a href='https://github.com/ropensci/codemetar/blob/master/R/codemeta_validate.R'><code>R/codemeta_validate.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/codemetar/blob/master/R/codemeta_validate.R'><code>R/codemeta_validate.R</code></a></small>
+    <div class="hidden name"><code>codemeta_validate.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Checks that a round-trip of expanding and compacting json-ld matches the
 original document.  Incorrect schema terms or types (or spelling errors of properties)
 will cause this round-trip to fail by not fully compacting.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>codemeta_validate</span>(<span class='kw'>codemeta</span> <span class='kw'>=</span> <span class='st'>"codemeta.json"</span>, <span class='kw'>context</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
@@ -176,6 +183,8 @@ Leave as default or use appropriate DOI for the version; see details.</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

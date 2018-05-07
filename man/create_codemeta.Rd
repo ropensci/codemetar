@@ -32,6 +32,8 @@ to \code{\link{write_codemeta}}, but returns an R list object rather
 than writing directly to a file.  See examples.
 }
 \examples{
+\donttest{
 cm <- create_codemeta("jsonlite")
 cm$keywords <- list("metadata", "ropensci")
+}
 }

@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="crosswalk — crosswalk" />
 
 <meta property="og:description" content="Crosswalk between different metadata fields used by different repositories,
@@ -82,16 +85,16 @@ to a given JSON metadata record." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/A-codemeta-intro.html">Codemeta intro</a>
+      <a href="../articles/articles/examples-parsing-codemeta.html">Parsing Codemeta Data</a>
     </li>
     <li>
-      <a href="../articles/B-translating.html">Translating between schema using JSON-LD</a>
+      <a href="../articles/articles/translating-codemeta.html">Translating between schema using JSON-LD</a>
     </li>
     <li>
-      <a href="../articles/C-validation-in-json-ld.html">Validation in JSON-LD</a>
+      <a href="../articles/articles/validation-in-json-ld.html">Validation in JSON-LD</a>
     </li>
     <li>
-      <a href="../articles/D-codemeta-parsing.html">Parsing Codemeta Data</a>
+      <a href="../articles/codemeta-intro.html">Codemeta intro</a>
     </li>
   </ul>
 </li>
@@ -108,6 +111,7 @@ to a given JSON metadata record." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -115,13 +119,15 @@ to a given JSON metadata record." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>crosswalk</h1>
-    <small>Source: <a href='https://github.com/ropensci/codemetar/blob/master/R/crosswalk.R'><code>R/crosswalk.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/codemetar/blob/master/R/crosswalk.R'><code>R/crosswalk.R</code></a></small>
+    <div class="hidden name"><code>crosswalk.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Crosswalk between different metadata fields used by different repositories,
 registries and archives. For more details see https://codemeta.github.io/crosswalk
@@ -129,6 +135,7 @@ This function requires an internet connection to obtain the latest crosswalk tab
 This function essentially applies the crosswalk table shown by <code><a href='crosswalk_table.html'>crosswalk_table</a></code>
 to a given JSON metadata record.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>crosswalk</span>(<span class='no'>x</span>, <span class='no'>from</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"codemeta"</span>,
   <span class='kw'>codemeta_context</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"codemeta_context"</span>,
@@ -192,6 +199,8 @@ to a given JSON metadata record.</p>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

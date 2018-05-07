@@ -1,12 +1,13 @@
 Dear CRAN Maintainers,
 
 This release is triggered by the upcoming release of jsonld that would have introduced a bug. 
+I also have addressed the example that was taking over 10s.
 
 More details in the release summary below.
 
 Thanks!
 
-codemetar team
+Carl Boettiger
 
 
 ## Test environments
