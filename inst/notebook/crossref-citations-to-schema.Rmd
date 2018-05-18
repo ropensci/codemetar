@@ -65,7 +65,7 @@ list( "@type" = "ScholarlyArticle",
          )
   
 }
-csl_to_schema(doi = "http://dx.doi.org/10.1002/ece3.2314", as="file")
+csl_to_schema(doi = "https://doi.org/10.1002/ece3.2314", as="file")
 
 
 ```
@@ -75,23 +75,23 @@ csl_to_schema(doi = "http://dx.doi.org/10.1002/ece3.2314", as="file")
 ```{r}
 c(
 "https://doi.org/10.1093/biosci/bix025",
-"http://dx.doi.org/10.1002/ece3.2314",
-"http://dx.doi.org/10.1890/15-0236",
-"http://dx.doi.org/10.5334/jors.bu",
-"http://dx.doi.org/10.1111/2041-210X.12469",
-"http://dx.doi.org/10.1145/2723872.2723882",
-"http://dx.doi.org/10.1098/rspb.2014.1631",
-"http://dx.doi.org/10.1098/rspb.2013.1372",
-"http://dx.doi.org/10.1007/s12080-013-0192-6",
-"http://dx.doi.org/10.1038/493157a",
-"http://dx.doi.org/10.1098/rspb.2012.2085",
-"http://dx.doi.org/10.1111/j.1095-8649.2012.03464.x",
-"http://dx.doi.org/10.1111/j.2041-210X.2012.00247.x",
-"http://dx.doi.org/10.1098/rsif.2012.0125",
-"http://dx.doi.org/10.1111/j.1558-5646.2012.01619.x", 
-"http://dx.doi.org/10.1111/j.1558-5646.2011.01574.x",
-"http://dx.doi.org/10.1016/j.tpb.2009.10.003",
-"http://dx.doi.org/10.1086/508600"
+"https://doi.org/10.1002/ece3.2314",
+"https://doi.org/10.1890/15-0236",
+"https://doi.org/10.5334/jors.bu",
+"https://doi.org/10.1111/2041-210X.12469",
+"https://doi.org/10.1145/2723872.2723882",
+"https://doi.org/10.1098/rspb.2014.1631",
+"https://doi.org/10.1098/rspb.2013.1372",
+"https://doi.org/10.1007/s12080-013-0192-6",
+"https://doi.org/10.1038/493157a",
+"https://doi.org/10.1098/rspb.2012.2085",
+"https://doi.org/10.1111/j.1095-8649.2012.03464.x",
+"https://doi.org/10.1111/j.2041-210X.2012.00247.x",
+"https://doi.org/10.1098/rsif.2012.0125",
+"https://doi.org/10.1111/j.1558-5646.2012.01619.x", 
+"https://doi.org/10.1111/j.1558-5646.2011.01574.x",
+"https://doi.org/10.1016/j.tpb.2009.10.003",
+"https://doi.org/10.1086/508600"
 ) %>% lapply(csl_to_schema, as="list") -> out
 
 
