@@ -1,7 +1,7 @@
 
 
 .extract_badges <- function(path){
-  txt <- readLines(path)
+  txt <- paste(readLines(path), collapse = " ")
   badges1 <- unlist(stringr::str_match_all(txt, "\\[!\\[\\]\\(.*?\\)\\]\\(.*?\\)"))
   badges2 <- unlist(stringr::str_match_all(txt, "\\[!\\[.*?\\]\\(.*?\\)\\]\\(.*?\\)"))
 
