@@ -13,6 +13,7 @@
 #'  to package root. Default guess is current dir.
 #' @param id identifier for the package, e.g. a DOI (or other resolvable URL)
 #' @param force_update Update guessed fields even if they are defined in an existing codemeta.json file
+#' @param use_git_hook Whether to create a pre-commit hook requiring codemeta.json to be updated when DESCRIPTION is changed.  Defaults to TRUE.
 #' @param verbose Whether to print messages indicating opinions e.g. when DESCRIPTION has no URL. See \code{\link{give_opinions}}.
 #' @param ...  additional arguments to \code{\link{write_json}}
 #' @details If pkg is a codemeta object, the function will attempt to
@@ -38,6 +39,7 @@ write_codemeta <- function(pkg = ".",
                            id = NULL,
                            force_update =
                              getOption("codemeta_force_update", TRUE),
+                           use_git_hook = TRUE,
                            verbose = TRUE,
                            ...) {
 
@@ -51,7 +53,7 @@ write_codemeta <- function(pkg = ".",
       # add the git pre-commit hook
       # https://github.com/r-lib/usethis/blob/master/inst/templates/readme-rmd-pre-commit.sh#L1
       # this is GPL-3 code
-      if(uses_git()){
+      if(uses_git() && use_git_hook){
         if(!file.exists(file.path(pkg, "codemeta.json"))){
           message("* Adding a pre-commit git hook ensuring that codemeta.json will be synchronized with DESCRIPTION") # nolint
           usethis::use_git_hook(
