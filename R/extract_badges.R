@@ -1,7 +1,5 @@
 
-
-.extract_badges <- function(path){
-  txt <- paste(readLines(path), collapse = " ")
+.extract_badges_txt <- function(txt) {
   badges1 <- unlist(stringr::str_match_all(txt, "\\[!\\[\\]\\(.*?\\)\\]\\(.*?\\)"))
   badges2 <- unlist(stringr::str_match_all(txt, "\\[!\\[.*?\\]\\(.*?\\)\\]\\(.*?\\)"))
 
@@ -30,7 +28,11 @@
 #'
 #' @examples
 #' extract_badges(system.file("README.md", package = "codemetar"))
-extract_badges <- memoise::memoise(.extract_badges)
+extract_badges <- function(path) {
+  extract_badges_txt(paste(readLines(path), collapse = " "))
+}
+
+extract_badges_txt <- memoise::memoise(.extract_badges_txt)
 
 parse_md_badge <- function(badge){
   text <- stringr::str_match(badge, "\\[!\\[(.*?)\\]")[,2]
