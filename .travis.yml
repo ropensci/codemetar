@@ -17,4 +17,3 @@ matrix:
       r: release
     - os: linux
       r: oldrel
-      r_github_packages: ropensci/jsonld
