@@ -107,6 +107,11 @@ test_that("add_github_topics",{
   cm$codeRepository <- "https://github.com/ropensci/codemetar#readme"
   cm <- add_github_topics(cm)
   testthat::expect_is(cm$keywords, "character")
+
+  cm <- NULL
+  cm$codeRepository <- "https://github.com/maelle/notarepo"
+  cm <- add_github_topics(cm)
+  testthat::expect_null(cm$keywords)
 })
 
 
@@ -126,6 +131,6 @@ testthat::test_that("rOpenSci peer-review", {
   testthat::expect_is(review_info, "list")
   testthat::expect_equal(review_info$`@type`, "Review")
   testthat::expect_equal(review_info$url, "https://github.com/ropensci/onboarding/issues/24")
-  testthat::expect_equal(review_info$provider`, "http://ropensci.org")
+  testthat::expect_equal(review_info$provider, "http://ropensci.org")
 
 })

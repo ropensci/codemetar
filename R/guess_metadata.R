@@ -254,11 +254,13 @@ add_github_topics <- function(cm){
   owner <- github[1]
   repo <- github[2]
 
-  topics <- gh::gh("GET /repos/:owner/:repo/topics",
+  topics <- try(gh::gh("GET /repos/:owner/:repo/topics",
                    repo = repo, owner = owner,
-                   .send_headers = c(Accept = "application/vnd.github.mercy-preview+json"))
-  topics <- unlist(topics$names)
+                   .send_headers = c(Accept = "application/vnd.github.mercy-preview+json")),
+                silent = TRUE)
+  if(!inherits(topics, "try-error")){
+    topics <- unlist(topics$names)
 
-  cm$keywords <- unique(c(cm$keywords, topics))
+    cm$keywords <- unique(c(cm$keywords, topics))}
   cm
 }
