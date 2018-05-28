@@ -147,13 +147,17 @@ its image.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>extract_badges</span>(<span class='fu'>system.file</span>(<span class='st'>"README.md"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"codemetar"</span>))</div><div class='output co'>#&gt; # A tibble: 4 x 3
-#&gt;   text                    link                     image_link                  
-#&gt;   &lt;chr&gt;                   &lt;chr&gt;                    &lt;chr&gt;                       
-#&gt; 1 ""                      https://github.com/rope… http://badges.ropensci.org/…
-#&gt; 2 "CRAN\\_Status\\_Badge" https://cran.r-project.… http://www.r-pkg.org/badges…
-#&gt; 3 DOI                     https://zenodo.org/badg… https://zenodo.org/badge/86…
-#&gt; 4 "ropensci\\_footer"     https://ropensci.org     https://ropensci.org/public…</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>extract_badges</span>(<span class='fu'>system.file</span>(<span class='st'>"README.md"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"codemetar"</span>))</div><div class='output co'>#&gt; # A tibble: 8 x 3
+#&gt;   text                          link                image_link                 
+#&gt;   &lt;chr&gt;                         &lt;chr&gt;               &lt;chr&gt;                      
+#&gt; 1 ""                            https://github.com~ http://badges.ropensci.org~
+#&gt; 2 Project Status: Active â€“ T~ http://www.reposta~ http://www.repostatus.org/~
+#&gt; 3 Travis-CI Build Status        https://travis-ci.~ https://travis-ci.org/rope~
+#&gt; 4 AppVeyor Build status         https://ci.appveyo~ https://ci.appveyor.com/ap~
+#&gt; 5 Coverage Status               https://codecov.io~ https://img.shields.io/cod~
+#&gt; 6 "CRAN\\_Status\\_Badge"       https://cran.r-pro~ http://www.r-pkg.org/badge~
+#&gt; 7 DOI                           https://zenodo.org~ https://zenodo.org/badge/8~
+#&gt; 8 "ropensci\\_footer"           https://ropensci.o~ https://ropensci.org/publi~</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
