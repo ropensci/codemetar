@@ -94,10 +94,16 @@ guess_ropensci_review <- function(readme) {
       review <-
         gsub(".*https://github.com/ropensci/onboarding/issues/", "", badge)
       review <- as.numeric(review)
-      issue <- gh::gh("GET /repos/:owner/:repo/issues/:number",
+      issue <- try(gh::gh("GET /repos/:owner/:repo/issues/:number",
                       owner = "ropensci",
                       repo = "onboarding",
-                      number = review)
+                      number = review),
+                   silent = TRUE)
+      if(inherits(issue, "try-error")){
+        stop("Invalid link to issue in rOpenSci peer-review badge.",
+             call. = FALSE)
+      }
+
       if(issue$state == "closed"){
         list("@type" = "Review",
              "url" = paste0("https://github.com/ropensci/onboarding/issues/",
