@@ -107,4 +107,30 @@ test_that("add_github_topics",{
   cm$codeRepository <- "https://github.com/ropensci/codemetar#readme"
   cm <- add_github_topics(cm)
   testthat::expect_is(cm$keywords, "character")
+
+  cm <- NULL
+  cm$codeRepository <- "https://github.com/maelle/notarepo"
+  cm <- add_github_topics(cm)
+  testthat::expect_null(cm$keywords)
+})
+
+
+testthat::test_that("rOpenSci peer-review", {
+  f <- system.file("examples/README_fakepackage5.md", package="codemetar")
+  cm <- NULL
+  testthat::expect_error(guess_ropensci_review(f),
+                         "Invalid link to issue in rOpenSci peer-review badge")
+
+  f <- system.file("examples/README_fakepackage3.md", package="codemetar")
+  cm <- NULL
+  testthat::expect_null(guess_ropensci_review(f))
+
+  f <- system.file("examples/README_fakepackage4.md", package="codemetar")
+  cm <- NULL
+  review_info <- guess_ropensci_review(f)
+  testthat::expect_is(review_info, "list")
+  testthat::expect_equal(review_info$`@type`, "Review")
+  testthat::expect_equal(review_info$url, "https://github.com/ropensci/onboarding/issues/24")
+  testthat::expect_equal(review_info$provider, "http://ropensci.org")
+
 })
