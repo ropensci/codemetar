@@ -51,7 +51,9 @@ testthat::test_that("guess_devStatus",{
   a2 <- guess_devStatus(f2)
   expect_null(a2)
 
-
+  f <- system.file("examples/README_fakepackage6.md", package="codemetar")
+  status <- guess_devStatus(f)
+  expect_equal(length(status), 2)
 })
 
 testthat::test_that("guess_devStatus", {

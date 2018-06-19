@@ -73,11 +73,11 @@ guess_ci <- function(readme) {
 ## Either repostatus.org or lifecycle badge
 guess_devStatus <- function(readme) {
   badges <- extract_badges(readme)
-  status_badge <- badges[grepl("Project Status", badges$text)|
-                           grepl("lifecycle", badges$text),]
+  status_badge <- badges[grepl("repostatus.org", badges$link)|
+                           grepl("lifecycle", badges$link),]
   if (!is.null(status_badge)) {
     if(nrow(status_badge) >0){
-      status_badge$link[1]
+      status_badge$link
     }
   } else {
     NULL
