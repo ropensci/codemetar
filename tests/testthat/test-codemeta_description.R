@@ -14,6 +14,16 @@ testthat::test_that("several URLs", {
                 cm$relatedLink)
 })
 
+testthat::test_that("no direct link to README", {
+  f <- system.file("examples/DESCRIPTION_good_readmeinurl", package = "codemetar")
+  cm <- codemeta_description(f)
+  expect_equal(cm$codeRepository, "https://github.com/ropensci/codemetar")
+  expect_true("https://ropensci.github.io/codemetar" %in%
+                cm$relatedLink)
+  expect_true("https://github.com/ropensci/codemetar#codemetar" %in%
+                cm$relatedLink)
+})
+
 testthat::test_that("We can parse additional terms", {
   f <- system.file("examples/DESCRIPTION_ex1.dcf", package = "codemetar")
   cm <- codemeta_description(f)
