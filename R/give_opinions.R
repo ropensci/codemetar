@@ -90,8 +90,7 @@ give_opinions_readme <- function(readme_path,
   # look for badges
   badges <- extract_badges(readme_path)
   # status
-  if(!any(grepl("Project Status",
-                badges$text))){
+  if(is.null(guess_devStatus(readme_path))){
     status_fixme <- "Add a status badge cf e.g repostatus.org"
   }else{
     status_fixme <- NULL

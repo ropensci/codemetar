@@ -54,6 +54,10 @@ testthat::test_that("guess_devStatus",{
   f <- system.file("examples/README_fakepackage6.md", package="codemetar")
   status <- guess_devStatus(f)
   expect_equal(length(status), 2)
+
+  f <- system.file("examples/README_fakepackage7.md", package="codemetar")
+  status <- guess_devStatus(f)
+  expect_equal(status, "https://www.tidyverse.org/lifecycle/#maturing")
 })
 
 testthat::test_that("guess_devStatus", {
