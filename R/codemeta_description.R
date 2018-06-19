@@ -49,6 +49,8 @@ codemeta_description <-
         # try to identify a GitHub or Gitlab repo
         actual_code_repo <- code_repo[grepl("github\\.com", code_repo)|
                                         grepl("gitlab\\.com", code_repo)][1]
+        # no direct link to README please
+        actual_code_repo <- gsub("#.*", "", actual_code_repo)
         # otherwise take the first URL arbitrarily
         if(is.null(codemeta$Repository)){
           codemeta$codeRepository <- actual_code_repo
