@@ -51,7 +51,9 @@ create_codemeta <- function(pkg = ".",
     root <- get_root_path(pkg)
     opinions <- give_opinions(root)
     if(!is.null(opinions))
-    message(paste0("Some elements could be improved, see our opinions via give_opinions('", root, "')"))
+      message(paste0("Some elements could be improved, see our opinions via give_opinions('", root, "')"))
+    else if(is.null(opinions))
+      message("codemetar has the highest opinion of this R package :-)")  
   }
   ## get information from DESCRIPTION
   cm <-
