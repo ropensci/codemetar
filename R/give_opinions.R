@@ -120,7 +120,7 @@ give_opinions_readme <- function(readme_path,
     tibble::tibble(where = "README",
                    fixme = fixmes)
   }else{
-    message("codemetar has the highest opinion of this R package :-)")
+    NULL
   }
 
 }
