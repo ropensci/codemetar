@@ -238,7 +238,7 @@ guess_fileSize <- function(root = ".") {
     return(NULL)
   } else {
     f <-
-      devtools::build(root,
+      pkgbuild::build(root,
                       vignettes = FALSE,
                       manual = FALSE,
                       quiet = TRUE)

@@ -54,7 +54,7 @@ Imports:
     jsonlite (>= 1.3),
     jsonld,
     git2r,
-    devtools,
+    pkgbuild,
     memoise,
     methods,
     stats,
