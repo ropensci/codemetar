@@ -28,7 +28,7 @@ give_opinions <- function(pkg_path = getwd()){
     fixmes$package <- as.character(descr$get("Package"))
     return(fixmes)
   }else{
-    return(NULL)
+    return("codemetar has the highest opinion of this R package :-)")
   }
 
 
