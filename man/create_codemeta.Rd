@@ -5,8 +5,8 @@
 \title{create_codemeta}
 \usage{
 create_codemeta(pkg = ".", root = ".", id = NULL,
-  force_update = getOption("codemeta_force_update", TRUE), verbose = TRUE,
-  ...)
+  force_update = getOption("codemeta_force_update", TRUE),
+  verbose = TRUE, ...)
 }
 \arguments{
 \item{pkg}{package path to package root, or package name, or
