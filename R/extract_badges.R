@@ -61,7 +61,9 @@ extract_html_badges <- function(file_xml){
 #' @export
 #'
 #' @examples
-#' extract_badges(system.file("README.md", package = "codemetar"))
+#' \dontrun{
+#' extract_badges(system.file("examples/README_fakepackage.md", package="codemetar"))
+#' }
 extract_badges <- memoise::memoise(.extract_badges)
 
 
