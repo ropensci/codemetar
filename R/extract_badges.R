@@ -1,19 +1,53 @@
+parse_md_badge <- function(badge){
+  xml2::xml_contents(badge) %>%
+    .[xml2::xml_name(.) == "image"] -> image
 
-.extract_badges_txt <- function(txt) {
-  badges1 <- unlist(stringr::str_match_all(txt, "\\[!\\[\\]\\(.*?\\)\\]\\(.*?\\)"))
-  badges2 <- unlist(stringr::str_match_all(txt, "\\[!\\[.*?\\]\\(.*?\\)\\]\\(.*?\\)"))
+  tibble::tibble(text = xml2::xml_text(image),
+                 link = xml2::xml_attr(badge, "destination"),
+                 image_link = xml2::xml_attr(image, "destination"))
+}
 
-  md_badges <- c(badges1, badges2)
+extract_md_badges <- function(file_xml){
+  file_xml %>%
+    xml2::xml_find_all(".//d1:link[d1:image]", xml2::xml_ns(.)) %>%
+    purrr::map_df(parse_md_badge)
+}
 
-  md_badges <- unique(do.call(rbind,
-                 lapply(md_badges[!is.na(md_badges)], parse_md_badge)))
+parse_html_badge <- function(badge){
+  xml2::xml_contents(badge) %>%
+    .[xml2::xml_name(.) == "img"] -> image
 
-  html_badges <- unlist(stringr::str_match_all(txt,
-                                               '<a href.*?><img.*?>'))
+  tibble::tibble(text = xml2::xml_attr(image, "alt"),
+                 link = xml2::xml_attr(badge, "href"),
+                 image_link = xml2::xml_attr(image, "src"))
+}
 
-  html_badges <- unique(do.call(rbind,
-                                lapply(html_badges[!is.na(html_badges)],
-                                       parse_html_badge)))
+extract_html_badges <- function(file_xml){
+  file_xml %>%
+    xml2::xml_find_all(".//d1:html_block", xml2::xml_ns(.)) %>%
+    xml2::xml_text() %>%
+    xml2::read_html() -> html
+
+  if(is(html, "xml_node")){
+    html %>%
+      xml2::xml_find_all(".//table") %>%
+      xml2::xml_find_all(".//tbody") %>%
+      xml2::xml_find_all("//a") %>%
+      purrr::map_df(parse_html_badge)
+  }else{
+    NULL
+  }
+}
+
+.extract_badges <- function(path) {
+  file_xml <- path %>%
+    readLines() %>%
+    commonmark::markdown_xml(extensions = TRUE) %>%
+    xml2::read_xml()
+
+  md_badges <- extract_md_badges(file_xml)
+
+  html_badges <- extract_html_badges(file_xml)
 
   rbind(md_badges, html_badges)
 }
@@ -27,27 +61,9 @@
 #' @export
 #'
 #' @examples
-#' extract_badges(system.file("README.md", package = "codemetar"))
-extract_badges <- function(path) {
-  extract_badges_txt(paste(readLines(path), collapse = " "))
-}
+#' \dontrun{
+#' extract_badges(system.file("examples/README_fakepackage.md", package="codemetar"))
+#' }
+extract_badges <- memoise::memoise(.extract_badges)
 
-extract_badges_txt <- memoise::memoise(.extract_badges_txt)
 
-parse_md_badge <- function(badge){
-  text <- stringr::str_match(badge, "\\[!\\[(.*?)\\]")[,2]
-  link <- stringr::str_match(badge, "\\)\\]\\((.*?)\\)")[,2]
-  image_link <- stringr::str_match(badge, "\\]\\((.*?)\\)\\]")[,2]
-  tibble::tibble(text = text,
-                 link = link,
-                 image_link = image_link)
-}
-
-parse_html_badge <- function(badge){
-  text <- stringr::str_match(badge, 'alt=\\\"(.*?)\\\"')[,2]
-  link <- stringr::str_match(badge, 'href=\\\"(.*?)\\\"')[,2]
-  image_link <- stringr::str_match(badge, 'src=\\\"(.*?)\\\"')[,2]
-  tibble::tibble(text = text,
-                 link = link,
-                 image_link = image_link)
-}

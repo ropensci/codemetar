@@ -54,8 +54,8 @@ Authors:
 
 Other contributors:
 \itemize{
-  \item Anna Krystalli (0000-0002-2378-4915) [NA, contributor]
-  \item Toph Allen (0000-0003-4580-091X) [NA]
+  \item Anna Krystalli (0000-0002-2378-4915) [reviewer, contributor]
+  \item Toph Allen (0000-0003-4580-091X) [reviewer]
   \item rOpenSci (https://ropensci.org/) [funder]
   \item Katrin Leinweber (0000-0001-5135-5758) [contributor]
   \item Noam Ross (0000-0002-2136-0000) [contributor]
