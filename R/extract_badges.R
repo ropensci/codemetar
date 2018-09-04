@@ -24,13 +24,7 @@ parse_html_badge <- function(badge){
 
 extract_html_badges <- function(file_xml){
   file_xml %>%
-    xml2::xml_find_all(".//d1:html_block", xml2::xml_ns(.)) -> nodeset
-
-  if(length(nodeset) == 0){
-    return(NULL)
-  }
-
-  nodeset %>%
+    xml2::xml_find_all(".//d1:html_block", xml2::xml_ns(.)) %>%
     xml2::xml_text() %>%
     xml2::read_html() -> html
 
