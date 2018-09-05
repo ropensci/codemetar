@@ -11,7 +11,8 @@ parse_md_badge <- function(badge){
 extract_md_badges <- function(path){
   path %>%
     readLines() %>%
-    commonmark::markdown_xml(extensions = TRUE) %>%
+    commonmark::markdown_xml(extensions = TRUE)  %>%
+    gsub("[^\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]", "", .) %>%
     xml2::read_xml() %>%
     xml2::xml_find_all(".//d1:link[d1:image]", xml2::xml_ns(.)) %>%
     purrr::map_df(parse_md_badge)
