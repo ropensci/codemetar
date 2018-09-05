@@ -14,3 +14,10 @@ test_that("we can parse md and html badges", {
   badges <- extract_badges(f)
   testthat::expect_equal(nrow(badges), 5)
 })
+
+test_that("we can parse drake README html", {
+  skip_on_cran()
+  f <- "https://raw.githubusercontent.com/ropensci/drake/master/README.md"
+  badges <- extract_badges(f)
+  testthat::expect_true(nrow(badges) > 1)
+})

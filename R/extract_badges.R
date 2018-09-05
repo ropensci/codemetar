@@ -1,4 +1,5 @@
 parse_md_badge <- function(badge){
+
   xml2::xml_contents(badge) %>%
     .[xml2::xml_name(.) == "image"] -> image
 
@@ -7,8 +8,11 @@ parse_md_badge <- function(badge){
                  image_link = xml2::xml_attr(image, "destination"))
 }
 
-extract_md_badges <- function(file_xml){
-  file_xml %>%
+extract_md_badges <- function(path){
+  path %>%
+    readLines() %>%
+    commonmark::markdown_xml(extensions = TRUE) %>%
+    xml2::read_xml() %>%
     xml2::xml_find_all(".//d1:link[d1:image]", xml2::xml_ns(.)) %>%
     purrr::map_df(parse_md_badge)
 }
@@ -22,32 +26,39 @@ parse_html_badge <- function(badge){
                  image_link = xml2::xml_attr(image, "src"))
 }
 
-extract_html_badges <- function(file_xml){
-  file_xml %>%
-    xml2::xml_find_all(".//d1:html_block", xml2::xml_ns(.)) %>%
-    xml2::xml_text() %>%
-    xml2::read_html() -> html
+extract_html_badges <- function(path){
+  path %>%
+    readLines() -> doc
 
-  if(is(html, "xml_node")){
-    html %>%
-      xml2::xml_find_all(".//table") %>%
-      xml2::xml_find_all(".//tbody") %>%
-      xml2::xml_find_all("//a") %>%
-      purrr::map_df(parse_html_badge)
+  # assuming the badge tables is the 1st one
+  table_start <- which(stringr::str_detect(doc,
+                                           '\\<table class\\=\\"table\\"\\>'))[1]
+  table_end <- which(stringr::str_detect(doc,'\\<\\/table\\>'))[1]
+
+  if(all(!is.na(c(table_start,
+                  table_end)))){
+    doc[table_start:table_end] %>%
+      glue::glue_collapse() %>%
+      xml2::read_html() %>%
+      xml2::xml_find_all("//a") -> badges
+    if(length(badges) > 0){
+      purrr::map_df(badges, parse_html_badge)
+    }else{
+      NULL
+    }
+
   }else{
     NULL
   }
+
+
 }
 
 .extract_badges <- function(path) {
-  file_xml <- path %>%
-    readLines() %>%
-    commonmark::markdown_xml(extensions = TRUE) %>%
-    xml2::read_xml()
 
-  md_badges <- extract_md_badges(file_xml)
+  md_badges <- extract_md_badges(path)
 
-  html_badges <- extract_html_badges(file_xml)
+  html_badges <- extract_html_badges(path)
 
   rbind(md_badges, html_badges)
 }

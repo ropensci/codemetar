@@ -72,7 +72,8 @@ Imports:
     curl,
     commonmark,
     xml2,
-    magrittr
+    magrittr,
+    glue
 Suggests: 
     testthat,
     jsonvalidate,
