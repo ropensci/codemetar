@@ -10,7 +10,7 @@ parse_md_badge <- function(badge){
 
 extract_md_badges <- function(path){
   path %>%
-    readLines() %>%
+    readLines(encoding = "UTF-8") %>%
     commonmark::markdown_xml(extensions = TRUE)  %>%
     gsub("[^\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]", "", .) %>%
     xml2::read_xml() %>%
@@ -29,7 +29,7 @@ parse_html_badge <- function(badge){
 
 extract_html_badges <- function(path){
   path %>%
-    readLines() -> doc
+    readLines(encoding = "UTF-8") -> doc
 
   # assuming the badge tables is the 1st one
   table_start <- which(stringr::str_detect(doc,
