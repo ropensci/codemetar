@@ -86,6 +86,24 @@ test_that("guess_readme", {
   testthat::expect_is(guess_readme(find.package("jsonlite")), "list")
 })
 
+test_that("guess_readme() matches a single README file", {
+  candidates <- c("README.Rmd", "readme.md", "README.Rmd~", "DO_NOT_README.md")
+  dir.create(tempdir <- tempfile("README"))
+  file.create(file.path(tempdir, candidates))
+  ## match README.Rmd then readme.md (use non-memoised function here)
+  for (i in 1:2) {
+    matched_README <- .guess_readme(tempdir)$readme_path
+    expect_length(matched_README, 1)
+    expect_identical(matched_README, file.path(tempdir, candidates[i]))
+    unlink(matched_README)
+  }
+  ## match none of the remaining candidates
+  matched_README <- .guess_readme(tempdir)$readme_path
+  expect_null(matched_README)
+  unlink(tempdir)
+})
+
+
 test_that("guess_releaseNotes", {
 
   guess_releaseNotes(".")

@@ -174,8 +174,7 @@ guess_github <- function(root = ".") {
     readme_url <- NULL
   }
 
-  contents <- dir(root)
-  readmes <- contents[grepl("[Rr][Ee][Aa][Dd][Mm][Ee]\\.R?md", contents)]
+  readmes <- dir(root, pattern = "^README\\.R?md$", ignore.case = TRUE)
   if(length(readmes) == 0){
     readme_path <- NULL
   }else{
@@ -187,6 +186,10 @@ guess_github <- function(root = ".") {
     }
   }
 
+  if(length(readme_path) > 1) { # README.md and ReadMe.md could both exist ...
+    ## silently use the first match (locale-dependent)
+    readme_path <- readme_path[1]
+  }
 
   return(list(readme_path = readme_path,
               readme_url = readme_url))

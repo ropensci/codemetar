@@ -61,6 +61,7 @@ Other contributors:
   \item Noam Ross (0000-0002-2136-0000) [contributor]
   \item Arfon Smith [contributor]
   \item Jeroen Ooms (0000-0002-4035-0289) [contributor]
+  \item Sebastian Meyer (0000-0002-1791-9449) [contributor]
 }
 
 }
