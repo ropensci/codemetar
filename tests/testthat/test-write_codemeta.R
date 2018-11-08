@@ -8,23 +8,6 @@ testthat::test_that("we can write a codemeta document given a package name", {
 })
 
 
-
-
-
-## Not needed, covered by the git clone test, which also avoids the use of setwd
-#testthat::test_that("we can write a codemeta document from non-root dir", {
-#  cur <- getwd()
-#  setwd(tempdir())
-#
-#  write_codemeta("codemetar")
-#  testthat::expect_true(file.exists("codemeta.json"))
-#  unlink("codemeta.json")
-#  setwd(cur)
-
-#})
-
-
-
 testthat::test_that("We can read an existing codemeta.json file", {
   write_codemeta("codemetar")
   testthat::expect_true(file.exists("codemeta.json"))
@@ -46,7 +29,6 @@ testthat::test_that("We can use either a path or pkg name in writing", {
 })
 
 testthat::test_that("We can deduce relatedLink from installed pkg", {
-  skip_on_travis()
   skip_on_cran()
   usethis_cm <- create_codemeta(find.package("usethis"))
   testthat::expect_equal(usethis_cm$relatedLink,
