@@ -178,7 +178,7 @@ guess_github <- function(root = ".") {
   if(length(readmes) == 0){
     readme_path <- NULL
   }else{
-    readme_rmd <- readmes[grepl("\\.Rmd", readmes)]
+    readme_rmd <- readmes[grepl("\\.[Rr]md", readmes)]
     if(length(readme_rmd) == 0){
       readme_path <- file.path(root, readmes[grepl("\\.md", readmes)])
     }else{
