@@ -55,7 +55,7 @@ create_codemeta <- function(pkg = ".",
   }
   ## get information from DESCRIPTION
   cm <-
-    codemeta_description(file.path(root, "DESCRIPTION"), cm)
+    codemeta_description(file.path(root, "DESCRIPTION"), id = id, cm)
 
   ## Guess these only if not set in current codemeta
   if ((is.null(cm$codeRepository) & force_update)){
