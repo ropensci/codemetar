@@ -34,6 +34,23 @@ guess_devStatus <- function(readme) {
 }
 
 # looks for a rOpenSci peer review badge
+
+get_pkg_name <- function(entry){
+  if(is.null(entry$pkgname)){
+    ""
+  }else{
+    entry$pkgname
+  }
+}
+
+.ropensci_reviews <- function(){
+  reviews <-  jsonlite::read_json("https://badges.ropensci.org/json/onboarded.json")
+  reviews <- tibble::tibble(review = purrr::map_dbl(reviews, "iss_no"),
+                            package = purrr::map_chr(reviews, get_pkg_name))
+}
+
+ropensci_reviews <- memoise::memoise(.ropensci_reviews)
+
 guess_ropensci_review <- function(readme) {
   badges <- extract_badges(readme)
   badge <- badges[grepl("github.com/ropensci/onboarding/issues/", badges$link),]$link
@@ -41,22 +58,13 @@ guess_ropensci_review <- function(readme) {
     review <-
       gsub(".*https://github.com/ropensci/onboarding/issues/", "", badge)
     review <- as.numeric(review)
-    issue <- try(gh::gh("GET /repos/:owner/:repo/issues/:number",
-                        owner = "ropensci",
-                        repo = "onboarding",
-                        number = review),
-                 silent = TRUE)
-    if(inherits(issue, "try-error")){
-      stop("Invalid link to issue in rOpenSci peer-review badge.",
-           call. = FALSE)
-    }
-
-    if(issue$state == "closed"){
+    reviews <- ropensci_reviews()
+    if(review %in% reviews$review){
       list("@type" = "Review",
            "url" = paste0("https://github.com/ropensci/onboarding/issues/",
                           review),
            "provider" = "http://ropensci.org")
-    }else{
+    } else{
       NULL
     }
   } else {
