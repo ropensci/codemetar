@@ -60,13 +60,6 @@ testthat::test_that("guess_devStatus",{
   expect_equal(status, "https://www.tidyverse.org/lifecycle/#maturing")
 })
 
-testthat::test_that("guess_devStatus", {
-  ## function not implemented yet
-  f <- system.file("examples/codemeta.json", package="codemetar")
-  guess_orcids(f)
-})
-
-
 test_that("git utils", {
 
 
