@@ -1,5 +1,5 @@
 drop_null <- function(x){
-  x[lapply(x,length)!=0]
+  x[lengths(x) != 0]
 }
 
 
