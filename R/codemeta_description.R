@@ -15,7 +15,7 @@ new_codemeta <- function() {
 
 # Can add to an existing codemeta document
 codemeta_description <-
-  function(f, id = NULL, codemeta = new_codemeta()) {
+  function(f, codemeta = new_codemeta()) {
     if (file.exists(f)) {
       descr <- desc::desc(f)
     } else {
