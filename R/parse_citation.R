@@ -62,9 +62,6 @@ parse_citation <- function(bib){
   out
 }
 
-drop_null <- function(x){
-  x[lapply(x,length)!=0]
-}
 
 ## guessCitation referencePublication or citation?
 

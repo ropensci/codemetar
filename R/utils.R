@@ -1,3 +1,7 @@
+drop_null <- function(x){
+  x[lapply(x,length)!=0]
+}
+
 
 #' @importFrom utils installed.packages
 get_root_path <- function(pkg){
