@@ -49,6 +49,8 @@ add_github_topics <- function(cm){
   if(!inherits(topics, "try-error")){
     topics <- unlist(topics$names)
 
-    cm$keywords <- unique(c(cm$keywords, topics))}
-  cm
+    cm$keywords <- unique(c(cm$keywords, topics))
+  }
+
+  return(cm)
 }
