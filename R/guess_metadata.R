@@ -133,14 +133,16 @@ uses_git <- function(root) {
   !is.null(git2r::discover_repository(root, ceiling = 0))
 }
 
+
+remote_urls <- function (r) {
+  remotes <- git2r::remotes(r)
+  stats::setNames(git2r::remote_url(r, remotes), remotes)
+}
+
 guess_github <- function(root = ".") {
   ## from devtools
   # https://github.com/r-lib/devtools/blob/21fe55a912ca4eaa49ef5b7d891ff3e2aae7a370/R/git.R#L130
   # GPL>=2 code
-  remote_urls <- function (r) {
-    remotes <- git2r::remotes(r)
-    stats::setNames(git2r::remote_url(r, remotes), remotes)
-  }
 
   if (uses_git(root)) {
     r <- git2r::repository(root, discover = TRUE)
