@@ -1,7 +1,5 @@
 ## Methods that guess additional metadata fields based on README badges and related information
 
-
-
 ## cache avail packages
 .CRAN <- function(){
   utils::available.packages(
@@ -120,12 +118,6 @@ guess_ropensci_review <- function(readme) {
 }
 
 
-## use rorcid / ORCID API to infer ORCID ID from name?
-## (Can't use email since only 2% of ORCID users expose email)
-## Also can get Affiliation from ORCID search
-guess_orcids <- function(codemeta) {
-  NULL
-}
 
 # from devtools https://github.com/r-lib/devtools/blob/21fe55a912ca4eaa49ef5b7d891ff3e2aae7a370/R/git.R#L1
 # GPL>=2 code
