@@ -146,28 +146,29 @@ guess_github <- function(root = ".") {
   }
 }
 
-### Consider: guess_releastNotes() (NEWS), guess_readme()
+# find the readme
 
-.guess_readme <- function(root = ".") {
-  ## point to GitHub page
+guess_readme_url <- function(root){
   if (uses_git(root)) {
     github <- guess_github(root)
     github <- gsub(".*com\\/", "", github)
     github <- strsplit(github, "/")[[1]]
     readme <- try(gh::gh("GET /repos/:owner/:repo/readme",
-                     owner = github[1], repo = github[2]),
+                         owner = github[1], repo = github[2]),
                   silent = TRUE)
     if(inherits(readme, "try-error")){
       readme_url <- NULL
     }else{
-      readme_url <- readme$html_url
+      readme$html_url
     }
 
 
   } else{
-    readme_url <- NULL
+    NULL
   }
+}
 
+guess_readme_path <- function(root){
   readmes <- dir(root, pattern = "^README\\.R?md$", ignore.case = TRUE)
   if(length(readmes) == 0){
     readme_path <- NULL
@@ -184,6 +185,15 @@ guess_github <- function(root = ".") {
     ## silently use the first match (locale-dependent)
     readme_path <- readme_path[1]
   }
+
+  return(readme_path)
+}
+
+.guess_readme <- function(root = ".") {
+
+  readme_url <- guess_readme_url(root)
+
+  readme_path <- guess_readme_path(root)
 
   return(list(readme_path = readme_path,
               readme_url = readme_url))
