@@ -1,15 +1,51 @@
-## Internal functions
-
-
-## this appears not to be portable to devtools::check?
-#options(codemeta_context =
-#  "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld")
-
 options(codemeta_context = "https://doi.org/10.5063/schema/codemeta-2.0")
 ## Supporting old versions will be a nuciance
 new_codemeta <- function() {
   list(`@context` = getOption("codemeta_context","https://doi.org/10.5063/schema/codemeta-2.0"),
        `@type` = "SoftwareSourceCode")
+}
+
+# Additional codemeta terms
+additional_codemeta_terms <- function(){
+  c("affiliation",
+    "applicationCategory",
+    "applicationSubCategory",
+    "copyrightYear",
+    "dateCreated",
+    "dateModified",
+    "downloadUrl",
+    "editor",
+    "fileSize",
+    "funder",
+    "identifier",
+    "installUrl",
+    "isAccessibleForFree",
+    "isPartOf",
+    "keywords",
+    "memoryRequirements",
+    "operatingSystem",
+    "permissions",
+    "processorRequirements",
+    "producer",
+    "provider",
+    "publisher",
+    "funding",
+    "relatedLink",
+    "releaseNotes",
+    "sameAs",
+    "softwareHelp",
+    "sponsor",
+    "storageRequirements",
+    "supportingData",
+    "targetProduct",
+    "contIntegration",
+    "buildInstructions",
+    "developmentStatus",
+    "embargoDate",
+    "readme",
+    "issueTracker",
+    "referencePublication"
+  )
 }
 
 
@@ -131,7 +167,7 @@ codemeta_description <-
 
     ## add any additional codemeta terms found in the DESCRIPTION metadata
 
-    for(term in additional_codemeta_terms){
+    for(term in additional_codemeta_terms()){
       ## in DESCRIPTION, these terms must be *prefixed*:
       X_term <- paste0("X-schema.org-", term)
       if(!is.na(descr$get(X_term))){
@@ -143,49 +179,3 @@ codemeta_description <-
     codemeta
 
   }
-
-
-
-additional_codemeta_terms <-
-  c("affiliation",
-    "applicationCategory",
-    "applicationSubCategory",
-    "copyrightYear",
-    "dateCreated",
-    "dateModified",
-    "downloadUrl",
-    "editor",
-    "fileSize",
-    "funder",
-    "identifier",
-    "installUrl",
-    "isAccessibleForFree",
-    "isPartOf",
-    "keywords",
-    "memoryRequirements",
-    "operatingSystem",
-    "permissions",
-    "processorRequirements",
-    "producer",
-    "provider",
-    "publisher",
-    "funding",
-    "relatedLink",
-    "releaseNotes",
-    "sameAs",
-    "softwareHelp",
-    "sponsor",
-    "storageRequirements",
-    "supportingData",
-    "targetProduct",
-    "contIntegration",
-    "buildInstructions",
-    "developmentStatus",
-    "embargoDate",
-    "readme",
-    "issueTracker",
-    "referencePublication"
-  )
-
-
-
