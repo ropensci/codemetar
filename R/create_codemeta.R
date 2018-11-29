@@ -6,6 +6,9 @@
 #' than writing directly to a file.  See examples.
 #'
 #' @inheritParams write_codemeta
+#' @param auth_token Github token (default: getOption("github_token"))
+#' to increase Github`s API rate limit. Request a Github token at
+#' https://github.com/settings/tokens
 #' @return a codemeta list object
 #' @export
 #' @examples
@@ -20,6 +23,7 @@ create_codemeta <- function(pkg = ".",
                             force_update =
                               getOption("codemeta_force_update", TRUE),
                             verbose = TRUE,
+                            auth_token = getOption("github_token"),
                             ...) {
   ## looks like we got a package name/path or Description file
   if (is.character(pkg)) {
@@ -82,7 +86,7 @@ create_codemeta <- function(pkg = ".",
 
   ## If code repo is GitHub
   if(grepl("github.com\\/.*\\/.*", cm$codeRepository)){
-    cm <- add_github_topics(cm)
+    cm <- add_github_topics(cm, auth_token)
   }
 
   ## Citation metadata

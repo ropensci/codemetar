@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -36,6 +38,7 @@ codemeta object and write it out to a JSON-LD-formatted file in one command.
 It can also be used simply to write out to JSON-LD any existing object
 created with create_codemeta()." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -137,9 +140,9 @@ created with create_codemeta().</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>write_codemeta</span>(<span class='kw'>pkg</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"codemeta.json"</span>, <span class='kw'>root</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>force_update</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"codemeta_force_update"</span>, <span class='fl'>TRUE</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>write_codemeta</span>(<span class='kw'>pkg</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"codemeta.json"</span>, <span class='kw'>root</span> <span class='kw'>=</span> <span class='st'>"."</span>,
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>force_update</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"codemeta_force_update"</span>, <span class='fl'>TRUE</span>),
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -194,9 +197,7 @@ project uses git, adds a pre-commit hook ensuring that if DESCRIPTION changes,
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>write_codemeta</span>(<span class='st'>"codemetar"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"example_codemetar_codemeta.json"</span>)
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>write_codemeta</span>(<span class='st'>"codemetar"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"example_codemetar_codemeta.json"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

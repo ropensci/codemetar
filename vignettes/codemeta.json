@@ -12,10 +12,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.0",
+    "version": "3.5.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.0 (2018-04-23)",
+  "runtimePlatform": "R version 3.5.1 (2018-07-02)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -58,12 +58,19 @@
     {
       "@type": "Person",
       "givenName": "Noam",
-      "familyName": "Ross"
+      "familyName": "Ross",
+      "@id": "https://orcid.org/0000-0002-2136-0000"
     },
     {
       "@type": "Person",
       "givenName": "Arfon",
       "familyName": "Smith"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Jeroen",
+      "familyName": "Ooms",
+      "@id": "https://orcid.org/0000-0002-4035-0289"
     }
   ],
   "copyrightHolder": [
@@ -410,8 +417,20 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "curl",
+      "name": "curl",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=curl"
     }
   ],
   "isPartOf": "https://ropensci.org",
-  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data"]
+  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"]
 }

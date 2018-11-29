@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -32,6 +34,7 @@
 
 <meta property="og:description" content="Extract all badges from Markdown file" />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -148,12 +151,12 @@ its image.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>extract_badges</span>(<span class='fu'>system.file</span>(<span class='st'>"README.md"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"codemetar"</span>))</div><div class='output co'>#&gt; # A tibble: 4 x 3
-#&gt;   text                    link                     image_link                  
-#&gt;   &lt;chr&gt;                   &lt;chr&gt;                    &lt;chr&gt;                       
-#&gt; 1 ""                      https://github.com/rope… http://badges.ropensci.org/…
-#&gt; 2 "CRAN\\_Status\\_Badge" https://cran.r-project.… http://www.r-pkg.org/badges…
-#&gt; 3 DOI                     https://zenodo.org/badg… https://zenodo.org/badge/86…
-#&gt; 4 "ropensci\\_footer"     https://ropensci.org     https://ropensci.org/public…</div></pre>
+#&gt;   text            link                         image_link                      
+#&gt;   &lt;chr&gt;           &lt;chr&gt;                        &lt;chr&gt;                           
+#&gt; 1 ""              https://github.com/ropensci~ http://badges.ropensci.org/130_~
+#&gt; 2 "CRAN\\_Status~ https://cran.r-project.org/~ http://www.r-pkg.org/badges/ver~
+#&gt; 3 DOI             https://zenodo.org/badge/la~ https://zenodo.org/badge/866260~
+#&gt; 4 "ropensci\\_fo~ https://ropensci.org         https://ropensci.org/public_ima~</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

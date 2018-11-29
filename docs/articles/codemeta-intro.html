@@ -8,8 +8,8 @@
 <title>Codemeta intro • codemetar</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><meta property="og:title" content="Codemeta intro">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Codemeta intro">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -91,7 +91,7 @@
       <h1>Codemeta intro</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2018-05-03</h4>
+            <h4 class="date">2018-11-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/codemetar/blob/master/vignettes/codemeta-intro.Rmd"><code>vignettes/codemeta-intro.Rmd</code></a></small>
       <div class="hidden name"><code>codemeta-intro.Rmd</code></div>
@@ -129,7 +129,7 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install codemetar from github with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"codemeta/codemetar"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"codemeta/codemetar"</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(<span class="st">"codemetar"</span>)</a></code></pre></div>
 </div>
 <div id="example" class="section level2">
@@ -153,10 +153,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.0",
+    "version": "3.5.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.0 (2018-04-23)",
+  "runtimePlatform": "R version 3.5.1 (2018-07-02)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -173,7 +173,7 @@
     },
     {
       "@type": "Person",
-      "givenName": "Maëlle",
+      "givenName": "MaÃ«lle",
       "familyName": "Salmon",
       "@id": "https://orcid.org/0000-0002-2815-0399"
     }
@@ -187,7 +187,7 @@
     },
     {
       "@type": "Person",
-      "givenName": "Maëlle",
+      "givenName": "MaÃ«lle",
       "familyName": "Salmon",
       "@id": "https://orcid.org/0000-0002-2815-0399"
     },
@@ -199,12 +199,19 @@
     {
       "@type": "Person",
       "givenName": "Noam",
-      "familyName": "Ross"
+      "familyName": "Ross",
+      "@id": "https://orcid.org/0000-0002-2136-0000"
     },
     {
       "@type": "Person",
       "givenName": "Arfon",
       "familyName": "Smith"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Jeroen",
+      "familyName": "Ooms",
+      "@id": "https://orcid.org/0000-0002-4035-0289"
     }
   ],
   "copyrightHolder": [
@@ -551,10 +558,22 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "curl",
+      "name": "curl",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=curl"
     }
   ],
   "isPartOf": "https://ropensci.org",
-  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data"]
+  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"]
 }</code></pre>
 </div>
 <div id="modifying-or-enriching-codemeta-metadata" class="section level2">

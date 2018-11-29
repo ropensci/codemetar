@@ -87,7 +87,8 @@ guess_devStatus <- function(readme) {
 }
 
 # looks for a rOpenSci peer review badge
-guess_ropensci_review <- function(readme) {
+guess_ropensci_review <- function(readme,
+                                  auth_token = getOption("github_token")) {
     badges <- extract_badges(readme)
     badge <- badges[grepl("github.com/ropensci/onboarding/issues/", badges$link),]$link
     if (length(badge) >= 1) {
@@ -97,7 +98,8 @@ guess_ropensci_review <- function(readme) {
       issue <- gh::gh("GET /repos/:owner/:repo/issues/:number",
                       owner = "ropensci",
                       repo = "onboarding",
-                      number = review)
+                      number = review,
+                      .token = auth_token)
       if(issue$state == "closed"){
         list("@type" = "Review",
              "url" = paste0("https://github.com/ropensci/onboarding/issues/",
@@ -148,14 +150,16 @@ guess_github <- function(root = ".") {
 
 ### Consider: guess_releastNotes() (NEWS), guess_readme()
 
-.guess_readme <- function(root = ".") {
+.guess_readme <- function(root = ".",
+                          auth_token = getOption("github_token")) {
   ## point to GitHub page
   if (uses_git(root)) {
     github <- guess_github(root)
     github <- gsub(".*com\\/", "", github)
     github <- strsplit(github, "/")[[1]]
     readme <- try(gh::gh("GET /repos/:owner/:repo/readme",
-                     owner = github[1], repo = github[2]),
+                     owner = github[1], repo = github[2],
+                     .token = auth_token),
                   silent = TRUE)
     if(inherits(readme, "try-error")){
       readme_url <- NULL
@@ -241,7 +245,7 @@ guess_fileSize <- function(root = ".") {
 }
 
 # add GitHub topics
-add_github_topics <- function(cm){
+add_github_topics <- function(cm, auth_token = getOption("github_token")){
   github <- stringr::str_remove(cm$codeRepository, ".*github\\.com\\/")
   github <- stringr::str_remove(github, "#.*")
   github <- stringr::str_split(github, "/")[[1]]
@@ -250,6 +254,7 @@ add_github_topics <- function(cm){
 
   topics <- gh::gh("GET /repos/:owner/:repo/topics",
                    repo = repo, owner = owner,
+                   .token = auth_token,
                    .send_headers = c(Accept = "application/vnd.github.mercy-preview+json"))
   topics <- unlist(topics$names)
 

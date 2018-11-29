@@ -4,9 +4,9 @@
 \alias{write_codemeta}
 \title{write_codemeta}
 \usage{
-write_codemeta(pkg = ".", path = "codemeta.json", root = ".", id = NULL,
-  force_update = getOption("codemeta_force_update", TRUE), verbose = TRUE,
-  ...)
+write_codemeta(pkg = ".", path = "codemeta.json", root = ".",
+  id = NULL, force_update = getOption("codemeta_force_update", TRUE),
+  verbose = TRUE, ...)
 }
 \arguments{
 \item{pkg}{package path to package root, or package name, or

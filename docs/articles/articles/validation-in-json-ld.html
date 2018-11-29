@@ -8,8 +8,8 @@
 <title>Validation in JSON-LD • codemetar</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
-<script src="../../jquery.sticky-kit.min.js"></script><script src="../../pkgdown.js"></script><meta property="og:title" content="Validation in JSON-LD">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
+<script src="../../pkgdown.js"></script><meta property="og:title" content="Validation in JSON-LD">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -91,7 +91,7 @@
       <h1>Validation in JSON-LD</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2018-05-03</h4>
+            <h4 class="date">2018-11-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/codemetar/blob/master/vignettes/articles/validation-in-json-ld.Rmd"><code>vignettes/articles/validation-in-json-ld.Rmd</code></a></small>
       <div class="hidden name"><code>validation-in-json-ld.Rmd</code></div>
@@ -168,8 +168,8 @@
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="st">}'</span></a>
 <a class="sourceLine" id="cb5-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb5-9" data-line-number="9">meta &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(codemeta, frame)  <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">  </span><span class="kw">jsonld_frame</span>(codemeta, frame)  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="st">  </span><span class="kw">fromJSON</span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb5-12" data-line-number="12"><span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) </a>
 <a class="sourceLine" id="cb5-13" data-line-number="13"></a>
 <a class="sourceLine" id="cb5-14" data-line-number="14">meta[[<span class="dv">1</span>]]</a></code></pre></div>
@@ -190,7 +190,7 @@ $givenName
 <h2 class="hasAnchor">
 <a href="#framing-expanding-node-references" class="anchor"></a>Framing: expanding node references</h2>
 <p>The same underlying data can often be expressed in different ways, particularly when dealing with nested data. Framing can be of great help here to reshape the data into the structure required by the application. For instance, it would be natural to access the <code>email</code> of the <code>maintainer</code> in the same manner we did the author, but this fails for our example as <code>maintainer</code> is defined only by reference to an ID:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">meta &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) </a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">meta &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) </a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">paste</span>(<span class="st">"For complaints, email"</span>, meta<span class="op">$</span>maintainer<span class="op">$</span>email)</a></code></pre></div>
 <pre><code>[1] "For complaints, email "</code></pre>
 <p>We can confirm that <code>maintainer</code> is just an ID:</p>
@@ -205,8 +205,8 @@ $givenName
 <a class="sourceLine" id="cb11-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb11-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb11-7" data-line-number="7">meta &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(codemeta, frame) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="st">  </span><span class="kw">jsonld_frame</span>(codemeta, frame) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="st">  </span><span class="kw">fromJSON</span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb11-10" data-line-number="10"><span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)</a></code></pre></div>
 <p>Now we can do</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">paste</span>(<span class="st">"For complaints, email"</span>, meta<span class="op">$</span>maintainer<span class="op">$</span>email)</a></code></pre></div>
@@ -231,27 +231,23 @@ $givenName
 <a class="sourceLine" id="cb14-12" data-line-number="12"><span class="st">'</span></a></code></pre></div>
 <p>When we perform a framing or compaction operation, <code>buildInstructions</code> gets de-referenced to <code>codemeta:buildInstructions</code>, because it does not match the context. This means that if our application asks for <code>meta$buildInstructions</code>:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">meta &lt;-</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(codemeta, <span class="st">'{"@context": "https://purl.org/codemeta/2.0"}'</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st">  </span></a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)    </a>
-<a class="sourceLine" id="cb15-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb15-6" data-line-number="6">## above is same as compacting:</a>
-<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="co">#jsonld_compact(codemeta, "https://doi.org/10.5063/schema/codemeta-2.0") %&gt;% </span></a>
-<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="co">#  fromJSON(codemeta, simplifyVector = FALSE)</span></a>
-<a class="sourceLine" id="cb15-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb15-10" data-line-number="10">meta<span class="op">$</span>buildInstructions</a></code></pre></div>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">jsonld_frame</span>(codemeta, <span class="st">'{"@context": "https://purl.org/codemeta/2.0"}'</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">fromJSON</span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)    </a></code></pre></div>
+<pre><code>Error in context_eval(join(src), private$context): jsonld.InvalidUrl: Dereferencing a URL did not result in a valid JSON-LD object. Possible causes are an inaccessible URL perhaps due to a same-origin policy (ensure the server uses CORS if you are using client-side JavaScript), too many redirects, a non-JSON response, or more than one HTTP Link Header was provided for a remote context.</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">## above is same as compacting:</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="co">#jsonld_compact(codemeta, "https://doi.org/10.5063/schema/codemeta-2.0") %&gt;% </span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="co">#  fromJSON(codemeta, simplifyVector = FALSE)</span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5">meta<span class="op">$</span>buildInstructions</a></code></pre></div>
 <pre><code>NULL</code></pre>
 <p>We just get <code>NULL</code>, rather than some unexpected type of object (e.g. a string that is not a URL.) Note that the data is not lost, but simply not dereferenced:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">names</span>(meta)</a></code></pre></div>
-<pre><code>[1] "id"                         "type"                      
-[3] "name"                       "codemeta:buildInstructions"</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">meta[<span class="st">"codemeta:buildInstructions"</span>]</a></code></pre></div>
-<pre><code>$`codemeta:buildInstructions`
-$`codemeta:buildInstructions`$type
-[1] "Text"
-
-$`codemeta:buildInstructions`$`@value`
-[1] "Just install this package using devtools::install_github"</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">names</span>(meta)</a></code></pre></div>
+<pre><code>[1] "type"          "author"        "datePublished" "name"         
+[5] "version"       "maintainer"   </code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">meta[<span class="st">"codemeta:buildInstructions"</span>]</a></code></pre></div>
+<pre><code>$&lt;NA&gt;
+NULL</code></pre>
 <p>Note that this behavior only happens because the data declared the <code>"@type": "Text"</code> explicitly. JSON-LD algorithms only believe what they are told about type and only look for consistency in declared types. If you give text but declare it as a <code>"@type": "URL"</code>, or don’t declare the type at all, JSON-LD algorithms won’t know anything is amiss and the property will be compacted as usual.</p>
 </div>
   </div>
