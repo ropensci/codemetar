@@ -95,11 +95,17 @@ guess_ropensci_review <- function(readme,
       review <-
         gsub(".*https://github.com/ropensci/onboarding/issues/", "", badge)
       review <- as.numeric(review)
-      issue <- gh::gh("GET /repos/:owner/:repo/issues/:number",
+      issue <- try(gh::gh("GET /repos/:owner/:repo/issues/:number",
                       owner = "ropensci",
                       repo = "onboarding",
                       number = review,
-                      .token = auth_token)
+                      .token = auth_token),
+                   silent = TRUE)
+
+      if(inherits(issue, "try-error")){
+        issue <- NULL
+      } else{
+
       if(issue$state == "closed"){
         list("@type" = "Review",
              "url" = paste0("https://github.com/ropensci/onboarding/issues/",
@@ -108,7 +114,7 @@ guess_ropensci_review <- function(readme,
       }else{
         NULL
       }
-    } else {
+    }} else {
       NULL
     }
 
@@ -252,12 +258,19 @@ add_github_topics <- function(cm, auth_token = getOption("github_token")){
   owner <- github[1]
   repo <- github[2]
 
-  topics <- gh::gh("GET /repos/:owner/:repo/topics",
+  topics <- try(gh::gh("GET /repos/:owner/:repo/topics",
                    repo = repo, owner = owner,
                    .token = auth_token,
-                   .send_headers = c(Accept = "application/vnd.github.mercy-preview+json"))
+                   .send_headers = c(Accept = "application/vnd.github.mercy-preview+json")),
+                silent = TRUE)
+
+  if(inherits(topics, "try-error")){
+    topics <- NULL
+  } else{
+
   topics <- unlist(topics$names)
 
   cm$keywords <- unique(c(cm$keywords, topics))
   cm
+ }
 }
