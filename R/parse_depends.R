@@ -30,7 +30,8 @@ format_depend <- function(package, version, remote_provider){
   }
 
   if(remote_provider != ""){
-      dep$sameAs <- paste0("https://github.com/", remote_provider)
+    dep$sameAs <- paste0("https://github.com/",
+                         stringr::str_replace(remote_provider, "github::"))
   }
 
   return(dep)
