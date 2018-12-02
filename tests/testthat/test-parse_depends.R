@@ -34,6 +34,30 @@ testthat::test_that("Test the various cases for dependencies", {
 
 })
 
+test_that("get_sameAs() works as expected", {
+
+  expect_null(get_sameAs(NULL, "", "my_package"))
+
+  expect_error(get_sameAs("unknown", "", "my_package"))
+
+  expect_null(get_sameAs(list(name = "unknown"), "", "my_package"))
+
+  provider_1 <- list(name = "Comprehensive R Archive Network (CRAN)")
+  provider_2 <- list(name = "BioConductor")
+
+  url_1 <- "https://CRAN.R-project.org/package=my_package"
+  url_2 <- "https://bioconductor.org/packages/release/bioc/html/my_package.html"
+  url_3 <- "https://github.com/my_remote_package"
+
+  expect_equal(url_1, get_sameAs(provider_1, "", "my_package"))
+  expect_equal(url_2, get_sameAs(provider_2, "", "my_package"))
+
+  expect_equal(url_3, get_sameAs(NULL, "my_remote_package"))
+  expect_equal(url_3, get_sameAs("does_not_matter", "my_remote_package"))
+  expect_equal(url_3, get_sameAs(NULL, "my_remote_package", "does_not_matter"))
+  expect_equal(url_3, get_sameAs(NULL, "github::my_remote_package"))
+})
+
 testthat::test_that("Test the various cases for ids (NOT used currently)", {
 
   # a <- guess_dep_id(parse_depends("a4")[[1]])  # BIOC provider
