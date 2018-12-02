@@ -20,33 +20,44 @@ format_depend <- function(package, version, remote_provider) {
   ## implemention could be better, e.g. support versioning
   #  dep$`@id` <- guess_dep_id(dep)
 
-  # CRAN canonical URL
-  if (! is.null(dep$provider)) {
+  sameAs <- get_sameAs(dep$provider, remote_provider, dep$identifier)
 
-    if (dep$provider$name == "Comprehensive R Archive Network (CRAN)") {
+  if (! is.null(sameAs)) {
 
-      dep$sameAs <- paste0(
-        "https://CRAN.R-project.org/package=", dep$identifier
-      )
-
-    } else {
-
-      if (dep$provider$name == "BioConductor") {
-
-        dep$sameAs <- paste0(
-          "https://bioconductor.org/packages/release/bioc/html/",
-          dep$identifier, ".html"
-        )
-      }
-    }
-  }
-
-  if (remote_provider != "") {
-
-    dep$sameAs <- paste0("https://github.com/", remote_provider)
+    dep$sameAs <- sameAs
   }
 
   return(dep)
+}
+
+## Get sameAs element for dep or NULL if not applicable
+get_sameAs <- function(provider, remote_provider, identifier) {
+
+  # CRAN canonical URL
+  result <- if (! is.null(provider)) {
+
+    if (provider$name == "Comprehensive R Archive Network (CRAN)") {
+
+      paste0("https://CRAN.R-project.org/package=", identifier)
+
+    } else if (provider$name == "BioConductor") {
+
+      paste0(
+        "https://bioconductor.org/packages/release/bioc/html/",
+        identifier, ".html"
+      )
+
+    } # else NULL implicitly
+
+  } # else NULL implicitly
+
+  # Overwrite result if remote_provider is given
+  if (remote_provider != "") {
+
+    result <- paste0("https://github.com/", remote_provider)
+  }
+
+  result
 }
 
 
