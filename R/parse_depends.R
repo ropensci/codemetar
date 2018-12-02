@@ -100,16 +100,9 @@ guess_dep_id <- function(dep) {
 
 add_remote_to_dep <- function(package, remotes) {
 
-  remote_provider <- remotes[grepl(paste0("/", package, "$"), remotes)]
+  remote_providers <- grep(paste0("/", package, "$"), remotes, value = TRUE)
 
-  if (length(remote_provider) == 0) {
-
-    ""
-
-  } else {
-
-    remote_provider
-  }
+  if (length(remote_providers)) remote_providers else ""
 }
 
 
