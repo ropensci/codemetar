@@ -43,19 +43,16 @@ get_sameAs <- function(provider, remote_provider, identifier) {
       "https://github.com/%s"
   )
 
-  result <- if (! is.null(provider) && provider$name %in% names(urls)) {
-
-      sprintf(urls[provider$name], identifier)
-
-  } # else NULL implicitly
-
-  # Overwrite result if remote_provider is given
+  # The remote provider takes precedence over the non-remote provider
   if (remote_provider != "") {
 
-    result <- sprintf(urls["_GITHUB_"], remote_provider)
-  }
+    sprintf(urls["_GITHUB_"], remote_provider)
 
-  result
+  } else if (! is.null(provider) && provider$name %in% names(urls)) {
+
+    sprintf(urls[provider$name], identifier)
+
+  } # else NULL implicitly
 }
 
 
