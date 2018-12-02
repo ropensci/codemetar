@@ -34,27 +34,25 @@ format_depend <- function(package, version, remote_provider) {
 get_sameAs <- function(provider, remote_provider, identifier) {
 
   # CRAN canonical URL
-  result <- if (! is.null(provider)) {
+  urls <- c(
+    "Comprehensive R Archive Network (CRAN)" =
+      "https://CRAN.R-project.org/package=%s",
+    "BioConductor" =
+      "https://bioconductor.org/packages/release/bioc/html/%s.html",
+    "_GITHUB_" =
+      "https://github.com/%s"
+  )
 
-    if (provider$name == "Comprehensive R Archive Network (CRAN)") {
+  result <- if (! is.null(provider) && provider$name %in% names(urls)) {
 
-      sprintf("https://CRAN.R-project.org/package=%s", identifier)
-
-    } else if (provider$name == "BioConductor") {
-
-      sprintf(
-        "https://bioconductor.org/packages/release/bioc/html/%s.html",
-        identifier
-      )
-
-    } # else NULL implicitly
+      sprintf(urls[provider$name], identifier)
 
   } # else NULL implicitly
 
   # Overwrite result if remote_provider is given
   if (remote_provider != "") {
 
-    result <- sprintf("https://github.com/%s", remote_provider)
+    result <- sprintf(urls["_GITHUB_"], remote_provider)
   }
 
   result
