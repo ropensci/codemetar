@@ -38,13 +38,13 @@ get_sameAs <- function(provider, remote_provider, identifier) {
 
     if (provider$name == "Comprehensive R Archive Network (CRAN)") {
 
-      paste0("https://CRAN.R-project.org/package=", identifier)
+      sprintf("https://CRAN.R-project.org/package=%s", identifier)
 
     } else if (provider$name == "BioConductor") {
 
-      paste0(
-        "https://bioconductor.org/packages/release/bioc/html/",
-        identifier, ".html"
+      sprintf(
+        "https://bioconductor.org/packages/release/bioc/html/%s.html",
+        identifier
       )
 
     } # else NULL implicitly
@@ -54,7 +54,7 @@ get_sameAs <- function(provider, remote_provider, identifier) {
   # Overwrite result if remote_provider is given
   if (remote_provider != "") {
 
-    result <- paste0("https://github.com/", remote_provider)
+    result <- sprintf("https://github.com/%s", remote_provider)
   }
 
   result
