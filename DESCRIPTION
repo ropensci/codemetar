@@ -41,7 +41,12 @@ Authors@R:
       person(given = "Sebastian",
              family = "Meyer",
              role = "ctb",
-             comment = c(ORCID = "0000-0002-1791-9449")))
+             comment = c(ORCID = "0000-0002-1791-9449")),
+      person(given = "Michael",
+             family = "Rustler",
+             role = "ctb",
+             comment = c(ORCID = "0000-0003-0647-7726"))
+             )
 Description: The 'Codemeta' Project defines a 'JSON-LD' format for describing
   software metadata, as detailed at <https://codemeta.github.io>. This package
   provides utilities to generate, parse, and modify 'codemeta.json' files 
