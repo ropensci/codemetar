@@ -32,10 +32,16 @@ guess_fileSize <- function(root = ".") {
     return(NULL)
   } else {
     f <-
-      pkgbuild::build(root,
+      try(pkgbuild::build(root,
                       vignettes = FALSE,
                       manual = FALSE,
-                      quiet = TRUE)
-    paste0(file.size(f) / 1e3, "KB")
+                      quiet = TRUE),
+          silent = TRUE)
+    if(inherits(f, "try-error")){
+      return(NULL)
+    }else{
+      return(paste0(file.size(f) / 1e3, "KB"))
+    }
+
   }
 }
