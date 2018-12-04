@@ -167,7 +167,10 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
   codemeta <- add_software_terms(codemeta, descr)
 
   ## add any additional codemeta terms defined in found in the DESCRIPTION metadata
-  add_additional_terms(codemeta, descr)
+  codemeta <- add_additional_terms(codemeta, descr)
+
+  # return codemeta
+  codemeta
 }
 
 
