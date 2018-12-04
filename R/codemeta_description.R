@@ -181,10 +181,8 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
 
   codemeta$softwareSuggestions <- parse_depends(suggests)
 
-  codemeta$softwareRequirements <- parse_depends(requirements)
-
   codemeta$softwareRequirements <- c(
-    codemeta$softwareRequirements,
+    parse_depends(requirements),
     parse_sys_reqs(package_name, descr$get("SystemRequirements"))
   )
 
