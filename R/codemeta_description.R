@@ -142,6 +142,22 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
     codemeta$provider <- guess_provider(package_name)
   }
 
+  ## add person related terms
+  codemeta <- add_person_terms(codemeta, descr)
+
+  ## add software related terms: softwareSuggestions, softwareRequirements
+  codemeta <- add_software_terms(codemeta, descr)
+
+  ## add any additional codemeta terms found in the DESCRIPTION metadata
+  codemeta <- add_additional_terms(codemeta, descr)
+
+  # return codemeta
+  codemeta
+}
+
+
+add_person_terms <- function(codemeta, descr) {
+
   author <- try(descr$get_authors(), silent = TRUE)
 
   if (! inherits(author,'try-error')) {
@@ -153,23 +169,21 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
     # get author and maintainer from their fields
     # and don't get maintainer twice!
     author <- as.person(descr$get("Author"))
+
     maintainer <- descr$get_maintainer()
     maintainer <- as.person(paste(maintainer))
     maintainer$role <- "cre"
+
     author_strings <- paste(author$given, author$family)
     maintainer_strings <- paste(maintainer$given, maintainer$family)
+
     author <- author[! author_strings %in% maintainer_strings]
+
     author <- c(author, maintainer)
+
     codemeta <- parse_people(author, codemeta)
   }
 
-  ## add software related terms: softwareSuggestions, softwareRequirements
-  codemeta <- add_software_terms(codemeta, descr)
-
-  ## add any additional codemeta terms defined in found in the DESCRIPTION metadata
-  codemeta <- add_additional_terms(codemeta, descr)
-
-  # return codemeta
   codemeta
 }
 
