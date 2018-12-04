@@ -189,17 +189,23 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
   )
 
   ## add any additional codemeta terms found in the DESCRIPTION metadata
+  add_additional_terms(codemeta, descr)
+}
 
-  for (term in additional_codemeta_terms()) {
 
-    ## in DESCRIPTION, these terms must be *prefixed*:
-    X_term <- paste0("X-schema.org-", term)
+add_additional_terms <- function(codemeta, descr)
+{
+  ## in DESCRIPTION, these terms must be *prefixed*:
+  x_terms <- paste0("X-schema.org-", (terms <- additional_codemeta_terms()))
 
-    if (! is.na(descr$get(X_term))) {
+  ## Which terms are given in DESCRIPTION, which are not?
+  is_given <- sapply(x_terms, function(x) ! is.na(descr$get(x)))
 
-      codemeta[[term]] <- gsub("\\s+", "", strsplit(descr$get(X_term), ",")[[1]])
-    }
-  }
+  ## Get the first elements of the given x-terms and set the corresponding
+  ## elements in codemeta
+  codemeta[terms[is_given]] <- lapply(x_terms[is_given], function(x_term) {
+    gsub("\\s+", "", strsplit(descr$get(x_term), ",")[[1]])
+  })
 
   codemeta
 }
