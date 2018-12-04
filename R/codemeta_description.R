@@ -160,11 +160,7 @@ add_person_terms <- function(codemeta, descr) {
 
   author <- try(descr$get_authors(), silent = TRUE)
 
-  if (! inherits(author,'try-error')) {
-
-    codemeta <- parse_people(author, codemeta)
-
-  } else {
+  if (inherits(author, 'try-error')) {
 
     # get author and maintainer from their fields
     # and don't get maintainer twice!
@@ -180,9 +176,9 @@ add_person_terms <- function(codemeta, descr) {
     author <- author[! author_strings %in% maintainer_strings]
 
     author <- c(author, maintainer)
-
-    codemeta <- parse_people(author, codemeta)
   }
+
+  codemeta <- parse_people(author, codemeta)
 
   codemeta
 }
