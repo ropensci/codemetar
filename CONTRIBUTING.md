@@ -3,6 +3,11 @@
 Contributing Guidelines
 =======================
 
+git structure
+-------------
+
+The active branch is `dev`. `dev` is merged into `master` for releases. Please submit your pull requests to `dev`.
+
 
 Repository structure
 --------------------
