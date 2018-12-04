@@ -63,18 +63,22 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
 
   descr <- desc::desc(f)
 
+  # Store the package name in its own variable as it is used more than once
+  package_name <- descr$get("Package")
+
   ## FIXME define an S3 class based on the codemeta list of lists?
+
   if (is.null(id)) {
-    id <- descr$get("Package")
+    id <- package_name
   }
 
   if (is_IRI(id)) {
     codemeta$`@id` <- id
   }
 
-  codemeta$identifier <- descr$get("Package")
+  codemeta$identifier <- package_name
   codemeta$description <- descr$get("Description")
-  codemeta$name <- paste0(descr$get("Package"), ": ", descr$get("Title"))
+  codemeta$name <- paste0(package_name, ": ", descr$get("Title"))
 
   ## Get URLs
   code_repo <- descr$get_urls()
@@ -135,7 +139,7 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
   codemeta$runtimePlatform <- R.version.string
 
   if (is.null(codemeta$provider)) {
-    codemeta$provider <- guess_provider(descr$get("Package"))
+    codemeta$provider <- guess_provider(package_name)
   }
 
   author <- try(descr$get_authors(), silent = TRUE)
@@ -181,7 +185,7 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
 
   codemeta$softwareRequirements <- c(
     codemeta$softwareRequirements,
-    parse_sys_reqs(descr$get("Package"), descr$get("SystemRequirements"))
+    parse_sys_reqs(package_name, descr$get("SystemRequirements"))
   )
 
   ## add any additional codemeta terms found in the DESCRIPTION metadata
