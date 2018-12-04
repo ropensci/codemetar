@@ -171,13 +171,9 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
 
   remotes <- descr$get_remotes()
 
-  suggests$remote_provider <- unlist(lapply(
-    suggests$package, add_remote_to_dep, remotes = remotes
-  ))
+  suggests$remote_provider <- add_remotes(suggests$package, remotes)
 
-  requirements$remote_provider <- unlist(lapply(
-    requirements$package, add_remote_to_dep, remotes = remotes
-  ))
+  requirements$remote_provider <- add_remotes(requirements$package, remotes)
 
   codemeta$softwareSuggestions <- parse_depends(suggests)
 
@@ -188,6 +184,12 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
 
   ## add any additional codemeta terms found in the DESCRIPTION metadata
   add_additional_terms(codemeta, descr)
+}
+
+
+add_remotes <- function(x, remotes) {
+
+  unlist(lapply(x, add_remote_to_dep, remotes = remotes))
 }
 
 
