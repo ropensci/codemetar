@@ -12,6 +12,7 @@
 #' @param root if pkg is a codemeta object, optionally give the path
 #'  to package root. Default guess is current dir.
 #' @param id identifier for the package, e.g. a DOI (or other resolvable URL)
+#' @param use_filesize whether to try adding a filesize by using \code{pkgbuild::build()}.
 #' @param force_update Update guessed fields even if they are defined in an existing codemeta.json file
 #' @param use_git_hook Whether to create a pre-commit hook requiring codemeta.json to be updated when DESCRIPTION is changed.  Defaults to TRUE.
 #' @param verbose Whether to print messages indicating opinions e.g. when DESCRIPTION has no URL. See \code{\link{give_opinions}}.
@@ -37,6 +38,7 @@ write_codemeta <- function(pkg = ".",
                            path = "codemeta.json",
                            root = ".",
                            id = NULL,
+                           use_filesize = TRUE,
                            force_update =
                              getOption("codemeta_force_update", TRUE),
                            use_git_hook = TRUE,
@@ -66,7 +68,8 @@ write_codemeta <- function(pkg = ".",
 
   }
   # create or update codemeta
-  cm <- create_codemeta(pkg = pkg, root = root)
+  cm <- create_codemeta(pkg = pkg, root = root,
+                        use_filesize = use_filesize)
   # save to disk
   write_json(cm, path, pretty=TRUE, auto_unbox = TRUE, ...)
 

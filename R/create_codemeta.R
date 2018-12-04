@@ -17,6 +17,7 @@
 create_codemeta <- function(pkg = ".",
                             root = ".",
                             id = NULL,
+                            use_filesize = TRUE,
                             force_update =
                               getOption("codemeta_force_update", TRUE),
                             verbose = TRUE,
@@ -70,8 +71,10 @@ create_codemeta <- function(pkg = ".",
     cm$readme <- guess_readme(root)$readme_url
   }
 
-  if ((is.null(cm$fileSize) | force_update)){
-    cm$fileSize <- guess_fileSize(root)
+  if(use_filesize){
+    if ((is.null(cm$fileSize) | force_update)){
+      cm$fileSize <- guess_fileSize(root)
+    }
   }
   # and if there's a readme
   readme <- guess_readme(root)$readme_path
