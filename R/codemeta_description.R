@@ -165,15 +165,17 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
 
   dependencies <- descr$get_deps()
 
-  type <- dependencies$type
-  suggests <- dependencies[type == "Suggests",]
-  requirements <- dependencies[type %in% c("Imports", "Depends"), ]
-
   remotes <- descr$get_remotes()
 
-  suggests$remote_provider <- add_remotes(suggests$package, remotes)
+  suggests <- add_remote_provider(
+    subset(dependencies, type == "Suggests"),
+    remotes = remotes
+  )
 
-  requirements$remote_provider <- add_remotes(requirements$package, remotes)
+  requirements <- add_remote_provider(
+    subset(dependencies, type %in% c("Imports", "Depends")),
+    remotes = remotes
+  )
 
   codemeta$softwareSuggestions <- parse_depends(suggests)
 
@@ -187,9 +189,13 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
 }
 
 
-add_remotes <- function(x, remotes) {
+add_remote_provider <- function(x, remotes) {
 
-  unlist(lapply(x, add_remote_to_dep, remotes = remotes))
+  x$remote_provider <- unlist(lapply(
+    x$package, add_remote_to_dep, remotes = remotes
+  ))
+
+  x
 }
 
 
@@ -204,6 +210,7 @@ add_additional_terms <- function(codemeta, descr)
   ## Get the first elements of the given x-terms and set the corresponding
   ## elements in codemeta
   codemeta[terms[is_given]] <- lapply(x_terms[is_given], function(x_term) {
+
     gsub("\\s+", "", strsplit(descr$get(x_term), ",")[[1]])
   })
 
