@@ -78,4 +78,4 @@ extract_html_badges <- function(path){
 #' }
 extract_badges <- memoise::memoise(.extract_badges)
 
-
+globalVariables(".")
