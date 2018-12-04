@@ -1,3 +1,15 @@
+# codemetar 0.7.7 2018-12
+
+* The CodeRepository URL is now cleaned a bit (removing direct link to the README).
+
+* `write_codemeta()` gains a new argument `use_githook` to make the creation of a DESCRIPTION/codemeta.json git pre-commit hook optional.
+
+* `create_codemeta()` and `write_codemeta()` gain a new argument `use_filesize` to make the building of the package to get its size optional.
+
+* Encoding bug fixed in `extract_badges()`.
+
+* `pkgbuild` is now used directly instead of `devtools`.
+
 # codemetar 0.1.6 2018-04
 
 * New functions
