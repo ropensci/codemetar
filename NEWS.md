@@ -8,7 +8,11 @@
 
 * Encoding bug fixed in `extract_badges()`.
 
+* `extract_badges()` now uses `commonmark` and `xml2` instead of only regular expressions.
+
 * `pkgbuild` is now used directly instead of `devtools`.
+
+* `give_opinion()` now recognizes lifecycle badges, not only repostatus.org badges.
 
 # codemetar 0.1.6 2018-04
 
