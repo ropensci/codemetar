@@ -8,7 +8,7 @@ new_codemeta <- function() {
 }
 
 # Additional codemeta terms
-additional_codemeta_terms <- function(){
+additional_codemeta_terms <- function() {
   c("affiliation",
     "applicationCategory",
     "applicationSubCategory",
@@ -78,19 +78,19 @@ codemeta_description <-
 
     ## Get URLs
     code_repo <- descr$get_urls()
-    if (!is.na(code_repo[1])){
+    if (! is.na(code_repo[1])) {
 
-      if(length(code_repo) == 1){
+      if (length(code_repo) == 1) {
         # only one, easy
         codemeta$codeRepository <- code_repo
-      }else{
+      } else {
         # try to identify a GitHub or Gitlab repo
         actual_code_repo <- code_repo[grepl("github\\.com", code_repo)|
                                         grepl("gitlab\\.com", code_repo)][1]
         # no direct link to README please
         actual_code_repo <- gsub("#.*", "", actual_code_repo)
         # otherwise take the first URL arbitrarily
-        if(is.null(codemeta$Repository)){
+        if (is.null(codemeta$Repository)) {
           codemeta$codeRepository <- actual_code_repo
         }
 
@@ -101,7 +101,7 @@ codemeta_description <-
     }
 
     issue_tracker <- descr$get("BugReports")
-    if (!is.na(issue_tracker)){
+    if (! is.na(issue_tracker)) {
       codemeta$issueTracker <- issue_tracker
     }
 
@@ -129,7 +129,7 @@ codemeta_description <-
     if (is.null(codemeta$provider))
       codemeta$provider <- guess_provider(descr$get("Package"))
     author <- try(descr$get_authors(), silent = TRUE)
-    if (!inherits(author,'try-error')) {
+    if (! inherits(author,'try-error')) {
       codemeta <-
         parse_people(author, codemeta)
     } else {
@@ -141,7 +141,7 @@ codemeta_description <-
       maintainer$role <- "cre"
       author_strings <- paste(author$given, author$family)
       maintainer_strings <- paste(maintainer$given, maintainer$family)
-      author <- author[!author_strings %in% maintainer_strings]
+      author <- author[! author_strings %in% maintainer_strings]
 
       author <- c(author, maintainer)
       codemeta <-
@@ -169,10 +169,10 @@ codemeta_description <-
 
     ## add any additional codemeta terms found in the DESCRIPTION metadata
 
-    for(term in additional_codemeta_terms()){
+    for (term in additional_codemeta_terms()) {
       ## in DESCRIPTION, these terms must be *prefixed*:
       X_term <- paste0("X-schema.org-", term)
-      if(!is.na(descr$get(X_term))){
+      if (! is.na(descr$get(X_term))) {
         codemeta[[term]] <- gsub("\\s+", "",
                                  strsplit(descr$get(X_term), ",")[[1]])
       }
