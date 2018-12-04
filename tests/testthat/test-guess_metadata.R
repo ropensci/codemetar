@@ -51,15 +51,14 @@ testthat::test_that("guess_devStatus",{
   a2 <- guess_devStatus(f2)
   expect_null(a2)
 
+  f <- system.file("examples/README_fakepackage6.md", package="codemetar")
+  status <- guess_devStatus(f)
+  expect_equal(length(status), 2)
 
+  f <- system.file("examples/README_fakepackage7.md", package="codemetar")
+  status <- guess_devStatus(f)
+  expect_equal(status, "https://www.tidyverse.org/lifecycle/#maturing")
 })
-
-testthat::test_that("guess_devStatus", {
-  ## function not implemented yet
-  f <- system.file("examples/codemeta.json", package="codemetar")
-  guess_orcids(f)
-})
-
 
 test_that("git utils", {
 
@@ -79,6 +78,24 @@ test_that("guess_readme", {
   testthat::expect_is(guess_readme(find.package("codemetar")), "list")
   testthat::expect_is(guess_readme(find.package("jsonlite")), "list")
 })
+
+test_that("guess_readme() matches a single README file", {
+  candidates <- c("README.Rmd", "readme.md", "README.Rmd~", "DO_NOT_README.md")
+  dir.create(tempdir <- tempfile("README"))
+  file.create(file.path(tempdir, candidates))
+  ## match README.Rmd then readme.md (use non-memoised function here)
+  for (i in 1:2) {
+    matched_README <- .guess_readme(tempdir)$readme_path
+    expect_length(matched_README, 1)
+    expect_identical(matched_README, file.path(tempdir, candidates[i]))
+    unlink(matched_README)
+  }
+  ## match none of the remaining candidates
+  matched_README <- .guess_readme(tempdir)$readme_path
+  expect_null(matched_README)
+  unlink(tempdir)
+})
+
 
 test_that("guess_releaseNotes", {
 
@@ -107,4 +124,26 @@ test_that("add_github_topics",{
   cm$codeRepository <- "https://github.com/ropensci/codemetar#readme"
   cm <- add_github_topics(cm)
   testthat::expect_is(cm$keywords, "character")
+
+  cm <- NULL
+  cm$codeRepository <- "https://github.com/maelle/notarepo"
+  cm <- add_github_topics(cm)
+  testthat::expect_null(cm$keywords)
+})
+
+
+testthat::test_that("rOpenSci peer-review", {
+  f <- system.file("examples/README_fakepackage5.md", package="codemetar")
+  testthat::expect_null(guess_ropensci_review(f))
+
+  f <- system.file("examples/README_fakepackage3.md", package="codemetar")
+  testthat::expect_null(guess_ropensci_review(f))
+
+  f <- system.file("examples/README_fakepackage4.md", package="codemetar")
+  review_info <- guess_ropensci_review(f)
+  testthat::expect_is(review_info, "list")
+  testthat::expect_equal(review_info$`@type`, "Review")
+  testthat::expect_equal(review_info$url, "https://github.com/ropensci/onboarding/issues/24")
+  testthat::expect_equal(review_info$provider, "http://ropensci.org")
+
 })

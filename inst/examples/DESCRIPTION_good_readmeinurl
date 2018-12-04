@@ -2,7 +2,7 @@ Package: codemetar
 Type: Package
 Title: Generate 'CodeMeta' Metadata for R Packages
 Version: 0.1.6
-Authors@R: 
+Authors@R:
     c(person(given = "Carl",
              family = "Boettiger",
              role = c("aut", "cre", "cph"),
@@ -25,49 +25,30 @@ Authors@R:
              comment = "https://ropensci.org/"),
       person(given = "Katrin",
              family = "Leinweber",
-             role = "ctb",
-             comment = c(ORCID = "0000-0001-5135-5758")),
+             role = "ctb"),
       person(given = "Noam",
              family = "Ross",
-             role = "ctb",
-             comment = c(ORCID = "0000-0002-2136-0000")),
+             role = "ctb"),
       person(given = "Arfon",
              family = "Smith",
-             role = "ctb"),
-      person(given = "Jeroen",
-             family = "Ooms",
-             role = "ctb",
-             comment = c(ORCID = "0000-0002-4035-0289")),
-      person(given = "Sebastian",
-             family = "Meyer",
-             role = "ctb",
-             comment = c(ORCID = "0000-0002-1791-9449")),
-      person(given = "Michael",
-             family = "Rustler",
-             role = "ctb",
-             comment = c(ORCID = "0000-0003-0647-7726")),
-      person(given = "Hauke",
-             family = "Sonnenberg",
-             role = "ctb",
-             comment = c(ORCID = "0000-0001-9134-2871"))
-      )
+             role = "ctb"))
 Description: The 'Codemeta' Project defines a 'JSON-LD' format for describing
   software metadata, as detailed at <https://codemeta.github.io>. This package
-  provides utilities to generate, parse, and modify 'codemeta.json' files 
+  provides utilities to generate, parse, and modify 'codemeta.json' files
   automatically for R packages, as well as tools and examples for working with
   'codemeta.json' 'JSON-LD' more generally.
 License: GPL-3
-URL: https://github.com/ropensci/codemetar, https://ropensci.github.io/codemetar
+URL: https://github.com/ropensci/codemetar#codemetar, https://ropensci.github.io/codemetar
 BugReports: https://github.com/ropensci/codemetar/issues
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0.9000
+RoxygenNote: 6.0.1.9000
 Depends: R (>= 3.0.0)
-Imports: 
+Imports:
     jsonlite (>= 1.3),
     jsonld,
     git2r,
-    pkgbuild,
+    devtools,
     memoise,
     methods,
     stats,
@@ -81,18 +62,15 @@ Imports:
     gh,
     stringr,
     sessioninfo,
-    purrr,
-    curl,
-    commonmark,
-    xml2,
-    magrittr,
-    glue
-Suggests: 
+    purrr
+Suggests:
     testthat,
     jsonvalidate,
     covr,
     knitr,
     rmarkdown,
+    magrittr,
+    xml2,
     dplyr (>= 0.7.0),
     printr
 VignetteBuilder: knitr

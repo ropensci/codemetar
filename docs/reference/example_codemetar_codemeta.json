@@ -78,18 +78,6 @@
       "givenName": "Jeroen",
       "familyName": "Ooms",
       "@id": "https://orcid.org/0000-0002-4035-0289"
-    },
-    {
-      "@type": "Person",
-      "givenName": "Sebastian",
-      "familyName": "Meyer",
-      "@id": "https://orcid.org/0000-0002-1791-9449"
-    },
-    {
-      "@type": "Person",
-      "givenName": "Michael",
-      "familyName": "Rustler",
-      "@id": "https://orcid.org/0000-0003-0647-7726"
     }
   ],
   "copyrightHolder": [
@@ -179,6 +167,30 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "magrittr",
+      "name": "magrittr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=magrittr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "xml2",
+      "name": "xml2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=xml2"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
       "version": ">= 0.7.0",
@@ -249,15 +261,15 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "pkgbuild",
-      "name": "pkgbuild",
+      "identifier": "devtools",
+      "name": "devtools",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=pkgbuild"
+      "sameAs": "https://CRAN.R-project.org/package=devtools"
     },
     {
       "@type": "SoftwareApplication",
@@ -424,60 +436,13 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=curl"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "commonmark",
-      "name": "commonmark",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=commonmark"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "xml2",
-      "name": "xml2",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=xml2"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "magrittr",
-      "name": "magrittr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=magrittr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "glue",
-      "name": "glue",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=glue"
     }
   ],
   "isPartOf": "https://ropensci.org",
-  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
+  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld"],
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
-  "fileSize": "280.9KB",
+  "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
+  "fileSize": "279.818KB",
   "contIntegration": [
     "https://travis-ci.org/ropensci/codemetar",
     "https://ci.appveyor.com/project/cboettig/codemetar/branch/master",
@@ -488,5 +453,27 @@
     "@type": "Review",
     "url": "https://github.com/ropensci/onboarding/issues/130",
     "provider": "http://ropensci.org"
-  }
+  },
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Carl",
+          "familyName": "Boettiger",
+          "email": "cboettig@gmail.com",
+          "@id": "https://orcid.org/0000-0002-1642-628X"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Maëlle",
+          "familyName": "Salmon",
+          "@id": "https://orcid.org/0000-0002-2815-0399"
+        }
+      ],
+      "name": "codemetar: Generate 'CodeMeta' Metadata for R Packages",
+      "description": "https://github.com/ropensci/codemetar, https://ropensci.github.io/codemetar"
+    }
+  ]
 }

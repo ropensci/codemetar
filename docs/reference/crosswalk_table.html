@@ -161,9 +161,20 @@ and the corresponding terms in both from and to columns.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>crosswalk_table</span>(<span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"GitHub"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Zenodo"</span>, <span class='st'>"Figshare"</span>))
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>crosswalk_table</span>(<span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"GitHub"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Zenodo"</span>, <span class='st'>"Figshare"</span>))</div><div class='output co'>#&gt; # A tibble: 11 x 4
+#&gt;    Property            GitHub        Zenodo            Figshare   
+#&gt;    &lt;chr&gt;               &lt;chr&gt;         &lt;chr&gt;             &lt;chr&gt;      
+#&gt;  1 codeRepository      html_url      relatedLink       relatedLink
+#&gt;  2 programmingLanguage languages_url &lt;NA&gt;              &lt;NA&gt;       
+#&gt;  3 downloadUrl         archive_url   &lt;NA&gt;              &lt;NA&gt;       
+#&gt;  4 author              login         creators          &lt;NA&gt;       
+#&gt;  5 dateCreated         created_at    &lt;NA&gt;              &lt;NA&gt;       
+#&gt;  6 dateModified        updated_at    &lt;NA&gt;              &lt;NA&gt;       
+#&gt;  7 license             license       license           License    
+#&gt;  8 description         description   description/notes Description
+#&gt;  9 identifier          id            id                &lt;NA&gt;       
+#&gt; 10 name                full_name     title             Title      
+#&gt; 11 issueTracker        issues_url    &lt;NA&gt;              &lt;NA&gt;       </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

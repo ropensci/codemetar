@@ -91,7 +91,7 @@
       <h1>Validation in JSON-LD</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2018-05-03</h4>
+            <h4 class="date">2018-05-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/codemetar/blob/master/vignettes/articles/validation-in-json-ld.Rmd"><code>vignettes/articles/validation-in-json-ld.Rmd</code></a></small>
       <div class="hidden name"><code>validation-in-json-ld.Rmd</code></div>
@@ -168,8 +168,8 @@
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="st">}'</span></a>
 <a class="sourceLine" id="cb5-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb5-9" data-line-number="9">meta &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(codemeta, frame)  <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">  </span><span class="kw">jsonld_frame</span>(codemeta, frame)  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="st">  </span><span class="kw">fromJSON</span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb5-12" data-line-number="12"><span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) </a>
 <a class="sourceLine" id="cb5-13" data-line-number="13"></a>
 <a class="sourceLine" id="cb5-14" data-line-number="14">meta[[<span class="dv">1</span>]]</a></code></pre></div>
@@ -190,7 +190,7 @@ $givenName
 <h2 class="hasAnchor">
 <a href="#framing-expanding-node-references" class="anchor"></a>Framing: expanding node references</h2>
 <p>The same underlying data can often be expressed in different ways, particularly when dealing with nested data. Framing can be of great help here to reshape the data into the structure required by the application. For instance, it would be natural to access the <code>email</code> of the <code>maintainer</code> in the same manner we did the author, but this fails for our example as <code>maintainer</code> is defined only by reference to an ID:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">meta &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) </a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">meta &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) </a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">paste</span>(<span class="st">"For complaints, email"</span>, meta<span class="op">$</span>maintainer<span class="op">$</span>email)</a></code></pre></div>
 <pre><code>[1] "For complaints, email "</code></pre>
 <p>We can confirm that <code>maintainer</code> is just an ID:</p>
@@ -205,8 +205,8 @@ $givenName
 <a class="sourceLine" id="cb11-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb11-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb11-7" data-line-number="7">meta &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(codemeta, frame) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="st">  </span><span class="kw">jsonld_frame</span>(codemeta, frame) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="st">  </span><span class="kw">fromJSON</span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb11-10" data-line-number="10"><span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)</a></code></pre></div>
 <p>Now we can do</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">paste</span>(<span class="st">"For complaints, email"</span>, meta<span class="op">$</span>maintainer<span class="op">$</span>email)</a></code></pre></div>
@@ -231,8 +231,8 @@ $givenName
 <a class="sourceLine" id="cb14-12" data-line-number="12"><span class="st">'</span></a></code></pre></div>
 <p>When we perform a framing or compaction operation, <code>buildInstructions</code> gets de-referenced to <code>codemeta:buildInstructions</code>, because it does not match the context. This means that if our application asks for <code>meta$buildInstructions</code>:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">meta &lt;-</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(codemeta, <span class="st">'{"@context": "https://purl.org/codemeta/2.0"}'</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">jsonld_frame</span>(codemeta, <span class="st">'{"@context": "https://purl.org/codemeta/2.0"}'</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">fromJSON</span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st">  </span></a>
 <a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)    </a>
 <a class="sourceLine" id="cb15-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb15-6" data-line-number="6">## above is same as compacting:</a>
@@ -243,8 +243,8 @@ $givenName
 <pre><code>NULL</code></pre>
 <p>We just get <code>NULL</code>, rather than some unexpected type of object (e.g. a string that is not a URL.) Note that the data is not lost, but simply not dereferenced:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">names</span>(meta)</a></code></pre></div>
-<pre><code>[1] "id"                         "type"                      
-[3] "name"                       "codemeta:buildInstructions"</code></pre>
+<pre><code>[1] "type"                       "name"                      
+[3] "codemeta:buildInstructions"</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">meta[<span class="st">"codemeta:buildInstructions"</span>]</a></code></pre></div>
 <pre><code>$`codemeta:buildInstructions`
 $`codemeta:buildInstructions`$type

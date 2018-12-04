@@ -5,8 +5,9 @@
 \title{create_codemeta}
 \usage{
 create_codemeta(pkg = ".", root = ".", id = NULL,
-  force_update = getOption("codemeta_force_update", TRUE), verbose = TRUE,
-  ...)
+  use_filesize = TRUE,
+  force_update = getOption("codemeta_force_update", TRUE),
+  verbose = TRUE, ...)
 }
 \arguments{
 \item{pkg}{package path to package root, or package name, or
@@ -16,6 +17,8 @@ description file (character), or a codemeta object (list)}
 to package root. Default guess is current dir.}
 
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
+
+\item{use_filesize}{whether to try adding a filesize by using \code{pkgbuild::build()}.}
 
 \item{force_update}{Update guessed fields even if they are defined in an existing codemeta.json file}
 

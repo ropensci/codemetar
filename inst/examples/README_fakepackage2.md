@@ -12,7 +12,7 @@
 </tr>
 <tr class="even">
 <td align="left"><a href="https://github.com/fakeorg/onboarding/issues/156"><img src="https://badges.fakeorg.org/156_status.svg" alt="fakeorg"></a></td>
-<td align="left"><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.2.0-blue.svg" alt="minimal R version"></a></td>
+<td align="left"><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.2.0-blue.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></td>
 <td align="left"><a href="https://travis-ci.org/fakeorg/fakepackage"><img src="https://travis-ci.org/fakeorg/fakepackage.svg?branch=master" alt="Travis"></a></td>
 </tr>
 <tr class="odd">

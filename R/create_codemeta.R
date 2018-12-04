@@ -17,6 +17,7 @@
 create_codemeta <- function(pkg = ".",
                             root = ".",
                             id = NULL,
+                            use_filesize = TRUE,
                             force_update =
                               getOption("codemeta_force_update", TRUE),
                             verbose = TRUE,
@@ -70,8 +71,10 @@ create_codemeta <- function(pkg = ".",
     cm$readme <- guess_readme(root)$readme_url
   }
 
-  if ((is.null(cm$fileSize) | force_update)){
-    cm$fileSize <- guess_fileSize(root)
+  if(use_filesize){
+    if ((is.null(cm$fileSize) | force_update)){
+      cm$fileSize <- guess_fileSize(root)
+    }
   }
   # and if there's a readme
   readme <- guess_readme(root)$readme_path
@@ -121,35 +124,38 @@ create_codemeta <- function(pkg = ".",
           }
         }
       }else{
-        pkg_info <- sessioninfo::package_info(cm$identifier)
-        pkg_info <- pkg_info[pkg_info$package == cm$identifier,]
-        provider_name <- pkg_info$source
-        if(cm$version == pkg_info$ondiskversion){
-          if(grepl("CRAN", provider_name)){
-            cm$relatedLink <- unique(c(cm$relatedLink,
-                                       paste0("https://CRAN.R-project.org/package=",
-                                              cm$identifier)))
-          }else{
-            if(grepl("Bioconductor", provider_name)){
+        if(cm$identifier %in% row.names(installed.packages())){
+          pkg_info <- sessioninfo::package_info(cm$identifier)
+          pkg_info <- pkg_info[pkg_info$package == cm$identifier,]
+          provider_name <- pkg_info$source
+          if(cm$version == pkg_info$ondiskversion){
+            if(grepl("CRAN", provider_name)){
               cm$relatedLink <- unique(c(cm$relatedLink,
-                                         paste0("https://bioconductor.org/packages/release/bioc/html/",
-                                                cm$identifier, ".html")))
+                                         paste0("https://CRAN.R-project.org/package=",
+                                                cm$identifier)))
             }else{
-              # if GitHub try to build the URL to commit or to repo in general
-              if(grepl("Github", provider_name)){
-                if(grepl("@", provider_name)){
-                  commit <- gsub(".*@", "", provider_name)
-                  commit <- gsub("\\)", "", commit)
-                  link <- gsub(".*\\(", "", provider_name)
-                  link <- gsub("@.*", "", link)
-                  cm$relatedLink <- unique(c(cm$relatedLink,
-                                             paste0("https://github.com/", link,
-                                                    "/commit/", commit)))
+              if(grepl("Bioconductor", provider_name)){
+                cm$relatedLink <- unique(c(cm$relatedLink,
+                                           paste0("https://bioconductor.org/packages/release/bioc/html/",
+                                                  cm$identifier, ".html")))
+              }else{
+                # if GitHub try to build the URL to commit or to repo in general
+                if(grepl("Github", provider_name)){
+                  if(grepl("@", provider_name)){
+                    commit <- gsub(".*@", "", provider_name)
+                    commit <- gsub("\\)", "", commit)
+                    link <- gsub(".*\\(", "", provider_name)
+                    link <- gsub("@.*", "", link)
+                    cm$relatedLink <- unique(c(cm$relatedLink,
+                                               paste0("https://github.com/", link,
+                                                      "/commit/", commit)))
+                  }
                 }
               }
             }
           }
         }
+
       }
     }
 

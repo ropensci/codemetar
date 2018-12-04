@@ -17,5 +17,7 @@ its image.
 Extract all badges from Markdown file
 }
 \examples{
-extract_badges(system.file("README.md", package = "codemetar"))
+\dontrun{
+extract_badges(system.file("examples/README_fakepackage.md", package="codemetar"))
+}
 }

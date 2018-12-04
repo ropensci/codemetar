@@ -4,9 +4,10 @@
 \alias{write_codemeta}
 \title{write_codemeta}
 \usage{
-write_codemeta(pkg = ".", path = "codemeta.json", root = ".", id = NULL,
-  force_update = getOption("codemeta_force_update", TRUE), verbose = TRUE,
-  ...)
+write_codemeta(pkg = ".", path = "codemeta.json", root = ".",
+  id = NULL, use_filesize = TRUE,
+  force_update = getOption("codemeta_force_update", TRUE),
+  use_git_hook = TRUE, verbose = TRUE, ...)
 }
 \arguments{
 \item{pkg}{package path to package root, or package name, or
@@ -19,7 +20,11 @@ to package root. Default guess is current dir.}
 
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
 
+\item{use_filesize}{whether to try adding a filesize by using \code{pkgbuild::build()}.}
+
 \item{force_update}{Update guessed fields even if they are defined in an existing codemeta.json file}
+
+\item{use_git_hook}{Whether to create a pre-commit hook requiring codemeta.json to be updated when DESCRIPTION is changed.  Defaults to TRUE.}
 
 \item{verbose}{Whether to print messages indicating opinions e.g. when DESCRIPTION has no URL. See \code{\link{give_opinions}}.}
 
