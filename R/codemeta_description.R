@@ -113,7 +113,7 @@ codemeta_description <- function(file, id = NULL, codemeta = new_codemeta()) {
   codemeta <- add_person_terms(codemeta, descr)
 
   ## add software related terms: softwareSuggestions, softwareRequirements
-  codemeta <- add_software_terms(codemeta, descr, package_name)
+  codemeta <- add_software_terms(codemeta, descr)
 
   ## add any additional codemeta terms found in the DESCRIPTION metadata
   codemeta <- add_additional_terms(codemeta, descr)
@@ -207,7 +207,7 @@ add_person_terms <- function(codemeta, descr) {
 }
 
 # add_software_terms -----------------------------------------------------------
-add_software_terms <- function(codemeta, descr, package_name) {
+add_software_terms <- function(codemeta, descr) {
 
   dependencies <- descr$get_deps()
 
@@ -227,7 +227,7 @@ add_software_terms <- function(codemeta, descr, package_name) {
 
   codemeta$softwareRequirements <- c(
     parse_depends(requirements),
-    parse_sys_reqs(package_name, descr$get("SystemRequirements"))
+    parse_sys_reqs(descr$get("Package"), descr$get("SystemRequirements"))
   )
 
   codemeta
