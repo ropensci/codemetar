@@ -87,7 +87,7 @@ testthat::test_that("Helper functions work correctly", {
 
   # test add_remote_provider()
   expect_error(add_remote_provider())
-  expect_identical(add_remote_provider(codemeta), codemeta)
+  expect_error(add_remote_provider(codemeta))
   remotes <- sprintf("provider%d/abc", 1:2)
   result <- add_remote_provider(codemeta, remotes)
   expect_identical(result$remote_provider, remotes)
