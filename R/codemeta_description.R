@@ -58,13 +58,14 @@ additional_codemeta_terms <- function() {
 
 # codemeta_description ---------------------------------------------------------
 # Can add to an existing codemeta document
-codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
+codemeta_description <- function(file, id = NULL, codemeta = new_codemeta()) {
 
-  if (! file.exists(f)) {
+  if (! file.exists(file)) {
+
     return(codemeta)
   }
 
-  descr <- desc::desc(f)
+  descr <- desc::desc(file)
 
   # Store the package name in its own variable as it is used more than once
   package_name <- descr$get("Package")
@@ -84,7 +85,7 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
   codemeta$name <- paste0(package_name, ": ", descr$get("Title"))
 
   ## add repository related terms
-  codemeta <- add_repository_terms(codemeta)
+  codemeta <- add_repository_terms(codemeta, descr)
 
   if (! is.na(issue_tracker <- descr$get("BugReports"))) {
     codemeta$issueTracker <- issue_tracker
@@ -109,7 +110,7 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
   codemeta <- add_person_terms(codemeta, descr)
 
   ## add software related terms: softwareSuggestions, softwareRequirements
-  codemeta <- add_software_terms(codemeta, descr)
+  codemeta <- add_software_terms(codemeta, descr, package_name)
 
   ## add any additional codemeta terms found in the DESCRIPTION metadata
   codemeta <- add_additional_terms(codemeta, descr)
@@ -203,19 +204,19 @@ add_person_terms <- function(codemeta, descr) {
 }
 
 # add_software_terms -----------------------------------------------------------
-add_software_terms <- function(codemeta, descr) {
+add_software_terms <- function(codemeta, descr, package_name) {
 
   dependencies <- descr$get_deps()
 
   remotes <- descr$get_remotes()
 
   suggests <- add_remote_provider(
-    subset(dependencies, type == "Suggests"),
+    dependencies[dependencies$type == "Suggests", ],
     remotes = remotes
   )
 
   requirements <- add_remote_provider(
-    subset(dependencies, type %in% c("Imports", "Depends")),
+    dependencies[dependencies$type %in% c("Imports", "Depends"), ],
     remotes = remotes
   )
 
