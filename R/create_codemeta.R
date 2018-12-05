@@ -124,7 +124,7 @@ create_codemeta <- function(pkg = ".",
           }
         }
       }else{
-        if(cm$identifier %in% row.names(installed.packages())){
+        if(cm$identifier %in% installed_package_names()){
           pkg_info <- sessioninfo::package_info(cm$identifier)
           pkg_info <- pkg_info[pkg_info$package == cm$identifier,]
           provider_name <- pkg_info$source

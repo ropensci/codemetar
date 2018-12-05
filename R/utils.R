@@ -5,30 +5,31 @@ drop_null <- function(x) {
 }
 
 # get_root_path ----------------------------------------------------------------
-#' @importFrom utils installed.packages
 get_root_path <- function(pkg) {
 
-  installed <- installed.packages()
+  if (pkg %in% installed_package_names()) {
 
-  if (pkg %in% installed[, 1]) {
-
-    root <- base::system.file(".", package = pkg)
+    base::system.file(".", package = pkg)
 
   } else if (is_package(file.path(pkg))) {
 
-    root <- pkg
+    pkg
 
-  } else {
+  } else if (is.character(pkg)) {
 
-    if (is.character(pkg)) {
+    pkg # use pkg as guess anyway
 
-      root <- pkg # use pkg as guess anyway
-      #    } else {
-      #      root <- "." # stick with default
-    }
+# } else {
+#
+#   "." # stick with default
   }
+}
 
-  root
+# installed_package_names: names of installed packages -------------------------
+#' @importFrom utils installed.packages
+installed_package_names <- function() {
+
+  row.names(installed.packages())
 }
 
 # get_file ---------------------------------------------------------------------
