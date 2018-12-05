@@ -34,7 +34,7 @@ format_depend <- function(package, version, remote_provider) {
 get_sameAs <- function(provider, remote_provider, identifier) {
 
   # assign each keyword a function that returns the URL to a given package name
-  url_generators <- c(
+  url_generators <- list(
     "Comprehensive R Archive Network (CRAN)" = get_url_cran_package,
     "BioConductor" = get_url_bioconductor_package
   )
@@ -46,7 +46,7 @@ get_sameAs <- function(provider, remote_provider, identifier) {
 
   } else if (! is.null(provider) && provider$name %in% names(url_generators)) {
 
-    url_generators[provider$name](identifier)
+    url_generators[[provider$name]](identifier)
 
   } # else NULL implicitly
 }
