@@ -1,11 +1,11 @@
-# Set codemeta schema as an option ---------------------------------------------
-options(codemeta_context = url_codemeta_schema())
-
 # url_codemeta_schema ----------------------------------------------------------
 url_codemeta_schema <- function() {
 
   "https://doi.org/10.5063/schema/codemeta-2.0"
 }
+
+# Set codemeta schema as an option ---------------------------------------------
+options(codemeta_context = url_codemeta_schema())
 
 # new_codemeta -----------------------------------------------------------------
 ## Supporting old versions will be a nuciance
