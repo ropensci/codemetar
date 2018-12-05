@@ -24,16 +24,20 @@ create_codemeta <- function(
   verbose = TRUE,
   ...
 ) {
+
   ## looks like we got a package name/path or Description file
   if (is.character(pkg)) {
 
     root <- get_root_path(pkg)
 
+    # Set string constants
+    json_file <- get_file("codemeta.json", root)
+
     ## no cm provided, but codemeta.json found in pkg
-    cm <- if (file.exists(get_file("codemeta.json", root))) {
+    cm <- if (file.exists(json_file)) {
 
       ## Our package has an existing codemeta.json to update
-      jsonlite::read_json(get_file("codemeta.json", root))
+      jsonlite::read_json(json_file)
 
       ## no cm, no existing codemeta.json found, start fresh
     } else {
