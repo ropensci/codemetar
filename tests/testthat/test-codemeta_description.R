@@ -50,8 +50,13 @@ testthat::test_that("We can parse plain Authors: & Maintainers: entries", {
   authors <- codemeta_description(f)
   expect_equal(length(authors$author), 1)
   expect_equal(length(authors$maintainer), 2)
-
-
-
 })
 
+testthat::test_that("Helper function work correctly", {
+  expect_error(add_repository_terms())
+  expect_error(add_language_terms())
+  expect_error(add_person_terms())
+  expect_error(add_software_terms())
+  expect_error(add_remote_provider())
+  expect_error(add_additional_terms())
+})
