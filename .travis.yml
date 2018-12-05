@@ -21,4 +21,7 @@ matrix:
     - os: linux
       r: oldrel
 
-
+stages:
+  - name: deploy
+    # require the branch name to be master (note for PRs this is the base branch name)
+    if: branch = master
