@@ -66,18 +66,19 @@ parse_depends <- function(deps) {
 ## version...
 guess_dep_id <- function(dep) {
 
+  if (dep$name == "R") {
+
+    ## FIXME No good identifier for R, particularly none for specific version
+    return("https://www.r-project.org")
+  }
+
   # mapping between base URL patterns and functions generating full URLs
   url_generators <- list(
     "cran.r-project.org" = get_url_cran_package_2,
     "www.bioconductor.org" = get_url_bioconductor_package_2
   )
 
-  if (dep$name == "R") {
-
-    ## FIXME No good identifier for R, particularly none for specific version
-    "https://www.r-project.org"
-
-  } else if (! is.null(dep$provider)) {
+ if (! is.null(dep$provider)) {
 
     provider_url <- dep$provider$url
 
