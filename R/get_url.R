@@ -1,9 +1,13 @@
 # get_url_bioconductor_package -------------------------------------------------
 get_url_bioconductor_package <- function(package) {
 
-  paste0(
-    "https://bioconductor.org/packages/release/bioc/html/", package, ".html"
-  )
+  get_url_bioconductor_package_2("https://bioconductor.org", package)
+}
+
+# get_url_bioconductor_package_2 -----------------------------------------------
+get_url_bioconductor_package_2 <- function(base_url, package) {
+
+  paste0(base_url, "/packages/release/bioc/html/", package, ".html")
 }
 
 # get_url_cran_package ---------------------------------------------------------
@@ -11,6 +15,12 @@ get_url_bioconductor_package <- function(package) {
 get_url_cran_package <- function(package) {
 
   paste0("https://CRAN.R-project.org/package=", package)
+}
+
+# get_url_cran_package_2 -------------------------------------------------------
+get_url_cran_package_2 <- function(base_url, package) {
+
+  paste0(base_url, "/web/packages/", package)
 }
 
 # get_url_github_package -------------------------------------------------------

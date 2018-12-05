@@ -77,13 +77,11 @@ guess_dep_id <- function(dep) {
 
   } else if (grepl("cran.r-project.org", dep$provider$url)) {
 
-    id <- paste0(dep$provider$url, "/web/packages/", dep$identifier)
+    id <- get_url_cran_package_2(dep$provider$url, dep$identifier)
 
   } else if (grepl("www.bioconductor.org", dep$provider$url)) {
 
-    id <- paste0(
-      dep$provider$url, "/packages/release/bioc/html/", dep$identifier, ".html"
-    )
+    id <- get_url_bioconductor_package_2(dep$provider$url, dep$identifier)
 
   } else {
 
