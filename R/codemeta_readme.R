@@ -51,26 +51,29 @@ get_pkg_name <- function(entry) {
 ropensci_reviews <- memoise::memoise(.ropensci_reviews)
 
 guess_ropensci_review <- function(readme) {
-  badges <- extract_badges(readme)
-  badge <- badges[grepl("github.com/ropensci/onboarding/issues/", badges$link),]$link
-  if (length(badge) >= 1) {
-    review <-
-      gsub(".*https://github.com/ropensci/onboarding/issues/", "", badge)
-    review <- as.numeric(review)
-    reviews <- ropensci_reviews()
-    if(review %in% reviews$review){
-      list("@type" = "Review",
-           "url" = paste0("https://github.com/ropensci/onboarding/issues/",
-                          review),
-           "provider" = "http://ropensci.org")
-    } else{
-      NULL
-    }
-  } else {
-    NULL
+
+  url <- "github.com/ropensci/onboarding/issues/"
+
+  badges <- get_badge_links_matching(readme, url)
+
+  if (is.null(badges)) {
+
+    return(NULL)
   }
 
+  review <- as.numeric(stringr::str_remove(badges, paste0(".*https://", url)))
 
+  # TODO: What to do with more than one review or is that not possible?
+  # Can the list entry "url" be a vector (with length > 1) of review URLs?
+  #review <- review[1]
+
+  if (review %in% ropensci_reviews()$review) {
+
+    list("@type" = "Review",
+         "url" = paste0("https://", url, review),
+         "provider" = "http://ropensci.org")
+  }
+  # else NULL implicitly
 }
 
 # find the readme
