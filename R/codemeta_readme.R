@@ -28,16 +28,14 @@ get_badge_links_matching <- function(readme, pattern) {
   # else NULL implicitly
 }
 
-# looks for a rOpenSci peer review badge
+# get_pkg_name -----------------------------------------------------------------
+get_pkg_name <- function(entry) {
 
-get_pkg_name <- function(entry){
-  if(is.null(entry$pkgname)){
-    ""
-  }else{
-    entry$pkgname
-  }
+  if (is.null(result <- entry$pkgname)) "" else result
 }
 
+# .ropensci_reviews ------------------------------------------------------------
+# looks for a rOpenSci peer review badge
 .ropensci_reviews <- function(){
   reviews <-  jsonlite::read_json("https://badges.ropensci.org/json/onboarded.json")
   reviews <- tibble::tibble(review = purrr::map_dbl(reviews, "iss_no"),
