@@ -80,6 +80,44 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
   codemeta$description <- descr$get("Description")
   codemeta$name <- paste0(package_name, ": ", descr$get("Title"))
 
+  ## add repository related terms
+  codemeta <- add_repository_terms(codemeta)
+
+  if (! is.na(issue_tracker <- descr$get("BugReports"))) {
+    codemeta$issueTracker <- issue_tracker
+  }
+
+  ## According to crosswalk, codemeta$dateModified and
+  ## codemeta$dateCreated are not crosswalked in DESCRIPTION
+  codemeta$datePublished <- NULL
+
+  codemeta$license <- spdx_license(descr$get("License"))
+
+  codemeta$version <- as.character(descr$get_version())
+
+  ## add progr. language related terms: programmingLanguage, runtimePlatform
+  codemeta <- add_language_terms(codemeta)
+
+  if (is.null(codemeta$provider)) {
+    codemeta$provider <- guess_provider(package_name)
+  }
+
+  ## add person related terms
+  codemeta <- add_person_terms(codemeta, descr)
+
+  ## add software related terms: softwareSuggestions, softwareRequirements
+  codemeta <- add_software_terms(codemeta, descr)
+
+  ## add any additional codemeta terms found in the DESCRIPTION metadata
+  codemeta <- add_additional_terms(codemeta, descr)
+
+  # return codemeta
+  codemeta
+}
+
+
+add_repository_terms <- function(codemeta, descr) {
+
   ## Get URLs
   code_repo <- descr$get_urls()
 
@@ -112,35 +150,6 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
     }
   }
 
-  if (! is.na(issue_tracker <- descr$get("BugReports"))) {
-    codemeta$issueTracker <- issue_tracker
-  }
-
-  ## According to crosswalk, codemeta$dateModified and
-  ## codemeta$dateCreated are not crosswalked in DESCRIPTION
-  codemeta$datePublished <- NULL
-
-  codemeta$license <- spdx_license(descr$get("License"))
-
-  codemeta$version <- as.character(descr$get_version())
-
-  ## add progr. language related terms: programmingLanguage, runtimePlatform
-  codemeta <- add_language_terms(codemeta)
-
-  if (is.null(codemeta$provider)) {
-    codemeta$provider <- guess_provider(package_name)
-  }
-
-  ## add person related terms
-  codemeta <- add_person_terms(codemeta, descr)
-
-  ## add software related terms: softwareSuggestions, softwareRequirements
-  codemeta <- add_software_terms(codemeta, descr)
-
-  ## add any additional codemeta terms found in the DESCRIPTION metadata
-  codemeta <- add_additional_terms(codemeta, descr)
-
-  # return codemeta
   codemeta
 }
 
