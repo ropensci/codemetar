@@ -36,10 +36,16 @@ get_pkg_name <- function(entry) {
 
 # .ropensci_reviews ------------------------------------------------------------
 # looks for a rOpenSci peer review badge
-.ropensci_reviews <- function(){
-  reviews <-  jsonlite::read_json("https://badges.ropensci.org/json/onboarded.json")
-  reviews <- tibble::tibble(review = purrr::map_dbl(reviews, "iss_no"),
-                            package = purrr::map_chr(reviews, get_pkg_name))
+.ropensci_reviews <- function() {
+
+  url_onboarded_json <- "https://badges.ropensci.org/json/onboarded.json"
+
+  reviews <- jsonlite::read_json(url_onboarded_json)
+
+  reviews <- tibble::tibble(
+    review = purrr::map_dbl(reviews, "iss_no"),
+    package = purrr::map_chr(reviews, get_pkg_name)
+  )
 }
 
 ropensci_reviews <- memoise::memoise(.ropensci_reviews)
