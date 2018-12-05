@@ -141,23 +141,24 @@ guess_readme_path <- function(root) {
 
 guess_readme <- memoise::memoise(.guess_readme)
 
+# codemeta_readme --------------------------------------------------------------
+codemeta_readme <- function(readme, codemeta) {
 
+  codemeta %>%
+    set_element_if_null("contIntegration", guess_ci(readme)) %>%
+    set_element_if_null("developmentStatus", guess_devStatus(readme)) %>%
+    set_element_if_null("review", guess_ropensci_review(readme))
+}
 
+# set_element_if_null ----------------------------------------------------------
+set_element_if_null <- function(x, element, value) {
 
-codemeta_readme <- function(readme, codemeta){
-  if (is.null(codemeta$contIntegration)){
-    codemeta$contIntegration <- guess_ci(readme)
+  stopifnot(is.list(x))
+
+  if (is.null(x[[element]])) {
+
+    x[[element]] <- value
   }
 
-  if (is.null(codemeta$developmentStatus)){
-    codemeta$developmentStatus <-
-      guess_devStatus(readme)
-  }
-
-  if (is.null(codemeta$review)){
-    codemeta$review <-
-      guess_ropensci_review(readme)
-  }
-
-  codemeta
+  x
 }
