@@ -119,12 +119,11 @@ check_urls <- function(urls) {
 
   messages <- do.call(rbind, lapply(urls, get_url_status_code))
 
-  if (any(messages$message != "All good")) {
+  failed <- (messages$message != "All good")
 
-    paste(
-      "Problematic URLs\n",
-      apply(messages[messages$message != "All good",], 1, toString)
-    )
+  if (any(failed)) {
+
+    paste("Problematic URLs\n", apply(messages[failed, ], 1, toString))
 
   } else {
 
