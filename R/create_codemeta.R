@@ -75,6 +75,7 @@ create_codemeta <- function(
   }
 
   if ((is.null(cm$releaseNotes) || force_update)) {
+
     cm$releaseNotes <- guess_releaseNotes(root)
   }
 
@@ -135,20 +136,7 @@ create_codemeta <- function(
       if (! is.null(provider) &&
           whether_provider_badge(badges, provider$name)) {
 
-        if (provider$name == "Comprehensive R Archive Network (CRAN)") {
-
-          cm$relatedLink <- unique(c(
-            cm$relatedLink,
-            paste0("https://CRAN.R-project.org/package=", cm$identifier)
-          ))
-
-        } else if (provider$name == "BioConductor") {
-
-          cm$relatedLink <- unique(c(cm$relatedLink, paste0(
-            "https://bioconductor.org/packages/release/bioc/html/",
-            cm$identifier, ".html"
-          )))
-        }
+        cm <- set_relatedLink_1(cm, provider)
       }
     } else if (cm$identifier %in% installed_package_names()) {
 
@@ -158,7 +146,7 @@ create_codemeta <- function(
 
       if (cm$version == pkg_info$ondiskversion) {
 
-        cm <- set_relatedLink(cm, provider_name)
+        cm <- set_relatedLink_2(cm, provider_name)
       }
     }
   }
@@ -167,8 +155,29 @@ create_codemeta <- function(
   cm
 }
 
-# set_relatedLink --------------------------------------------------------------
-set_relatedLink <- function(codemeta, provider_name) {
+# set_relatedLink_1 ------------------------------------------------------------
+set_relatedLink_1 <- function(codemeta, provider) {
+
+  if (provider$name == "Comprehensive R Archive Network (CRAN)") {
+
+    codemeta$relatedLink <- unique(c(
+      codemeta$relatedLink,
+      paste0("https://CRAN.R-project.org/package=", codemeta$identifier)
+    ))
+
+  } else if (provider$name == "BioConductor") {
+
+    codemeta$relatedLink <- unique(c(codemeta$relatedLink, paste0(
+      "https://bioconductor.org/packages/release/bioc/html/",
+      codemeta$identifier, ".html"
+    )))
+  }
+
+  codemeta
+}
+
+# set_relatedLink_2 ------------------------------------------------------------
+set_relatedLink_2 <- function(codemeta, provider_name) {
 
   if (grepl("CRAN", provider_name)) {
 
