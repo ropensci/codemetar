@@ -101,25 +101,33 @@ guess_readme_url <- function(root) {
   # else NULL implicitly
 }
 
-guess_readme_path <- function(root){
+# guess_readme_path ------------------------------------------------------------
+guess_readme_path <- function(root) {
+
   readmes <- dir(root, pattern = "^README\\.R?md$", ignore.case = TRUE)
-  if(length(readmes) == 0){
-    readme_path <- NULL
-  }else{
-    readme_rmd <- readmes[grepl("\\.[Rr]md", readmes)]
-    if(length(readme_rmd) == 0){
-      readme_path <- file.path(root, readmes[grepl("\\.md", readmes)])
-    }else{
-      readme_path <- file.path(root, readme_rmd)
-    }
+
+  if (length(readmes) == 0) {
+
+    return(NULL)
   }
 
-  if(length(readme_path) > 1) { # README.md and ReadMe.md could both exist ...
+  readme_rmd <- grep("\\.[Rr]md$", readmes, value = TRUE)
+
+  if (length(readme_rmd) == 0) {
+
+    readme_file <- grep("\\.md$", readmes, value = TRUE)
+  }
+
+  readme_path <- file.path(root, readme_file)
+
+  if (length(readme_path) > 1) {
+
+    # README.md and ReadMe.md could both exist ...
     ## silently use the first match (locale-dependent)
     readme_path <- readme_path[1]
   }
 
-  return(readme_path)
+  readme_path
 }
 
 .guess_readme <- function(root = ".") {
