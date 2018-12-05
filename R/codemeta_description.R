@@ -1,14 +1,17 @@
-# Define gloabl string constant
-URL_CODEMETA_SCHEMA <- "https://doi.org/10.5063/schema/codemeta-2.0"
+# Set codemeta schema as an option ---------------------------------------------
+options(codemeta_context = url_codemeta_schema())
 
-# Set codemeta schema as an option
-options(codemeta_context = URL_CODEMETA_SCHEMA)
+# url_codemeta_schema ----------------------------------------------------------
+url_codemeta_schema <- function() {
+
+  "https://doi.org/10.5063/schema/codemeta-2.0"
+}
 
 # new_codemeta -----------------------------------------------------------------
 ## Supporting old versions will be a nuciance
 new_codemeta <- function() {
 
-  list(`@context` = getOption("codemeta_context", URL_CODEMETA_SCHEMA),
+  list(`@context` = getOption("codemeta_context", url_codemeta_schema()),
        `@type` = "SoftwareSourceCode")
 }
 
