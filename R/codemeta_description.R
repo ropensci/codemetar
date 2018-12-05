@@ -1,7 +1,10 @@
+# Define gloabl string constant
 URL_CODEMETA_SCHEMA <- "https://doi.org/10.5063/schema/codemeta-2.0"
 
+# Set codemeta schema as an option
 options(codemeta_context = URL_CODEMETA_SCHEMA)
 
+# new_codemeta -----------------------------------------------------------------
 ## Supporting old versions will be a nuciance
 new_codemeta <- function() {
 
@@ -9,7 +12,7 @@ new_codemeta <- function() {
        `@type` = "SoftwareSourceCode")
 }
 
-# Additional codemeta terms
+# additional_codemeta_terms ----------------------------------------------------
 additional_codemeta_terms <- function() {
 
   c("affiliation",
@@ -53,7 +56,7 @@ additional_codemeta_terms <- function() {
   )
 }
 
-
+# codemeta_description ---------------------------------------------------------
 # Can add to an existing codemeta document
 codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
 
@@ -115,7 +118,7 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
   codemeta
 }
 
-
+# add_repository_terms ---------------------------------------------------------
 add_repository_terms <- function(codemeta, descr) {
 
   ## Get URLs
@@ -153,7 +156,7 @@ add_repository_terms <- function(codemeta, descr) {
   codemeta
 }
 
-
+# add_language_terms -----------------------------------------------------------
 add_language_terms <- function(codemeta) {
 
   codemeta$programmingLanguage <- list(
@@ -171,7 +174,7 @@ add_language_terms <- function(codemeta) {
   codemeta
 }
 
-
+# add_person_terms -------------------------------------------------------------
 add_person_terms <- function(codemeta, descr) {
 
   author <- try(descr$get_authors(), silent = TRUE)
@@ -199,9 +202,9 @@ add_person_terms <- function(codemeta, descr) {
   codemeta
 }
 
+# add_software_terms -----------------------------------------------------------
+add_software_terms <- function(codemeta, descr) {
 
-add_software_terms <- function(codemeta, descr)
-{
   dependencies <- descr$get_deps()
 
   remotes <- descr$get_remotes()
@@ -226,7 +229,7 @@ add_software_terms <- function(codemeta, descr)
   codemeta
 }
 
-
+# add_remote_provider ----------------------------------------------------------
 add_remote_provider <- function(x, remotes) {
 
   x$remote_provider <- unlist(lapply(
@@ -236,9 +239,9 @@ add_remote_provider <- function(x, remotes) {
   x
 }
 
+# add_additional_terms ---------------------------------------------------------
+add_additional_terms <- function(codemeta, descr) {
 
-add_additional_terms <- function(codemeta, descr)
-{
   ## in DESCRIPTION, these terms must be *prefixed*:
   x_terms <- paste0("X-schema.org-", (terms <- additional_codemeta_terms()))
 
