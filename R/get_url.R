@@ -23,3 +23,9 @@ get_url_github_package <- function(provider_name) {
 
   paste0("https://github.com/", link, "/commit/", commit)
 }
+
+# get_url_github_account -------------------------------------------------------
+get_url_github_account <- function(user)
+{
+  paste0("https://github.com/", user)
+}

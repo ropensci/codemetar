@@ -33,24 +33,20 @@ format_depend <- function(package, version, remote_provider) {
 ## Get sameAs element for dep or NULL if not applicable
 get_sameAs <- function(provider, remote_provider, identifier) {
 
-  # CRAN canonical URL
-  urls <- c(
-    "Comprehensive R Archive Network (CRAN)" =
-      "https://CRAN.R-project.org/package=%s",
-    "BioConductor" =
-      "https://bioconductor.org/packages/release/bioc/html/%s.html",
-    "_GITHUB_" =
-      "https://github.com/%s"
+  # assign each keyword a function that returns the URL to a given package name
+  url_generators <- c(
+    "Comprehensive R Archive Network (CRAN)" = get_url_cran_package,
+    "BioConductor" = get_url_bioconductor_package
   )
 
   # The remote provider takes precedence over the non-remote provider
   if (remote_provider != "") {
 
-    sprintf(urls["_GITHUB_"], stringr::str_remove(remote_provider, "github::"))
+    get_url_github_account(stringr::str_remove(remote_provider, "github::"))
 
-  } else if (! is.null(provider) && provider$name %in% names(urls)) {
+  } else if (! is.null(provider) && provider$name %in% names(url_generators)) {
 
-    sprintf(urls[provider$name], identifier)
+    url_generators[provider$name](identifier)
 
   } # else NULL implicitly
 }
