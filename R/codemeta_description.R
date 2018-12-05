@@ -126,17 +126,8 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
 
   codemeta$version <- as.character(descr$get_version())
 
-  codemeta$programmingLanguage <- list(
-    "@type" = "ComputerLanguage",
-    name = R.version$language,
-    version = paste(R.version$major, R.version$minor, sep = "."),
-    # According to Crosswalk, we just want numvers and not R.version.string
-    url = "https://r-project.org"
-  )
-
-  ## According to schema.org, programmingLanguage doesn't have a version;
-  ## but runtimePlatform, a plain string, does.
-  codemeta$runtimePlatform <- R.version.string
+  ## add progr. language related terms: programmingLanguage, runtimePlatform
+  codemeta <- add_language_terms(codemeta)
 
   if (is.null(codemeta$provider)) {
     codemeta$provider <- guess_provider(package_name)
@@ -152,6 +143,24 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
   codemeta <- add_additional_terms(codemeta, descr)
 
   # return codemeta
+  codemeta
+}
+
+
+add_language_terms <- function(codemeta) {
+
+  codemeta$programmingLanguage <- list(
+    "@type" = "ComputerLanguage",
+    name = R.version$language,
+    version = paste(R.version$major, R.version$minor, sep = "."),
+    # According to Crosswalk, we just want numvers and not R.version.string
+    url = "https://r-project.org"
+  )
+
+  ## According to schema.org, programmingLanguage doesn't have a version;
+  ## but runtimePlatform, a plain string, does.
+  codemeta$runtimePlatform <- R.version.string
+
   codemeta
 }
 
