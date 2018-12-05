@@ -9,7 +9,7 @@ get_root_path <- function(pkg) {
 
   if (pkg %in% installed_package_names()) {
 
-    base::system.file(".", package = pkg)
+    package_file(pkg, ".")
 
   } else if (is_package(file.path(pkg))) {
 
@@ -23,6 +23,13 @@ get_root_path <- function(pkg) {
 #
 #   "." # stick with default
   }
+}
+
+# package_file -----------------------------------------------------------------
+# Just a shortcut to system.file(..., package = pkg)
+package_file <- function(pkg, ...) {
+
+  base::system.file(..., package = pkg)
 }
 
 # installed_package_names: names of installed packages -------------------------
@@ -44,7 +51,7 @@ get_file <- function(FILE, pkg = ".") {
 
   } else {
 
-    system.file(FILE, package = pkg)
+    package_file(pkg, FILE)
   }
 }
 
@@ -78,7 +85,7 @@ render_template <- function(template, data = list(), package = "codemetar") {
 # this is GPL-3 code
 find_template <- function(template_name, package = "usethis") {
 
-  system.file("templates", template_name, package = package)
+  package_file(package, "templates", template_name)
 }
 
 # get_url_status_code ----------------------------------------------------------
