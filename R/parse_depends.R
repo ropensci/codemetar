@@ -66,29 +66,31 @@ parse_depends <- function(deps) {
 ## version...
 guess_dep_id <- function(dep) {
 
+  # mapping between base URL patterns and functions generating full URLs
+  url_generators <- list(
+    "cran.r-project.org" = get_url_cran_package_2,
+    "www.bioconductor.org" = get_url_bioconductor_package_2
+  )
+
   if (dep$name == "R") {
 
     ## FIXME No good identifier for R, particularly none for specific version
-    id <- "https://www.r-project.org"
+    "https://www.r-project.org"
 
-  } else if (is.null(dep$provider)) {
+  } else if (! is.null(dep$provider)) {
 
-    id <- NULL
+    provider_url <- dep$provider$url
 
-  } else if (grepl("cran.r-project.org", dep$provider$url)) {
+    # Try to find a matching URL generator function
+    is_matching <- sapply(names(url_generators), grepl, x = provider_url)
 
-    id <- get_url_cran_package_2(dep$provider$url, dep$identifier)
+    if (any(is_matching)) {
 
-  } else if (grepl("www.bioconductor.org", dep$provider$url)) {
+      url_generators[[which(is_matching)[1]]](provider_url, dep$identifier)
 
-    id <- get_url_bioconductor_package_2(dep$provider$url, dep$identifier)
+    } # else NULL implicitly
 
-  } else {
-
-    id <- NULL
-  }
-
-  id
+  } # else NULL implicitly
 }
 
 
