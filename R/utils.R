@@ -36,12 +36,15 @@ installed_package_names <- function() {
 ## Like system.file, but pkg can instead be path to package root directory
 get_file <- function(FILE, pkg = ".") {
 
-  f <- file.path(pkg, FILE)
+  path <- file.path(pkg, FILE)
 
-  if (file.exists(f))
-    f
-  else {
-    f <- system.file(FILE, package = pkg)
+  if (file.exists(path)) {
+
+    path
+
+  } else {
+
+    system.file(FILE, package = pkg)
   }
 }
 
