@@ -158,40 +158,47 @@ create_codemeta <- function(
 
       if (cm$version == pkg_info$ondiskversion) {
 
-        if (grepl("CRAN", provider_name)) {
-
-          cm$relatedLink <- unique(c(cm$relatedLink, paste0(
-            "https://CRAN.R-project.org/package=", cm$identifier
-          )))
-
-        } else if (grepl("Bioconductor", provider_name)) {
-
-          cm$relatedLink <- unique(c(cm$relatedLink, paste0(
-            "https://bioconductor.org/packages/release/bioc/html/",
-            cm$identifier, ".html"
-          )))
-
-        } else if (grepl("Github", provider_name)) {
-
-          # if GitHub try to build the URL to commit or to repo in general
-          if (grepl("@", provider_name)) {
-
-            commit <- gsub(".*@", "", provider_name)
-            commit <- gsub("\\)", "", commit)
-
-            link <- gsub(".*\\(", "", provider_name)
-            link <- gsub("@.*", "", link)
-
-            cm$relatedLink <- unique(c(cm$relatedLink, paste0(
-              "https://github.com/", link, "/commit/", commit
-            )))
-          }
-        }
+        cm <- set_relatedLink(cm, provider_name)
       }
     }
   }
 
   ## Add blank slots as placeholders? and declare as an S3 class?
-
   cm
+}
+
+# set_relatedLink --------------------------------------------------------------
+set_relatedLink <- function(codemeta, provider_name) {
+
+  if (grepl("CRAN", provider_name)) {
+
+    codemeta$relatedLink <- unique(c(codemeta$relatedLink, paste0(
+      "https://CRAN.R-project.org/package=", codemeta$identifier
+    )))
+
+  } else if (grepl("Bioconductor", provider_name)) {
+
+    codemeta$relatedLink <- unique(c(codemeta$relatedLink, paste0(
+      "https://bioconductor.org/packages/release/bioc/html/",
+      codemeta$identifier, ".html"
+    )))
+
+  } else if (grepl("Github", provider_name)) {
+
+    # if GitHub try to build the URL to commit or to repo in general
+    if (grepl("@", provider_name)) {
+
+      commit <- gsub(".*@", "", provider_name)
+      commit <- gsub("\\)", "", commit)
+
+      link <- gsub(".*\\(", "", provider_name)
+      link <- gsub("@.*", "", link)
+
+      codemeta$relatedLink <- unique(c(codemeta$relatedLink, paste0(
+        "https://github.com/", link, "/commit/", commit
+      )))
+    }
+  }
+
+  codemeta
 }
