@@ -115,11 +115,14 @@ create_codemeta <- function(
 
     cm$citation <- guess_citation(pkg)
 
+    # set string constant
+    url_schema <- "http://schema.org"
+
     ## citations need schema.org context!
     ## see https://github.com/codemeta/codemeta/issues/155
-    if (! any(grepl("http://schema.org", cm$`@context`))) {
+    if (! any(grepl(url_schema, cm$`@context`))) {
 
-      cm$`@context` <- c(cm$`@context`, "http://schema.org")
+      cm$`@context` <- c(cm$`@context`, url_schema)
     }
   }
 
@@ -165,16 +168,14 @@ set_relatedLink_1 <- function(codemeta, provider) {
   if (provider$name == "Comprehensive R Archive Network (CRAN)") {
 
     codemeta$relatedLink <- unique(c(
-      codemeta$relatedLink,
-      paste0("https://CRAN.R-project.org/package=", codemeta$identifier)
+      codemeta$relatedLink, get_url_cran_package(codemeta$identifier)
     ))
 
   } else if (provider$name == "BioConductor") {
 
-    codemeta$relatedLink <- unique(c(codemeta$relatedLink, paste0(
-      "https://bioconductor.org/packages/release/bioc/html/",
-      codemeta$identifier, ".html"
-    )))
+    codemeta$relatedLink <- unique(c(
+      codemeta$relatedLink, get_url_bioconductor_package(codemeta$identifier)
+    ))
   }
 
   codemeta
@@ -185,31 +186,24 @@ set_relatedLink_2 <- function(codemeta, provider_name) {
 
   if (grepl("CRAN", provider_name)) {
 
-    codemeta$relatedLink <- unique(c(codemeta$relatedLink, paste0(
-      "https://CRAN.R-project.org/package=", codemeta$identifier
-    )))
+    codemeta$relatedLink <- unique(c(
+      codemeta$relatedLink, get_url_cran_package(codemeta$identifier)
+    ))
 
   } else if (grepl("Bioconductor", provider_name)) {
 
-    codemeta$relatedLink <- unique(c(codemeta$relatedLink, paste0(
-      "https://bioconductor.org/packages/release/bioc/html/",
-      codemeta$identifier, ".html"
-    )))
+    codemeta$relatedLink <- unique(c(
+      codemeta$relatedLink, get_url_bioconductor_package(codemeta$identifier)
+    ))
 
   } else if (grepl("Github", provider_name)) {
 
     # if GitHub try to build the URL to commit or to repo in general
     if (grepl("@", provider_name)) {
 
-      commit <- gsub(".*@", "", provider_name)
-      commit <- gsub("\\)", "", commit)
-
-      link <- gsub(".*\\(", "", provider_name)
-      link <- gsub("@.*", "", link)
-
-      codemeta$relatedLink <- unique(c(codemeta$relatedLink, paste0(
-        "https://github.com/", link, "/commit/", commit
-      )))
+      codemeta$relatedLink <- unique(c(
+        codemeta$relatedLink, get_url_github_package(provider_name)
+      ))
     }
   }
 
