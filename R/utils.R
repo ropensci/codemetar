@@ -134,26 +134,15 @@ check_urls <- function(urls) {
 # whether_provider_badge -------------------------------------------------------
 whether_provider_badge <- function(badges, provider_name) {
 
-  if (is.null(provider_name)) {
-
-    provider_badge <- FALSE
-
-  } else {
-
-    if (provider_name == "Comprehensive R Archive Network (CRAN)") {
-
-      provider_badge <- any(grepl("CRAN", badges$text))
-
-    } else {
-
-      if (provider_name == "BioConductor") {
-
-        provider_badge <- any(grepl("bioconductor", badges$link))
-      }
-    }
-  }
-
-  provider_badge
+  ! is.null(provider_name) && (
+    (
+      provider_name == "Comprehensive R Archive Network (CRAN)" &&
+        any(grepl("CRAN", badges$text))
+    ) || (
+      provider_name == "BioConductor" &&
+        any(grepl("bioconductor", badges$link))
+    )
+  )
 }
 
 # is_package: helper to find whether a path is a package project ---------------
