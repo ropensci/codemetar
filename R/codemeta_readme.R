@@ -42,7 +42,7 @@ get_pkg_name <- function(entry) {
 
   reviews <- jsonlite::read_json(url_onboarded_json)
 
-  reviews <- tibble::tibble(
+  tibble::tibble(
     review = purrr::map_dbl(reviews, "iss_no"),
     package = purrr::map_chr(reviews, get_pkg_name)
   )
@@ -63,10 +63,6 @@ guess_ropensci_review <- function(readme) {
   }
 
   review <- as.numeric(stringr::str_remove(badges, paste0(".*https://", url)))
-
-  # TODO: What to do with more than one review or is that not possible?
-  # Can the list entry "url" be a vector (with length > 1) of review URLs?
-  #review <- review[1]
 
   if (review %in% ropensci_reviews()$review) {
 
@@ -150,15 +146,3 @@ codemeta_readme <- function(readme, codemeta) {
     set_element_if_null("review", guess_ropensci_review(readme))
 }
 
-# set_element_if_null ----------------------------------------------------------
-set_element_if_null <- function(x, element, value) {
-
-  stopifnot(is.list(x))
-
-  if (is.null(x[[element]])) {
-
-    x[[element]] <- value
-  }
-
-  x
-}
