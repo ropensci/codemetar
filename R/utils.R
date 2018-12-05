@@ -29,7 +29,7 @@ get_root_path <- function(pkg) {
 # Just a shortcut to system.file(..., package = pkg)
 package_file <- function(pkg, ...) {
 
-  base::system.file(..., package = pkg)
+  system.file(..., package = pkg)
 }
 
 # installed_package_names: names of installed packages -------------------------
