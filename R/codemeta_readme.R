@@ -4,17 +4,14 @@
 guess_ci <- function(readme) {
 
   badges <- extract_badges(readme)
-  ci_badge <- badges[grepl("travis", badges$link)|
-                       grepl("appveyor", badges$link)|
-                       grepl("circleci", badges$link)|
-                       grepl("codecov", badges$link)|
-                       grepl("coveralls", badges$link),]
-  if (!is.null(ci_badge)) {
-    ci_badge$link
-  } else {
-    NULL
-  }
 
+  pattern <- "travis|appveyor|circleci|codecov|coveralls"
+
+  if (length(badge_links <- grep(pattern, badge$link, value = TRUE))) {
+
+    badge_links
+  }
+  # else NULL implicitly
 }
 
 ## Either repostatus.org or lifecycle badge
