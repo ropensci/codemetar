@@ -91,41 +91,27 @@ find_template <- function(template_name, package = "usethis") {
 # get_url_status_code ----------------------------------------------------------
 get_url_status_code <- function(url) {
 
-  if (! is.null(url)) {
-
-    if (! is.na(url)) {
-
-      result <- try(crul::HttpClient$new(url)$get(), silent = TRUE)
-
-      if (! inherits(result,'try-error')){
-
-        code <- result$status_code
-
-        if (code == 200) {
-
-          message <- "All good"
-
-        } else {
-
-          message <- paste("Error code:", code)
-        }
-
-      } else {
-
-        message <- "No connection was possible"
-      }
-
-      return(data.frame(message = message, url = url))
-
-    } else {
-
-      return(NULL)
-    }
-
-  } else {
+  if (is.null(url) || is.na(url)) {
 
     return(NULL)
   }
+
+  result <- try(crul::HttpClient$new(url)$get(), silent = TRUE)
+
+  message <- if (inherits(result,'try-error')) {
+
+    "No connection was possible"
+
+  } else if ((code <- result$status_code) == 200) {
+
+    "All good"
+
+  } else {
+
+    paste("Error code:", code)
+  }
+
+  data.frame(message = message, url = url)
 }
 
 # check_urls -------------------------------------------------------------------
