@@ -13,11 +13,12 @@ matrix:
   include:
     - os: linux
       r: release
+      before_deploy: Rscript -e 'install.packages("pkgdown")'
+      deploy:
+        provider: script
+        script: Rscript -e 'pkgdown::deploy_site_github()'
+        skip_cleanup: true
     - os: linux
       r: oldrel
 
-before_deploy: Rscript -e 'install.packages("pkgdown")'
-deploy:
-  provider: script
-  script: Rscript -e 'pkgdown::deploy_site_github()'
-  skip_cleanup: true
+
