@@ -142,62 +142,49 @@ create_codemeta <- function(
             paste0("https://CRAN.R-project.org/package=", cm$identifier)
           ))
 
-        } else {
+        } else if (provider$name == "BioConductor") {
 
-          if (provider$name == "BioConductor") {
-
-            cm$relatedLink <- unique(c(cm$relatedLink, paste0(
-              "https://bioconductor.org/packages/release/bioc/html/",
-              cm$identifier, ".html"
-            )))
-          }
+          cm$relatedLink <- unique(c(cm$relatedLink, paste0(
+            "https://bioconductor.org/packages/release/bioc/html/",
+            cm$identifier, ".html"
+          )))
         }
       }
-    } else {
+    } else if (cm$identifier %in% installed_package_names()) {
 
-      if (cm$identifier %in% installed_package_names()) {
+      pkg_info <- sessioninfo::package_info(cm$identifier)
+      pkg_info <- pkg_info[pkg_info$package == cm$identifier, ]
+      provider_name <- pkg_info$source
 
-        pkg_info <- sessioninfo::package_info(cm$identifier)
-        pkg_info <- pkg_info[pkg_info$package == cm$identifier, ]
+      if (cm$version == pkg_info$ondiskversion) {
 
-        provider_name <- pkg_info$source
+        if (grepl("CRAN", provider_name)) {
 
-        if (cm$version == pkg_info$ondiskversion) {
+          cm$relatedLink <- unique(c(cm$relatedLink, paste0(
+            "https://CRAN.R-project.org/package=", cm$identifier
+          )))
 
-          if (grepl("CRAN", provider_name)) {
+        } else if (grepl("Bioconductor", provider_name)) {
+
+          cm$relatedLink <- unique(c(cm$relatedLink, paste0(
+            "https://bioconductor.org/packages/release/bioc/html/",
+            cm$identifier, ".html"
+          )))
+
+        } else if (grepl("Github", provider_name)) {
+
+          # if GitHub try to build the URL to commit or to repo in general
+          if (grepl("@", provider_name)) {
+
+            commit <- gsub(".*@", "", provider_name)
+            commit <- gsub("\\)", "", commit)
+
+            link <- gsub(".*\\(", "", provider_name)
+            link <- gsub("@.*", "", link)
 
             cm$relatedLink <- unique(c(cm$relatedLink, paste0(
-              "https://CRAN.R-project.org/package=", cm$identifier
+              "https://github.com/", link, "/commit/", commit
             )))
-
-          } else {
-
-            if (grepl("Bioconductor", provider_name)) {
-
-              cm$relatedLink <- unique(c(cm$relatedLink, paste0(
-                "https://bioconductor.org/packages/release/bioc/html/",
-                cm$identifier, ".html"
-              )))
-
-            } else {
-
-              # if GitHub try to build the URL to commit or to repo in general
-              if (grepl("Github", provider_name)) {
-
-                if (grepl("@", provider_name)) {
-
-                  commit <- gsub(".*@", "", provider_name)
-                  commit <- gsub("\\)", "", commit)
-
-                  link <- gsub(".*\\(", "", provider_name)
-                  link <- gsub("@.*", "", link)
-
-                  cm$relatedLink <- unique(c(cm$relatedLink, paste0(
-                    "https://github.com/", link, "/commit/", commit
-                  )))
-                }
-              }
-            }
           }
         }
       }
