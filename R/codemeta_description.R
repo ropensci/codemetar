@@ -112,9 +112,7 @@ codemeta_description <- function(f, id = NULL, codemeta = new_codemeta()) {
     }
   }
 
-  issue_tracker <- descr$get("BugReports")
-
-  if (! is.na(issue_tracker)) {
+  if (! is.na(issue_tracker <- descr$get("BugReports"))) {
     codemeta$issueTracker <- issue_tracker
   }
 
