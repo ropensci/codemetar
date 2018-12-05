@@ -1,33 +1,31 @@
+# guess_ci ---------------------------------------------------------------------
+
 ## Based on CI badges, not config files
 # only Travis, Appveyor and Circle CI
 # also uses code coverage
 guess_ci <- function(readme) {
 
-  badges <- extract_badges(readme)
-
-  pattern <- "travis|appveyor|circleci|codecov|coveralls"
-
-  if (length(badge_links <- grep(pattern, badge$link, value = TRUE))) {
-
-    badge_links
-  }
-  # else NULL implicitly
+  get_badge_links_matching(readme, "travis|appveyor|circleci|codecov|coveralls")
 }
+
+# guess_devStatus --------------------------------------------------------------
 
 ## Either repostatus.org or lifecycle badge
 guess_devStatus <- function(readme) {
+
+  get_badge_links_matching(readme, "repostatus\\.org|lifecycle")
+}
+
+# get_badge_links_matching -----------------------------------------------------
+get_badge_links_matching <- function(readme, pattern) {
+
   badges <- extract_badges(readme)
-  status_badge <- badges[grepl("repostatus.org", badges$link)|
-                           grepl("lifecycle", badges$link),]
-  if (!is.null(status_badge)) {
-    if(nrow(status_badge) >0){
-      status_badge$link
-    }
-  } else {
-    NULL
+
+  if (length(links <- grep(pattern, badges$link, value = TRUE))) {
+
+    links
   }
-
-
+  # else NULL implicitly
 }
 
 # looks for a rOpenSci peer review badge
