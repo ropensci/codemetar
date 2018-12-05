@@ -50,6 +50,7 @@ get_pkg_name <- function(entry) {
 
 ropensci_reviews <- memoise::memoise(.ropensci_reviews)
 
+# guess_ropensci_review --------------------------------------------------------
 guess_ropensci_review <- function(readme) {
 
   url <- "github.com/ropensci/onboarding/issues/"
@@ -76,26 +77,28 @@ guess_ropensci_review <- function(readme) {
   # else NULL implicitly
 }
 
+# guess_readme_url -------------------------------------------------------------
 # find the readme
+guess_readme_url <- function(root) {
 
-guess_readme_url <- function(root){
-  if (uses_git(root)) {
-    github <- guess_github(root)
-    github <- gsub(".*com\\/", "", github)
-    github <- strsplit(github, "/")[[1]]
-    readme <- try(gh::gh("GET /repos/:owner/:repo/readme",
-                         owner = github[1], repo = github[2]),
-                  silent = TRUE)
-    if(inherits(readme, "try-error")){
-      readme_url <- NULL
-    }else{
-      readme$html_url
-    }
+  if (! uses_git(root)) {
 
-
-  } else{
-    NULL
+    return(NULL)
   }
+
+  github <- stringr::str_remove(guess_github(root), ".*com\\/")
+
+  parts <- strsplit(github, "/")[[1]]
+
+  readme <- try(silent = TRUE, gh::gh(
+    "GET /repos/:owner/:repo/readme", owner = parts[1], repo = parts[2]
+  ))
+
+  if (! inherits(readme, "try-error")) {
+
+    readme$html_url
+  }
+  # else NULL implicitly
 }
 
 guess_readme_path <- function(root){
