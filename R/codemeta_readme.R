@@ -107,23 +107,22 @@ guess_readme_path <- function(root) {
     return(NULL)
   }
 
+  # Filter for Rmd files
   readme_rmd <- grep("\\.[Rr]md$", readmes, value = TRUE)
 
-  if (length(readme_rmd) == 0) {
+  # If there is a Rmd file, use this one, else filter for md files
+  readme_file <- if (length(readme_rmd)) {
 
-    readme_file <- grep("\\.md$", readmes, value = TRUE)
+    readme_rmd
+
+  } else {
+
+    grep("\\.md$", readmes, value = TRUE)
   }
 
-  readme_path <- file.path(root, readme_file)
-
-  if (length(readme_path) > 1) {
-
-    # README.md and ReadMe.md could both exist ...
-    ## silently use the first match (locale-dependent)
-    readme_path <- readme_path[1]
-  }
-
-  readme_path
+  # README.md and ReadMe.md could both exist, therefore silently use the first
+  # match (locale-dependent). Prepend the root path.
+  file.path(root, readme_file[1])
 }
 
 # .guess_readme ----------------------------------------------------------------
