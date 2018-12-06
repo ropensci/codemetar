@@ -150,3 +150,16 @@ is_package <- function(path) {
 
   all(c("DESCRIPTION", "NAMESPACE", "man", "R") %in% dir(path))
 }
+
+# set_element_if_null ----------------------------------------------------------
+set_element_if_null <- function(x, element, value) {
+
+  stopifnot(is.list(x))
+
+  if (is.null(x[[element]])) {
+
+    x[[element]] <- value
+  }
+
+  x
+}
