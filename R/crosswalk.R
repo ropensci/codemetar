@@ -1,16 +1,19 @@
 #' crosswalk
 #'
 #' Crosswalk between different metadata fields used by different repositories,
-#' registries and archives. For more details see https://codemeta.github.io/crosswalk
-#' This function requires an internet connection to obtain the latest crosswalk table.
-#' This function essentially applies the crosswalk table shown by \code{\link{crosswalk_table}}
-#' to a given JSON metadata record.
+#' registries and archives. For more details see
+#' https://codemeta.github.io/crosswalk This function requires an internet
+#' connection to obtain the latest crosswalk table. This function essentially
+#' applies the crosswalk table shown by \code{\link{crosswalk_table}} to a given
+#' JSON metadata record.
 #' @param x a JSON list or file with data fields to be crosswalked
 #' @param from the corresponding column name from the crosswalk table.
 #' @param to the column to translate into, assumes "codemeta" by default
-#' @param codemeta_context the address or contents of codemeta context. Leave at default
+#' @param codemeta_context the address or contents of codemeta context. Leave at
+#'   default
 #'
-#' @return a `json` object containing a valid codemeta.json file created by crosswalking the input JSON
+#' @return a `json` object containing a valid codemeta.json file created by
+#'   crosswalking the input JSON
 #'
 #' @export
 #'
@@ -50,14 +53,16 @@ crosswalk <- function(x,
 
 #' crosswalk_table
 #'
-#'  return a subset of the crosswalk table containing codemeta properties and matching column
+#' return a subset of the crosswalk table containing codemeta properties and
+#' matching column
 #' @param from the name of a column in the crosswalk table to map from.
 #' @param to the name of one or more columns in the crosswalk table to map into
-#' @param full_crosswalk Path or URL (requires internet!) of the full crosswalk table.
+#' @param full_crosswalk Path or URL (requires internet!) of the full crosswalk
+#'   table.
 #' @param trim drop rows giving properties not found in the 'from' column?
 #' @importFrom readr read_csv cols
-#' @return a tibble containing the trimmed crosswalk table, listing property (in CodeMeta),
-#' and the corresponding terms in both from and to columns.
+#' @return a tibble containing the trimmed crosswalk table, listing property (in
+#'   CodeMeta), and the corresponding terms in both from and to columns.
 #' @examples \donttest{
 #' crosswalk_table(from = "GitHub", to = c("Zenodo", "Figshare"))
 #' }
@@ -102,7 +107,8 @@ get_crosswalk_context <-
 
 #' Crosswalk transform
 #'
-#' Perform JSON-LD expansion of input, followed by compaction into the codemeta context
+#' Perform JSON-LD expansion of input, followed by compaction into the codemeta
+#' context
 #' @inheritParams crosswalk
 #' @param crosswalk_context Context to be added to x
 #' @return a valid codemeta json description.
@@ -171,4 +177,3 @@ add_context <- function(x, context, json_output = FALSE){
   }
   x
 }
-
