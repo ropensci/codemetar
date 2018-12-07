@@ -24,12 +24,12 @@
 #' crosswalk(r, "GitHub")
 #' }
 #'
-crosswalk <- function(x,
-                      from,
-                      to = "codemeta",
-                      codemeta_context = getOption("codemeta_context",
-                                                   "https://doi.org/10.5063/schema/codemeta-2.0")
-                      ){
+crosswalk <- function(
+  x,
+  from,
+  to = "codemeta",
+  codemeta_context = getOption("codemeta_context", url_codemeta_schema())
+) {
 
   from_context <- get_crosswalk_context(crosswalk_table(from), codemeta_context)
   if(to != "codemeta"){
