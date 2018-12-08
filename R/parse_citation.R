@@ -4,21 +4,16 @@
 #' @importFrom stringi stri_trans_general
 parse_citation <- function(bib) {
 
-  codemeta <- parse_people(bib$author, new_codemeta())
+  type <- bib$bibtype %>%
+    stringi::stri_trans_general(id = "Title") %>%
+    bibentry_to_schema_field()
 
-  authors <- codemeta$author
-
-  bibtype <- stringi::stri_trans_general(bib$bibtype, id = "Title")
-
-  ## All recognized bibentry types:
-  ## N.B. none of these types are in the 2.0 context,
-  ## so would need to include schema.org context
-  type <- bibentry_to_schema_field(bibtype)
+  author <- parse_people(bib$author, new_codemeta())$author
 
   out <- drop_null(list(
     "@type" = type,
     "datePublished" = bib$year,
-    "author" = authors,
+    "author" = author,
     "name" = bib$title,
     "identifier" = bib$doi,
     "url" = bib$url,
@@ -68,6 +63,11 @@ parse_citation <- function(bib) {
 }
 
 # bibentry_to_schema_field -----------------------------------------------------
+
+## All recognized bibentry types:
+## N.B. none of these types are in the 2.0 context,
+## so would need to include schema.org context
+
 bibentry_to_schema_field <- function(bibtype) {
 
   switch(
