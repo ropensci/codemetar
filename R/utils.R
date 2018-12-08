@@ -4,6 +4,17 @@ drop_null <- function(x) {
   x[lengths(x) != 0]
 }
 
+# example_file -----------------------------------------------------------------
+
+#' Get the Path to an Example File Stored in This Package
+#'
+#' @param \dots parts of the paths, finally passed to \code{system.file}
+#'
+example_file <- function(...) {
+
+  package_file("codemetar", "examples", ...)
+}
+
 # get_root_path ----------------------------------------------------------------
 get_root_path <- function(pkg) {
 
