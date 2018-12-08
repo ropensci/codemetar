@@ -26,10 +26,7 @@
 #'
 crosswalk <- function(x, from, to = "codemeta", codemeta_context = NULL) {
 
-  if (is.null(codemeta_context)) {
-
-    codemeta_context <- getOption("codemeta_context", url_codemeta_schema())
-  }
+  codemeta_context <- default_context_if_null(codemeta_context)
 
   from_context <- crosswalk_table(from) %>%
     get_crosswalk_context(codemeta_context)
@@ -57,6 +54,21 @@ crosswalk <- function(x, from, to = "codemeta", codemeta_context = NULL) {
   )
 }
 
+# default_context_if_null ------------------------------------------------------
+
+#' Return Given Context or Default Context if NULL
+default_context_if_null <- function(codemeta_context)
+{
+  if (is.null(codemeta_context)) {
+
+    getOption("codemeta_context", url_codemeta_schema())
+
+  } else {
+
+    codemeta_context
+  }
+}
+
 #' crosswalk_table
 #'
 #' return a subset of the crosswalk table containing codemeta properties and
@@ -73,8 +85,9 @@ crosswalk <- function(x, from, to = "codemeta", codemeta_context = NULL) {
 #' crosswalk_table(from = "GitHub", to = c("Zenodo", "Figshare"))
 #' }
 #' @export
-crosswalk_table <- function(from, to = NULL, full_crosswalk = NULL, trim = TRUE)
-{
+crosswalk_table <- function(
+  from, to = NULL, full_crosswalk = NULL, trim = TRUE) {
+
   if (is.null(full_crosswalk)) {
 
     github_path <- "codemeta/codemeta/raw/master/crosswalk.csv"
@@ -99,26 +112,24 @@ crosswalk_table <- function(from, to = NULL, full_crosswalk = NULL, trim = TRUE)
 ## Use a crosswalk table subset to create a context file for the input data
 ## This is a JSON-LD representation of the crosswalk for the desired data.
 #' @importFrom jsonlite read_json
-get_crosswalk_context <-
-  function(df,
-           codemeta_context =
-             getOption("codemeta_context",
-                       "https://doi.org/10.5063/schema/codemeta-2.0")){
+get_crosswalk_context <- function(df, codemeta_context = NULL) {
 
-    context <- jsonlite::read_json(codemeta_context)
-    context[[1]][["id"]] <- NULL ## avoid collisions with @id
-    properties <- names(context[[1]])
+  codemeta_context <- default_context_if_null(codemeta_context)
 
-    new_context <- list("@context" =
+  context <- jsonlite::read_json(codemeta_context)
+  context[[1]][["id"]] <- NULL ## avoid collisions with @id
+  properties <- names(context[[1]])
+
+  new_context <- list("@context" =
                         list(schema = "http://schema.org/",
                              codemeta = "https://codemeta.github.io/terms/"))
 
-    for(i in 1:dim(df)[1]){
-      original_term <- properties[properties == df[[i, 1]] ]
-      new_context[["@context"]][[ df[[i,2]] ]] <- context[[1]][[original_term]]
-    }
-  new_context
+  for(i in 1:dim(df)[1]){
+    original_term <- properties[properties == df[[i, 1]] ]
+    new_context[["@context"]][[ df[[i,2]] ]] <- context[[1]][[original_term]]
   }
+  new_context
+}
 
 #' Crosswalk transform
 #'
@@ -129,11 +140,11 @@ get_crosswalk_context <-
 #' @return a valid codemeta json description.
 #' @importFrom jsonld jsonld_expand jsonld_compact
 #' @importFrom jsonlite toJSON
-crosswalk_transform <- function(x,
-                                crosswalk_context = NULL,
-                                codemeta_context =
-                                getOption("codemeta_context",
-                                          "https://doi.org/10.5063/schema/codemeta-2.0")){
+crosswalk_transform <- function(
+  x, crosswalk_context = NULL, codemeta_context = NULL
+) {
+
+  codemeta_context <- default_context_if_null(codemeta_context)
 
   x <- add_context(x, crosswalk_context)
   y <- jsonlite::toJSON(x, auto_unbox = TRUE, pretty = TRUE)
