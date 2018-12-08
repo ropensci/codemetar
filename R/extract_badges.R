@@ -1,14 +1,23 @@
-parse_md_badge <- function(badge){
+# parse_md_badge ---------------------------------------------------------------
 
-  xml2::xml_contents(badge) %>%
-    .[xml2::xml_name(.) == "image"] -> image
+parse_md_badge <- function(badge) {
 
-  tibble::tibble(text = xml2::xml_text(image),
-                 link = xml2::xml_attr(badge, "destination"),
-                 image_link = xml2::xml_attr(image, "destination"))
+  image <- xml2::xml_contents(badge) %>%
+    .[xml2::xml_name(.) == "image"]
+
+  get_destination <- function(x) xml2::xml_attr(x, "destination")
+
+  tibble::tibble(
+    text = xml2::xml_text(image),
+    link = get_destination(badge),
+    image_link = get_destination(image)
+  )
 }
 
-extract_md_badges <- function(path){
+# extract_md_badges ------------------------------------------------------------
+
+extract_md_badges <- function(path) {
+
   path %>%
     readLines(encoding = "UTF-8") %>%
     commonmark::markdown_xml(extensions = TRUE)  %>%
@@ -18,13 +27,17 @@ extract_md_badges <- function(path){
     purrr::map_df(parse_md_badge)
 }
 
-parse_html_badge <- function(badge){
-  xml2::xml_contents(badge) %>%
-    .[xml2::xml_name(.) == "img"] -> image
+# parse_html_badge -------------------------------------------------------------
+parse_html_badge <- function(badge) {
 
-  tibble::tibble(text = xml2::xml_attr(image, "alt"),
-                 link = xml2::xml_attr(badge, "href"),
-                 image_link = xml2::xml_attr(image, "src"))
+  image <- xml2::xml_contents(badge) %>%
+    .[xml2::xml_name(.) == "img"]
+
+  tibble::tibble(
+    text = xml2::xml_attr(image, "alt"),
+    link = xml2::xml_attr(badge, "href"),
+    image_link = xml2::xml_attr(image, "src")
+  )
 }
 
 extract_html_badges <- function(path){
