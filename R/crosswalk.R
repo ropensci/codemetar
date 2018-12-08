@@ -122,19 +122,29 @@ get_crosswalk_context <- function(df, codemeta_context = NULL) {
 
   codemeta_context <- default_context_if_null(codemeta_context)
 
-  context <- jsonlite::read_json(codemeta_context)
-  context[[1]][["id"]] <- NULL ## avoid collisions with @id
-  properties <- names(context[[1]])
+  context <- jsonlite::read_json(codemeta_context)[[1]]
 
-  new_context <- list("@context" =
-                        list(schema = "http://schema.org/",
-                             codemeta = "https://codemeta.github.io/terms/"))
+  context[["id"]] <- NULL ## avoid collisions with @id
 
-  for(i in 1:dim(df)[1]){
-    original_term <- properties[properties == df[[i, 1]] ]
-    new_context[["@context"]][[ df[[i,2]] ]] <- context[[1]][[original_term]]
-  }
-  new_context
+  # Continue with a data frame (not with a tibble) so that indexing a column
+  # returns a vector
+  df <- as.data.frame(df)
+
+  # Lookup the "keys" in the names of the context
+  indices <- match(df[, 1], names(context))
+
+  # Which keys have been found?
+  found <- ! is.na(indices)
+
+  # Create a new list of key/value pairs
+  additional_context <- stats::setNames(context[indices[found]], df[found, 2])
+
+  base_context <- list(
+    schema = "http://schema.org/",
+    codemeta = "https://codemeta.github.io/terms/"
+  )
+
+  list("@context" = c(base_context, additional_context))
 }
 
 #' Crosswalk transform
