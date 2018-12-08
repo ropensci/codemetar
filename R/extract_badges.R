@@ -1,5 +1,4 @@
 # parse_md_badge ---------------------------------------------------------------
-
 parse_md_badge <- function(badge) {
 
   image <- xml2::xml_contents(badge) %>%
@@ -15,7 +14,6 @@ parse_md_badge <- function(badge) {
 }
 
 # extract_md_badges ------------------------------------------------------------
-
 extract_md_badges <- function(path) {
 
   path %>%
@@ -40,34 +38,38 @@ parse_html_badge <- function(badge) {
   )
 }
 
-extract_html_badges <- function(path){
-  path %>%
-    readLines(encoding = "UTF-8") -> doc
+# extract_html_badges ----------------------------------------------------------
+extract_html_badges <- function(path) {
 
-  # assuming the badge tables is the 1st one
-  table_start <- which(stringr::str_detect(doc,
-                                           '\\<table class\\=\\"table\\"\\>'))[1]
-  table_end <- which(stringr::str_detect(doc,'\\<\\/table\\>'))[1]
+  doc <- readLines(path, encoding = "UTF-8")
 
-  if(all(!is.na(c(table_start,
-                  table_end)))){
-    doc[table_start:table_end] %>%
-      glue::glue_collapse() %>%
-      xml2::read_html() %>%
-      xml2::xml_find_all("//a") -> badges
-    if(length(badges) > 0){
-      purrr::map_df(badges, parse_html_badge)
-    }else{
-      NULL
-    }
+  # helper function assuming the badge table is the 1st one
+  which_detect <- function(p) which(stringr::str_detect(doc, p))[1]
 
-  }else{
-    NULL
+  table_start <- which_detect('\\<table class\\=\\"table\\"\\>')
+  table_end <- which_detect('\\<\\/table\\>')
+
+  if (any(is.na(c(table_start, table_end)))) {
+
+    return(NULL)
   }
 
+  badges <- doc[table_start:table_end] %>%
+    glue::glue_collapse() %>%
+    xml2::read_html() %>%
+    xml2::xml_find_all("//a")
 
+  if (length(badges)) {
+
+    purrr::map_df(badges, parse_html_badge)
+
+  } else {
+
+    NULL
+  }
 }
 
+# .extract_badges --------------------------------------------------------------
 .extract_badges <- function(path) {
 
   md_badges <- extract_md_badges(path)
