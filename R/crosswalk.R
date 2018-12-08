@@ -48,9 +48,7 @@ crosswalk <- function(x, from, to = "codemeta", codemeta_context = NULL) {
   x$organization$id <- as.character(x$organization$id)
 
   crosswalk_transform(
-    x,
-    crosswalk_context = from_context,
-    codemeta_context = to_context
+    x, crosswalk_context = from_context, codemeta_context = to_context
   )
 }
 
