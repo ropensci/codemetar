@@ -168,53 +168,57 @@ crosswalk_transform <- function(
     jsonld::jsonld_compact(context = codemeta_context)
 }
 
-
-
 #' drop_context
 #'
 #' drop context element from json list or json string
-#' @param x a JSON list (from read_json / fromJSON) or json object (from toJSON)
-#' @param json_output logical, should output be a json object or a list?
+#'
+#' @inheritParams set_context
 #' @return a list or json object with the "@context" element removed
 #' @importFrom jsonlite toJSON fromJSON
 #' @export
-drop_context <-function(x, json_output = FALSE){
-  if(is(x, "json") || is.character(x)){
-    x <- fromJSON(x)
-    json_output <- TRUE
-  }
-  x$`@context` <- NULL
+#'
+drop_context <-function(x, json_output = FALSE) {
 
-
-  if(json_output){
-    x <- toJSON(x, auto_unbox = TRUE, pretty = TRUE)
-  }
-  x
+  # Remove context by setting the corresponding list element to NULL
+  set_context(x, NULL, json_output)
 }
 
 #' add_context
 #'
 #' add context element to json list or json string
 #'
-#' @param x a JSON list (from read_json / fromJSON) or json object (from toJSON)
+#' @inheritParams set_context
 #' @param context context to be added, in same format as x
-#' @param json_output logical, should output be a json object or a list?
 #' @return a list or json object with "@context" element added
 #' @export
-add_context <- function(x, context, json_output = FALSE){
-  if(is(x, "json") || is.character(x)){
-    x <- fromJSON(x)
-    json_output <- TRUE
-  }
-  if(is(context, "json") || is.character(context)){
-    context <- fromJSON(context)
-  }
+#'
+add_context <- function(x, context, json_output = FALSE) {
 
-  ## make sure context doesn't already have a "@context" property
-  x$`@context` <- context
+  new_context <- from_json_if(is_json_or_character(context), context)
 
-  if(json_output){
-   x <- toJSON(x, auto_unbox = TRUE, pretty = TRUE)
-  }
-  x
+  set_context(x, new_context, json_output)
+}
+
+#' set_context
+#'
+#' set context element in json list or json string
+#'
+#' @param x a JSON list (from read_json / fromJSON) or json object (from toJSON)
+#' @param new_context new value for the context element
+#' @param json_output logical, should output be a json object or a list?
+#' @return a list or json object with "@context" element set to \code{context}
+#'
+set_context <- function(x, new_context, json_output = FALSE) {
+
+  # is x of class "json" or character?
+  json_input <- is_json_or_character(x)
+
+  # if yes, call fromJSON() on x
+  x <- from_json_if(json_input, x)
+
+  ## TODO: make sure context doesn't already have a "@context" property
+  x$`@context` <- new_context
+
+  # convert x to json if requested or if the input was json
+  to_json_if(json_output || json_input, x, auto_unbox = TRUE, pretty = TRUE)
 }
