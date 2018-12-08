@@ -32,13 +32,13 @@ get_url_github_package <- function(provider_name) {
   link <- gsub(".*\\(", "", provider_name)
   link <- gsub("@.*", "", link)
 
-  paste0("https://github.com/", link, "/commit/", commit)
+  get_url_github(link, "commit", commit)
 }
 
-# get_url_github_account -------------------------------------------------------
-get_url_github_account <- function(user) {
+# get_url_github ---------------------------------------------------------------
+get_url_github <- function(...) {
 
-  paste0("https://github.com/", user)
+  paste0("https://github.com", ..., sep = "/")
 }
 
 # get_url_rhub -----------------------------------------------------------------

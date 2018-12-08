@@ -73,19 +73,28 @@ crosswalk <- function(x, from, to = "codemeta", codemeta_context = NULL) {
 #' crosswalk_table(from = "GitHub", to = c("Zenodo", "Figshare"))
 #' }
 #' @export
-crosswalk_table <- function(from,
-                            to = NULL,
-                          full_crosswalk =
-                            "https://github.com/codemeta/codemeta/raw/master/crosswalk.csv",
-                          trim = TRUE){
-  df <-
-    readr::read_csv(full_crosswalk,
-                    col_types = cols(.default = "c"))
-  df <- df[c("Property", from, to)]
-  if(trim) df <- df[!is.na(df[,from]),] # trim to `from` argument fields
-  df
-}
+crosswalk_table <- function(from, to = NULL, full_crosswalk = NULL, trim = TRUE)
+{
+  if (is.null(full_crosswalk)) {
 
+    github_path <- "codemeta/codemeta/raw/master/crosswalk.csv"
+
+    full_crosswalk <- get_url_github(github_path)
+  }
+
+  df <- readr::read_csv(full_crosswalk, col_types = cols(.default = "c"))
+
+  df <- df[c("Property", from, to)]
+
+  if (trim) {
+
+    df[! is.na(df[[from]]), ] # trim to `from` argument fields
+
+  } else {
+
+    df
+  }
+}
 
 ## Use a crosswalk table subset to create a context file for the input data
 ## This is a JSON-LD representation of the crosswalk for the desired data.
