@@ -38,7 +38,7 @@ get_url_github_package <- function(provider_name) {
 # get_url_github ---------------------------------------------------------------
 get_url_github <- function(...) {
 
-  paste0("https://github.com", ..., sep = "/")
+  paste("https://github.com", ..., sep = "/")
 }
 
 # get_url_rhub -----------------------------------------------------------------
