@@ -174,3 +174,58 @@ set_element_if_null <- function(x, element, value) {
 
   x
 }
+
+#' Check for Class "json" or Character
+#'
+#' @param x object to be checked for its class and mode
+#' @return \code{TRUE} if \code{x} inherits from "json" or is of mode character,
+#'   otherwise \code{FALSE}
+#'
+is_json_or_character <- function(x) {
+
+  is(x, "json") || is.character(x)
+}
+
+#' Convert to JSON if Condition is Met
+#'
+#' @param condition expression to be evaluated
+#' @param x object to be converted to JSON
+#' @param \dots further arguments passed to \code{\link[jsonlite]{toJSoN}}
+#' @importFrom jsonlite toJSON
+#'
+to_json_if <- function(condition, x, ...) {
+
+  call_if(condition, x, FUN = jsonlite::toJSON, ...)
+}
+
+#' Convert from JSON if Condition is Met
+#'
+#' @param condition expression to be evaluated
+#' @param x object passed to \code{\link[jsonlite]{fromJSON}} if
+#'   \code{condition} is met
+#' @param \dots further arguments passed to \code{\link[jsonlite]{fromJSoN}}
+#' @importFrom jsonlite fromJSON
+#'
+from_json_if <- function(condition, x, ...) {
+
+  call_if(condition, x, jsonlite::fromJSON, ...)
+}
+
+#' Call Function if Condition is Met
+#'
+#' @param condition expression to be evaluated
+#' @param FUN function to be called if \code{condition} is met
+#' @param x first argument to be passed to \code{FUN} or not
+#' @param \dots further arguments passed to \code{FUN}
+#'
+call_if <- function(condition, x, FUN, ...) {
+
+  if (condition) {
+
+    FUN(x, ...)
+
+  } else {
+
+    x
+  }
+}
