@@ -101,7 +101,7 @@ crosswalk_table <- function(
     full_crosswalk <- get_url_github(github_path)
   }
 
-  df <- readr::read_csv(full_crosswalk, col_types = cols(.default = "c"))
+  df <- readr::read_csv(full_crosswalk, col_types = readr::cols(.default = "c"))
 
   df <- df[c("Property", from, to)]
 
