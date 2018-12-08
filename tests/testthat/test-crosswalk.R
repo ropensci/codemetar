@@ -9,7 +9,7 @@ test_json <- function(x, basename) {
 }
 
 # Define helper function that reads a json example file
-read_example_json <- function(file) read_json(example_file(file))
+read_example_json <- function(file) jsonlite::read_json(example_file(file))
 
 testthat::test_that("we can call crosswalk", {
 
