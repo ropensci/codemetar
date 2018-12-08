@@ -162,11 +162,10 @@ crosswalk_transform <- function(
 
   codemeta_context <- default_context_if_null(codemeta_context)
 
-  x <- add_context(x, crosswalk_context)
-  y <- jsonlite::toJSON(x, auto_unbox = TRUE, pretty = TRUE)
-  y <- jsonld::jsonld_expand(y)
-  y <- jsonld::jsonld_compact(y, context = codemeta_context)
-  y
+  add_context(x, context = crosswalk_context) %>%
+    jsonlite::toJSON(auto_unbox = TRUE, pretty = TRUE) %>%
+    jsonld::jsonld_expand() %>%
+    jsonld::jsonld_compact(context = codemeta_context)
 }
 
 
