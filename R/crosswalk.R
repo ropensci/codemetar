@@ -46,7 +46,7 @@ crosswalk <- function(x, from, to = "codemeta", codemeta_context = NULL) {
   }
 
   # ids need to be coerced to character in order to be compacted by jsonld
-  x[["id"]] <- as.character(x[["id"]])
+  x$id <- as.character(x$id)
   x$owner$id <- as.character(x$owner$id)
   x$organization$id <- as.character(x$organization$id)
 
