@@ -24,12 +24,12 @@
 #' crosswalk(r, "GitHub")
 #' }
 #'
-crosswalk <- function(
-  x,
-  from,
-  to = "codemeta",
-  codemeta_context = getOption("codemeta_context", url_codemeta_schema())
-) {
+crosswalk <- function(x, from, to = "codemeta", codemeta_context = NULL) {
+
+  if (is.null(codemeta_context)) {
+
+    codemeta_context <- getOption("codemeta_context", url_codemeta_schema())
+  }
 
   from_context <- crosswalk_table(from) %>%
     get_crosswalk_context(codemeta_context)
@@ -45,16 +45,16 @@ crosswalk <- function(
     codemeta_context
   }
 
-  # ids need to be coerced to character
-  # in order to be compacted by jsonld
+  # ids need to be coerced to character in order to be compacted by jsonld
   x[["id"]] <- as.character(x[["id"]])
   x$owner$id <- as.character(x$owner$id)
   x$organization$id <- as.character(x$organization$id)
 
-  crosswalk_transform(x,
-                      crosswalk_context = from_context,
-                      codemeta_context = to_context)
-
+  crosswalk_transform(
+    x,
+    crosswalk_context = from_context,
+    codemeta_context = to_context
+  )
 }
 
 #' crosswalk_table
