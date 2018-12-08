@@ -1,3 +1,5 @@
+# give_opinions ----------------------------------------------------------------
+
 #' Function giving opinions about a package
 #'
 #' @param pkg_path Path to the package root
@@ -5,123 +7,163 @@
 #' @return A data.frame of opinions
 #' @export
 #'
-give_opinions <- function(pkg_path = getwd()){
-  descr_path <- file.path(pkg_path, "DESCRIPTION")
-  # opinions about DESCRIPTION
-  descr_issues <- give_opinions_desc(descr_path)
+give_opinions <- function(pkg_path = getwd()) {
 
-  # opinions about README
-  readme <- guess_readme(pkg_path)$readme_path
-  if (is.null(readme)) {
-    readme_issues <- NULL
-  }else{
-    desc_info <- codemeta_description(descr_path)
-    readme_issues <- give_opinions_readme(readme,
-                                          desc_info$identifier)
+  # set the path to the description file
+  description_file <- file.path(pkg_path, "DESCRIPTION")
+
+  # read the description file
+  description <- read_description_if_null(NULL, description_file)
+
+  # create a list of issues, each element is a vector of character or NULL
+  fixmes <- do.call(rbind, list(
+
+    # opinions about DESCRIPTION
+    give_opinions_desc(description = description),
+
+    # opinions about README
+    try_to_give_opinions_readme(description_file)
+  ))
+
+  if (! is.null(fixmes)) {
+
+    fixmes$package <- as.character(description$get("Package"))
   }
 
-
-  fixmes <- rbind(descr_issues, readme_issues)
-
-  if(!is.null(fixmes)){
-    descr <- desc::desc(descr_path)
-    fixmes$package <- as.character(descr$get("Package"))
-    return(fixmes)
-  }else{
-    return(NULL)
-  }
-
-
+  fixmes
 }
 
-give_opinions_desc <- function(descr_path){
-  descr <- desc::desc(descr_path)
+# read_description_if_null -----------------------------------------------------
+read_description_if_null <- function(description, description_file) {
+
+  if (is.null(description)) {
+
+    desc::desc(description_file)
+
+  } else {
+
+    description
+  }
+}
+
+# give_opinions_desc -----------------------------------------------------------
+give_opinions_desc <- function(description_file, description = NULL) {
+
+  # read description from description_file if description is NULL
+  description <- read_description_if_null(description, description_file)
+
+  # Start with an empty vector of "fixme" messages
+  fixmes <- character()
+
   # Authors
-  if (inherits( try(descr$get_authors(), silent = TRUE),
-                'try-error')){
-    authors_fixme <- "The syntax Authors@R instead of plain Author and Maintainer is recommended in particular because it allows richer metadata" # no lint
-  }else{
-    authors_fixme <- NULL
+  if (fails(description$get_authors())) {
+
+    fixmes <- c(fixmes, get_message(message_id = "hint_use_authors_r"))
   }
 
   # URL
-  if(is.na(descr$get("URL"))){
-    url_fixme <- "URL field. Indicate the URL to your code repository."
-  }else{
-    checkurls <- check_urls(descr$descr$get_urls)
-    if(checkurls != ""){
-      url_fixme <- checkurls
-    }else{
-      url_fixme <- NULL
-    }
-
-  }
+  fixmes <- add_url_fixmes(
+    fixmes = fixmes,
+    main_url = description$get("URL"),
+    message_id = "hint_add_repo_url",
+    further_urls = description$descr$get_urls
+  )
 
   # BugReports
-  if(is.na(descr$get("BugReports"))){
-    bugreports_fixme <- "BugReports field. Indicate where to report bugs, e.g. GitHub issue tracker."
-  }else{
-    checkurls <- check_urls(descr$get("BugReports"))
-    if(checkurls != ""){
-      bugreports_fixme <- checkurls
-    }else{
-      bugreports_fixme <- NULL
-    }
+  fixmes <- add_url_fixmes(
+    fixmes = fixmes,
+    main_url = description$get("BugReports"),
+    message_id = "hint_add_bug_report_url"
+  )
 
-  }
-
-  fixmes <- c(authors_fixme, url_fixme, bugreports_fixme)
-  fixmes <- fixmes[!is.null(fixmes)]
-
-  if(length(fixmes) >0){
-
-    tibble::tibble(where = "DESCRIPTION",
-                   fixme = fixmes)
-  }else{
-    NULL
-  }
-
-
+  fixmes_as_tibble_or_message(fixmes, where = "DESCRIPTION")
 }
 
-give_opinions_readme <- function(readme_path,
-                                 pkg_name){
+# fails ------------------------------------------------------------------------
+fails <- function(expr, silent = TRUE) {
 
-  # look for badges
-  badges <- extract_badges(readme_path)
+  inherits(try(expr, silent = silent), "try-error")
+}
+
+# add_url_fixmes ---------------------------------------------------------------
+add_url_fixmes <- function(
+  fixmes, main_url, message_id, further_urls = main_url
+) {
+
+  if (is.na(main_url)) {
+
+    fixmes <- c(fixmes, get_message(message_id))
+
+  } else if ((failing_urls <- check_urls(further_urls)) != "") {
+
+    fixmes <- c(fixmes, failing_urls)
+  }
+
+  fixmes
+}
+
+# fixmes_as_tibble_or_message ---------------------------------------------------
+fixmes_as_tibble_or_message <- function(fixmes, where, message_id = NULL) {
+
+  if (length(fixmes)) {
+
+    tibble::tibble(where = where, fixme = fixmes)
+
+  } else if (! is.null(message_id)) {
+
+    message(get_message(message_id))
+  }
+}
+
+# try_to_give_opinions_readme --------------------------------------------------
+try_to_give_opinions_readme <- function(description_file) {
+
+  readme_path <- guess_readme(dirname(description_file))$readme_path
+
+  if (is.null(readme_path)) {
+
+    return(NULL)
+  }
+
+  desc_info <- codemeta_description(description_file)
+
+  give_opinions_readme(readme_path, pkg_name = desc_info$identifier)
+}
+
+# give_opinions_readme ---------------------------------------------------------
+give_opinions_readme <- function(readme_path, pkg_name) {
+
+  # start with an empty vector of "fixme" messages
+  fixmes <- character()
+
   # status
-  if(is.null(guess_devStatus(readme_path))){
-    status_fixme <- "Add a status badge cf e.g repostatus.org"
-  }else{
-    status_fixme <- NULL
+  if (is.null(guess_devStatus(readme_path))) {
+
+    fixmes <- c(fixmes, get_message("hint_add_status_badge"))
   }
 
   # provider
   provider <- guess_provider(pkg_name)
-  if(!is.null(provider)){
-    provider_badge <- whether_provider_badge(badges,
-                                             provider$name)
 
-    if(!provider_badge){
-      provider_fixme <- paste0("There is a package called ",
-                               pkg_name, " on ",
-                               provider$name, ", add a badge to show it is yours or rename your package.")
-    }else{
-      provider_fixme <- NULL
-    }
-  }else{
-    provider_fixme <- NULL
+  if (has_provider_but_no_batch(provider, readme_path)) {
+
+    fixmes <- c(fixmes, get_message(
+      "hint_package_exists", pkg_name, provider$name
+    ))
   }
 
-  fixmes <- c(status_fixme, provider_fixme)
-  fixmes <- fixmes[!is.null(fixmes)]
-  if(length(fixmes) >0){
+  fixmes_as_tibble_or_message(fixmes, "README", "hint_highest_opinion")
+}
 
-    tibble::tibble(where = "README",
-                   fixme = fixmes)
-  }else{
-    message("codemetar has the highest opinion of this R package :-)")
-    NULL
+# has_provider_but_no_batch ----------------------------------------------------
+has_provider_but_no_batch <- function(provider, readme_path) {
+
+  if (is.null(provider)) {
+
+    FALSE
+
+  } else {
+
+    ! whether_provider_badge(extract_badges(readme_path), provider$name)
   }
-
 }
