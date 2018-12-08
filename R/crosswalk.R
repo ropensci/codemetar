@@ -55,6 +55,14 @@ crosswalk <- function(x, from, to = "codemeta", codemeta_context = NULL) {
 # default_context_if_null ------------------------------------------------------
 
 #' Return Given Context or Default Context if NULL
+#'
+#' @param codemeta_context context to be checked for \code{NULL}
+#' @return \describe{
+#'   \item{\code{codemeta_context}}{if \code{codemeta_context} is not \code{NULL},}
+#'   \item{the value of option \code{codemeta_context}}{if thisoption is set,}
+#'   \item{the value returned by \code{codemetar:::url_codemeta_schema()}}{else.}
+#' }
+#'
 default_context_if_null <- function(codemeta_context)
 {
   if (is.null(codemeta_context)) {
