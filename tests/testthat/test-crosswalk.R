@@ -8,17 +8,18 @@ test_json <- function(x, basename) {
   unlink(testfile)
 }
 
+# Define helper function that reads a json example file
+read_example_json <- function(file) read_json(example_file(file))
+
 testthat::test_that("we can call crosswalk", {
 
   skip_on_os("windows")
 
-  example_file("github_format.json") %>%
-    read_json() %>%
+  read_example_json("github_format.json") %>%
     crosswalk("GitHub") %>%
     test_json("test")
 
-  a <- example_file("package.json") %>%
-    read_json() %>%
+  a <- read_example_json("package.json") %>%
     crosswalk("NodeJS")
 
   test_json(a, "nodejs")
@@ -28,8 +29,7 @@ testthat::test_that("we can call crosswalk", {
     add_context(getOption("codemeta_context", "http://purl.org/codemeta/2.0"))
 
   ## Test transforms between columns
-  example_file("github_format.json") %>%
-    read_json() %>%
+  read_example_json("github_format.json") %>%
     crosswalk("GitHub", "Zenodo")
 
   crosswalk_table(from = "GitHub", to = c("Zenodo", "Figshare"))
