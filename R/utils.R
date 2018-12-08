@@ -190,7 +190,7 @@ is_json_or_character <- function(x) {
 #'
 #' @param condition expression to be evaluated
 #' @param x object to be converted to JSON
-#' @param \dots further arguments passed to \code{\link[jsonlite]{toJSoN}}
+#' @param \dots further arguments passed to \code{\link[jsonlite]{toJSON}}
 #' @importFrom jsonlite toJSON
 #'
 to_json_if <- function(condition, x, ...) {
@@ -203,7 +203,7 @@ to_json_if <- function(condition, x, ...) {
 #' @param condition expression to be evaluated
 #' @param x object passed to \code{\link[jsonlite]{fromJSON}} if
 #'   \code{condition} is met
-#' @param \dots further arguments passed to \code{\link[jsonlite]{fromJSoN}}
+#' @param \dots further arguments passed to \code{\link[jsonlite]{fromJSON}}
 #' @importFrom jsonlite fromJSON
 #'
 from_json_if <- function(condition, x, ...) {
