@@ -31,12 +31,18 @@ crosswalk <- function(
   codemeta_context = getOption("codemeta_context", url_codemeta_schema())
 ) {
 
-  from_context <- get_crosswalk_context(crosswalk_table(from), codemeta_context)
-  if(to != "codemeta"){
-    to_context <- get_crosswalk_context(crosswalk_table(to),  codemeta_context)
-    to_context <- toJSON(to_context, auto_unbox = TRUE, pretty = TRUE)
+  from_context <- crosswalk_table(from) %>%
+    get_crosswalk_context(codemeta_context)
+
+  to_context <- if (to != "codemeta") {
+
+    crosswalk_table(to) %>%
+      get_crosswalk_context(codemeta_context) %>%
+      toJSON(auto_unbox = TRUE, pretty = TRUE)
+
   } else {
-    to_context <- codemeta_context
+
+    codemeta_context
   }
 
   # ids need to be coerced to character
