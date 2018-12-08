@@ -1,8 +1,7 @@
 # parse_md_badge ---------------------------------------------------------------
 parse_md_badge <- function(badge) {
 
-  image <- xml2::xml_contents(badge) %>%
-    .[xml2::xml_name(.) == "image"]
+  image <- get_image_from_badge(badge, name = "image")
 
   get_destination <- function(x) xml2::xml_attr(x, "destination")
 
@@ -11,6 +10,12 @@ parse_md_badge <- function(badge) {
     link = get_destination(badge),
     image_link = get_destination(image)
   )
+}
+
+# get_image_from_badge ---------------------------------------------------------
+get_image_from_badge <- function(badge, name) {
+
+  xml2::xml_contents(badge) %>% .[xml2::xml_name(.) == name]
 }
 
 # extract_md_badges ------------------------------------------------------------
@@ -28,8 +33,7 @@ extract_md_badges <- function(path) {
 # parse_html_badge -------------------------------------------------------------
 parse_html_badge <- function(badge) {
 
-  image <- xml2::xml_contents(badge) %>%
-    .[xml2::xml_name(.) == "img"]
+  image <- get_image_from_badge(badge, name = "img")
 
   tibble::tibble(
     text = xml2::xml_attr(image, "alt"),
@@ -44,12 +48,12 @@ extract_html_badges <- function(path) {
   doc <- readLines(path, encoding = "UTF-8")
 
   # helper function assuming the badge table is the 1st one
-  which_detect <- function(p) which(stringr::str_detect(doc, p))[1]
+  find_first <- function(p) which(stringr::str_detect(doc, p))[1]
 
-  table_start <- which_detect('\\<table class\\=\\"table\\"\\>')
-  table_end <- which_detect('\\<\\/table\\>')
+  table_start <- find_first('\\<table class\\=\\"table\\"\\>')
+  table_end <- find_first('\\<\\/table\\>')
 
-  if (any(is.na(c(table_start, table_end)))) {
+  if (is.na(table_start) || is.na(table_end)) {
 
     return(NULL)
   }
