@@ -103,13 +103,7 @@ person_to_schema <- function(p) {
   }
 
   ## assume type is Organization if family name is null
-  if (is.null(p$family) || is.null(p$given))
-
-    type <- "Organization"
-
-  else
-
-    type <- "Person"
+  type <- get_type_of_person(p)
 
   out <- switch(
     type,
@@ -136,4 +130,19 @@ person_to_schema <- function(p) {
   }
 
   out
+}
+
+# get_type_of_person -----------------------------------------------------------
+get_type_of_person <- function(p) {
+
+  stopifnot(inherits(p, "person"))
+
+  if (is.null(p$family) || is.null(p$given)) {
+
+    "Organization"
+
+  } else {
+
+    "Person"
+  }
 }
