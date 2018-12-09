@@ -5,10 +5,7 @@
 #' @importFrom methods is
 parse_people <- function(people, codemeta) {
 
-  if (! is(people, "person")) {
-
-    people <- as.person(people)
-  }
+  people <- as.person(people)
 
   if (length(people) == 0) {
 
@@ -70,10 +67,7 @@ locate_role <- function(people, role = "aut") {
 # person_to_schema -------------------------------------------------------------
 person_to_schema <- function(p) {
 
-  if (! is(p, "person")) {
-
-    p <- as.person(p)
-  }
+  p <- as.person(p)
 
   if (length(p) == 0) {
 
