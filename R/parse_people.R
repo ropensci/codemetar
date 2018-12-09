@@ -44,18 +44,24 @@ people_without_role <- function(people) {
 # people_with_role -------------------------------------------------------------
 people_with_role <- function(people, role = "aut") {
 
-  has_role <- locate_role(people, role)
+  # If there is more than one role requested, call this function recursively
+  # for each role, combine the results with c() and return
+  if (length(role) > 1) {
 
-  if (any(has_role)) {
-
-    out <- lapply(people[has_role], person_to_schema)
-
-  } else {
-
-    out <- NULL
+    return(do.call(c, lapply(role, people_with_role, people = people)))
   }
 
-  out
+  # if role is NA, has_role is TRUE for all people without any role!
+  has_role <- locate_role(people, role)
+
+  # return NULL if there are no people with the required (or without any) role
+  if (! any(has_role)) {
+
+    return(NULL)
+  }
+
+  # create schema for each person with the selected (or without any) role
+  lapply(people[has_role], person_to_schema)
 }
 
 # locate_role ------------------------------------------------------------------
