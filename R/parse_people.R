@@ -83,25 +83,6 @@ person_to_schema <- function(p) {
     return(NULL)
   }
 
-  ## Store ORCID id in comment?
-  id <- NULL
-
-  if (!is.null(p$comment)) {
-
-    if (grepl("orcid", p$comment)) {
-
-      id <- p$comment
-
-    } else if ("ORCID" %in% names(p$comment)) {
-
-      id <- p$comment[["ORCID"]]
-
-      if (! grepl("^https?", id))
-
-        id <- paste0("https://orcid.org/", id)
-    }
-  }
-
   ## assume type is Organization if family name is null
   type <- get_type_of_person(p)
 
@@ -124,6 +105,9 @@ person_to_schema <- function(p) {
     out$email <- p$email
   }
 
+  ## Store ORCID id in comment?
+  id <- get_orcid_of_person(p)
+
   if (!is.null(id)) {
 
     out$`@id` <- id
@@ -144,5 +128,43 @@ get_type_of_person <- function(p) {
   } else {
 
     "Person"
+  }
+}
+
+# get_orcid_of_person ----------------------------------------------------------
+get_orcid_of_person <- function(p)
+{
+  # get the comment field of the person
+  comment <- p$comment
+
+  # return NULL if there is no comment for that person
+  if (is.null(comment)) {
+
+    return(NULL)
+  }
+
+  # return the full comment if it contains "orcid"
+  if (grepl("orcid", comment)) {
+
+    return(comment)
+  }
+
+  # return NULL if the named vector does not contain an element "ORCID"
+  if (! "ORCID" %in% names(comment)) {
+
+    return(NULL)
+  }
+
+  # get the (unnamed) element "ORDID" from the comment vector
+  id <- unname(comment["ORCID"])
+
+  # make sure that an URL to orcid.org is returned.
+  if (! grepl("^https?", id)) {
+
+    paste0("https://orcid.org/", id)
+
+  } else {
+
+    id
   }
 }
