@@ -13,23 +13,22 @@ parse_people <- function(people, codemeta) {
   }
 
   ## people with no role are assumed to be "Author" role
-  codemeta$author <- c(
-    people_with_role(people, "aut"),
-    people_with_role(people, NA)
+  role_mapping <- list(
+    author = c("aut", NA), # NA = people without a role
+    contributor = c("ctb", "com", "dtc", "ths", "trl"),
+    copyrightHolder = "cph",
+    funder = "fnd",
+    maintainer = "cre"
   )
 
-  codemeta$contributor <- c(
-    people_with_role(people, "ctb"),
-    people_with_role(people, "com"),
-    people_with_role(people, "dtc"),
-    people_with_role(people, "ths"),
-    people_with_role(people, "trl")
-  )
+  # get the names of the role entries in codemeta as given in role_mapping
+  roles <- names(role_mapping)
 
-  codemeta$copyrightHolder <- people_with_role(people, "cph")
-  codemeta$funder <- people_with_role(people, "fnd")
-  codemeta$maintainer <- people_with_role(people, "cre")
+  # call people_with_role on each element of role_mapping and assign the
+  # resulting lists to the corresponding entries in codemeta
+  codemeta[roles] <- lapply(role_mapping, people_with_role, people = people)
 
+  # return codemeta
   codemeta
 }
 
