@@ -86,7 +86,8 @@ person_to_schema <- function(p) {
   ## assume type is Organization if family name is null
   type <- get_type_of_person(p)
 
-  out <- switch(
+  # initialise the metadata list, depending on the type of person
+  codemeta <- switch(
     type,
     "Person" =   list(
       "@type" = type,
@@ -99,21 +100,14 @@ person_to_schema <- function(p) {
     )
   )
 
-  ## we don't want `{}` if none is found
-  if (!is.null(p$email)) {
+  ## add email and ORCID, if given
+  codemeta <- c(codemeta, drop_null(list(
+    email = p$email,
+    "@id" = get_orcid_of_person(p) # may return NULL
+    ## Store ORCID also in comment?
+  )))
 
-    out$email <- p$email
-  }
-
-  ## Store ORCID id in comment?
-  id <- get_orcid_of_person(p)
-
-  if (!is.null(id)) {
-
-    out$`@id` <- id
-  }
-
-  out
+  codemeta
 }
 
 # get_type_of_person -----------------------------------------------------------
