@@ -59,9 +59,21 @@ people_with_role <- function(people, role = "aut") {
 }
 
 # locate_role ------------------------------------------------------------------
+# role = NA returns TRUE for all people without a role
+#' @importFrom purrr map_lgl
 locate_role <- function(people, role = "aut") {
 
-  vapply(people, function(p) any(grepl(role, p$role)), logical(1))
+  has_no_role <- function(p) is.null(p$role)
+  has_role <- function(p, role) any(grepl(role, p$role))
+
+  if (is.na(role)) {
+
+    purrr::map_lgl(people, has_no_role)
+
+  } else {
+
+    purrr::map_lgl(people, has_role, role = role)
+  }
 }
 
 # person_to_schema -------------------------------------------------------------
