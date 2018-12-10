@@ -60,17 +60,32 @@ people_with_role <- function(people, role = "aut") {
 #' @importFrom purrr map_lgl
 locate_role <- function(people, role = "aut") {
 
-  has_no_role <- function(p) is.null(p$role)
-  has_role <- function(p, role) any(grepl(role, p$role))
-
   if (is.na(role)) {
 
-    purrr::map_lgl(people, has_no_role)
+    purrr::map_lgl(people, person_has_no_role)
 
   } else {
 
-    purrr::map_lgl(people, has_role, role = role)
+    purrr::map_lgl(people, person_has_role, role = role)
   }
+}
+
+# person_has_no_role -----------------------------------------------------------
+#' @noRd
+person_has_no_role <- function(person) {
+
+  stopifnot(inherits(person, "person"))
+
+  is.null(person$role)
+}
+
+# person_has_role --------------------------------------------------------------
+#' @noRd
+person_has_role <- function(person, role) {
+
+  stopifnot(inherits(person, "person"))
+
+  any(grepl(role, person$role))
 }
 
 # person_to_schema -------------------------------------------------------------
@@ -111,6 +126,7 @@ person_to_schema <- function(p) {
 }
 
 # get_type_of_person -----------------------------------------------------------
+#' @noRd
 get_type_of_person <- function(p) {
 
   stopifnot(inherits(p, "person"))
@@ -126,6 +142,7 @@ get_type_of_person <- function(p) {
 }
 
 # get_orcid_of_person ----------------------------------------------------------
+#' @noRd
 get_orcid_of_person <- function(p)
 {
   # get the comment field of the person
