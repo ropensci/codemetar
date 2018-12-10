@@ -17,16 +17,16 @@ testthat::test_that("parse_people",{
   expect_null(p$author)
 })
 
-testthat::test_that("person_has_no_role works") {
+testthat::test_that("person_has_no_role works", {
 
   expect_error(person_has_no_role())
   expect_error(person_has_no_role("Maria"))
 
   expect_true(person_has_no_role(person("Maria")))
   expect_false(person_has_no_role(person("Maria", role = "aut")))
-}
+})
 
-testthat::test_that("person_has_role works") {
+testthat::test_that("person_has_role works", {
 
   expect_error(person_has_role())
   expect_error(person_has_role("Maria"))
@@ -34,4 +34,4 @@ testthat::test_that("person_has_role works") {
 
   expect_true(person_has_role(person("Maria", role = "aut"), "aut"))
   expect_false(person_has_role(person("Maria", role = "aut"), "abc"))
-}
+})
