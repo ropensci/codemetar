@@ -4,9 +4,7 @@
 \alias{crosswalk}
 \title{crosswalk}
 \usage{
-crosswalk(x, from, to = "codemeta",
-  codemeta_context = getOption("codemeta_context",
-  "https://doi.org/10.5063/schema/codemeta-2.0"))
+crosswalk(x, from, to = "codemeta", codemeta_context = NULL)
 }
 \arguments{
 \item{x}{a JSON list or file with data fields to be crosswalked}
@@ -15,17 +13,20 @@ crosswalk(x, from, to = "codemeta",
 
 \item{to}{the column to translate into, assumes "codemeta" by default}
 
-\item{codemeta_context}{the address or contents of codemeta context. Leave at default}
+\item{codemeta_context}{the address or contents of codemeta context. Leave at
+default}
 }
 \value{
-a `json` object containing a valid codemeta.json file created by crosswalking the input JSON
+a `json` object containing a valid codemeta.json file created by
+  crosswalking the input JSON
 }
 \description{
 Crosswalk between different metadata fields used by different repositories,
-registries and archives. For more details see https://codemeta.github.io/crosswalk
-This function requires an internet connection to obtain the latest crosswalk table.
-This function essentially applies the crosswalk table shown by \code{\link{crosswalk_table}}
-to a given JSON metadata record.
+registries and archives. For more details see
+https://codemeta.github.io/crosswalk This function requires an internet
+connection to obtain the latest crosswalk table. This function essentially
+applies the crosswalk table shown by \code{\link{crosswalk_table}} to a given
+JSON metadata record.
 }
 \examples{
 \dontrun{
