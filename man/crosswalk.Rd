@@ -13,8 +13,11 @@ crosswalk(x, from, to = "codemeta", codemeta_context = NULL)
 
 \item{to}{the column to translate into, assumes "codemeta" by default}
 
-\item{codemeta_context}{the address or contents of codemeta context. Leave at
-default}
+\item{codemeta_context}{the address or contents of codemeta context. If not
+specified, the default "https://doi.org/10.5063/schema/codemeta-2.0" is
+used. The default is taken from the option "codemeta_context" and can thus
+be overridden by setting this option with \code{options(codemeta_context =
+<your_context_url>)}.}
 }
 \value{
 a `json` object containing a valid codemeta.json file created by

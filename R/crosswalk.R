@@ -9,8 +9,11 @@
 #' @param x a JSON list or file with data fields to be crosswalked
 #' @param from the corresponding column name from the crosswalk table.
 #' @param to the column to translate into, assumes "codemeta" by default
-#' @param codemeta_context the address or contents of codemeta context. Leave at
-#'   default
+#' @param codemeta_context the address or contents of codemeta context. If not
+#'   specified, the default "https://doi.org/10.5063/schema/codemeta-2.0" is
+#'   used. The default is taken from the option "codemeta_context" and can thus
+#'   be overridden by setting this option with \code{options(codemeta_context =
+#'   <your_context_url>)}.
 #'
 #' @return a `json` object containing a valid codemeta.json file created by
 #'   crosswalking the input JSON
@@ -107,7 +110,7 @@ crosswalk_table <- function(
 
   if (trim) {
 
-    df[! is.na(df[[from]]), ] # trim to `from` argument fields
+    df[! is.na(df[[from]]), ] # trim to "from" argument fields
 
   } else {
 
@@ -217,7 +220,7 @@ set_context <- function(x, new_context, json_output = FALSE) {
   x <- from_json_if(json_input, x)
 
   ## TODO: make sure context doesn't already have a "@context" property
-  x$`@context` <- new_context
+  x[["@context"]] <- new_context
 
   # convert x to json if requested or if the input was json
   to_json_if(json_output || json_input, x, auto_unbox = TRUE, pretty = TRUE)
