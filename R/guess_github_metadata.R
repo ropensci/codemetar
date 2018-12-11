@@ -27,12 +27,19 @@ guess_github <- function(root = ".") {
     gsub(pattern = "\\.git$", replacement = "")
 }
 
+# github_path ------------------------------------------------------------------
+
 #' @importFrom git2r repository branches
 github_path <- function(root, path) {
-  base <- guess_github(root)
-  r <- git2r::repository(root, discover = TRUE)
+
+  if (is.null(base <- guess_github(root))) {
+
+    return(NULL)
+  }
+
   branch <- getOption("codemeta_branch", "master")
-  paste0(base, "/blob/", branch, "/", path)
+
+  paste(base, "blob", branch, path, sep = "/")
 }
 
 
