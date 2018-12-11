@@ -145,7 +145,7 @@ give_opinions_readme <- function(readme_path, pkg_name) {
   # provider
   provider <- guess_provider(pkg_name)
 
-  if (has_provider_but_no_batch(provider, readme_path)) {
+  if (has_provider_but_no_badge(provider, readme_path)) {
 
     fixmes <- c(fixmes, get_message(
       "hint_package_exists", pkg_name, provider$name
@@ -155,8 +155,8 @@ give_opinions_readme <- function(readme_path, pkg_name) {
   fixmes_as_tibble_or_message(fixmes, "README", "hint_highest_opinion")
 }
 
-# has_provider_but_no_batch ----------------------------------------------------
-has_provider_but_no_batch <- function(provider, readme_path) {
+# has_provider_but_no_badge ----------------------------------------------------
+has_provider_but_no_badge <- function(provider, readme_path) {
 
   if (is.null(provider)) {
 
