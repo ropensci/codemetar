@@ -34,6 +34,16 @@ give_opinions <- function(pkg_path = getwd()) {
 }
 
 # read_description_if_null -----------------------------------------------------
+
+#' Read Description from File If Not Given
+#'
+#' @param description object to be checked for \code{NULL} and to be returned if
+#'   not being \code{NULL}.
+#' @param description_file path to \code{DESCRIPTION} file to be read with
+#'   \code{\link[desc]{desc}} if \code{description} is \code{NULL}.
+#' @return \code{description} if not \code{NULL} or the content of
+#'   \code{description_file} read with \code{\link[desc]{desc}}.
+#' @noRd
 read_description_if_null <- function(description, description_file) {
 
   if (is.null(description)) {
@@ -47,6 +57,20 @@ read_description_if_null <- function(description, description_file) {
 }
 
 # give_opinions_desc -----------------------------------------------------------
+
+#' Give Opinions about DESCRIPTION File
+#'
+#' You may either pass the path to a DESCRIPTION file or a description object
+#' as read with \code{\link[desc]{desc}}.
+#'
+#' @param description_file path do a DESCRIPTION file. Will not be considered if
+#'   a description object is given in \code{description}.
+#' @param description Description object as read with
+#'   \code{\link[desc]{desc}}. If not provided, the path to a DESCRIPTION file
+#'   must be given in \code{description_file}.
+#' @return \code{tibble} with columns \code{where}, \code{fixme} or \code{NULL}
+#'   if there are no opionions about the DESCRIPTION file.
+#' @noRd
 give_opinions_desc <- function(description_file, description = NULL) {
 
   # read description from description_file if description is NULL
@@ -77,12 +101,6 @@ give_opinions_desc <- function(description_file, description = NULL) {
   )
 
   fixmes_as_tibble_or_message(fixmes, where = "DESCRIPTION")
-}
-
-# fails ------------------------------------------------------------------------
-fails <- function(expr, silent = TRUE) {
-
-  inherits(try(expr, silent = silent), "try-error")
 }
 
 # add_url_fixmes ---------------------------------------------------------------

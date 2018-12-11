@@ -163,3 +163,16 @@ set_element_if_null <- function(x, element, value) {
 
   x
 }
+
+# fails ------------------------------------------------------------------------
+#' Does the Evaluation of an Expression Fail?
+#'
+#' @param expr expression to be evaluated within \code{try(\dots)}
+#' @param silent passed to \code{\link{try}}, see there.
+#' @return \code{TRUE} if evaluating \code{expr} failed and \code{FALSE} if
+#'   the evalutation of \code{expr} succeeded.
+fails <- function(expr, silent = TRUE) {
+
+  inherits(try(expr, silent = silent), "try-error")
+}
+
