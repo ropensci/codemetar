@@ -2,7 +2,7 @@
 % Please edit documentation in R/crosswalk.R
 \name{crosswalk}
 \alias{crosswalk}
-\title{crosswalk}
+\title{Crosswalk}
 \usage{
 crosswalk(x, from, to = "codemeta", codemeta_context = NULL)
 }

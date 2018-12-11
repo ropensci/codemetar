@@ -2,7 +2,7 @@
 % Please edit documentation in R/crosswalk.R
 \name{crosswalk_table}
 \alias{crosswalk_table}
-\title{crosswalk_table}
+\title{Crosswalk Table}
 \usage{
 crosswalk_table(from, to = NULL, full_crosswalk = NULL, trim = TRUE)
 }
@@ -21,7 +21,7 @@ a tibble containing the trimmed crosswalk table, listing property (in
   CodeMeta), and the corresponding terms in both from and to columns.
 }
 \description{
-return a subset of the crosswalk table containing codemeta properties and
+Return a subset of the crosswalk table containing codemeta properties and
 matching column
 }
 \examples{

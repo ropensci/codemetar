@@ -1,4 +1,6 @@
-#' crosswalk
+# crosswalk --------------------------------------------------------------------
+
+#' Crosswalk
 #'
 #' Crosswalk between different metadata fields used by different repositories,
 #' registries and archives. For more details see
@@ -14,12 +16,9 @@
 #'   used. The default is taken from the option "codemeta_context" and can thus
 #'   be overridden by setting this option with \code{options(codemeta_context =
 #'   <your_context_url>)}.
-#'
 #' @return a `json` object containing a valid codemeta.json file created by
 #'   crosswalking the input JSON
-#'
 #' @export
-#'
 #' @examples
 #' \dontrun{
 #' ## Crosswalk data returned by the GitHub API into CodeMeta format
@@ -65,7 +64,7 @@ crosswalk <- function(x, from, to = "codemeta", codemeta_context = NULL) {
 #'   \item{the value of option \code{codemeta_context}}{if thisoption is set,}
 #'   \item{the value returned by \code{codemetar:::url_codemeta_schema()}}{else.}
 #' }
-#'
+#' @noRd
 default_context_if_null <- function(codemeta_context)
 {
   if (is.null(codemeta_context)) {
@@ -78,9 +77,11 @@ default_context_if_null <- function(codemeta_context)
   }
 }
 
-#' crosswalk_table
+# crosswalk_table --------------------------------------------------------------
+
+#' Crosswalk Table
 #'
-#' return a subset of the crosswalk table containing codemeta properties and
+#' Return a subset of the crosswalk table containing codemeta properties and
 #' matching column
 #' @param from the name of a column in the crosswalk table to map from.
 #' @param to the name of one or more columns in the crosswalk table to map into
@@ -118,9 +119,15 @@ crosswalk_table <- function(
   }
 }
 
-## Use a crosswalk table subset to create a context file for the input data
-## This is a JSON-LD representation of the crosswalk for the desired data.
+# get_crosswalk_context --------------------------------------------------------
+
+#' Get Crosswalk Context
+#'
+#' Use a crosswalk table subset to create a context file for the input data
+#' This is a JSON-LD representation of the crosswalk for the desired data.
+#'
 #' @importFrom jsonlite read_json
+#' @noRd
 get_crosswalk_context <- function(df, codemeta_context = NULL) {
 
   codemeta_context <- default_context_if_null(codemeta_context)
@@ -150,15 +157,19 @@ get_crosswalk_context <- function(df, codemeta_context = NULL) {
   list("@context" = c(base_context, additional_context))
 }
 
-#' Crosswalk transform
+# crosswalk_transform ----------------------------------------------------------
+
+#' Crosswalk Transform
 #'
 #' Perform JSON-LD expansion of input, followed by compaction into the codemeta
 #' context
+#'
 #' @inheritParams crosswalk
 #' @param crosswalk_context Context to be added to x
 #' @return a valid codemeta json description.
 #' @importFrom jsonld jsonld_expand jsonld_compact
 #' @importFrom jsonlite toJSON
+#' @noRd
 crosswalk_transform <- function(
   x, crosswalk_context = NULL, codemeta_context = NULL
 ) {
@@ -171,30 +182,38 @@ crosswalk_transform <- function(
     jsonld::jsonld_compact(context = codemeta_context)
 }
 
-#' drop_context
+# drop_context -----------------------------------------------------------------
+
+#' Drop Context
 #'
-#' drop context element from json list or json string
+#' Drop context element from json list or json string
 #'
-#' @inheritParams set_context
+#' @param x a JSON list (from \code{\link[jsonlite]{read_json}} /
+#'   \code{\link[jsonlite]{fromJSON}}) or json object (from
+#'   \code{\link[jsonlite]{toJSON}})
+#' @param json_output logical, should output be a json object or a list?
 #' @return a list or json object with the "@context" element removed
 #' @importFrom jsonlite toJSON fromJSON
 #' @export
-#'
 drop_context <-function(x, json_output = FALSE) {
 
   # Remove context by setting the corresponding list element to NULL
   set_context(x, NULL, json_output)
 }
 
-#' add_context
+# add_context ------------------------------------------------------------------
+
+#' Add Context
 #'
-#' add context element to json list or json string
+#' Add context element to json list or json string
 #'
-#' @inheritParams set_context
+#' @param x a JSON list (from \code{\link[jsonlite]{read_json}} /
+#'   \code{\link[jsonlite]{fromJSON}}) or json object (from
+#'   \code{\link[jsonlite]{toJSON}})
+#' @param json_output logical, should output be a json object or a list?
 #' @param context context to be added, in same format as x
 #' @return a list or json object with "@context" element added
 #' @export
-#'
 add_context <- function(x, context, json_output = FALSE) {
 
   new_context <- from_json_if(is_json_or_character(context), context)
@@ -202,15 +221,17 @@ add_context <- function(x, context, json_output = FALSE) {
   set_context(x, new_context, json_output)
 }
 
-#' set_context
+# set_context ------------------------------------------------------------------
+
+#' Set Context
 #'
-#' set context element in json list or json string
+#' Set context element in json list or json string
 #'
 #' @param x a JSON list (from read_json / fromJSON) or json object (from toJSON)
 #' @param new_context new value for the context element
 #' @param json_output logical, should output be a json object or a list?
 #' @return a list or json object with "@context" element set to \code{context}
-#'
+#' @noRd
 set_context <- function(x, new_context, json_output = FALSE) {
 
   # is x of class "json" or character?
