@@ -1,21 +1,30 @@
+# remote_urls ------------------------------------------------------------------
 remote_urls <- function (r) {
+
   remotes <- git2r::remotes(r)
+
   stats::setNames(git2r::remote_url(r, remotes), remotes)
 }
 
+# guess_github -----------------------------------------------------------------
 guess_github <- function(root = ".") {
+
   ## from devtools
   # https://github.com/r-lib/devtools/blob/21fe55a912ca4eaa49ef5b7d891ff3e2aae7a370/R/git.R#L130
   # GPL>=2 code
 
-  if (uses_git(root)) {
-    r <- git2r::repository(root, discover = TRUE)
-    r_remote_urls <- grep("github", remote_urls(r), value = TRUE)
-    out <- r_remote_urls[[1]]
-    gsub("\\.git$", "", gsub("git@github.com:", "https://github.com/", out))
-  } else {
-    NULL
+  if (! uses_git(root)) {
+
+    return(NULL)
   }
+
+  root %>%
+    git2r::repository(discover = TRUE) %>%
+    remote_urls() %>%
+    grep(pattern = "github", value = TRUE) %>%
+    getElement(1) %>%
+    gsub(pattern = "git@github.com:", replacement = "https://github.com/") %>%
+    gsub(pattern = "\\.git$", replacement = "")
 }
 
 #' @importFrom git2r repository branches
