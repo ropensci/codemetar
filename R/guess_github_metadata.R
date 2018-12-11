@@ -1,10 +1,3 @@
-# from devtools https://github.com/r-lib/devtools/blob/21fe55a912ca4eaa49ef5b7d891ff3e2aae7a370/R/git.R#L1
-# GPL>=2 code
-uses_git <- function(root) {
-  !is.null(git2r::discover_repository(root, ceiling = 0))
-}
-
-
 remote_urls <- function (r) {
   remotes <- git2r::remotes(r)
   stats::setNames(git2r::remote_url(r, remotes), remotes)
