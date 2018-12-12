@@ -13,7 +13,7 @@ testthat::test_that("get_root_path is covered", {
 
 testthat::test_that("example_file works", {
 
-  expect_match(example_file(), "/codemetar/examples")
+  expect_match(example_file(), "/examples")
   expect_match(example_file("abc"), "^$")
   expect_true(file.exists(example_file("codemeta.json")))
 
