@@ -1,13 +1,13 @@
 context("test-give_opinions.R")
+
 testthat::test_that("Silent if ok URLs", {
-  f <- system.file("examples/DESCRIPTION_good", package = "codemetar")
+  f <- example_file("DESCRIPTION_good")
   desc_fixmes <- give_opinions_desc(f)
   expect_null(desc_fixmes)
 })
 
-
 testthat::test_that("Message if no URL", {
-  f <- system.file("examples/DESCRIPTION_no_URL", package = "codemetar")
+  f <- example_file("DESCRIPTION_no_URL")
   desc_fixmes <- give_opinions_desc(f)
   expect_is(desc_fixmes, "data.frame")
   expect_equal(desc_fixmes$where, "DESCRIPTION")
@@ -15,7 +15,7 @@ testthat::test_that("Message if no URL", {
 })
 
 testthat::test_that("Message if no BugReports", {
-  f <- system.file("examples/DESCRIPTION_no_bugreports", package = "codemetar")
+  f <- example_file("DESCRIPTION_no_bugreports")
   desc_fixmes <- give_opinions_desc(f)
   expect_is(desc_fixmes, "data.frame")
   expect_equal(desc_fixmes$where[1], "DESCRIPTION")
@@ -23,26 +23,23 @@ testthat::test_that("Message if no BugReports", {
 })
 
 testthat::test_that("No message if ok description",{
-  f <- system.file("examples/DESCRIPTION_Rforge", package = "codemetar")
+  f <- example_file("DESCRIPTION_Rforge")
   expect_null(give_opinions_desc(f))
 })
 
 test_that("Message if bad URLS", {
-  f <- system.file("examples/DESCRIPTION_wrongURLS", package = "codemetar")
+  f <- example_file("DESCRIPTION_wrongURLS")
   desc_fixmes <- give_opinions_desc(f)
   expect_true(any(grepl("Problematic URLs", desc_fixmes$fixme)))
 })
 
 test_that("badges in README", {
-  f <- system.file("examples/README_codemetar_bad.md", package = "codemetar")
+  f <- example_file("README_codemetar_bad.md")
   readme_fixmes <- give_opinions_readme(f, "codemetar")
   expect_equal(nrow(readme_fixmes), 2)
-  expect_true(any(grepl("status",
-                        readme_fixmes$fixme)))
-  expect_true(any(grepl("CRAN",
-                        readme_fixmes$fixme)))
+  expect_true(any(grepl("status", readme_fixmes$fixme)))
+  expect_true(any(grepl("CRAN", readme_fixmes$fixme)))
 
   readme_fixmes <- give_opinions_readme(f, "a4")
-  expect_true(any(grepl("BioConductor",
-                        readme_fixmes$fixme)))
+  expect_true(any(grepl("BioConductor", readme_fixmes$fixme)))
 })
