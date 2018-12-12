@@ -39,13 +39,13 @@ test_that("Message if bad URLS", {
 })
 
 test_that("badges in README", {
-  hints <- example_file("README_codemetar_bad.md") %>%
-    give_opinions_readme("codemetar")
+  file <- example_file("README_codemetar_bad.md")
+  hints <- give_opinions_readme(file, "codemetar")
   expect_equal(nrow(hints), 2)
   expect_true(contains(hints, "status"))
   expect_true(contains(hints, "CRAN"))
 
-  hints <- give_opinions_readme(f, "a4")
+  hints <- give_opinions_readme(file, "a4")
   expect_true(contains(hints, "BioConductor"))
 })
 
