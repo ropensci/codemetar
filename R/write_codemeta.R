@@ -71,13 +71,8 @@ write_codemeta <- function(pkg = ".",
   cm <- create_codemeta(pkg = pkg, root = root,
                         use_filesize = use_filesize)
   # save to disk
-  write_json(cm, path, pretty=TRUE, auto_unbox = TRUE, ...)
+  jsonlite::write_json(cm, path,
+                       pretty=TRUE,
+                       auto_unbox = TRUE, ...)
 
-}
-
-# from https://github.com/jeroen/jsonlite/blob/1f9e609e7d0ed702ede9c82aa5482ba08d5e5ab2/R/read_json.R#L22
-# only until new jsonlite version on CRAN (encoding fix)
-write_json <- function(x, path, ...) {
-  json <- jsonlite::toJSON(x, ...)
-  writeLines(json, path, useBytes = TRUE)
 }

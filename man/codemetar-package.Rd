@@ -63,6 +63,7 @@ Other contributors:
   \item Jeroen Ooms (0000-0002-4035-0289) [contributor]
   \item Sebastian Meyer (0000-0002-1791-9449) [contributor]
   \item Michael Rustler (0000-0003-0647-7726) [contributor]
+  \item Hauke Sonnenberg (0000-0001-9134-2871) [contributor]
 }
 
 }
