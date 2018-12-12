@@ -1,10 +1,5 @@
 testthat::context("codemeta_description.R")
 
-# Helper function to generate path to example file
-example_file <- function(...) {
-  package_file("codemetar", "examples", ...)
-}
-
 testthat::test_that("We can use a preset id", {
   f <- package_file("codemetar", "DESCRIPTION")
   codemeta_description(f, id = "https://doi.org/10.looks.like/doi")

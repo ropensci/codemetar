@@ -176,3 +176,8 @@ fails <- function(expr, silent = TRUE) {
   inherits(try(expr, silent = silent), "try-error")
 }
 
+# example_file -----------------------------------------------------------------
+example_file <- function(...) {
+
+  package_file("codemetar", "examples", ...)
+}
