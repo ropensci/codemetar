@@ -171,6 +171,7 @@ set_element_if_null <- function(x, element, value) {
 #' @param silent passed to \code{\link{try}}, see there.
 #' @return \code{TRUE} if evaluating \code{expr} failed and \code{FALSE} if
 #'   the evalutation of \code{expr} succeeded.
+#' @noRd
 fails <- function(expr, silent = TRUE) {
 
   inherits(try(expr, silent = silent), "try-error")
