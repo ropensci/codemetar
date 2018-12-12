@@ -63,7 +63,7 @@ write_codemeta <- function(
 
     if (uses_git() && use_git_hook && no_codemeta_json) {
 
-      message("adding_hook") # nolint
+      message(get_message("adding_hook")) # nolint
 
       usethis::use_git_hook("pre-commit", render_template(
         "description-codemetajson-pre-commit.sh"
