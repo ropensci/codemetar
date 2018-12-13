@@ -22,3 +22,11 @@ testthat::test_that("example_file() works", {
 
   testthat::expect_identical(paths, dir(example_dir, full.names = TRUE))
 })
+
+testthat::test_that("example_file works", {
+
+  expect_match(example_file(), "/examples")
+  expect_match(example_file("abc"), "^$")
+  expect_true(file.exists(example_file("codemeta.json")))
+
+})
