@@ -178,7 +178,75 @@ fails <- function(expr, silent = TRUE) {
 }
 
 # example_file -----------------------------------------------------------------
+
+#' Get the Path to an Example File Stored in This Package
+#'
+#' @param \dots parts of the paths, finally passed to \code{system.file}
+#' @noRd
 example_file <- function(...) {
 
   package_file("codemetar", "examples", ...)
+}
+
+# is_json_or_character ---------------------------------------------------------
+
+#' Check for Class "json" or Character
+#'
+#' @param x object to be checked for its class and mode
+#' @return \code{TRUE} if \code{x} inherits from "json" or is of mode character,
+#'   otherwise \code{FALSE}
+#' @noRd
+is_json_or_character <- function(x) {
+
+  is(x, "json") || is.character(x)
+}
+
+# to_json_if -------------------------------------------------------------------
+
+#' Convert to JSON if Condition is Met
+#'
+#' @param condition expression to be evaluated
+#' @param x object to be converted to JSON
+#' @param \dots further arguments passed to \code{\link[jsonlite]{toJSON}}
+#' @importFrom jsonlite toJSON
+#' @noRd
+to_json_if <- function(condition, x, ...) {
+
+  call_if(condition, x, FUN = jsonlite::toJSON, ...)
+}
+
+# from_json_if -----------------------------------------------------------------
+
+#' Convert from JSON if Condition is Met
+#'
+#' @param condition expression to be evaluated
+#' @param x object passed to \code{\link[jsonlite]{fromJSON}} if
+#'   \code{condition} is met
+#' @param \dots further arguments passed to \code{\link[jsonlite]{fromJSON}}
+#' @importFrom jsonlite fromJSON
+#' @noRd
+from_json_if <- function(condition, x, ...) {
+
+  call_if(condition, x, jsonlite::fromJSON, ...)
+}
+
+# call_if ----------------------------------------------------------------------
+
+#' Call Function if Condition is Met
+#'
+#' @param condition expression to be evaluated
+#' @param FUN function to be called if \code{condition} is met
+#' @param x first argument to be passed to \code{FUN} or not
+#' @param \dots further arguments passed to \code{FUN}
+#' @noRd
+call_if <- function(condition, x, FUN, ...) {
+
+  if (condition) {
+
+    FUN(x, ...)
+
+  } else {
+
+    x
+  }
 }
