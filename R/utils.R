@@ -4,17 +4,6 @@ drop_null <- function(x) {
   x[lengths(x) != 0]
 }
 
-# example_file -----------------------------------------------------------------
-
-#' Get the Path to an Example File Stored in This Package
-#'
-#' @param \dots parts of the paths, finally passed to \code{system.file}
-#' @noRd
-example_file <- function(...) {
-
-  package_file("codemetar", "examples", ...)
-}
-
 # get_root_path ----------------------------------------------------------------
 get_root_path <- function(pkg) {
 
@@ -175,57 +164,21 @@ set_element_if_null <- function(x, element, value) {
   x
 }
 
-#' Check for Class "json" or Character
+# fails ------------------------------------------------------------------------
+#' Does the Evaluation of an Expression Fail?
 #'
-#' @param x object to be checked for its class and mode
-#' @return \code{TRUE} if \code{x} inherits from "json" or is of mode character,
-#'   otherwise \code{FALSE}
+#' @param expr expression to be evaluated within \code{try(\dots)}
+#' @param silent passed to \code{\link{try}}, see there.
+#' @return \code{TRUE} if evaluating \code{expr} failed and \code{FALSE} if
+#'   the evalutation of \code{expr} succeeded.
 #' @noRd
-is_json_or_character <- function(x) {
+fails <- function(expr, silent = TRUE) {
 
-  is(x, "json") || is.character(x)
+  inherits(try(expr, silent = silent), "try-error")
 }
 
-#' Convert to JSON if Condition is Met
-#'
-#' @param condition expression to be evaluated
-#' @param x object to be converted to JSON
-#' @param \dots further arguments passed to \code{\link[jsonlite]{toJSON}}
-#' @importFrom jsonlite toJSON
-#' @noRd
-to_json_if <- function(condition, x, ...) {
+# example_file -----------------------------------------------------------------
+example_file <- function(...) {
 
-  call_if(condition, x, FUN = jsonlite::toJSON, ...)
-}
-
-#' Convert from JSON if Condition is Met
-#'
-#' @param condition expression to be evaluated
-#' @param x object passed to \code{\link[jsonlite]{fromJSON}} if
-#'   \code{condition} is met
-#' @param \dots further arguments passed to \code{\link[jsonlite]{fromJSON}}
-#' @importFrom jsonlite fromJSON
-#' @noRd
-from_json_if <- function(condition, x, ...) {
-
-  call_if(condition, x, jsonlite::fromJSON, ...)
-}
-
-#' Call Function if Condition is Met
-#'
-#' @param condition expression to be evaluated
-#' @param FUN function to be called if \code{condition} is met
-#' @param x first argument to be passed to \code{FUN} or not
-#' @param \dots further arguments passed to \code{FUN}
-#' @noRd
-call_if <- function(condition, x, FUN, ...) {
-
-  if (condition) {
-
-    FUN(x, ...)
-
-  } else {
-
-    x
-  }
+  package_file("codemetar", "examples", ...)
 }
