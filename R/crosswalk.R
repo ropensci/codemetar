@@ -171,7 +171,6 @@ get_crosswalk_context <- function(df, codemeta_context = NULL) {
 #' @inheritParams crosswalk
 #' @param crosswalk_context Context to be added to x
 #' @return a valid codemeta json description.
-#' @importFrom jsonld jsonld_expand jsonld_compact
 #' @importFrom jsonlite toJSON
 #' @noRd
 crosswalk_transform <- function(
