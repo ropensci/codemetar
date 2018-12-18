@@ -2,12 +2,14 @@
 % Please edit documentation in R/crosswalk.R
 \name{drop_context}
 \alias{drop_context}
-\title{drop_context}
+\title{Drop Context}
 \usage{
 drop_context(x, json_output = FALSE)
 }
 \arguments{
-\item{x}{a JSON list (from read_json / fromJSON) or json object (from toJSON)}
+\item{x}{a JSON list (from \code{\link[jsonlite]{read_json}} /
+\code{\link[jsonlite]{fromJSON}}) or json object (from
+\code{\link[jsonlite]{toJSON}})}
 
 \item{json_output}{logical, should output be a json object or a list?}
 }
@@ -15,5 +17,5 @@ drop_context(x, json_output = FALSE)
 a list or json object with the "@context" element removed
 }
 \description{
-drop context element from json list or json string
+Drop context element from json list or json string
 }
