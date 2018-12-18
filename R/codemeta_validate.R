@@ -9,7 +9,6 @@
 #'   as default or use appropriate DOI for the version; see details.
 #' @details by default, validation will use the original context from the import
 #'   file.
-#' @importFrom jsonld jsonld_compact jsonld_expand
 #' @importFrom jsonlite toJSON read_json fromJSON
 #' @export
 #' @examples

@@ -110,7 +110,6 @@ get_crosswalk_context <-
 #' @inheritParams crosswalk
 #' @param crosswalk_context Context to be added to x
 #' @return a valid codemeta json description.
-#' @importFrom jsonld jsonld_expand jsonld_compact
 #' @importFrom jsonlite toJSON
 crosswalk_transform <- function(x,
                                 crosswalk_context = NULL,

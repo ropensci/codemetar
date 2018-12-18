@@ -9,16 +9,17 @@ codemeta_validate(codemeta = "codemeta.json", context = NULL)
 \arguments{
 \item{codemeta}{path/filename to a codemeta.json file, or json-ld text string}
 
-\item{context}{URL (or path or json string) for the codemeta context.
-Leave as default or use appropriate DOI for the version; see details.}
+\item{context}{URL (or path or json string) for the codemeta context. Leave
+as default or use appropriate DOI for the version; see details.}
 }
 \description{
 Checks that a round-trip of expanding and compacting json-ld matches the
-original document.  Incorrect schema terms or types (or spelling errors of properties)
-will cause this round-trip to fail by not fully compacting.
+original document.  Incorrect schema terms or types (or spelling errors of
+properties) will cause this round-trip to fail by not fully compacting.
 }
 \details{
-by default, validation will use the original context from the import file.
+by default, validation will use the original context from the import
+  file.
 }
 \examples{
 ex <- system.file("examples/codemeta.json", package="codemetar")
