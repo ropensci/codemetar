@@ -137,6 +137,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "jsonld",
+      "name": "jsonld",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonld"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "jsonvalidate",
       "name": "jsonvalidate",
       "provider": {
@@ -228,18 +240,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=jsonlite"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "jsonld",
-      "name": "jsonld",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=jsonld"
     },
     {
       "@type": "SoftwareApplication",
@@ -483,7 +483,7 @@
   "isPartOf": "https://ropensci.org",
   "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
-  "fileSize": "282.014KB",
+  "fileSize": "284.787KB",
   "contIntegration": [
     "https://travis-ci.org/ropensci/codemetar",
     "https://ci.appveyor.com/project/cboettig/codemetar/branch/master",

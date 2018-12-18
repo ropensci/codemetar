@@ -9,7 +9,6 @@
 #'   as default or use appropriate DOI for the version; see details.
 #' @details by default, validation will use the original context from the import
 #'   file.
-#' @importFrom jsonld jsonld_compact jsonld_expand
 #' @importFrom jsonlite toJSON read_json fromJSON
 #' @export
 #' @examples
@@ -17,6 +16,10 @@
 #' codemeta_validate(ex)
 #'
 codemeta_validate <- function(codemeta = "codemeta.json", context = NULL) {
+
+  if (!requireNamespace("jsonld", quietly = TRUE)) {
+    stop("Package jsonld required. Please install before re-trying.")
+  }
 
   A <- if (file.exists(codemeta)) {
 

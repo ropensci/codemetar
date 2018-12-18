@@ -27,6 +27,10 @@
 #' }
 #'
 crosswalk <- function(x, from, to = "codemeta", codemeta_context = NULL) {
+  
+  if (!requireNamespace("jsonld", quietly = TRUE)) {
+    stop("Package jsonld required. Please install before re-trying.")
+  }
 
   codemeta_context <- default_context_if_null(codemeta_context)
 
@@ -167,7 +171,6 @@ get_crosswalk_context <- function(df, codemeta_context = NULL) {
 #' @inheritParams crosswalk
 #' @param crosswalk_context Context to be added to x
 #' @return a valid codemeta json description.
-#' @importFrom jsonld jsonld_expand jsonld_compact
 #' @importFrom jsonlite toJSON
 #' @noRd
 crosswalk_transform <- function(
