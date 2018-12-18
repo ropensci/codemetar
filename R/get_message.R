@@ -37,7 +37,11 @@ get_message <- function(message_id, ...) {
     ),
     hint_highest_opinion = paste(
       "codemetar has the highest opinion of this R package :-)"
-    )
+    ),
+    adding_hook = paste(
+      "* Adding a pre-commit git hook ensuring that codemeta.json will be",
+      "synchronized with DESCRIPTION"
+    ) # nolint
   )
 
   if (message_id %in% names(messages)) {
