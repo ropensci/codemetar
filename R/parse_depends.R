@@ -42,7 +42,7 @@ get_sameAs <- function(provider, remote_provider, identifier) {
   # The remote provider takes precedence over the non-remote provider
   if (remote_provider != "") {
 
-    get_url_github_account(stringr::str_remove(remote_provider, "github::"))
+    get_url_github(stringr::str_remove(remote_provider, "github::"))
 
   } else if (! is.null(provider) && provider$name %in% names(url_generators)) {
 
