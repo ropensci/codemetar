@@ -65,7 +65,6 @@ RoxygenNote: 6.1.0.9000
 Depends: R (>= 3.0.0)
 Imports: 
     jsonlite (>= 1.6),
-    jsonld,
     git2r,
     pkgbuild,
     memoise,
@@ -89,6 +88,7 @@ Imports:
     glue
 Suggests: 
     testthat,
+    jsonld,
     jsonvalidate,
     covr,
     knitr,

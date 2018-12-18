@@ -18,6 +18,10 @@
 #'
 codemeta_validate <- function(codemeta = "codemeta.json", context = NULL) {
 
+  if (!requireNamespace("jsonld", quietly = TRUE)) {
+    stop("Package jsonld required. Please install before re-trying.")
+  }
+
   A <- if (file.exists(codemeta)) {
 
     read_json(codemeta)

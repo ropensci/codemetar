@@ -28,6 +28,10 @@ crosswalk <- function(x,
                                                    "https://doi.org/10.5063/schema/codemeta-2.0")
                       ){
 
+  if (!requireNamespace("jsonld", quietly = TRUE)) {
+    stop("Package jsonld required. Please install before re-trying.")
+  }
+
   from_context <- get_crosswalk_context(crosswalk_table(from), codemeta_context)
   if(to != "codemeta"){
     to_context <- get_crosswalk_context(crosswalk_table(to),  codemeta_context)
