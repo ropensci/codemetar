@@ -23,6 +23,12 @@ get_url_cran_package_2 <- function(base_url, package) {
   paste0(base_url, "/web/packages/", package)
 }
 
+# get_url_doi ------------------------------------------------------------------
+get_url_doi <- function(...) {
+
+  paste("https://doi.org", ..., sep = "/")
+}
+
 # get_url_github_package -------------------------------------------------------
 get_url_github_package <- function(provider_name) {
 
