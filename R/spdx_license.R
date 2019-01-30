@@ -4,7 +4,7 @@ spdx_license <- function(x) {
 
   ## Basic attempt to normalize >= or == VERSION statements
   components <-
-    gsub("\\([=>]= (\\d+\\.*\\d*)\\)", "\\1", components)
+    gsub("(\\w+)\\s*\\([=>]=\\s*(\\d+\\.*\\d*)\\)", "\\1 \\2", components)
 
   license <-
     gsub("(.*) \\+ file (LICENSE|LICENCE)$", "\\1", components[[1]])
