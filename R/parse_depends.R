@@ -33,24 +33,20 @@ format_depend <- function(package, version, remote_provider) {
 ## Get sameAs element for dep or NULL if not applicable
 get_sameAs <- function(provider, remote_provider, identifier) {
 
-  # CRAN canonical URL
-  urls <- c(
-    "Comprehensive R Archive Network (CRAN)" =
-      "https://CRAN.R-project.org/package=%s",
-    "BioConductor" =
-      "https://bioconductor.org/packages/release/bioc/html/%s.html",
-    "_GITHUB_" =
-      "https://github.com/%s"
+  # assign each keyword a function that returns the URL to a given package name
+  url_generators <- list(
+    "Comprehensive R Archive Network (CRAN)" = get_url_cran_package,
+    "BioConductor" = get_url_bioconductor_package
   )
 
   # The remote provider takes precedence over the non-remote provider
   if (remote_provider != "") {
 
-    sprintf(urls["_GITHUB_"], stringr::str_remove(remote_provider, "github::"))
+    get_url_github(stringr::str_remove(remote_provider, "github::"))
 
-  } else if (! is.null(provider) && provider$name %in% names(urls)) {
+  } else if (! is.null(provider) && provider$name %in% names(url_generators)) {
 
-    sprintf(urls[provider$name], identifier)
+    url_generators[[provider$name]](identifier)
 
   } # else NULL implicitly
 }
@@ -73,28 +69,29 @@ guess_dep_id <- function(dep) {
   if (dep$name == "R") {
 
     ## FIXME No good identifier for R, particularly none for specific version
-    id <- "https://www.r-project.org"
-
-  } else if (is.null(dep$provider)) {
-
-    id <- NULL
-
-  } else if (grepl("cran.r-project.org", dep$provider$url)) {
-
-    id <- paste0(dep$provider$url, "/web/packages/", dep$identifier)
-
-  } else if (grepl("www.bioconductor.org", dep$provider$url)) {
-
-    id <- paste0(
-      dep$provider$url, "/packages/release/bioc/html/", dep$identifier, ".html"
-    )
-
-  } else {
-
-    id <- NULL
+    return("https://www.r-project.org")
   }
 
-  id
+  # mapping between base URL patterns and functions generating full URLs
+  url_generators <- list(
+    "cran.r-project.org" = get_url_cran_package_2,
+    "www.bioconductor.org" = get_url_bioconductor_package_2
+  )
+
+ if (! is.null(dep$provider)) {
+
+    provider_url <- dep$provider$url
+
+    # Try to find a matching URL generator function
+    is_matching <- sapply(names(url_generators), grepl, x = provider_url)
+
+    if (any(is_matching)) {
+
+      url_generators[[which(is_matching)[1]]](provider_url, dep$identifier)
+
+    } # else NULL implicitly
+
+  } # else NULL implicitly
 }
 
 
@@ -109,19 +106,15 @@ add_remote_to_dep <- function(package, remotes) {
 # helper to get system dependencies
 get_sys_links <- function(pkg, description = "") {
 
-  to_rhub_url("get", unique(c(
+  get_url_rhub("get", unique(c(
     get_rhub_json_names("pkg", pkg),
     get_rhub_json_names("map", curl::curl_escape(description))
   )))
 }
 
-to_rhub_url <- function(a, b) {
-  sprintf("https://sysreqs.r-hub.io/%s/%s", a, b)
-}
-
 get_rhub_json_names <- function(a, b) {
   sapply(
-    X = jsonlite::fromJSON(to_rhub_url(a, b), simplifyVector = FALSE),
+    X = jsonlite::fromJSON(get_url_rhub(a, b), simplifyVector = FALSE),
     FUN = names
   )
 }

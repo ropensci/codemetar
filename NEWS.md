@@ -1,4 +1,6 @@
-# codemetar 0.7.7 2018-12
+# codemetar 0.1.7 2018-12
+
+* `jsonld` that is used only in `crosswalk()` and `codemeta_validate()` is now an optional dependency (Suggests rather than Imports).
 
 * The CodeRepository URL is now cleaned a bit (removing direct link to the README).
 

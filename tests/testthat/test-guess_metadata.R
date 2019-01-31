@@ -12,8 +12,6 @@ testthat::test_that("guess_provider",{
   expect_equal(a$name, "Comprehensive R Archive Network (CRAN)")
 })
 
-
-
 testthat::test_that("guess_ci",{
  f <- system.file("examples/README_ex.md", package="codemetar")
  a <- guess_ci(f)
@@ -30,9 +28,6 @@ testthat::test_that("guess_ci",{
  testthat::expect_equal(a3[1], "https://travis-ci.org/fakeorg/fakepackage")
 
 })
-
-
-
 
 testthat::test_that("guess_devStatus",{
   f <- system.file("examples/README_ex.md", package="codemetar")
@@ -72,14 +67,14 @@ test_that("git utils", {
 
 })
 
-
-
 test_that("guess_readme", {
+  testthat::skip_if_not(nzchar(Sys.getenv("GITHUB_PAT")))
   testthat::expect_is(guess_readme(find.package("codemetar")), "list")
   testthat::expect_is(guess_readme(find.package("jsonlite")), "list")
 })
 
 test_that("guess_readme() matches a single README file", {
+  testthat::skip_if_not(nzchar(Sys.getenv("GITHUB_PAT")))
   candidates <- c("README.Rmd", "readme.md", "README.Rmd~", "DO_NOT_README.md")
   dir.create(tempdir <- tempfile("README"))
   file.create(file.path(tempdir, candidates))
@@ -96,7 +91,6 @@ test_that("guess_readme() matches a single README file", {
   unlink(tempdir)
 })
 
-
 test_that("guess_releaseNotes", {
 
   guess_releaseNotes(".")
@@ -104,7 +98,6 @@ test_that("guess_releaseNotes", {
   f <- system.file(".", package="codemetar")
   guess_releaseNotes(f)
 })
-
 
 test_that("fileSize", {
   expect_null(guess_fileSize(NULL))
@@ -115,6 +108,8 @@ test_that("fileSize", {
 })
 
 test_that("add_github_topics",{
+  testthat::skip_if_not(nzchar(Sys.getenv("GITHUB_PAT")))
+
   cm <- NULL
   cm$codeRepository <- "https://github.com/ropensci/codemetar"
   cm <- add_github_topics(cm)
@@ -130,7 +125,6 @@ test_that("add_github_topics",{
   cm <- add_github_topics(cm)
   testthat::expect_null(cm$keywords)
 })
-
 
 testthat::test_that("rOpenSci peer-review", {
   f <- system.file("examples/README_fakepackage5.md", package="codemetar")

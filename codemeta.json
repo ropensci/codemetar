@@ -90,6 +90,12 @@
       "givenName": "Michael",
       "familyName": "Rustler",
       "@id": "https://orcid.org/0000-0003-0647-7726"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Hauke",
+      "familyName": "Sonnenberg",
+      "@id": "https://orcid.org/0000-0001-9134-2871"
     }
   ],
   "copyrightHolder": [
@@ -128,6 +134,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "jsonld",
+      "name": "jsonld",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonld"
     },
     {
       "@type": "SoftwareApplication",
@@ -214,7 +232,7 @@
       "@type": "SoftwareApplication",
       "identifier": "jsonlite",
       "name": "jsonlite",
-      "version": ">= 1.3",
+      "version": ">= 1.6",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -222,18 +240,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=jsonlite"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "jsonld",
-      "name": "jsonld",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=jsonld"
     },
     {
       "@type": "SoftwareApplication",
@@ -477,7 +483,7 @@
   "isPartOf": "https://ropensci.org",
   "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
-  "fileSize": "280.9KB",
+  "fileSize": "284.787KB",
   "contIntegration": [
     "https://travis-ci.org/ropensci/codemetar",
     "https://ci.appveyor.com/project/cboettig/codemetar/branch/master",
@@ -488,5 +494,6 @@
     "@type": "Review",
     "url": "https://github.com/ropensci/onboarding/issues/130",
     "provider": "http://ropensci.org"
-  }
+  },
+  "readme": "https://github.com/ropensci/codemetar/blob/master/README.md"
 }

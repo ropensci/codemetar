@@ -11,11 +11,14 @@ install:
   ps: Bootstrap
 
 cache:
-  - C:\RLibrary
+#  - C:\RLibrary
 
 # Adapt as necessary starting from here
 environment:
-    matrix:
+  global:
+    USE_RTOOLS: true
+
+  matrix:
     - R_VERSION: stable
 
     - R_VERSION: patched
