@@ -72,7 +72,7 @@ Confirm each of the following by checking the box.  This package:
 - [x] includes documentation with examples for all functions.
 - [x] contains a vignette with examples of its essential functions and uses.
 - [x] has a test suite.
-- [x] has continuous integration, including reporting of test coverage, using services such as Travis CI, Coeveralls and/or CodeCov.
+- [x] has continuous integration, including reporting of test coverage, using services such as Travis CI, Coveralls and/or CodeCov.
 - [x] I agree to abide by [ROpenSci's Code of Conduct](https://github.com/ropensci/onboarding/blob/master/policies.md#code-of-conduct) during the review process and in maintaining my package should it be accepted.
 
 #### Publication options
