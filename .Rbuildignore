@@ -17,3 +17,5 @@ inst/notebook/*
 ^data-raw$
 ^ropensci-onboarding\.md$
 ^cran-comments\.md$
+_pkgdown.yml
+pkgdown

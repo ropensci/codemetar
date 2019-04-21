@@ -31,8 +31,8 @@ testthat::test_that("We can use either a path or pkg name in writing", {
 testthat::test_that("We can deduce relatedLink from installed pkg", {
   skip_on_cran()
   usethis_cm <- create_codemeta(find.package("usethis"))
-  testthat::expect_equal(usethis_cm$relatedLink,
-                         "https://CRAN.R-project.org/package=usethis")
+  testthat::expect_true("https://CRAN.R-project.org/package=usethis" %in%
+                          usethis_cm$relatedLink)
 
 })
 

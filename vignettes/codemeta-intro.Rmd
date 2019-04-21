@@ -60,11 +60,11 @@ For more general information about the CodeMeta Project for defining software me
 
 ## Installation
 
-You can install codemetar from github with:
+You can install the development version of `codemetar` from GitHub with:
 
 ```{r gh-installation, eval = FALSE}
-# install.packages("devtools")
-devtools::install_github("codemeta/codemetar")
+# install.packages("remotes")
+remotes::install_github("ropensci/codemetar")
 ```
 
 ```{r}
