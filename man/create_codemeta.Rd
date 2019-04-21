@@ -5,18 +5,27 @@
 \title{create_codemeta}
 \usage{
 create_codemeta(pkg = ".", root = ".", id = NULL,
-  force_update = getOption("codemeta_force_update", TRUE), ...)
+  use_filesize = TRUE,
+  force_update = getOption("codemeta_force_update", TRUE),
+  verbose = TRUE, ...)
 }
 \arguments{
-\item{pkg}{package path to package root, or package name, or
-description file (character), or a codemeta object (list)}
+\item{pkg}{package path to package root, or package name, or description file
+(character), or a codemeta object (list)}
 
-\item{root}{if pkg is a codemeta object, optionally give the path
-to package root. Default guess is current dir.}
+\item{root}{if pkg is a codemeta object, optionally give the path to package
+root. Default guess is current dir.}
 
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
 
-\item{force_update}{Update guessed fields even if they are defined in an existing codemeta.json file}
+\item{use_filesize}{whether to try adding a filesize by using
+\code{pkgbuild::build()}.}
+
+\item{force_update}{Update guessed fields even if they are defined in an
+existing codemeta.json file}
+
+\item{verbose}{Whether to print messages indicating opinions e.g. when
+DESCRIPTION has no URL. See \code{\link{give_opinions}}.}
 
 \item{...}{additional arguments to \code{\link{write_json}}}
 }
@@ -29,6 +38,8 @@ to \code{\link{write_codemeta}}, but returns an R list object rather
 than writing directly to a file.  See examples.
 }
 \examples{
+\donttest{
 cm <- create_codemeta("jsonlite")
 cm$keywords <- list("metadata", "ropensci")
+}
 }

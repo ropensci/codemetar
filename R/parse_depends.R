@@ -1,63 +1,133 @@
 ## internal method for parsing a list of package dependencies into pkg URLs
 
+format_depend <- function(package, version, remote_provider) {
 
+  dep <- list(
+    "@type" = "SoftwareApplication",
+    identifier = package,
+    ## FIXME technically the name includes the title
+    name = package
+  )
 
-parse_depends <- function(deps) {
-  if (!is.null(deps))
-    str <- strsplit(deps, ",\n*")[[1]]
-  else
-    str <- NULL
+  ## Add Version if available
+  if (version != "*") {
 
-  lapply(str, function(str) {
-    #if (length(str) > 1) {
-    #  warning(paste0("package depends", str, "may be multiple packages?"))
-    #}
+    dep$version <- version
+  }
 
-    pkg <- gsub("\\s*(\\w+)\\s.*", "\\1", str)
-    pkg <- gsub("\\s+", "", pkg)
+  dep$provider <- guess_provider(package)
 
-    dep <- list("@type" = "SoftwareApplication",
-                identifier = pkg,
-                ## FIXME technically the name includes the title
-                name = pkg)
+  ## implemention could be better, e.g. support versioning
+  #  dep$`@id` <- guess_dep_id(dep)
 
-    ## Add Version if available
-    pattern <- "\\s*\\w+\\s+\\([><=]+\\s([1-9.\\-]*)\\)*"
-    version <-  gsub(pattern, "\\1", str)
-    version <-
-      gsub("\\)$", "", version)  ## hack, avoid extraneous ending )
-    has_version  <- grepl(pattern, str)
-    if (has_version)
-      dep$version <- version
+  sameAs <- get_sameAs(dep$provider, remote_provider, dep$identifier)
 
-    dep$provider <- guess_provider(pkg)
+  if (! is.null(sameAs)) {
 
-    ## implemention could be better, e.g. support versioning
-    #  dep$`@id` <- guess_dep_id(dep)
-    dep
-  })
+    dep$sameAs <- sameAs
+  }
+
+  return(dep)
+}
+
+## Get sameAs element for dep or NULL if not applicable
+get_sameAs <- function(provider, remote_provider, identifier) {
+
+  # assign each keyword a function that returns the URL to a given package name
+  url_generators <- list(
+    "Comprehensive R Archive Network (CRAN)" = get_url_cran_package,
+    "BioConductor" = get_url_bioconductor_package
+  )
+
+  # The remote provider takes precedence over the non-remote provider
+  if (remote_provider != "") {
+
+    get_url_github(stringr::str_remove(remote_provider, "github::"))
+
+  } else if (! is.null(provider) && provider$name %in% names(url_generators)) {
+
+    url_generators[[provider$name]](identifier)
+
+  } # else NULL implicitly
 }
 
 
-## FIXME these are not version-specific. That's often not accurate, though does reflect the CRAN assumption that you must be compatible with the latest version...
+parse_depends <- function(deps) {
+
+  purrr::pmap(
+    list(deps$package, deps$version, deps$remote_provider),
+    format_depend
+  )
+}
+
+
+## FIXME these are not version-specific. That's often not accurate, though does
+## reflect the CRAN assumption that you must be compatible with the latest
+## version...
 guess_dep_id <- function(dep) {
+
   if (dep$name == "R") {
+
     ## FIXME No good identifier for R, particularly none for specific version
-    id <- "https://www.r-project.org"
-  } else if (is.null(dep$provider)) {
-    id <- NULL
-  } else if (grepl("cran.r-project.org", dep$provider$url)) {
-    id <- paste0(dep$provider$url, "/web/packages/", dep$identifier)
-  } else if (grepl("www.bioconductor.org", dep$provider$url)) {
-    id <-
-      paste0(dep$provider$url,
-             "/packages/release/bioc/html/",
-             dep$identifier,
-             ".html")
-  } else {
-    id <- NULL
+    return("https://www.r-project.org")
   }
 
-  id
+  # mapping between base URL patterns and functions generating full URLs
+  url_generators <- list(
+    "cran.r-project.org" = get_url_cran_package_2,
+    "www.bioconductor.org" = get_url_bioconductor_package_2
+  )
 
+ if (! is.null(dep$provider)) {
+
+    provider_url <- dep$provider$url
+
+    # Try to find a matching URL generator function
+    is_matching <- sapply(names(url_generators), grepl, x = provider_url)
+
+    if (any(is_matching)) {
+
+      url_generators[[which(is_matching)[1]]](provider_url, dep$identifier)
+
+    } # else NULL implicitly
+
+  } # else NULL implicitly
+}
+
+
+add_remote_to_dep <- function(package, remotes) {
+
+  remote_providers <- grep(paste0("/", package, "$"), remotes, value = TRUE)
+
+  if (length(remote_providers)) remote_providers else ""
+}
+
+
+# helper to get system dependencies
+get_sys_links <- function(pkg, description = "") {
+
+  get_url_rhub("get", unique(c(
+    get_rhub_json_names("pkg", pkg),
+    get_rhub_json_names("map", curl::curl_escape(description))
+  )))
+}
+
+get_rhub_json_names <- function(a, b) {
+  sapply(
+    X = jsonlite::fromJSON(get_url_rhub(a, b), simplifyVector = FALSE),
+    FUN = names
+  )
+}
+
+format_sys_req <- function(url) {
+
+  list("@type" = "SoftwareApplication", identifier = url)
+}
+
+
+parse_sys_reqs <- function(pkg, sys_reqs) {
+
+  urls <- get_sys_links(pkg, description = sys_reqs)
+
+  purrr::map(urls, format_sys_req)
 }

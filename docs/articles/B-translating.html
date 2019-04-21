@@ -8,8 +8,11 @@
 <title>Translating between schema using JSON-LD • codemetar</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><meta property="og:title" content="Translating between schema using JSON-LD">
+<meta property="og:description" content="">
+<meta name="twitter:card" content="summary">
+<!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -24,8 +27,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codemetar</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">codemetar</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.6</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
@@ -59,7 +66,7 @@
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -84,43 +91,44 @@
       <h1>Translating between schema using JSON-LD</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2018-02-15</h4>
-          </div>
+            <h4 class="date">2018-05-03</h4>
+      
+      <small>Source: <a href="https://github.com/ropensci/codemetar/blob/master/vignettes/B-translating.Rmd"><code>vignettes/B-translating.Rmd</code></a></small>
+
+    </div>
 
     
     
 <div class="contents">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"codemetar"</span>)
-<span class="kw">library</span>(<span class="st">"magrittr"</span>)
-<span class="kw">library</span>(<span class="st">"jsonlite"</span>)
-<span class="kw">library</span>(<span class="st">"jsonld"</span>)
-<span class="kw">library</span>(<span class="st">"httr"</span>)
-<span class="kw">library</span>(<span class="st">"readr"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(<span class="st">"codemetar"</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(<span class="st">"magrittr"</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(<span class="st">"jsonlite"</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">library</span>(<span class="st">"jsonld"</span>)</a></code></pre></div>
 <div id="json-ld-transforms-expansion-and-compaction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#json-ld-transforms-expansion-and-compaction" class="anchor"></a>JSON-LD transforms: Expansion and Compaction</h2>
 <p>One of the central motivations of JSON-LD is making it easy to translate between different representations of what are fundamentally the same data types. Doing so uses the two core algorithms of JSON-LD: <em>expansion</em> and <em>compaction</em>, as <a href="https://www.youtube.com/watch?v=Tm3fD89dqRE">this excellent short video by JSON-LD creator Manu Sporny</a> describes.</p>
 <p>Here’s how we would use JSON-LD (from R) to translate between the two examples of JSON data from different providers as shown in the video. First, the JSON from the original provider:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ex &lt;-
-<span class="st">'{</span>
-<span class="st">"@context":{</span>
-<span class="st">  "shouter": "http://schema.org/name",</span>
-<span class="st">  "txt": "http://schema.org/commentText"</span>
-<span class="st">},</span>
-<span class="st">"shouter": "Jim",</span>
-<span class="st">"txt": "Hello World!"</span>
-<span class="st">}'</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">ex &lt;-</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">'{</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">"@context":{</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">  "shouter": "http://schema.org/name",</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="st">  "txt": "http://schema.org/commentText"</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">},</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="st">"shouter": "Jim",</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="st">"txt": "Hello World!"</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="st">}'</span></a></code></pre></div>
 <p>Next, we need the context of the second data provider. This will let us translate the JSON format used by provider one (“Shouttr”) to the second (“BigHash”):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bighash_context &lt;-<span class="st"> </span>
-<span class="st">'{</span>
-<span class="st">"@context":{</span>
-<span class="st">  "user": "http://schema.org/name",</span>
-<span class="st">  "comment": "http://schema.org/commentText"</span>
-<span class="st">}</span>
-<span class="st">}'</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">bighash_context &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">'{</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">"@context":{</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  "user": "http://schema.org/name",</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  "comment": "http://schema.org/commentText"</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">}</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="st">}'</span></a></code></pre></div>
 <p>With this in place, we simply expand the original JSON and then compact using the new context:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_expand</a></span>(ex) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_compact</a></span>(<span class="dt">context =</span> bighash_context)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">jsonld_expand</span>(ex) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">jsonld_compact</span>(<span class="dt">context =</span> bighash_context)</a></code></pre></div>
 <pre><code>{
   "@context": {
     "user": "http://schema.org/name",
@@ -138,27 +146,27 @@
 <h3 class="hasAnchor">
 <a href="#github" class="anchor"></a>GitHub</h3>
 <p>Here we crosswalk the JSON data returned as the repository information from the GitHub API:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repo_info &lt;-<span class="st"> </span>gh<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/gh/topics/gh">gh</a></span>(<span class="st">"/repos/:owner/:repo"</span>, <span class="dt">owner =</span> <span class="st">"ropensci"</span>, <span class="dt">repo =</span> <span class="st">"EML"</span>)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">repo_info &lt;-<span class="st"> </span>gh<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/gh/topics/gh">gh</a></span>(<span class="st">"/repos/:owner/:repo"</span>, <span class="dt">owner =</span> <span class="st">"ropensci"</span>, <span class="dt">repo =</span> <span class="st">"EML"</span>)</a></code></pre></div>
 <p>Let’s just take a look at what the returned json data looks like:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repo_info <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">toJSON</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">repo_info <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">toJSON</span>()</a></code></pre></div>
 <pre><code>{"id":[10894022],"name":["EML"],"full_name":["ropensci/EML"],"owner":{"login":["ropensci"],"id":[1200269],"avatar_url":["https://avatars0.githubusercontent.com/u/1200269?v=3"],"gravatar_id":[""],"url":["https://api.github.com/users/ropensci"],"html_url":["https://github.com/ropensci"],"followers_url":["https://api.github.com/users/ropensci/followers"],"following_url":["https://api.github.com/users/ropensci/following{/other_user}"],"gists_url":["https://api.github.com/users/ropensci/gists{/gist_id}"],"starred_url":["https://api.github.com/users/ropensci/starred{/owner}{/repo}"],"subscriptions_url":["https://api.github.com/users/ropensci/subscriptions"],"organizations_url":["https://api.github.com/users/ropensci/orgs"],"repos_url":["https://api.github.com/users/ropensci/repos"],"events_url":["https://api.github.com/users/ropensci/events{/privacy}"],"received_events_url":["https://api.github.com/users/ropensci/received_events"],"type":["Organization"],"site_admin":[false]},"private":[false],"html_url":["https://github.com/ropensci/EML"],"description":[" Ecological Metadata Language interface for R: synthesis and integration of heterogenous data"],"fork":[false],"url":["https://api.github.com/repos/ropensci/EML"],"forks_url":["https://api.github.com/repos/ropensci/EML/forks"],"keys_url":["https://api.github.com/repos/ropensci/EML/keys{/key_id}"],"collaborators_url":["https://api.github.com/repos/ropensci/EML/collaborators{/collaborator}"],"teams_url":["https://api.github.com/repos/ropensci/EML/teams"],"hooks_url":["https://api.github.com/repos/ropensci/EML/hooks"],"issue_events_url":["https://api.github.com/repos/ropensci/EML/issues/events{/number}"],"events_url":["https://api.github.com/repos/ropensci/EML/events"],"assignees_url":["https://api.github.com/repos/ropensci/EML/assignees{/user}"],"branches_url":["https://api.github.com/repos/ropensci/EML/branches{/branch}"],"tags_url":["https://api.github.com/repos/ropensci/EML/tags"],"blobs_url":["https://api.github.com/repos/ropensci/EML/git/blobs{/sha}"],"git_tags_url":["https://api.github.com/repos/ropensci/EML/git/tags{/sha}"],"git_refs_url":["https://api.github.com/repos/ropensci/EML/git/refs{/sha}"],"trees_url":["https://api.github.com/repos/ropensci/EML/git/trees{/sha}"],"statuses_url":["https://api.github.com/repos/ropensci/EML/statuses/{sha}"],"languages_url":["https://api.github.com/repos/ropensci/EML/languages"],"stargazers_url":["https://api.github.com/repos/ropensci/EML/stargazers"],"contributors_url":["https://api.github.com/repos/ropensci/EML/contributors"],"subscribers_url":["https://api.github.com/repos/ropensci/EML/subscribers"],"subscription_url":["https://api.github.com/repos/ropensci/EML/subscription"],"commits_url":["https://api.github.com/repos/ropensci/EML/commits{/sha}"],"git_commits_url":["https://api.github.com/repos/ropensci/EML/git/commits{/sha}"],"comments_url":["https://api.github.com/repos/ropensci/EML/comments{/number}"],"issue_comment_url":["https://api.github.com/repos/ropensci/EML/issues/comments{/number}"],"contents_url":["https://api.github.com/repos/ropensci/EML/contents/{+path}"],"compare_url":["https://api.github.com/repos/ropensci/EML/compare/{base}...{head}"],"merges_url":["https://api.github.com/repos/ropensci/EML/merges"],"archive_url":["https://api.github.com/repos/ropensci/EML/{archive_format}{/ref}"],"downloads_url":["https://api.github.com/repos/ropensci/EML/downloads"],"issues_url":["https://api.github.com/repos/ropensci/EML/issues{/number}"],"pulls_url":["https://api.github.com/repos/ropensci/EML/pulls{/number}"],"milestones_url":["https://api.github.com/repos/ropensci/EML/milestones{/number}"],"notifications_url":["https://api.github.com/repos/ropensci/EML/notifications{?since,all,participating}"],"labels_url":["https://api.github.com/repos/ropensci/EML/labels{/name}"],"releases_url":["https://api.github.com/repos/ropensci/EML/releases{/id}"],"deployments_url":["https://api.github.com/repos/ropensci/EML/deployments"],"created_at":["2013-06-23T23:20:03Z"],"updated_at":["2017-05-11T21:24:40Z"],"pushed_at":["2017-07-05T18:52:34Z"],"git_url":["git://github.com/ropensci/EML.git"],"ssh_url":["git@github.com:ropensci/EML.git"],"clone_url":["https://github.com/ropensci/EML.git"],"svn_url":["https://github.com/ropensci/EML"],"homepage":["https://ropensci.github.io/EML"],"size":[5094],"stargazers_count":[48],"watchers_count":[48],"language":["HTML"],"has_issues":[true],"has_projects":[true],"has_downloads":[true],"has_wiki":[true],"has_pages":[true],"forks_count":[17],"mirror_url":{},"open_issues_count":[35],"forks":[17],"open_issues":[35],"watchers":[48],"default_branch":["master"],"organization":{"login":["ropensci"],"id":[1200269],"avatar_url":["https://avatars0.githubusercontent.com/u/1200269?v=3"],"gravatar_id":[""],"url":["https://api.github.com/users/ropensci"],"html_url":["https://github.com/ropensci"],"followers_url":["https://api.github.com/users/ropensci/followers"],"following_url":["https://api.github.com/users/ropensci/following{/other_user}"],"gists_url":["https://api.github.com/users/ropensci/gists{/gist_id}"],"starred_url":["https://api.github.com/users/ropensci/starred{/owner}{/repo}"],"subscriptions_url":["https://api.github.com/users/ropensci/subscriptions"],"organizations_url":["https://api.github.com/users/ropensci/orgs"],"repos_url":["https://api.github.com/users/ropensci/repos"],"events_url":["https://api.github.com/users/ropensci/events{/privacy}"],"received_events_url":["https://api.github.com/users/ropensci/received_events"],"type":["Organization"],"site_admin":[false]},"network_count":[17],"subscribers_count":[18]} </code></pre>
 <p>We can crosswalk this information into codemeta just by supplying the column name to the <code>crosswalk</code> function. This performs the same expansion of the metadata in the GitHub context, followed by compaction into the codemeta context. Note that terms not recognized/included in the codemeta context will be dropped:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">github_meta &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(repo_info, <span class="st">"GitHub"</span>)
-github_meta</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">github_meta &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(repo_info, <span class="st">"GitHub"</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">github_meta</a></code></pre></div>
 <pre><code>{
-  "@context": "http://purl.org/codemeta/2.0",
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "codeRepository": "https://github.com/ropensci/EML",
   "dateCreated": "2013-06-23T23:20:03Z",
   "dateModified": "2017-05-11T21:24:40Z",
   "description": " Ecological Metadata Language interface for R: synthesis and integration of heterogenous data",
   "downloadUrl": "https://api.github.com/repos/ropensci/EML/{archive_format}{/ref}",
-  "identifier": "10894022",
+  "identifier": "/10894022",
   "name": "ropensci/EML",
   "programmingLanguage": "https://api.github.com/repos/ropensci/EML/languages",
   "issueTracker": "https://api.github.com/repos/ropensci/EML/issues{/number}"
 } </code></pre>
 <p>We can verify that the result is a valid codemeta document:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/codemeta_validate.html">codemeta_validate</a></span>(github_meta)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="../reference/codemeta_validate.html">codemeta_validate</a></span>(github_meta)</a></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
@@ -166,8 +174,8 @@ github_meta</code></pre></div>
 <h2 class="hasAnchor">
 <a href="#transforming-into-other-column-schema" class="anchor"></a>Transforming into other column schema</h2>
 <p>The above transform showed the process of going from plain JSON data into the codemeta standard serialization. Similarly, we can crosswalk into any of the other columns in the crosswalk table. To do so, the <code>crosswalk</code> function will first expand any of the recognized properties into the codemeta JSON-LD context, just as above. Unrecognized properties are dropped, since there is no consensus context into which we can expand them. Second, the expanded terms are then compacted down into the new context (Zenodo in this case.) This time, any terms that are not part of the codemeta context are kept, but not compacted, since they still have meaningful contexts (that is, full <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</a>s, e.g. URLs) that can be associated with them:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(repo_info, <span class="st">"GitHub"</span>, <span class="st">"Zenodo"</span>) <span class="op">%&gt;%</span>
-<span class="kw"><a href="../reference/drop_context.html">drop_context</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(repo_info, <span class="st">"GitHub"</span>, <span class="st">"Zenodo"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw"><a href="../reference/drop_context.html">drop_context</a></span>()</a></code></pre></div>
 <pre><code>{
   "relatedLink": "https://github.com/ropensci/EML",
   "schema:dateCreated": {
@@ -182,7 +190,7 @@ github_meta</code></pre></div>
   "schema:downloadUrl": {
     "@id": "https://api.github.com/repos/ropensci/EML/{archive_format}{/ref}"
   },
-  "id": "10894022",
+  "id": "/10894022",
   "name": "ropensci/EML",
   "schema:programmingLanguage": "https://api.github.com/repos/ropensci/EML/languages",
   "codemeta:issueTracker": {
@@ -195,9 +203,9 @@ github_meta</code></pre></div>
 <h2 class="hasAnchor">
 <a href="#nodejs-example" class="anchor"></a>NodeJS example</h2>
 <p>NodeJS uses a <code>package.json</code> format that is very similar to a simple <code>codemeta.json</code> file, though it is not Linked Data as it does not declare a context. Here we crosswalk an example <code>package.json</code> file into proper <code>codemeta</code> standard.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">package.json &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/read_json">read_json</a></span>(
-<span class="st">"https://raw.githubusercontent.com/heroku/node-js-sample/master/package.json"</span>)
-package.json</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">package.json &lt;-<span class="st"> </span><span class="kw">read_json</span>(</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">"https://raw.githubusercontent.com/heroku/node-js-sample/master/package.json"</span>)</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">package.json</a></code></pre></div>
 <pre><code>$name
 [1] "node-js-sample"
 
@@ -254,9 +262,9 @@ $contributors[[1]]
 
 $license
 [1] "MIT"</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(package.json, <span class="st">"NodeJS"</span>)</code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw"><a href="../reference/crosswalk.html">crosswalk</a></span>(package.json, <span class="st">"NodeJS"</span>)</a></code></pre></div>
 <pre><code>{
-  "@context": "http://purl.org/codemeta/2.0",
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "codeRepository": {},
   "creator": "Mark Pundsack",
   "description": "A sample Node.js app using Express 4",
@@ -265,7 +273,7 @@ $license
     "heroku",
     "express"
   ],
-  "license": "MIT",
+  "license": "/MIT",
   "name": "node-js-sample",
   "version": "0.2.0"
 } </code></pre>
@@ -292,7 +300,7 @@ $license
 
 
       <footer><div class="copyright">
-  <p>Developed by Carl Boettiger.</p>
+  <p>Developed by Carl Boettiger, Maëlle Salmon, rOpenSci.</p>
 </div>
 
 <div class="pkgdown">

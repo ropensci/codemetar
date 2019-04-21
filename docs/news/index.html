@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All news • codemetar</title>
+<title>Changelog • codemetar</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,19 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Changelog" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +53,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codemetar</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">codemetar</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.6</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -68,21 +78,21 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/A-codemeta-intro.html">Codemeta intro</a>
+      <a href="../articles/articles/examples-parsing-codemeta.html">Parsing Codemeta Data</a>
     </li>
     <li>
-      <a href="../articles/B-translating.html">Translating between schema using JSON-LD</a>
+      <a href="../articles/articles/translating-codemeta.html">Translating between schema using JSON-LD</a>
     </li>
     <li>
-      <a href="../articles/C-validation-in-json-ld.html">Validation in JSON-LD</a>
+      <a href="../articles/articles/validation-in-json-ld.html">Validation in JSON-LD</a>
     </li>
     <li>
-      <a href="../articles/D-codemeta-parsing.html">Parsing Codemeta Data</a>
+      <a href="../articles/codemeta-intro.html">Codemeta intro</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -94,6 +104,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -101,62 +112,117 @@
       
       </header>
 
-      <div class="row">
-
-  <div class="col-md-9">
+<div class="row">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Change log <small>All releases</small></h1>
+      <h1>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/ropensci/codemetar/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="contents">
-    <div id="codemetar-0-1-4" class="section level1">
-<h1 class="hasAnchor">
-<a href="#codemetar-0-1-4" class="anchor"></a>codemetar 0.1.4</h1>
+    <div id="codemetar-0-1-6-2018-04" class="section level1">
+<h1 class="page-header">
+<a href="#codemetar-0-1-6-2018-04" class="anchor"></a>codemetar 0.1.6 2018-04<small> 2018-05-04 </small>
+</h1>
+<ul>
+<li>
+<p>New functions</p>
+<ul>
+<li><p>extract_badges for extracting information from all badges in a Markdown file.</p></li>
+<li><p>give_opinion giving opiniated advice about package metadata</p></li>
+</ul>
+</li>
+<li>
+<p>Changes to the create_codemeta output</p>
+<ul>
+<li><p>relatedLink field now include provider URL and URL(s) from DESCRIPTION that are not the code repository</p></li>
+<li><p>maintainer is now a list allowing for several maintainers since e.g. the BioConductor a4 package has two maintainers.</p></li>
+<li><p>if more than one CI service among Travis, Appveyor and Circle CI are used and shown via a README badge they’re all added to the contIntegration field. URLs from codecov and coveralls badges are also added to the contIntegration field.</p></li>
+<li><p>repo status inferred from the README now 1) is an URL instead of a word 2) recognizes either repostatus.org or Tidyverse lifecycle badges.</p></li>
+<li><p>if present, priority is given to the Repository and BugReports fields of DESCRIPTION for filling the codeRepository and issueTracker fields of codemeta.json (which means working on a fork won’t change these).</p></li>
+<li><p>ability to parse all CRAN-allowed MARC roles.</p></li>
+<li><p>if there is a badge for an rOpenSci onboarding review and the review issue is closed, basic review metadata is added to codemeta.json</p></li>
+<li><p>For dependencies, if the provider guessed is CRAN or BioConductor, their canonic CRAN/BioConductor URL is added to codemeta.json as sameAs, unless there’s a GitHub repo mentioned for them in Remotes in DESCRIPTION, in which case sameAs is that GitHub repo.</p></li>
+<li><p>CRAN is now correctly translated as “Comprehensive R Archive Network”</p></li>
+<li><p>If codeRepository is guessed to be a GitHub repo (via the URL field of DESCRIPTION or via git remote URL), the repo topics are queried via GitHub API V3 and added to the keywords (in combination with keywords stored in the X-schema.org-keywords field of DESCRIPTION)</p></li>
+<li><p>SystemRequirements are now parsed using <a href="https://sysreqs.r-hub.io/" class="uri">https://sysreqs.r-hub.io/</a>, outputting URLs then stored in softwareRequirements</p></li>
+</ul>
+</li>
+<li><p>Help to remind to update codemeta.json regularly: Writing codemeta.json for the first time adds a git pre-commit hook and suggests adding a release question for devtools::release.</p></li>
+<li>
+<p>Internal changes</p>
+<ul>
+<li><p>Now uses desc to parse DESCRIPTION files.</p></li>
+<li><p>Package license changed to GPL because of code borrowed from usethis</p></li>
+<li><p>Uses crul instead of httr and uses crul to check some URLs.</p></li>
+<li><p>write_codemeta only uses Rbuildignore and a pre-commit git hook if the function is called from a package folder directly and with the path argument equal to “codemeta.json”</p></li>
+<li><p>The calls to available.packages() for guess_provider now happen inside memoised functions.</p></li>
+<li><p>codemeta_readme function.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+    <div id="codemetar-0-1-5-2018-03-21" class="section level1">
+<h1 class="page-header">
+<a href="#codemetar-0-1-5-2018-03-21" class="anchor"></a>codemetar 0.1.5 2018-03-21<small> 2018-03-21 </small>
+</h1>
+<ul>
+<li>Default to DOI-based schema. (previous CN issues now resolved)</li>
+</ul>
+</div>
+    <div id="codemetar-0-1-4-2018-02-12" class="section level1">
+<h1 class="page-header">
+<a href="#codemetar-0-1-4-2018-02-12" class="anchor"></a>codemetar 0.1.4 2018-02-12<small> 2018-02-12 </small>
+</h1>
 <ul>
 <li>Allow vignettes to gracefully handle network timeout errors that may occur on CRAN’s Windows build server.</li>
 </ul>
 </div>
-    <div id="codemetar-0-1-3" class="section level1">
-<h1 class="hasAnchor">
-<a href="#codemetar-0-1-3" class="anchor"></a>codemetar 0.1.3</h1>
+    <div id="codemetar-0-1-3-2018-02-08" class="section level1">
+<h1 class="page-header">
+<a href="#codemetar-0-1-3-2018-02-08" class="anchor"></a>codemetar 0.1.3 2018-02-08<small> 2018-02-08 </small>
+</h1>
 <ul>
 <li>CRAN release</li>
-<li>Switch to <a href="http://purl.org" class="uri">http://purl.org</a> based URIs for the JSON-LD Context file instead of a DOI, due to frequent failure of content negotiation on DataCite servers (<a href="https://github.com/ropensci/codemetar/issues/34">#34</a>)</li>
-<li>bugfix UTF-8 characters in CITATION files (<a href="https://github.com/ropensci/codemetar/issues/44">#44</a>)</li>
+<li>Switch to <a href="http://purl.org" class="uri">http://purl.org</a> based URIs for the JSON-LD Context file instead of a DOI, due to frequent failure of content negotiation on DataCite servers (<a href="https://github.com/ropensci/codemetar/issues/34"><a href='https://github.com/ropensci/codemetar/issues/34'>#34</a></a>)</li>
+<li>bugfix UTF-8 characters in CITATION files (<a href="https://github.com/ropensci/codemetar/issues/44"><a href='https://github.com/ropensci/codemetar/issues/44'>#44</a></a>)</li>
 <li>bugfix to git URLs</li>
-<li>Use <code>https</code> on ORCID <code>@id</code> URIs</li>
+<li>Use <code>https</code> on ORCID <code><a href='http://github.com/id'>@id</a></code> URIs</li>
 </ul>
 </div>
     <div id="codemetar-0-1-2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#codemetar-0-1-2" class="anchor"></a>codemetar 0.1.2</h1>
+<h1 class="page-header">
+<a href="#codemetar-0-1-2" class="anchor"></a>codemetar 0.1.2<small> Unreleased </small>
+</h1>
 <ul>
 <li>JOSS release</li>
 </ul>
 </div>
     <div id="codemetar-0-1-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#codemetar-0-1-1" class="anchor"></a>codemetar 0.1.1</h1>
+<h1 class="page-header">
+<a href="#codemetar-0-1-1" class="anchor"></a>codemetar 0.1.1<small> Unreleased </small>
+</h1>
 <ul>
 <li>Post onboarding release</li>
 </ul>
 </div>
     <div id="codemetar-0-1-0" class="section level1">
-<h1 class="hasAnchor">
-<a href="#codemetar-0-1-0" class="anchor"></a>codemetar 0.1.0</h1>
+<h1 class="page-header">
+<a href="#codemetar-0-1-0" class="anchor"></a>codemetar 0.1.0<small> Unreleased </small>
+</h1>
 <ul>
 <li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
 </ul>
 </div>
-    </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#codemetar-0-1-4">0.1.4</a></li>
-        <li><a href="#codemetar-0-1-3">0.1.3</a></li>
+        <li><a href="#codemetar-0-1-6-2018-04">0.1.6</a></li>
+        <li><a href="#codemetar-0-1-5-2018-03-21">0.1.5</a></li>
+        <li><a href="#codemetar-0-1-4-2018-02-12">0.1.4</a></li>
+        <li><a href="#codemetar-0-1-3-2018-02-08">0.1.3</a></li>
         <li><a href="#codemetar-0-1-2">0.1.2</a></li>
         <li><a href="#codemetar-0-1-1">0.1.1</a></li>
         <li><a href="#codemetar-0-1-0">0.1.0</a></li>
@@ -168,7 +234,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Carl Boettiger.</p>
+  <p>Developed by Carl Boettiger, Maëlle Salmon, rOpenSci.</p>
 </div>
 
 <div class="pkgdown">
@@ -178,5 +244,8 @@
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

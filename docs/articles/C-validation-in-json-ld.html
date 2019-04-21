@@ -8,8 +8,11 @@
 <title>Validation in JSON-LD • codemetar</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><meta property="og:title" content="Validation in JSON-LD">
+<meta property="og:description" content="">
+<meta name="twitter:card" content="summary">
+<!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -24,8 +27,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codemetar</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">codemetar</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.6</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
@@ -59,7 +66,7 @@
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -84,8 +91,11 @@
       <h1>Validation in JSON-LD</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2018-02-15</h4>
-          </div>
+            <h4 class="date">2018-05-03</h4>
+      
+      <small>Source: <a href="https://github.com/ropensci/codemetar/blob/master/vignettes/C-validation-in-json-ld.Rmd"><code>vignettes/C-validation-in-json-ld.Rmd</code></a></small>
+
+    </div>
 
     
     
@@ -96,37 +106,37 @@
 <p>Schema validation is a useful and important concept to the distribution of metadata in formats such as XML and JSON, in which the standard-provider creates a schema (specified in an XML-schema, XSD, for XML documents, or <a href="http://json-schema.org/">json-schema</a> for JSON documents). Schemas allow us to go beyond the basic notation of making sure a file is simply valid XML or valid JSON, a requirement just to be read in by any parser. By detailing how the metadata must be structured, what elements must, can, and may not be included, and what data types may be used for those elements, schema help developers consuming the data to anticipate these details and thus build applications which know how to process them. For the data creator, validation is a convenient way to catch data input errors and ensure a consistent data structure.</p>
 <p>Because schema validation must ensure predictable behavior without knowledge of what any specific application is going to do with the data, it tends to be very strict. A simple application may not care if certain fields are missing or if integers are mistaken for characters, while to another application these differences could lead it to throw fatal errors.</p>
 <p>The approach of JSON-LD is less prescriptive. JSON-LD uses the notion of “framing” to let each application specify how it expects it data to be structured. JSON frames allow each developer consuming the data to handle many of the same issues that schema validation have previously assured. Readers should consult the <a href="https://json-ld.org/spec/latest/json-ld-framing/">official json-ld framing</a> documentation for details on this approach.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonld)
-<span class="kw">library</span>(jsonlite)
-<span class="kw">library</span>(magrittr)
-<span class="kw">library</span>(codemetar)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(jsonld)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(jsonlite)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">library</span>(codemetar)</a></code></pre></div>
 </div>
 <div id="a-motivating-example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#a-motivating-example" class="anchor"></a>A motivating example:</h2>
 <p>Consider the following codemeta document:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">codemeta &lt;-<span class="st"> </span>
-<span class="st">'</span>
-<span class="st">{</span>
-<span class="st">  "@context": "http://purl.org/codemeta/2.0",</span>
-<span class="st">  "@type": "SoftwareSourceCode",</span>
-<span class="st">  "name": "codemetar: Generate CodeMeta Metadata for R Packages",</span>
-<span class="st">  "datePublished":" 2017-05-20",</span>
-<span class="st">  "version": 1.0,</span>
-<span class="st">  "author": [</span>
-<span class="st">    {</span>
-<span class="st">      "@type": "Person",</span>
-<span class="st">      "givenName": "Carl",</span>
-<span class="st">      "familyName": "Boettiger",</span>
-<span class="st">      "email": "cboettig@gmail.com",</span>
-<span class="st">      "@id": "http://orcid.org/0000-0002-1642-628X"</span>
-<span class="st">    }],</span>
-<span class="st">  "maintainer":  {"@id": "http://orcid.org/0000-0002-1642-628X"}</span>
-<span class="st">}</span>
-<span class="st">'</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">jsonld<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_compact</a></span>(codemeta, <span class="st">"http://purl.org/codemeta/2.0"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">codemeta &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">'</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">{</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="st">  "@type": "SoftwareSourceCode",</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">  "name": "codemetar: Generate CodeMeta Metadata for R Packages",</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="st">  "datePublished":" 2017-05-20",</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="st">  "version": 1.0,</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="st">  "author": [</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="st">    {</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="st">      "@type": "Person",</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="st">      "givenName": "Carl",</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="st">      "familyName": "Boettiger",</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="st">      "email": "cboettig@gmail.com",</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="st">      "@id": "http://orcid.org/0000-0002-1642-628X"</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="st">    }],</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="st">  "maintainer":  {"@id": "http://orcid.org/0000-0002-1642-628X"}</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="st">}</span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="st">'</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">jsonld<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_compact</a></span>(codemeta, <span class="st">"https://doi.org/10.5063/schema/codemeta-2.0"</span>)</a></code></pre></div>
 <pre><code>{
-  "@context": "http://purl.org/codemeta/2.0",
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "type": "SoftwareSourceCode",
   "author": [
     {
@@ -149,20 +159,20 @@
 <h2 class="hasAnchor">
 <a href="#framing-subsetting-data" class="anchor"></a>Framing: subsetting data</h2>
 <p>By default, frames return all the input data, while our application may only be interested in some subset. Often it is sufficient just to ignore these additional terms: in the example above it’s just as easy for our application to work with author elements whether or not we have dropped other elements such as <code>meta$version</code>. To restrict a frame to returning only the nodes we explicitly mention, we can use the keyword <code>@explicit</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">frame &lt;-<span class="st"> '{</span>
-<span class="st">  "@context": "http://purl.org/codemeta/2.0",</span>
-<span class="st">  "@explicit": "true",</span>
-<span class="st">  "@type": "Person",</span>
-<span class="st">  "givenName": {},</span>
-<span class="st">  "familyName": {}</span>
-<span class="st">}'</span>
-
-meta &lt;-<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(codemeta, frame)  <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) 
-
-meta[[<span class="dv">1</span>]]</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">frame &lt;-<span class="st"> '{</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  "@explicit": "true",</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  "@type": "Person",</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="st">  "givenName": {},</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="st">  "familyName": {}</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="st">}'</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">meta &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">  </span><span class="kw">jsonld_frame</span>(codemeta, frame)  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="st">  </span><span class="kw">fromJSON</span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) </a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">meta[[<span class="dv">1</span>]]</a></code></pre></div>
 <pre><code>$id
 [1] "http://orcid.org/0000-0002-1642-628X"
 
@@ -180,26 +190,26 @@ $givenName
 <h2 class="hasAnchor">
 <a href="#framing-expanding-node-references" class="anchor"></a>Framing: expanding node references</h2>
 <p>The same underlying data can often be expressed in different ways, particularly when dealing with nested data. Framing can be of great help here to reshape the data into the structure required by the application. For instance, it would be natural to access the <code>email</code> of the <code>maintainer</code> in the same manner we did the author, but this fails for our example as <code>maintainer</code> is defined only by reference to an ID:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meta &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) 
-<span class="kw">paste</span>(<span class="st">"For complaints, email"</span>, meta<span class="op">$</span>maintainer<span class="op">$</span>email)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">meta &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) </a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">paste</span>(<span class="st">"For complaints, email"</span>, meta<span class="op">$</span>maintainer<span class="op">$</span>email)</a></code></pre></div>
 <pre><code>[1] "For complaints, email "</code></pre>
 <p>We can confirm that <code>maintainer</code> is just an ID:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meta<span class="op">$</span>maintainer</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">meta<span class="op">$</span>maintainer</a></code></pre></div>
 <pre><code>$`@id`
 [1] "http://orcid.org/0000-0002-1642-628X"</code></pre>
 <p>We can use a frame with the special directive <code>"@embed": "@always"</code> to say that we want the full maintainer information embedded an not just referred to by id alone. Then we can subset <code>maintainer</code> just like we do author.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">frame &lt;-<span class="st"> '{</span>
-<span class="st">  "@context": "http://purl.org/codemeta/2.0",</span>
-<span class="st">  "@embed": "@always"</span>
-<span class="st">}'</span>
-
-
-meta &lt;-<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(codemeta, frame) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">frame &lt;-<span class="st"> '{</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  "@embed": "@always"</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">}'</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">meta &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="st">  </span><span class="kw">jsonld_frame</span>(codemeta, frame) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="st">  </span><span class="kw">fromJSON</span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)</a></code></pre></div>
 <p>Now we can do</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste</span>(<span class="st">"For complaints, email"</span>, meta<span class="op">$</span>maintainer<span class="op">$</span>email)</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">paste</span>(<span class="st">"For complaints, email"</span>, meta<span class="op">$</span>maintainer<span class="op">$</span>email)</a></code></pre></div>
 <pre><code>[1] "For complaints, email cboettig@gmail.com"</code></pre>
 <p>and see that <code>email</code> has been successfully returned from the matching ID under author data.</p>
 </div>
@@ -207,35 +217,35 @@ meta &lt;-<span class="st"> </span>
 <h2 class="hasAnchor">
 <a href="#handling-unexpected-types" class="anchor"></a>Handling unexpected types</h2>
 <p>JSON-LD routines will simply refuse to compact data if the type differs from what the context expects. Here is a sample data file that declares that the <code>buildInstructions</code> are included as text, which differs from the <code>context</code> file which explicitly states that <code>buildInstructions</code> should be a URL:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">codemeta &lt;-<span class="st"> </span>
-<span class="st">'</span>
-<span class="st">{</span>
-<span class="st">  "@context": "https://purl.org/codemeta/2.0",</span>
-<span class="st">  "@type": "SoftwareSourceCode",</span>
-<span class="st">  "name": "codemetar: Generate CodeMeta Metadata for R Packages",</span>
-<span class="st">  "buildInstructions": { </span>
-<span class="st">      "@value": "Just install this package using devtools::install_github", </span>
-<span class="st">      "@type": "Text"</span>
-<span class="st">  }</span>
-<span class="st">}</span>
-<span class="st">'</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">codemeta &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">'</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">{</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  "@context": "https://purl.org/codemeta/2.0",</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="st">  "@type": "SoftwareSourceCode",</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="st">  "name": "codemetar: Generate CodeMeta Metadata for R Packages",</span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="st">  "buildInstructions": { </span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="st">      "@value": "Just install this package using devtools::install_github", </span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="st">      "@type": "Text"</span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="st">  }</span></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="st">}</span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="st">'</span></a></code></pre></div>
 <p>When we perform a framing or compaction operation, <code>buildInstructions</code> gets de-referenced to <code>codemeta:buildInstructions</code>, because it does not match the context. This means that if our application asks for <code>meta$buildInstructions</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meta &lt;-
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(codemeta, <span class="st">'{"@context": "https://purl.org/codemeta/2.0"}'</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)    
-
-## above is same as compacting:
-<span class="co">#jsonld_compact(codemeta, "http://purl.org/codemeta/2.0") %&gt;% </span>
-<span class="co">#  fromJSON(codemeta, simplifyVector = FALSE)</span>
-
-meta<span class="op">$</span>buildInstructions</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">meta &lt;-</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">jsonld_frame</span>(codemeta, <span class="st">'{"@context": "https://purl.org/codemeta/2.0"}'</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">fromJSON</span>(codemeta, <span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw">getElement</span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">getElement</span>(<span class="dv">1</span>)    </a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">## above is same as compacting:</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="co">#jsonld_compact(codemeta, "https://doi.org/10.5063/schema/codemeta-2.0") %&gt;% </span></a>
+<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="co">#  fromJSON(codemeta, simplifyVector = FALSE)</span></a>
+<a class="sourceLine" id="cb15-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb15-10" data-line-number="10">meta<span class="op">$</span>buildInstructions</a></code></pre></div>
 <pre><code>NULL</code></pre>
 <p>We just get <code>NULL</code>, rather than some unexpected type of object (e.g. a string that is not a URL.) Note that the data is not lost, but simply not dereferenced:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(meta)</code></pre></div>
-<pre><code>[1] "id"                         "type"                      
-[3] "name"                       "codemeta:buildInstructions"</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meta[<span class="st">"codemeta:buildInstructions"</span>]</code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">names</span>(meta)</a></code></pre></div>
+<pre><code>[1] "type"                       "name"                      
+[3] "codemeta:buildInstructions"</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">meta[<span class="st">"codemeta:buildInstructions"</span>]</a></code></pre></div>
 <pre><code>$`codemeta:buildInstructions`
 $`codemeta:buildInstructions`$type
 [1] "Text"
@@ -265,7 +275,7 @@ $`codemeta:buildInstructions`$`@value`
 
 
       <footer><div class="copyright">
-  <p>Developed by Carl Boettiger.</p>
+  <p>Developed by Carl Boettiger, Maëlle Salmon, rOpenSci.</p>
 </div>
 
 <div class="pkgdown">

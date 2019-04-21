@@ -44,7 +44,7 @@ Consider the following codemeta document:
 codemeta <- 
 '
 {
-  "@context": "http://purl.org/codemeta/2.0",
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "name": "codemetar: Generate CodeMeta Metadata for R Packages",
   "datePublished":" 2017-05-20",
@@ -64,7 +64,7 @@ codemeta <-
 
 
 ```{r}
-jsonld::jsonld_compact(codemeta, "http://purl.org/codemeta/2.0")
+jsonld::jsonld_compact(codemeta, "https://doi.org/10.5063/schema/codemeta-2.0")
 ```
 
 ## Framing: subsetting data
@@ -75,7 +75,7 @@ By default, frames return all the input data, while our application may only be 
 
 ```{r}
 frame <- '{
-  "@context": "http://purl.org/codemeta/2.0",
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@explicit": "true",
   "@type": "Person",
   "givenName": {},
@@ -113,7 +113,7 @@ We can use a frame with the special directive `"@embed": "@always"` to say that 
 
 ```{r}
 frame <- '{
-  "@context": "http://purl.org/codemeta/2.0",
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@embed": "@always"
 }'
 
@@ -166,7 +166,7 @@ meta <-
   getElement("@graph") %>% getElement(1)    
 
 ## above is same as compacting:
-#jsonld_compact(codemeta, "http://purl.org/codemeta/2.0") %>% 
+#jsonld_compact(codemeta, "https://doi.org/10.5063/schema/codemeta-2.0") %>% 
 #  fromJSON(codemeta, simplifyVector = FALSE)
 
 meta$buildInstructions

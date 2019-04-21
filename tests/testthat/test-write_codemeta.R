@@ -8,78 +8,40 @@ testthat::test_that("we can write a codemeta document given a package name", {
 })
 
 
-
-
-
-## Not needed, covered by the git clone test, which also avoids the use of setwd
-#testthat::test_that("we can write a codemeta document from non-root dir", {
-#  cur <- getwd()
-#  setwd(tempdir())
-#
-#  write_codemeta("codemetar")
-#  testthat::expect_true(file.exists("codemeta.json"))
-#  unlink("codemeta.json")
-#  setwd(cur)
-
-#})
-
-
-
 testthat::test_that("We can read an existing codemeta.json file", {
-  write_codemeta(system.file("DESCRIPTION", package = "codemetar"))
-  write_codemeta(".")
+  write_codemeta("codemetar")
+  testthat::expect_true(file.exists("codemeta.json"))
+  write_codemeta("codemetar")
+  unlink("codemeta.json")
+
+})
+
+testthat::test_that("We can use either a path or pkg name in writing", {
+
+  write_codemeta(path.package("codemetar"))
+  testthat::expect_true(file.exists("codemeta.json"))
+  unlink("codemeta.json")
+
+  write_codemeta("codemetar")
   testthat::expect_true(file.exists("codemeta.json"))
   unlink("codemeta.json")
 
 })
 
-
-testthat::test_that("We can use either a path or pkg name in writing", {
-  write_codemeta(system.file("DESCRIPTION", package = "codemetar"))
-  testthat::expect_true(file.exists("codemeta.json"))
-  unlink("codemeta.json")
+testthat::test_that("We can deduce relatedLink from installed pkg", {
+  skip_on_cran()
+  usethis_cm <- create_codemeta(find.package("usethis"))
+  testthat::expect_equal(usethis_cm$relatedLink,
+                         "https://CRAN.R-project.org/package=usethis")
 
 })
 
 ## Test that we can write codemeta from a temp working dir (e.g. non-root dir)
 testthat::test_that("we can write codemeta given a codemeta object", {
   codemeta <- new_codemeta()
-  create_codemeta(codemeta)
+  expect_is(create_codemeta("codemetar", codemeta), "list")
 })
 
 ##(author test below includes such a step already)
 
 
-
-testthat::test_that("We can parse author lists
-                    that use Authors@R, Authors, or both", {
-  dcf <- system.file("examples/example.dcf", package = "codemetar")
-  descr <- as.list(read.dcf(dcf)[1, ])
-  codemeta <- new_codemeta()
-  codemeta <-
-    parse_people(eval(parse(text = descr$`Authors@R`)), codemeta)
-
-  ## Tests that we can write codemeta given an existing codemeta
-  ##  object, expects a warning
-  write_codemeta(codemeta, path = "test.json")
-
-  testthat::expect_true(file.exists("test.json"))
-
-  codemeta2 <- codemeta
-  descr2 <- descr
-  descr2$`Authors@R` <- NULL
-
-  ## parse without Authors@R:
-  codemeta2 <- parse_people(as.person(descr2$Author), codemeta2)
-  codemeta2$maintainer <-
-    person_to_schema(as.person(descr2$Maintainer))
-
-  write_codemeta(codemeta2, path = "test2.json")
-  testthat::expect_true(file.exists("test2.json"))
-
-
-  unlink("test.json")
-  unlink("test2.json")
-
-
-})

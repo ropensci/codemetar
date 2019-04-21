@@ -4,21 +4,33 @@
 \alias{write_codemeta}
 \title{write_codemeta}
 \usage{
-write_codemeta(pkg = ".", path = "codemeta.json", root = ".", id = NULL,
-  force_update = getOption("codemeta_force_update", TRUE), ...)
+write_codemeta(pkg = ".", path = "codemeta.json", root = ".",
+  id = NULL, use_filesize = TRUE,
+  force_update = getOption("codemeta_force_update", TRUE),
+  use_git_hook = TRUE, verbose = TRUE, ...)
 }
 \arguments{
-\item{pkg}{package path to package root, or package name, or
-description file (character), or a codemeta object (list)}
+\item{pkg}{package path to package root, or package name, or description file
+(character), or a codemeta object (list)}
 
 \item{path}{file name of the output, leave at default "codemeta.json"}
 
-\item{root}{if pkg is a codemeta object, optionally give the path
-to package root. Default guess is current dir.}
+\item{root}{if pkg is a codemeta object, optionally give the path to package
+root. Default guess is current dir.}
 
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
 
-\item{force_update}{Update guessed fields even if they are defined in an existing codemeta.json file}
+\item{use_filesize}{whether to try adding a filesize by using
+\code{pkgbuild::build()}.}
+
+\item{force_update}{Update guessed fields even if they are defined in an
+existing codemeta.json file}
+
+\item{use_git_hook}{Whether to create a pre-commit hook requiring
+codemeta.json to be updated when DESCRIPTION is changed.  Defaults to TRUE.}
+
+\item{verbose}{Whether to print messages indicating opinions e.g. when
+DESCRIPTION has no URL. See \code{\link{give_opinions}}.}
 
 \item{...}{additional arguments to \code{\link{write_json}}}
 }
@@ -26,18 +38,26 @@ to package root. Default guess is current dir.}
 writes out the codemeta.json file
 }
 \description{
-write out a codemeta.json file for a given package.  This function
-is basically a wrapper around create_codemeta() to both create the
-codemeta object and write it out to a JSON-LD-formatted file in one command.
-It can also be used simply to write out to JSON-LD any existing object
-created with create_codemeta().
+write out a codemeta.json file for a given package.  This function is
+basically a wrapper around create_codemeta() to both create the codemeta
+object and write it out to a JSON-LD-formatted file in one command. It can
+also be used simply to write out to JSON-LD any existing object created with
+create_codemeta().
 }
 \details{
-If pkg is a codemeta object, the function will attempt to
- update any fields it can guess (i.e. from the DESRIPTION file),
- overwriting any existing data in that block. In this case, the package
- root directory should be the current working directory.
+If pkg is a codemeta object, the function will attempt to update any
+  fields it can guess (i.e. from the DESCRIPTION file), overwriting any
+  existing data in that block. In this case, the package root directory
+  should be the current working directory.
+
+When creating and writing a codemeta.json for the first time, the function
+adds "codemeta.json" to .Rbuildignore and, if the project uses git, adds a
+pre-commit hook ensuring that if DESCRIPTION changes, the codemeta.json will
+be updated as well unless the DESCRIPTION change is committed with 'git
+commit --no-verify'.
 }
 \examples{
-write_codemeta("codemeta", tempfile())
+\donttest{
+write_codemeta("codemetar", path = "example_codemetar_codemeta.json")
+}
 }

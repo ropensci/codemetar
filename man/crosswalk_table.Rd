@@ -2,30 +2,30 @@
 % Please edit documentation in R/crosswalk.R
 \name{crosswalk_table}
 \alias{crosswalk_table}
-\title{crosswalk_table}
+\title{Crosswalk Table}
 \usage{
-crosswalk_table(from, to = NULL,
-  full_crosswalk = "https://github.com/codemeta/codemeta/raw/master/crosswalk.csv",
-  trim = TRUE)
+crosswalk_table(from, to = NULL, full_crosswalk = NULL, trim = TRUE)
 }
 \arguments{
 \item{from}{the name of a column in the crosswalk table to map from.}
 
 \item{to}{the name of one or more columns in the crosswalk table to map into}
 
-\item{full_crosswalk}{Path or URL (requires internet!) of the full crosswalk table.}
+\item{full_crosswalk}{Path or URL (requires internet!) of the full crosswalk
+table.}
 
 \item{trim}{drop rows giving properties not found in the 'from' column?}
 }
 \value{
-a tibble containing the trimmed crosswalk table, listing property (in CodeMeta),
-and the corresponding terms in both from and to columns.
+a tibble containing the trimmed crosswalk table, listing property (in
+  CodeMeta), and the corresponding terms in both from and to columns.
 }
 \description{
-return a subset of the crosswalk table containing codemeta properties and matching column
+Return a subset of the crosswalk table containing codemeta properties and
+matching column
 }
 \examples{
-\dontrun{
+\donttest{
 crosswalk_table(from = "GitHub", to = c("Zenodo", "Figshare"))
 }
 }

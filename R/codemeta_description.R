@@ -1,106 +1,23 @@
-## Internal functions
+# url_codemeta_schema ----------------------------------------------------------
+url_codemeta_schema <- function() {
 
+  "https://doi.org/10.5063/schema/codemeta-2.0"
+}
 
-## this appears not to be portable to devtools::check?
-#options(codemeta_context =
-#  "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld")
+# Set codemeta schema as an option ---------------------------------------------
+options(codemeta_context = url_codemeta_schema())
 
-options(codemeta_context = "http://purl.org/codemeta/2.0")
+# new_codemeta -----------------------------------------------------------------
 ## Supporting old versions will be a nuciance
 new_codemeta <- function() {
-  list(`@context` = getOption("codemeta_context","http://purl.org/codemeta/2.0"),
+
+  list(`@context` = getOption("codemeta_context", url_codemeta_schema()),
        `@type` = "SoftwareSourceCode")
 }
 
+# additional_codemeta_terms ----------------------------------------------------
+additional_codemeta_terms <- function() {
 
-# Can add to an existing codemeta document
-codemeta_description <-
-  function(f, id = NULL, codemeta = new_codemeta()) {
-    if (file.exists(f)) {
-      descr <- cm_read_dcf(f)
-    } else {
-      return(codemeta)
-    }
-
-    if (is.null(descr) || length(descr) == 0) {
-      return(codemeta)
-    }
-
-    ## FIXME define an S3 class based on the codemeta list of lists?
-    if (is.null(id)) {
-      id <- descr$Package
-    }
-
-    if (is_IRI(id)) {
-      codemeta$`@id` <- id
-    }
-
-    codemeta$identifier <- descr$Package
-    codemeta$description <- descr$Description
-    codemeta$name <- paste0(descr$Package, ": ", descr$Title)
-
-    ## Will later guess these these a la devtools::use_github_links
-    codemeta$codeRepository <- descr$URL
-    codemeta$issueTracker <- descr$BugReports
-
-    ## According to crosswalk, codemeta$dateModified and
-    ## codemeta$dateCreated are not crosswalked in DESCRIPTION
-    codemeta$datePublished <-
-      descr$Date # probably not avaialable as descr$Date.
-
-    codemeta$license <- spdx_license(descr$License)
-
-    codemeta$version <- descr$Version
-    codemeta$programmingLanguage <-
-      list(
-        "@type" = "ComputerLanguage",
-        name = R.version$language,
-        version = paste(R.version$major, R.version$minor, sep = "."),
-        # According to Crosswalk, we just want numvers and not R.version.string
-        url = "https://r-project.org"
-      )
-    ## According to schema.org, programmingLanguage doesn't have a version;
-    ## but runtimePlatform, a plain string, does.
-    codemeta$runtimePlatform <- R.version.string
-
-    if (is.null(codemeta$provider))
-      codemeta$provider <- guess_provider(descr$Package)
-    if ("Authors@R" %in% names(descr)) {
-      codemeta <-
-        parse_people(eval(parse(text = descr$`Authors@R`)), codemeta)
-    } else {
-      codemeta <- parse_people(as.person(descr$Author), codemeta)
-      ## maintainer must come second in case Author list also specifies
-      ## maintainer by role [cre] without email
-      codemeta$maintainer <-
-        person_to_schema(as.person(descr$Maintainer))
-
-    }
-
-    codemeta$softwareSuggestions <- parse_depends(descr$Suggests)
-    codemeta$softwareRequirements <-
-      c(parse_depends(descr$Imports),
-        parse_depends(descr$Depends))
-
-
-
-    ## add any additional codemeta terms found in the DESCRIPTION metadata
-    for(term in additional_codemeta_terms){
-      ## in DESCRIPTION, these terms must be *prefixed*:
-      X_term <- paste0("X-schema.org-", term)
-      if(!is.null(descr[[X_term]])){
-        codemeta[[term]] <- gsub("\\s+", "",
-                                 strsplit(descr[[X_term]], ",")[[1]])
-      }
-    }
-
-    codemeta
-
-  }
-
-
-
-additional_codemeta_terms <-
   c("affiliation",
     "applicationCategory",
     "applicationSubCategory",
@@ -140,6 +57,208 @@ additional_codemeta_terms <-
     "issueTracker",
     "referencePublication"
   )
+}
 
+# codemeta_description ---------------------------------------------------------
+# Can add to an existing codemeta document
+codemeta_description <- function(file, id = NULL, codemeta = new_codemeta()) {
 
+  if (! file.exists(file)) {
+
+    return(codemeta)
+  }
+
+  descr <- desc::desc(file)
+
+  # Store the package name in its own variable as it is used more than once
+  package_name <- descr$get("Package")
+
+  ## FIXME define an S3 class based on the codemeta list of lists?
+
+  if (is.null(id)) {
+    id <- package_name
+  }
+
+  if (is_IRI(id)) {
+    codemeta$`@id` <- id
+  }
+
+  codemeta$identifier <- package_name
+  codemeta$description <- descr$get("Description")
+  codemeta$name <- paste0(package_name, ": ", descr$get("Title"))
+
+  ## add repository related terms
+  codemeta <- add_repository_terms(codemeta, descr)
+
+  if (! is.na(issue_tracker <- descr$get("BugReports"))) {
+    codemeta$issueTracker <- issue_tracker
+  }
+
+  ## According to crosswalk, codemeta$dateModified and
+  ## codemeta$dateCreated are not crosswalked in DESCRIPTION
+  codemeta$datePublished <- NULL
+
+  codemeta$license <- spdx_license(descr$get("License"))
+
+  codemeta$version <- as.character(descr$get_version())
+
+  ## add progr. language related terms: programmingLanguage, runtimePlatform
+  codemeta <- add_language_terms(codemeta)
+
+  if (is.null(codemeta$provider)) {
+    codemeta$provider <- guess_provider(package_name)
+  }
+
+  ## add person related terms
+  codemeta <- add_person_terms(codemeta, descr)
+
+  ## add software related terms: softwareSuggestions, softwareRequirements
+  codemeta <- add_software_terms(codemeta, descr)
+
+  ## add any additional codemeta terms found in the DESCRIPTION metadata
+  codemeta <- add_additional_terms(codemeta, descr)
+
+  # return codemeta
+  codemeta
+}
+
+# add_repository_terms ---------------------------------------------------------
+add_repository_terms <- function(codemeta, descr) {
+
+  ## Get URLs
+  code_repo <- descr$get_urls()
+
+  if (! is.na(code_repo[1])) {
+
+    if (length(code_repo) == 1) {
+
+      # only one, easy
+      codemeta$codeRepository <- code_repo
+
+    } else {
+
+      # try to identify a GitHub or Gitlab repo
+      github_pattern <- "git(hub|lab)\\.com"
+      actual_code_repo <- grep(github_pattern, code_repo, value = TRUE)[1]
+
+      # no direct link to README please
+      actual_code_repo <- gsub("#.*", "", actual_code_repo)
+
+      # otherwise take the first URL arbitrarily
+      if (is.null(codemeta$Repository)) {
+        codemeta$codeRepository <- actual_code_repo
+      }
+
+      # add other URLs as related links
+      codemeta$relatedLink <- unique(c(
+        codemeta$relatedLink,
+        code_repo[code_repo != actual_code_repo]
+      ))
+    }
+  }
+
+  codemeta
+}
+
+# add_language_terms -----------------------------------------------------------
+add_language_terms <- function(codemeta) {
+
+  codemeta$programmingLanguage <- list(
+    "@type" = "ComputerLanguage",
+    name = R.version$language,
+    version = paste(R.version$major, R.version$minor, sep = "."),
+    # According to Crosswalk, we just want numvers and not R.version.string
+    url = "https://r-project.org"
+  )
+
+  ## According to schema.org, programmingLanguage doesn't have a version;
+  ## but runtimePlatform, a plain string, does.
+  codemeta$runtimePlatform <- R.version.string
+
+  codemeta
+}
+
+# add_person_terms -------------------------------------------------------------
+add_person_terms <- function(codemeta, descr) {
+
+  author <- try(descr$get_authors(), silent = TRUE)
+
+  if (inherits(author, 'try-error')) {
+
+    # get author and maintainer from their fields
+    # and don't get maintainer twice!
+    author <- as.person(descr$get("Author"))
+
+    maintainer <- descr$get_maintainer()
+    maintainer <- as.person(paste(maintainer))
+    maintainer$role <- "cre"
+
+    author_strings <- paste(author$given, author$family)
+    maintainer_strings <- paste(maintainer$given, maintainer$family)
+
+    author <- author[! author_strings %in% maintainer_strings]
+
+    author <- c(author, maintainer)
+  }
+
+  codemeta <- parse_people(author, codemeta)
+
+  codemeta
+}
+
+# add_software_terms -----------------------------------------------------------
+add_software_terms <- function(codemeta, descr) {
+
+  dependencies <- descr$get_deps()
+
+  remotes <- descr$get_remotes()
+
+  suggests <- add_remote_provider(
+    dependencies[dependencies$type == "Suggests", ],
+    remotes = remotes
+  )
+
+  requirements <- add_remote_provider(
+    dependencies[dependencies$type %in% c("Imports", "Depends"), ],
+    remotes = remotes
+  )
+
+  codemeta$softwareSuggestions <- parse_depends(suggests)
+
+  codemeta$softwareRequirements <- c(
+    parse_depends(requirements),
+    parse_sys_reqs(descr$get("Package"), descr$get("SystemRequirements"))
+  )
+
+  codemeta
+}
+
+# add_remote_provider ----------------------------------------------------------
+add_remote_provider <- function(x, remotes) {
+
+  x$remote_provider <- unlist(lapply(
+    x$package, add_remote_to_dep, remotes = remotes
+  ))
+
+  x
+}
+
+# add_additional_terms ---------------------------------------------------------
+add_additional_terms <- function(codemeta, descr) {
+
+  ## in DESCRIPTION, these terms must be *prefixed*:
+  x_terms <- paste0("X-schema.org-", (terms <- additional_codemeta_terms()))
+
+  ## Which terms are given in DESCRIPTION, which are not?
+  is_given <- sapply(x_terms, function(x) ! is.na(descr$get(x)))
+
+  ## Get the first elements of the given x-terms and set the corresponding
+  ## elements in codemeta
+  codemeta[terms[is_given]] <- lapply(x_terms[is_given], function(x_term) {
+
+    gsub("\\s+", "", strsplit(descr$get(x_term), ",")[[1]])
+  })
+
+  codemeta
+}
 

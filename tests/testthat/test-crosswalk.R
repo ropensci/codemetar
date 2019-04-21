@@ -1,36 +1,37 @@
 testthat::context("crosswalk.R")
 
+# Define helper function that tests a json object
+test_json <- function(x, basename) {
+  testthat::expect_is(x, "json")
+  writeLines(x, (testfile <- paste0(basename, ".json")))
+  testthat::expect_true(codemeta_validate(testfile))
+  unlink(testfile)
+}
+
+# Define helper function that reads a json example file
+read_example_json <- function(file) jsonlite::read_json(example_file(file))
+
 testthat::test_that("we can call crosswalk", {
 
   skip_on_os("windows")
-  f <- read_json(system.file("examples/github_format.json",
-                             package = "codemetar"))
-  a <- crosswalk(f, "GitHub")
-  testthat::expect_is(a, "json")
-  writeLines(a, "test.json")
-  v <- codemeta_validate("test.json")
-  testthat::expect_true(v)
-  unlink("test.json")
+  skip_on_cran()
 
-  f <- read_json(system.file("examples/package.json", package = "codemetar"))
-  a <- crosswalk(f, "NodeJS")
-  testthat::expect_is(a, "json")
-  writeLines(a, "nodejs.json")
-  v <- codemeta_validate("nodejs.json")
-  testthat::expect_true(v)
-  unlink("nodejs.json")
+  read_example_json("github_format.json") %>%
+    crosswalk("GitHub") %>%
+    test_json("test")
+
+  a <- read_example_json("package.json") %>%
+    crosswalk("NodeJS")
+
+  test_json(a, "nodejs")
 
   ## Test add and drop context
-  b <- drop_context(a)
-  add_context(b, getOption("codemeta_context", "http://purl.org/codemeta/2.0"))
-
+  drop_context(a) %>%
+    add_context(getOption("codemeta_context", "http://purl.org/codemeta/2.0"))
 
   ## Test transforms between columns
-  f <- read_json(system.file("examples/github_format.json",
-                             package = "codemetar"))
-  crosswalk(f, "GitHub", "Zenodo")
-
+  read_example_json("github_format.json") %>%
+    crosswalk("GitHub", "Zenodo")
 
   crosswalk_table(from = "GitHub", to = c("Zenodo", "Figshare"))
-
 })

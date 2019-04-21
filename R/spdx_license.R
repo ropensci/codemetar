@@ -1,15 +1,10 @@
-
-
 #' @importFrom utils read.csv
 spdx_license <- function(x) {
-  ##license <-  gsub("(.*) \\+ file (LICENSE|LICENCE)$", "\\1",
-  ## tools:::analyze_license(x)$expansions[[1]])
-
   components <- trimws(unlist(strsplit(x, "|", fixed = TRUE)))
 
   ## Basic attempt to normalize >= or == VERSION statements
   components <-
-    gsub("\\([=>]= (\\d+\\.*\\d*)\\)", "\\1", components)
+    gsub("(\\w+)\\s*\\([=>]=\\s*(\\d+\\.*\\d*)\\)", "\\1 \\2", components)
 
   license <-
     gsub("(.*) \\+ file (LICENSE|LICENCE)$", "\\1", components[[1]])
@@ -34,14 +29,3 @@ spdx_license <- function(x) {
 # @description A map of CRAN licenses to SPDX license IDs
 # @source \url{https://spdx.org/licenses}
 ## "cran_to_spdx"
-
-
-
-
-## R recognizes certain strings like:
-#"Creative Commons Attribution 3.0 Unported License" and expansions for them: "CC BY 3.0"
-
-## Can have multiple alternate licenses using "|"
-#  components <- trimws(unlist(strsplit(x, "|", fixed = TRUE)))
-
-#ok <- grepl(components, tools:::R_license_db_vars()$re_component)

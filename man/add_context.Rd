@@ -2,12 +2,14 @@
 % Please edit documentation in R/crosswalk.R
 \name{add_context}
 \alias{add_context}
-\title{add_context}
+\title{Add Context}
 \usage{
 add_context(x, context, json_output = FALSE)
 }
 \arguments{
-\item{x}{a JSON list (from read_json / fromJSON) or json object (from toJSON)}
+\item{x}{a JSON list (from \code{\link[jsonlite]{read_json}} /
+\code{\link[jsonlite]{fromJSON}}) or json object (from
+\code{\link[jsonlite]{toJSON}})}
 
 \item{context}{context to be added, in same format as x}
 
@@ -17,5 +19,5 @@ add_context(x, context, json_output = FALSE)
 a list or json object with "@context" element added
 }
 \description{
-add context element to json list or json string
+Add context element to json list or json string
 }
