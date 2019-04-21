@@ -9,7 +9,7 @@ output: github_document
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar)
 [![](http://badges.ropensci.org/130_status.svg)](https://github.com/ropensci/onboarding/issues/130)
 [![DOI](https://zenodo.org/badge/86626030.svg)](https://zenodo.org/badge/latestdoi/86626030)
-
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/codemetar)](https://CRAN.R-project.org/package=codemetar)
 
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
