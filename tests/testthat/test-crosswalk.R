@@ -15,6 +15,7 @@ testthat::test_that("we can call crosswalk", {
 
   skip_on_os("windows")
   skip_on_cran()
+  skip_if_offline()
 
   read_example_json("github_format.json") %>%
     crosswalk("GitHub") %>%

@@ -1,11 +1,15 @@
 testthat::context("codemeta_description.R")
 
 testthat::test_that("We can use a preset id", {
+  skip_if_offline()
+  skip_on_cran()
   f <- package_file("codemetar", "DESCRIPTION")
   codemeta_description(f, id = "https://doi.org/10.looks.like/doi")
 })
 
 testthat::test_that("several URLs", {
+  skip_if_offline()
+  skip_on_cran()
   cm <- codemeta_description(example_file("DESCRIPTION_two_URLs"))
   expect_equal(cm$codeRepository, "https://github.com/ropensci/essurvey")
   expect_true("https://ropensci.github.io/essurvey/" %in%
@@ -92,3 +96,4 @@ testthat::test_that("Helper functions work correctly", {
   result <- add_additional_terms(codemeta, descr)
   expect_true(all(c("isPartOf", "keywords") %in% names(result)))
 })
+

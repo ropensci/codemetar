@@ -2,6 +2,8 @@ testthat::context("guess_metadata")
 
 testthat::test_that("guess_provider",{
 
+  skip_on_cran()
+  skip_if_offline()
   testthat::expect_null(guess_provider(NULL))
 
   ## A BIOC package
@@ -100,6 +102,9 @@ test_that("guess_releaseNotes", {
 })
 
 test_that("fileSize", {
+  skip_on_cran()
+  skip_if_offline()
+
   expect_null(guess_fileSize(NULL))
   expect_null(guess_fileSize("."))
   ## expect_null?
@@ -127,6 +132,9 @@ test_that("add_github_topics",{
 })
 
 testthat::test_that("rOpenSci peer-review", {
+  skip_on_cran()
+  skip_if_offline()
+
   f <- system.file("examples/README_fakepackage5.md", package="codemetar")
   testthat::expect_null(guess_ropensci_review(f))
 

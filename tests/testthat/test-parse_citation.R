@@ -31,3 +31,4 @@ testthat::test_that("We can use encoding", {
                                  meta = list(Encoding = "UTF-8"))
   testthat::expect_silent(parse_citation(bib))
 })
+

@@ -184,21 +184,6 @@ example_file <- function(...) {
 }
 
 
-# v v v
-# move documentation up to example file once the conflict is resoved...
-#
-
-#' Get the Path to an Example File Stored in This Package
-#'
-#' @param \dots parts of the paths, finally passed to \code{system.file}
-#' @noRd
-
-# ^^^
-# move documentation up to example file once the conflict is resoved...
-#
-
-# is_json_or_character ---------------------------------------------------------
-
 #' Check for Class "json" or Character
 #'
 #' @param x object to be checked for its class and mode

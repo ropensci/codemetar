@@ -71,6 +71,9 @@ testthat::test_that("Test the various cases for ids (NOT used currently)", {
 })
 
 testthat::test_that("Sys requirements", {
+  skip_on_cran()
+  skip_if_offline()
+
   f <- system.file("examples/DESCRIPTION_sysreqs", package = "codemetar")
   descr <- codemeta_description(f)
   testthat::expect_equal(descr$softwareRequirements[[22]]$identifier,

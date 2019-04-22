@@ -7,6 +7,7 @@ testthat::test_that("Test the creation of codemeta for many packages", {
   testthat::skip_on_cran()
   testthat::skip_on_appveyor()
   testthat::skip_on_bioc()
+  skip_if_offline()
 
   testthat::skip(
     "not also testing against 100 random installed packages today...,

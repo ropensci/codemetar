@@ -7,6 +7,7 @@ testthat::test_that("we can generate codemeta
   {
 
     skip_on_cran()
+    skip_if_offline()
     unlink("codemetar_copy", recursive=TRUE)
     git2r::clone("https://github.com/ropensci/codemetar",
                  "codemetar_copy", progress = FALSE)

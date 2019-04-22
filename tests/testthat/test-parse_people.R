@@ -35,3 +35,4 @@ testthat::test_that("person_has_role works", {
   expect_true(person_has_role(person("Maria", role = "aut"), "aut"))
   expect_false(person_has_role(person("Maria", role = "aut"), "abc"))
 })
+
