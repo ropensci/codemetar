@@ -17,6 +17,10 @@
 #'
 codemeta_validate <- function(codemeta = "codemeta.json", context = NULL) {
 
+  if(!pingr::is_online())
+    return(warning("validation requires an internet connection",
+                   call. = FALSE))
+
   if (!requireNamespace("jsonld", quietly = TRUE)) {
     stop("Package jsonld required. Please install before re-trying.")
   }
