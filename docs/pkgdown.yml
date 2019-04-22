@@ -6,4 +6,7 @@ articles:
   translating-codemeta: articles/translating-codemeta.html
   validation-in-json-ld: articles/validation-in-json-ld.html
   codemeta-intro: codemeta-intro.html
+urls:
+  reference: https://ropensci.github.io/codemetar/reference
+  article: https://ropensci.github.io/codemetar/articles
 

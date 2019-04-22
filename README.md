@@ -1,17 +1,4 @@
 
-[![Project Status: Active – The project has reached a stable, usable
-state and is being actively
-developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Travis-CI Build
-Status](https://travis-ci.org/ropensci/codemetar.svg?branch=master)](https://travis-ci.org/ropensci/codemetar)
-[![AppVeyor Build
-status](https://ci.appveyor.com/api/projects/status/csawpip238vvbd72/branch/master?svg=true)](https://ci.appveyor.com/project/cboettig/codemetar/branch/master)
-[![Coverage
-Status](https://img.shields.io/codecov/c/github/ropensci/codemetar/master.svg)](https://codecov.io/github/ropensci/codemetar?branch=master)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar)
-[![](http://badges.ropensci.org/130_status.svg)](https://github.com/ropensci/onboarding/issues/130)
-[![DOI](https://zenodo.org/badge/86626030.svg)](https://zenodo.org/badge/latestdoi/86626030)
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # codemetar
@@ -28,7 +15,6 @@ Status](https://img.shields.io/codecov/c/github/ropensci/codemetar/master.svg)](
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar)
 [![](http://badges.ropensci.org/130_status.svg)](https://github.com/ropensci/onboarding/issues/130)
 [![DOI](https://zenodo.org/badge/86626030.svg)](https://zenodo.org/badge/latestdoi/86626030)
-[![](https://cranlogs.r-pkg.org/badges/codemetar)](https://cran.r-project.org/package=codemetar)
 [![CRAN RStudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/codemetar)](https://CRAN.R-project.org/package=codemetar)
 
@@ -76,11 +62,12 @@ available from the description file alone.
 
 ``` r
 write_codemeta(".")
+✔ Setting active project to '/Users/cboettig/Documents/ropensci/codemetar'
 ```
 
 Which creates a file looking like so (first 10 lines; see full
 [codemeta.json
-here](https://github.com/codemeta/codemetar/blob/master/codemeta.json)):
+here](https://github.com/ropensci/codemetar/blob/master/codemeta.json)):
 
     {
       "@context": [
@@ -133,7 +120,7 @@ source repository. Use comma-separated lists to separate multiple values
 to a property, e.g. keywords.
 
 See the
-[DESCRIPTION](https://github.com/codemeta/codemetar/blob/master/DESCRIPTION)
+[DESCRIPTION](https://github.com/ropensci/codemetar/blob/master/DESCRIPTION)
 file of the `codemetar` package for an example.
 
 ## Going further
