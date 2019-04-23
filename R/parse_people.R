@@ -155,9 +155,9 @@ get_orcid_of_person <- function(p)
   }
 
   # return the full comment if it contains "orcid"
-  if (grepl("orcid", comment)) {
+  if (any(grepl("orcid", comment))) {
 
-    return(comment)
+    return(comment[grepl("orcid",comment)])
   }
 
   # return NULL if the named vector does not contain an element "ORCID"
