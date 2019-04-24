@@ -1,4 +1,8 @@
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# codemetar
+
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
@@ -11,11 +15,8 @@ Status](https://img.shields.io/codecov/c/github/ropensci/codemetar/master.svg)](
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar)
 [![](http://badges.ropensci.org/130_status.svg)](https://github.com/ropensci/onboarding/issues/130)
 [![DOI](https://zenodo.org/badge/86626030.svg)](https://zenodo.org/badge/latestdoi/86626030)
-![downloads](http://cranlogs.r-pkg.org/badges/grand-total/codemetar)
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# codemetar
+[![CRAN RStudio mirror
+downloads](http://cranlogs.r-pkg.org/badges/codemetar)](https://CRAN.R-project.org/package=codemetar)
 
 The goal of codemetar is to generate the JSON-LD file, `codemeta.json`
 containing software metadata describing an R package. For more general
@@ -61,11 +62,12 @@ available from the description file alone.
 
 ``` r
 write_codemeta(".")
+✔ Setting active project to '/Users/cboettig/Documents/ropensci/codemetar'
 ```
 
 Which creates a file looking like so (first 10 lines; see full
 [codemeta.json
-here](https://github.com/codemeta/codemetar/blob/master/codemeta.json)):
+here](https://github.com/ropensci/codemetar/blob/master/codemeta.json)):
 
     {
       "@context": [
@@ -118,7 +120,7 @@ source repository. Use comma-separated lists to separate multiple values
 to a property, e.g. keywords.
 
 See the
-[DESCRIPTION](https://github.com/codemeta/codemetar/blob/master/DESCRIPTION)
+[DESCRIPTION](https://github.com/ropensci/codemetar/blob/master/DESCRIPTION)
 file of the `codemetar` package for an example.
 
 ## Going further

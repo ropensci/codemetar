@@ -124,10 +124,11 @@ format_sys_req <- function(url) {
   list("@type" = "SoftwareApplication", identifier = url)
 }
 
-
+#' @importFrom pingr is_online
 parse_sys_reqs <- function(pkg, sys_reqs) {
 
-  urls <- get_sys_links(pkg, description = sys_reqs)
+  if(!pingr::is_online()) return(NULL)
 
+  urls <- get_sys_links(pkg, description = sys_reqs)
   purrr::map(urls, format_sys_req)
 }

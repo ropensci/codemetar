@@ -1,3 +1,11 @@
+# codemetar (development version)
+
+# codemetar 0.1.8 2019-05
+
+* address internet timeout issues
+* tidy source code
+* update test suite to reflect newly available metadata.
+
 # codemetar 0.1.7 2018-12
 
 * `jsonld` that is used only in `crosswalk()` and `codemeta_validate()` is now an optional dependency (Suggests rather than Imports).

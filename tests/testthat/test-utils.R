@@ -30,3 +30,4 @@ testthat::test_that("example_file works", {
   expect_true(file.exists(example_file("codemeta.json")))
 
 })
+

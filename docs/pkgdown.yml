@@ -1,9 +1,12 @@
-pandoc: 2.1.3
-pkgdown: 1.0.0
+pandoc: 2.3.1
+pkgdown: 1.3.0
 pkgdown_sha: ~
 articles:
   examples-parsing-codemeta: articles/examples-parsing-codemeta.html
   translating-codemeta: articles/translating-codemeta.html
   validation-in-json-ld: articles/validation-in-json-ld.html
   codemeta-intro: codemeta-intro.html
+urls:
+  reference: https://ropensci.github.io/codemetar/reference
+  article: https://ropensci.github.io/codemetar/articles
 

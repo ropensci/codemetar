@@ -5,12 +5,16 @@ contains <- function(hints, pattern) any(grepl(pattern, hints$fixme))
 expect_missing_error <- function(x) expect_error(x, "missing")
 
 testthat::test_that("Silent if ok URLs", {
+  skip_on_cran()
+  skip_if_offline()
   example_file("DESCRIPTION_good") %>%
     give_opinions_desc() %>%
     expect_null()
 })
 
 testthat::test_that("Message if no URL", {
+  skip_on_cran()
+  skip_if_offline()
   hints <- example_file("DESCRIPTION_no_URL") %>%
     give_opinions_desc()
   expect_is(hints, "data.frame")
@@ -27,6 +31,9 @@ testthat::test_that("Message if no BugReports", {
 })
 
 testthat::test_that("No message if ok description",{
+  skip_on_cran()
+  skip_if_offline()
+
   example_file("DESCRIPTION_Rforge") %>%
     give_opinions_desc() %>%
     expect_null()
@@ -39,6 +46,9 @@ test_that("Message if bad URLS", {
 })
 
 test_that("badges in README", {
+  skip_on_cran()
+  skip_if_offline()
+
   file <- example_file("README_codemetar_bad.md")
   hints <- give_opinions_readme(file, "codemetar")
   expect_equal(nrow(hints), 2)
@@ -63,6 +73,9 @@ test_that("read_description_if_null() works", {
 })
 
 test_that("add_url_fixmes() works", {
+
+  skip_on_cran()
+  skip_if_offline()
 
   expect_missing_error(add_url_fixmes())
 
@@ -112,3 +125,4 @@ test_that("has_provider_but_no_badge() works", {
   provider <- list(name = "Comprehensive R Archive Network (CRAN)")
   expect_false(has_provider_but_no_badge(provider, file))
 })
+

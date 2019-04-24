@@ -19,6 +19,7 @@ test_that("we can parse md and html badges", {
 
 test_that("we can parse drake README html", {
   skip_on_cran()
+  skip_if_offline()
   f <- "https://raw.githubusercontent.com/ropensci/drake/master/README.md"
   badges <- extract_badges(f)
   testthat::expect_true(nrow(badges) > 1)

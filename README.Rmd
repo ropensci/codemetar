@@ -2,16 +2,6 @@
 output: github_document
 ---
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Travis-CI Build Status](https://travis-ci.org/ropensci/codemetar.svg?branch=master)](https://travis-ci.org/ropensci/codemetar)
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/csawpip238vvbd72/branch/master?svg=true)](https://ci.appveyor.com/project/cboettig/codemetar/branch/master)
-[![Coverage Status](https://img.shields.io/codecov/c/github/ropensci/codemetar/master.svg)](https://codecov.io/github/ropensci/codemetar?branch=master)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar)
-[![](http://badges.ropensci.org/130_status.svg)](https://github.com/ropensci/onboarding/issues/130)
-[![DOI](https://zenodo.org/badge/86626030.svg)](https://zenodo.org/badge/latestdoi/86626030)
-![downloads](http://cranlogs.r-pkg.org/badges/grand-total/codemetar)
-
-
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -25,6 +15,15 @@ knitr::opts_chunk$set(
 ```
 
 # codemetar
+
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Travis-CI Build Status](https://travis-ci.org/ropensci/codemetar.svg?branch=master)](https://travis-ci.org/ropensci/codemetar)
+[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/csawpip238vvbd72/branch/master?svg=true)](https://ci.appveyor.com/project/cboettig/codemetar/branch/master)
+[![Coverage Status](https://img.shields.io/codecov/c/github/ropensci/codemetar/master.svg)](https://codecov.io/github/ropensci/codemetar?branch=master)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar)
+[![](http://badges.ropensci.org/130_status.svg)](https://github.com/ropensci/onboarding/issues/130)
+[![DOI](https://zenodo.org/badge/86626030.svg)](https://zenodo.org/badge/latestdoi/86626030)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/codemetar)](https://CRAN.R-project.org/package=codemetar)
 
 The goal of codemetar is to generate the JSON-LD file, `codemeta.json` containing software metadata describing an R package.  For more general information about the CodeMeta Project for defining software metadata, see <https://codemeta.github.io>.  In particular, new users might want to start with the [User Guide](https://codemeta.github.io/user-guide/), while those looking to learn more about JSON-LD and consuming existing codemeta files should see the [Developer Guide](https://codemeta.github.io/developer-guide/).   
 
@@ -51,17 +50,17 @@ library("codemetar")
 
 This is a basic example which shows you how to generate a `codemeta.json` for an R package (e.g. for `testthat`):
 
-```r
+```{r}
 write_codemeta("testthat")
 ```
 
 `codemetar` can take the path to the package root instead.  This may allow `codemetar` to glean some additional information that is not available from the description file alone.  
 
-```r
+```{r}
 write_codemeta(".")
 ```
 
-Which creates a file looking like so (first 10 lines; see full [codemeta.json here](https://github.com/codemeta/codemetar/blob/master/codemeta.json)):
+Which creates a file looking like so (first 10 lines; see full [codemeta.json here](https://github.com/ropensci/codemetar/blob/master/codemeta.json)):
 
 ```{r echo = FALSE}
 cat(readLines("codemeta.json", n = 10), sep="\n")
@@ -94,7 +93,7 @@ X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-da
 
 Where applicable, these will override values otherwise guessed from the source repository.  Use comma-separated lists to separate multiple values to a property, e.g. keywords.  
 
-See the [DESCRIPTION](https://github.com/codemeta/codemetar/blob/master/DESCRIPTION) file of the `codemetar` package for an example.  
+See the [DESCRIPTION](https://github.com/ropensci/codemetar/blob/master/DESCRIPTION) file of the `codemetar` package for an example.  
 
 
 ```{r include=FALSE}

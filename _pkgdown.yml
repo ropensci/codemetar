@@ -1,0 +1,9 @@
+url: https://ropensci.github.io/codemetar
+
+template:
+  package: rotemplate
+
+destination: docs
+
+toc:
+  depth: 3
