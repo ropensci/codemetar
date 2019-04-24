@@ -1,5 +1,7 @@
 # codemetar (development version)
 
+* Fix extraction of orcid when composite comment (@billy34, #231)
+
 # codemetar 0.1.8 2019-05
 
 * address internet timeout issues
