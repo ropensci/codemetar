@@ -28,6 +28,13 @@ get_badge_links_matching <- function(readme, pattern) {
   # else NULL implicitly
 }
 
+# which_url_matches_badge_link -------------------------------------------------
+which_url_matches_badge_link <- function(readme, patterns) {
+  badges <- extract_badges(readme)
+  z <- vapply(patterns, function(z) any(grepl(z, x = badges$link)), logical(1))
+  names(which(z))
+}
+
 # get_pkg_name -----------------------------------------------------------------
 get_pkg_name <- function(entry) {
 
@@ -54,20 +61,22 @@ ropensci_reviews <- memoise::memoise(.ropensci_reviews)
 guess_ropensci_review <- function(readme) {
 
   url <- "github.com/ropensci/onboarding/issues/"
+  url2 <- "github.com/ropensci/software-review/issues/"
 
-  badges <- get_badge_links_matching(readme, url)
+  badges <- get_badge_links_matching(readme, paste0(url, "|", url2))
 
   if (is.null(badges)) {
 
     return(NULL)
   }
 
-  review <- as.numeric(stringr::str_remove(badges, paste0(".*https://", url)))
+  url_m <- which_url_matches_badge_link(readme, c(url, url2))
+  review <- as.numeric(stringr::str_remove(badges, paste0(".*https://", url_m)))
 
   if (review %in% ropensci_reviews()$review) {
 
     list("@type" = "Review",
-         "url" = paste0("https://", url, review),
+         "url" = paste0("https://", url_m, review),
          "provider" = "http://ropensci.org")
   }
   # else NULL implicitly
