@@ -53,7 +53,7 @@ ropensci_reviews <- memoise::memoise(.ropensci_reviews)
 # guess_ropensci_review --------------------------------------------------------
 guess_ropensci_review <- function(readme) {
 
-  url <- "github.com/ropensci/onboarding/issues/"
+  url <- "github.com/ropensci/onboarding/issues/|github.com/ropensci/software-review/issues/"
 
   badges <- get_badge_links_matching(readme, url)
 
