@@ -76,8 +76,8 @@ guess_ropensci_review <- function(readme) {
   if (review %in% ropensci_reviews()$review) {
 
     list("@type" = "Review",
-         "url" = paste0("https://", url_m, review),
-         "provider" = "http://ropensci.org")
+         "url" = paste0("https://", url2, review),
+         "provider" = "https://ropensci.org")
   }
   # else NULL implicitly
 }
