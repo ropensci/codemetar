@@ -1,5 +1,6 @@
 # codemetar (development version)
 
+* Fix for detecting rOpenSci review badge (#236)
 * Fix extraction of orcid when composite comment (@billy34, #231)
 
 # codemetar 0.1.8 2019-05
