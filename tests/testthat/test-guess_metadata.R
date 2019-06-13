@@ -145,7 +145,7 @@ testthat::test_that("rOpenSci peer-review", {
   review_info <- guess_ropensci_review(f)
   testthat::expect_is(review_info, "list")
   testthat::expect_equal(review_info$`@type`, "Review")
-  testthat::expect_equal(review_info$url, "https://github.com/ropensci/onboarding/issues/24")
-  testthat::expect_equal(review_info$provider, "http://ropensci.org")
+  testthat::expect_equal(review_info$url, "https://github.com/ropensci/software-review/issues/24")
+  testthat::expect_equal(review_info$provider, "https://ropensci.org")
 
 })
