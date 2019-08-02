@@ -13,7 +13,8 @@
 #'   root. Default guess is current dir.
 #' @param id identifier for the package, e.g. a DOI (or other resolvable URL)
 #' @param use_filesize whether to try adding a filesize by using
-#'   \code{pkgbuild::build()}.
+#'   \code{pkgbuild::build()}. Note: Depending on the package this option may add considerable processing
+#'   time.
 #' @param force_update Update guessed fields even if they are defined in an
 #'   existing codemeta.json file
 #' @param use_git_hook Whether to create a pre-commit hook requiring
@@ -39,7 +40,7 @@
 #' write_codemeta("codemetar", path = "example_codemetar_codemeta.json")
 #' }
 write_codemeta <- function(
-  pkg = ".", path = "codemeta.json", root = ".", id = NULL, use_filesize = TRUE,
+  pkg = ".", path = "codemeta.json", root = ".", id = NULL, use_filesize = FALSE,
   force_update = getOption("codemeta_force_update", TRUE), use_git_hook = TRUE,
   verbose = TRUE, ...
 ) {
