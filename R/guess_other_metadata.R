@@ -39,7 +39,7 @@ guess_fileSize <- function(root = ".") {
   }
 
   file_path <- try(silent = TRUE, pkgbuild::build(
-    root, vignettes = FALSE, manual = FALSE, quiet = TRUE
+    root, dest_path = tempdir(), vignettes = FALSE, manual = FALSE, quiet = TRUE
   ))
 
   if (inherits(file_path, "try-error")) {
