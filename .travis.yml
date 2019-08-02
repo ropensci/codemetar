@@ -13,5 +13,15 @@ matrix:
   include:
     - os: linux
       r: release
+      before_deploy: Rscript -e 'install.packages("pkgdown");remotes::install_github("ropensci/rotemplate")'
+      deploy:
+        provider: script
+        script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
+        skip_cleanup: true
     - os: linux
       r: oldrel
+
+stages:
+  - name: deploy
+    # require the branch name to be master (note for PRs this is the base branch name)
+    if: branch = master
