@@ -7,7 +7,7 @@
 write_codemeta(pkg = ".", path = "codemeta.json", root = ".",
   id = NULL, use_filesize = FALSE,
   force_update = getOption("codemeta_force_update", TRUE),
-  use_git_hook = TRUE, verbose = TRUE, ...)
+  use_git_hook = FALSE, verbose = TRUE, ...)
 }
 \arguments{
 \item{pkg}{package path to package root, or package name, or description file
@@ -28,7 +28,8 @@ time.}
 existing codemeta.json file}
 
 \item{use_git_hook}{Whether to create a pre-commit hook requiring
-codemeta.json to be updated when DESCRIPTION is changed.  Defaults to TRUE.}
+codemeta.json to be updated when DESCRIPTION is changed. Default is \code{FALSE} to avoid
+an unwanted alteration of the user's git environment.}
 
 \item{verbose}{Whether to print messages indicating opinions e.g. when
 DESCRIPTION has no URL. See \code{\link{give_opinions}}.}

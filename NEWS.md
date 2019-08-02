@@ -7,6 +7,8 @@
 * update test suite to reflect newly available metadata.
 * `write_codemeta()` and `create_codemeta()`: `use_filesize = FALSE` is now the default and
 the estimation of the file size does not leave any more unwanted files behind [PR #239](https://github.com/ropensci/codemetar/pull/239). 
+* `write_codemeta()`: the default of argument `use_git_hook` is now `FALSE` to avoid an 
+unwanted alteration of the user's git environment (#240)[https://github.com/ropensci/codemetar/issues/240].
 
 # codemetar 0.1.7 2018-12
 
