@@ -5,6 +5,8 @@
 * address internet timeout issues
 * tidy source code
 * update test suite to reflect newly available metadata.
+* `write_codemeta()` and `create_codemeta()`: `use_filesize = FALSE` is now the default and
+the estimation of the file size does not leave any more unwanted files behind [PR #239](https://github.com/ropensci/codemetar/pull/239). 
 
 # codemetar 0.1.7 2018-12
 
