@@ -12,7 +12,7 @@
 
 * The CodeRepository URL is now cleaned a bit (removing direct link to the README).
 
-* `write_codemeta()` gains a new argument `use_githook` to make the creation of a DESCRIPTION/codemeta.json git pre-commit hook optional.
+* `write_codemeta()` gains a new argument `use_git_hook` to make the creation of a DESCRIPTION/codemeta.json git pre-commit hook optional.
 
 * `create_codemeta()` and `write_codemeta()` gain a new argument `use_filesize` to make the building of the package to get its size optional.
 
