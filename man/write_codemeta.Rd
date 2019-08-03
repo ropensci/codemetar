@@ -20,9 +20,8 @@ root. Default guess is current dir.}
 
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
 
-\item{use_filesize}{whether to try adding a filesize by using
-\code{pkgbuild::build()}. Note: Depending on the package this option may add considerable processing
-time.}
+\item{use_filesize}{whether to try to estimating and adding a filesize by using
+\code{base::files.ize()}. Files in \code{.Rbuildignore} are ignored.}
 
 \item{force_update}{Update guessed fields even if they are defined in an
 existing codemeta.json file}

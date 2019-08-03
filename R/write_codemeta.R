@@ -12,9 +12,8 @@
 #' @param root if pkg is a codemeta object, optionally give the path to package
 #'   root. Default guess is current dir.
 #' @param id identifier for the package, e.g. a DOI (or other resolvable URL)
-#' @param use_filesize whether to try adding a filesize by using
-#'   \code{pkgbuild::build()}. Note: Depending on the package this option may add considerable processing
-#'   time.
+#' @param use_filesize whether to try to estimating and adding a filesize by using
+#'   \code{base::files.ize()}. Files in \code{.Rbuildignore} are ignored.
 #' @param force_update Update guessed fields even if they are defined in an
 #'   existing codemeta.json file
 #' @param use_git_hook Whether to create a pre-commit hook requiring
