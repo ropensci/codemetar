@@ -70,7 +70,6 @@ Depends: R (>= 3.0.0)
 Imports: 
     jsonlite (>= 1.6),
     git2r,
-    pkgbuild,
     memoise,
     methods,
     stats,

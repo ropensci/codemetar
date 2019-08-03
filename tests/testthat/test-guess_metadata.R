@@ -105,11 +105,15 @@ test_that("fileSize", {
   skip_on_cran()
   skip_if_offline()
 
+  ## should be NULL if root == NULL
   expect_null(guess_fileSize(NULL))
-  expect_null(guess_fileSize("."))
-  ## expect_null?
-  f <- system.file(".", package="codemetar")
-  expect_null(guess_fileSize(f))
+
+  ## this should just work fine
+  expect_is(guess_fileSize("."), "character")
+
+  ## test argument .ignore
+  expect_is(guess_fileSize(".", .ignore = " "), "character")
+
 })
 
 test_that("add_github_topics",{
