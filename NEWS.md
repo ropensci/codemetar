@@ -12,13 +12,14 @@ unwanted alteration of the user's git environment [issue #240](https://github.co
 * Package dependency to 'pkgbuild' has been dropped.
 * `write_codemeta()` does not crash anymore if the `CITATION` file contains a line `citation(auto = meta)` [Issue #238](https://github.com/ropensci/codemetar/issues/238).
 
+
 # codemetar 0.1.7 2018-12
 
 * `jsonld` that is used only in `crosswalk()` and `codemeta_validate()` is now an optional dependency (Suggests rather than Imports).
 
 * The CodeRepository URL is now cleaned a bit (removing direct link to the README).
 
-* `write_codemeta()` gains a new argument `use_githook` to make the creation of a DESCRIPTION/codemeta.json git pre-commit hook optional.
+* `write_codemeta()` gains a new argument `use_git_hook` to make the creation of a DESCRIPTION/codemeta.json git pre-commit hook optional.
 
 * `create_codemeta()` and `write_codemeta()` gain a new argument `use_filesize` to make the building of the package to get its size optional.
 
