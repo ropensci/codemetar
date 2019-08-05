@@ -10,6 +10,8 @@
 * `write_codemeta()`: the default of argument `use_git_hook` is now `FALSE` to avoid an 
 unwanted alteration of the user's git environment [issue #240](https://github.com/ropensci/codemetar/issues/240).
 * Package dependency to 'pkgbuild' has been dropped.
+* `write_codemeta()` does not crash anymore if the `CITATION` file contains a line `citation(auto = meta)` [Issue #238](https://github.com/ropensci/codemetar/issues/238).
+
 
 # codemetar 0.1.7 2018-12
 
