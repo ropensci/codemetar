@@ -39,7 +39,7 @@ Developer Guide (https://codemeta.github.io/developer-guide/).
 Useful links:
 \itemize{
   \item \url{https://github.com/ropensci/codemetar}
-  \item \url{https://docs.ropensci.org/codemetar}
+  \item \url{https://ropensci.github.io/codemetar}
   \item Report bugs at \url{https://github.com/ropensci/codemetar/issues}
 }
 

@@ -86,8 +86,7 @@ Imports:
     xml2,
     magrittr,
     glue,
-    pingr,
-    crandb
+    pingr
 Suggests: 
     testthat,
     jsonld,
@@ -97,8 +96,6 @@ Suggests:
     rmarkdown,
     dplyr (>= 0.7.0),
     printr
-Remotes:
-    r-hub/crandb
 VignetteBuilder: knitr
 X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data
 X-schema.org-isPartOf: https://ropensci.org
