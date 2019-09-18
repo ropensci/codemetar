@@ -27,7 +27,7 @@
 #' }
 #'
 crosswalk <- function(x, from, to = "codemeta", codemeta_context = NULL) {
-  
+
   if (!requireNamespace("jsonld", quietly = TRUE)) {
     stop("Package jsonld required. Please install before re-trying.")
   }
@@ -48,10 +48,16 @@ crosswalk <- function(x, from, to = "codemeta", codemeta_context = NULL) {
     codemeta_context
   }
 
-  # ids need to be coerced to character in order to be compacted by jsonld
-  x$id <- as.character(x$id)
-  x$owner$id <- as.character(x$owner$id)
-  x$organization$id <- as.character(x$organization$id)
+  # ids need to be coerced to character in order to be compacted by jsonld, but
+  # shouldn't be coerced if ids don't exist otherwise NULL ids are created and
+  # expansion results in error.
+  if (!is.null(x$id)) {
+    x$id <- as.character(x$id)
+  } else if (!is.null(x$owner$id)) {
+    x$owner$id <- as.character(x$owner$id)
+  } else if (!is.null(x$organization$id)) {
+    x$organization$id <- as.character(x$organization$id)
+  }
 
   crosswalk_transform(
     x, crosswalk_context = from_context, codemeta_context = to_context
@@ -179,10 +185,22 @@ crosswalk_transform <- function(
 
   codemeta_context <- default_context_if_null(codemeta_context)
 
-  add_context(x, context = crosswalk_context) %>%
-    jsonlite::toJSON(auto_unbox = TRUE, pretty = TRUE) %>%
-    jsonld::jsonld_expand() %>%
-    jsonld::jsonld_compact(context = codemeta_context)
+  if (is.null(x$`@context`)) {
+
+    add_context(x, context = crosswalk_context) %>%
+      jsonlite::toJSON(auto_unbox = TRUE, pretty = TRUE) %>%
+      jsonld::jsonld_expand() %>%
+      jsonld::jsonld_compact(context = codemeta_context)
+
+  } else {
+
+    jsonlite::toJSON(x, auto_unbox = TRUE, pretty = TRUE) %>%
+      jsonld::jsonld_expand() %>%
+      jsonld::jsonld_compact(context = codemeta_context)
+
+  }
+
+
 }
 
 # drop_context -----------------------------------------------------------------
