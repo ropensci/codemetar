@@ -36,3 +36,26 @@ testthat::test_that("we can call crosswalk", {
 
   crosswalk_table(from = "GitHub", to = c("Zenodo", "Figshare"))
 })
+
+testthat::test_that("R Package Description", {
+
+  skip_on_os("windows")
+  skip_on_cran()
+  skip_if_offline()
+
+  cm_list <- jsonlite::read_json(
+    system.file("examples/codemeta.json", package="codemetar")
+  )
+  cm_json <- crosswalk(cm_list, "R Package Description")
+  test_json(cm_json, "r_pkg_desc")
+
+  ## Test add and drop context
+  drop_context(cm_json) %>%
+    add_context(getOption("codemeta_context", "http://purl.org/codemeta/2.0"))
+
+  ## Test transforms between columns
+  crosswalk(cm_list, "R Package Description", "Zenodo")
+
+  crosswalk_table(from = "R Package Description", to = c("Zenodo", "Figshare"))
+
+})
