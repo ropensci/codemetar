@@ -1,7 +1,7 @@
 Package: codemetar
 Type: Package
 Title: Generate 'CodeMeta' Metadata for R Packages
-Version: 0.1.8.9000
+Version: 0.1.8.9100
 Authors@R: 
     c(person(given = "Carl",
              family = "Boettiger",

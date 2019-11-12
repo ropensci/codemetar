@@ -23,7 +23,7 @@ guess_github <- function(root = ".") {
     remote_urls() %>%
     grep(pattern = "github", value = TRUE) %>%
     getElement(1) %>%
-    gsub(pattern = "git@github.com:", replacement = "https://github.com/") %>%
+    gsub(pattern = "git@github.com:|git://github.com/", replacement = "https://github.com/") %>%
     gsub(pattern = "\\.git$", replacement = "")
 }
 

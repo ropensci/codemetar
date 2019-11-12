@@ -73,7 +73,9 @@ create_codemeta <- function(
   cm <- codemeta_description(file.path(root, "DESCRIPTION"), id = id, cm)
 
   ## Guess these only if not set in current codemeta
-  if ((is.null(cm$codeRepository) && force_update)) {
+  if (((is.null(cm$codeRepository) && force_update)) ||
+    !grepl("https?://github.com.+", cm$codeRepository)
+  ) {
 
     cm$codeRepository <- guess_github(root)
   }
