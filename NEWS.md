@@ -4,6 +4,7 @@
 * Fix for detecting rOpenSci review badge (@sckott, #236)
 * Fix extraction of orcid when composite comment (@billy34, #231)
 * Fix bug in crosswalking (#243)
+* Alter `create_codemeta` codeRepository assignment; force `guess_github` to be called if `cm$codeRepository` does not match a pattern of `https?://github.com`, which should catch any URLs  that are not source repositories. `guess_github` now matches on `git://github.com/` in addition to `git@github.com` (#247)
 
 # codemetar 0.1.8 2019-05
 
