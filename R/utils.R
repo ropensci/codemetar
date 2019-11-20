@@ -151,18 +151,17 @@ is_package <- function(path) {
   all(c("DESCRIPTION", "NAMESPACE", "man", "R") %in% dir(path))
 }
 
-# set_element_if_null ----------------------------------------------------------
-set_element_if_null <- function(x, element, value) {
+# set_element ----------------------------------------------
+set_element <- function(x, element, value) {
 
   stopifnot(is.list(x))
 
-  if (is.null(x[[element]])) {
-
-    x[[element]] <- value
-  }
+  x[[element]] <- value
 
   x
+
 }
+
 
 # fails ------------------------------------------------------------------------
 #' Does the Evaluation of an Expression Fail?

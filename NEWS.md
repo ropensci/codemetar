@@ -1,5 +1,7 @@
 # codemetar (development version)
 
+* Bug fix: the README information is now updated by codemeta_readme(). Previously if e.g. a developmentStatus had been set previously, it was never updated.
+
 * Code cleaning following the book Martin, Robert C. Clean code: a handbook of agile software craftsmanship. Pearson Education, 2009. (@hsonne, #201, #202, #204, #205, #206, #207, #209, #210, #211, #212, #216, #218, #219, #220, #221).
 * Fix for detecting rOpenSci review badge (@sckott, #236)
 * Fix extraction of orcid when composite comment (@billy34, #231)
