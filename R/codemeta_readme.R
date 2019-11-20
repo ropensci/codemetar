@@ -149,8 +149,8 @@ guess_readme <- memoise::memoise(.guess_readme)
 codemeta_readme <- function(readme, codemeta) {
 
   codemeta %>%
-    set_element_if_null("contIntegration", guess_ci(readme)) %>%
-    set_element_if_null("developmentStatus", guess_devStatus(readme)) %>%
-    set_element_if_null("review", guess_ropensci_review(readme))
+    set_element("contIntegration", guess_ci(readme)) %>%
+    set_element("developmentStatus", guess_devStatus(readme)) %>%
+    set_element("review", guess_ropensci_review(readme))
 }
 
