@@ -18,13 +18,21 @@ guess_github <- function(root = ".") {
     return(NULL)
   }
 
-  root %>%
+  potential_github_url <- root %>%
     git2r::repository(discover = TRUE) %>%
     remote_urls() %>%
     grep(pattern = "github", value = TRUE) %>%
-    getElement(1) %>%
-    gsub(pattern = "git@github.com:|git://github.com/", replacement = "https://github.com/") %>%
-    gsub(pattern = "\\.git$", replacement = "")
+    getElement(1)
+
+  github <- try(remotes::parse_github_url(potential_github_url),
+                silent = TRUE)
+
+  if (is(github, "try-error")) {
+    return(NULL)
+  } else {
+    return(github)
+  }
+
 }
 
 # github_path ------------------------------------------------------------------

@@ -91,12 +91,12 @@ guess_readme_url <- function(root) {
     return(NULL)
   }
 
-  github <- stringr::str_remove(guess_github(root), ".*com\\/")
-
-  parts <- strsplit(github, "/")[[1]]
+  github <- remotes::parse_github_url(guess_github(root))
 
   readme <- try(silent = TRUE, gh::gh(
-    "GET /repos/:owner/:repo/readme", owner = parts[1], repo = parts[2]
+    "GET /repos/:owner/:repo/readme",
+    owner = github$username,
+    repo = github$repo
   ))
 
   if (! inherits(readme, "try-error")) {

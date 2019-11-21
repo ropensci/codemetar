@@ -87,7 +87,8 @@ Imports:
     magrittr,
     glue,
     pingr,
-    urltools
+    urltools,
+    remotes
 Suggests: 
     testthat (>= 2.1.0),
     jsonld,
