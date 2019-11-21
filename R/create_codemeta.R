@@ -82,13 +82,6 @@ create_codemeta <- function(
     }
   }
 
-  matches_gh <- grepl("https?://github.com.+", cm$codeRepository)
-  if (length(matches_gh) == 0) matches_gh <- FALSE
-  if ((is.null(cm$codeRepository) && force_update) || !matches_gh) {
-
-
-  }
-
   if ((is.null(cm$releaseNotes) || force_update)) {
 
     cm$releaseNotes <- guess_releaseNotes(root)
