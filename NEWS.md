@@ -2,9 +2,7 @@
 
 ## Enhancements
 
-* codemetar can now recognize an URL from GitHub, GitLab, Bitbucket, R-Forge among several URLs in DESCRIPTION, to assign it to codeRepository. If there's only one URL in DESCRIPTION, it is assumed it is a codeRepository, no matter its domain.
-
-* Alter `create_codemeta` codeRepository assignment; force `guess_github` to be called if `cm$codeRepository` does not match a pattern of `https?://github.com`, which should catch any URLs  that are not source repositories. `guess_github` now matches on `git://github.com/` in addition to `git@github.com` (#247)
+* Changes in the way codeRepository is guessed. codemetar can now recognize an URL from GitHub, GitLab, Bitbucket, R-Forge among several URLs in DESCRIPTION, to assign it to codeRepository. If no URL in DESCRIPTION is from any of these providers, `guess_github()` is called.
 
 ## Bug fixes
 

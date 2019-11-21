@@ -73,11 +73,20 @@ create_codemeta <- function(
   cm <- codemeta_description(file.path(root, "DESCRIPTION"), id = id, cm)
 
   ## Guess these only if not set in current codemeta
+  # try to identify a code repo
+
+  if (! urltools::domain(cm$codeRepository) %in% source_code_domains()){
+    if (!is.null(guess_github(root)) && force_update) {
+      cm$relatedLink <- cm$codeRepository
+      cm$codeRepository <- guess_github(root)
+    }
+  }
+
   matches_gh <- grepl("https?://github.com.+", cm$codeRepository)
   if (length(matches_gh) == 0) matches_gh <- FALSE
   if ((is.null(cm$codeRepository) && force_update) || !matches_gh) {
 
-    cm$codeRepository <- guess_github(root)
+
   }
 
   if ((is.null(cm$releaseNotes) || force_update)) {

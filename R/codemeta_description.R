@@ -138,13 +138,8 @@ add_repository_terms <- function(codemeta, descr) {
     } else {
 
       # try to identify a code repo
-      url_info <- urltools::url_parse(code_repo)
-
-      actual_code_repo <- code_repo[url_info$domain %in%
-                                      c("github.com", "www.github.com",
-                                        "gitlab.com",
-                                        "r-forge.r-project.org",
-                                        "bitbucket.org")][1]
+      actual_code_repo <- code_repo[urltools::domain(code_repo) %in%
+                                      source_code_domains()][1]
 
       # otherwise take the first URL arbitrarily
       if (is.na(actual_code_repo)) {
@@ -270,3 +265,9 @@ add_additional_terms <- function(codemeta, descr) {
   codemeta
 }
 
+source_code_domains() <- function(){
+  c("github.com", "www.github.com",
+    "gitlab.com",
+    "r-forge.r-project.org",
+    "bitbucket.org")
+}
