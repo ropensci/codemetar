@@ -146,7 +146,7 @@ add_repository_terms <- function(codemeta, descr) {
         codemeta$codeRepository <- code_repo[1]
       } else {
         # no direct link to README please
-        actual_code_repo <- gsub("#.*", "", actual_code_repo)
+        urltools::fragment(actual_code_repo) <- NULL
 
         codemeta$codeRepository <- actual_code_repo
 
