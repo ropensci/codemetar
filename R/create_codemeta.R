@@ -70,12 +70,12 @@ create_codemeta <- function(
   # try to identify a code repo
 
   if (!urltools::domain(cm$codeRepository) %in% source_code_domains()) {
-    if (uses_git(root)) {
-      if (!is.null(guess_github(root)) && force_update) {
-        cm$relatedLink <- cm$codeRepository
-        cm$codeRepository <- guess_github(root)
-      }
+
+    if (!is.null(guess_github(root)) && force_update) {
+      cm$relatedLink <- cm$codeRepository
+      cm$codeRepository <- guess_github(root)
     }
+
   }
 
   if ((is.null(cm$releaseNotes) || force_update)) {
