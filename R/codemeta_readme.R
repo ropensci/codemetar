@@ -71,7 +71,7 @@ guess_ropensci_review <- function(readme) {
   }
 
   url_m <- which_url_matches_badge_link(readme, c(url, url2))
-  review <- as.numeric(stringr::str_remove(badges, paste0(".*https://", url_m)))
+  review <- as.numeric(gsub(paste0(".*https://", url_m), "", badges))
 
   if (review %in% ropensci_reviews()$review) {
 

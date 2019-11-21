@@ -48,7 +48,7 @@ extract_html_badges <- function(path) {
   doc <- readLines(path, encoding = "UTF-8")
 
   # helper function assuming the badge table is the 1st one
-  find_first <- function(p) which(stringr::str_detect(doc, p))[1]
+  find_first <- function(p) which(grepl(p, doc))[1]
 
   table_start <- find_first('\\<table class\\=\\"table\\"\\>')
   table_end <- find_first('\\<\\/table\\>')

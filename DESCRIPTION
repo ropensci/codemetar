@@ -78,7 +78,6 @@ Imports:
     tibble,
     crul,
     gh,
-    stringr,
     sessioninfo,
     purrr,
     curl,
