@@ -47,3 +47,17 @@ testthat::test_that("no direct link to README", {
   expect_true("https://github.com/ropensci/codemetar#codemetar" %in%
                 cm$relatedLink)
 })
+
+testthat::test_that("update URL", {
+
+  cm <- new_codemeta()
+  cm$codeRepository <- "lalala"
+
+  cm <- add_repository_terms(cm,
+                             desc::desc(
+                               example_file(
+                                 "DESCRIPTION_two_URLs")))
+  expect_equal(cm$codeRepository, "https://github.com/ropensci/essurvey")
+  expect_true("https://ropensci.github.io/essurvey/" %in%
+                cm$relatedLink)
+})
