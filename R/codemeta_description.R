@@ -265,7 +265,7 @@ add_additional_terms <- function(codemeta, descr) {
   codemeta
 }
 
-source_code_domains() <- function(){
+source_code_domains <- function(){
   c("github.com", "www.github.com",
     "gitlab.com",
     "r-forge.r-project.org",
