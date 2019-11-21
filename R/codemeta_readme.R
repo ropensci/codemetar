@@ -47,7 +47,16 @@ get_pkg_name <- function(entry) {
 
   url_onboarded_json <- "https://badges.ropensci.org/json/onboarded.json"
 
-  reviews <- jsonlite::read_json(url_onboarded_json)
+  reviews <- suppressWarnings(
+    try(jsonlite::read_json(url_onboarded_json),
+                 silent = TRUE))
+
+  if (is(reviews, "try-error")) {
+    return(tibble::tibble(
+      review = 0,
+      package = "Nope"
+    ))
+  }
 
   tibble::tibble(
     review = purrr::map_dbl(reviews, "iss_no"),
