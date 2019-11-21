@@ -4,10 +4,17 @@
 \alias{write_codemeta}
 \title{write_codemeta}
 \usage{
-write_codemeta(pkg = ".", path = "codemeta.json", root = ".",
-  id = NULL, use_filesize = TRUE,
+write_codemeta(
+  pkg = ".",
+  path = "codemeta.json",
+  root = ".",
+  id = NULL,
+  use_filesize = TRUE,
   force_update = getOption("codemeta_force_update", TRUE),
-  use_git_hook = TRUE, verbose = TRUE, ...)
+  use_git_hook = TRUE,
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{pkg}{package path to package root, or package name, or description file
