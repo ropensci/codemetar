@@ -50,8 +50,8 @@ extract_html_badges <- function(path) {
   # helper function assuming the badge table is the 1st one
   find_first <- function(p) which(grepl(p, doc))[1]
 
-  table_start <- find_first('\\<table class\\=\\"table\\"\\>')
-  table_end <- find_first('\\<\\/table\\>')
+  table_start <- find_first('\\<table class=\\"table\\">')
+  table_end <- find_first('<\\/table>')
 
   if (is.na(table_start) || is.na(table_end)) {
 
