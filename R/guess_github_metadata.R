@@ -18,19 +18,26 @@ guess_github <- function(root = ".") {
     return(NULL)
   }
 
-  potential_github_url <- root %>%
+  remote_urls <- root %>%
     git2r::repository(discover = TRUE) %>%
-    remote_urls() %>%
-    grep(pattern = "github", value = TRUE) %>%
-    getElement(1)
+    remote_urls()
 
-  github <- try(remotes::parse_github_url(potential_github_url),
+  is_github <- function(url){
+    info <- try(remotes::parse_github_url(url),
                 silent = TRUE)
 
-  if (is(github, "try-error")) {
+    !is(info, "try-error")
+  }
+
+  whether_github <- unlist(
+    lapply(remote_urls, is_github))
+
+  github <- remote_urls[whether_github][1]
+
+  if (is.na(github)) {
     return(NULL)
   } else {
-    return(potential_github_url)
+    return(github)
   }
 
 }
