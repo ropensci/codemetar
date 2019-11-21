@@ -117,6 +117,11 @@ get_url_status_code <- function(url) {
 # check_urls -------------------------------------------------------------------
 check_urls <- function(urls) {
 
+  if (!pingr::is_online()) {
+
+    return("")
+  }
+
   messages <- do.call(rbind, lapply(urls, get_url_status_code))
 
   failed <- (messages$message != "All good")

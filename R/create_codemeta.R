@@ -25,6 +25,12 @@ create_codemeta <- function(
   ...
 ) {
 
+  if (!pingr::is_online()) {
+    if (verbose) {
+      message("Your computer is not online. codemetar will find less metadata than if it were.")
+    }
+  }
+
   ## looks like we got a package name/path or Description file
   if (is.character(pkg)) {
 

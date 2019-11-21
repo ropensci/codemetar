@@ -6,13 +6,15 @@
 ## cache available packages
 .CRAN <- function() {
 
-  available_source_packages("https://cran.rstudio.com")
+  suppressWarnings(
+    available_source_packages("https://cran.rstudio.com"))
 }
 
 # .BIOC ------------------------------------------------------------------------
 .BIOC <- function() {
 
-  available_source_packages("https://www.bioconductor.org/packages/release/bioc")
+  suppressWarnings(
+    available_source_packages("https://www.bioconductor.org/packages/release/bioc"))
 }
 
 # CRAN -------------------------------------------------------------------------
