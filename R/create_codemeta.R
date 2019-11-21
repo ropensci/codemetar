@@ -100,7 +100,7 @@ create_codemeta <- function(
   }
 
   ## If code repo is GitHub
-  if (urltools::domain(cm$codeRepository) %>%
+  if (urltools::domain(cm$codeRepository) %in%
     github_domains()) {
     cm <- add_github_topics(cm)
   }
