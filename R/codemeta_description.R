@@ -145,7 +145,7 @@ add_repository_terms <- function(codemeta, descr) {
       actual_code_repo <- gsub("#.*", "", actual_code_repo)
 
       # otherwise take the first URL arbitrarily
-      if (is.null(codemeta$Repository)) {
+      if (is.null(codemeta$codeRepository)) {
         codemeta$codeRepository <- actual_code_repo
       }
 
