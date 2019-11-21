@@ -30,7 +30,7 @@ guess_github <- function(root = ".") {
   if (is(github, "try-error")) {
     return(NULL)
   } else {
-    return(github)
+    return(potential_github_url)
   }
 
 }
