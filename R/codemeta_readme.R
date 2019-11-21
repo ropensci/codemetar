@@ -91,7 +91,13 @@ guess_readme_url <- function(root) {
     return(NULL)
   }
 
-  github <- remotes::parse_github_url(guess_github(root))
+  github_url <- guess_github(root)
+
+  if (is.null(github_url)) {
+    return(NULL)
+  }
+
+  github <- remotes::parse_github_url(github_url)
 
   readme <- try(silent = TRUE, gh::gh(
     "GET /repos/:owner/:repo/readme",
