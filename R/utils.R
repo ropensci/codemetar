@@ -69,7 +69,7 @@ is_IRI <- function(string) {
 # now with gert not git2r
 uses_git <- function(path = usethis::proj_get()) {
 
-  ! inherits(try(gert::git_info(path), silent = TRUE), "try-error")
+  !is.null(tryCatch(gert::git_find(path), error = function(e){NULL}))
 }
 
 # from usethis cf https://github.com/r-lib/usethis/blob/4fb556788d2588facaaa8560242d2c83f2261d6e/R/helpers.R#L55
