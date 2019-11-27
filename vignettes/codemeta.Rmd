@@ -1,5 +1,5 @@
 ---
-title: "Codemeta intro"
+title: "Intro to codemetar, Codemeta creator for R packages"
 author: "Carl Boettiger"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -20,30 +20,23 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 
 # codemetar: generate codemeta metadata for R packages
 
-
-The 'Codemeta' Project defines a 'JSON-LD' format for describing software metadata,
-as detailed at <https://codemeta.github.io>.
-This package provides utilities to generate, parse, and modify codemeta.jsonld
-files automatically for R packages, as well as tools and examples for working
-with codemeta json-ld more generally.
-
-It has three main goals:
-
-- Quickly generate a valid codemeta.json file from any valid R package
-  To do so, we automatically extract as much metadata as possible using
-  the DESCRIPTION file, as well as extracting metadata from other common
-  best-practices such as the presence of Travis and other badges in README, etc.
-- Facilitate the addition of further metadata fields into a codemeta.json
-  file, as well as general manipulation of codemeta files.
-- Support the ability to crosswalk between terms used in other metadata standards,
-  as identified by the Codemeta Project Community, see <https://codemeta.github.io/crosswalk>
+```{r child='./rmdhunks/goals.Rmd'} 
+```
 
 
-For more general information about the CodeMeta Project for defining software metadata, see <https://codemeta.github.io>.  In particular, new users might want to start with the [User Guide](https://codemeta.github.io/user-guide/), while those looking to learn more about JSON-LD and consuming existing codemeta files should see the [Developer Guide](https://codemeta.github.io/developer-guide/).   
+## Motivation
+
+```{r child='./rmdhunks/whybother.Rmd'} 
+```
+
+
+## Create a codemeta.json in one function call
+
+```{r child='./rmdhunks/example.Rmd'} 
+```
 
 
 # A brief intro to common terms we'll use:
-
 
 - [Linked data](https://en.wikipedia.org/wiki/Linked_data): We often use different words to mean the same thing. And sometimes the same word to mean different things.  Linked data seeks to address this issue by using [URIs](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) (i.e. URLs) to make this explcit.
 
@@ -56,38 +49,6 @@ For more general information about the CodeMeta Project for defining software me
 - [JSON-LD](https://json-ld.org): While 'linked data' can be represented in many different formats, these have consistently proven a bit tricky to use, either for consumers or developers or both.  JSON-LD provides a simple adaptation of the JSON format, which has proven much more popular with both audiences, that allows it to express (most) linked-data concepts.  It is now the format of choice for expressing linked data by Google and many others.  Any JSON-LD file is valid JSON, and any JSON file can be treated as JSON-LD.  
 
 - [codemetar](https://codemeta.github.io/codemetar): The CodeMeta Project has created tools in several languages to impelement the CodeMeta Crosswalk (using JSON-LD) and help extract software metadata into `codemeta.json` records.  `codemetar` is one such tool, focused on R and R packages.
-
-
-## Installation
-
-You can install the development version of `codemetar` from GitHub with:
-
-```{r gh-installation, eval = FALSE}
-# install.packages("remotes")
-remotes::install_github("ropensci/codemetar")
-```
-
-```{r}
-library("codemetar")
-```
-
-## Example
-
-This is a basic example which shows you how to generate a `codemeta.json` for an R package (e.g. for `testthat`):
-
-```{r example}
-write_codemeta("testthat")
-```
-
-`codemetar` can take the path to the package root instead.  This may allow `codemetar` to glean some additional information that is not available from the description file alone.  
-
-```{r}
-write_codemeta(find.package("codemetar"))
-```
-
-```{r echo = FALSE}
-cat(readLines("codemeta.json"), sep="\n")
-```
 
 ## Modifying or enriching CodeMeta metadata
 

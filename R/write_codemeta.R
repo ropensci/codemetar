@@ -4,7 +4,9 @@
 #' basically a wrapper around create_codemeta() to both create the codemeta
 #' object and write it out to a JSON-LD-formatted file in one command. It can
 #' also be used simply to write out to JSON-LD any existing object created with
-#' create_codemeta().
+#' `create_codemeta()`.
+#'
+#' @includeRmd vignettes/rmdhunks/whybother.Rmd
 #'
 #' @param pkg package path to package root, or package name, or description file
 #'   (character), or a codemeta object (list)
@@ -21,7 +23,8 @@
 #' @param verbose Whether to print messages indicating opinions e.g. when
 #'   DESCRIPTION has no URL. See \code{\link{give_opinions}}.
 #' @param ...  additional arguments to \code{\link{write_json}}
-#' @details If pkg is a codemeta object, the function will attempt to update any
+#' @section Technical details:
+#'  If pkg is a codemeta object, the function will attempt to update any
 #'   fields it can guess (i.e. from the DESCRIPTION file), overwriting any
 #'   existing data in that block. In this case, the package root directory
 #'   should be the current working directory.

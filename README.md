@@ -18,14 +18,79 @@ Status](https://img.shields.io/codecov/c/github/ropensci/codemetar/master.svg)](
 [![CRAN RStudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/codemetar)](https://CRAN.R-project.org/package=codemetar)
 
-The goal of codemetar is to generate the JSON-LD file, `codemeta.json`
-containing software metadata describing an R package. For more general
-information about the CodeMeta Project for defining software metadata,
-see <https://codemeta.github.io>. In particular, new users might want to
-start with the [User Guide](https://codemeta.github.io/user-guide/),
-while those looking to learn more about JSON-LD and consuming existing
-codemeta files should see the [Developer
-Guide](https://codemeta.github.io/developer-guide/).
+**Why codemetar?** The ‘Codemeta’ Project defines a ‘JSON-LD’ format for
+describing software metadata, as detailed at
+<https://codemeta.github.io>. This package provides utilities to
+**generate, parse, and modify codemeta.jsonld files automatically for R
+packages**, as well as tools and examples for **working with codemeta
+json-ld more generally**.
+
+It has three main goals:
+
+  - Quickly **generate a valid codemeta.json file from any valid R
+    package**. To do so, we automatically extract as much metadata as
+    possible using the DESCRIPTION file, as well as extracting metadata
+    from other common best-practices such as the presence of Travis and
+    other badges in README, etc.
+  - Facilitate the addition of further metadata fields into a
+    codemeta.json file, as well as general manipulation of codemeta
+    files.
+  - Support the ability to crosswalk between terms used in other
+    metadata standards, as identified by the Codemeta Project Community,
+    see <https://codemeta.github.io/crosswalk>
+
+## Package developers, create a codemeta.json for your package
+
+**Why bother creating a codemeta.json for your package?** R packages
+encode lots of metadata in the `DESCRIPTION` file, `README`, and other
+places, telling users and developers about the package purpose, authors,
+license, dependencies, and other information that facilitates discovery,
+adoption, and credit for your software. Unfortunately, because each
+software language records this metadata in a different format, that
+information is hard for search engines, software repositories, and other
+developers to find and integrate.
+
+By generating a `codemeta.json` file, you turn your metadata into a
+format that can [easily
+crosswalk](https://docs.ropensci.org/codemetar/crosswalk) between
+metadata in many other software languages. CodeMeta is built on
+[schema.org](https://schema.org) a simple [structured
+data](https://developers.google.com/search/docs/guides/intro-structured-data)
+format developed by major search engines like Google and Bing to improve
+discoverability in search. CodeMeta is also understood by significant
+software archiving efforts such as [Software
+Heritage](https://www.softwareheritage.org/) Project, which seeks to
+permanently archive all open source software.
+
+For more general information about the CodeMeta Project for defining
+software metadata, see <https://codemeta.github.io>. In particular, new
+users might want to start with the [User
+Guide](https://codemeta.github.io/user-guide/), while those looking to
+learn more about JSON-LD and consuming existing codemeta files should
+see the [Developer Guide](https://codemeta.github.io/developer-guide/).
+
+## Create a codemeta.json in one function call
+
+**Why codemetar?** The ‘Codemeta’ Project defines a ‘JSON-LD’ format for
+describing software metadata, as detailed at
+<https://codemeta.github.io>. This package provides utilities to
+**generate, parse, and modify codemeta.jsonld files automatically for R
+packages**, as well as tools and examples for **working with codemeta
+json-ld more generally**.
+
+It has three main goals:
+
+  - Quickly **generate a valid codemeta.json file from any valid R
+    package**. To do so, we automatically extract as much metadata as
+    possible using the DESCRIPTION file, as well as extracting metadata
+    from other common best-practices such as the presence of Travis and
+    other badges in README, etc.
+  - Facilitate the addition of further metadata fields into a
+    codemeta.json file, as well as general manipulation of codemeta
+    files.
+  - Support the ability to crosswalk between terms used in other
+    metadata standards, as identified by the Codemeta Project Community,
+    see <https://codemeta.github.io/crosswalk>
 
 ## Installation
 
@@ -46,39 +111,6 @@ devtools::install_github("ropensci/codemetar")
 ``` r
 library("codemetar")
 ```
-
-## Example
-
-This is a basic example which shows you how to generate a
-`codemeta.json` for an R package (e.g. for `testthat`):
-
-``` r
-write_codemeta("testthat")
-```
-
-`codemetar` can take the path to the package root instead. This may
-allow `codemetar` to glean some additional information that is not
-available from the description file alone.
-
-``` r
-write_codemeta(".")
-✔ Setting active project to '/Users/cboettig/Documents/ropensci/codemetar'
-```
-
-Which creates a file looking like so (first 10 lines; see full
-[codemeta.json
-here](https://github.com/ropensci/codemetar/blob/master/codemeta.json)):
-
-    {
-      "@context": [
-        "https://doi.org/10.5063/schema/codemeta-2.0",
-        "http://schema.org"
-      ],
-      "@type": "SoftwareSourceCode",
-      "identifier": "codemetar",
-      "description": "The 'Codemeta' Project defines a 'JSON-LD' format for describing\n  software metadata, as detailed at <https://codemeta.github.io>. This package\n  provides utilities to generate, parse, and modify 'codemeta.json' files \n  automatically for R packages, as well as tools and examples for working with\n  'codemeta.json' 'JSON-LD' more generally.",
-      "name": "codemetar: Generate 'CodeMeta' Metadata for R Packages",
-      "codeRepository": "https://github.com/ropensci/codemetar",
 
 ## Modifying or enriching CodeMeta metadata
 

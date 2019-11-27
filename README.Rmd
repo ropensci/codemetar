@@ -25,7 +25,20 @@ knitr::opts_chunk$set(
 [![DOI](https://zenodo.org/badge/86626030.svg)](https://zenodo.org/badge/latestdoi/86626030)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/codemetar)](https://CRAN.R-project.org/package=codemetar)
 
-The goal of codemetar is to generate the JSON-LD file, `codemeta.json` containing software metadata describing an R package.  For more general information about the CodeMeta Project for defining software metadata, see <https://codemeta.github.io>.  In particular, new users might want to start with the [User Guide](https://codemeta.github.io/user-guide/), while those looking to learn more about JSON-LD and consuming existing codemeta files should see the [Developer Guide](https://codemeta.github.io/developer-guide/).   
+```{r child='vignettes/rmdhunks/goals.Rmd'} 
+```
+
+## Package developers, create a codemeta.json for your package
+
+
+```{r child='vignettes/rmdhunks/whybother.Rmd'} 
+```
+
+
+## Create a codemeta.json in one function call
+
+```{r child='vignettes/rmdhunks/goals.Rmd'} 
+```
 
 ## Installation
 
@@ -46,25 +59,6 @@ devtools::install_github("ropensci/codemetar")
 library("codemetar")
 ```
 
-## Example
-
-This is a basic example which shows you how to generate a `codemeta.json` for an R package (e.g. for `testthat`):
-
-```{r}
-write_codemeta("testthat")
-```
-
-`codemetar` can take the path to the package root instead.  This may allow `codemetar` to glean some additional information that is not available from the description file alone.  
-
-```{r}
-write_codemeta(".")
-```
-
-Which creates a file looking like so (first 10 lines; see full [codemeta.json here](https://github.com/ropensci/codemetar/blob/master/codemeta.json)):
-
-```{r echo = FALSE}
-cat(readLines("codemeta.json", n = 10), sep="\n")
-```
 
 ## Modifying or enriching CodeMeta metadata
 
