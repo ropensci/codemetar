@@ -1,12 +1,25 @@
 # codemetar (development version)
 
+## Enhancements
+
+* Changes in the way codeRepository is guessed. codemetar can now recognize an URL from GitHub, GitLab, Bitbucket, R-Forge among several URLs in DESCRIPTION, to assign it to codeRepository. If no URL in DESCRIPTION is from any of these providers, `guess_github()` is called.
+
+## Bug fixes
+
+* Fix for detecting rOpenSci review badge (@sckott, #236)
+
+* Fix extraction of ORCID when composite comment (@billy34, #231)
+
+* Fix bug in crosswalking (#243)
+
+* Bug fix: the codeRepository is updated if there's any URL in DESCRIPTION.
+
 * Bug fix: the README information is now updated by codemeta_readme(). Previously if e.g. a developmentStatus had been set previously, it was never updated.
 
+## Internals
+
 * Code cleaning following the book Martin, Robert C. Clean code: a handbook of agile software craftsmanship. Pearson Education, 2009. (@hsonne, #201, #202, #204, #205, #206, #207, #209, #210, #211, #212, #216, #218, #219, #220, #221).
-* Fix for detecting rOpenSci review badge (@sckott, #236)
-* Fix extraction of orcid when composite comment (@billy34, #231)
-* Fix bug in crosswalking (#243)
-* Alter `create_codemeta` codeRepository assignment; force `guess_github` to be called if `cm$codeRepository` does not match a pattern of `https?://github.com`, which should catch any URLs  that are not source repositories. `guess_github` now matches on `git://github.com/` in addition to `git@github.com` (#247)
+
 
 # codemetar 0.1.8 2019-05
 

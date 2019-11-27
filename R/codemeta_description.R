@@ -137,16 +137,19 @@ add_repository_terms <- function(codemeta, descr) {
 
     } else {
 
-      # try to identify a GitHub or Gitlab repo
-      github_pattern <- "git(hub|lab)\\.com"
-      actual_code_repo <- grep(github_pattern, code_repo, value = TRUE)[1]
-
-      # no direct link to README please
-      actual_code_repo <- gsub("#.*", "", actual_code_repo)
+      # try to identify a code repo
+      actual_code_repo <- code_repo[urltools::domain(code_repo) %in%
+                                      source_code_domains()][1]
 
       # otherwise take the first URL arbitrarily
-      if (is.null(codemeta$Repository)) {
+      if (is.na(actual_code_repo)) {
+        codemeta$codeRepository <- code_repo[1]
+      } else {
+        # no direct link to README please
+        urltools::fragment(actual_code_repo) <- NULL
+
         codemeta$codeRepository <- actual_code_repo
+
       }
 
       # add other URLs as related links
@@ -262,3 +265,13 @@ add_additional_terms <- function(codemeta, descr) {
   codemeta
 }
 
+github_domains <- function() {
+  c("github.com", "www.github.com")
+}
+
+source_code_domains <- function() {
+  c(github_domains(),
+    "gitlab.com",
+    "r-forge.r-project.org",
+    "bitbucket.org")
+}

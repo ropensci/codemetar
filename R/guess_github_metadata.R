@@ -18,13 +18,28 @@ guess_github <- function(root = ".") {
     return(NULL)
   }
 
-  root %>%
+  remote_urls <- root %>%
     git2r::repository(discover = TRUE) %>%
-    remote_urls() %>%
-    grep(pattern = "github", value = TRUE) %>%
-    getElement(1) %>%
-    gsub(pattern = "git@github.com:|git://github.com/", replacement = "https://github.com/") %>%
-    gsub(pattern = "\\.git$", replacement = "")
+    remote_urls()
+
+  is_github <- function(url){
+    info <- try(remotes::parse_github_url(url),
+                silent = TRUE)
+
+    !is(info, "try-error")
+  }
+
+  whether_github <- unlist(
+    lapply(remote_urls, is_github))
+
+  github <- remote_urls[whether_github][1]
+
+  if (is.na(github)) {
+    return(NULL)
+  } else {
+    return(github)
+  }
+
 }
 
 # github_path ------------------------------------------------------------------
@@ -45,16 +60,12 @@ github_path <- function(root, path) {
 # add_github_topics ------------------------------------------------------------
 add_github_topics <- function(codemeta) {
 
-  github <- codemeta$codeRepository %>%
-    stringr::str_remove(".*github\\.com\\/") %>%
-    stringr::str_remove("#.*") %>%
-    stringr::str_split("/") %>%
-    getElement(1)
+  github <- remotes::parse_github_url(codemeta$codeRepository)
 
   topics <- try(silent = TRUE, gh::gh(
     endpoint = "GET /repos/:owner/:repo/topics",
-    repo = github[2],
-    owner = github[1],
+    repo = github$repo,
+    owner = github$username,
     .send_headers = c(Accept = "application/vnd.github.mercy-preview+json")
   ))
 

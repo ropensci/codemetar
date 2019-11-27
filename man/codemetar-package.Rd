@@ -45,25 +45,25 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Carl Boettiger \email{cboettig@gmail.com} (0000-0002-1642-628X) [copyright holder]
+\strong{Maintainer}: Carl Boettiger \email{cboettig@gmail.com} (\href{https://orcid.org/0000-0002-1642-628X}{ORCID}) [copyright holder]
 
 Authors:
 \itemize{
-  \item Maëlle Salmon (0000-0002-2815-0399) [contributor]
+  \item Maëlle Salmon (\href{https://orcid.org/0000-0002-2815-0399}{ORCID}) [contributor]
 }
 
 Other contributors:
 \itemize{
-  \item Anna Krystalli (0000-0002-2378-4915) [reviewer, contributor]
-  \item Toph Allen (0000-0003-4580-091X) [reviewer]
+  \item Anna Krystalli (\href{https://orcid.org/0000-0002-2378-4915}{ORCID}) [reviewer, contributor]
+  \item Toph Allen (\href{https://orcid.org/0000-0003-4580-091X}{ORCID}) [reviewer]
   \item rOpenSci (https://ropensci.org/) [funder]
-  \item Katrin Leinweber (0000-0001-5135-5758) [contributor]
-  \item Noam Ross (0000-0002-2136-0000) [contributor]
+  \item Katrin Leinweber (\href{https://orcid.org/0000-0001-5135-5758}{ORCID}) [contributor]
+  \item Noam Ross (\href{https://orcid.org/0000-0002-2136-0000}{ORCID}) [contributor]
   \item Arfon Smith [contributor]
-  \item Jeroen Ooms (0000-0002-4035-0289) [contributor]
-  \item Sebastian Meyer (0000-0002-1791-9449) [contributor]
-  \item Michael Rustler (0000-0003-0647-7726) [contributor]
-  \item Hauke Sonnenberg (0000-0001-9134-2871) [contributor]
+  \item Jeroen Ooms (\href{https://orcid.org/0000-0002-4035-0289}{ORCID}) [contributor]
+  \item Sebastian Meyer (\href{https://orcid.org/0000-0002-1791-9449}{ORCID}) [contributor]
+  \item Michael Rustler (\href{https://orcid.org/0000-0003-0647-7726}{ORCID}) [contributor]
+  \item Hauke Sonnenberg (\href{https://orcid.org/0000-0001-9134-2871}{ORCID}) [contributor]
 }
 
 }
