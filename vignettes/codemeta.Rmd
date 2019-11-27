@@ -52,7 +52,7 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 
 ## Installation
 
-```{r child='vignettes/rmdhunks/install-instructions.Rmd'} 
+```{r child='./rmdhunks/install-instructions.Rmd'} 
 ```
 
 ## How to improve your package's codemeta.json?
