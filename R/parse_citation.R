@@ -1,7 +1,6 @@
 ## map a "citation" or "bibentry" R object into schema.org
 # bib <- citation(pkg)
 
-#' @importFrom stringi stri_trans_general
 parse_citation <- function(bib) {
 
   type <- bib$bibtype %>%
