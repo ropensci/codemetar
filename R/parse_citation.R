@@ -1,11 +1,10 @@
 ## map a "citation" or "bibentry" R object into schema.org
 # bib <- citation(pkg)
 
-#' @importFrom stringi stri_trans_general
 parse_citation <- function(bib) {
 
   type <- bib$bibtype %>%
-    stringi::stri_trans_general(id = "Title") %>%
+    tools::toTitleCase() %>%
     bibentry_to_schema_field()
 
   author <- parse_people(bib$author, new_codemeta())$author
@@ -70,7 +69,6 @@ init_citation <- function(type, author, doi, id, bib)
 
 # to_url_doi_or_null -----------------------------------------------------------
 
-#' @importFrom stringi stri_startswith
 to_url_doi_or_null <- function(doi) {
 
   # Return NULL if doi is NULL itself
@@ -80,7 +78,7 @@ to_url_doi_or_null <- function(doi) {
   }
 
   # Return doi if it already looks like an URL of doi.org
-  if (stringi::stri_startswith(doi, coll = get_url_doi())) {
+  if (grepl(paste0("^", get_url_doi()), doi)) {
 
     return(doi)
   }

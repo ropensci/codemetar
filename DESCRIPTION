@@ -69,7 +69,6 @@ Imports:
     memoise,
     methods,
     stats,
-    stringi,
     readr,
     desc,
     usethis,
