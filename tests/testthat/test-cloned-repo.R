@@ -9,7 +9,7 @@ testthat::test_that("we can generate codemeta
     skip_on_cran()
     skip_if_offline()
     unlink("codemetar_copy", recursive=TRUE)
-    gert::clone("https://github.com/ropensci/codemetar",
+    gert::git_clone("https://github.com/ropensci/codemetar",
                  "codemetar_copy")
 
     if(as.character(Sys.info()['sysname']) == "Windows"){
