@@ -1,5 +1,5 @@
-Package: codemetar
 Type: Package
+Package: codemetar
 Title: Generate 'CodeMeta' Metadata for R Packages
 Version: 0.1.8.9000
 Authors@R: 
@@ -49,53 +49,57 @@ Authors@R:
       person(given = "Hauke",
              family = "Sonnenberg",
              role = "ctb",
-             comment = c(ORCID = "0000-0001-9134-2871"))
-      )
-Description: The 'Codemeta' Project defines a 'JSON-LD' format for describing
-  software metadata, as detailed at <https://codemeta.github.io>. This package
-  provides utilities to generate, parse, and modify 'codemeta.json' files 
-  automatically for R packages, as well as tools and examples for working with
-  'codemeta.json' 'JSON-LD' more generally.
+             comment = c(ORCID = "0000-0001-9134-2871")))
+Description: The 'Codemeta' Project defines a 'JSON-LD' format
+    for describing software metadata, as detailed at
+    <https://codemeta.github.io>. This package provides utilities to
+    generate, parse, and modify 'codemeta.json' files automatically for R
+    packages, as well as tools and examples for working with
+    'codemeta.json' 'JSON-LD' more generally.
 License: GPL-3
-URL: https://github.com/ropensci/codemetar, https://docs.ropensci.org/codemetar
+URL: https://github.com/ropensci/codemetar,
+    https://docs.ropensci.org/codemetar
 BugReports: https://github.com/ropensci/codemetar/issues
+Depends: 
+    R (>= 3.0.0)
+Imports: 
+    commonmark,
+    crul,
+    curl,
+    desc,
+    gert,
+    gh,
+    glue,
+    jsonlite (>= 1.6),
+    magrittr,
+    memoise,
+    methods,
+    pingr,
+    pkgbuild,
+    purrr,
+    readr,
+    remotes,
+    sessioninfo,
+    stats,
+    tibble,
+    urltools,
+    usethis,
+    whisker,
+    xml2
+Suggests: 
+    covr,
+    dplyr (>= 0.7.0),
+    jsonld,
+    jsonvalidate,
+    knitr,
+    printr,
+    rmarkdown,
+    testthat (>= 2.1.0)
+VignetteBuilder: 
+    knitr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.1
-Depends: R (>= 3.0.0)
-Imports: 
-    jsonlite (>= 1.6),
-    pkgbuild,
-    memoise,
-    methods,
-    stats,
-    readr,
-    desc,
-    usethis,
-    whisker,
-    tibble,
-    crul,
-    gh,
-    sessioninfo,
-    purrr,
-    curl,
-    commonmark,
-    xml2,
-    magrittr,
-    glue,
-    pingr,
-    urltools,
-    remotes,
-    gert
-Suggests: 
-    testthat (>= 2.1.0),
-    jsonld,
-    jsonvalidate,
-    covr,
-    knitr,
-    rmarkdown,
-    dplyr (>= 0.7.0),
-    printr
-VignetteBuilder: knitr
-X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data
 X-schema.org-isPartOf: https://ropensci.org
+X-schema.org-keywords: metadata, codemeta, ropensci, citation,
+    credit, linked-data
