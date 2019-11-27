@@ -1,9 +1,9 @@
 # remote_urls ------------------------------------------------------------------
-remote_urls <- function (r) {
+remote_urls <- function (path) {
 
-  remotes <- git2r::remotes(r)
+  remotes <- gert::git_remote_list(path)
 
-  stats::setNames(git2r::remote_url(r, remotes), remotes)
+  stats::setNames(remotes[["url"]], remotes[["name"]])
 }
 
 # guess_github -----------------------------------------------------------------
@@ -19,7 +19,6 @@ guess_github <- function(root = ".") {
   }
 
   remote_urls <- root %>%
-    git2r::repository(discover = TRUE) %>%
     remote_urls()
 
   is_github <- function(url){
@@ -44,7 +43,6 @@ guess_github <- function(root = ".") {
 
 # github_path ------------------------------------------------------------------
 
-#' @importFrom git2r repository branches
 github_path <- function(root, path) {
 
   if (is.null(base <- guess_github(root))) {
