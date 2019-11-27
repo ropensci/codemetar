@@ -2,6 +2,8 @@
 
 ## Enhancements
 
+* Docs were improved to make a better case for codemetar.
+
 * Changes in the way codeRepository is guessed. codemetar can now recognize an URL from GitHub, GitLab, Bitbucket, R-Forge among several URLs in DESCRIPTION, to assign it to codeRepository. If no URL in DESCRIPTION is from any of these providers, `guess_github()` is called.
 
 ## Bug fixes
@@ -20,6 +22,7 @@
 
 * Code cleaning following the book Martin, Robert C. Clean code: a handbook of agile software craftsmanship. Pearson Education, 2009. (@hsonne, #201, #202, #204, #205, #206, #207, #209, #210, #211, #212, #216, #218, #219, #220, #221).
 
+* Use of re-usable Rmd pieces for the README, intro vignette and man pages to reduce copy-pasting.
 
 # codemetar 0.1.8 2019-05
 

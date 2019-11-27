@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 ```{r child='vignettes/rmdhunks/goals.Rmd'} 
 ```
 
-## Why create a codemeta.json for your package
+## Why create a codemeta.json for your package?
 
 
 ```{r child='vignettes/rmdhunks/whybother.Rmd'} 
@@ -62,7 +62,7 @@ remotes::install_github("ropensci/codemetar", ref = "dev")
 
 ## Going further
 
-Check out all the [codemetar vignettes](https://codemeta.github.io/codemetar/articles/index.html) for tutorials on other cool stuff you can do with codemeta and json-ld.  
+Check out all the [codemetar vignettes](https://docs.ropensci.org/codemetar/articles/index.html) for tutorials on other cool stuff you can do with codemeta and json-ld.  
 
 [![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
 

@@ -96,7 +96,8 @@ Suggests:
     knitr,
     rmarkdown,
     dplyr (>= 0.7.0),
-    printr
+    printr,
+    details
 VignetteBuilder: knitr
 X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data
 X-schema.org-isPartOf: https://ropensci.org

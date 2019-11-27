@@ -24,7 +24,7 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 ```
 
 
-## Motivation
+## Why create a codemeta.json for your package?
 
 ```{r child='./rmdhunks/whybother.Rmd'} 
 ```
@@ -57,5 +57,5 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 
 ## Going further
 
-Check out all the [codemetar vignettes](https://codemeta.github.io/codemetar/articles/index.html) for tutorials on other cool stuff you can do with codemeta and json-ld.  
+Check out all the [codemetar vignettes](https://docs.ropensci.org/codemetar/articles/index.html) for tutorials on other cool stuff you can do with codemeta and json-ld.  
 
