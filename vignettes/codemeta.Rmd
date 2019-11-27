@@ -36,7 +36,7 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 ```
 
 
-# A brief intro to common terms we'll use:
+## A brief intro to common terms we'll use:
 
 - [Linked data](https://en.wikipedia.org/wiki/Linked_data): We often use different words to mean the same thing. And sometimes the same word to mean different things.  Linked data seeks to address this issue by using [URIs](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) (i.e. URLs) to make this explcit.
 
@@ -52,42 +52,8 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 
 ## Modifying or enriching CodeMeta metadata
 
-The best way to ensure `codemeta.json` is as complete as possible is to begin by making full use of the fields that can be set in an R package DESCRIPTION file, such as `BugReports` and `URL`.  Using the `Authors@R` notation allows a much richer specification of author roles, correct parsing of given vs family names, and email addresses. 
-
-In the current implementation, developers may specify an ORCID url for an author in the optional `comment` field of `Authors@R`, e.g.
-
+```{r child='./rmdhunks/improvecodemetadata.md'} 
 ```
-Authors@R: person("Carl", "Boettiger", role=c("aut", "cre", "cph"), email="cboettig@gmail.com", comment="http://orcid.org/0000-0002-1642-628X")
-```
-
-which will allow `codemetar` to associate an identifier with the person.  This is clearly something of a hack since R's `person` object lacks an explicit notion of `id`, and may be frowned upon.  
-
-
-
-
-
-
-### Using the DESCRIPTION file
-
-The DESCRIPTION file is the natural place to specify any metadata for an R package.  The `codemetar` package can detect certain additional terms in the [CodeMeta context](https://codemeta.github.io/terms).  Almost any additional codemeta field can be added to and read from the DESCRIPTION into a `codemeta.json` file (see `codemetar:::additional_codemeta_terms` for a list).  
-
-CRAN requires that you prefix any additional such terms to indicate the use of `schema.org` explicitly, e.g. `keywords` would be specified in a DESCRIPTION file as:
-
-```
-X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data
-```
-
-
-
-
-Where applicable, these will override values otherwise guessed from the source repository.  Use comma-separated lists to separate multiple values to a property, e.g. keywords.  
-
-See the [DESCRIPTION](https://github.com/codemeta/codemetar/blob/master/DESCRIPTION) file of the `codemetar` package for an example.  
-
-```{r include=FALSE}
-#unlink("codemeta.json")
-```
-
 
 ## Going further
 

@@ -1,17 +1,25 @@
 
 This is a basic example which shows you how to generate a `codemeta.json` for an R package (e.g. for `testthat`):
 
-```{r example}
+```r
 write_codemeta("testthat")
 ```
 
 `codemetar` can take the path to the package root instead.  This may allow `codemetar` to glean some additional information that is not available from the description file alone.  
 
 ```{r}
-write_codemeta(find.package("codemetar"))
+codemetar::write_codemeta(find.package("codemetar"))
 ```
 
 ```{r echo = FALSE}
-cat(readLines("codemeta.json"), sep="\n")%>%
+library("magrittr")
+"codemeta.json" %>%
+  readLines() %>%
   details::details(summary = "codemetar's codemeta.json")
+```
+
+By default most often from within your package folder you'll simply run `codemetar::write_codemeta()`.
+
+```{r echo = FALSE, results='hide'}
+file.remove("codemeta.json")
 ```
