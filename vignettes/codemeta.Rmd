@@ -48,7 +48,7 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 
 - [JSON-LD](https://json-ld.org): While 'linked data' can be represented in many different formats, these have consistently proven a bit tricky to use, either for consumers or developers or both.  JSON-LD provides a simple adaptation of the JSON format, which has proven much more popular with both audiences, that allows it to express (most) linked-data concepts.  It is now the format of choice for expressing linked data by Google and many others.  Any JSON-LD file is valid JSON, and any JSON file can be treated as JSON-LD.  
 
-- [codemetar](https://codemeta.github.io/codemetar): The CodeMeta Project has created tools in several languages to impelement the CodeMeta Crosswalk (using JSON-LD) and help extract software metadata into `codemeta.json` records.  `codemetar` is one such tool, focused on R and R packages.
+- [codemetar](https://codemeta.github.io/codemetar): The CodeMeta Project has created tools in several languages to implement the CodeMeta Crosswalk (using JSON-LD) and help extract software metadata into `codemeta.json` records.  `codemetar` is one such tool, focused on R and R packages.
 
 ## Installation
 
@@ -57,7 +57,7 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 
 ## How to improve your package's codemeta.json?
 
-```{r child='./rmdhunks/improvecodemetadata.md'} 
+```{r child='./rmdhunks/improvecodemetadata.Rmd'} 
 ```
 
 ## Going further
