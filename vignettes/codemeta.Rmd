@@ -20,19 +20,19 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 
 # codemetar: generate codemeta metadata for R packages
 
-```{r child='./rmdhunks/goals.Rmd'} 
+```{r child='../man/rmdhunks/goals.Rmd'} 
 ```
 
 
 ## Why create a codemeta.json for your package?
 
-```{r child='./rmdhunks/whybother.Rmd'} 
+```{r child='../man/rmdhunks/whybother.Rmd'} 
 ```
 
 
 ## Create a codemeta.json in one function call
 
-```{r child='./rmdhunks/example.Rmd'} 
+```{r child='../man/rmdhunks/example.Rmd'} 
 ```
 
 
@@ -52,12 +52,12 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 
 ## Installation
 
-```{r child='./rmdhunks/install-instructions.Rmd'} 
+```{r child='../man/rmdhunks/install-instructions.Rmd'} 
 ```
 
 ## How to improve your package's codemeta.json?
 
-```{r child='./rmdhunks/improvecodemetadata.Rmd'} 
+```{r child='../man/rmdhunks/improvecodemetadata.Rmd'} 
 ```
 
 ## Going further

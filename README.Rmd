@@ -25,34 +25,34 @@ knitr::opts_chunk$set(
 [![DOI](https://zenodo.org/badge/86626030.svg)](https://zenodo.org/badge/latestdoi/86626030)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/codemetar)](https://CRAN.R-project.org/package=codemetar)
 
-```{r child='vignettes/rmdhunks/goals.Rmd'} 
+```{r child='man/rmdhunks/goals.Rmd'} 
 ```
 
 ## Why create a codemeta.json for your package?
 
 
-```{r child='vignettes/rmdhunks/whybother.Rmd'} 
+```{r child='man/rmdhunks/whybother.Rmd'} 
 ```
 
 
 ## Create a codemeta.json in one function call
 
-```{r child='vignettes/rmdhunks/example.Rmd'} 
+```{r child='man/rmdhunks/example.Rmd'} 
 ```
 
 ## Installation
 
-```{r child='vignettes/rmdhunks/install-instructions.Rmd'} 
+```{r child='man/rmdhunks/install-instructions.Rmd'} 
 ```
 
 ## How to improve your package's codemeta.json?
 
-```{r child='vignettes/rmdhunks/improvecodemetadata.Rmd'} 
+```{r child='man/rmdhunks/improvecodemetadata.Rmd'} 
 ```
 
 ## Going further
 
-Check out all the [codemetar vignettes](https://docs.ropensci.org/codemetar/articles/index.html) for tutorials on other cool stuff you can do with codemeta and json-ld.  
+Check out all the [codemetar man](https://docs.ropensci.org/codemetar/articles/index.html) for tutorials on other cool stuff you can do with codemeta and json-ld.  
 
 [![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
 

@@ -325,18 +325,6 @@ codemetar::write_codemeta(find.package("codemetar"))
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "git2r",
-      "name": "git2r",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=git2r"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "pkgbuild",
       "name": "pkgbuild",
       "provider": {
@@ -584,6 +572,18 @@ codemetar::write_codemeta(find.package("codemetar"))
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=remotes"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "gert",
+      "name": "gert",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=gert"
     }
   ],
   "isPartOf": "https://ropensci.org",
@@ -961,7 +961,7 @@ You can install the latest version from CRAN using:
 install.packages("codemetar")
 ```
 
-You can also install the development version of `codemetar` from github
+You can also install the development version of `codemetar` from GitHub
 with:
 
 ``` r
@@ -1042,7 +1042,7 @@ file of the `codemetar` package for an example.
 ## Going further
 
 Check out all the [codemetar
-vignettes](https://docs.ropensci.org/codemetar/articles/index.html) for
+man](https://docs.ropensci.org/codemetar/articles/index.html) for
 tutorials on other cool stuff you can do with codemeta and
 json-ld.
 

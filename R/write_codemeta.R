@@ -6,7 +6,7 @@
 #' also be used simply to write out to JSON-LD any existing object created with
 #' `create_codemeta()`.
 #'
-#' @includeRmd vignettes/rmdhunks/whybother.Rmd
+#' @includeRmd man/rmdhunks/whybother.Rmd
 #'
 #' @param pkg package path to package root, or package name, or description file
 #'   (character), or a codemeta object (list)
