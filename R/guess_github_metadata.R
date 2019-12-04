@@ -36,7 +36,8 @@ guess_github <- function(root = ".") {
   if (is.na(github)) {
     return(NULL)
   } else {
-    return(github)
+    parsed <- remotes::parse_github_url(github)
+    return(glue::glue("https://github.com/{parsed$username}/{parsed$repo}"))
   }
 
 }

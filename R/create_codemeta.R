@@ -75,7 +75,15 @@ create_codemeta <- function(
   ## Guess these only if not set in current codemeta
   # try to identify a code repo
 
-  if (!urltools::domain(cm$codeRepository) %in% source_code_domains()) {
+  more_work_cr <- function(codeRepository) {
+    if (is.null(codeRepository)) {
+      return(TRUE)
+    }
+
+    !urltools::domain(codeRepository) %in% source_code_domains()
+  }
+
+  if (more_work_cr(cm$codeRepository)) {
 
     if (!is.null(guess_github(root)) && force_update) {
       cm$relatedLink <- cm$codeRepository
