@@ -524,9 +524,8 @@
     }
   ],
   "isPartOf": "https://ropensci.org",
-  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
+  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data"],
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
-  "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
   "fileSize": "288.075KB",
   "contIntegration": ["https://travis-ci.org/ropensci/codemetar", "https://ci.appveyor.com/project/cboettig/codemetar/branch/master", "https://codecov.io/github/ropensci/codemetar?branch=master"],
   "developmentStatus": "http://www.repostatus.org/#active",
