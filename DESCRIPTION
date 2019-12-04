@@ -109,4 +109,4 @@ LazyData: true
 RoxygenNote: 7.0.2
 X-schema.org-isPartOf: https://ropensci.org
 X-schema.org-keywords: metadata, codemeta, ropensci, citation,
-    credit, linked-data
+    credit, linked-data, json
