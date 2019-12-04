@@ -29,6 +29,13 @@
 * address internet timeout issues
 * tidy source code
 * update test suite to reflect newly available metadata.
+* `write_codemeta()` and `create_codemeta()`: `use_filesize = FALSE` is now the default and the estimation of the file size does not leave any more unwanted files behind [PR #239](https://github.com/ropensci/codemetar/pull/239). Furthermore, the way the file size is calculated changed: Before we used the size of the package built with `pkgbuild::build()`, which took rather long. Now the size is calculated based on the source files minus files excluded via  
+ `.Rbuildignore` (if such a file exists).
+* `write_codemeta()`: the default of argument `use_git_hook` is now `FALSE` to avoid an 
+unwanted alteration of the user's git environment [issue #240](https://github.com/ropensci/codemetar/issues/240).
+* Package dependency to 'pkgbuild' has been dropped.
+* `write_codemeta()` does not crash anymore if the `CITATION` file contains a line `citation(auto = meta)` [Issue #238](https://github.com/ropensci/codemetar/issues/238).
+
 
 # codemetar 0.1.7 2018-12
 

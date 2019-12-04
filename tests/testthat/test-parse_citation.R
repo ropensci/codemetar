@@ -1,6 +1,5 @@
 testthat::context("parse citation")
 
-
 testthat::test_that("We can parse bibentry citations into schema.org",{
 
   bib <- citation("knitr") # Manual, Book, Incollection
@@ -14,7 +13,6 @@ testthat::test_that("We can parse bibentry citations into schema.org",{
 })
 
 testthat::test_that("We can parse citations", {
-
   ## installed package
   a <- guess_citation("knitr")
 
@@ -32,3 +30,7 @@ testthat::test_that("We can use encoding", {
   testthat::expect_silent(parse_citation(bib))
 })
 
+testthat::test_that("Test citation with encoding and citation line", {
+  f <- system.file("examples/CITATION_ex2", package = "codemetar")
+  testthat::expect_s3_class(read_citation_with_encoding(f), "citation")
+})

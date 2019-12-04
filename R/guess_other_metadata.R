@@ -20,34 +20,54 @@ guess_releaseNotes <- function(root = ".") {
 }
 
 # guess_fileSize ---------------------------------------------------------------
-guess_fileSize <- function(root = ".") {
-
-  ## No root, no file size
-  if (is.null(root)) {
-
+#' @title Estimate the File Size of the Software
+#'
+#' @description The function makes a rough estimation of the size of the
+#' R package using the base R function [file.size]. Files in `.Rbuildignore` are
+#' exclude. Please note that this estimation does not necessarily reflect the installed size
+#' of the package.
+#'
+#' @param root the root file path
+#'
+#' @param .ignore optional vector of regular expresssions that will be ignore when the file
+#' size is guessed
+#'
+#' @seealso [base::file.size]
+#'
+#' @examples
+#'
+#' guess_fileSize()
+#'
+#' @md
+#' @noRd
+guess_fileSize <- function(root = ".", .ignore = NULL) {
+  ## no root, no file size
+  if (is.null(root))
     return(NULL)
+
+  ## check for .Rbuildignore, everything listed should be excluded since
+  ## it will not become part of the final package
+  if (file.exists(".Rbuildignore") && is.null(.ignore)){
+    .ignore <- readLines(normalizePath(paste0(root,"Rbuildignore")), warn = FALSE)
+
+  }else{
+    .ignore <- " "
+
   }
 
-  ## Look for files 1. Meta, 2. DESCRIPTION
-  file_exists <- file.exists(file.path(root, c("Meta", "DESCRIPTION")))
-
-  ## Meta exists -> cannot build (or read file size?) on an already installed
-  ## package
-  if (file_exists[1] || ! file_exists[2]) {
-
-    return(NULL)
-  }
-
-  file_path <- try(silent = TRUE, pkgbuild::build(
-    root, vignettes = FALSE, manual = FALSE, quiet = TRUE
+  ## grep all files of interest (exclude hidden files)
+  files <- normalizePath(list.files(
+    path = normalizePath(root),
+    recursive = TRUE,
+    full.names = TRUE,
+    all.files = FALSE
   ))
 
-  if (inherits(file_path, "try-error")) {
+  ## kick-out all files that do not belong to the R package
+  files <-
+    files[!grepl(paste(.ignore, collapse = "|"), files, perl = TRUE)]
 
-    NULL
-
-  } else {
-
-    paste0(file.size(file_path) / 1e3, "KB")
-  }
+  ## estimate total size
+  paste0(sum(file.size(files)) / 1e3, "KB")
 }
+

@@ -14,12 +14,13 @@
 #' @param root if pkg is a codemeta object, optionally give the path to package
 #'   root. Default guess is current dir.
 #' @param id identifier for the package, e.g. a DOI (or other resolvable URL)
-#' @param use_filesize whether to try adding a filesize by using
-#'   \code{pkgbuild::build()}.
+#' @param use_filesize whether to try to estimating and adding a filesize by using
+#'   \code{base::files.ize()}. Files in \code{.Rbuildignore} are ignored.
 #' @param force_update Update guessed fields even if they are defined in an
 #'   existing codemeta.json file
 #' @param use_git_hook Whether to create a pre-commit hook requiring
-#'   codemeta.json to be updated when DESCRIPTION is changed.  Defaults to TRUE.
+#'   codemeta.json to be updated when DESCRIPTION is changed. Default is \code{FALSE} to avoid
+#'   an unwanted alteration of the user's git environment.
 #' @param verbose Whether to print messages indicating opinions e.g. when
 #'   DESCRIPTION has no URL. See \code{\link{give_opinions}}.
 #' @param ...  additional arguments to \code{\link{write_json}}
@@ -42,8 +43,8 @@
 #' write_codemeta("codemetar", path = "example_codemetar_codemeta.json")
 #' }
 write_codemeta <- function(
-  pkg = ".", path = "codemeta.json", root = ".", id = NULL, use_filesize = TRUE,
-  force_update = getOption("codemeta_force_update", TRUE), use_git_hook = TRUE,
+  pkg = ".", path = "codemeta.json", root = ".", id = NULL, use_filesize = FALSE,
+  force_update = getOption("codemeta_force_update", TRUE), use_git_hook = FALSE,
   verbose = TRUE, ...
 ) {
 

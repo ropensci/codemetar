@@ -15,20 +15,15 @@
 #' }
 #' @importFrom jsonlite read_json
 create_codemeta <- function(
-                            pkg = ".",
-                            root = ".",
-                            id = NULL,
-                            use_filesize = TRUE,
-                            force_update =
-                              getOption("codemeta_force_update", TRUE),
-                            verbose = TRUE,
-                            ...) {
-
-  if (!pingr::is_online()) {
-    if (verbose) {
-      message("Your computer is not online. codemetar will find less metadata than if it were.")
-    }
-  }
+  pkg = ".",
+  root = ".",
+  id = NULL,
+  use_filesize = FALSE,
+  force_update =
+    getOption("codemeta_force_update", TRUE),
+  verbose = TRUE,
+  ...
+) {
 
   ## looks like we got a package name/path or Description file
   if (is.character(pkg)) {
