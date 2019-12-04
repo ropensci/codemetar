@@ -7,8 +7,8 @@ codemetar::write_codemeta(find.package("codemetar"))
 ```{r echo = FALSE}
 library("magrittr")
 "codemeta.json" %>%
-  readLines() %>%
-  details::details(summary = "codemetar's codemeta.json")
+  details::details(summary = "codemetar's codemeta.json",
+                   lang = "json")
 ```
 
 By default most often from within your package folder you'll simply run `codemetar::write_codemeta()`.
@@ -26,8 +26,8 @@ codemetar::write_codemeta("testthat", path = "example-codemeta.json")
 ```{r echo = FALSE}
 library("magrittr")
 "example-codemeta.json" %>%
-  readLines() %>%
-  details::details(summary = "testthat's basic codemeta.json")
+  details::details(summary = "testthat's basic codemeta.json",
+                   lang = "json")
 ```
 
 
