@@ -143,9 +143,9 @@ try_to_give_opinions_readme <- function(description_file) {
     return(NULL)
   }
 
-  desc_info <- codemeta_description(description_file)
-
-  give_opinions_readme(readme_path, pkg_name = desc_info$identifier)
+  give_opinions_readme(readme_path,
+                       pkg_name = desc::desc_get_field("Package",
+                                                       file = description_file))
 }
 
 # give_opinions_readme ---------------------------------------------------------
