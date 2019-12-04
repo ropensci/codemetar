@@ -85,11 +85,11 @@ Other contributors:
   \item Katrin Leinweber (\href{https://orcid.org/0000-0001-5135-5758}{ORCID}) [contributor]
   \item Noam Ross (\href{https://orcid.org/0000-0002-2136-0000}{ORCID}) [contributor]
   \item Arfon Smith [contributor]
-  \item Jeroen Ooms (0000-0002-4035-0289) [contributor]
-  \item Sebastian Meyer (0000-0002-1791-9449) [contributor]
-  \item Michael Rustler (0000-0003-0647-7726) [contributor]
-  \item Hauke Sonnenberg (0000-0001-9134-2871) [contributor]
-  \item Sebastian Kreutzer (0000-0002-0734-2199) [contributor]
+  \item Jeroen Ooms (\href{https://orcid.org/0000-0002-4035-0289}{ORCID}) [contributor]
+  \item Sebastian Meyer (\href{https://orcid.org/0000-0002-1791-9449}{ORCID}) [contributor]
+  \item Michael Rustler (\href{https://orcid.org/0000-0003-0647-7726}{ORCID}) [contributor]
+  \item Hauke Sonnenberg (\href{https://orcid.org/0000-0001-9134-2871}{ORCID}) [contributor]
+  \item Sebastian Kreutzer (\href{https://orcid.org/0000-0002-0734-2199}{ORCID}) [contributor]
 }
 
 }
