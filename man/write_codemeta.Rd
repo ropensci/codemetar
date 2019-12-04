@@ -78,6 +78,7 @@ see the \href{https://codemeta.github.io/developer-guide/}{Developer Guide}.
 \strong{How to keep codemeta.json up-to-date?} In particular, how to keep it
 up to date with \code{DESCRIPTION}? \code{codemetar} itself no longer supports
 automatic sync, but there are quite a few methods available out there.
+Choose one that fits well into your workflow!
 \itemize{
 \item You could rely on \code{devtools::release()} since it will ask you
 whether you updated codemeta.json when such a file exists.
