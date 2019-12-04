@@ -253,3 +253,8 @@ call_if <- function(condition, x, FUN, ...) {
     x
   }
 }
+
+# bind df -----------------------
+bind_df <- function(dfs) {
+  do.call("rbind", dfs)
+}

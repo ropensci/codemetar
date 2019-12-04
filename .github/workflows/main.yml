@@ -15,8 +15,6 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install remotes
         run: Rscript -e 'install.packages("remotes")'
-      - name: Install dplyr
-        run: Rscript -e 'install.packages("dplyr")'
       - name: Install codemetar
         run: Rscript -e 'remotes::install_local(dependencies = c("Imports", "Depends"))'
       - name: Render codemeta

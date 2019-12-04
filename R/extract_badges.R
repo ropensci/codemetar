@@ -27,8 +27,11 @@ extract_md_badges <- function(path) {
     gsub("[^\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]", "", .) %>%
     xml2::read_xml() %>%
     xml2::xml_find_all(".//d1:link[d1:image]", xml2::xml_ns(.)) %>%
-    purrr::map_df(parse_md_badge)
+    purrr::map(parse_md_badge) %>%
+    bind_df()
 }
+
+
 
 # parse_html_badge -------------------------------------------------------------
 parse_html_badge <- function(badge) {
@@ -65,7 +68,8 @@ extract_html_badges <- function(path) {
 
   if (length(badges)) {
 
-    purrr::map_df(badges, parse_html_badge)
+    purrr::map(badges, parse_html_badge) %>%
+      bind_df()
 
   } else {
 

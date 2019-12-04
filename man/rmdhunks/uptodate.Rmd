@@ -12,7 +12,8 @@ usethis::use_git_hook("pre-commit",
                      script = script)
 ```
 
-    * You can use the [precommit package](https://github.com/lorenzwalthert/precommit).
+
+  * You can use the [precommit package](https://github.com/lorenzwalthert/precommit).
     
 
 * You could use GitHub actions.
