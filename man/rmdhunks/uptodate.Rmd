@@ -16,4 +16,11 @@ usethis::use_git_hook("pre-commit",
   * You can use the [precommit package](https://github.com/lorenzwalthert/precommit).
     
 
-* You could use GitHub actions.
+* You could use GitHub actions. Refer to GitHub actions docs <https://github.com/features/actions>, and to the example workflow provided in this package.
+
+```r
+dir.create(".github")
+dir.create(file.path(".github", "workflows"))
+file.copy(system.file("templates", "codemeta-github-actions.yml", package = "codemetar"),
+         file.path(".github", "workflows", "main.yml"))
+```

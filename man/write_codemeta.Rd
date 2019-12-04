@@ -95,11 +95,20 @@ using
 \if{html}{\out{<div class="r">}}\preformatted{script = readLines(system.file("templates", "description-codemetajson-pre-commit.sh", package = "codemetar"))
 usethis::use_git_hook("pre-commit",
                      script = script)
-}\if{html}{\out{</div>}}\preformatted{* You can use the [precommit package](https://github.com/lorenzwalthert/precommit).
-}
+}\if{html}{\out{</div>}}
 \itemize{
-\item You could use GitHub actions.
-}
+\item You can use the \href{https://github.com/lorenzwalthert/precommit}{precommit package}.
+\item You could use GitHub actions. Refer to GitHub actions docs
+\url{https://github.com/features/actions}, and to the example workflow
+provided in this package.
+}\if{html}{\out{
+<!-- end list -->
+}}
+\if{html}{\out{<div class="r">}}\preformatted{dir.create(".github")
+dir.create(file.path(".github", "workflows"))
+file.copy(system.file("templates", "codemeta-github-actions.yml", package = "codemetar"),
+         file.path(".github", "workflows", "main.yml"))
+}\if{html}{\out{</div>}}
 }
 \section{Technical details}{
 
