@@ -150,7 +150,7 @@ create_codemeta <- function(
         whether_provider_badge(badges, provider$name)) {
         cm <- set_relatedLink_1(cm, provider)
       }
-    } else if (cm$identifier %in% installed_package_names()) {
+    } else if (is_installed(cm$identifier)) {
       pkg_info <- sessioninfo::package_info(cm$identifier)
       pkg_info <- pkg_info[pkg_info$package == cm$identifier, ]
       provider_name <- pkg_info$source

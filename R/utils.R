@@ -7,7 +7,7 @@ drop_null <- function(x) {
 # get_root_path ----------------------------------------------------------------
 get_root_path <- function(pkg) {
 
-  if (pkg %in% installed_package_names()) {
+  if (is_installed(pkg)) {
 
     package_file(pkg, ".")
 
@@ -32,11 +32,15 @@ package_file <- function(pkg, ...) {
   system.file(..., package = pkg)
 }
 
-# installed_package_names: names of installed packages -------------------------
-#' @importFrom utils installed.packages
-installed_package_names <- function() {
+# is_installed: is the package installed -------------------------
+is_installed <- function(pkg) {
 
-  row.names(installed.packages())
+  length(
+    find.package(
+      package = pkg,
+      quiet = TRUE
+      )
+    ) > 0
 }
 
 # get_file ---------------------------------------------------------------------

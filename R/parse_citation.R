@@ -128,7 +128,7 @@ guess_citation <- function(pkg) {
 
   citation_file_exists <- file.exists(citation_file)
 
-  package_is_installed <- pkg %in% installed_package_names()
+  package_is_installed <- is_installed(pkg)
 
   # Return NULL if there is no citation file and if pkg is not installed
   if (! citation_file_exists && ! package_is_installed) {
