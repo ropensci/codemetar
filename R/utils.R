@@ -66,9 +66,10 @@ is_IRI <- function(string) {
 # uses_git ---------------------------------------------------------------------
 # from usethis cf https://github.com/r-lib/usethis/blob/2abb0422a97808cc573fa5900a8efcfed4c2d5b4/R/git.R#L68
 # this is GPL-3 code
+# now with gert not git2r
 uses_git <- function(path = usethis::proj_get()) {
 
-  ! is.null(git2r::discover_repository(path))
+  !is.null(tryCatch(gert::git_find(path), error = function(e){NULL}))
 }
 
 # from usethis cf https://github.com/r-lib/usethis/blob/4fb556788d2588facaaa8560242d2c83f2261d6e/R/helpers.R#L55
