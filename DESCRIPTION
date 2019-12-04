@@ -67,6 +67,8 @@ Imports:
     crul,
     curl,
     desc,
+    gh,
+    git2r,
     gert,
     gh,
     glue,
@@ -88,6 +90,7 @@ Imports:
     xml2
 Suggests: 
     covr,
+    details,
     dplyr (>= 0.7.0),
     jsonld,
     jsonvalidate,

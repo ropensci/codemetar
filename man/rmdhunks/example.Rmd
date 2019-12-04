@@ -1,0 +1,36 @@
+`codemetar` can take the path to the source package root to glean as much information as possible.
+
+```{r}
+codemetar::write_codemeta(find.package("codemetar"))
+```
+
+```{r echo = FALSE}
+library("magrittr")
+"codemeta.json" %>%
+  readLines() %>%
+  details::details(summary = "codemetar's codemeta.json")
+```
+
+By default most often from within your package folder you'll simply run `codemetar::write_codemeta()`.
+
+```{r echo = FALSE, results='hide'}
+file.remove("codemeta.json")
+```
+
+You could also create a basic `codemeta.json` for an installed R package, e.g. for `testthat`. That will use information from `DESCRIPTION` only.
+
+```{r}
+codemetar::write_codemeta("testthat", path = "example-codemeta.json")
+```
+
+```{r echo = FALSE}
+library("magrittr")
+"example-codemeta.json" %>%
+  readLines() %>%
+  details::details(summary = "testthat's basic codemeta.json")
+```
+
+
+```{r echo = FALSE, results='hide'}
+file.remove("example-codemeta.json")
+```

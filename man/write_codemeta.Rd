@@ -49,10 +49,36 @@ write out a codemeta.json file for a given package.  This function is
 basically a wrapper around create_codemeta() to both create the codemeta
 object and write it out to a JSON-LD-formatted file in one command. It can
 also be used simply to write out to JSON-LD any existing object created with
-create_codemeta().
+`create_codemeta()`.
 }
 \details{
-If pkg is a codemeta object, the function will attempt to update any
+\strong{Why bother creating a codemeta.json for your package?} R packages
+encode lots of metadata in the \code{DESCRIPTION} file, \code{README}, and other
+places, telling users and developers about the package purpose, authors,
+license, dependencies, and other information that facilitates discovery,
+adoption, and credit for your software. Unfortunately, because each
+software language records this metadata in a different format, that
+information is hard for search engines, software repositories, and other
+developers to find and integrate.
+
+By generating a \code{codemeta.json} file, you turn your metadata into a
+format that can \href{https://docs.ropensci.org/codemetar/crosswalk}{easily crosswalk} between
+metadata in many other software languages. CodeMeta is built on
+\href{https://schema.org}{schema.org} a simple \href{https://developers.google.com/search/docs/guides/intro-structured-data}{structured data}
+format developed by major search engines like Google and Bing to improve
+discoverability in search. CodeMeta is also understood by significant
+software archiving efforts such as \href{https://www.softwareheritage.org/}{Software Heritage} Project, which seeks to
+permanently archive all open source software.
+
+For more general information about the CodeMeta Project for defining
+software metadata, see \url{https://codemeta.github.io}. In particular, new
+users might want to start with the \href{https://codemeta.github.io/user-guide/}{User Guide}, while those looking to
+learn more about JSON-LD and consuming existing codemeta files should
+see the \href{https://codemeta.github.io/developer-guide/}{Developer Guide}.
+}
+\section{Technical details}{
+
+ If pkg is a codemeta object, the function will attempt to update any
   fields it can guess (i.e. from the DESCRIPTION file), overwriting any
   existing data in that block. In this case, the package root directory
   should be the current working directory.
@@ -63,6 +89,7 @@ pre-commit hook ensuring that if DESCRIPTION changes, the codemeta.json will
 be updated as well unless the DESCRIPTION change is committed with 'git
 commit --no-verify'.
 }
+
 \examples{
 \donttest{
 write_codemeta("codemetar", path = "example_codemetar_codemeta.json")
