@@ -38,7 +38,7 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 
 ## A brief intro to common terms we'll use:
 
-- [Linked data](https://en.wikipedia.org/wiki/Linked_data): We often use different words to mean the same thing. And sometimes the same word to mean different things.  Linked data seeks to address this issue by using [URIs](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) (i.e. URLs) to make this explcit.
+- [Linked data](https://en.wikipedia.org/wiki/Linked_data): We often use different words to mean the same thing. And sometimes the same word to mean different things.  Linked data seeks to address this issue by using [URIs](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) (i.e. URLs) to make this explicit.
 
 - context: No one likes typing out long URLs all the time.  So instead, the *context* of a JSON-LD file (`"@context"` element) gives us the context for the terms we use, that is, the root URL.  Usually schema.org but domain specific ones also (eg codemeta)
 
