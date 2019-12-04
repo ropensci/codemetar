@@ -68,7 +68,6 @@ Imports:
     curl,
     desc,
     gh,
-    git2r,
     gert,
     gh,
     glue,
