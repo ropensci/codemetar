@@ -11,7 +11,7 @@
   "relatedLink": [
     "http://testthat.r-lib.org",
     "https://CRAN.R-project.org/package=testthat",
-    "https://ropensci.github.io/codemetar",
+    "https://docs.ropensci.org/codemetar",
     "https://CRAN.R-project.org/package=codemetar"
   ],
   "issueTracker": "https://github.com/ropensci/codemetar/issues",
