@@ -14,7 +14,7 @@ navbar:
     - home
     - intro
     - reference
-    - advanced
+    - articles
     - news
     right: github
   components:
@@ -26,12 +26,8 @@ navbar:
       href: reference/index.html
     intro:
       text: Intro
-      menu:
-      - text: Get started
-        href: articles/codemeta.html
-      - text: Keep codemeta.json up-to-date
-        href: articles/workflow.html
-    advanced:
+      href: articles/codemeta.html
+    articles:
       text: Advanced
       menu:
       - text: Parsing Codemeta Data
