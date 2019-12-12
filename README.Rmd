@@ -42,7 +42,7 @@ knitr::opts_chunk$set(
 
 ## Keep codemeta.json up-to-date
 
-```{r child='../man/rmdhunks/uptodate.Rmd'} 
+```{r child='man/rmdhunks/uptodate.Rmd'} 
 ```
 
 ## How to improve your package's codemeta.json?

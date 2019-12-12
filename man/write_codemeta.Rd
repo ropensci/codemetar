@@ -85,6 +85,8 @@ whether you updated codemeta.json when such a file exists.
 \item You could use a git pre-commit hook that prevents a commit from
 being done if DESCRIPTION is newer than codemeta.json.
 \itemize{
+\item You can use the \href{https://github.com/lorenzwalthert/precommit}{precommit package} in which
+there’s a “codemeta-description-updated” hook.
 \item If that’s your only pre-commit hook (i.e. you don’t have one
 created by e.g. \code{usethis::use_readme_rmd()}), then you can
 create it
@@ -98,18 +100,45 @@ usethis::use_git_hook("pre-commit",
                      script = script)
 }\if{html}{\out{</div>}}
 \itemize{
-\item You can use the \href{https://github.com/lorenzwalthert/precommit}{precommit package}.
 \item You could use GitHub actions. Refer to GitHub actions docs
 \url{https://github.com/features/actions}, and to the example workflow
-provided in this package.
+provided in this package (type \code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}).
 }\if{html}{\out{
-<!-- end list -->
+<details closed>
 }}
-\if{html}{\out{<div class="r">}}\preformatted{dir.create(".github")
-dir.create(file.path(".github", "workflows"))
-file.copy(system.file("templates", "codemeta-github-actions.yml", package = "codemetar"),
-         file.path(".github", "workflows", "main.yml"))
-}\if{html}{\out{</div>}}
+\if{html}{\out{
+<summary> <span title="Click to Expand"> click here to see the workflow
+</span> </summary>
+}}
+\if{html}{\out{<div class="yaml">}}\preformatted{
+on:
+  push:
+    paths:
+      - DESCRIPTION
+      - .github/workflows/main.yml
+
+name: Render codemeta
+jobs:
+  render:
+    name: Render codemeta
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: r-lib/actions/setup-r@v1
+      - name: Install codemetar
+        run: Rscript -e 'remotes::install.packages("codemetar")'
+      - name: Render codemeta
+        run: Rscript -e 'codemetar::write_codemeta()'
+      - name: Commit results
+        run: |
+          git commit codemeta.json -m 'Re-build codemeta.json' || echo "No changes to commit"
+          git push https://$\{\{github.actor\}\}:$\{\{secrets.GITHUB_TOKEN\}\}@github.com/$\{\{github.repository\}\}.git HEAD:$\{\{ github.ref \}\} || echo "No changes to commit"
+}\if{html}{\out{</div>}}\if{html}{\out{
+</details>
+}}
+\if{html}{\out{
+<br>
+}}
 }
 \section{Technical details}{
 
