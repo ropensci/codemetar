@@ -40,9 +40,13 @@ knitr::opts_chunk$set(
 ```{r child='man/rmdhunks/example.Rmd'} 
 ```
 
-## Installation
+## Installation and usage requirements
 
 ```{r child='man/rmdhunks/install-instructions.Rmd'} 
+```
+
+
+```{r child='man/rmdhunks/internet.Rmd'} 
 ```
 
 ## How to improve your package's codemeta.json?

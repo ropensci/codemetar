@@ -177,6 +177,12 @@ codemetar::write_codemeta(find.package("codemetar"))
       "givenName": "Hauke",
       "familyName": "Sonnenberg",
       "@id": "https://orcid.org/0000-0001-9134-2871"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Sebastian",
+      "familyName": "Kreutzer",
+      "@id": "https://orcid.org/0000-0002-0734-2199"
     }
   ],
   "copyrightHolder": [
@@ -384,18 +390,6 @@ codemetar::write_codemeta(find.package("codemetar"))
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "git2r",
-      "name": "git2r",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=git2r"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "gert",
       "name": "gert",
       "provider": {
@@ -434,7 +428,7 @@ codemetar::write_codemeta(find.package("codemetar"))
       "@type": "SoftwareApplication",
       "identifier": "jsonlite",
       "name": "jsonlite",
-      "version": ">= 1.6",
+      "version": ">=\n        1.6",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -647,7 +641,7 @@ codemetar::write_codemeta("testthat", path = "example-codemeta.json")
   "relatedLink": ["http://testthat.r-lib.org", "https://CRAN.R-project.org/package=testthat"],
   "issueTracker": "https://github.com/r-lib/testthat/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -977,7 +971,7 @@ codemetar::write_codemeta("testthat", path = "example-codemeta.json")
 
 <br>
 
-## Installation
+## Installation and usage requirements
 
 You can install the latest version from CRAN using:
 
@@ -992,6 +986,29 @@ with:
 # install.packages("remotes")
 remotes::install_github("ropensci/codemetar", ref = "dev")
 ```
+
+For optimal results you need a good internet connection.
+
+The package queries
+
+  - `utils::available.packages()` for CRAN and Bioconductor packages;
+
+  - GitHub API via the [`gh` package](https://github.com/r-lib/gh), if
+    it finds a GitHub repo URL in DESCRIPTION or as git remote. GitHub
+    API is queried to find the [preferred
+    README](https://developer.github.com/v3/repos/contents/#get-the-readme),
+    and the [repo
+    topics](https://developer.github.com/v3/repos/#list-all-topics-for-a-repository).
+    If you use codemetar for many packages having a
+    [GITHUB\_PAT](https://github.com/r-lib/gh#environment-variables) is
+    better;
+
+  - [R-hub sysreqs API](https://docs.r-hub.io/#sysreqs) to parse
+    SystemRequirements.
+
+If your machine is offline, a more minimal codemeta.json will be
+created. If your internet connection is poor or there are firewalls, the
+codemeta creation might indefinitely hang.
 
 ## How to improve your package’s codemeta.json?
 

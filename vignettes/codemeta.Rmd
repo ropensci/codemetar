@@ -50,9 +50,12 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 
 - [codemetar](https://codemeta.github.io/codemetar): The CodeMeta Project has created tools in several languages to implement the CodeMeta Crosswalk (using JSON-LD) and help extract software metadata into `codemeta.json` records.  `codemetar` is one such tool, focused on R and R packages.
 
-## Installation
+## Installation and usage requirements
 
 ```{r child='../man/rmdhunks/install-instructions.Rmd'} 
+```
+
+```{r child='../man/rmdhunks/internet.Rmd'} 
 ```
 
 ## How to improve your package's codemeta.json?
