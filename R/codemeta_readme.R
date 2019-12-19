@@ -93,7 +93,7 @@ guess_ropensci_review <- function(readme) {
 
 # guess_readme_url -------------------------------------------------------------
 # find the readme
-guess_readme_url <- function(root, verbose) {
+guess_readme_url <- function(root, verbose = FALSE) {
 
   if (! uses_git(root)) {
 

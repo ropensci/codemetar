@@ -4,7 +4,7 @@
 
 # .CRAN ------------------------------------------------------------------------
 ## cache available packages
-.CRAN <- function(verbose) {
+.CRAN <- function(verbose = FALSE) {
 
   if (verbose) {
     cli::cat_bullet("Getting CRAN metadata from RStudio CRAN mirror",
@@ -20,7 +20,7 @@
 }
 
 # .BIOC ------------------------------------------------------------------------
-.BIOC <- function(verbose) {
+.BIOC <- function(verbose = FALSE) {
   if (verbose) {
     cli::cat_bullet("Getting Bioconductor metadata",
                     bullet = "continue")
@@ -42,7 +42,7 @@ CRAN <- memoise::memoise(.CRAN)
 BIOC <- memoise::memoise(.BIOC)
 
 # guess_provider ---------------------------------------------------------------
-guess_provider <- function(pkg, verbose) {
+guess_provider <- function(pkg, verbose = FALSE) {
 
   if (is.null(pkg)) {
 
@@ -81,13 +81,13 @@ available_source_packages <- function(url) {
 }
 
 # is_cran_package --------------------------------------------------------------
-is_cran_package <- function(pkg, verbose) {
+is_cran_package <- function(pkg, verbose = FALSE) {
 
   is_in_package_info(pkg, CRAN(verbose))
 }
 
 # is_bioconductor_package ------------------------------------------------------
-is_bioconductor_package <- function(pkg, verbose) {
+is_bioconductor_package <- function(pkg, verbose = FALSE) {
 
   is_in_package_info(pkg, BIOC(verbose))
 }
@@ -97,7 +97,7 @@ is_bioconductor_package <- function(pkg, verbose) {
 #' @param package_info data frame or matrix with column \code{Package}, eg.
 #'   as returned by \code{\link[utils]{available.packages}}
 #' @noRd
-is_in_package_info <- function(pkg, package_info, verbose) {
+is_in_package_info <- function(pkg, package_info, verbose = FALSE) {
 
   pkg %in% package_info[, "Package"]
 }

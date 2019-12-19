@@ -8,7 +8,7 @@
 #' @return A data.frame of opinions
 #' @export
 #'
-give_opinions <- function(pkg_path = getwd(), verbose) {
+give_opinions <- function(pkg_path = getwd(), verbose = FALSE) {
 
   # set the path to the description file
   description_file <- file.path(pkg_path, "DESCRIPTION")
@@ -135,7 +135,7 @@ fixmes_as_tibble_or_message <- function(fixmes, where, message_id = NULL) {
 }
 
 # try_to_give_opinions_readme --------------------------------------------------
-try_to_give_opinions_readme <- function(description_file, verbose) {
+try_to_give_opinions_readme <- function(description_file, verbose = FALSE) {
 
   readme_path <- guess_readme(dirname(description_file), verbose)$readme_path
 
@@ -151,7 +151,7 @@ try_to_give_opinions_readme <- function(description_file, verbose) {
 }
 
 # give_opinions_readme ---------------------------------------------------------
-give_opinions_readme <- function(readme_path, pkg_name, verbose) {
+give_opinions_readme <- function(readme_path, pkg_name, verbose = FALSE) {
 
   # start with an empty vector of "fixme" messages
   fixmes <- character()

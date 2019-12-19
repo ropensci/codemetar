@@ -62,7 +62,7 @@ additional_codemeta_terms <- function() {
 # codemeta_description ---------------------------------------------------------
 # Can add to an existing codemeta document
 codemeta_description <- function(file, id = NULL, codemeta = new_codemeta(),
-                                 verbose) {
+                                 verbose = FALSE) {
 
   if (! file.exists(file)) {
 
@@ -211,7 +211,7 @@ add_person_terms <- function(codemeta, descr) {
 }
 
 # add_software_terms -----------------------------------------------------------
-add_software_terms <- function(codemeta, descr, verbose) {
+add_software_terms <- function(codemeta, descr, verbose = FALSE) {
 
   dependencies <- descr$get_deps()
 
@@ -231,7 +231,8 @@ add_software_terms <- function(codemeta, descr, verbose) {
 
   codemeta$softwareRequirements <- c(
     parse_depends(requirements, verbose = verbose),
-    parse_sys_reqs(descr$get("Package"), descr$get("SystemRequirements"))
+    parse_sys_reqs(descr$get("Package"), descr$get("SystemRequirements"),
+                   verbose)
   )
 
   codemeta

@@ -64,6 +64,7 @@ add_github_topics <- function(codemeta, verbose = FALSE) {
   if (verbose) {
     cli::cat_bullet("Getting repo topics from GitHub API", bullet = "continue")
   }
+
   topics <- try(silent = TRUE, gh::gh(
     endpoint = "GET /repos/:owner/:repo/topics",
     repo = github$repo,
