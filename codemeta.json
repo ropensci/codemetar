@@ -545,5 +545,6 @@
     "@type": "Review",
     "url": "https://github.com/ropensci/software-review/issues/130",
     "provider": "https://ropensci.org"
-  }
+  },
+  "readme": "https://github.com/ropensci/codemetar/blob/master/README.md"
 }

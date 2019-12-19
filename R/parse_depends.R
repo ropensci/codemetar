@@ -111,7 +111,7 @@ get_sys_links <- function(pkg, description = "", verbose = FALSE) {
     cli::cat_bullet("Getting sysreqs URL from sysreqs API", bullet = "continue")
   }
 
-  get_url_rhub("get", unique(c(
+  data <- get_url_rhub("get", unique(c(
     get_rhub_json_names("pkg", pkg),
     get_rhub_json_names("map", curl::curl_escape(description))
   )))
@@ -119,6 +119,8 @@ get_sys_links <- function(pkg, description = "", verbose = FALSE) {
   if (verbose) {
     cli::cat_bullet("Got sysreqs URL from sysreqs API!", bullet = "tick")
   }
+
+  data
 }
 
 get_rhub_json_names <- function(a, b) {

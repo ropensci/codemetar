@@ -119,14 +119,17 @@ guess_readme_url <- function(root, verbose = FALSE) {
 
   if (! inherits(readme, "try-error")) {
 
-    readme$html_url
     if (verbose) {
       cli::cat_bullet("Got README URL!", bullet = "tick")
     }
+
+    return(readme$html_url)
+
   } else {
     if (verbose) {
       cli::cat_bullet("Did not get README URL.", bullet = "cross")
     }
+    return(NULL)
   }
 
 
