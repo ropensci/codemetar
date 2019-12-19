@@ -54,7 +54,7 @@ create_codemeta <- function(
 
   if (verbose) {
     root <- get_root_path(pkg)
-    opinions <- give_opinions(root)
+    opinions <- give_opinions(root, verbose)
 
     if (!is.null(opinions)) {
       message(
@@ -65,7 +65,8 @@ create_codemeta <- function(
   }
 
   ## get information from DESCRIPTION
-  cm <- codemeta_description(file.path(root, "DESCRIPTION"), id = id, cm)
+  cm <- codemeta_description(file.path(root, "DESCRIPTION"), id = id, cm,
+                             verbose = verbose)
 
   ## Guess these only if not set in current codemeta
   # try to identify a code repo
@@ -133,7 +134,7 @@ create_codemeta <- function(
   # Priority is given to the README
   # alternatively to installed packages
 
-  provider <- guess_provider(cm$identifier)
+  provider <- guess_provider(cm$identifier, verbose)
 
   if (!is.null(provider)) {
     readme <- guess_readme(root)$readme_path

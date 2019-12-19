@@ -1,6 +1,6 @@
 ## internal method for parsing a list of package dependencies into pkg URLs
 
-format_depend <- function(package, version, remote_provider) {
+format_depend <- function(package, version, remote_provider, verbose) {
 
   dep <- list(
     "@type" = "SoftwareApplication",
@@ -15,7 +15,7 @@ format_depend <- function(package, version, remote_provider) {
     dep$version <- version
   }
 
-  dep$provider <- guess_provider(package)
+  dep$provider <- guess_provider(package, verbose)
 
   ## implemention could be better, e.g. support versioning
   #  dep$`@id` <- guess_dep_id(dep)
@@ -52,11 +52,12 @@ get_sameAs <- function(provider, remote_provider, identifier) {
 }
 
 
-parse_depends <- function(deps) {
+parse_depends <- function(deps, verbose) {
 
   purrr::pmap(
     list(deps$package, deps$version, deps$remote_provider),
-    format_depend
+    format_depend,
+    verbose = verbose
   )
 }
 
