@@ -112,7 +112,7 @@ create_codemeta <- function(
   ## If code repo is GitHub
   if (urltools::domain(cm$codeRepository) %in%
     github_domains()) {
-    cm <- add_github_topics(cm)
+    cm <- add_github_topics(cm, verbose)
   }
 
   ## Citation metadata

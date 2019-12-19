@@ -57,10 +57,13 @@ github_path <- function(root, path) {
 }
 
 # add_github_topics ------------------------------------------------------------
-add_github_topics <- function(codemeta) {
+add_github_topics <- function(codemeta, verbose = FALSE) {
 
   github <- remotes::parse_github_url(codemeta$codeRepository)
 
+  if (verbose) {
+    cli::cat_bullet("Getting repo topics from GitHub API", bullet = "continue")
+  }
   topics <- try(silent = TRUE, gh::gh(
     endpoint = "GET /repos/:owner/:repo/topics",
     repo = github$repo,
@@ -73,6 +76,14 @@ add_github_topics <- function(codemeta) {
     topics <- unlist(topics$names)
 
     codemeta$keywords <- unique(c(codemeta$keywords, topics))
+
+    if (verbose) {
+      cli::cat_bullet("Got repo topics!", bullet = "tick")
+    }
+  } else {
+    if (verbose) {
+      cli::cat_bullet("Did not get repo topics.", bullet = "cross")
+    }
   }
 
   codemeta

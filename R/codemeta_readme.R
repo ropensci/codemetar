@@ -162,7 +162,7 @@ guess_readme_path <- function(root) {
 }
 
 # .guess_readme ----------------------------------------------------------------
-.guess_readme <- function(root = ".", verbose) {
+.guess_readme <- function(root = ".", verbose = FALSE) {
 
   list(
     readme_path = guess_readme_path(root),
