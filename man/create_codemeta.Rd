@@ -4,7 +4,10 @@
 \alias{create_codemeta}
 \title{create_codemeta}
 \usage{
-create_codemeta(pkg = ".", root = ".", id = NULL,
+create_codemeta(
+  pkg = ".",
+  root = ".",
+  id = NULL,
   use_filesize = FALSE,
   force_update = getOption("codemeta_force_update", TRUE),
   verbose = TRUE,
@@ -27,7 +30,8 @@ root. Default guess is current dir.}
 existing codemeta.json file}
 
 \item{verbose}{Whether to print messages indicating opinions e.g. when
-DESCRIPTION has no URL. See \code{\link{give_opinions}}.}
+DESCRIPTION has no URL, see \code{\link{give_opinions}}; and indicating
+ progress of internet downloads.}
 
 \item{...}{additional arguments to \code{\link{write_json}}}
 }

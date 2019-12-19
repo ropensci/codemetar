@@ -4,10 +4,17 @@
 \alias{write_codemeta}
 \title{write_codemeta}
 \usage{
-write_codemeta(pkg = ".", path = "codemeta.json", root = ".",
-  id = NULL, use_filesize = FALSE,
+write_codemeta(
+  pkg = ".",
+  path = "codemeta.json",
+  root = ".",
+  id = NULL,
+  use_filesize = FALSE,
   force_update = getOption("codemeta_force_update", TRUE),
-  use_git_hook = FALSE, verbose = TRUE, ...)
+  use_git_hook = FALSE,
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{pkg}{package path to package root, or package name, or description file
@@ -31,7 +38,8 @@ codemeta.json to be updated when DESCRIPTION is changed. Default is \code{FALSE}
 an unwanted alteration of the user's git environment.}
 
 \item{verbose}{Whether to print messages indicating opinions e.g. when
-DESCRIPTION has no URL. See \code{\link{give_opinions}}.}
+DESCRIPTION has no URL, see \code{\link{give_opinions}}; and indicating
+ progress of internet downloads.}
 
 \item{...}{additional arguments to \code{\link{write_json}}}
 }
