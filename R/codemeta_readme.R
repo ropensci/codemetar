@@ -93,7 +93,7 @@ guess_ropensci_review <- function(readme) {
 
 # guess_readme_url -------------------------------------------------------------
 # find the readme
-guess_readme_url <- function(root) {
+guess_readme_url <- function(root, verbose) {
 
   if (! uses_git(root)) {
 
@@ -108,6 +108,9 @@ guess_readme_url <- function(root) {
 
   github <- remotes::parse_github_url(github_url)
 
+  if (verbose) {
+    cli::cat_bullet("Asking README URL from GitHub API", bullet = "continue")
+  }
   readme <- try(silent = TRUE, gh::gh(
     "GET /repos/:owner/:repo/readme",
     owner = github$username,
@@ -117,7 +120,16 @@ guess_readme_url <- function(root) {
   if (! inherits(readme, "try-error")) {
 
     readme$html_url
+    if (verbose) {
+      cli::cat_bullet("Got README URL!", bullet = "tick")
+    }
+  } else {
+    if (verbose) {
+      cli::cat_bullet("Did not get README URL.", bullet = "cross")
+    }
   }
+
+
   # else NULL implicitly
 }
 
@@ -150,11 +162,11 @@ guess_readme_path <- function(root) {
 }
 
 # .guess_readme ----------------------------------------------------------------
-.guess_readme <- function(root = ".") {
+.guess_readme <- function(root = ".", verbose) {
 
   list(
     readme_path = guess_readme_path(root),
-    readme_url = guess_readme_url(root)
+    readme_url = guess_readme_url(root, verbose)
   )
 }
 
