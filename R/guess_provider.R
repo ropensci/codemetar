@@ -11,12 +11,14 @@
                     bullet = "continue")
   }
 
-  suppressWarnings(
+  data <- suppressWarnings(
     available_source_packages("https://cran.rstudio.com"))
 
   if (verbose) {
     cli::cat_bullet("Got CRAN metadata!", bullet = "tick")
   }
+
+  return(data)
 }
 
 # .BIOC ------------------------------------------------------------------------
@@ -26,13 +28,15 @@
                     bullet = "continue")
   }
 
-  suppressWarnings(
+  data <- suppressWarnings(
     available_source_packages("https://www.bioconductor.org/packages/release/bioc"))
 
 
   if (verbose) {
     cli::cat_bullet("Got Bioconductor metadata!", bullet = "tick")
   }
+
+  return(data)
 }
 
 # CRAN -------------------------------------------------------------------------
