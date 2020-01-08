@@ -103,9 +103,12 @@ usethis::use_git_hook("pre-commit",
 \itemize{
 \item You could use GitHub actions. Refer to GitHub actions docs
 \url{https://github.com/features/actions}, and to the example workflow
-provided in this package (type \code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}). In that
-case don’t forget to pull (\href{https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843}{\verb{git pull --rebase}})
-from upstream before you commit new changes.
+provided in this package (type \code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}). If you take
+this route, you should try to remember to run \verb{git pull} before
+making any new changes on your local project. However, if you forgot
+to pull and already committed new changes, fret not, you can use
+(\href{https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843}{\verb{git pull --rebase}})
+to rewind you local changes on top of the current upstream \code{HEAD}.
 }\if{html}{\out{
 <details closed>
 }}
@@ -129,7 +132,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: r-lib/actions/setup-r@v1
       - name: Install codemetar
-        run: Rscript -e 'remotes::install.packages("codemetar")'
+        run: Rscript -e 'install.packages("codemetar")'
       - name: Render codemeta
         run: Rscript -e 'codemetar::write_codemeta()'
       - name: Commit results

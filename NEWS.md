@@ -10,6 +10,8 @@
 
 * Changes in the way codeRepository is guessed. codemetar can now recognize an URL from GitHub, GitLab, Bitbucket, R-Forge among several URLs in DESCRIPTION, to assign it to codeRepository. If no URL in DESCRIPTION is from any of these providers, `guess_github()` is called.
 
+* Adds documentation of internet needs and verbosity to steps downloading information from the web (#270, @Bisaloo)
+
 ## Bug fixes
 
 * Fix for detecting rOpenSci review badge (@sckott, #236)
