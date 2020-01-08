@@ -177,6 +177,12 @@ codemetar::write_codemeta(find.package("codemetar"))
       "givenName": "Hauke",
       "familyName": "Sonnenberg",
       "@id": "https://orcid.org/0000-0001-9134-2871"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Sebastian",
+      "familyName": "Kreutzer",
+      "@id": "https://orcid.org/0000-0002-0734-2199"
     }
   ],
   "copyrightHolder": [
@@ -384,18 +390,6 @@ codemetar::write_codemeta(find.package("codemetar"))
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "git2r",
-      "name": "git2r",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=git2r"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "gert",
       "name": "gert",
       "provider": {
@@ -434,7 +428,7 @@ codemetar::write_codemeta(find.package("codemetar"))
       "@type": "SoftwareApplication",
       "identifier": "jsonlite",
       "name": "jsonlite",
-      "version": ">= 1.6",
+      "version": ">=\n        1.6",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -647,7 +641,7 @@ codemetar::write_codemeta("testthat", path = "example-codemeta.json")
   "relatedLink": ["http://testthat.r-lib.org", "https://CRAN.R-project.org/package=testthat"],
   "issueTracker": "https://github.com/r-lib/testthat/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -977,21 +971,78 @@ codemetar::write_codemeta("testthat", path = "example-codemeta.json")
 
 <br>
 
-## Installation
+## Keep codemeta.json up-to-date
 
-You can install the latest version from CRAN using:
+**How to keep codemeta.json up-to-date?** In particular, how to keep it
+up to date with `DESCRIPTION`? `codemetar` itself no longer supports
+automatic sync, but there are quite a few methods available out there.
+Choose one that fits well into your workflow\!
+
+  - You could rely on `devtools::release()` since it will ask you
+    whether you updated codemeta.json when such a file exists.
+
+  - You could use a git pre-commit hook that prevents a commit from
+    being done if DESCRIPTION is newer than codemeta.json.
+    
+      - You can use the [precommit
+        package](https://github.com/lorenzwalthert/precommit) in which
+        there’s a “codemeta-description-updated” hook.
+    
+      - If that’s your only pre-commit hook (i.e. you don’t have one
+        created by e.g. `usethis::use_readme_rmd()`), then you can
+        create it
+using
+
+<!-- end list -->
 
 ``` r
-install.packages("codemetar")
+script = readLines(system.file("templates", "description-codemetajson-pre-commit.sh", package = "codemetar"))
+usethis::use_git_hook("pre-commit",
+                     script = script)
 ```
 
-You can also install the development version of `codemetar` from GitHub
-with:
+  - You could use GitHub actions. Refer to GitHub actions docs
+    <https://github.com/features/actions>, and to the example workflow
+    provided in this package (type `system.file("templates",
+    "codemeta-github-actions.yml", package = "codemetar")`). In that
+    case don’t forget to pull ([`git pull
+    --rebase`](https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843))
+    from upstream before you commit new changes.
 
-``` r
-# install.packages("remotes")
-remotes::install_github("ropensci/codemetar", ref = "dev")
+<details closed>
+
+<summary> <span title="Click to Expand"> click here to see the workflow
+</span> </summary>
+
+``` yaml
+
+on:
+  push:
+    paths:
+      - DESCRIPTION
+      - .github/workflows/main.yml
+
+name: Render codemeta
+jobs:
+  render:
+    name: Render codemeta
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: r-lib/actions/setup-r@v1
+      - name: Install codemetar
+        run: Rscript -e 'remotes::install.packages("codemetar")'
+      - name: Render codemeta
+        run: Rscript -e 'codemetar::write_codemeta()'
+      - name: Commit results
+        run: |
+          git commit codemeta.json -m 'Re-build codemeta.json' || echo "No changes to commit"
+          git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git HEAD:${{ github.ref }} || echo "No changes to commit"
 ```
+
+</details>
+
+<br>
 
 ## How to improve your package’s codemeta.json?
 
@@ -1011,10 +1062,13 @@ To ensure you have metadata in the usual places, you can run
     addresses.
 
 In the current implementation, developers may specify an ORCID url for
-an author in the optional `comment` field of `Authors@R`,
-    e.g.
+an author in the optional `comment` field of `Authors@R`, e.g.
 
-    Authors@R: person("Carl", "Boettiger", role=c("aut", "cre", "cph"), email="cboettig@gmail.com", comment="http://orcid.org/0000-0002-1642-628X")
+    Authors@R: c(person(given = "Carl",
+                 family = "Boettiger",
+                 role = c("aut", "cre", "cph"),
+                 email = "cboettig@gmail.com",
+                 comment = c(ORCID = "0000-0002-1642-628X")))
 
 which will allow `codemetar` to associate an identifier with the person.
 This is clearly something of a hack since R’s `person` object lacks an
@@ -1062,6 +1116,22 @@ to a property, e.g. keywords.
 See the
 [DESCRIPTION](https://github.com/codemeta/codemetar/blob/master/DESCRIPTION)
 file of the `codemetar` package for an example.
+
+## Installation
+
+You can install the latest version from CRAN using:
+
+``` r
+install.packages("codemetar")
+```
+
+You can also install the development version of `codemetar` from GitHub
+with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("ropensci/codemetar", ref = "dev")
+```
 
 ## Going further
 

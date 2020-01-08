@@ -4,7 +4,10 @@
 \alias{create_codemeta}
 \title{create_codemeta}
 \usage{
-create_codemeta(pkg = ".", root = ".", id = NULL,
+create_codemeta(
+  pkg = ".",
+  root = ".",
+  id = NULL,
   use_filesize = FALSE,
   force_update = getOption("codemeta_force_update", TRUE),
   verbose = TRUE,
