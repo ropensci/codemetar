@@ -1,5 +1,9 @@
 # codemetar (development version)
 
+## Deprecation
+
+* The use_git_hook argument of write_codemeta() has been deprecated. Solutions for keeping DESCRIPTION and codemeta.json in sync are available in the docs.
+
 ## Enhancements
 
 * Docs were improved to make a better case for codemetar.

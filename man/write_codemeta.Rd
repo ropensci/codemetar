@@ -11,7 +11,7 @@ write_codemeta(
   id = NULL,
   use_filesize = FALSE,
   force_update = getOption("codemeta_force_update", TRUE),
-  use_git_hook = FALSE,
+  use_git_hook = NULL,
   verbose = TRUE,
   ...
 )
@@ -33,9 +33,7 @@ root. Default guess is current dir.}
 \item{force_update}{Update guessed fields even if they are defined in an
 existing codemeta.json file}
 
-\item{use_git_hook}{Whether to create a pre-commit hook requiring
-codemeta.json to be updated when DESCRIPTION is changed. Default is \code{FALSE} to avoid
-an unwanted alteration of the user's git environment.}
+\item{use_git_hook}{Deprecated argument.}
 
 \item{verbose}{Whether to print messages indicating opinions e.g. when
 DESCRIPTION has no URL, see \code{\link{give_opinions}}; and indicating
@@ -77,6 +75,73 @@ software metadata, see \url{https://codemeta.github.io}. In particular, new
 users might want to start with the \href{https://codemeta.github.io/user-guide/}{User Guide}, while those looking to
 learn more about JSON-LD and consuming existing codemeta files should
 see the \href{https://codemeta.github.io/developer-guide/}{Developer Guide}.
+
+\strong{How to keep codemeta.json up-to-date?} In particular, how to keep it
+up to date with \code{DESCRIPTION}? \code{codemetar} itself no longer supports
+automatic sync, but there are quite a few methods available out there.
+Choose one that fits well into your workflow!
+\itemize{
+\item You could rely on \code{devtools::release()} since it will ask you
+whether you updated codemeta.json when such a file exists.
+\item You could use a git pre-commit hook that prevents a commit from
+being done if DESCRIPTION is newer than codemeta.json.
+\itemize{
+\item You can use the \href{https://github.com/lorenzwalthert/precommit}{precommit package} in which
+there’s a “codemeta-description-updated” hook.
+\item If that’s your only pre-commit hook (i.e. you don’t have one
+created by e.g. \code{usethis::use_readme_rmd()}), then you can
+create it
+using
+}
+}\if{html}{\out{
+<!-- end list -->
+}}
+\if{html}{\out{<div class="r">}}\preformatted{script = readLines(system.file("templates", "description-codemetajson-pre-commit.sh", package = "codemetar"))
+usethis::use_git_hook("pre-commit",
+                     script = script)
+}\if{html}{\out{</div>}}
+\itemize{
+\item You could use GitHub actions. Refer to GitHub actions docs
+\url{https://github.com/features/actions}, and to the example workflow
+provided in this package (type \code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}). In that
+case don’t forget to pull (\href{https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843}{\verb{git pull --rebase}})
+from upstream before you commit new changes.
+}\if{html}{\out{
+<details closed>
+}}
+\if{html}{\out{
+<summary> <span title="Click to Expand"> click here to see the workflow
+</span> </summary>
+}}
+\if{html}{\out{<div class="yaml">}}\preformatted{
+on:
+  push:
+    paths:
+      - DESCRIPTION
+      - .github/workflows/main.yml
+
+name: Render codemeta
+jobs:
+  render:
+    name: Render codemeta
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: r-lib/actions/setup-r@v1
+      - name: Install codemetar
+        run: Rscript -e 'remotes::install.packages("codemetar")'
+      - name: Render codemeta
+        run: Rscript -e 'codemetar::write_codemeta()'
+      - name: Commit results
+        run: |
+          git commit codemeta.json -m 'Re-build codemeta.json' || echo "No changes to commit"
+          git push https://$\{\{github.actor\}\}:$\{\{secrets.GITHUB_TOKEN\}\}@github.com/$\{\{github.repository\}\}.git HEAD:$\{\{ github.ref \}\} || echo "No changes to commit"
+}\if{html}{\out{</div>}}\if{html}{\out{
+</details>
+}}
+\if{html}{\out{
+<br>
+}}
 }
 \section{Technical details}{
 
@@ -84,12 +149,6 @@ see the \href{https://codemeta.github.io/developer-guide/}{Developer Guide}.
   fields it can guess (i.e. from the DESCRIPTION file), overwriting any
   existing data in that block. In this case, the package root directory
   should be the current working directory.
-
-When creating and writing a codemeta.json for the first time, the function
-adds "codemeta.json" to .Rbuildignore and, if the project uses git, adds a
-pre-commit hook ensuring that if DESCRIPTION changes, the codemeta.json will
-be updated as well unless the DESCRIPTION change is committed with 'git
-commit --no-verify'.
 }
 
 \examples{
