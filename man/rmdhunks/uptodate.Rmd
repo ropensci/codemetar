@@ -14,7 +14,7 @@ usethis::use_git_hook("pre-commit",
                      script = script)
 ```
 
-* You could use GitHub actions. Refer to GitHub actions docs <https://github.com/features/actions>, and to the example workflow provided in this package (type `system.file("templates", "codemeta-github-actions.yml", package = "codemetar")`). In that case don't forget to pull ([`git pull --rebase`](https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843)) from upstream before you commit new changes.
+* You could use GitHub actions. Refer to GitHub actions docs <https://github.com/features/actions>, and to the example workflow provided in this package (type `system.file("templates", "codemeta-github-actions.yml", package = "codemetar")`). If you take this route, you should try to remember to run `git pull` before making any new changes on your local project. However, if you forgot to pull and already committed new changes, fret not, you can use ([`git pull --rebase`](https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843)) to rewind you local changes on top of the current upstream `HEAD`.
 
 ```{r, echo = FALSE}
 details::details(system.file("templates", "codemeta-github-actions.yml", package = "codemetar"), 
