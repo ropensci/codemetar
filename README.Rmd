@@ -39,7 +39,6 @@ knitr::opts_chunk$set(
 
 ```{r child='man/rmdhunks/example.Rmd'} 
 ```
-
 ## Keep codemeta.json up-to-date
 
 ```{r child='man/rmdhunks/uptodate.Rmd'} 
@@ -50,10 +49,15 @@ knitr::opts_chunk$set(
 ```{r child='man/rmdhunks/improvecodemetadata.Rmd'} 
 ```
 
-## Installation
+## Installation and usage requirements
 
 ```{r child='man/rmdhunks/install-instructions.Rmd'} 
 ```
+
+
+```{r child='man/rmdhunks/internet.Rmd'} 
+```
+
 
 ## Going further
 

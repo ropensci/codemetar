@@ -29,9 +29,13 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 ```{r child='../man/rmdhunks/whybother.Rmd'} 
 ```
 
-## Installation
+## Installation and usage requirements
 
-```{r child='../man/rmdhunks/install-instructions.Rmd'} 
+```{r child='man/rmdhunks/install-instructions.Rmd'} 
+```
+
+
+```{r child='man/rmdhunks/internet.Rmd'} 
 ```
 
 ## Create a codemeta.json in one function call

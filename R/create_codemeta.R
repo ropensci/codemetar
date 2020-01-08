@@ -54,7 +54,7 @@ create_codemeta <- function(
 
   if (verbose) {
     root <- get_root_path(pkg)
-    opinions <- give_opinions(root)
+    opinions <- give_opinions(root, verbose)
 
     if (!is.null(opinions)) {
       message(
@@ -65,7 +65,8 @@ create_codemeta <- function(
   }
 
   ## get information from DESCRIPTION
-  cm <- codemeta_description(file.path(root, "DESCRIPTION"), id = id, cm)
+  cm <- codemeta_description(file.path(root, "DESCRIPTION"), id = id, cm,
+                             verbose = verbose)
 
   ## Guess these only if not set in current codemeta
   # try to identify a code repo
@@ -92,7 +93,7 @@ create_codemeta <- function(
   }
 
   if ((is.null(cm$readme) || force_update)) {
-    cm$readme <- guess_readme(root)$readme_url
+    cm$readme <- guess_readme(root, verbose)$readme_url
   }
 
   if (use_filesize) {
@@ -102,7 +103,7 @@ create_codemeta <- function(
   }
 
   # and if there's a readme
-  readme <- guess_readme(root)$readme_path
+  readme <- guess_readme(root, verbose)$readme_path
 
   if (!is.null(readme) && force_update) {
     cm <- codemeta_readme(readme, codemeta = cm)
@@ -111,7 +112,7 @@ create_codemeta <- function(
   ## If code repo is GitHub
   if (urltools::domain(cm$codeRepository) %in%
     github_domains()) {
-    cm <- add_github_topics(cm)
+    cm <- add_github_topics(cm, verbose)
   }
 
   ## Citation metadata
@@ -133,10 +134,10 @@ create_codemeta <- function(
   # Priority is given to the README
   # alternatively to installed packages
 
-  provider <- guess_provider(cm$identifier)
+  provider <- guess_provider(cm$identifier, verbose)
 
   if (!is.null(provider)) {
-    readme <- guess_readme(root)$readme_path
+    readme <- guess_readme(root, verbose)$readme_path
 
     if (!is.null(readme)) {
       badges <- extract_badges(readme)

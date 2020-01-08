@@ -91,7 +91,8 @@ Imports:
     urltools,
     usethis,
     whisker,
-    xml2
+    xml2,
+    cli
 Suggests: 
     covr,
     details,

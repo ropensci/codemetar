@@ -3,11 +3,12 @@
 #' Function giving opinions about a package
 #'
 #' @param pkg_path Path to the package root
+#' @param verbose Whether to print message related to internet download progress.
 #'
 #' @return A data.frame of opinions
 #' @export
 #'
-give_opinions <- function(pkg_path = getwd()) {
+give_opinions <- function(pkg_path = getwd(), verbose = FALSE) {
 
   # set the path to the description file
   description_file <- file.path(pkg_path, "DESCRIPTION")
@@ -22,7 +23,7 @@ give_opinions <- function(pkg_path = getwd()) {
     give_opinions_desc(description = description),
 
     # opinions about README
-    try_to_give_opinions_readme(description_file)
+    try_to_give_opinions_readme(description_file, verbose)
   ))
 
   if (! is.null(fixmes)) {
@@ -134,9 +135,9 @@ fixmes_as_tibble_or_message <- function(fixmes, where, message_id = NULL) {
 }
 
 # try_to_give_opinions_readme --------------------------------------------------
-try_to_give_opinions_readme <- function(description_file) {
+try_to_give_opinions_readme <- function(description_file, verbose = FALSE) {
 
-  readme_path <- guess_readme(dirname(description_file))$readme_path
+  readme_path <- guess_readme(dirname(description_file), verbose)$readme_path
 
   if (is.null(readme_path)) {
 
@@ -145,11 +146,12 @@ try_to_give_opinions_readme <- function(description_file) {
 
   give_opinions_readme(readme_path,
                        pkg_name = desc::desc_get_field("Package",
-                                                       file = description_file))
+                                                       file = description_file),
+                       verbose)
 }
 
 # give_opinions_readme ---------------------------------------------------------
-give_opinions_readme <- function(readme_path, pkg_name) {
+give_opinions_readme <- function(readme_path, pkg_name, verbose = FALSE) {
 
   # start with an empty vector of "fixme" messages
   fixmes <- character()
@@ -161,7 +163,7 @@ give_opinions_readme <- function(readme_path, pkg_name) {
   }
 
   # provider
-  provider <- guess_provider(pkg_name)
+  provider <- guess_provider(pkg_name, verbose)
 
   if (has_provider_but_no_badge(provider, readme_path)) {
 

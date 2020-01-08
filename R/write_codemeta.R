@@ -21,7 +21,8 @@
 #'   existing codemeta.json file
 #' @param use_git_hook Deprecated argument.
 #' @param verbose Whether to print messages indicating opinions e.g. when
-#'   DESCRIPTION has no URL. See \code{\link{give_opinions}}.
+#'   DESCRIPTION has no URL, see \code{\link{give_opinions}}; and indicating
+#'    progress of internet downloads.
 #' @param ...  additional arguments to \code{\link{write_json}}
 #' @section Technical details:
 #'  If pkg is a codemeta object, the function will attempt to update any

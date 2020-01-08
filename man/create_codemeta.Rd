@@ -30,7 +30,8 @@ root. Default guess is current dir.}
 existing codemeta.json file}
 
 \item{verbose}{Whether to print messages indicating opinions e.g. when
-DESCRIPTION has no URL. See \code{\link{give_opinions}}.}
+DESCRIPTION has no URL, see \code{\link{give_opinions}}; and indicating
+ progress of internet downloads.}
 
 \item{...}{additional arguments to \code{\link{write_json}}}
 }

@@ -1,0 +1,11 @@
+For optimal results you need a good internet connection.
+
+The package queries
+
+* `utils::available.packages()` for CRAN and Bioconductor packages;
+
+* GitHub API via the [`gh` package](https://github.com/r-lib/gh), if it finds a GitHub repo URL in DESCRIPTION or as git remote. GitHub API is queried to find the [preferred README](https://developer.github.com/v3/repos/contents/#get-the-readme), and the [repo topics](https://developer.github.com/v3/repos/#list-all-topics-for-a-repository). If you use codemetar for many packages having a [GITHUB_PAT](https://github.com/r-lib/gh#environment-variables) is better;
+
+* [R-hub sysreqs API](https://docs.r-hub.io/#sysreqs) to parse SystemRequirements.
+
+If your machine is offline, a more minimal codemeta.json will be created. If your internet connection is poor or there are firewalls, the codemeta creation might indefinitely hang.

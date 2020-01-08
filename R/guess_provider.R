@@ -4,17 +4,39 @@
 
 # .CRAN ------------------------------------------------------------------------
 ## cache available packages
-.CRAN <- function() {
+.CRAN <- function(verbose = FALSE) {
 
-  suppressWarnings(
+  if (verbose) {
+    cli::cat_bullet("Getting CRAN metadata from RStudio CRAN mirror",
+                    bullet = "continue")
+  }
+
+  data <- suppressWarnings(
     available_source_packages("https://cran.rstudio.com"))
+
+  if (verbose) {
+    cli::cat_bullet("Got CRAN metadata!", bullet = "tick")
+  }
+
+  return(data)
 }
 
 # .BIOC ------------------------------------------------------------------------
-.BIOC <- function() {
+.BIOC <- function(verbose = FALSE) {
+  if (verbose) {
+    cli::cat_bullet("Getting Bioconductor metadata",
+                    bullet = "continue")
+  }
 
-  suppressWarnings(
+  data <- suppressWarnings(
     available_source_packages("https://www.bioconductor.org/packages/release/bioc"))
+
+
+  if (verbose) {
+    cli::cat_bullet("Got Bioconductor metadata!", bullet = "tick")
+  }
+
+  return(data)
 }
 
 # CRAN -------------------------------------------------------------------------
@@ -24,7 +46,7 @@ CRAN <- memoise::memoise(.CRAN)
 BIOC <- memoise::memoise(.BIOC)
 
 # guess_provider ---------------------------------------------------------------
-guess_provider <- function(pkg) {
+guess_provider <- function(pkg, verbose = FALSE) {
 
   if (is.null(pkg)) {
 
@@ -32,14 +54,14 @@ guess_provider <- function(pkg) {
   }
 
   ## Assumes a single provider
-  if (is_cran_package(pkg)) {
+  if (is_cran_package(pkg, verbose)) {
 
     new_codemeta_organization(
       url = "https://cran.r-project.org",
       name = "Comprehensive R Archive Network (CRAN)"
     )
 
-  } else if (is_bioconductor_package(pkg)) {
+  } else if (is_bioconductor_package(pkg, verbose)) {
 
     new_codemeta_organization(
       url = "https://www.bioconductor.org",
@@ -63,15 +85,15 @@ available_source_packages <- function(url) {
 }
 
 # is_cran_package --------------------------------------------------------------
-is_cran_package <- function(pkg) {
+is_cran_package <- function(pkg, verbose = FALSE) {
 
-  is_in_package_info(pkg, CRAN())
+  is_in_package_info(pkg, CRAN(verbose))
 }
 
 # is_bioconductor_package ------------------------------------------------------
-is_bioconductor_package <- function(pkg) {
+is_bioconductor_package <- function(pkg, verbose = FALSE) {
 
-  is_in_package_info(pkg, BIOC())
+  is_in_package_info(pkg, BIOC(verbose))
 }
 
 # is_in_package_info -----------------------------------------------------------
@@ -79,7 +101,7 @@ is_bioconductor_package <- function(pkg) {
 #' @param package_info data frame or matrix with column \code{Package}, eg.
 #'   as returned by \code{\link[utils]{available.packages}}
 #' @noRd
-is_in_package_info <- function(pkg, package_info) {
+is_in_package_info <- function(pkg, package_info, verbose = FALSE) {
 
   pkg %in% package_info[, "Package"]
 }
