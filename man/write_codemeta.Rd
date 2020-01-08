@@ -13,6 +13,7 @@ write_codemeta(
   force_update = getOption("codemeta_force_update", TRUE),
   use_git_hook = TRUE,
   verbose = TRUE,
+  write_minimeta = FALSE,
   ...
 )
 }
@@ -39,10 +40,16 @@ codemeta.json to be updated when DESCRIPTION is changed.  Defaults to TRUE.}
 \item{verbose}{Whether to print messages indicating opinions e.g. when
 DESCRIPTION has no URL. See \code{\link{give_opinions}}.}
 
+\item{write_minimeta}{whether to also create the file schemaorg.json that
+corresponds to the metadata Google would validate, to be inserted to a
+webpage for SEO. It is saved as "schemaorg.json" alongside \code{path} (by
+default, "codemeta.json").}
+
 \item{...}{additional arguments to \code{\link{write_json}}}
 }
 \value{
-writes out the codemeta.json file
+writes out the codemeta.json file, and schemaorg.json if \code{write_codemeta}
+is \code{TRUE}.
 }
 \description{
 write out a codemeta.json file for a given package.  This function is
@@ -53,9 +60,9 @@ create_codemeta().
 }
 \details{
 If pkg is a codemeta object, the function will attempt to update any
-  fields it can guess (i.e. from the DESCRIPTION file), overwriting any
-  existing data in that block. In this case, the package root directory
-  should be the current working directory.
+fields it can guess (i.e. from the DESCRIPTION file), overwriting any
+existing data in that block. In this case, the package root directory
+should be the current working directory.
 
 When creating and writing a codemeta.json for the first time, the function
 adds "codemeta.json" to .Rbuildignore and, if the project uses git, adds a

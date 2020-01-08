@@ -20,6 +20,10 @@
 #'   codemeta.json to be updated when DESCRIPTION is changed.  Defaults to TRUE.
 #' @param verbose Whether to print messages indicating opinions e.g. when
 #'   DESCRIPTION has no URL. See \code{\link{give_opinions}}.
+#' @param write_minimeta whether to also create the file schemaorg.json that
+#' corresponds to the metadata Google would validate, to be inserted to a
+#' webpage for SEO. It is saved as "schemaorg.json" alongside `path` (by
+#' default, "codemeta.json").
 #' @param ...  additional arguments to \code{\link{write_json}}
 #' @details If pkg is a codemeta object, the function will attempt to update any
 #'   fields it can guess (i.e. from the DESCRIPTION file), overwriting any
@@ -31,7 +35,8 @@
 #' pre-commit hook ensuring that if DESCRIPTION changes, the codemeta.json will
 #' be updated as well unless the DESCRIPTION change is committed with 'git
 #' commit --no-verify'.
-#' @return writes out the codemeta.json file
+#' @return writes out the codemeta.json file, and schemaorg.json if `write_codemeta`
+#' is `TRUE`.
 #' @export
 #'
 #' @examples
@@ -41,7 +46,7 @@
 write_codemeta <- function(
   pkg = ".", path = "codemeta.json", root = ".", id = NULL, use_filesize = TRUE,
   force_update = getOption("codemeta_force_update", TRUE), use_git_hook = TRUE,
-  verbose = TRUE, ...
+  verbose = TRUE, write_minimeta = FALSE, ...
 ) {
 
   codemeta_json <- "codemeta.json"
@@ -74,4 +79,16 @@ write_codemeta <- function(
   # Create or update codemeta and save to disk
   create_codemeta(pkg = pkg, root = root, use_filesize = use_filesize) %>%
     jsonlite::write_json(path, pretty = TRUE, auto_unbox = TRUE, ...)
+
+  # Create minimeta and save to disk
+  if (write_minimeta) {
+    if (!requireNamespace("jsonld", quietly = TRUE)) {
+      stop("Package jsonld required. Please install before re-trying.")
+    }
+    schemaorg <- system.file("schema", "schemaorg.json",
+                             package="codemetar")
+   jsonld::jsonld_frame("codemeta.json", schemaorg) %>%
+     writeLines(file.path(dirname(path), "schemaorg.json"))
+
+  }
 }
