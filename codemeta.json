@@ -9,6 +9,8 @@
   "name": "codemetar: Generate 'CodeMeta' Metadata for R Packages",
   "codeRepository": "https://github.com/ropensci/codemetar",
   "relatedLink": [
+    "http://testthat.r-lib.org",
+    "https://CRAN.R-project.org/package=testthat",
     "https://docs.ropensci.org/codemetar",
     "https://CRAN.R-project.org/package=codemetar"
   ],
