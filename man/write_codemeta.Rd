@@ -102,7 +102,9 @@ usethis::use_git_hook("pre-commit",
 \itemize{
 \item You could use GitHub actions. Refer to GitHub actions docs
 \url{https://github.com/features/actions}, and to the example workflow
-provided in this package (type \code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}).
+provided in this package (type \code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}). In that
+case don’t forget to pull (\href{https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843}{\verb{git pull --rebase}})
+from upstream before you commit new changes.
 }\if{html}{\out{
 <details closed>
 }}

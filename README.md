@@ -1004,7 +1004,10 @@ usethis::use_git_hook("pre-commit",
   - You could use GitHub actions. Refer to GitHub actions docs
     <https://github.com/features/actions>, and to the example workflow
     provided in this package (type `system.file("templates",
-    "codemeta-github-actions.yml", package = "codemetar")`).
+    "codemeta-github-actions.yml", package = "codemetar")`). In that
+    case don’t forget to pull ([`git pull
+    --rebase`](https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843))
+    from upstream before you commit new changes.
 
 <details closed>
 
