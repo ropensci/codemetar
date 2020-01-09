@@ -88,6 +88,7 @@ write_codemeta <- function(
     schemaorg <- system.file("schema", "schemaorg.json",
                              package="codemetar")
    jsonld::jsonld_frame("codemeta.json", schemaorg) %>%
+     jsonld::jsonld_compact('{"@context": "https://schema.org"}') %>%
      writeLines(file.path(dirname(path), "schemaorg.json"))
 
   }
