@@ -1,0 +1,23 @@
+**How to keep codemeta.json up-to-date?** In particular, how to keep it up to date with `DESCRIPTION`? `codemetar` itself no longer supports automatic sync, but there are quite a few methods available out there. Choose one that fits well into your workflow!
+
+* You could rely on `devtools::release()` since it will ask you whether you updated codemeta.json when such a file exists.
+
+* You could use a git pre-commit hook that prevents a commit from being done if DESCRIPTION is newer than codemeta.json.
+
+    * You can use the [precommit package](https://github.com/lorenzwalthert/precommit) in which there's a "codemeta-description-updated" hook.
+      
+    * If that's your only pre-commit hook (i.e. you don't have one created by e.g. `usethis::use_readme_rmd()`), then you can create it using
+    
+```r
+script = readLines(system.file("templates", "description-codemetajson-pre-commit.sh", package = "codemetar"))
+usethis::use_git_hook("pre-commit",
+                     script = script)
+```
+
+* You could use GitHub actions. Refer to GitHub actions docs <https://github.com/features/actions>, and to the example workflow provided in this package (type `system.file("templates", "codemeta-github-actions.yml", package = "codemetar")`). If you take this route, you should try to remember to run `git pull` before making any new changes on your local project. However, if you forgot to pull and already committed new changes, fret not, you can use ([`git pull --rebase`](https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843)) to rewind you local changes on top of the current upstream `HEAD`.
+
+```{r, echo = FALSE}
+details::details(system.file("templates", "codemeta-github-actions.yml", package = "codemetar"), 
+                 summary = "click here to see the workflow",
+                 lang = "yaml")
+```

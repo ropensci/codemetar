@@ -15,20 +15,15 @@
 #' }
 #' @importFrom jsonlite read_json
 create_codemeta <- function(
-                            pkg = ".",
-                            root = ".",
-                            id = NULL,
-                            use_filesize = TRUE,
-                            force_update =
-                              getOption("codemeta_force_update", TRUE),
-                            verbose = TRUE,
-                            ...) {
-
-  if (!pingr::is_online()) {
-    if (verbose) {
-      message("Your computer is not online. codemetar will find less metadata than if it were.")
-    }
-  }
+  pkg = ".",
+  root = ".",
+  id = NULL,
+  use_filesize = FALSE,
+  force_update =
+    getOption("codemeta_force_update", TRUE),
+  verbose = TRUE,
+  ...
+) {
 
   ## looks like we got a package name/path or Description file
   if (is.character(pkg)) {
@@ -59,7 +54,7 @@ create_codemeta <- function(
 
   if (verbose) {
     root <- get_root_path(pkg)
-    opinions <- give_opinions(root)
+    opinions <- give_opinions(root, verbose)
 
     if (!is.null(opinions)) {
       message(
@@ -70,12 +65,21 @@ create_codemeta <- function(
   }
 
   ## get information from DESCRIPTION
-  cm <- codemeta_description(file.path(root, "DESCRIPTION"), id = id, cm)
+  cm <- codemeta_description(file.path(root, "DESCRIPTION"), id = id, cm,
+                             verbose = verbose)
 
   ## Guess these only if not set in current codemeta
   # try to identify a code repo
 
-  if (!urltools::domain(cm$codeRepository) %in% source_code_domains()) {
+  more_work_cr <- function(codeRepository) {
+    if (is.null(codeRepository)) {
+      return(TRUE)
+    }
+
+    !urltools::domain(codeRepository) %in% source_code_domains()
+  }
+
+  if (more_work_cr(cm$codeRepository)) {
 
     if (!is.null(guess_github(root)) && force_update) {
       cm$relatedLink <- cm$codeRepository
@@ -89,7 +93,7 @@ create_codemeta <- function(
   }
 
   if ((is.null(cm$readme) || force_update)) {
-    cm$readme <- guess_readme(root)$readme_url
+    cm$readme <- guess_readme(root, verbose)$readme_url
   }
 
   if (use_filesize) {
@@ -99,7 +103,7 @@ create_codemeta <- function(
   }
 
   # and if there's a readme
-  readme <- guess_readme(root)$readme_path
+  readme <- guess_readme(root, verbose)$readme_path
 
   if (!is.null(readme) && force_update) {
     cm <- codemeta_readme(readme, codemeta = cm)
@@ -108,7 +112,7 @@ create_codemeta <- function(
   ## If code repo is GitHub
   if (urltools::domain(cm$codeRepository) %in%
     github_domains()) {
-    cm <- add_github_topics(cm)
+    cm <- add_github_topics(cm, verbose)
   }
 
   ## Citation metadata
@@ -130,10 +134,10 @@ create_codemeta <- function(
   # Priority is given to the README
   # alternatively to installed packages
 
-  provider <- guess_provider(cm$identifier)
+  provider <- guess_provider(cm$identifier, verbose)
 
   if (!is.null(provider)) {
-    readme <- guess_readme(root)$readme_path
+    readme <- guess_readme(root, verbose)$readme_path
 
     if (!is.null(readme)) {
       badges <- extract_badges(readme)
@@ -142,7 +146,7 @@ create_codemeta <- function(
         whether_provider_badge(badges, provider$name)) {
         cm <- set_relatedLink_1(cm, provider)
       }
-    } else if (cm$identifier %in% installed_package_names()) {
+    } else if (is_installed(cm$identifier)) {
       pkg_info <- sessioninfo::package_info(cm$identifier)
       pkg_info <- pkg_info[pkg_info$package == cm$identifier, ]
       provider_name <- pkg_info$source

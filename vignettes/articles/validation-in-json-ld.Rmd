@@ -90,7 +90,7 @@ meta <-
 meta[[1]]
 ```
 
-Note that this has only returned the requested fields in the graph (along with the `@id` and `@type`, which are always included if provided, since they may be required to interpret the data properly). This frame extracts the `givenName` and `familyName` of any `Person` node it finds, regardless of where it occurs, while ommitting the rest of the data.  Note that since the frame requests these elements at the top level, they are returned as such, with each match a separate entry in the `@graph`.  Our example has only one person in `meta[[1]]`, had we more matches they would appear in `meta[[2]]`, etc.  Note these returns are un-ordered.
+Note that this has only returned the requested fields in the graph (along with the `@id` and `@type`, which are always included if provided, since they may be required to interpret the data properly). This frame extracts the `givenName` and `familyName` of any `Person` node it finds, regardless of where it occurs, while omitting the rest of the data.  Note that since the frame requests these elements at the top level, they are returned as such, with each match a separate entry in the `@graph`.  Our example has only one person in `meta[[1]]`, had we more matches they would appear in `meta[[2]]`, etc.  Note these returns are un-ordered.
 
 
 ## Framing: expanding node references

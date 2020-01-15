@@ -31,7 +31,6 @@ parse_citation <- function(bib) {
 ## so would need to include schema.org context
 
 bibentry_to_schema_field <- function(bibtype) {
-
   switch(
     bibtype,
     "Article" = "ScholarlyArticle",
@@ -128,7 +127,7 @@ guess_citation <- function(pkg) {
 
   citation_file_exists <- file.exists(citation_file)
 
-  package_is_installed <- pkg %in% installed_package_names()
+  package_is_installed <- is_installed(pkg)
 
   # Return NULL if there is no citation file and if pkg is not installed
   if (! citation_file_exists && ! package_is_installed) {
@@ -157,11 +156,40 @@ guess_citation <- function(pkg) {
 # read_citation_with_encoding --------------------------------------------------
 read_citation_with_encoding <- function(citation_file, encoding = NA)
 {
-  meta <- if (! is.na(encoding)) {
-
+  meta <- if (!is.na(encoding)) {
     list(Encoding = encoding)
 
   } # else NULL implicitly
 
-  utils::readCitationFile(citation_file, meta = meta)
+  ## try to read citation file
+  citation <- try(utils::readCitationFile(citation_file, meta = meta), silent = TRUE)
+
+  ## if this fails for a very specific reason, namely a line similar to
+  ## citation(auto = meta), this line gets removed and we continue working
+  ## with a temporary CITATION file
+  if(inherits(citation, "try-error")){
+    if(grepl(pattern = "Error in.+?auto", citation[1])){
+      ## >> (1) read original CITATION file
+      temp_citation <-
+        readLines(
+          con = citation_file,
+          encoding = if (!is.na(encoding)) encoding else "unknown")
+
+      ## >> (2) remove citation(auto = meta)
+      repl_id <- which(grepl(
+        pattern = "citation\\s*\\(auto\\s*=\\s*meta\\s*\\)",
+        x = temp_citation
+        ))
+      temp_citation <- temp_citation[-repl_id]
+
+      ## >> (3) write new temporary citation file
+      temp_file <- tempfile()
+      writeLines(temp_citation, temp_file)
+
+      ## >> (4) apply extraction
+      citation <- utils::readCitationFile(temp_file, meta = meta)
+    }
+  }
+
+  return(citation)
 }

@@ -1,4 +1,4 @@
-url: https://ropensci.github.io/codemetar
+url: https://docs.ropensci.org/codemetar
 
 template:
   package: rotemplate
@@ -7,3 +7,38 @@ destination: docs
 
 toc:
   depth: 3
+
+navbar:
+  structure:
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    - news
+    right: github
+  components:
+    home:
+      icon: fas fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    intro:
+      text: Intro
+      href: articles/codemeta.html
+    articles:
+      text: Advanced
+      menu:
+      - text: Parsing Codemeta Data
+        href: articles/articles/examples-parsing-codemeta.html
+      - text: Translating between schema using JSON-LD
+        href: articles/articles/translating-codemeta.html
+      - text: Validation in JSON-LD
+        href: articles/articles/validation-in-json-ld.html
+    news:
+      text: Changelog
+      href: news/index.html
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/ropensci/codemetar

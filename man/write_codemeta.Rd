@@ -9,9 +9,9 @@ write_codemeta(
   path = "codemeta.json",
   root = ".",
   id = NULL,
-  use_filesize = TRUE,
+  use_filesize = FALSE,
   force_update = getOption("codemeta_force_update", TRUE),
-  use_git_hook = TRUE,
+  use_git_hook = NULL,
   verbose = TRUE,
   write_minimeta = FALSE,
   ...
@@ -28,17 +28,17 @@ root. Default guess is current dir.}
 
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
 
-\item{use_filesize}{whether to try adding a filesize by using
-\code{pkgbuild::build()}.}
+\item{use_filesize}{whether to try to estimating and adding a filesize by using
+\code{base::files.ize()}. Files in \code{.Rbuildignore} are ignored.}
 
 \item{force_update}{Update guessed fields even if they are defined in an
 existing codemeta.json file}
 
-\item{use_git_hook}{Whether to create a pre-commit hook requiring
-codemeta.json to be updated when DESCRIPTION is changed.  Defaults to TRUE.}
+\item{use_git_hook}{Deprecated argument.}
 
 \item{verbose}{Whether to print messages indicating opinions e.g. when
-DESCRIPTION has no URL. See \code{\link{give_opinions}}.}
+DESCRIPTION has no URL, see \code{\link{give_opinions}}; and indicating
+ progress of internet downloads.}
 
 \item{write_minimeta}{whether to also create the file schemaorg.json that
 corresponds to the metadata Google would validate, to be inserted to a
@@ -56,20 +56,111 @@ write out a codemeta.json file for a given package.  This function is
 basically a wrapper around create_codemeta() to both create the codemeta
 object and write it out to a JSON-LD-formatted file in one command. It can
 also be used simply to write out to JSON-LD any existing object created with
-create_codemeta().
+`create_codemeta()`.
 }
 \details{
-If pkg is a codemeta object, the function will attempt to update any
-fields it can guess (i.e. from the DESCRIPTION file), overwriting any
-existing data in that block. In this case, the package root directory
-should be the current working directory.
+\strong{Why bother creating a codemeta.json for your package?} R packages
+encode lots of metadata in the \code{DESCRIPTION} file, \code{README}, and other
+places, telling users and developers about the package purpose, authors,
+license, dependencies, and other information that facilitates discovery,
+adoption, and credit for your software. Unfortunately, because each
+software language records this metadata in a different format, that
+information is hard for search engines, software repositories, and other
+developers to find and integrate.
 
-When creating and writing a codemeta.json for the first time, the function
-adds "codemeta.json" to .Rbuildignore and, if the project uses git, adds a
-pre-commit hook ensuring that if DESCRIPTION changes, the codemeta.json will
-be updated as well unless the DESCRIPTION change is committed with 'git
-commit --no-verify'.
+By generating a \code{codemeta.json} file, you turn your metadata into a
+format that can \href{https://docs.ropensci.org/codemetar/crosswalk}{easily crosswalk} between
+metadata in many other software languages. CodeMeta is built on
+\href{https://schema.org}{schema.org} a simple \href{https://developers.google.com/search/docs/guides/intro-structured-data}{structured data}
+format developed by major search engines like Google and Bing to improve
+discoverability in search. CodeMeta is also understood by significant
+software archiving efforts such as \href{https://www.softwareheritage.org/}{Software Heritage} Project, which seeks to
+permanently archive all open source software.
+
+For more general information about the CodeMeta Project for defining
+software metadata, see \url{https://codemeta.github.io}. In particular, new
+users might want to start with the \href{https://codemeta.github.io/user-guide/}{User Guide}, while those looking to
+learn more about JSON-LD and consuming existing codemeta files should
+see the \href{https://codemeta.github.io/developer-guide/}{Developer Guide}.
+
+\strong{How to keep codemeta.json up-to-date?} In particular, how to keep it
+up to date with \code{DESCRIPTION}? \code{codemetar} itself no longer supports
+automatic sync, but there are quite a few methods available out there.
+Choose one that fits well into your workflow!
+\itemize{
+\item You could rely on \code{devtools::release()} since it will ask you
+whether you updated codemeta.json when such a file exists.
+\item You could use a git pre-commit hook that prevents a commit from
+being done if DESCRIPTION is newer than codemeta.json.
+\itemize{
+\item You can use the \href{https://github.com/lorenzwalthert/precommit}{precommit package} in which
+there’s a “codemeta-description-updated” hook.
+\item If that’s your only pre-commit hook (i.e. you don’t have one
+created by e.g. \code{usethis::use_readme_rmd()}), then you can
+create it
+using
 }
+}\if{html}{\out{
+<!-- end list -->
+}}
+\if{html}{\out{<div class="r">}}\preformatted{script = readLines(system.file("templates", "description-codemetajson-pre-commit.sh", package = "codemetar"))
+usethis::use_git_hook("pre-commit",
+                     script = script)
+}\if{html}{\out{</div>}}
+\itemize{
+\item You could use GitHub actions. Refer to GitHub actions docs
+\url{https://github.com/features/actions}, and to the example workflow
+provided in this package (type \code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}). If you take
+this route, you should try to remember to run \verb{git pull} before
+making any new changes on your local project. However, if you forgot
+to pull and already committed new changes, fret not, you can use
+(\href{https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843}{\verb{git pull --rebase}})
+to rewind you local changes on top of the current upstream \code{HEAD}.
+}\if{html}{\out{
+<details closed>
+}}
+\if{html}{\out{
+<summary> <span title="Click to Expand"> click here to see the workflow
+</span> </summary>
+}}
+\if{html}{\out{<div class="yaml">}}\preformatted{
+on:
+  push:
+    paths:
+      - DESCRIPTION
+      - .github/workflows/main.yml
+
+name: Render codemeta
+jobs:
+  render:
+    name: Render codemeta
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: r-lib/actions/setup-r@v1
+      - name: Install codemetar
+        run: Rscript -e 'install.packages("codemetar")'
+      - name: Render codemeta
+        run: Rscript -e 'codemetar::write_codemeta()'
+      - name: Commit results
+        run: |
+          git commit codemeta.json -m 'Re-build codemeta.json' || echo "No changes to commit"
+          git push https://$\{\{github.actor\}\}:$\{\{secrets.GITHUB_TOKEN\}\}@github.com/$\{\{github.repository\}\}.git HEAD:$\{\{ github.ref \}\} || echo "No changes to commit"
+}\if{html}{\out{</div>}}\if{html}{\out{
+</details>
+}}
+\if{html}{\out{
+<br>
+}}
+}
+\section{Technical details}{
+
+ If pkg is a codemeta object, the function will attempt to update any
+  fields it can guess (i.e. from the DESCRIPTION file), overwriting any
+  existing data in that block. In this case, the package root directory
+  should be the current working directory.
+}
+
 \examples{
 \donttest{
 write_codemeta("codemetar", path = "example_codemetar_codemeta.json")

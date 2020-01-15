@@ -1,8 +1,16 @@
 # codemetar (development version)
 
+## Deprecation
+
+* The use_git_hook argument of write_codemeta() has been deprecated. Solutions for keeping DESCRIPTION and codemeta.json in sync are available in the docs.
+
 ## Enhancements
 
+* Docs were improved to make a better case for codemetar.
+
 * Changes in the way codeRepository is guessed. codemetar can now recognize an URL from GitHub, GitLab, Bitbucket, R-Forge among several URLs in DESCRIPTION, to assign it to codeRepository. If no URL in DESCRIPTION is from any of these providers, `guess_github()` is called.
+
+* Adds documentation of internet needs and verbosity to steps downloading information from the web (#270, @Bisaloo)
 
 ## Bug fixes
 
@@ -20,12 +28,20 @@
 
 * Code cleaning following the book Martin, Robert C. Clean code: a handbook of agile software craftsmanship. Pearson Education, 2009. (@hsonne, #201, #202, #204, #205, #206, #207, #209, #210, #211, #212, #216, #218, #219, #220, #221).
 
+* Use of re-usable Rmd pieces for the README, intro vignette and man pages to reduce copy-pasting.
 
 # codemetar 0.1.8 2019-05
 
 * address internet timeout issues
 * tidy source code
 * update test suite to reflect newly available metadata.
+* `write_codemeta()` and `create_codemeta()`: `use_filesize = FALSE` is now the default and the estimation of the file size does not leave any more unwanted files behind [PR #239](https://github.com/ropensci/codemetar/pull/239). Furthermore, the way the file size is calculated changed: Before we used the size of the package built with `pkgbuild::build()`, which took rather long. Now the size is calculated based on the source files minus files excluded via  
+ `.Rbuildignore` (if such a file exists).
+* `write_codemeta()`: the default of argument `use_git_hook` is now `FALSE` to avoid an 
+unwanted alteration of the user's git environment [issue #240](https://github.com/ropensci/codemetar/issues/240).
+* Package dependency to 'pkgbuild' has been dropped.
+* `write_codemeta()` does not crash anymore if the `CITATION` file contains a line `citation(auto = meta)` [Issue #238](https://github.com/ropensci/codemetar/issues/238).
+
 
 # codemetar 0.1.7 2018-12
 

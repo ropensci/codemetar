@@ -8,7 +8,7 @@ create_codemeta(
   pkg = ".",
   root = ".",
   id = NULL,
-  use_filesize = TRUE,
+  use_filesize = FALSE,
   force_update = getOption("codemeta_force_update", TRUE),
   verbose = TRUE,
   ...
@@ -23,14 +23,15 @@ root. Default guess is current dir.}
 
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
 
-\item{use_filesize}{whether to try adding a filesize by using
-\code{pkgbuild::build()}.}
+\item{use_filesize}{whether to try to estimating and adding a filesize by using
+\code{base::files.ize()}. Files in \code{.Rbuildignore} are ignored.}
 
 \item{force_update}{Update guessed fields even if they are defined in an
 existing codemeta.json file}
 
 \item{verbose}{Whether to print messages indicating opinions e.g. when
-DESCRIPTION has no URL. See \code{\link{give_opinions}}.}
+DESCRIPTION has no URL, see \code{\link{give_opinions}}; and indicating
+ progress of internet downloads.}
 
 \item{...}{additional arguments to \code{\link{write_json}}}
 }
