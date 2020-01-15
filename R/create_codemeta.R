@@ -18,7 +18,7 @@ create_codemeta <- function(
   pkg = ".",
   root = ".",
   id = NULL,
-  use_filesize = FALSE,
+  use_filesize = TRUE,
   force_update =
     getOption("codemeta_force_update", TRUE),
   verbose = TRUE,
