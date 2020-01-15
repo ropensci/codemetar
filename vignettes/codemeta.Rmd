@@ -31,7 +31,7 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 
 ## Installation and usage requirements
 
-```{r child='man/rmdhunks/install-instructions.Rmd'} 
+```{r child='../man/rmdhunks/install-instructions.Rmd'} 
 ```
 
 
