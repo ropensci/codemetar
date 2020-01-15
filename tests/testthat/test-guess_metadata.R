@@ -89,13 +89,6 @@ test_that("guess_readme() matches a single README file", {
   unlink(tempdir)
 })
 
-test_that("guess_releaseNotes", {
-
-  guess_releaseNotes(".")
-
-  f <- system.file(".", package="codemetar")
-  guess_releaseNotes(f)
-})
 
 test_that("fileSize", {
   skip_on_cran()
