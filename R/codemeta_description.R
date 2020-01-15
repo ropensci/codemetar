@@ -169,7 +169,6 @@ add_language_terms <- function(codemeta) {
   codemeta$programmingLanguage <- list(
     "@type" = "ComputerLanguage",
     name = R.version$language,
-    version = paste(R.version$major, R.version$minor, sep = "."),
     # According to Crosswalk, we just want numvers and not R.version.string
     url = "https://r-project.org"
   )
