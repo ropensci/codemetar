@@ -68,7 +68,7 @@ test_that("git utils", {
 
 test_that("guess_readme", {
   testthat::skip_if_not(nzchar(Sys.getenv("GITHUB_PAT")))
-  testthat::expect_is(guess_readme_path(find.package("codemetar")), "character")
+  testthat::expect_is(guess_readme_path(find.package("desc")), "character")
 })
 
 test_that("guess_readme() matches a single README file", {
