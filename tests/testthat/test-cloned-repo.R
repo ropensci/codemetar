@@ -21,8 +21,6 @@ testthat::test_that("we can generate codemeta
       test_that("git utils", {
         x <- uses_git(f)
         testthat::expect_true(x)
-        x <- guess_github(f)
-        x <- github_path(f, "README.md")
 
       })
 
@@ -47,8 +45,6 @@ testthat::test_that("we can generate codemeta
       test_that("git utils", {
         x <- uses_git(f)
         testthat::expect_true(x)
-        x <- guess_github(f)
-        x <- github_path(f, "README.md")
 
       })
 

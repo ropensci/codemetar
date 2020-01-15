@@ -137,7 +137,7 @@ fixmes_as_tibble_or_message <- function(fixmes, where, message_id = NULL) {
 # try_to_give_opinions_readme --------------------------------------------------
 try_to_give_opinions_readme <- function(description_file, verbose = FALSE) {
 
-  readme_path <- guess_readme(dirname(description_file), verbose)$readme_path
+  readme_path <- guess_readme_path(dirname(description_file))
 
   if (is.null(readme_path)) {
 

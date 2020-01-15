@@ -64,9 +64,6 @@ test_that("git utils", {
   testthat::expect_is(x, "logical")
   x <- guess_github(".")
 
-  ## needs to be a git repo
-  #x <- github_path(".", "README.md")
-
 })
 
 test_that("guess_readme", {
