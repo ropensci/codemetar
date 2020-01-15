@@ -35,7 +35,7 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 ```
 
 
-```{r child='man/rmdhunks/internet.Rmd'} 
+```{r child='../man/rmdhunks/internet.Rmd'} 
 ```
 
 ## Create a codemeta.json in one function call
