@@ -8,7 +8,7 @@ create_codemeta(
   pkg = ".",
   root = ".",
   id = NULL,
-  use_filesize = TRUE,
+  use_filesize = FALSE,
   force_update = getOption("codemeta_force_update", TRUE),
   verbose = TRUE,
   ...
