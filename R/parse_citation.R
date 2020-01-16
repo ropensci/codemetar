@@ -60,7 +60,7 @@ init_citation <- function(type, author, doi, id, bib)
     "identifier" = doi,
     "url" = bib$url,
     "description" = bib$note,
-    "paginiation" = bib$pages,
+    "pagination" = bib$pages,
     "@id" = id,   # may be NULL and will be removed by drop_null()
     "sameAs" = id # same same
   ))
