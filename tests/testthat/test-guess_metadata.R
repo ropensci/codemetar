@@ -57,15 +57,6 @@ testthat::test_that("guess_devStatus",{
   expect_equal(status, "https://www.tidyverse.org/lifecycle/#maturing")
 })
 
-test_that("git utils", {
-
-
-  x <- uses_git(".")
-  testthat::expect_is(x, "logical")
-  x <- guess_github(".")
-
-})
-
 test_that("guess_readme", {
   testthat::skip_if_not(nzchar(Sys.getenv("GITHUB_PAT")))
   testthat::expect_is(guess_readme_path(find.package("desc")), "character")
