@@ -21,17 +21,9 @@ testthat::test_that("we can generate codemeta
       test_that("git utils", {
         x <- uses_git(f)
         testthat::expect_true(x)
-        x <- guess_github(f)
-        x <- github_path(f, "README.md")
 
       })
 
-      guess_ci(file.path(f, "README.md"))
-      guess_devStatus(file.path(f, "README.md"))
-
-      guess_readme(f)
-      guess_releaseNotes(f)
-      guess_fileSize(f)
       file.remove(dir()[grepl(".tar.gz", dir())])
 
       file.remove("test.json")
@@ -47,17 +39,9 @@ testthat::test_that("we can generate codemeta
       test_that("git utils", {
         x <- uses_git(f)
         testthat::expect_true(x)
-        x <- guess_github(f)
-        x <- github_path(f, "README.md")
 
       })
 
-      guess_ci(file.path(f, "README.md"))
-      guess_devStatus(file.path(f, "README.md"))
-
-      guess_readme(f)
-      guess_releaseNotes(f)
-      guess_fileSize(f)
       unlink("codemetar-*.tar.gz")
 
       unlink("test.json")
@@ -68,8 +52,3 @@ testthat::test_that("we can generate codemeta
 
 
   })
-
-
-testthat::test_that("parse citation from source repo", {
-  a <- guess_citation(".")
-})

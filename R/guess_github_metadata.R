@@ -44,12 +44,20 @@ guess_github <- function(root = ".") {
 
 # github_path ------------------------------------------------------------------
 
-github_path <- function(root, path) {
+github_path <- function(root, path, cm) {
 
-  if (is.null(base <- guess_github(root))) {
-
+  if (!urltools::domain(cm$codeRepository) %in%
+      github_domains()) {
     return(NULL)
   }
+
+  github <- remotes::parse_github_url(cm$codeRepository)
+
+  base <- paste0(
+    "https://github.com/",
+    github$username, "/",
+    github$repo
+    )
 
   branch <- getOption("codemeta_branch", "master")
 

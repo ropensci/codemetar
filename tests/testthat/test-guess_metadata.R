@@ -64,15 +64,11 @@ test_that("git utils", {
   testthat::expect_is(x, "logical")
   x <- guess_github(".")
 
-  ## needs to be a git repo
-  #x <- github_path(".", "README.md")
-
 })
 
 test_that("guess_readme", {
   testthat::skip_if_not(nzchar(Sys.getenv("GITHUB_PAT")))
-  testthat::expect_is(guess_readme(find.package("codemetar")), "list")
-  testthat::expect_is(guess_readme(find.package("jsonlite")), "list")
+  testthat::expect_is(guess_readme_path(find.package("desc")), "character")
 })
 
 test_that("guess_readme() matches a single README file", {
@@ -82,24 +78,17 @@ test_that("guess_readme() matches a single README file", {
   file.create(file.path(tempdir, candidates))
   ## match README.Rmd then readme.md (use non-memoised function here)
   for (i in 1:2) {
-    matched_README <- .guess_readme(tempdir)$readme_path
+    matched_README <- guess_readme_path(tempdir)
     expect_length(matched_README, 1)
     expect_identical(matched_README, file.path(tempdir, candidates[i]))
     unlink(matched_README)
   }
   ## match none of the remaining candidates
-  matched_README <- .guess_readme(tempdir)$readme_path
+  matched_README <- guess_readme_path(tempdir)
   expect_null(matched_README)
   unlink(tempdir)
 })
 
-test_that("guess_releaseNotes", {
-
-  guess_releaseNotes(".")
-
-  f <- system.file(".", package="codemetar")
-  guess_releaseNotes(f)
-})
 
 test_that("fileSize", {
   skip_on_cran()

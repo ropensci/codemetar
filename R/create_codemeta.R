@@ -89,11 +89,11 @@ create_codemeta <- function(
   }
 
   if ((is.null(cm$releaseNotes) || force_update)) {
-    cm$releaseNotes <- guess_releaseNotes(root)
+    cm$releaseNotes <- guess_releaseNotes(root, cm)
   }
 
   if ((is.null(cm$readme) || force_update)) {
-    cm$readme <- guess_readme(root, verbose)$readme_url
+    cm$readme <- guess_readme(root, verbose, cm)$readme_url
   }
 
   if (use_filesize) {
@@ -103,7 +103,7 @@ create_codemeta <- function(
   }
 
   # and if there's a readme
-  readme <- guess_readme(root, verbose)$readme_path
+  readme <- guess_readme(root, verbose, cm)$readme_path
 
   if (!is.null(readme) && force_update) {
     cm <- codemeta_readme(readme, codemeta = cm)
@@ -137,7 +137,7 @@ create_codemeta <- function(
   provider <- guess_provider(cm$identifier, verbose)
 
   if (!is.null(provider)) {
-    readme <- guess_readme(root, verbose)$readme_path
+    readme <- guess_readme(root, verbose, cm)$readme_path
 
     if (!is.null(readme)) {
       badges <- extract_badges(readme)
