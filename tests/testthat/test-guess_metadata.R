@@ -97,6 +97,8 @@ test_that("fileSize", {
 })
 
 test_that("add_github_topics",{
+  skip_if_offline()
+  skip_on_cran()
   testthat::skip_if_not(nzchar(Sys.getenv("GITHUB_PAT")))
 
   cm <- NULL

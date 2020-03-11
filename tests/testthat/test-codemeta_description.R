@@ -4,7 +4,7 @@ testthat::test_that("We can use a preset id", {
   skip_if_offline()
   skip_on_cran()
   f <- package_file("codemetar", "DESCRIPTION")
-  id <- "https://doi.org/10.looks.like/doi"s
+  id <- "https://doi.org/10.looks.like/doi"
   cm <- codemeta_description(f, id = id)
   expect_equal(cm$`@id`, id)
 })

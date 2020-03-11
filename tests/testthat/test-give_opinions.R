@@ -40,6 +40,8 @@ testthat::test_that("No message if ok description",{
 })
 
 test_that("Message if bad URLS", {
+  skip_if_offline()
+  skip_on_cran()
   hints <- example_file("DESCRIPTION_wrongURLS") %>%
     give_opinions_desc()
   expect_true(contains(hints, "Problematic URLs"))
