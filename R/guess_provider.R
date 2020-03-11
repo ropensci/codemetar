@@ -98,8 +98,8 @@ is_bioconductor_package <- function(pkg, verbose = FALSE) {
 
 # is_in_package_info -----------------------------------------------------------
 #' @param pkg package name
-#' @param package_info data frame or matrix with column \code{Package}, eg.
-#'   as returned by \code{\link[utils]{available.packages}}
+#' @param package_info data frame or matrix with column `Package`, eg.
+#'   as returned by [utils::available.packages()]
 #' @noRd
 is_in_package_info <- function(pkg, package_info, verbose = FALSE) {
 

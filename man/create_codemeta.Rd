@@ -30,17 +30,17 @@ root. Default guess is current dir.}
 existing codemeta.json file}
 
 \item{verbose}{Whether to print messages indicating opinions e.g. when
-DESCRIPTION has no URL, see \code{\link{give_opinions}}; and indicating
- progress of internet downloads.}
+DESCRIPTION has no URL, see \code{\link[=give_opinions]{give_opinions()}}; and indicating
+progress of internet downloads.}
 
-\item{...}{additional arguments to \code{\link{write_json}}}
+\item{...}{additional arguments to \code{\link[=write_json]{write_json()}}}
 }
 \value{
 a codemeta list object
 }
 \description{
 create a codemeta list object in R for further manipulation. Similar
-to \code{\link{write_codemeta}}, but returns an R list object rather
+to \code{\link[=write_codemeta]{write_codemeta()}}, but returns an R list object rather
 than writing directly to a file.  See examples.
 }
 \examples{

@@ -38,12 +38,12 @@ give_opinions <- function(pkg_path = getwd(), verbose = FALSE) {
 
 #' Read Description from File If Not Given
 #'
-#' @param description object to be checked for \code{NULL} and to be returned if
-#'   not being \code{NULL}.
-#' @param description_file path to \code{DESCRIPTION} file to be read with
-#'   \code{\link[desc]{desc}} if \code{description} is \code{NULL}.
-#' @return \code{description} if not \code{NULL} or the content of
-#'   \code{description_file} read with \code{\link[desc]{desc}}.
+#' @param description object to be checked for `NULL` and to be returned if
+#'   not being `NULL`.
+#' @param description_file path to `DESCRIPTION` file to be read with
+#'   [desc::desc()] if `description` is `NULL`.
+#' @return `description` if not `NULL` or the content of
+#'   `description_file` read with [desc::desc()].
 #' @noRd
 read_description_if_null <- function(description, description_file) {
 
@@ -62,14 +62,14 @@ read_description_if_null <- function(description, description_file) {
 #' Give Opinions about DESCRIPTION File
 #'
 #' You may either pass the path to a DESCRIPTION file or a description object
-#' as read with \code{\link[desc]{desc}}.
+#' as read with [desc::desc()].
 #'
 #' @param description_file path do a DESCRIPTION file. Will not be considered if
-#'   a description object is given in \code{description}.
+#'   a description object is given in `description`.
 #' @param description Description object as read with
-#'   \code{\link[desc]{desc}}. If not provided, the path to a DESCRIPTION file
-#'   must be given in \code{description_file}.
-#' @return \code{tibble} with columns \code{where}, \code{fixme} or \code{NULL}
+#'   [desc::desc()]. If not provided, the path to a DESCRIPTION file
+#'   must be given in `description_file`.
+#' @return `tibble` with columns `where`, `fixme` or `NULL`
 #'   if there are no opionions about the DESCRIPTION file.
 #' @noRd
 give_opinions_desc <- function(description_file, description = NULL) {

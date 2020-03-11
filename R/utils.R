@@ -176,10 +176,10 @@ set_element <- function(x, element, value) {
 # fails ------------------------------------------------------------------------
 #' Does the Evaluation of an Expression Fail?
 #'
-#' @param expr expression to be evaluated within \code{try(\dots)}
-#' @param silent passed to \code{\link{try}}, see there.
-#' @return \code{TRUE} if evaluating \code{expr} failed and \code{FALSE} if
-#'   the evalutation of \code{expr} succeeded.
+#' @param expr expression to be evaluated within `try(\dots)`
+#' @param silent passed to [try()], see there.
+#' @return `TRUE` if evaluating `expr` failed and `FALSE` if
+#'   the evalutation of `expr` succeeded.
 #' @noRd
 fails <- function(expr, silent = TRUE) {
 
@@ -196,8 +196,8 @@ example_file <- function(...) {
 #' Check for Class "json" or Character
 #'
 #' @param x object to be checked for its class and mode
-#' @return \code{TRUE} if \code{x} inherits from "json" or is of mode character,
-#'   otherwise \code{FALSE}
+#' @return `TRUE` if `x` inherits from "json" or is of mode character,
+#'   otherwise `FALSE`
 #' @noRd
 is_json_or_character <- function(x) {
 
@@ -210,7 +210,7 @@ is_json_or_character <- function(x) {
 #'
 #' @param condition expression to be evaluated
 #' @param x object to be converted to JSON
-#' @param \dots further arguments passed to \code{\link[jsonlite]{toJSON}}
+#' @param \dots further arguments passed to [jsonlite::toJSON()]
 #' @importFrom jsonlite toJSON
 #' @noRd
 to_json_if <- function(condition, x, ...) {
@@ -223,9 +223,9 @@ to_json_if <- function(condition, x, ...) {
 #' Convert from JSON if Condition is Met
 #'
 #' @param condition expression to be evaluated
-#' @param x object passed to \code{\link[jsonlite]{fromJSON}} if
-#'   \code{condition} is met
-#' @param \dots further arguments passed to \code{\link[jsonlite]{fromJSON}}
+#' @param x object passed to [jsonlite::fromJSON()] if
+#'   `condition` is met
+#' @param \dots further arguments passed to [jsonlite::fromJSON()]
 #' @importFrom jsonlite fromJSON
 #' @noRd
 from_json_if <- function(condition, x, ...) {
@@ -238,9 +238,9 @@ from_json_if <- function(condition, x, ...) {
 #' Call Function if Condition is Met
 #'
 #' @param condition expression to be evaluated
-#' @param FUN function to be called if \code{condition} is met
-#' @param x first argument to be passed to \code{FUN} or not
-#' @param \dots further arguments passed to \code{FUN}
+#' @param FUN function to be called if `condition` is met
+#' @param x first argument to be passed to `FUN` or not
+#' @param \dots further arguments passed to `FUN`
 #' @noRd
 call_if <- function(condition, x, FUN, ...) {
 

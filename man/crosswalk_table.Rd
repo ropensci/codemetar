@@ -18,7 +18,7 @@ table.}
 }
 \value{
 a tibble containing the trimmed crosswalk table, listing property (in
-  CodeMeta), and the corresponding terms in both from and to columns.
+CodeMeta), and the corresponding terms in both from and to columns.
 }
 \description{
 Return a subset of the crosswalk table containing codemeta properties and

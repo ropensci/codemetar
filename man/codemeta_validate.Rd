@@ -19,7 +19,7 @@ properties) will cause this round-trip to fail by not fully compacting.
 }
 \details{
 by default, validation will use the original context from the import
-  file.
+file.
 }
 \examples{
 ex <- system.file("examples/codemeta.json", package="codemetar")

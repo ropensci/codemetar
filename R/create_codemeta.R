@@ -2,7 +2,7 @@
 #' create_codemeta
 #'
 #' create a codemeta list object in R for further manipulation. Similar
-#' to \code{\link{write_codemeta}}, but returns an R list object rather
+#' to [write_codemeta()], but returns an R list object rather
 #' than writing directly to a file.  See examples.
 #'
 #' @inheritParams write_codemeta

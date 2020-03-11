@@ -36,10 +36,10 @@ existing codemeta.json file}
 \item{use_git_hook}{Deprecated argument.}
 
 \item{verbose}{Whether to print messages indicating opinions e.g. when
-DESCRIPTION has no URL, see \code{\link{give_opinions}}; and indicating
- progress of internet downloads.}
+DESCRIPTION has no URL, see \code{\link[=give_opinions]{give_opinions()}}; and indicating
+progress of internet downloads.}
 
-\item{...}{additional arguments to \code{\link{write_json}}}
+\item{...}{additional arguments to \code{\link[=write_json]{write_json()}}}
 }
 \value{
 writes out the codemeta.json file
@@ -49,7 +49,7 @@ write out a codemeta.json file for a given package.  This function is
 basically a wrapper around create_codemeta() to both create the codemeta
 object and write it out to a JSON-LD-formatted file in one command. It can
 also be used simply to write out to JSON-LD any existing object created with
-`create_codemeta()`.
+\code{create_codemeta()}.
 }
 \details{
 \strong{Why bother creating a codemeta.json for your package?} R packages
@@ -89,9 +89,8 @@ being done if DESCRIPTION is newer than codemeta.json.
 \item You can use the \href{https://github.com/lorenzwalthert/precommit}{precommit package} in which
 there’s a “codemeta-description-updated” hook.
 \item If that’s your only pre-commit hook (i.e. you don’t have one
-created by e.g. \code{usethis::use_readme_rmd()}), then you can
-create it
-using
+created by e.g. \code{usethis::use_readme_rmd()}), then you can
+create it using
 }
 }\if{html}{\out{
 <!-- end list -->
@@ -103,11 +102,12 @@ usethis::use_git_hook("pre-commit",
 \itemize{
 \item You could use GitHub actions. Refer to GitHub actions docs
 \url{https://github.com/features/actions}, and to the example workflow
-provided in this package (type \code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}). If you take
-this route, you should try to remember to run \verb{git pull} before
-making any new changes on your local project. However, if you forgot
-to pull and already committed new changes, fret not, you can use
-(\href{https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843}{\verb{git pull --rebase}})
+provided in this package (type \code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}). You can use
+the \code{cm-skip} keyword in your commit message if you don’t want this
+to run on a specific commit. If you take the GitHub actions route,
+you should try to remember to run \verb{git pull} before making any new
+changes on your local project. However, if you forgot to pull and
+already committed new changes, fret not, you can use (\href{https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843}{\verb{git pull --rebase}})
 to rewind you local changes on top of the current upstream \code{HEAD}.
 }\if{html}{\out{
 <details closed>
@@ -128,6 +128,7 @@ jobs:
   render:
     name: Render codemeta
     runs-on: macOS-latest
+    if: "!contains(github.event.head_commit.message, 'cm-skip')"
     steps:
       - uses: actions/checkout@v1
       - uses: r-lib/actions/setup-r@v1
@@ -148,10 +149,10 @@ jobs:
 }
 \section{Technical details}{
 
- If pkg is a codemeta object, the function will attempt to update any
-  fields it can guess (i.e. from the DESCRIPTION file), overwriting any
-  existing data in that block. In this case, the package root directory
-  should be the current working directory.
+If pkg is a codemeta object, the function will attempt to update any
+fields it can guess (i.e. from the DESCRIPTION file), overwriting any
+existing data in that block. In this case, the package root directory
+should be the current working directory.
 }
 
 \examples{
