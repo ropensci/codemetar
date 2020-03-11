@@ -3,18 +3,20 @@ testthat::context("parse citation")
 testthat::test_that("We can parse bibentry citations into schema.org",{
 
   bib <- citation("knitr") # Manual, Book, Incollection
-  schema <- lapply(bib, parse_citation)
+  bibl <- lapply(bib, parse_citation)
+  expect_is(bibl, "list")
 
   f <- system.file("examples/CITATION_ex", package="codemetar")
   bib <- readCitationFile(f)
   schema <- lapply(bib, parse_citation)
-  ## Convert to JSON and check expansion / compaction
+  expect_is(schema, "list")
 
 })
 
 testthat::test_that("We can parse citations", {
   ## installed package
   a <- guess_citation("knitr")
+  expect_is(a, "list")
 
   ## not a package returns null
   a <- guess_citation("not-a-package")
@@ -27,7 +29,7 @@ testthat::test_that("We can use encoding", {
   f <- system.file("examples/CITATION_osmdata", package = "codemetar")
   bib <- utils::readCitationFile(f,
                                  meta = list(Encoding = "UTF-8"))
-  testthat::expect_silent(parse_citation(bib))
+  expect_is(parse_citation(bib), "list")
 })
 
 testthat::test_that("Test citation with encoding and citation line", {
