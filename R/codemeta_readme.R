@@ -160,7 +160,7 @@ guess_readme_url <- memoise::memoise(.guess_readme_url)
 }
 guess_readme_path <- memoise::memoise(.guess_readme_path)
 # .guess_readme ----------------------------------------------------------------
-.guess_readme <- function(root = ".", verbose = FALSE, cm) {
+guess_readme <- function(root = ".", verbose = FALSE, cm) {
 
   list(
     readme_path = guess_readme_path(root),
