@@ -54,6 +54,7 @@ create_codemeta <- function(
 
   if (verbose) {
     root <- get_root_path(pkg)
+
     opinions <- give_opinions(root, verbose)
 
     if (!is.null(opinions)) {

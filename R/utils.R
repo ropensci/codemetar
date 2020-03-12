@@ -9,7 +9,7 @@ get_root_path <- function(pkg) {
 
   if (is_installed(pkg)) {
 
-    package_file(pkg, ".")
+    find.package(pkg)
 
   } else if (is_package(file.path(pkg))) {
 
