@@ -41,7 +41,7 @@ testthat::test_that("We can deduce relatedLink from installed pkg", {
   skip_if_offline()
 
   usethis_cm <- create_codemeta(find.package("usethis"))
-  testthat::expect_true("https://CRAN.R-project.org/package=usethis" %in%
+  testthat::expect_true("https://usethis.r-lib.org" %in%
                           usethis_cm$relatedLink)
 
 })

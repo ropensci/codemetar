@@ -133,7 +133,7 @@ guess_ropensci_review <- function(readme) {
 guess_readme_url <- memoise::memoise(.guess_readme_url)
 # guess_readme_path ------------------------------------------------------------
 .guess_readme_path <- function(root) {
-browser()
+
   readmes <- dir(root, pattern = "^README\\.R?md$", ignore.case = TRUE)
 
   if (length(readmes) == 0) {
