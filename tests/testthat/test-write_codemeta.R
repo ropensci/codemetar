@@ -53,7 +53,3 @@ testthat::test_that("we can write codemeta given a codemeta object", {
   codemeta <- new_codemeta()
   expect_is(create_codemeta("codemetar", codemeta), "list")
 })
-
-##(author test below includes such a step already)
-
-

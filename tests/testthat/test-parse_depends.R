@@ -63,15 +63,6 @@ test_that("get_sameAs() works as expected", {
   expect_equal(url_3, get_sameAs(NULL, "github::my_remote_package"))
 })
 
-testthat::test_that("Test the various cases for ids (NOT used currently)", {
-
-  # a <- guess_dep_id(parse_depends("a4")[[1]])  # BIOC provider
-  # a <- guess_dep_id(parse_depends("httr")[[1]]) # CRAN provider
-  # a <- guess_dep_id(parse_depends("R")[[1]])
-  # a <- guess_dep_id(parse_depends("not-a-package")[[1]])
-
-})
-
 testthat::test_that("Sys requirements", {
   skip_on_cran()
   skip_if_offline()
