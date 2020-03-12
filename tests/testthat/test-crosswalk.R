@@ -2,8 +2,10 @@ testthat::context("crosswalk.R")
 
 # Define helper function that tests a json object
 test_json <- function(x, basename) {
+
   testthat::expect_is(x, "json")
-  writeLines(x, (testfile <- paste0(basename, ".json")))
+  testfile <- tempfile(pattern = "codemetatest", fileext = ".json")
+  writeLines(x, testfile)
   testthat::expect_true(codemeta_validate(testfile))
   unlink(testfile)
 }
