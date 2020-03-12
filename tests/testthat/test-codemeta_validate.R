@@ -14,6 +14,7 @@ testthat::test_that("we can validate this file", {
 testthat::test_that("we can create & validate codemeta for usethis package", {
   skip_on_cran()
   skip_if_offline()
+  path <- tempfile(pattern = "codemetatest", fileext = ".json")
   write_codemeta("usethis", path)
   testthat::expect_true(codemeta_validate(path))
   unlink(path)
