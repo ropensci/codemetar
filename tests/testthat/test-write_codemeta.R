@@ -14,7 +14,9 @@ testthat::test_that("we can write a codemeta document given a package name", {
 testthat::test_that("We can read an existing codemeta.json file", {
   skip_on_cran()
   skip_if_offline()
-
+  path <- tempfile(pattern = "codemetatest", fileext = ".json")
+  write_codemeta("codemetar", path = path)
+  testthat::expect_true(file.exists(path))
   write_codemeta("codemetar", path = path)
   testthat::expect_true(file.exists(path))
   unlink(path)
