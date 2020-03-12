@@ -137,7 +137,7 @@ create_codemeta <- function(
   provider <- guess_provider(cm$identifier, verbose)
 
   if (!is.null(provider)) {
-    readme <- guess_readme(root, verbose, cm)$readme_path
+    readme <- guess_readme_path(root, verbose, cm)
 
     if (!is.null(readme)) {
       badges <- extract_badges(readme)

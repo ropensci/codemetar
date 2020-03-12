@@ -93,7 +93,7 @@ guess_ropensci_review <- function(readme) {
 
 # guess_readme_url -------------------------------------------------------------
 # find the readme
-guess_readme_url <- function(root, verbose = FALSE, cm) {
+.guess_readme_url <- function(root, verbose = FALSE, cm) {
 
   if (!urltools::domain(cm$codeRepository) %in%
       github_domains()) {
@@ -130,9 +130,10 @@ guess_readme_url <- function(root, verbose = FALSE, cm) {
   # else NULL implicitly
 }
 
+guess_readme_url <- memoise::memoise(.guess_readme_url)
 # guess_readme_path ------------------------------------------------------------
-guess_readme_path <- function(root) {
-
+.guess_readme_path <- function(root) {
+browser()
   readmes <- dir(root, pattern = "^README\\.R?md$", ignore.case = TRUE)
 
   if (length(readmes) == 0) {
@@ -157,7 +158,7 @@ guess_readme_path <- function(root) {
   # match (locale-dependent). Prepend the root path.
   file.path(root, readme_file[1])
 }
-
+guess_readme_path <- memoise::memoise(.guess_readme_path)
 # .guess_readme ----------------------------------------------------------------
 .guess_readme <- function(root = ".", verbose = FALSE, cm) {
 
@@ -167,7 +168,7 @@ guess_readme_path <- function(root) {
   )
 }
 
-guess_readme <- memoise::memoise(.guess_readme)
+
 
 # codemeta_readme --------------------------------------------------------------
 codemeta_readme <- function(readme, codemeta) {
