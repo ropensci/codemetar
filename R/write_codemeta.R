@@ -80,5 +80,7 @@ write_codemeta <- function(
      jsonld::jsonld_compact('{"@context": "https://schema.org"}') %>%
      writeLines(file.path(dirname(path), "schemaorg.json"))
 
+   usethis::use_build_ignore(file.path(dirname(path), "schemaorg.json"))
+
   }
 }
