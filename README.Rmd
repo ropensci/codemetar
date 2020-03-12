@@ -63,5 +63,15 @@ knitr::opts_chunk$set(
 
 Check out all the [codemetar man](https://docs.ropensci.org/codemetar/articles/index.html) for tutorials on other cool stuff you can do with codemeta and json-ld.  
 
+```{r child='man/rmdhunks/minimeta.Rmd'} 
+```
+
+```{r addscript, results="asis", echo=FALSE}
+glue::glue('<script type="application/ld+json">
+      {glue::glue_collapse(readLines(file.path("inst", "schemaorg.json")), sep = "\n")}
+    </script>')
+```
+
+
 [![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
 

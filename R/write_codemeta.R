@@ -16,21 +16,28 @@
 #'   root. Default guess is current dir.
 #' @param id identifier for the package, e.g. a DOI (or other resolvable URL)
 #' @param use_filesize whether to try to estimating and adding a filesize by using
-#'   `base::files.ize()`. Files in `.Rbuildignore` are ignored.
+#'   `base::file.size()`. Files in `.Rbuildignore` are ignored.
 #' @param force_update Update guessed fields even if they are defined in an
 #'   existing codemeta.json file
 #' @param use_git_hook Deprecated argument.
 #' @param verbose Whether to print messages indicating opinions e.g. when
-#'   DESCRIPTION has no URL, see [give_opinions()]; and indicating
-#'    progress of internet downloads.
-#' @param ...  additional arguments to [write_json()]
+#'   DESCRIPTION has no URL. -- See \code{\link{give_opinions}};
+#' and indicating the progress of internet downloads.
+#' @param write_minimeta whether to also create the file schemaorg.json that
+#' corresponds to the metadata Google would validate, to be inserted to a
+#' webpage for SEO. It is saved as "inst/schemaorg.json" alongside `path` (by
+#' default, "codemeta.json").
+#' @param ...  additional arguments to \code{\link{write_json}}
 #' @section Technical details:
 #'  If pkg is a codemeta object, the function will attempt to update any
 #'   fields it can guess (i.e. from the DESCRIPTION file), overwriting any
 #'   existing data in that block. In this case, the package root directory
 #'   should be the current working directory.
 #'
-#' @return writes out the codemeta.json file
+#' When creating and writing a codemeta.json for the first time, the function
+#' adds "codemeta.json" to .Rbuildignore.
+#' @return writes out the codemeta.json file, and schemaorg.json if `write_codemeta`
+#' is `TRUE`.
 #' @export
 #'
 #' @examples
@@ -38,9 +45,9 @@
 #' write_codemeta("codemetar", path = "example_codemetar_codemeta.json")
 #' }
 write_codemeta <- function(
-  pkg = ".", path = "codemeta.json", root = ".", id = NULL, use_filesize = FALSE,
+  pkg = ".", path = "codemeta.json", root = ".", id = NULL, use_filesize = TRUE,
   force_update = getOption("codemeta_force_update", TRUE), use_git_hook = NULL,
-  verbose = TRUE, ...
+  verbose = TRUE, write_minimeta = FALSE, ...
 ) {
 
   if (!missing(use_git_hook)) {
@@ -61,4 +68,18 @@ write_codemeta <- function(
   # Create or update codemeta and save to disk
   create_codemeta(pkg = pkg, root = root, use_filesize = use_filesize) %>%
     jsonlite::write_json(path, pretty = TRUE, auto_unbox = TRUE, ...)
+
+  # Create minimeta and save to disk
+  if (write_minimeta) {
+    if (!requireNamespace("jsonld", quietly = TRUE)) {
+      stop("Package jsonld required. Please install before re-trying.")
+    }
+    schemaorg <- system.file("schema", "schemaorg.json",
+                             package="codemetar")
+   jsonld::jsonld_frame("codemeta.json", schemaorg) %>%
+     jsonld::jsonld_compact('{"@context": "https://schema.org"}') %>%
+     writeLines(file.path(dirname(path), "inst", "schemaorg.json"))
+
+
+  }
 }

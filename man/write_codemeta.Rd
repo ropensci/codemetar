@@ -9,10 +9,11 @@ write_codemeta(
   path = "codemeta.json",
   root = ".",
   id = NULL,
-  use_filesize = FALSE,
+  use_filesize = TRUE,
   force_update = getOption("codemeta_force_update", TRUE),
   use_git_hook = NULL,
   verbose = TRUE,
+  write_minimeta = FALSE,
   ...
 )
 }
@@ -28,7 +29,7 @@ root. Default guess is current dir.}
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
 
 \item{use_filesize}{whether to try to estimating and adding a filesize by using
-\code{base::files.ize()}. Files in \code{.Rbuildignore} are ignored.}
+\code{base::file.size()}. Files in \code{.Rbuildignore} are ignored.}
 
 \item{force_update}{Update guessed fields even if they are defined in an
 existing codemeta.json file}
@@ -36,13 +37,19 @@ existing codemeta.json file}
 \item{use_git_hook}{Deprecated argument.}
 
 \item{verbose}{Whether to print messages indicating opinions e.g. when
-DESCRIPTION has no URL, see \code{\link[=give_opinions]{give_opinions()}}; and indicating
-progress of internet downloads.}
+DESCRIPTION has no URL. -- See \code{\link{give_opinions}};
+and indicating the progress of internet downloads.}
 
-\item{...}{additional arguments to \code{\link[=write_json]{write_json()}}}
+\item{write_minimeta}{whether to also create the file schemaorg.json that
+corresponds to the metadata Google would validate, to be inserted to a
+webpage for SEO. It is saved as "inst/schemaorg.json" alongside \code{path} (by
+default, "codemeta.json").}
+
+\item{...}{additional arguments to \code{\link{write_json}}}
 }
 \value{
-writes out the codemeta.json file
+writes out the codemeta.json file, and schemaorg.json if \code{write_codemeta}
+is \code{TRUE}.
 }
 \description{
 write out a codemeta.json file for a given package.  This function is
@@ -153,6 +160,9 @@ If pkg is a codemeta object, the function will attempt to update any
 fields it can guess (i.e. from the DESCRIPTION file), overwriting any
 existing data in that block. In this case, the package root directory
 should be the current working directory.
+
+When creating and writing a codemeta.json for the first time, the function
+adds "codemeta.json" to .Rbuildignore.
 }
 
 \examples{

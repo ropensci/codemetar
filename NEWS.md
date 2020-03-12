@@ -12,6 +12,8 @@
 
 * Adds documentation of internet needs and verbosity to steps downloading information from the web (#270, @Bisaloo)
 
+* New argument `write_minimeta` for `write_codemeta()` indicating whether to also create the file schemaorg.json that  corresponds to the metadata Google would validate, to be inserted to a webpage for SEO. It is saved as "schemaorg.json" alongside `path` (by default, "codemeta.json"). This functionality requires the `jsonld` package (listed under `Suggests`).
+
 ## Bug fixes
 
 * Fix for detecting rOpenSci review badge (@sckott, #236)

@@ -24,16 +24,16 @@ root. Default guess is current dir.}
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
 
 \item{use_filesize}{whether to try to estimating and adding a filesize by using
-\code{base::files.ize()}. Files in \code{.Rbuildignore} are ignored.}
+\code{base::file.size()}. Files in \code{.Rbuildignore} are ignored.}
 
 \item{force_update}{Update guessed fields even if they are defined in an
 existing codemeta.json file}
 
 \item{verbose}{Whether to print messages indicating opinions e.g. when
-DESCRIPTION has no URL, see \code{\link[=give_opinions]{give_opinions()}}; and indicating
-progress of internet downloads.}
+DESCRIPTION has no URL. -- See \code{\link{give_opinions}};
+and indicating the progress of internet downloads.}
 
-\item{...}{additional arguments to \code{\link[=write_json]{write_json()}}}
+\item{...}{additional arguments to \code{\link{write_json}}}
 }
 \value{
 a codemeta list object

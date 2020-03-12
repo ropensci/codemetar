@@ -9,8 +9,6 @@
   "name": "codemetar: Generate 'CodeMeta' Metadata for R Packages",
   "codeRepository": "https://github.com/ropensci/codemetar",
   "relatedLink": [
-    "http://testthat.r-lib.org",
-    "https://CRAN.R-project.org/package=testthat",
     "https://docs.ropensci.org/codemetar",
     "https://CRAN.R-project.org/package=codemetar"
   ],
@@ -20,7 +18,6 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.3",
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 3.6.3 (2020-02-29)",
@@ -528,7 +525,7 @@
   "isPartOf": "https://ropensci.org",
   "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data"],
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
-  "fileSize": "288.075KB",
+  "fileSize": "2250.77KB",
   "contIntegration": ["https://travis-ci.org/ropensci/codemetar", "https://ci.appveyor.com/project/cboettig/codemetar/branch/master", "https://codecov.io/github/ropensci/codemetar?branch=master"],
   "developmentStatus": "http://www.repostatus.org/#active",
   "review": {
