@@ -71,3 +71,5 @@ if(grepl("windows", tolower(Sys.info()[["sysname"]])))
 
 Check out all the [codemetar vignettes](https://docs.ropensci.org/codemetar/articles/index.html) for tutorials on other cool stuff you can do with codemeta and json-ld.  
 
+```{r child='../man/rmdhunks/minimeta.Rmd'} 
+```
