@@ -69,7 +69,7 @@ test_that("guess_readme() matches a single README file", {
   file.create(file.path(tempdir, candidates))
   ## match README.Rmd then readme.md (use non-memoised function here)
   for (i in 1:2) {
-    matched_README <- guess_readme_path(tempdir)
+    matched_README <- .guess_readme_path(tempdir)
     expect_length(matched_README, 1)
     expect_identical(matched_README, file.path(tempdir, candidates[i]))
     unlink(matched_README)
