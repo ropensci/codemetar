@@ -2,7 +2,7 @@
 #' create_codemeta
 #'
 #' create a codemeta list object in R for further manipulation. Similar
-#' to \code{\link{write_codemeta}}, but returns an R list object rather
+#' to [write_codemeta()], but returns an R list object rather
 #' than writing directly to a file.  See examples.
 #'
 #' @inheritParams write_codemeta
@@ -54,6 +54,7 @@ create_codemeta <- function(
 
   if (verbose) {
     root <- get_root_path(pkg)
+
     opinions <- give_opinions(root, verbose)
 
     if (!is.null(opinions)) {
@@ -89,11 +90,11 @@ create_codemeta <- function(
   }
 
   if ((is.null(cm$releaseNotes) || force_update)) {
-    cm$releaseNotes <- guess_releaseNotes(root)
+    cm$releaseNotes <- guess_releaseNotes(root, cm)
   }
 
   if ((is.null(cm$readme) || force_update)) {
-    cm$readme <- guess_readme(root, verbose)$readme_url
+    cm$readme <- guess_readme(root, verbose, cm)$readme_url
   }
 
   if (use_filesize) {
@@ -103,14 +104,14 @@ create_codemeta <- function(
   }
 
   # and if there's a readme
-  readme <- guess_readme(root, verbose)$readme_path
+  readme <- guess_readme(root, verbose, cm)$readme_path
 
   if (!is.null(readme) && force_update) {
     cm <- codemeta_readme(readme, codemeta = cm)
   }
 
   ## If code repo is GitHub
-  if (urltools::domain(cm$codeRepository) %in%
+  if (!is.null(cm$codeRepository) && urltools::domain(cm$codeRepository) %in%
     github_domains()) {
     cm <- add_github_topics(cm, verbose)
   }
@@ -137,7 +138,7 @@ create_codemeta <- function(
   provider <- guess_provider(cm$identifier, verbose)
 
   if (!is.null(provider)) {
-    readme <- guess_readme(root, verbose)$readme_path
+    readme <- guess_readme_path(root)
 
     if (!is.null(readme)) {
       badges <- extract_badges(readme)

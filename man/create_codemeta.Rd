@@ -24,7 +24,7 @@ root. Default guess is current dir.}
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
 
 \item{use_filesize}{whether to try to estimating and adding a filesize by using
-\code{base::files.ize()}. Files in \code{.Rbuildignore} are ignored.}
+\code{base::file.size()}. Files in \code{.Rbuildignore} are ignored.}
 
 \item{force_update}{Update guessed fields even if they are defined in an
 existing codemeta.json file}
@@ -40,7 +40,7 @@ a codemeta list object
 }
 \description{
 create a codemeta list object in R for further manipulation. Similar
-to \code{\link{write_codemeta}}, but returns an R list object rather
+to \code{\link[=write_codemeta]{write_codemeta()}}, but returns an R list object rather
 than writing directly to a file.  See examples.
 }
 \examples{

@@ -9,6 +9,7 @@ jobs:
   render:
     name: Render codemeta
     runs-on: macOS-latest
+    if: "!contains(github.event.head_commit.message, 'cm-skip')"
     steps:
       - uses: actions/checkout@v1
       - uses: r-lib/actions/setup-r@v1

@@ -7,9 +7,9 @@
 add_context(x, context, json_output = FALSE)
 }
 \arguments{
-\item{x}{a JSON list (from \code{\link[jsonlite]{read_json}} /
-\code{\link[jsonlite]{fromJSON}}) or json object (from
-\code{\link[jsonlite]{toJSON}})}
+\item{x}{a JSON list (from \code{\link[jsonlite:read_json]{jsonlite::read_json()}} /
+\code{\link[jsonlite:fromJSON]{jsonlite::fromJSON()}}) or json object (from
+\code{\link[jsonlite:toJSON]{jsonlite::toJSON()}})}
 
 \item{context}{context to be added, in same format as x}
 

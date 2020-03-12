@@ -29,7 +29,7 @@ root. Default guess is current dir.}
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
 
 \item{use_filesize}{whether to try to estimating and adding a filesize by using
-\code{base::files.ize()}. Files in \code{.Rbuildignore} are ignored.}
+\code{base::file.size()}. Files in \code{.Rbuildignore} are ignored.}
 
 \item{force_update}{Update guessed fields even if they are defined in an
 existing codemeta.json file}
@@ -96,9 +96,8 @@ being done if DESCRIPTION is newer than codemeta.json.
 \item You can use the \href{https://github.com/lorenzwalthert/precommit}{precommit package} in which
 there’s a “codemeta-description-updated” hook.
 \item If that’s your only pre-commit hook (i.e. you don’t have one
-created by e.g. \code{usethis::use_readme_rmd()}), then you can
-create it
-using
+created by e.g. \code{usethis::use_readme_rmd()}), then you can
+create it using
 }
 }\if{html}{\out{
 <!-- end list -->
@@ -110,11 +109,12 @@ usethis::use_git_hook("pre-commit",
 \itemize{
 \item You could use GitHub actions. Refer to GitHub actions docs
 \url{https://github.com/features/actions}, and to the example workflow
-provided in this package (type \code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}). If you take
-this route, you should try to remember to run \verb{git pull} before
-making any new changes on your local project. However, if you forgot
-to pull and already committed new changes, fret not, you can use
-(\href{https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843}{\verb{git pull --rebase}})
+provided in this package (type \code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}). You can use
+the \code{cm-skip} keyword in your commit message if you don’t want this
+to run on a specific commit. If you take the GitHub actions route,
+you should try to remember to run \verb{git pull} before making any new
+changes on your local project. However, if you forgot to pull and
+already committed new changes, fret not, you can use (\href{https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843}{\verb{git pull --rebase}})
 to rewind you local changes on top of the current upstream \code{HEAD}.
 }\if{html}{\out{
 <details closed>
@@ -135,6 +135,7 @@ jobs:
   render:
     name: Render codemeta
     runs-on: macOS-latest
+    if: "!contains(github.event.head_commit.message, 'cm-skip')"
     steps:
       - uses: actions/checkout@v1
       - uses: r-lib/actions/setup-r@v1

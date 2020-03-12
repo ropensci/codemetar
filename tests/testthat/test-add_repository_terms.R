@@ -10,7 +10,7 @@ test_that("add_repository_terms works", {
 
 })
 
-testthat::test_that("several URLs", {
+testthat::test_that("add_repository_terms works when there are several URLs", {
 
   cm <- add_repository_terms(new_codemeta(),
                              desc::desc(
@@ -21,7 +21,7 @@ testthat::test_that("several URLs", {
                 cm$relatedLink)
 })
 
-testthat::test_that("not GitHub", {
+testthat::test_that("add_repository_terms works when there's a non GitHub code repository", {
   cm <- add_repository_terms(codemeta = new_codemeta(),
                              descr = desc::desc(
                                example_file(
@@ -39,7 +39,7 @@ testthat::test_that("not GitHub", {
                 cm$relatedLink)
 })
 
-testthat::test_that("no direct link to README", {
+testthat::test_that("add_repository_terms does not keep a direct link to README", {
   cm <- codemeta_description(example_file("DESCRIPTION_good_readmeinurl"))
   expect_equal(cm$codeRepository, "https://github.com/ropensci/codemetar")
   expect_true("https://ropensci.github.io/codemetar" %in%
@@ -48,7 +48,7 @@ testthat::test_that("no direct link to README", {
                 cm$relatedLink)
 })
 
-testthat::test_that("update URL", {
+testthat::test_that("add_repository_terms updates the codeRepository URL", {
 
   cm <- new_codemeta()
   cm$codeRepository <- "lalala"

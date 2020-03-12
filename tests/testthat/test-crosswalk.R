@@ -2,8 +2,10 @@ testthat::context("crosswalk.R")
 
 # Define helper function that tests a json object
 test_json <- function(x, basename) {
+
   testthat::expect_is(x, "json")
-  writeLines(x, (testfile <- paste0(basename, ".json")))
+  testfile <- tempfile(pattern = "codemetatest", fileext = ".json")
+  writeLines(x, testfile)
   testthat::expect_true(codemeta_validate(testfile))
   unlink(testfile)
 }
@@ -50,12 +52,23 @@ testthat::test_that("R Package Description", {
   test_json(cm_json, "r_pkg_desc")
 
   ## Test add and drop context
-  drop_context(cm_json) %>%
-    add_context(getOption("codemeta_context", "http://purl.org/codemeta/2.0"))
+  new_json <- drop_context(cm_json)
+  expect_null(jsonlite::fromJSON(new_json)$`@context`, NULL)
+  expect_is(
+    jsonlite::fromJSON(
+      add_context(new_json,
+                  getOption("codemeta_context",
+                            "http://purl.org/codemeta/2.0")))$`@context`,
+      "list")
 
   ## Test transforms between columns
-  crosswalk(cm_list, "R Package Description", "Zenodo")
+  expect_is(
+    crosswalk(cm_list, "R Package Description", "Zenodo"),
+    "json")
 
-  crosswalk_table(from = "R Package Description", to = c("Zenodo", "Figshare"))
+  expect_is(
+    crosswalk_table(from = "R Package Description", to = c("Zenodo", "Figshare")),
+    "data.frame"
+  )
 
 })

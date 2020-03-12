@@ -16,12 +16,12 @@
 #'   root. Default guess is current dir.
 #' @param id identifier for the package, e.g. a DOI (or other resolvable URL)
 #' @param use_filesize whether to try to estimating and adding a filesize by using
-#'   \code{base::files.ize()}. Files in \code{.Rbuildignore} are ignored.
+#'   `base::file.size()`. Files in `.Rbuildignore` are ignored.
 #' @param force_update Update guessed fields even if they are defined in an
 #'   existing codemeta.json file
 #' @param use_git_hook Deprecated argument.
 #' @param verbose Whether to print messages indicating opinions e.g. when
-#'   DESCRIPTION has no URL. -- See \code{\link{give_opinions}}; 
+#'   DESCRIPTION has no URL. -- See \code{\link{give_opinions}};
 #' and indicating the progress of internet downloads.
 #' @param write_minimeta whether to also create the file schemaorg.json that
 #' corresponds to the metadata Google would validate, to be inserted to a
