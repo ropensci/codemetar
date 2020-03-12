@@ -63,6 +63,12 @@
       "type": "Person",
       "familyName": "Sonnenberg",
       "givenName": "Hauke"
+    },
+    {
+      "id": "https://orcid.org/0000-0002-0734-2199",
+      "type": "Person",
+      "familyName": "Kreutzer",
+      "givenName": "Sebastian"
     }
   ],
   "copyrightHolder": {

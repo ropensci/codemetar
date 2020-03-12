@@ -25,7 +25,7 @@
 #' and indicating the progress of internet downloads.
 #' @param write_minimeta whether to also create the file schemaorg.json that
 #' corresponds to the metadata Google would validate, to be inserted to a
-#' webpage for SEO. It is saved as "schemaorg.json" alongside `path` (by
+#' webpage for SEO. It is saved as "inst/schemaorg.json" alongside `path` (by
 #' default, "codemeta.json").
 #' @param ...  additional arguments to \code{\link{write_json}}
 #' @section Technical details:
@@ -78,9 +78,8 @@ write_codemeta <- function(
                              package="codemetar")
    jsonld::jsonld_frame("codemeta.json", schemaorg) %>%
      jsonld::jsonld_compact('{"@context": "https://schema.org"}') %>%
-     writeLines(file.path(dirname(path), "schemaorg.json"))
+     writeLines(file.path(dirname(path), "inst", "schemaorg.json"))
 
-   usethis::use_build_ignore(file.path(dirname(path), "schemaorg.json"))
 
   }
 }

@@ -76,12 +76,17 @@ much information as possible.
 
 ``` r
 codemetar::write_codemeta(find.package("codemetar"))
+[1] "/home/maelle/R/x86_64-pc-linux-gnu-library/3.6/codemetar"
 … Getting CRAN metadata from RStudio CRAN mirror
 ✓ Got CRAN metadata!
 … Getting Bioconductor metadata
 ✓ Got Bioconductor metadata!
 … Getting sysreqs URL from sysreqs API
 ✓ Got sysreqs URL from sysreqs API!
+… Asking README URL from GitHub API
+✓ Got README URL!
+… Asking README URL from GitHub API
+✓ Got README URL!
 … Getting repo topics from GitHub API
 ✓ Got repo topics!
 ```
@@ -386,18 +391,6 @@ codemetar::write_codemeta(find.package("codemetar"))
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "gh",
-      "name": "gh",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=gh"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "gert",
       "name": "gert",
       "provider": {
@@ -625,7 +618,8 @@ codemetar::write_codemeta(find.package("codemetar"))
     }
   ],
   "isPartOf": "https://ropensci.org",
-  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"]
+  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
+  "readme": "https://github.com/ropensci/codemetar/blob/master/README.md"
 }
 ```
 
@@ -642,8 +636,13 @@ package, e.g. for `testthat`. That will use information from
 
 ``` r
 codemetar::write_codemeta("testthat", path = "example-codemeta.json")
+[1] "/home/maelle/R/x86_64-pc-linux-gnu-library/3.6/testthat/."
 … Getting sysreqs URL from sysreqs API
 ✓ Got sysreqs URL from sysreqs API!
+… Asking README URL from GitHub API
+✓ Got README URL!
+… Asking README URL from GitHub API
+✓ Got README URL!
 … Getting repo topics from GitHub API
 ✓ Got repo topics!
 ```
@@ -962,6 +961,7 @@ codemetar::write_codemeta("testthat", path = "example-codemeta.json")
       "sameAs": "https://CRAN.R-project.org/package=withr"
     }
   ],
+  "readme": "https://github.com/r-lib/testthat/blob/master/README.md",
   "keywords": ["r", "unit-testing"],
   "citation": [
     {
@@ -976,7 +976,7 @@ codemetar::write_codemeta("testthat", path = "example-codemeta.json")
       ],
       "name": "testthat: Get Started with Testing",
       "url": "https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf",
-      "paginiation": "5--10",
+      "pagination": "5--10",
       "isPartOf": {
         "@type": "PublicationIssue",
         "datePublished": "2011",
@@ -1013,9 +1013,8 @@ Choose one that fits well into your workflow\!
         there’s a “codemeta-description-updated” hook.
     
       - If that’s your only pre-commit hook (i.e. you don’t have one
-        created by e.g. `usethis::use_readme_rmd()`), then you can
-        create it
-using
+        created by e.g. `usethis::use_readme_rmd()`), then you can
+        create it using
 
 <!-- end list -->
 
@@ -1028,11 +1027,12 @@ usethis::use_git_hook("pre-commit",
   - You could use GitHub actions. Refer to GitHub actions docs
     <https://github.com/features/actions>, and to the example workflow
     provided in this package (type `system.file("templates",
-    "codemeta-github-actions.yml", package = "codemetar")`). If you take
-    this route, you should try to remember to run `git pull` before
-    making any new changes on your local project. However, if you forgot
-    to pull and already committed new changes, fret not, you can use
-    ([`git pull
+    "codemeta-github-actions.yml", package = "codemetar")`). You can use
+    the `cm-skip` keyword in your commit message if you don’t want this
+    to run on a specific commit. If you take the GitHub actions route,
+    you should try to remember to run `git pull` before making any new
+    changes on your local project. However, if you forgot to pull and
+    already committed new changes, fret not, you can use ([`git pull
     --rebase`](https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843))
     to rewind you local changes on top of the current upstream `HEAD`.
 
@@ -1054,6 +1054,7 @@ jobs:
   render:
     name: Render codemeta
     runs-on: macOS-latest
+    if: "!contains(github.event.head_commit.message, 'cm-skip')"
     steps:
       - uses: actions/checkout@v1
       - uses: r-lib/actions/setup-r@v1
@@ -1130,9 +1131,8 @@ into a `codemeta.json` file (see `codemetar:::additional_codemeta_terms`
 for a list).
 
 CRAN requires that you prefix any additional such terms to indicate the
-use of `schema.org` explicitly, e.g. `keywords` would be specified in a
-DESCRIPTION file
-    as:
+use of `schema.org` explicitly, e.g. `keywords` would be specified in a
+DESCRIPTION file as:
 
     X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data
 
@@ -1187,7 +1187,127 @@ codemeta creation might indefinitely hang.
 
 Check out all the [codemetar
 man](https://docs.ropensci.org/codemetar/articles/index.html) for
-tutorials on other cool stuff you can do with codemeta and
-json-ld.
+tutorials on other cool stuff you can do with codemeta and json-ld.
+
+A new feature is the creation of a minimal schemaorg.json for insertion
+on your website’s webpage for Search Engine Optimization, when the
+`write_minimeta` argument of `write_codemeta()` is `TRUE`.
+
+You could e.g. use the code below in a chunk in README.Rmd with
+`results="asis"`.
+
+``` r
+glue::glue('<script type="application/ld+json">
+      {glue::glue_collapse(readLines("schemaorg.json"), sep = "\n")}
+    </script>')
+```
+
+Refer to [Google
+documentation](https://developers.google.com/search/reference/overview)
+for more guidance.
+
+<script type="application/ld+json">
+      {
+  "@context": "https://schema.org",
+  "type": "SoftwareSourceCode",
+  "author": [
+    {
+      "id": "https://orcid.org/0000-0002-2815-0399"
+    },
+    {
+      "id": "https://orcid.org/0000-0002-1642-628X"
+    }
+  ],
+  "codeRepository": "https://github.com/ropensci/codemetar",
+  "contributor": [
+    {
+      "id": "https://orcid.org/0000-0002-2378-4915",
+      "type": "Person",
+      "familyName": "Krystalli",
+      "givenName": "Anna"
+    },
+    {
+      "id": "https://orcid.org/0000-0002-2815-0399",
+      "type": "Person",
+      "familyName": "Salmon",
+      "givenName": "Maëlle"
+    },
+    {
+      "id": "https://orcid.org/0000-0001-5135-5758",
+      "type": "Person",
+      "familyName": "Leinweber",
+      "givenName": "Katrin"
+    },
+    {
+      "id": "https://orcid.org/0000-0002-2136-0000",
+      "type": "Person",
+      "familyName": "Ross",
+      "givenName": "Noam"
+    },
+    {
+      "type": "Person",
+      "familyName": "Smith",
+      "givenName": "Arfon"
+    },
+    {
+      "id": "https://orcid.org/0000-0002-4035-0289",
+      "type": "Person",
+      "familyName": "Ooms",
+      "givenName": "Jeroen"
+    },
+    {
+      "id": "https://orcid.org/0000-0002-1791-9449",
+      "type": "Person",
+      "familyName": "Meyer",
+      "givenName": "Sebastian"
+    },
+    {
+      "id": "https://orcid.org/0000-0003-0647-7726",
+      "type": "Person",
+      "familyName": "Rustler",
+      "givenName": "Michael"
+    },
+    {
+      "id": "https://orcid.org/0000-0001-9134-2871",
+      "type": "Person",
+      "familyName": "Sonnenberg",
+      "givenName": "Hauke"
+    },
+    {
+      "id": "https://orcid.org/0000-0002-0734-2199",
+      "type": "Person",
+      "familyName": "Kreutzer",
+      "givenName": "Sebastian"
+    }
+  ],
+  "copyrightHolder": {
+    "id": "https://orcid.org/0000-0002-1642-628X",
+    "type": "Person",
+    "email": "cboettig@gmail.com",
+    "familyName": "Boettiger",
+    "givenName": "Carl"
+  },
+  "description": "The 'Codemeta' Project defines a 'JSON-LD' format\n    for describing software metadata, as detailed at\n    <https://codemeta.github.io>. This package provides utilities to\n    generate, parse, and modify 'codemeta.json' files automatically for R\n    packages, as well as tools and examples for working with\n    'codemeta.json' 'JSON-LD' more generally.",
+  "funder": {
+    "type": "Organization",
+    "name": "rOpenSci"
+  },
+  "license": "https://spdx.org/licenses/GPL-3.0",
+  "name": "codemetar: Generate 'CodeMeta' Metadata for R Packages",
+  "programmingLanguage": {
+    "type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "provider": {
+    "id": "https://cran.r-project.org",
+    "type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
+  "version": "0.1.8.9000"
+}
+    </script>
 
 [![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
