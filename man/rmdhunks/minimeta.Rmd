@@ -1,0 +1,12 @@
+A new feature is the creation of a minimal schemaorg.json for insertion on your website's webpage for Search Engine Optimization, 
+when the `write_minimeta` argument of `write_codemeta()` is `TRUE`.
+
+You could e.g. use the code below in a chunk in README.Rmd with `results="asis"`.
+
+```r
+glue::glue('<script type="application/ld+json">
+      {glue::glue_collapse(readLines("schemaorg.json"), sep = "\n")}
+    </script>')
+```
+
+Refer to [Google documentation](https://developers.google.com/search/reference/overview) for more guidance.

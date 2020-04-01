@@ -1,5 +1,5 @@
 # guess_releaseNotes -----------------------------------------------------------
-guess_releaseNotes <- function(root = ".") {
+guess_releaseNotes <- function(root = ".", cm) {
 
   ## First look for a local NEWS.md or NEWS
   news_files <- c("NEWS.md", "NEWS")
@@ -14,7 +14,7 @@ guess_releaseNotes <- function(root = ".") {
   }
 
   ## Point to the first file that was found: NEWS.md or NEWS on the GitHub page
-  github_path(root, news_files[file_exists][1])
+  github_path(root, news_files[file_exists][1], cm)
 
   ## Consider pointing to CRAN NEWS, BIOC NEWS?
 }

@@ -3,12 +3,12 @@
 #'
 #' @param message_id keyword used to lookup a message string from the list
 #'   of messages defined in this function.
-#' @param \dots further arguments passed to \code{\link{sprintf}} that are used
+#' @param \dots further arguments passed to [sprintf()] that are used
 #'   to replace possible percent sign placeholders in the message string. As
 #'   many additional arguments as there are percent sign placeholders (so called
-#'   conversion specifiers, see \code{\link{sprintf}}) are required.
-#' @return message string defined for the given \code{keyword} as returned by
-#'   \code{\link{sprintf}} with possible placeholders replaced with the
+#'   conversion specifiers, see [sprintf()]) are required.
+#' @return message string defined for the given `keyword` as returned by
+#'   [sprintf()] with possible placeholders replaced with the
 #'   formatted values given in \dots. If there is no message string defined for
 #'   the given keyword, an error is raised and a hint about available keywords
 #'   is given.
@@ -37,11 +37,7 @@ get_message <- function(message_id, ...) {
     ),
     hint_highest_opinion = paste(
       "codemetar has the highest opinion of this R package :-)"
-    ),
-    adding_hook = paste(
-      "* Adding a pre-commit git hook ensuring that codemeta.json will be",
-      "synchronized with DESCRIPTION"
-    ) # nolint
+    )
   )
 
   if (message_id %in% names(messages)) {

@@ -4,25 +4,9 @@ testthat::test_that("We can use a preset id", {
   skip_if_offline()
   skip_on_cran()
   f <- package_file("codemetar", "DESCRIPTION")
-  codemeta_description(f, id = "https://doi.org/10.looks.like/doi")
-})
-
-testthat::test_that("several URLs", {
-  skip_if_offline()
-  skip_on_cran()
-  cm <- codemeta_description(example_file("DESCRIPTION_two_URLs"))
-  expect_equal(cm$codeRepository, "https://github.com/ropensci/essurvey")
-  expect_true("https://ropensci.github.io/essurvey/" %in%
-                cm$relatedLink)
-})
-
-testthat::test_that("no direct link to README", {
-  cm <- codemeta_description(example_file("DESCRIPTION_good_readmeinurl"))
-  expect_equal(cm$codeRepository, "https://github.com/ropensci/codemetar")
-  expect_true("https://ropensci.github.io/codemetar" %in%
-                cm$relatedLink)
-  expect_true("https://github.com/ropensci/codemetar#codemetar" %in%
-                cm$relatedLink)
+  id <- "https://doi.org/10.looks.like/doi"
+  cm <- codemeta_description(f, id = id)
+  expect_equal(cm$`@id`, id)
 })
 
 testthat::test_that("We can parse additional terms", {
@@ -56,11 +40,6 @@ testthat::test_that("Helper functions work correctly", {
   codemeta <- new_codemeta()
   codemeta$package <- "abc"
   descr <- desc::desc(example_file("DESCRIPTION_good"))
-
-  # test add_repository_terms()
-  expect_error(add_repository_terms())
-  result <- add_repository_terms(codemeta, descr)
-  expect_true(all(c("codeRepository", "relatedLink") %in% names(result)))
 
   # test add_language_terms()
   expect_error(add_language_terms())
@@ -96,4 +75,3 @@ testthat::test_that("Helper functions work correctly", {
   result <- add_additional_terms(codemeta, descr)
   expect_true(all(c("isPartOf", "keywords") %in% names(result)))
 })
-

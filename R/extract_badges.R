@@ -27,8 +27,11 @@ extract_md_badges <- function(path) {
     gsub("[^\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]", "", .) %>%
     xml2::read_xml() %>%
     xml2::xml_find_all(".//d1:link[d1:image]", xml2::xml_ns(.)) %>%
-    purrr::map_df(parse_md_badge)
+    purrr::map(parse_md_badge) %>%
+    bind_df()
 }
+
+
 
 # parse_html_badge -------------------------------------------------------------
 parse_html_badge <- function(badge) {
@@ -48,10 +51,10 @@ extract_html_badges <- function(path) {
   doc <- readLines(path, encoding = "UTF-8")
 
   # helper function assuming the badge table is the 1st one
-  find_first <- function(p) which(stringr::str_detect(doc, p))[1]
+  find_first <- function(p) which(grepl(p, doc))[1]
 
-  table_start <- find_first('\\<table class\\=\\"table\\"\\>')
-  table_end <- find_first('\\<\\/table\\>')
+  table_start <- find_first('\\<table class=\\"table\\">')
+  table_end <- find_first('<\\/table>')
 
   if (is.na(table_start) || is.na(table_end)) {
 
@@ -65,7 +68,8 @@ extract_html_badges <- function(path) {
 
   if (length(badges)) {
 
-    purrr::map_df(badges, parse_html_badge)
+    purrr::map(badges, parse_html_badge) %>%
+      bind_df()
 
   } else {
 

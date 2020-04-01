@@ -4,10 +4,15 @@
 \alias{create_codemeta}
 \title{create_codemeta}
 \usage{
-create_codemeta(pkg = ".", root = ".", id = NULL,
+create_codemeta(
+  pkg = ".",
+  root = ".",
+  id = NULL,
   use_filesize = FALSE,
   force_update = getOption("codemeta_force_update", TRUE),
-  verbose = TRUE, ...)
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{pkg}{package path to package root, or package name, or description file
@@ -19,13 +24,14 @@ root. Default guess is current dir.}
 \item{id}{identifier for the package, e.g. a DOI (or other resolvable URL)}
 
 \item{use_filesize}{whether to try to estimating and adding a filesize by using
-\code{base::files.ize()}. Files in \code{.Rbuildignore} are ignored.}
+\code{base::file.size()}. Files in \code{.Rbuildignore} are ignored.}
 
 \item{force_update}{Update guessed fields even if they are defined in an
 existing codemeta.json file}
 
 \item{verbose}{Whether to print messages indicating opinions e.g. when
-DESCRIPTION has no URL. See \code{\link{give_opinions}}.}
+DESCRIPTION has no URL. -- See \code{\link{give_opinions}};
+and indicating the progress of internet downloads.}
 
 \item{...}{additional arguments to \code{\link{write_json}}}
 }
@@ -34,7 +40,7 @@ a codemeta list object
 }
 \description{
 create a codemeta list object in R for further manipulation. Similar
-to \code{\link{write_codemeta}}, but returns an R list object rather
+to \code{\link[=write_codemeta]{write_codemeta()}}, but returns an R list object rather
 than writing directly to a file.  See examples.
 }
 \examples{

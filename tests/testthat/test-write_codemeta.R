@@ -3,10 +3,10 @@ testthat::context("write_codemeta")
 testthat::test_that("we can write a codemeta document given a package name", {
   skip_on_cran()
   skip_if_offline()
-
-  write_codemeta("codemetar")
-  testthat::expect_true(file.exists("codemeta.json"))
-  unlink("codemeta.json")
+  path <- tempfile(pattern = "codemetatest", fileext = ".json")
+  write_codemeta("codemetar", path = path)
+  testthat::expect_true(file.exists(path))
+  unlink(path)
 
 })
 
@@ -14,11 +14,12 @@ testthat::test_that("we can write a codemeta document given a package name", {
 testthat::test_that("We can read an existing codemeta.json file", {
   skip_on_cran()
   skip_if_offline()
-
-  write_codemeta("codemetar")
-  testthat::expect_true(file.exists("codemeta.json"))
-  write_codemeta("codemetar")
-  unlink("codemeta.json")
+  path <- tempfile(pattern = "codemetatest", fileext = ".json")
+  write_codemeta("codemetar", path = path)
+  testthat::expect_true(file.exists(path))
+  write_codemeta("codemetar", path = path)
+  testthat::expect_true(file.exists(path))
+  unlink(path)
 
 })
 
@@ -41,7 +42,7 @@ testthat::test_that("We can deduce relatedLink from installed pkg", {
   skip_if_offline()
 
   usethis_cm <- create_codemeta(find.package("usethis"))
-  testthat::expect_true("https://CRAN.R-project.org/package=usethis" %in%
+  testthat::expect_true("https://usethis.r-lib.org" %in%
                           usethis_cm$relatedLink)
 
 })
@@ -53,7 +54,3 @@ testthat::test_that("we can write codemeta given a codemeta object", {
   codemeta <- new_codemeta()
   expect_is(create_codemeta("codemetar", codemeta), "list")
 })
-
-##(author test below includes such a step already)
-
-

@@ -1,0 +1,12 @@
+You can install the latest version from CRAN using:
+
+```{r cran-installation, eval = FALSE}
+install.packages("codemetar")
+```
+
+You can also install the development version of `codemetar` from GitHub with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("remotes")
+remotes::install_github("ropensci/codemetar", ref = "dev")
+```

@@ -6,65 +6,90 @@
 \alias{codemetar-package}
 \title{codemetar: generate codemeta metadata for R packages}
 \description{
-The 'CodeMeta' Project defines a JSON-LD format for describing software metadata,
-as detailed at https://codemeta.github.io.
-This package provides utilities to generate, parse, and modify codemeta.jsonld
-files automatically for R packages, as well as tools and examples for working
-with codemeta JSON-LD more generally.
+The 'Codemeta' Project defines a 'JSON-LD' format
+    for describing software metadata, as detailed at
+    <https://codemeta.github.io>. This package provides utilities to
+    generate, parse, and modify 'codemeta.json' files automatically for R
+    packages, as well as tools and examples for working with
+    'codemeta.json' 'JSON-LD' more generally.
 }
 \details{
+\strong{Why bother creating a codemeta.json for your package?} R packages
+encode lots of metadata in the \code{DESCRIPTION} file, \code{README}, and other
+places, telling users and developers about the package purpose, authors,
+license, dependencies, and other information that facilitates discovery,
+adoption, and credit for your software. Unfortunately, because each
+software language records this metadata in a different format, that
+information is hard for search engines, software repositories, and other
+developers to find and integrate.
+
+By generating a \code{codemeta.json} file, you turn your metadata into a
+format that can \href{https://docs.ropensci.org/codemetar/crosswalk}{easily crosswalk} between
+metadata in many other software languages. CodeMeta is built on
+\href{https://schema.org}{schema.org} a simple \href{https://developers.google.com/search/docs/guides/intro-structured-data}{structured data}
+format developed by major search engines like Google and Bing to improve
+discoverability in search. CodeMeta is also understood by significant
+software archiving efforts such as \href{https://www.softwareheritage.org/}{Software Heritage} Project, which seeks to
+permanently archive all open source software.
+
+For more general information about the CodeMeta Project for defining
+software metadata, see \url{https://codemeta.github.io}. In particular, new
+users might want to start with the \href{https://codemeta.github.io/user-guide/}{User Guide}, while those looking to
+learn more about JSON-LD and consuming existing codemeta files should
+see the \href{https://codemeta.github.io/developer-guide/}{Developer Guide}.
+
+\strong{Why codemetar?} The ‘Codemeta’ Project defines a ‘JSON-LD’ format for
+describing software metadata, as detailed at
+\url{https://codemeta.github.io}. This package provides utilities to
+\strong{generate, parse, and modify codemeta.jsonld files automatically for R
+packages}, as well as tools and examples for \strong{working with codemeta
+json-ld more generally}.
+
 It has three main goals:
-
 \itemize{
-\item Quickly generate a valid codemeta.json file from any valid R package.
-  To do so, we automatically extract as much metadata as possible using
-  the DESCRIPTION file, as well as extracting metadata from other common
-  best-practices such as the presence of Travis and other badges in README, etc.
-\item Facilitate the addition of further metadata fields into a codemeta.json
-  file, as well as general manipulation of codemeta files.
-\item Support the ability to crosswalk between terms used in other metadata standards,
-  as identified by the CodeMeta Project Community, see https://codemeta.github.io/crosswalk
+\item Quickly \strong{generate a valid codemeta.json file from any valid R
+package}. To do so, we automatically extract as much metadata as
+possible using the DESCRIPTION file, as well as extracting metadata
+from other common best-practices such as the presence of Travis and
+other badges in README, etc.
+\item Facilitate the addition of further metadata fields into a
+codemeta.json file, as well as general manipulation of codemeta
+files.
+\item Support the ability to crosswalk between terms used in other
+metadata standards, as identified by the Codemeta Project Community,
+see \url{https://codemeta.github.io/crosswalk}
 }
-
-To learn more about codemetar, start with the vignettes:
-`browseVignettes(package = "codemetar")`
-
-For more general information about the CodeMeta Project for defining software metadata,
-see https://codemeta.github.io.  In particular, new users might want to start with
-the User Guide (https://codemeta.github.io/user-guide/), while those looking to learn
-more about JSON-LD and consuming existing codemeta files should see the
-Developer Guide (https://codemeta.github.io/developer-guide/).
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://github.com/ropensci/codemetar}
-  \item \url{https://ropensci.github.io/codemetar}
+  \item \url{https://docs.ropensci.org/codemetar}
   \item Report bugs at \url{https://github.com/ropensci/codemetar/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Carl Boettiger \email{cboettig@gmail.com} (0000-0002-1642-628X) [copyright holder]
+\strong{Maintainer}: Carl Boettiger \email{cboettig@gmail.com} (\href{https://orcid.org/0000-0002-1642-628X}{ORCID}) [copyright holder]
 
 Authors:
 \itemize{
-  \item Maëlle Salmon (0000-0002-2815-0399) [contributor]
+  \item Maëlle Salmon (\href{https://orcid.org/0000-0002-2815-0399}{ORCID}) [contributor]
 }
 
 Other contributors:
 \itemize{
-  \item Anna Krystalli (0000-0002-2378-4915) [reviewer, contributor]
-  \item Toph Allen (0000-0003-4580-091X) [reviewer]
+  \item Anna Krystalli (\href{https://orcid.org/0000-0002-2378-4915}{ORCID}) [reviewer, contributor]
+  \item Toph Allen (\href{https://orcid.org/0000-0003-4580-091X}{ORCID}) [reviewer]
   \item rOpenSci (https://ropensci.org/) [funder]
-  \item Katrin Leinweber (0000-0001-5135-5758) [contributor]
-  \item Noam Ross (0000-0002-2136-0000) [contributor]
+  \item Katrin Leinweber (\href{https://orcid.org/0000-0001-5135-5758}{ORCID}) [contributor]
+  \item Noam Ross (\href{https://orcid.org/0000-0002-2136-0000}{ORCID}) [contributor]
   \item Arfon Smith [contributor]
-  \item Jeroen Ooms (0000-0002-4035-0289) [contributor]
-  \item Sebastian Meyer (0000-0002-1791-9449) [contributor]
-  \item Michael Rustler (0000-0003-0647-7726) [contributor]
-  \item Hauke Sonnenberg (0000-0001-9134-2871) [contributor]
-  \item Sebastian Kreutzer (0000-0002-0734-2199) [contributor]
+  \item Jeroen Ooms (\href{https://orcid.org/0000-0002-4035-0289}{ORCID}) [contributor]
+  \item Sebastian Meyer (\href{https://orcid.org/0000-0002-1791-9449}{ORCID}) [contributor]
+  \item Michael Rustler (\href{https://orcid.org/0000-0003-0647-7726}{ORCID}) [contributor]
+  \item Hauke Sonnenberg (\href{https://orcid.org/0000-0001-9134-2871}{ORCID}) [contributor]
+  \item Sebastian Kreutzer (\href{https://orcid.org/0000-0002-0734-2199}{ORCID}) [contributor]
 }
 
 }

@@ -16,19 +16,18 @@ crosswalk(x, from, to = "codemeta", codemeta_context = NULL)
 \item{codemeta_context}{the address or contents of codemeta context. If not
 specified, the default "https://doi.org/10.5063/schema/codemeta-2.0" is
 used. The default is taken from the option "codemeta_context" and can thus
-be overridden by setting this option with \code{options(codemeta_context =
-<your_context_url>)}.}
+be overridden by setting this option with \verb{options(codemeta_context = <your_context_url>)}.}
 }
 \value{
-a `json` object containing a valid codemeta.json file created by
-  crosswalking the input JSON
+a \code{json} object containing a valid codemeta.json file created by
+crosswalking the input JSON
 }
 \description{
 Crosswalk between different metadata fields used by different repositories,
 registries and archives. For more details see
 https://codemeta.github.io/crosswalk This function requires an internet
 connection to obtain the latest crosswalk table. This function essentially
-applies the crosswalk table shown by \code{\link{crosswalk_table}} to a given
+applies the crosswalk table shown by \code{\link[=crosswalk_table]{crosswalk_table()}} to a given
 JSON metadata record.
 }
 \examples{

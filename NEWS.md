@@ -1,5 +1,37 @@
 # codemetar (development version)
 
+## Deprecation
+
+* The use_git_hook argument of write_codemeta() has been deprecated. Solutions for keeping DESCRIPTION and codemeta.json in sync are available in the docs.
+
+## Enhancements
+
+* Docs were improved to make a better case for codemetar.
+
+* Changes in the way codeRepository is guessed. codemetar can now recognize an URL from GitHub, GitLab, Bitbucket, R-Forge among several URLs in DESCRIPTION, to assign it to codeRepository. If no URL in DESCRIPTION is from any of these providers, `guess_github()` is called.
+
+* Adds documentation of internet needs and verbosity to steps downloading information from the web (#270, @Bisaloo)
+
+* New argument `write_minimeta` for `write_codemeta()` indicating whether to also create the file schemaorg.json that  corresponds to the metadata Google would validate, to be inserted to a webpage for SEO. It is saved as "schemaorg.json" alongside `path` (by default, "codemeta.json"). This functionality requires the `jsonld` package (listed under `Suggests`).
+
+## Bug fixes
+
+* Fix for detecting rOpenSci review badge (@sckott, #236)
+
+* Fix extraction of ORCID when composite comment (@billy34, #231)
+
+* Fix bug in crosswalking (#243)
+
+* Bug fix: the codeRepository is updated if there's any URL in DESCRIPTION.
+
+* Bug fix: the README information is now updated by codemeta_readme(). Previously if e.g. a developmentStatus had been set previously, it was never updated.
+
+## Internals
+
+* Code cleaning following the book Martin, Robert C. Clean code: a handbook of agile software craftsmanship. Pearson Education, 2009. (@hsonne, #201, #202, #204, #205, #206, #207, #209, #210, #211, #212, #216, #218, #219, #220, #221).
+
+* Use of re-usable Rmd pieces for the README, intro vignette and man pages to reduce copy-pasting.
+
 # codemetar 0.1.8 2019-05
 
 * address internet timeout issues

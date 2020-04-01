@@ -61,7 +61,8 @@ additional_codemeta_terms <- function() {
 
 # codemeta_description ---------------------------------------------------------
 # Can add to an existing codemeta document
-codemeta_description <- function(file, id = NULL, codemeta = new_codemeta()) {
+codemeta_description <- function(file, id = NULL, codemeta = new_codemeta(),
+                                 verbose = FALSE) {
 
   if (! file.exists(file)) {
 
@@ -106,14 +107,14 @@ codemeta_description <- function(file, id = NULL, codemeta = new_codemeta()) {
   codemeta <- add_language_terms(codemeta)
 
   if (is.null(codemeta$provider)) {
-    codemeta$provider <- guess_provider(package_name)
+    codemeta$provider <- guess_provider(package_name, verbose)
   }
 
   ## add person related terms
   codemeta <- add_person_terms(codemeta, descr)
 
   ## add software related terms: softwareSuggestions, softwareRequirements
-  codemeta <- add_software_terms(codemeta, descr)
+  codemeta <- add_software_terms(codemeta, descr, verbose)
 
   ## add any additional codemeta terms found in the DESCRIPTION metadata
   codemeta <- add_additional_terms(codemeta, descr)
@@ -137,16 +138,19 @@ add_repository_terms <- function(codemeta, descr) {
 
     } else {
 
-      # try to identify a GitHub or Gitlab repo
-      github_pattern <- "git(hub|lab)\\.com"
-      actual_code_repo <- grep(github_pattern, code_repo, value = TRUE)[1]
-
-      # no direct link to README please
-      actual_code_repo <- gsub("#.*", "", actual_code_repo)
+      # try to identify a code repo
+      actual_code_repo <- code_repo[urltools::domain(code_repo) %in%
+                                      source_code_domains()][1]
 
       # otherwise take the first URL arbitrarily
-      if (is.null(codemeta$Repository)) {
+      if (is.na(actual_code_repo)) {
+        codemeta$codeRepository <- code_repo[1]
+      } else {
+        # no direct link to README please
+        urltools::fragment(actual_code_repo) <- NULL
+
         codemeta$codeRepository <- actual_code_repo
+
       }
 
       # add other URLs as related links
@@ -166,7 +170,6 @@ add_language_terms <- function(codemeta) {
   codemeta$programmingLanguage <- list(
     "@type" = "ComputerLanguage",
     name = R.version$language,
-    version = paste(R.version$major, R.version$minor, sep = "."),
     # According to Crosswalk, we just want numvers and not R.version.string
     url = "https://r-project.org"
   )
@@ -207,7 +210,7 @@ add_person_terms <- function(codemeta, descr) {
 }
 
 # add_software_terms -----------------------------------------------------------
-add_software_terms <- function(codemeta, descr) {
+add_software_terms <- function(codemeta, descr, verbose = FALSE) {
 
   dependencies <- descr$get_deps()
 
@@ -223,11 +226,12 @@ add_software_terms <- function(codemeta, descr) {
     remotes = remotes
   )
 
-  codemeta$softwareSuggestions <- parse_depends(suggests)
+  codemeta$softwareSuggestions <- parse_depends(suggests, verbose)
 
   codemeta$softwareRequirements <- c(
-    parse_depends(requirements),
-    parse_sys_reqs(descr$get("Package"), descr$get("SystemRequirements"))
+    parse_depends(requirements, verbose = verbose),
+    parse_sys_reqs(descr$get("Package"), descr$get("SystemRequirements"),
+                   verbose)
   )
 
   codemeta
@@ -262,3 +266,13 @@ add_additional_terms <- function(codemeta, descr) {
   codemeta
 }
 
+github_domains <- function() {
+  c("github.com", "www.github.com")
+}
+
+source_code_domains <- function() {
+  c(github_domains(),
+    "gitlab.com",
+    "r-forge.r-project.org",
+    "bitbucket.org")
+}

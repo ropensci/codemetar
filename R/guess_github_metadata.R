@@ -1,9 +1,9 @@
 # remote_urls ------------------------------------------------------------------
-remote_urls <- function (r) {
+remote_urls <- function (path) {
 
-  remotes <- git2r::remotes(r)
+  remotes <- gert::git_remote_list(path)
 
-  stats::setNames(git2r::remote_url(r, remotes), remotes)
+  stats::setNames(remotes[["url"]], remotes[["name"]])
 }
 
 # guess_github -----------------------------------------------------------------
@@ -18,24 +18,46 @@ guess_github <- function(root = ".") {
     return(NULL)
   }
 
-  root %>%
-    git2r::repository(discover = TRUE) %>%
-    remote_urls() %>%
-    grep(pattern = "github", value = TRUE) %>%
-    getElement(1) %>%
-    gsub(pattern = "git@github.com:", replacement = "https://github.com/") %>%
-    gsub(pattern = "\\.git$", replacement = "")
+  remote_urls <- root %>%
+    remote_urls()
+
+  is_github <- function(url){
+    info <- try(remotes::parse_github_url(url),
+                silent = TRUE)
+
+    !is(info, "try-error")
+  }
+
+  whether_github <- unlist(
+    lapply(remote_urls, is_github))
+
+  github <- remote_urls[whether_github][1]
+
+  if (is.na(github)) {
+    return(NULL)
+  } else {
+    parsed <- remotes::parse_github_url(github)
+    return(glue::glue("https://github.com/{parsed$username}/{parsed$repo}"))
+  }
+
 }
 
 # github_path ------------------------------------------------------------------
 
-#' @importFrom git2r repository branches
-github_path <- function(root, path) {
+github_path <- function(root, path, cm) {
 
-  if (is.null(base <- guess_github(root))) {
-
+  if (!urltools::domain(cm$codeRepository) %in%
+      github_domains()) {
     return(NULL)
   }
+
+  github <- remotes::parse_github_url(cm$codeRepository)
+
+  base <- paste0(
+    "https://github.com/",
+    github$username, "/",
+    github$repo
+    )
 
   branch <- getOption("codemeta_branch", "master")
 
@@ -43,18 +65,18 @@ github_path <- function(root, path) {
 }
 
 # add_github_topics ------------------------------------------------------------
-add_github_topics <- function(codemeta) {
+add_github_topics <- function(codemeta, verbose = FALSE) {
 
-  github <- codemeta$codeRepository %>%
-    stringr::str_remove(".*github\\.com\\/") %>%
-    stringr::str_remove("#.*") %>%
-    stringr::str_split("/") %>%
-    getElement(1)
+  github <- remotes::parse_github_url(codemeta$codeRepository)
+
+  if (verbose) {
+    cli::cat_bullet("Getting repo topics from GitHub API", bullet = "continue")
+  }
 
   topics <- try(silent = TRUE, gh::gh(
     endpoint = "GET /repos/:owner/:repo/topics",
-    repo = github[2],
-    owner = github[1],
+    repo = github$repo,
+    owner = github$username,
     .send_headers = c(Accept = "application/vnd.github.mercy-preview+json")
   ))
 
@@ -63,6 +85,14 @@ add_github_topics <- function(codemeta) {
     topics <- unlist(topics$names)
 
     codemeta$keywords <- unique(c(codemeta$keywords, topics))
+
+    if (verbose) {
+      cli::cat_bullet("Got repo topics!", bullet = "tick")
+    }
+  } else {
+    if (verbose) {
+      cli::cat_bullet("Did not get repo topics.", bullet = "cross")
+    }
   }
 
   codemeta

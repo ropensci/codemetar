@@ -6,7 +6,7 @@
 #' registries and archives. For more details see
 #' https://codemeta.github.io/crosswalk This function requires an internet
 #' connection to obtain the latest crosswalk table. This function essentially
-#' applies the crosswalk table shown by \code{\link{crosswalk_table}} to a given
+#' applies the crosswalk table shown by [crosswalk_table()] to a given
 #' JSON metadata record.
 #' @param x a JSON list or file with data fields to be crosswalked
 #' @param from the corresponding column name from the crosswalk table.
@@ -14,8 +14,8 @@
 #' @param codemeta_context the address or contents of codemeta context. If not
 #'   specified, the default "https://doi.org/10.5063/schema/codemeta-2.0" is
 #'   used. The default is taken from the option "codemeta_context" and can thus
-#'   be overridden by setting this option with \code{options(codemeta_context =
-#'   <your_context_url>)}.
+#'   be overridden by setting this option with `options(codemeta_context =
+#'   <your_context_url>)`.
 #' @return a `json` object containing a valid codemeta.json file created by
 #'   crosswalking the input JSON
 #' @export
@@ -27,7 +27,7 @@
 #' }
 #'
 crosswalk <- function(x, from, to = "codemeta", codemeta_context = NULL) {
-  
+
   if (!requireNamespace("jsonld", quietly = TRUE)) {
     stop("Package jsonld required. Please install before re-trying.")
   }
@@ -48,10 +48,16 @@ crosswalk <- function(x, from, to = "codemeta", codemeta_context = NULL) {
     codemeta_context
   }
 
-  # ids need to be coerced to character in order to be compacted by jsonld
-  x$id <- as.character(x$id)
-  x$owner$id <- as.character(x$owner$id)
-  x$organization$id <- as.character(x$organization$id)
+  # ids need to be coerced to character in order to be compacted by jsonld, but
+  # shouldn't be coerced if ids don't exist otherwise NULL ids are created and
+  # expansion results in error.
+  if (!is.null(x$id)) {
+    x$id <- as.character(x$id)
+  } else if (!is.null(x$owner$id)) {
+    x$owner$id <- as.character(x$owner$id)
+  } else if (!is.null(x$organization$id)) {
+    x$organization$id <- as.character(x$organization$id)
+  }
 
   crosswalk_transform(
     x, crosswalk_context = from_context, codemeta_context = to_context
@@ -62,11 +68,11 @@ crosswalk <- function(x, from, to = "codemeta", codemeta_context = NULL) {
 
 #' Return Given Context or Default Context if NULL
 #'
-#' @param codemeta_context context to be checked for \code{NULL}
+#' @param codemeta_context context to be checked for `NULL`
 #' @return \describe{
-#'   \item{\code{codemeta_context}}{if \code{codemeta_context} is not \code{NULL},}
-#'   \item{the value of option \code{codemeta_context}}{if thisoption is set,}
-#'   \item{the value returned by \code{codemetar:::url_codemeta_schema()}}{else.}
+#'   \item{`codemeta_context`}{if `codemeta_context` is not `NULL`,}
+#'   \item{the value of option `codemeta_context`}{if thisoption is set,}
+#'   \item{the value returned by `codemetar:::url_codemeta_schema()`}{else.}
 #' }
 #' @noRd
 default_context_if_null <- function(codemeta_context)
@@ -179,10 +185,22 @@ crosswalk_transform <- function(
 
   codemeta_context <- default_context_if_null(codemeta_context)
 
-  add_context(x, context = crosswalk_context) %>%
-    jsonlite::toJSON(auto_unbox = TRUE, pretty = TRUE) %>%
-    jsonld::jsonld_expand() %>%
-    jsonld::jsonld_compact(context = codemeta_context)
+  if (is.null(x$`@context`)) {
+
+    add_context(x, context = crosswalk_context) %>%
+      jsonlite::toJSON(auto_unbox = TRUE, pretty = TRUE) %>%
+      jsonld::jsonld_expand() %>%
+      jsonld::jsonld_compact(context = codemeta_context)
+
+  } else {
+
+    jsonlite::toJSON(x, auto_unbox = TRUE, pretty = TRUE) %>%
+      jsonld::jsonld_expand() %>%
+      jsonld::jsonld_compact(context = codemeta_context)
+
+  }
+
+
 }
 
 # drop_context -----------------------------------------------------------------
@@ -191,9 +209,9 @@ crosswalk_transform <- function(
 #'
 #' Drop context element from json list or json string
 #'
-#' @param x a JSON list (from \code{\link[jsonlite]{read_json}} /
-#'   \code{\link[jsonlite]{fromJSON}}) or json object (from
-#'   \code{\link[jsonlite]{toJSON}})
+#' @param x a JSON list (from [jsonlite::read_json()] /
+#'   [jsonlite::fromJSON()]) or json object (from
+#'   [jsonlite::toJSON()])
 #' @param json_output logical, should output be a json object or a list?
 #' @return a list or json object with the "@context" element removed
 #' @importFrom jsonlite toJSON fromJSON
@@ -210,9 +228,9 @@ drop_context <-function(x, json_output = FALSE) {
 #'
 #' Add context element to json list or json string
 #'
-#' @param x a JSON list (from \code{\link[jsonlite]{read_json}} /
-#'   \code{\link[jsonlite]{fromJSON}}) or json object (from
-#'   \code{\link[jsonlite]{toJSON}})
+#' @param x a JSON list (from [jsonlite::read_json()] /
+#'   [jsonlite::fromJSON()]) or json object (from
+#'   [jsonlite::toJSON()])
 #' @param json_output logical, should output be a json object or a list?
 #' @param context context to be added, in same format as x
 #' @return a list or json object with "@context" element added
@@ -233,7 +251,7 @@ add_context <- function(x, context, json_output = FALSE) {
 #' @param x a JSON list (from read_json / fromJSON) or json object (from toJSON)
 #' @param new_context new value for the context element
 #' @param json_output logical, should output be a json object or a list?
-#' @return a list or json object with "@context" element set to \code{context}
+#' @return a list or json object with "@context" element set to `context`
 #' @noRd
 set_context <- function(x, new_context, json_output = FALSE) {
 

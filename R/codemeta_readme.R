@@ -28,6 +28,13 @@ get_badge_links_matching <- function(readme, pattern) {
   # else NULL implicitly
 }
 
+# which_url_matches_badge_link -------------------------------------------------
+which_url_matches_badge_link <- function(readme, patterns) {
+  badges <- extract_badges(readme)
+  z <- vapply(patterns, function(z) any(grepl(z, x = badges$link)), logical(1))
+  names(which(z))
+}
+
 # get_pkg_name -----------------------------------------------------------------
 get_pkg_name <- function(entry) {
 
@@ -40,7 +47,16 @@ get_pkg_name <- function(entry) {
 
   url_onboarded_json <- "https://badges.ropensci.org/json/onboarded.json"
 
-  reviews <- jsonlite::read_json(url_onboarded_json)
+  reviews <- suppressWarnings(
+    try(jsonlite::read_json(url_onboarded_json),
+                 silent = TRUE))
+
+  if (is(reviews, "try-error")) {
+    return(tibble::tibble(
+      review = 0,
+      package = "Nope"
+    ))
+  }
 
   tibble::tibble(
     review = purrr::map_dbl(reviews, "iss_no"),
@@ -54,51 +70,69 @@ ropensci_reviews <- memoise::memoise(.ropensci_reviews)
 guess_ropensci_review <- function(readme) {
 
   url <- "github.com/ropensci/onboarding/issues/"
+  url2 <- "github.com/ropensci/software-review/issues/"
 
-  badges <- get_badge_links_matching(readme, url)
+  badges <- get_badge_links_matching(readme, paste0(url, "|", url2))
 
   if (is.null(badges)) {
 
     return(NULL)
   }
 
-  review <- as.numeric(stringr::str_remove(badges, paste0(".*https://", url)))
+  url_m <- which_url_matches_badge_link(readme, c(url, url2))
+  review <- as.numeric(gsub(paste0(".*https://", url_m), "", badges))
 
   if (review %in% ropensci_reviews()$review) {
 
     list("@type" = "Review",
-         "url" = paste0("https://", url, review),
-         "provider" = "http://ropensci.org")
+         "url" = paste0("https://", url2, review),
+         "provider" = "https://ropensci.org")
   }
   # else NULL implicitly
 }
 
 # guess_readme_url -------------------------------------------------------------
 # find the readme
-guess_readme_url <- function(root) {
+.guess_readme_url <- function(root, verbose = FALSE, cm) {
 
-  if (! uses_git(root)) {
-
-    return(NULL)
+  if (!urltools::domain(cm$codeRepository) %in%
+      github_domains()) {
+      return(NULL)
   }
 
-  github <- stringr::str_remove(guess_github(root), ".*com\\/")
+  github <- remotes::parse_github_url(cm$codeRepository)
 
-  parts <- strsplit(github, "/")[[1]]
-
+  if (verbose) {
+    cli::cat_bullet("Asking README URL from GitHub API", bullet = "continue")
+  }
   readme <- try(silent = TRUE, gh::gh(
-    "GET /repos/:owner/:repo/readme", owner = parts[1], repo = parts[2]
+    "GET /repos/:owner/:repo/readme",
+    owner = github$username,
+    repo = github$repo
   ))
 
   if (! inherits(readme, "try-error")) {
 
-    readme$html_url
+    if (verbose) {
+      cli::cat_bullet("Got README URL!", bullet = "tick")
+    }
+
+    return(readme$html_url)
+
+  } else {
+    if (verbose) {
+      cli::cat_bullet("Did not get README URL.", bullet = "cross")
+    }
+    return(NULL)
   }
+
+
   # else NULL implicitly
 }
 
+guess_readme_url <- memoise::memoise(.guess_readme_url)
 # guess_readme_path ------------------------------------------------------------
-guess_readme_path <- function(root) {
+.guess_readme_path <- function(root) {
 
   readmes <- dir(root, pattern = "^README\\.R?md$", ignore.case = TRUE)
 
@@ -124,24 +158,24 @@ guess_readme_path <- function(root) {
   # match (locale-dependent). Prepend the root path.
   file.path(root, readme_file[1])
 }
-
+guess_readme_path <- memoise::memoise(.guess_readme_path)
 # .guess_readme ----------------------------------------------------------------
-.guess_readme <- function(root = ".") {
+guess_readme <- function(root = ".", verbose = FALSE, cm) {
 
   list(
     readme_path = guess_readme_path(root),
-    readme_url = guess_readme_url(root)
+    readme_url = guess_readme_url(root, verbose, cm)
   )
 }
 
-guess_readme <- memoise::memoise(.guess_readme)
+
 
 # codemeta_readme --------------------------------------------------------------
 codemeta_readme <- function(readme, codemeta) {
 
   codemeta %>%
-    set_element_if_null("contIntegration", guess_ci(readme)) %>%
-    set_element_if_null("developmentStatus", guess_devStatus(readme)) %>%
-    set_element_if_null("review", guess_ropensci_review(readme))
+    set_element("contIntegration", guess_ci(readme)) %>%
+    set_element("developmentStatus", guess_devStatus(readme)) %>%
+    set_element("review", guess_ropensci_review(readme))
 }
 

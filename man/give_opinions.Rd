@@ -4,10 +4,12 @@
 \alias{give_opinions}
 \title{Function giving opinions about a package}
 \usage{
-give_opinions(pkg_path = getwd())
+give_opinions(pkg_path = getwd(), verbose = FALSE)
 }
 \arguments{
 \item{pkg_path}{Path to the package root}
+
+\item{verbose}{Whether to print message related to internet download progress.}
 }
 \value{
 A data.frame of opinions
