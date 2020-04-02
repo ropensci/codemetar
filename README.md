@@ -76,7 +76,6 @@ much information as possible.
 
 ``` r
 codemetar::write_codemeta(find.package("codemetar"))
-[1] "/home/maelle/R/x86_64-pc-linux-gnu-library/3.6/codemetar"
 … Getting CRAN metadata from RStudio CRAN mirror
 ✓ Got CRAN metadata!
 … Getting Bioconductor metadata
@@ -112,10 +111,9 @@ codemetar::write_codemeta(find.package("codemetar"))
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
+  "runtimePlatform": "R version 3.6.3 (2020-02-29)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -619,7 +617,8 @@ codemetar::write_codemeta(find.package("codemetar"))
   ],
   "isPartOf": "https://ropensci.org",
   "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
-  "readme": "https://github.com/ropensci/codemetar/blob/master/README.md"
+  "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
+  "fileSize": "2441.284KB"
 }
 ```
 
@@ -636,7 +635,6 @@ package, e.g. for `testthat`. That will use information from
 
 ``` r
 codemetar::write_codemeta("testthat", path = "example-codemeta.json")
-[1] "/home/maelle/R/x86_64-pc-linux-gnu-library/3.6/testthat/."
 … Getting sysreqs URL from sysreqs API
 ✓ Got sysreqs URL from sysreqs API!
 … Asking README URL from GitHub API
@@ -664,14 +662,13 @@ codemetar::write_codemeta("testthat", path = "example-codemeta.json")
   "relatedLink": ["http://testthat.r-lib.org", "https://CRAN.R-project.org/package=testthat"],
   "issueTracker": "https://github.com/r-lib/testthat/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
+  "runtimePlatform": "R version 3.6.3 (2020-02-29)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -962,6 +959,7 @@ codemetar::write_codemeta("testthat", path = "example-codemeta.json")
     }
   ],
   "readme": "https://github.com/r-lib/testthat/blob/master/README.md",
+  "fileSize": "5752.287KB",
   "keywords": ["r", "unit-testing"],
   "citation": [
     {
@@ -1310,4 +1308,8 @@ for more guidance.
 }
     </script>
 
-[![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
+## Code of Conduct
+
+Please note that the codemetar project is released with a [Contributor
+Code of Conduct](https://ropensci.org/code-of-conduct/). By contributing
+to this project, you agree to abide by its terms.
