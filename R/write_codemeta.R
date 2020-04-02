@@ -66,7 +66,8 @@ write_codemeta <- function(
     usethis::use_build_ignore(codemeta_json)
   }
   # Create or update codemeta and save to disk
-  create_codemeta(pkg = pkg, root = root, use_filesize = use_filesize) %>%
+  create_codemeta(pkg = pkg, root = root, use_filesize = use_filesize,
+                  verbose = verbose) %>%
     jsonlite::write_json(path, pretty = TRUE, auto_unbox = TRUE, ...)
 
   # Create minimeta and save to disk

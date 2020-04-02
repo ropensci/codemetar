@@ -47,8 +47,9 @@ guess_fileSize <- function(root = ".", .ignore = NULL) {
 
   ## check for .Rbuildignore, everything listed should be excluded since
   ## it will not become part of the final package
-  if (file.exists(".Rbuildignore") && is.null(.ignore)){
-    .ignore <- readLines(normalizePath(paste0(root,"Rbuildignore")), warn = FALSE)
+  rbuildignore_path <- file.path(root,".Rbuildignore")
+  if (file.exists(rbuildignore_path) && is.null(.ignore)){
+    .ignore <- readLines(normalizePath(rbuildignore_path), warn = FALSE)
 
   }else{
     .ignore <- " "
