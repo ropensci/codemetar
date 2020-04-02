@@ -4,7 +4,7 @@ testthat::test_that("we can write a codemeta document given a package name", {
   skip_on_cran()
   skip_if_offline()
   path <- tempfile(pattern = "codemetatest", fileext = ".json")
-  write_codemeta("codemetar", path = path)
+  write_codemeta("codemetar", path = path, verbose = FALSE)
   testthat::expect_true(file.exists(path))
   unlink(path)
 
@@ -15,9 +15,9 @@ testthat::test_that("We can read an existing codemeta.json file", {
   skip_on_cran()
   skip_if_offline()
   path <- tempfile(pattern = "codemetatest", fileext = ".json")
-  write_codemeta("codemetar", path = path)
+  write_codemeta("codemetar", path = path, verbose = FALSE)
   testthat::expect_true(file.exists(path))
-  write_codemeta("codemetar", path = path)
+  write_codemeta("codemetar", path = path, verbose = FALSE)
   testthat::expect_true(file.exists(path))
   unlink(path)
 
@@ -27,11 +27,11 @@ testthat::test_that("We can use either a path or pkg name in writing", {
   skip_on_cran()
   skip_if_offline()
 
-  write_codemeta(path.package("codemetar"))
+  write_codemeta(path.package("codemetar"), verbose = FALSE)
   testthat::expect_true(file.exists("codemeta.json"))
   unlink("codemeta.json")
 
-  write_codemeta("codemetar")
+  write_codemeta("codemetar", verbose = FALSE)
   testthat::expect_true(file.exists("codemeta.json"))
   unlink("codemeta.json")
 
