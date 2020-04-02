@@ -41,7 +41,7 @@ testthat::test_that("We can deduce relatedLink from installed pkg", {
   skip_on_cran()
   skip_if_offline()
 
-  usethis_cm <- create_codemeta(find.package("usethis"))
+  usethis_cm <- create_codemeta(find.package("usethis"), verbose = FALSE)
   testthat::expect_true("https://usethis.r-lib.org" %in%
                           usethis_cm$relatedLink)
 
@@ -52,5 +52,5 @@ testthat::test_that("we can write codemeta given a codemeta object", {
   skip_on_cran()
   skip_if_offline()
   codemeta <- new_codemeta()
-  expect_is(create_codemeta("codemetar", codemeta), "list")
+  expect_is(create_codemeta("codemetar", codemeta, verbose = FALSE), "list")
 })
