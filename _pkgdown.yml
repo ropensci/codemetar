@@ -26,7 +26,7 @@ navbar:
       href: reference/index.html
     intro:
       text: Intro
-      href: articles/codemeta.html
+      href: articles/codemetar.html
     articles:
       text: Advanced
       menu:
