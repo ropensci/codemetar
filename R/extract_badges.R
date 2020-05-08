@@ -62,7 +62,7 @@ extract_html_badges <- function(path) {
   }
 
   badges <- doc[table_start:table_end] %>%
-    glue::glue_collapse() %>%
+    paste0(collapse = "") %>%
     xml2::read_html() %>%
     xml2::xml_find_all("//a")
 

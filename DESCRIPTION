@@ -72,7 +72,6 @@ Imports:
     desc,
     gert,
     gh,
-    glue,
     jsonlite (>= 1.6),
     magrittr,
     memoise,
