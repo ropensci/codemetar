@@ -244,7 +244,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.0.0"
+      "version": ">= 3.2.0"
     },
     {
       "@type": "SoftwareApplication",
@@ -269,18 +269,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=crul"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "curl",
-      "name": "curl",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=curl"
     },
     {
       "@type": "SoftwareApplication",
@@ -513,7 +501,7 @@
   "isPartOf": "https://ropensci.org",
   "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
-  "fileSize": "2255.003KB",
+  "fileSize": "2254.763KB",
   "contIntegration": ["https://travis-ci.org/ropensci/codemetar", "https://ci.appveyor.com/project/cboettig/codemetar/branch/master", "https://codecov.io/github/ropensci/codemetar?branch=master"],
   "developmentStatus": "http://www.repostatus.org/#active",
   "review": {
