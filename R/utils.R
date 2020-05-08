@@ -76,23 +76,6 @@ uses_git <- function(path = usethis::proj_get()) {
   !is.null(tryCatch(gert::git_find(path), error = function(e){NULL}))
 }
 
-# from usethis cf https://github.com/r-lib/usethis/blob/4fb556788d2588facaaa8560242d2c83f2261d6e/R/helpers.R#L55
-# this is GPL-3 code
-render_template <- function(template, data = list(), package = "codemetar") {
-
-  template_path <- find_template(template, package = package)
-
-  strsplit(whisker::whisker.render(readLines(template_path), data), "\n")[[1]]
-}
-
-# find_template-----------------------------------------------------------------
-# from usethis cf https://github.com/r-lib/usethis/blob/4fb556788d2588facaaa8560242d2c83f2261d6e/R/helpers.R#L60
-# this is GPL-3 code
-find_template <- function(template_name, package = "usethis") {
-
-  package_file(package, "templates", template_name)
-}
-
 # get_url_status_code ----------------------------------------------------------
 get_url_status_code <- function(url) {
 
