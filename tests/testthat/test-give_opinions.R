@@ -93,13 +93,13 @@ test_that("add_url_fixmes() works", {
   expect_match(result_3[2], "Indicate the URL")
 })
 
-test_that("fixmes_as_tibble_or_message() works", {
+test_that("fixmes_as_df_or_message() works", {
 
-  expect_missing_error(fixmes_as_tibble_or_message())
-  expect_missing_error(fixmes_as_tibble_or_message("fix!"))
+  expect_missing_error(fixmes_as_df_or_message())
+  expect_missing_error(fixmes_as_df_or_message("fix!"))
 
-  result <- fixmes_as_tibble_or_message("fix!", "my-package")
-  expect_is(result, "tbl_df")
+  result <- fixmes_as_df_or_message("fix!", "my-package")
+  expect_is(result, "data.frame")
   expect_identical(dim(result), c(1L, 2L))
   expect_identical(names(result), c("where", "fixme"))
   expect_identical(result$where, "my-package")

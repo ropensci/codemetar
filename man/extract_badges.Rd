@@ -10,7 +10,7 @@ extract_badges(path)
 \item{path}{Path to Markdown file}
 }
 \value{
-A tibble with for each badge its text, link and link to
+A data.frame with for each badge its text, link and link to
 its image.
 }
 \description{

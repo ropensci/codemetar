@@ -84,7 +84,6 @@ Imports:
     remotes,
     sessioninfo,
     stats,
-    tibble,
     urltools,
     usethis,
     xml2,

@@ -241,3 +241,11 @@ call_if <- function(condition, x, FUN, ...) {
 bind_df <- function(dfs) {
   do.call("rbind", dfs)
 }
+
+# df
+df <- function(...) {
+  data.frame(
+    ...,
+    stringsAsFactors = FALSE
+    )
+}

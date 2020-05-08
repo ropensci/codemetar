@@ -69,7 +69,7 @@ read_description_if_null <- function(description, description_file) {
 #' @param description Description object as read with
 #'   [desc::desc()]. If not provided, the path to a DESCRIPTION file
 #'   must be given in `description_file`.
-#' @return `tibble` with columns `where`, `fixme` or `NULL`
+#' @return `data.frame` with columns `where`, `fixme` or `NULL`
 #'   if there are no opionions about the DESCRIPTION file.
 #' @noRd
 give_opinions_desc <- function(description_file, description = NULL) {
@@ -101,7 +101,7 @@ give_opinions_desc <- function(description_file, description = NULL) {
     message_id = "hint_add_bug_report_url"
   )
 
-  fixmes_as_tibble_or_message(fixmes, where = "DESCRIPTION")
+  fixmes_as_df_or_message(fixmes, where = "DESCRIPTION")
 }
 
 # add_url_fixmes ---------------------------------------------------------------
@@ -121,12 +121,12 @@ add_url_fixmes <- function(
   fixmes
 }
 
-# fixmes_as_tibble_or_message ---------------------------------------------------
-fixmes_as_tibble_or_message <- function(fixmes, where, message_id = NULL) {
+# fixmes_as_df_or_message ---------------------------------------------------
+fixmes_as_df_or_message <- function(fixmes, where, message_id = NULL) {
 
   if (length(fixmes)) {
 
-    tibble::tibble(where = where, fixme = fixmes)
+    df(where = where, fixme = fixmes)
 
   } else if (! is.null(message_id)) {
 
@@ -172,7 +172,7 @@ give_opinions_readme <- function(readme_path, pkg_name, verbose = FALSE) {
     ))
   }
 
-  fixmes_as_tibble_or_message(fixmes, "README", "hint_highest_opinion")
+  fixmes_as_df_or_message(fixmes, "README", "hint_highest_opinion")
 }
 
 # has_provider_but_no_badge ----------------------------------------------------
