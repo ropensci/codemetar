@@ -84,7 +84,6 @@ Imports:
     sessioninfo,
     stats,
     urltools,
-    usethis,
     xml2,
     cli
 Suggests: 
