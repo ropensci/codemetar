@@ -11,11 +11,11 @@ testthat::test_that("we can validate this file", {
 })
 
 
-testthat::test_that("we can create & validate codemeta for usethis package", {
+testthat::test_that("we can create & validate codemeta for xml2 package", {
   skip_on_cran()
   skip_if_offline()
   path <- tempfile(pattern = "codemetatest", fileext = ".json")
-  write_codemeta("usethis", path, verbose = FALSE)
+  write_codemeta("xml2", path, verbose = FALSE)
   testthat::expect_true(codemeta_validate(path))
   unlink(path)
 
