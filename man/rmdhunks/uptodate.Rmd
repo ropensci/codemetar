@@ -15,7 +15,9 @@ usethis::use_git_hook("pre-commit",
 ```
 
 * You could use GitHub actions. Refer to GitHub actions docs <https://github.com/features/actions>, and to the example workflow provided in this package (type `system.file("templates", "codemeta-github-actions.yml", package = "codemetar")`). You can use the `cm-skip` keyword in your commit message if you don't want this to run on a specific commit. 
-If you take the GitHub actions route, you should try to remember to run `git pull` before making any new changes on your local project. However, if you forgot to pull and already committed new changes, fret not, you can use ([`git pull --rebase`](https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843)) to rewind you local changes on top of the current upstream `HEAD`. 
+The example workflow provided is setup to only run when a push is made to the master branch. This setup is designed for if you're using a [git flow](https://nvie.com/posts/a-successful-git-branching-model/#the-main-branches) setup where the master branch is only committed and pushed to via pull requests. After each PR merge (and the completion of this GitHub action), your master branch will always be up to date and so long as you don't make manual changes to the codemeta.json file, you won't have merge conflicts.
+
+Alternatively, you can have GitHub actions route run `codemetar` on each commit. If you do this you should try to remember to run `git pull` before making any new changes on your local project. However, if you forgot to pull and already committed new changes, fret not, you can use ([`git pull --rebase`](https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843)) to rewind you local changes on top of the current upstream `HEAD`. 
 
 ```{r, echo = FALSE}
 details::details(system.file("templates", "codemeta-github-actions.yml", package = "codemetar"), 
