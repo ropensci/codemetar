@@ -81,7 +81,6 @@ Imports:
     pingr,
     pkgbuild,
     purrr,
-    readr,
     remotes,
     sessioninfo,
     stats,
