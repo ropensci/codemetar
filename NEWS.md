@@ -4,6 +4,8 @@
 
 * The use_git_hook argument of write_codemeta() has been deprecated. Solutions for keeping DESCRIPTION and codemeta.json in sync are available in the docs.
 
+* drops `crosswalk`, [#288]
+
 ## Enhancements
 
 * Docs were improved to make a better case for codemetar.
