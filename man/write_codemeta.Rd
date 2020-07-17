@@ -96,8 +96,9 @@ being done if DESCRIPTION is newer than codemeta.json.
 \item You can use the \href{https://github.com/lorenzwalthert/precommit}{precommit package} in which
 there’s a “codemeta-description-updated” hook.
 \item If that’s your only pre-commit hook (i.e. you don’t have one
-created by e.g. \code{usethis::use_readme_rmd()}), then you can
-create it using
+created by e.g. \code{usethis::use_readme_rmd()}), then you can
+create it
+using
 }
 }\if{html}{\out{
 <!-- end list -->

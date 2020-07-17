@@ -79,7 +79,6 @@ Imports:
     pingr,
     pkgbuild,
     purrr,
-    readr,
     remotes,
     sessioninfo,
     stats,
@@ -100,7 +99,7 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 X-schema.org-isPartOf: https://ropensci.org
 X-schema.org-keywords: metadata, codemeta, ropensci, citation,
     credit, linked-data
