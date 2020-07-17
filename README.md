@@ -53,10 +53,9 @@ information is hard for search engines, software repositories, and other
 developers to find and integrate.
 
 By generating a `codemeta.json` file, you turn your metadata into a
-format that can [easily
-crosswalk](https://docs.ropensci.org/codemetar/crosswalk) between
-metadata in many other software languages. CodeMeta is built on
-[schema.org](https://schema.org) a simple [structured
+format that can easily crosswalk between metadata in many other software
+languages. CodeMeta is built on [schema.org](https://schema.org) a
+simple [structured
 data](https://developers.google.com/search/docs/guides/intro-structured-data)
 format developed by major search engines like Google and Bing to improve
 discoverability in search. CodeMeta is also understood by significant
@@ -147,11 +146,11 @@ codemetar::write_codemeta(find.package("codemetar"))
 … Getting sysreqs URL from sysreqs API
 ✓ Got sysreqs URL from sysreqs API!
 … Asking README URL from GitHub API
-x Did not get README URL.
+✓ Got README URL!
 … Asking README URL from GitHub API
-x Did not get README URL.
+✓ Got README URL!
 … Getting repo topics from GitHub API
-x Did not get repo topics.
+✓ Got repo topics!
 … Getting CRAN metadata from RStudio CRAN mirror
 ✓ Got CRAN metadata!
 … Getting Bioconductor metadata
@@ -606,7 +605,8 @@ x Did not get repo topics.
     }
   ],
   "isPartOf": "https://ropensci.org",
-  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data"],
+  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
+  "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
   "fileSize": "2429.096KB"
 }
 ```
@@ -675,11 +675,11 @@ codemetar::write_codemeta("testthat", path = "example-codemeta.json")
 … Getting sysreqs URL from sysreqs API
 ✓ Got sysreqs URL from sysreqs API!
 … Asking README URL from GitHub API
-x Did not get README URL.
+✓ Got README URL!
 … Asking README URL from GitHub API
-x Did not get README URL.
+✓ Got README URL!
 … Getting repo topics from GitHub API
-x Did not get repo topics.
+✓ Got repo topics!
 … Getting CRAN metadata from RStudio CRAN mirror
 ✓ Got CRAN metadata!
 ```
@@ -997,7 +997,9 @@ x Did not get repo topics.
       "sameAs": "https://CRAN.R-project.org/package=withr"
     }
   ],
+  "readme": "https://github.com/r-lib/testthat/blob/master/README.md",
   "fileSize": "9546.886KB",
+  "keywords": ["r", "unit-testing"],
   "citation": [
     {
       "@type": "ScholarlyArticle",
