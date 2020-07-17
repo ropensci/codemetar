@@ -69,9 +69,9 @@ information is hard for search engines, software repositories, and other
 developers to find and integrate.
 
 By generating a \code{codemeta.json} file, you turn your metadata into a
-format that can \href{https://docs.ropensci.org/codemetar/crosswalk}{easily crosswalk} between
-metadata in many other software languages. CodeMeta is built on
-\href{https://schema.org}{schema.org} a simple \href{https://developers.google.com/search/docs/guides/intro-structured-data}{structured data}
+format that can easily crosswalk between metadata in many other software
+languages. CodeMeta is built on \href{https://schema.org}{schema.org} a
+simple \href{https://developers.google.com/search/docs/guides/intro-structured-data}{structured data}
 format developed by major search engines like Google and Bing to improve
 discoverability in search. CodeMeta is also understood by significant
 software archiving efforts such as \href{https://www.softwareheritage.org/}{Software Heritage} Project, which seeks to
