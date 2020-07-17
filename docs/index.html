@@ -5,28 +5,34 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generate 'CodeMeta' Metadata for R Packages • codemetar</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<link href="ropensci.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Generate 'CodeMeta' Metadata for R Packages">
-<meta property="og:description" content="The 'Codemeta' Project defines a 'JSON-LD' format for describing
-  software metadata, as detailed at &lt;https://codemeta.github.io&gt;. This package
-  provides utilities to generate, parse, and modify 'codemeta.json' files 
-  automatically for R packages, as well as tools and examples for working with
-  'codemeta.json' 'JSON-LD' more generally.">
+<title>Generate CodeMeta Metadata for R Packages • codemetar</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script><!-- ropensci --><link href="ropensci.css?nocache=123" rel="stylesheet">
+<meta property="og:title" content="Generate CodeMeta Metadata for R Packages">
+<meta property="og:description" content="The Codemeta Project defines a JSON-LD format
+    for describing software metadata, as detailed at
+    &lt;https://codemeta.github.io&gt;. This package provides utilities to
+    generate, parse, and modify codemeta.json files automatically for R
+    packages, as well as tools and examples for working with
+    codemeta.json JSON-LD more generally.">
 <meta name="twitter:card" content="summary">
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-462421-8"></script><script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-462421-8');
+</script>
 </head>
-<body>
-    <div class="container template-article">
+<body data-spy="scroll" data-target="#toc">
+    <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -38,27 +44,27 @@
       </button>
 
       <div class="navbar-brand-container">
-        <a class="navbar-brand" href="index.html">codemetar</a>
-        <div class="info">
-          <span class="partof">part of  <a href="https://ropensci.org"><img src="https://d33wubrfki0l68.cloudfront.net/88338b7637e084df5c43e7a9e6293719dbaf10e2/30903/img/icon_lettering_white.svg" height="24" alt="rOpenSci"></a></span>
-          <span class="version label label-default version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8</span>
-        </div>
+        <a href="https://ropensci.org"><img src="https://ropensci.org/img/icon_short_white.svg" id="hexlogo" alt="rOpenSci"></a>
+        <a class="navbar-brand" href="index.html"><i>codemetar <small>v0.1.8.9000</small></i></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="articles/codemetar.html">Intro</a>
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
+    Advanced
      
     <span class="caret"></span>
   </a>
@@ -72,9 +78,6 @@
     <li>
       <a href="articles/articles/validation-in-json-ld.html">Validation in JSON-LD</a>
     </li>
-    <li>
-      <a href="articles/codemeta-intro.html">Codemeta intro</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -82,7 +85,7 @@
 </li>
         <li>
   <a href="https://github.com/ropensci/codemetar">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -95,81 +98,1187 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    
 
-    
-    
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+      </header><div class="row">
+  <div class="contents col-md-9">
 <div id="codemetar" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#codemetar" class="anchor"></a>codemetar</h1></div>
 
-<p>The goal of codemetar is to generate the JSON-LD file, <code>codemeta.json</code> containing software metadata describing an R package. For more general information about the CodeMeta Project for defining software metadata, see <a href="https://codemeta.github.io" class="uri">https://codemeta.github.io</a>. In particular, new users might want to start with the <a href="https://codemeta.github.io/user-guide/">User Guide</a>, while those looking to learn more about JSON-LD and consuming existing codemeta files should see the <a href="https://codemeta.github.io/developer-guide/">Developer Guide</a>.</p>
-<div id="installation" class="section level2">
+<p><strong>Why codemetar?</strong> The ‘Codemeta’ Project defines a ‘JSON-LD’ format for describing software metadata, as detailed at <a href="https://codemeta.github.io" class="uri">https://codemeta.github.io</a>. This package provides utilities to <strong>generate, parse, and modify codemeta.jsonld files automatically for R packages</strong>, as well as tools and examples for <strong>working with codemeta json-ld more generally</strong>.</p>
+<p>It has three main goals:</p>
+<ul>
+<li>Quickly <strong>generate a valid codemeta.json file from any valid R package</strong>. To do so, we automatically extract as much metadata as possible using the DESCRIPTION file, as well as extracting metadata from other common best-practices such as the presence of Travis and other badges in README, etc.</li>
+<li>Facilitate the addition of further metadata fields into a codemeta.json file, as well as general manipulation of codemeta files.</li>
+<li>Support the ability to crosswalk between terms used in other metadata standards, as identified by the Codemeta Project Community, see <a href="https://codemeta.github.io/crosswalk" class="uri">https://codemeta.github.io/crosswalk</a>
+</li>
+</ul>
+<div id="why-create-a-codemetajson-for-your-package" class="section level2">
 <h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the latest version from CRAN using:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"codemetar"</span>)</a></code></pre></div>
-<p>You can also install the development version of <code>codemetar</code> from github with:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"ropensci/codemetar"</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"codemetar"</span>)</a></code></pre></div>
+<a href="#why-create-a-codemetajson-for-your-package" class="anchor"></a>Why create a codemeta.json for your package?</h2>
+<p><strong>Why bother creating a codemeta.json for your package?</strong> R packages encode lots of metadata in the <code>DESCRIPTION</code> file, <code>README</code>, and other places, telling users and developers about the package purpose, authors, license, dependencies, and other information that facilitates discovery, adoption, and credit for your software. Unfortunately, because each software language records this metadata in a different format, that information is hard for search engines, software repositories, and other developers to find and integrate.</p>
+<p>By generating a <code>codemeta.json</code> file, you turn your metadata into a format that can <a href="https://docs.ropensci.org/codemetar/crosswalk">easily crosswalk</a> between metadata in many other software languages. CodeMeta is built on <a href="https://schema.org">schema.org</a> a simple <a href="https://developers.google.com/search/docs/guides/intro-structured-data">structured data</a> format developed by major search engines like Google and Bing to improve discoverability in search. CodeMeta is also understood by significant software archiving efforts such as <a href="https://www.softwareheritage.org/">Software Heritage</a> Project, which seeks to permanently archive all open source software.</p>
+<p>For more general information about the CodeMeta Project for defining software metadata, see <a href="https://codemeta.github.io" class="uri">https://codemeta.github.io</a>. In particular, new users might want to start with the <a href="https://codemeta.github.io/user-guide/">User Guide</a>, while those looking to learn more about JSON-LD and consuming existing codemeta files should see the <a href="https://codemeta.github.io/developer-guide/">Developer Guide</a>.</p>
 </div>
-<div id="example" class="section level2">
+<div id="create-a-codemetajson-in-one-function-call" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<p>This is a basic example which shows you how to generate a <code>codemeta.json</code> for an R package (e.g. for <code>testthat</code>):</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/write_codemeta.html">write_codemeta</a></span>(<span class="st">"testthat"</span>)</a></code></pre></div>
-<p><code>codemetar</code> can take the path to the package root instead. This may allow <code>codemetar</code> to glean some additional information that is not available from the description file alone.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/write_codemeta.html">write_codemeta</a></span>(<span class="st">"."</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">✔ Setting active project to <span class="st">'/Users/cboettig/Documents/ropensci/codemetar'</span></a></code></pre></div>
-<p>Which creates a file looking like so (first 10 lines; see full <a href="https://github.com/ropensci/codemetar/blob/master/codemeta.json">codemeta.json here</a>):</p>
-<pre><code>{
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
-  "@type": "SoftwareSourceCode",
-  "identifier": "codemetar",
-  "description": "The 'Codemeta' Project defines a 'JSON-LD' format for describing\n  software metadata, as detailed at &lt;https://codemeta.github.io&gt;. This package\n  provides utilities to generate, parse, and modify 'codemeta.json' files \n  automatically for R packages, as well as tools and examples for working with\n  'codemeta.json' 'JSON-LD' more generally.",
-  "name": "codemetar: Generate 'CodeMeta' Metadata for R Packages",
-  "codeRepository": "https://github.com/ropensci/codemetar",</code></pre>
+<a href="#create-a-codemetajson-in-one-function-call" class="anchor"></a>Create a codemeta.json in one function call</h2>
+<p><code>codemetar</code> can take the path to the source package root to glean as much information as possible.</p>
+<div class="sourceCode" id="cb1"><pre class="r">codemetar::write_codemeta(find.package("codemetar"))
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting Bioconductor metadata
+✓ Got Bioconductor metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting Bioconductor metadata
+✓ Got Bioconductor metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting Bioconductor metadata
+✓ Got Bioconductor metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting Bioconductor metadata
+✓ Got Bioconductor metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting sysreqs URL from sysreqs API
+✓ Got sysreqs URL from sysreqs API!
+… Asking README URL from GitHub API
+x Did not get README URL.
+… Asking README URL from GitHub API
+x Did not get README URL.
+… Getting repo topics from GitHub API
+x Did not get repo topics.
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting Bioconductor metadata
+✓ Got Bioconductor metadata!</pre></div>
+<details closed><p><summary><span title="Click to Expand"> codemetar’s codemeta.json </span> </summary></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">{</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="dt">"@context"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"https://doi.org/10.5063/schema/codemeta-2.0"</span><span class="ot">,</span> <span class="st">"http://schema.org"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareSourceCode"</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"codemetar"</span><span class="fu">,</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"The 'Codemeta' Project defines a 'JSON-LD' format</span><span class="ch">\n</span><span class="st">    for describing software metadata, as detailed at</span><span class="ch">\n</span><span class="st">    &lt;https://codemeta.github.io&gt;. This package provides utilities to</span><span class="ch">\n</span><span class="st">    generate, parse, and modify 'codemeta.json' files automatically for R</span><span class="ch">\n</span><span class="st">    packages, as well as tools and examples for working with</span><span class="ch">\n</span><span class="st">    'codemeta.json' 'JSON-LD' more generally."</span><span class="fu">,</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"codemetar: Generate 'CodeMeta' Metadata for R Packages"</span><span class="fu">,</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="dt">"codeRepository"</span><span class="fu">:</span> <span class="st">"https://github.com/ropensci/codemetar"</span><span class="fu">,</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="dt">"relatedLink"</span><span class="fu">:</span> <span class="st">"https://docs.ropensci.org/codemetar"</span><span class="fu">,</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="dt">"issueTracker"</span><span class="fu">:</span> <span class="st">"https://github.com/ropensci/codemetar/issues"</span><span class="fu">,</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="dt">"license"</span><span class="fu">:</span> <span class="st">"https://spdx.org/licenses/GPL-3.0"</span><span class="fu">,</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>  <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"0.1.8.9000"</span><span class="fu">,</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>  <span class="dt">"programmingLanguage"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>    <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"ComputerLanguage"</span><span class="fu">,</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"R"</span><span class="fu">,</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>    <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://r-project.org"</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="fu">},</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>  <span class="dt">"runtimePlatform"</span><span class="fu">:</span> <span class="st">"R version 4.0.0 (2020-04-24)"</span><span class="fu">,</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>  <span class="dt">"author"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>    <span class="fu">{</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Carl"</span><span class="fu">,</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Boettiger"</span><span class="fu">,</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>      <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"cboettig@gmail.com"</span><span class="fu">,</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>      <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://orcid.org/0000-0002-1642-628X"</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a>    <span class="fu">{</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Maëlle"</span><span class="fu">,</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Salmon"</span><span class="fu">,</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a>      <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://orcid.org/0000-0002-2815-0399"</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a>    <span class="fu">}</span></span>
+<span id="cb2-33"><a href="#cb2-33"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-34"><a href="#cb2-34"></a>  <span class="dt">"contributor"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-35"><a href="#cb2-35"></a>    <span class="fu">{</span></span>
+<span id="cb2-36"><a href="#cb2-36"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb2-37"><a href="#cb2-37"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Anna"</span><span class="fu">,</span></span>
+<span id="cb2-38"><a href="#cb2-38"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Krystalli"</span><span class="fu">,</span></span>
+<span id="cb2-39"><a href="#cb2-39"></a>      <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://orcid.org/0000-0002-2378-4915"</span></span>
+<span id="cb2-40"><a href="#cb2-40"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-41"><a href="#cb2-41"></a>    <span class="fu">{</span></span>
+<span id="cb2-42"><a href="#cb2-42"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb2-43"><a href="#cb2-43"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Maëlle"</span><span class="fu">,</span></span>
+<span id="cb2-44"><a href="#cb2-44"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Salmon"</span><span class="fu">,</span></span>
+<span id="cb2-45"><a href="#cb2-45"></a>      <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://orcid.org/0000-0002-2815-0399"</span></span>
+<span id="cb2-46"><a href="#cb2-46"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-47"><a href="#cb2-47"></a>    <span class="fu">{</span></span>
+<span id="cb2-48"><a href="#cb2-48"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb2-49"><a href="#cb2-49"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Katrin"</span><span class="fu">,</span></span>
+<span id="cb2-50"><a href="#cb2-50"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Leinweber"</span><span class="fu">,</span></span>
+<span id="cb2-51"><a href="#cb2-51"></a>      <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://orcid.org/0000-0001-5135-5758"</span></span>
+<span id="cb2-52"><a href="#cb2-52"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-53"><a href="#cb2-53"></a>    <span class="fu">{</span></span>
+<span id="cb2-54"><a href="#cb2-54"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb2-55"><a href="#cb2-55"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Noam"</span><span class="fu">,</span></span>
+<span id="cb2-56"><a href="#cb2-56"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Ross"</span><span class="fu">,</span></span>
+<span id="cb2-57"><a href="#cb2-57"></a>      <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://orcid.org/0000-0002-2136-0000"</span></span>
+<span id="cb2-58"><a href="#cb2-58"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-59"><a href="#cb2-59"></a>    <span class="fu">{</span></span>
+<span id="cb2-60"><a href="#cb2-60"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb2-61"><a href="#cb2-61"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Arfon"</span><span class="fu">,</span></span>
+<span id="cb2-62"><a href="#cb2-62"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Smith"</span></span>
+<span id="cb2-63"><a href="#cb2-63"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-64"><a href="#cb2-64"></a>    <span class="fu">{</span></span>
+<span id="cb2-65"><a href="#cb2-65"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb2-66"><a href="#cb2-66"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Jeroen"</span><span class="fu">,</span></span>
+<span id="cb2-67"><a href="#cb2-67"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Ooms"</span><span class="fu">,</span></span>
+<span id="cb2-68"><a href="#cb2-68"></a>      <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://orcid.org/0000-0002-4035-0289"</span></span>
+<span id="cb2-69"><a href="#cb2-69"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-70"><a href="#cb2-70"></a>    <span class="fu">{</span></span>
+<span id="cb2-71"><a href="#cb2-71"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb2-72"><a href="#cb2-72"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Sebastian"</span><span class="fu">,</span></span>
+<span id="cb2-73"><a href="#cb2-73"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Meyer"</span><span class="fu">,</span></span>
+<span id="cb2-74"><a href="#cb2-74"></a>      <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://orcid.org/0000-0002-1791-9449"</span></span>
+<span id="cb2-75"><a href="#cb2-75"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-76"><a href="#cb2-76"></a>    <span class="fu">{</span></span>
+<span id="cb2-77"><a href="#cb2-77"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb2-78"><a href="#cb2-78"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Michael"</span><span class="fu">,</span></span>
+<span id="cb2-79"><a href="#cb2-79"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Rustler"</span><span class="fu">,</span></span>
+<span id="cb2-80"><a href="#cb2-80"></a>      <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://orcid.org/0000-0003-0647-7726"</span></span>
+<span id="cb2-81"><a href="#cb2-81"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-82"><a href="#cb2-82"></a>    <span class="fu">{</span></span>
+<span id="cb2-83"><a href="#cb2-83"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb2-84"><a href="#cb2-84"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Hauke"</span><span class="fu">,</span></span>
+<span id="cb2-85"><a href="#cb2-85"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Sonnenberg"</span><span class="fu">,</span></span>
+<span id="cb2-86"><a href="#cb2-86"></a>      <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://orcid.org/0000-0001-9134-2871"</span></span>
+<span id="cb2-87"><a href="#cb2-87"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-88"><a href="#cb2-88"></a>    <span class="fu">{</span></span>
+<span id="cb2-89"><a href="#cb2-89"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb2-90"><a href="#cb2-90"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Sebastian"</span><span class="fu">,</span></span>
+<span id="cb2-91"><a href="#cb2-91"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Kreutzer"</span><span class="fu">,</span></span>
+<span id="cb2-92"><a href="#cb2-92"></a>      <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://orcid.org/0000-0002-0734-2199"</span></span>
+<span id="cb2-93"><a href="#cb2-93"></a>    <span class="fu">}</span></span>
+<span id="cb2-94"><a href="#cb2-94"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-95"><a href="#cb2-95"></a>  <span class="dt">"copyrightHolder"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-96"><a href="#cb2-96"></a>    <span class="fu">{</span></span>
+<span id="cb2-97"><a href="#cb2-97"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb2-98"><a href="#cb2-98"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Carl"</span><span class="fu">,</span></span>
+<span id="cb2-99"><a href="#cb2-99"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Boettiger"</span><span class="fu">,</span></span>
+<span id="cb2-100"><a href="#cb2-100"></a>      <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"cboettig@gmail.com"</span><span class="fu">,</span></span>
+<span id="cb2-101"><a href="#cb2-101"></a>      <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://orcid.org/0000-0002-1642-628X"</span></span>
+<span id="cb2-102"><a href="#cb2-102"></a>    <span class="fu">}</span></span>
+<span id="cb2-103"><a href="#cb2-103"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-104"><a href="#cb2-104"></a>  <span class="dt">"funder"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-105"><a href="#cb2-105"></a>    <span class="fu">{</span></span>
+<span id="cb2-106"><a href="#cb2-106"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-107"><a href="#cb2-107"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"rOpenSci"</span></span>
+<span id="cb2-108"><a href="#cb2-108"></a>    <span class="fu">}</span></span>
+<span id="cb2-109"><a href="#cb2-109"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-110"><a href="#cb2-110"></a>  <span class="dt">"maintainer"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-111"><a href="#cb2-111"></a>    <span class="fu">{</span></span>
+<span id="cb2-112"><a href="#cb2-112"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb2-113"><a href="#cb2-113"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Carl"</span><span class="fu">,</span></span>
+<span id="cb2-114"><a href="#cb2-114"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Boettiger"</span><span class="fu">,</span></span>
+<span id="cb2-115"><a href="#cb2-115"></a>      <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"cboettig@gmail.com"</span><span class="fu">,</span></span>
+<span id="cb2-116"><a href="#cb2-116"></a>      <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://orcid.org/0000-0002-1642-628X"</span></span>
+<span id="cb2-117"><a href="#cb2-117"></a>    <span class="fu">}</span></span>
+<span id="cb2-118"><a href="#cb2-118"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-119"><a href="#cb2-119"></a>  <span class="dt">"softwareSuggestions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-120"><a href="#cb2-120"></a>    <span class="fu">{</span></span>
+<span id="cb2-121"><a href="#cb2-121"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-122"><a href="#cb2-122"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"covr"</span><span class="fu">,</span></span>
+<span id="cb2-123"><a href="#cb2-123"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"covr"</span><span class="fu">,</span></span>
+<span id="cb2-124"><a href="#cb2-124"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-125"><a href="#cb2-125"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-126"><a href="#cb2-126"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-127"><a href="#cb2-127"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-128"><a href="#cb2-128"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-129"><a href="#cb2-129"></a>      <span class="fu">},</span></span>
+<span id="cb2-130"><a href="#cb2-130"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=covr"</span></span>
+<span id="cb2-131"><a href="#cb2-131"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-132"><a href="#cb2-132"></a>    <span class="fu">{</span></span>
+<span id="cb2-133"><a href="#cb2-133"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-134"><a href="#cb2-134"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"details"</span><span class="fu">,</span></span>
+<span id="cb2-135"><a href="#cb2-135"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"details"</span><span class="fu">,</span></span>
+<span id="cb2-136"><a href="#cb2-136"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-137"><a href="#cb2-137"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-138"><a href="#cb2-138"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-139"><a href="#cb2-139"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-140"><a href="#cb2-140"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-141"><a href="#cb2-141"></a>      <span class="fu">},</span></span>
+<span id="cb2-142"><a href="#cb2-142"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=details"</span></span>
+<span id="cb2-143"><a href="#cb2-143"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-144"><a href="#cb2-144"></a>    <span class="fu">{</span></span>
+<span id="cb2-145"><a href="#cb2-145"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-146"><a href="#cb2-146"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"dplyr"</span><span class="fu">,</span></span>
+<span id="cb2-147"><a href="#cb2-147"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"dplyr"</span><span class="fu">,</span></span>
+<span id="cb2-148"><a href="#cb2-148"></a>      <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"&gt;= 0.7.0"</span><span class="fu">,</span></span>
+<span id="cb2-149"><a href="#cb2-149"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-150"><a href="#cb2-150"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-151"><a href="#cb2-151"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-152"><a href="#cb2-152"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-153"><a href="#cb2-153"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-154"><a href="#cb2-154"></a>      <span class="fu">},</span></span>
+<span id="cb2-155"><a href="#cb2-155"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=dplyr"</span></span>
+<span id="cb2-156"><a href="#cb2-156"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-157"><a href="#cb2-157"></a>    <span class="fu">{</span></span>
+<span id="cb2-158"><a href="#cb2-158"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-159"><a href="#cb2-159"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"jsonld"</span><span class="fu">,</span></span>
+<span id="cb2-160"><a href="#cb2-160"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"jsonld"</span><span class="fu">,</span></span>
+<span id="cb2-161"><a href="#cb2-161"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-162"><a href="#cb2-162"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-163"><a href="#cb2-163"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-164"><a href="#cb2-164"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-165"><a href="#cb2-165"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-166"><a href="#cb2-166"></a>      <span class="fu">},</span></span>
+<span id="cb2-167"><a href="#cb2-167"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=jsonld"</span></span>
+<span id="cb2-168"><a href="#cb2-168"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-169"><a href="#cb2-169"></a>    <span class="fu">{</span></span>
+<span id="cb2-170"><a href="#cb2-170"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-171"><a href="#cb2-171"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"jsonvalidate"</span><span class="fu">,</span></span>
+<span id="cb2-172"><a href="#cb2-172"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"jsonvalidate"</span><span class="fu">,</span></span>
+<span id="cb2-173"><a href="#cb2-173"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-174"><a href="#cb2-174"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-175"><a href="#cb2-175"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-176"><a href="#cb2-176"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-177"><a href="#cb2-177"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-178"><a href="#cb2-178"></a>      <span class="fu">},</span></span>
+<span id="cb2-179"><a href="#cb2-179"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=jsonvalidate"</span></span>
+<span id="cb2-180"><a href="#cb2-180"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-181"><a href="#cb2-181"></a>    <span class="fu">{</span></span>
+<span id="cb2-182"><a href="#cb2-182"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-183"><a href="#cb2-183"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"knitr"</span><span class="fu">,</span></span>
+<span id="cb2-184"><a href="#cb2-184"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"knitr"</span><span class="fu">,</span></span>
+<span id="cb2-185"><a href="#cb2-185"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-186"><a href="#cb2-186"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-187"><a href="#cb2-187"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-188"><a href="#cb2-188"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-189"><a href="#cb2-189"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-190"><a href="#cb2-190"></a>      <span class="fu">},</span></span>
+<span id="cb2-191"><a href="#cb2-191"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=knitr"</span></span>
+<span id="cb2-192"><a href="#cb2-192"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-193"><a href="#cb2-193"></a>    <span class="fu">{</span></span>
+<span id="cb2-194"><a href="#cb2-194"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-195"><a href="#cb2-195"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"printr"</span><span class="fu">,</span></span>
+<span id="cb2-196"><a href="#cb2-196"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"printr"</span><span class="fu">,</span></span>
+<span id="cb2-197"><a href="#cb2-197"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-198"><a href="#cb2-198"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-199"><a href="#cb2-199"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-200"><a href="#cb2-200"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-201"><a href="#cb2-201"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-202"><a href="#cb2-202"></a>      <span class="fu">},</span></span>
+<span id="cb2-203"><a href="#cb2-203"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=printr"</span></span>
+<span id="cb2-204"><a href="#cb2-204"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-205"><a href="#cb2-205"></a>    <span class="fu">{</span></span>
+<span id="cb2-206"><a href="#cb2-206"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-207"><a href="#cb2-207"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"rmarkdown"</span><span class="fu">,</span></span>
+<span id="cb2-208"><a href="#cb2-208"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"rmarkdown"</span><span class="fu">,</span></span>
+<span id="cb2-209"><a href="#cb2-209"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-210"><a href="#cb2-210"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-211"><a href="#cb2-211"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-212"><a href="#cb2-212"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-213"><a href="#cb2-213"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-214"><a href="#cb2-214"></a>      <span class="fu">},</span></span>
+<span id="cb2-215"><a href="#cb2-215"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=rmarkdown"</span></span>
+<span id="cb2-216"><a href="#cb2-216"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-217"><a href="#cb2-217"></a>    <span class="fu">{</span></span>
+<span id="cb2-218"><a href="#cb2-218"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-219"><a href="#cb2-219"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"testthat"</span><span class="fu">,</span></span>
+<span id="cb2-220"><a href="#cb2-220"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"testthat"</span><span class="fu">,</span></span>
+<span id="cb2-221"><a href="#cb2-221"></a>      <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"&gt;= 2.1.0"</span><span class="fu">,</span></span>
+<span id="cb2-222"><a href="#cb2-222"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-223"><a href="#cb2-223"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-224"><a href="#cb2-224"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-225"><a href="#cb2-225"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-226"><a href="#cb2-226"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-227"><a href="#cb2-227"></a>      <span class="fu">},</span></span>
+<span id="cb2-228"><a href="#cb2-228"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=testthat"</span></span>
+<span id="cb2-229"><a href="#cb2-229"></a>    <span class="fu">}</span></span>
+<span id="cb2-230"><a href="#cb2-230"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-231"><a href="#cb2-231"></a>  <span class="dt">"softwareRequirements"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-232"><a href="#cb2-232"></a>    <span class="fu">{</span></span>
+<span id="cb2-233"><a href="#cb2-233"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-234"><a href="#cb2-234"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"R"</span><span class="fu">,</span></span>
+<span id="cb2-235"><a href="#cb2-235"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"R"</span><span class="fu">,</span></span>
+<span id="cb2-236"><a href="#cb2-236"></a>      <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"&gt;= 3.2.0"</span></span>
+<span id="cb2-237"><a href="#cb2-237"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-238"><a href="#cb2-238"></a>    <span class="fu">{</span></span>
+<span id="cb2-239"><a href="#cb2-239"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-240"><a href="#cb2-240"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"commonmark"</span><span class="fu">,</span></span>
+<span id="cb2-241"><a href="#cb2-241"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"commonmark"</span><span class="fu">,</span></span>
+<span id="cb2-242"><a href="#cb2-242"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-243"><a href="#cb2-243"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-244"><a href="#cb2-244"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-245"><a href="#cb2-245"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-246"><a href="#cb2-246"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-247"><a href="#cb2-247"></a>      <span class="fu">},</span></span>
+<span id="cb2-248"><a href="#cb2-248"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=commonmark"</span></span>
+<span id="cb2-249"><a href="#cb2-249"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-250"><a href="#cb2-250"></a>    <span class="fu">{</span></span>
+<span id="cb2-251"><a href="#cb2-251"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-252"><a href="#cb2-252"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"crul"</span><span class="fu">,</span></span>
+<span id="cb2-253"><a href="#cb2-253"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"crul"</span><span class="fu">,</span></span>
+<span id="cb2-254"><a href="#cb2-254"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-255"><a href="#cb2-255"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-256"><a href="#cb2-256"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-257"><a href="#cb2-257"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-258"><a href="#cb2-258"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-259"><a href="#cb2-259"></a>      <span class="fu">},</span></span>
+<span id="cb2-260"><a href="#cb2-260"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=crul"</span></span>
+<span id="cb2-261"><a href="#cb2-261"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-262"><a href="#cb2-262"></a>    <span class="fu">{</span></span>
+<span id="cb2-263"><a href="#cb2-263"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-264"><a href="#cb2-264"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"desc"</span><span class="fu">,</span></span>
+<span id="cb2-265"><a href="#cb2-265"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"desc"</span><span class="fu">,</span></span>
+<span id="cb2-266"><a href="#cb2-266"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-267"><a href="#cb2-267"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-268"><a href="#cb2-268"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-269"><a href="#cb2-269"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-270"><a href="#cb2-270"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-271"><a href="#cb2-271"></a>      <span class="fu">},</span></span>
+<span id="cb2-272"><a href="#cb2-272"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=desc"</span></span>
+<span id="cb2-273"><a href="#cb2-273"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-274"><a href="#cb2-274"></a>    <span class="fu">{</span></span>
+<span id="cb2-275"><a href="#cb2-275"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-276"><a href="#cb2-276"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"gert"</span><span class="fu">,</span></span>
+<span id="cb2-277"><a href="#cb2-277"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"gert"</span><span class="fu">,</span></span>
+<span id="cb2-278"><a href="#cb2-278"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-279"><a href="#cb2-279"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-280"><a href="#cb2-280"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-281"><a href="#cb2-281"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-282"><a href="#cb2-282"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-283"><a href="#cb2-283"></a>      <span class="fu">},</span></span>
+<span id="cb2-284"><a href="#cb2-284"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=gert"</span></span>
+<span id="cb2-285"><a href="#cb2-285"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-286"><a href="#cb2-286"></a>    <span class="fu">{</span></span>
+<span id="cb2-287"><a href="#cb2-287"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-288"><a href="#cb2-288"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"gh"</span><span class="fu">,</span></span>
+<span id="cb2-289"><a href="#cb2-289"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"gh"</span><span class="fu">,</span></span>
+<span id="cb2-290"><a href="#cb2-290"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-291"><a href="#cb2-291"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-292"><a href="#cb2-292"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-293"><a href="#cb2-293"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-294"><a href="#cb2-294"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-295"><a href="#cb2-295"></a>      <span class="fu">},</span></span>
+<span id="cb2-296"><a href="#cb2-296"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=gh"</span></span>
+<span id="cb2-297"><a href="#cb2-297"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-298"><a href="#cb2-298"></a>    <span class="fu">{</span></span>
+<span id="cb2-299"><a href="#cb2-299"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-300"><a href="#cb2-300"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"jsonlite"</span><span class="fu">,</span></span>
+<span id="cb2-301"><a href="#cb2-301"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"jsonlite"</span><span class="fu">,</span></span>
+<span id="cb2-302"><a href="#cb2-302"></a>      <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"&gt;= 1.6"</span><span class="fu">,</span></span>
+<span id="cb2-303"><a href="#cb2-303"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-304"><a href="#cb2-304"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-305"><a href="#cb2-305"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-306"><a href="#cb2-306"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-307"><a href="#cb2-307"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-308"><a href="#cb2-308"></a>      <span class="fu">},</span></span>
+<span id="cb2-309"><a href="#cb2-309"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=jsonlite"</span></span>
+<span id="cb2-310"><a href="#cb2-310"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-311"><a href="#cb2-311"></a>    <span class="fu">{</span></span>
+<span id="cb2-312"><a href="#cb2-312"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-313"><a href="#cb2-313"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"magrittr"</span><span class="fu">,</span></span>
+<span id="cb2-314"><a href="#cb2-314"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"magrittr"</span><span class="fu">,</span></span>
+<span id="cb2-315"><a href="#cb2-315"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-316"><a href="#cb2-316"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-317"><a href="#cb2-317"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-318"><a href="#cb2-318"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-319"><a href="#cb2-319"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-320"><a href="#cb2-320"></a>      <span class="fu">},</span></span>
+<span id="cb2-321"><a href="#cb2-321"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=magrittr"</span></span>
+<span id="cb2-322"><a href="#cb2-322"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-323"><a href="#cb2-323"></a>    <span class="fu">{</span></span>
+<span id="cb2-324"><a href="#cb2-324"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-325"><a href="#cb2-325"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"memoise"</span><span class="fu">,</span></span>
+<span id="cb2-326"><a href="#cb2-326"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"memoise"</span><span class="fu">,</span></span>
+<span id="cb2-327"><a href="#cb2-327"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-328"><a href="#cb2-328"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-329"><a href="#cb2-329"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-330"><a href="#cb2-330"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-331"><a href="#cb2-331"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-332"><a href="#cb2-332"></a>      <span class="fu">},</span></span>
+<span id="cb2-333"><a href="#cb2-333"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=memoise"</span></span>
+<span id="cb2-334"><a href="#cb2-334"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-335"><a href="#cb2-335"></a>    <span class="fu">{</span></span>
+<span id="cb2-336"><a href="#cb2-336"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-337"><a href="#cb2-337"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"methods"</span><span class="fu">,</span></span>
+<span id="cb2-338"><a href="#cb2-338"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"methods"</span></span>
+<span id="cb2-339"><a href="#cb2-339"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-340"><a href="#cb2-340"></a>    <span class="fu">{</span></span>
+<span id="cb2-341"><a href="#cb2-341"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-342"><a href="#cb2-342"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"pingr"</span><span class="fu">,</span></span>
+<span id="cb2-343"><a href="#cb2-343"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"pingr"</span><span class="fu">,</span></span>
+<span id="cb2-344"><a href="#cb2-344"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-345"><a href="#cb2-345"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-346"><a href="#cb2-346"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-347"><a href="#cb2-347"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-348"><a href="#cb2-348"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-349"><a href="#cb2-349"></a>      <span class="fu">},</span></span>
+<span id="cb2-350"><a href="#cb2-350"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=pingr"</span></span>
+<span id="cb2-351"><a href="#cb2-351"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-352"><a href="#cb2-352"></a>    <span class="fu">{</span></span>
+<span id="cb2-353"><a href="#cb2-353"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-354"><a href="#cb2-354"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"pkgbuild"</span><span class="fu">,</span></span>
+<span id="cb2-355"><a href="#cb2-355"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"pkgbuild"</span><span class="fu">,</span></span>
+<span id="cb2-356"><a href="#cb2-356"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-357"><a href="#cb2-357"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-358"><a href="#cb2-358"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-359"><a href="#cb2-359"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-360"><a href="#cb2-360"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-361"><a href="#cb2-361"></a>      <span class="fu">},</span></span>
+<span id="cb2-362"><a href="#cb2-362"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=pkgbuild"</span></span>
+<span id="cb2-363"><a href="#cb2-363"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-364"><a href="#cb2-364"></a>    <span class="fu">{</span></span>
+<span id="cb2-365"><a href="#cb2-365"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-366"><a href="#cb2-366"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"purrr"</span><span class="fu">,</span></span>
+<span id="cb2-367"><a href="#cb2-367"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"purrr"</span><span class="fu">,</span></span>
+<span id="cb2-368"><a href="#cb2-368"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-369"><a href="#cb2-369"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-370"><a href="#cb2-370"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-371"><a href="#cb2-371"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-372"><a href="#cb2-372"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-373"><a href="#cb2-373"></a>      <span class="fu">},</span></span>
+<span id="cb2-374"><a href="#cb2-374"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=purrr"</span></span>
+<span id="cb2-375"><a href="#cb2-375"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-376"><a href="#cb2-376"></a>    <span class="fu">{</span></span>
+<span id="cb2-377"><a href="#cb2-377"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-378"><a href="#cb2-378"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"remotes"</span><span class="fu">,</span></span>
+<span id="cb2-379"><a href="#cb2-379"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"remotes"</span><span class="fu">,</span></span>
+<span id="cb2-380"><a href="#cb2-380"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-381"><a href="#cb2-381"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-382"><a href="#cb2-382"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-383"><a href="#cb2-383"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-384"><a href="#cb2-384"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-385"><a href="#cb2-385"></a>      <span class="fu">},</span></span>
+<span id="cb2-386"><a href="#cb2-386"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=remotes"</span></span>
+<span id="cb2-387"><a href="#cb2-387"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-388"><a href="#cb2-388"></a>    <span class="fu">{</span></span>
+<span id="cb2-389"><a href="#cb2-389"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-390"><a href="#cb2-390"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"sessioninfo"</span><span class="fu">,</span></span>
+<span id="cb2-391"><a href="#cb2-391"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"sessioninfo"</span><span class="fu">,</span></span>
+<span id="cb2-392"><a href="#cb2-392"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-393"><a href="#cb2-393"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-394"><a href="#cb2-394"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-395"><a href="#cb2-395"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-396"><a href="#cb2-396"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-397"><a href="#cb2-397"></a>      <span class="fu">},</span></span>
+<span id="cb2-398"><a href="#cb2-398"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=sessioninfo"</span></span>
+<span id="cb2-399"><a href="#cb2-399"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-400"><a href="#cb2-400"></a>    <span class="fu">{</span></span>
+<span id="cb2-401"><a href="#cb2-401"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-402"><a href="#cb2-402"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"stats"</span><span class="fu">,</span></span>
+<span id="cb2-403"><a href="#cb2-403"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"stats"</span></span>
+<span id="cb2-404"><a href="#cb2-404"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-405"><a href="#cb2-405"></a>    <span class="fu">{</span></span>
+<span id="cb2-406"><a href="#cb2-406"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-407"><a href="#cb2-407"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"urltools"</span><span class="fu">,</span></span>
+<span id="cb2-408"><a href="#cb2-408"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"urltools"</span><span class="fu">,</span></span>
+<span id="cb2-409"><a href="#cb2-409"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-410"><a href="#cb2-410"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-411"><a href="#cb2-411"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-412"><a href="#cb2-412"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-413"><a href="#cb2-413"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-414"><a href="#cb2-414"></a>      <span class="fu">},</span></span>
+<span id="cb2-415"><a href="#cb2-415"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=urltools"</span></span>
+<span id="cb2-416"><a href="#cb2-416"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-417"><a href="#cb2-417"></a>    <span class="fu">{</span></span>
+<span id="cb2-418"><a href="#cb2-418"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-419"><a href="#cb2-419"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"xml2"</span><span class="fu">,</span></span>
+<span id="cb2-420"><a href="#cb2-420"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"xml2"</span><span class="fu">,</span></span>
+<span id="cb2-421"><a href="#cb2-421"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-422"><a href="#cb2-422"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-423"><a href="#cb2-423"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-424"><a href="#cb2-424"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-425"><a href="#cb2-425"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-426"><a href="#cb2-426"></a>      <span class="fu">},</span></span>
+<span id="cb2-427"><a href="#cb2-427"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=xml2"</span></span>
+<span id="cb2-428"><a href="#cb2-428"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-429"><a href="#cb2-429"></a>    <span class="fu">{</span></span>
+<span id="cb2-430"><a href="#cb2-430"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb2-431"><a href="#cb2-431"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"cli"</span><span class="fu">,</span></span>
+<span id="cb2-432"><a href="#cb2-432"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"cli"</span><span class="fu">,</span></span>
+<span id="cb2-433"><a href="#cb2-433"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-434"><a href="#cb2-434"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb2-435"><a href="#cb2-435"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb2-436"><a href="#cb2-436"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb2-437"><a href="#cb2-437"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb2-438"><a href="#cb2-438"></a>      <span class="fu">},</span></span>
+<span id="cb2-439"><a href="#cb2-439"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=cli"</span></span>
+<span id="cb2-440"><a href="#cb2-440"></a>    <span class="fu">}</span></span>
+<span id="cb2-441"><a href="#cb2-441"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-442"><a href="#cb2-442"></a>  <span class="dt">"isPartOf"</span><span class="fu">:</span> <span class="st">"https://ropensci.org"</span><span class="fu">,</span></span>
+<span id="cb2-443"><a href="#cb2-443"></a>  <span class="dt">"keywords"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"metadata"</span><span class="ot">,</span> <span class="st">"codemeta"</span><span class="ot">,</span> <span class="st">"ropensci"</span><span class="ot">,</span> <span class="st">"citation"</span><span class="ot">,</span> <span class="st">"credit"</span><span class="ot">,</span> <span class="st">"linked-data"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-444"><a href="#cb2-444"></a>  <span class="dt">"fileSize"</span><span class="fu">:</span> <span class="st">"2429.096KB"</span></span>
+<span id="cb2-445"><a href="#cb2-445"></a><span class="fu">}</span></span></code></pre></div>
+</details><p><br></p>
+<p>By default most often from within your package folder you’ll simply run <code><a href="reference/write_codemeta.html">codemetar::write_codemeta()</a></code>.</p>
+<p>You could also create a basic <code>codemeta.json</code> for an installed R package, e.g. for <code>testthat</code>. That will use information from <code>DESCRIPTION</code> only.</p>
+<div class="sourceCode" id="cb3"><pre class="r">codemetar::write_codemeta("testthat", path = "example-codemeta.json")
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting Bioconductor metadata
+✓ Got Bioconductor metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting Bioconductor metadata
+✓ Got Bioconductor metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting sysreqs URL from sysreqs API
+✓ Got sysreqs URL from sysreqs API!
+… Asking README URL from GitHub API
+x Did not get README URL.
+… Asking README URL from GitHub API
+x Did not get README URL.
+… Getting repo topics from GitHub API
+x Did not get repo topics.
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!</pre></div>
+<details closed><p><summary><span title="Click to Expand"> testthat’s basic codemeta.json </span> </summary></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">{</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="dt">"@context"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"https://doi.org/10.5063/schema/codemeta-2.0"</span><span class="ot">,</span> <span class="st">"http://schema.org"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareSourceCode"</span><span class="fu">,</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"testthat"</span><span class="fu">,</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Software testing is important, but, in part because it is </span><span class="ch">\n</span><span class="st">    frustrating and boring, many of us avoid it. 'testthat' is a testing framework </span><span class="ch">\n</span><span class="st">    for R that is easy to learn and use, and integrates with your existing 'workflow'."</span><span class="fu">,</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"testthat: Unit Testing for R"</span><span class="fu">,</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="dt">"codeRepository"</span><span class="fu">:</span> <span class="st">"https://github.com/r-lib/testthat"</span><span class="fu">,</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>  <span class="dt">"relatedLink"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"http://testthat.r-lib.org"</span><span class="ot">,</span> <span class="st">"https://CRAN.R-project.org/package=testthat"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>  <span class="dt">"issueTracker"</span><span class="fu">:</span> <span class="st">"https://github.com/r-lib/testthat/issues"</span><span class="fu">,</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>  <span class="dt">"license"</span><span class="fu">:</span> <span class="st">"https://spdx.org/licenses/MIT"</span><span class="fu">,</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>  <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"2.3.2"</span><span class="fu">,</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>  <span class="dt">"programmingLanguage"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>    <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"ComputerLanguage"</span><span class="fu">,</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"R"</span><span class="fu">,</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a>    <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://r-project.org"</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a>  <span class="fu">},</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>  <span class="dt">"runtimePlatform"</span><span class="fu">:</span> <span class="st">"R version 4.0.0 (2020-04-24)"</span><span class="fu">,</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a>  <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a>    <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a>    <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-23"><a href="#cb4-23"></a>    <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a>  <span class="fu">},</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a>  <span class="dt">"author"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb4-26"><a href="#cb4-26"></a>    <span class="fu">{</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Hadley"</span><span class="fu">,</span></span>
+<span id="cb4-29"><a href="#cb4-29"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Wickham"</span><span class="fu">,</span></span>
+<span id="cb4-30"><a href="#cb4-30"></a>      <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"hadley@rstudio.com"</span></span>
+<span id="cb4-31"><a href="#cb4-31"></a>    <span class="fu">}</span></span>
+<span id="cb4-32"><a href="#cb4-32"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb4-33"><a href="#cb4-33"></a>  <span class="dt">"contributor"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb4-34"><a href="#cb4-34"></a>    <span class="fu">{</span></span>
+<span id="cb4-35"><a href="#cb4-35"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-36"><a href="#cb4-36"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"R Core team"</span></span>
+<span id="cb4-37"><a href="#cb4-37"></a>    <span class="fu">}</span></span>
+<span id="cb4-38"><a href="#cb4-38"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb4-39"><a href="#cb4-39"></a>  <span class="dt">"copyrightHolder"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb4-40"><a href="#cb4-40"></a>    <span class="fu">{</span></span>
+<span id="cb4-41"><a href="#cb4-41"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-42"><a href="#cb4-42"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"RStudio"</span></span>
+<span id="cb4-43"><a href="#cb4-43"></a>    <span class="fu">}</span></span>
+<span id="cb4-44"><a href="#cb4-44"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb4-45"><a href="#cb4-45"></a>  <span class="dt">"funder"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb4-46"><a href="#cb4-46"></a>    <span class="fu">{</span></span>
+<span id="cb4-47"><a href="#cb4-47"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-48"><a href="#cb4-48"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"RStudio"</span></span>
+<span id="cb4-49"><a href="#cb4-49"></a>    <span class="fu">}</span></span>
+<span id="cb4-50"><a href="#cb4-50"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb4-51"><a href="#cb4-51"></a>  <span class="dt">"maintainer"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb4-52"><a href="#cb4-52"></a>    <span class="fu">{</span></span>
+<span id="cb4-53"><a href="#cb4-53"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb4-54"><a href="#cb4-54"></a>      <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Hadley"</span><span class="fu">,</span></span>
+<span id="cb4-55"><a href="#cb4-55"></a>      <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Wickham"</span><span class="fu">,</span></span>
+<span id="cb4-56"><a href="#cb4-56"></a>      <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"hadley@rstudio.com"</span></span>
+<span id="cb4-57"><a href="#cb4-57"></a>    <span class="fu">}</span></span>
+<span id="cb4-58"><a href="#cb4-58"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb4-59"><a href="#cb4-59"></a>  <span class="dt">"softwareSuggestions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb4-60"><a href="#cb4-60"></a>    <span class="fu">{</span></span>
+<span id="cb4-61"><a href="#cb4-61"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-62"><a href="#cb4-62"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"covr"</span><span class="fu">,</span></span>
+<span id="cb4-63"><a href="#cb4-63"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"covr"</span><span class="fu">,</span></span>
+<span id="cb4-64"><a href="#cb4-64"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-65"><a href="#cb4-65"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-66"><a href="#cb4-66"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-67"><a href="#cb4-67"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-68"><a href="#cb4-68"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-69"><a href="#cb4-69"></a>      <span class="fu">},</span></span>
+<span id="cb4-70"><a href="#cb4-70"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=covr"</span></span>
+<span id="cb4-71"><a href="#cb4-71"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-72"><a href="#cb4-72"></a>    <span class="fu">{</span></span>
+<span id="cb4-73"><a href="#cb4-73"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-74"><a href="#cb4-74"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"curl"</span><span class="fu">,</span></span>
+<span id="cb4-75"><a href="#cb4-75"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"curl"</span><span class="fu">,</span></span>
+<span id="cb4-76"><a href="#cb4-76"></a>      <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"&gt;= 0.9.5"</span><span class="fu">,</span></span>
+<span id="cb4-77"><a href="#cb4-77"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-78"><a href="#cb4-78"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-79"><a href="#cb4-79"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-80"><a href="#cb4-80"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-81"><a href="#cb4-81"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-82"><a href="#cb4-82"></a>      <span class="fu">},</span></span>
+<span id="cb4-83"><a href="#cb4-83"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=curl"</span></span>
+<span id="cb4-84"><a href="#cb4-84"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-85"><a href="#cb4-85"></a>    <span class="fu">{</span></span>
+<span id="cb4-86"><a href="#cb4-86"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-87"><a href="#cb4-87"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"devtools"</span><span class="fu">,</span></span>
+<span id="cb4-88"><a href="#cb4-88"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"devtools"</span><span class="fu">,</span></span>
+<span id="cb4-89"><a href="#cb4-89"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-90"><a href="#cb4-90"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-91"><a href="#cb4-91"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-92"><a href="#cb4-92"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-93"><a href="#cb4-93"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-94"><a href="#cb4-94"></a>      <span class="fu">},</span></span>
+<span id="cb4-95"><a href="#cb4-95"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=devtools"</span></span>
+<span id="cb4-96"><a href="#cb4-96"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-97"><a href="#cb4-97"></a>    <span class="fu">{</span></span>
+<span id="cb4-98"><a href="#cb4-98"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-99"><a href="#cb4-99"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"knitr"</span><span class="fu">,</span></span>
+<span id="cb4-100"><a href="#cb4-100"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"knitr"</span><span class="fu">,</span></span>
+<span id="cb4-101"><a href="#cb4-101"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-102"><a href="#cb4-102"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-103"><a href="#cb4-103"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-104"><a href="#cb4-104"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-105"><a href="#cb4-105"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-106"><a href="#cb4-106"></a>      <span class="fu">},</span></span>
+<span id="cb4-107"><a href="#cb4-107"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=knitr"</span></span>
+<span id="cb4-108"><a href="#cb4-108"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-109"><a href="#cb4-109"></a>    <span class="fu">{</span></span>
+<span id="cb4-110"><a href="#cb4-110"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-111"><a href="#cb4-111"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"rmarkdown"</span><span class="fu">,</span></span>
+<span id="cb4-112"><a href="#cb4-112"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"rmarkdown"</span><span class="fu">,</span></span>
+<span id="cb4-113"><a href="#cb4-113"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-114"><a href="#cb4-114"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-115"><a href="#cb4-115"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-116"><a href="#cb4-116"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-117"><a href="#cb4-117"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-118"><a href="#cb4-118"></a>      <span class="fu">},</span></span>
+<span id="cb4-119"><a href="#cb4-119"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=rmarkdown"</span></span>
+<span id="cb4-120"><a href="#cb4-120"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-121"><a href="#cb4-121"></a>    <span class="fu">{</span></span>
+<span id="cb4-122"><a href="#cb4-122"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-123"><a href="#cb4-123"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"usethis"</span><span class="fu">,</span></span>
+<span id="cb4-124"><a href="#cb4-124"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"usethis"</span><span class="fu">,</span></span>
+<span id="cb4-125"><a href="#cb4-125"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-126"><a href="#cb4-126"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-127"><a href="#cb4-127"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-128"><a href="#cb4-128"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-129"><a href="#cb4-129"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-130"><a href="#cb4-130"></a>      <span class="fu">},</span></span>
+<span id="cb4-131"><a href="#cb4-131"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=usethis"</span></span>
+<span id="cb4-132"><a href="#cb4-132"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-133"><a href="#cb4-133"></a>    <span class="fu">{</span></span>
+<span id="cb4-134"><a href="#cb4-134"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-135"><a href="#cb4-135"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"vctrs"</span><span class="fu">,</span></span>
+<span id="cb4-136"><a href="#cb4-136"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"vctrs"</span><span class="fu">,</span></span>
+<span id="cb4-137"><a href="#cb4-137"></a>      <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"&gt;= 0.1.0"</span><span class="fu">,</span></span>
+<span id="cb4-138"><a href="#cb4-138"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-139"><a href="#cb4-139"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-140"><a href="#cb4-140"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-141"><a href="#cb4-141"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-142"><a href="#cb4-142"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-143"><a href="#cb4-143"></a>      <span class="fu">},</span></span>
+<span id="cb4-144"><a href="#cb4-144"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=vctrs"</span></span>
+<span id="cb4-145"><a href="#cb4-145"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-146"><a href="#cb4-146"></a>    <span class="fu">{</span></span>
+<span id="cb4-147"><a href="#cb4-147"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-148"><a href="#cb4-148"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"xml2"</span><span class="fu">,</span></span>
+<span id="cb4-149"><a href="#cb4-149"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"xml2"</span><span class="fu">,</span></span>
+<span id="cb4-150"><a href="#cb4-150"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-151"><a href="#cb4-151"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-152"><a href="#cb4-152"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-153"><a href="#cb4-153"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-154"><a href="#cb4-154"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-155"><a href="#cb4-155"></a>      <span class="fu">},</span></span>
+<span id="cb4-156"><a href="#cb4-156"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=xml2"</span></span>
+<span id="cb4-157"><a href="#cb4-157"></a>    <span class="fu">}</span></span>
+<span id="cb4-158"><a href="#cb4-158"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb4-159"><a href="#cb4-159"></a>  <span class="dt">"softwareRequirements"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb4-160"><a href="#cb4-160"></a>    <span class="fu">{</span></span>
+<span id="cb4-161"><a href="#cb4-161"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-162"><a href="#cb4-162"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"R"</span><span class="fu">,</span></span>
+<span id="cb4-163"><a href="#cb4-163"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"R"</span><span class="fu">,</span></span>
+<span id="cb4-164"><a href="#cb4-164"></a>      <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"&gt;= 3.1"</span></span>
+<span id="cb4-165"><a href="#cb4-165"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-166"><a href="#cb4-166"></a>    <span class="fu">{</span></span>
+<span id="cb4-167"><a href="#cb4-167"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-168"><a href="#cb4-168"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"cli"</span><span class="fu">,</span></span>
+<span id="cb4-169"><a href="#cb4-169"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"cli"</span><span class="fu">,</span></span>
+<span id="cb4-170"><a href="#cb4-170"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-171"><a href="#cb4-171"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-172"><a href="#cb4-172"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-173"><a href="#cb4-173"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-174"><a href="#cb4-174"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-175"><a href="#cb4-175"></a>      <span class="fu">},</span></span>
+<span id="cb4-176"><a href="#cb4-176"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=cli"</span></span>
+<span id="cb4-177"><a href="#cb4-177"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-178"><a href="#cb4-178"></a>    <span class="fu">{</span></span>
+<span id="cb4-179"><a href="#cb4-179"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-180"><a href="#cb4-180"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"crayon"</span><span class="fu">,</span></span>
+<span id="cb4-181"><a href="#cb4-181"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"crayon"</span><span class="fu">,</span></span>
+<span id="cb4-182"><a href="#cb4-182"></a>      <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"&gt;= 1.3.4"</span><span class="fu">,</span></span>
+<span id="cb4-183"><a href="#cb4-183"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-184"><a href="#cb4-184"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-185"><a href="#cb4-185"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-186"><a href="#cb4-186"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-187"><a href="#cb4-187"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-188"><a href="#cb4-188"></a>      <span class="fu">},</span></span>
+<span id="cb4-189"><a href="#cb4-189"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=crayon"</span></span>
+<span id="cb4-190"><a href="#cb4-190"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-191"><a href="#cb4-191"></a>    <span class="fu">{</span></span>
+<span id="cb4-192"><a href="#cb4-192"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-193"><a href="#cb4-193"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"digest"</span><span class="fu">,</span></span>
+<span id="cb4-194"><a href="#cb4-194"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"digest"</span><span class="fu">,</span></span>
+<span id="cb4-195"><a href="#cb4-195"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-196"><a href="#cb4-196"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-197"><a href="#cb4-197"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-198"><a href="#cb4-198"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-199"><a href="#cb4-199"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-200"><a href="#cb4-200"></a>      <span class="fu">},</span></span>
+<span id="cb4-201"><a href="#cb4-201"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=digest"</span></span>
+<span id="cb4-202"><a href="#cb4-202"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-203"><a href="#cb4-203"></a>    <span class="fu">{</span></span>
+<span id="cb4-204"><a href="#cb4-204"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-205"><a href="#cb4-205"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"ellipsis"</span><span class="fu">,</span></span>
+<span id="cb4-206"><a href="#cb4-206"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"ellipsis"</span><span class="fu">,</span></span>
+<span id="cb4-207"><a href="#cb4-207"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-208"><a href="#cb4-208"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-209"><a href="#cb4-209"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-210"><a href="#cb4-210"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-211"><a href="#cb4-211"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-212"><a href="#cb4-212"></a>      <span class="fu">},</span></span>
+<span id="cb4-213"><a href="#cb4-213"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=ellipsis"</span></span>
+<span id="cb4-214"><a href="#cb4-214"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-215"><a href="#cb4-215"></a>    <span class="fu">{</span></span>
+<span id="cb4-216"><a href="#cb4-216"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-217"><a href="#cb4-217"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"evaluate"</span><span class="fu">,</span></span>
+<span id="cb4-218"><a href="#cb4-218"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"evaluate"</span><span class="fu">,</span></span>
+<span id="cb4-219"><a href="#cb4-219"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-220"><a href="#cb4-220"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-221"><a href="#cb4-221"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-222"><a href="#cb4-222"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-223"><a href="#cb4-223"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-224"><a href="#cb4-224"></a>      <span class="fu">},</span></span>
+<span id="cb4-225"><a href="#cb4-225"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=evaluate"</span></span>
+<span id="cb4-226"><a href="#cb4-226"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-227"><a href="#cb4-227"></a>    <span class="fu">{</span></span>
+<span id="cb4-228"><a href="#cb4-228"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-229"><a href="#cb4-229"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"magrittr"</span><span class="fu">,</span></span>
+<span id="cb4-230"><a href="#cb4-230"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"magrittr"</span><span class="fu">,</span></span>
+<span id="cb4-231"><a href="#cb4-231"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-232"><a href="#cb4-232"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-233"><a href="#cb4-233"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-234"><a href="#cb4-234"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-235"><a href="#cb4-235"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-236"><a href="#cb4-236"></a>      <span class="fu">},</span></span>
+<span id="cb4-237"><a href="#cb4-237"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=magrittr"</span></span>
+<span id="cb4-238"><a href="#cb4-238"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-239"><a href="#cb4-239"></a>    <span class="fu">{</span></span>
+<span id="cb4-240"><a href="#cb4-240"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-241"><a href="#cb4-241"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"methods"</span><span class="fu">,</span></span>
+<span id="cb4-242"><a href="#cb4-242"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"methods"</span></span>
+<span id="cb4-243"><a href="#cb4-243"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-244"><a href="#cb4-244"></a>    <span class="fu">{</span></span>
+<span id="cb4-245"><a href="#cb4-245"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-246"><a href="#cb4-246"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"pkgload"</span><span class="fu">,</span></span>
+<span id="cb4-247"><a href="#cb4-247"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"pkgload"</span><span class="fu">,</span></span>
+<span id="cb4-248"><a href="#cb4-248"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-249"><a href="#cb4-249"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-250"><a href="#cb4-250"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-251"><a href="#cb4-251"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-252"><a href="#cb4-252"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-253"><a href="#cb4-253"></a>      <span class="fu">},</span></span>
+<span id="cb4-254"><a href="#cb4-254"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=pkgload"</span></span>
+<span id="cb4-255"><a href="#cb4-255"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-256"><a href="#cb4-256"></a>    <span class="fu">{</span></span>
+<span id="cb4-257"><a href="#cb4-257"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-258"><a href="#cb4-258"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"praise"</span><span class="fu">,</span></span>
+<span id="cb4-259"><a href="#cb4-259"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"praise"</span><span class="fu">,</span></span>
+<span id="cb4-260"><a href="#cb4-260"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-261"><a href="#cb4-261"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-262"><a href="#cb4-262"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-263"><a href="#cb4-263"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-264"><a href="#cb4-264"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-265"><a href="#cb4-265"></a>      <span class="fu">},</span></span>
+<span id="cb4-266"><a href="#cb4-266"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=praise"</span></span>
+<span id="cb4-267"><a href="#cb4-267"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-268"><a href="#cb4-268"></a>    <span class="fu">{</span></span>
+<span id="cb4-269"><a href="#cb4-269"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-270"><a href="#cb4-270"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"R6"</span><span class="fu">,</span></span>
+<span id="cb4-271"><a href="#cb4-271"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"R6"</span><span class="fu">,</span></span>
+<span id="cb4-272"><a href="#cb4-272"></a>      <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"&gt;= 2.2.0"</span><span class="fu">,</span></span>
+<span id="cb4-273"><a href="#cb4-273"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-274"><a href="#cb4-274"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-275"><a href="#cb4-275"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-276"><a href="#cb4-276"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-277"><a href="#cb4-277"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-278"><a href="#cb4-278"></a>      <span class="fu">},</span></span>
+<span id="cb4-279"><a href="#cb4-279"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=R6"</span></span>
+<span id="cb4-280"><a href="#cb4-280"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-281"><a href="#cb4-281"></a>    <span class="fu">{</span></span>
+<span id="cb4-282"><a href="#cb4-282"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-283"><a href="#cb4-283"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"rlang"</span><span class="fu">,</span></span>
+<span id="cb4-284"><a href="#cb4-284"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"rlang"</span><span class="fu">,</span></span>
+<span id="cb4-285"><a href="#cb4-285"></a>      <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"&gt;= 0.4.1"</span><span class="fu">,</span></span>
+<span id="cb4-286"><a href="#cb4-286"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-287"><a href="#cb4-287"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-288"><a href="#cb4-288"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-289"><a href="#cb4-289"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-290"><a href="#cb4-290"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-291"><a href="#cb4-291"></a>      <span class="fu">},</span></span>
+<span id="cb4-292"><a href="#cb4-292"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=rlang"</span></span>
+<span id="cb4-293"><a href="#cb4-293"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-294"><a href="#cb4-294"></a>    <span class="fu">{</span></span>
+<span id="cb4-295"><a href="#cb4-295"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"SoftwareApplication"</span><span class="fu">,</span></span>
+<span id="cb4-296"><a href="#cb4-296"></a>      <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"withr"</span><span class="fu">,</span></span>
+<span id="cb4-297"><a href="#cb4-297"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"withr"</span><span class="fu">,</span></span>
+<span id="cb4-298"><a href="#cb4-298"></a>      <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"&gt;= 2.0.0"</span><span class="fu">,</span></span>
+<span id="cb4-299"><a href="#cb4-299"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-300"><a href="#cb4-300"></a>        <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span><span class="fu">,</span></span>
+<span id="cb4-301"><a href="#cb4-301"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb4-302"><a href="#cb4-302"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Comprehensive R Archive Network (CRAN)"</span><span class="fu">,</span></span>
+<span id="cb4-303"><a href="#cb4-303"></a>        <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://cran.r-project.org"</span></span>
+<span id="cb4-304"><a href="#cb4-304"></a>      <span class="fu">},</span></span>
+<span id="cb4-305"><a href="#cb4-305"></a>      <span class="dt">"sameAs"</span><span class="fu">:</span> <span class="st">"https://CRAN.R-project.org/package=withr"</span></span>
+<span id="cb4-306"><a href="#cb4-306"></a>    <span class="fu">}</span></span>
+<span id="cb4-307"><a href="#cb4-307"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb4-308"><a href="#cb4-308"></a>  <span class="dt">"fileSize"</span><span class="fu">:</span> <span class="st">"9546.886KB"</span><span class="fu">,</span></span>
+<span id="cb4-309"><a href="#cb4-309"></a>  <span class="dt">"citation"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb4-310"><a href="#cb4-310"></a>    <span class="fu">{</span></span>
+<span id="cb4-311"><a href="#cb4-311"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"ScholarlyArticle"</span><span class="fu">,</span></span>
+<span id="cb4-312"><a href="#cb4-312"></a>      <span class="dt">"datePublished"</span><span class="fu">:</span> <span class="st">"2011"</span><span class="fu">,</span></span>
+<span id="cb4-313"><a href="#cb4-313"></a>      <span class="dt">"author"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb4-314"><a href="#cb4-314"></a>        <span class="fu">{</span></span>
+<span id="cb4-315"><a href="#cb4-315"></a>          <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb4-316"><a href="#cb4-316"></a>          <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Hadley"</span><span class="fu">,</span></span>
+<span id="cb4-317"><a href="#cb4-317"></a>          <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Wickham"</span></span>
+<span id="cb4-318"><a href="#cb4-318"></a>        <span class="fu">}</span></span>
+<span id="cb4-319"><a href="#cb4-319"></a>      <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb4-320"><a href="#cb4-320"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"testthat: Get Started with Testing"</span><span class="fu">,</span></span>
+<span id="cb4-321"><a href="#cb4-321"></a>      <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf"</span><span class="fu">,</span></span>
+<span id="cb4-322"><a href="#cb4-322"></a>      <span class="dt">"pagination"</span><span class="fu">:</span> <span class="st">"5--10"</span><span class="fu">,</span></span>
+<span id="cb4-323"><a href="#cb4-323"></a>      <span class="dt">"isPartOf"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-324"><a href="#cb4-324"></a>        <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"PublicationIssue"</span><span class="fu">,</span></span>
+<span id="cb4-325"><a href="#cb4-325"></a>        <span class="dt">"datePublished"</span><span class="fu">:</span> <span class="st">"2011"</span><span class="fu">,</span></span>
+<span id="cb4-326"><a href="#cb4-326"></a>        <span class="dt">"isPartOf"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-327"><a href="#cb4-327"></a>          <span class="dt">"@type"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"PublicationVolume"</span><span class="ot">,</span> <span class="st">"Periodical"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb4-328"><a href="#cb4-328"></a>          <span class="dt">"volumeNumber"</span><span class="fu">:</span> <span class="st">"3"</span><span class="fu">,</span></span>
+<span id="cb4-329"><a href="#cb4-329"></a>          <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"The R Journal"</span></span>
+<span id="cb4-330"><a href="#cb4-330"></a>        <span class="fu">}</span></span>
+<span id="cb4-331"><a href="#cb4-331"></a>      <span class="fu">}</span></span>
+<span id="cb4-332"><a href="#cb4-332"></a>    <span class="fu">}</span></span>
+<span id="cb4-333"><a href="#cb4-333"></a>  <span class="ot">]</span></span>
+<span id="cb4-334"><a href="#cb4-334"></a><span class="fu">}</span></span></code></pre></div>
+</details><p><br></p>
 </div>
-<div id="modifying-or-enriching-codemeta-metadata" class="section level2">
+<div id="keep-codemetajson-up-to-date" class="section level2">
 <h2 class="hasAnchor">
-<a href="#modifying-or-enriching-codemeta-metadata" class="anchor"></a>Modifying or enriching CodeMeta metadata</h2>
-<p>The best way to ensure <code>codemeta.json</code> is as complete as possible is to begin by making full use of the fields that can be set in an R package DESCRIPTION file, such as <code>BugReports</code> and <code>URL</code>. Using the <code>Authors@R</code> notation allows a much richer specification of author roles, correct parsing of given vs family names, and email addresses.</p>
-<p>In the current implementation, developers may specify an ORCID url for an author in the optional <code>comment</code> field of <code>Authors@R</code>, e.g.</p>
-<pre><code>Authors@R: person("Carl", "Boettiger", role=c("aut", "cre", "cph"), email="cboettig@gmail.com", comment="http://orcid.org/0000-0002-1642-628X")</code></pre>
-<p>which will allow <code>codemetar</code> to associate an identifier with the person. If the package is hosted on CRAN, including the ORCiD in this way will cause an ORCiD logo and link to the ORCiD page to be added to the package CRAN webpage.</p>
-<div id="using-the-description-file" class="section level3">
+<a href="#keep-codemetajson-up-to-date" class="anchor"></a>Keep codemeta.json up-to-date</h2>
+<p><strong>How to keep codemeta.json up-to-date?</strong> In particular, how to keep it up to date with <code>DESCRIPTION</code>? <code>codemetar</code> itself no longer supports automatic sync, but there are quite a few methods available out there. Choose one that fits well into your workflow!</p>
+<ul>
+<li><p>You could rely on <code><a href="https://devtools.r-lib.org//reference/release.html">devtools::release()</a></code> since it will ask you whether you updated codemeta.json when such a file exists.</p></li>
+<li>
+<p>You could use a git pre-commit hook that prevents a commit from being done if DESCRIPTION is newer than codemeta.json.</p>
+<ul>
+<li><p>You can use the <a href="https://github.com/lorenzwalthert/precommit">precommit package</a> in which there’s a “codemeta-description-updated” hook.</p></li>
+<li><p>If that’s your only pre-commit hook (i.e. you don’t have one created by e.g. <code><a href="https://usethis.r-lib.org/reference/use_readme_rmd.html">usethis::use_readme_rmd()</a></code>), then you can create it using</p></li>
+</ul>
+</li>
+</ul>
+<!-- end list --><div class="sourceCode" id="cb5"><pre class="r"><span class="no">script</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"templates"</span>, <span class="st">"description-codemetajson-pre-commit.sh"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"codemetar"</span>))
+<span class="kw pkg">usethis</span><span class="kw ns">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_git_hook.html">use_git_hook</a></span>(<span class="st">"pre-commit"</span>,
+                     <span class="kw">script</span> <span class="kw">=</span> <span class="no">script</span>)</pre></div>
+<ul>
+<li>You could use GitHub actions. Refer to GitHub actions docs <a href="https://github.com/features/actions" class="uri">https://github.com/features/actions</a>, and to the example workflow provided in this package (type <code><a href="https://rdrr.io/r/base/system.file.html">system.file("templates", "codemeta-github-actions.yml", package = "codemetar")</a></code>). You can use the <code>cm-skip</code> keyword in your commit message if you don’t want this to run on a specific commit. The example workflow provided is setup to only run when a push is made to the master branch. This setup is designed for if you’re using a <a href="https://nvie.com/posts/a-successful-git-branching-model/#the-main-branches">git flow</a> setup where the master branch is only committed and pushed to via pull requests. After each PR merge (and the completion of this GitHub action), your master branch will always be up to date and so long as you don’t make manual changes to the codemeta.json file, you won’t have merge conflicts.</li>
+</ul>
+<p>Alternatively, you can have GitHub actions route run <code>codemetar</code> on each commit. If you do this you should try to remember to run <code>git pull</code> before making any new changes on your local project. However, if you forgot to pull and already committed new changes, fret not, you can use (<a href="https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843"><code>git pull --rebase</code></a>) to rewind you local changes on top of the current upstream <code>HEAD</code>.</p>
+<details closed><p><summary><span title="Click to Expand"> click here to see the workflow </span> </summary></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> master</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="at">      </span><span class="kw">-</span><span class="at"> DESCRIPTION</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> .github/workflows/main.yml</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Render codemeta</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="at">  </span><span class="fu">render</span><span class="kw">:</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="at">    </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Render codemeta</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> macOS-latest</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="at">    </span><span class="fu">if</span><span class="kw">:</span><span class="at"> </span><span class="st">"!contains(github.event.head_commit.message, 'cm-skip')"</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v1</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-r@v1</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install codemetar</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> Rscript -e 'install.packages("codemetar")'</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Render codemeta</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> Rscript -e 'codemetar::write_codemeta()'</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Commit results</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb6-24"><a href="#cb6-24"></a>          git commit codemeta.json -m 'Re-build codemeta.json' || echo "No changes to commit"</span>
+<span id="cb6-25"><a href="#cb6-25"></a>          git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git HEAD:${{ github.ref }} || echo "No changes to commit"</span></code></pre></div>
+</details><p><br></p>
+</div>
+<div id="how-to-improve-your-packages-codemetajson" class="section level2">
+<h2 class="hasAnchor">
+<a href="#how-to-improve-your-packages-codemetajson" class="anchor"></a>How to improve your package’s codemeta.json?</h2>
+<p>The best way to ensure <code>codemeta.json</code> is as complete as possible is to set metadata in all the usual places, and then if needed add more metadata.</p>
+<p>To ensure you have metadata in the usual places, you can run <code><a href="reference/give_opinions.html">codemetar::give_opinions()</a></code>.</p>
+<div id="usual-terms-in-description" class="section level3">
 <h3 class="hasAnchor">
-<a href="#using-the-description-file" class="anchor"></a>Using the DESCRIPTION file</h3>
-<p>The DESCRIPTION file is the natural place to specify any metadata for an R package. The <code>codemetar</code> package can detect certain additional terms in the <a href="https://codemeta.github.io/terms">CodeMeta context</a>. Almost any additional codemeta field (see <code>codemetar:::additional_codemeta_terms</code> for a list) and can be added to and read from the DESCRIPTION into a <code>codemeta.json</code> file.</p>
-<p>CRAN requires that you prefix any additional such terms to indicate the use of <code>schema.org</code> explicitly, e.g. <code>keywords</code> would be specified in a DESCRIPTION file as:</p>
-<pre><code>X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-data</code></pre>
-<p>Where applicable, these will override values otherwise guessed from the source repository. Use comma-separated lists to separate multiple values to a property, e.g. keywords.</p>
-<p>See the <a href="https://github.com/ropensci/codemetar/blob/master/DESCRIPTION">DESCRIPTION</a> file of the <code>codemetar</code> package for an example.</p>
+<a href="#usual-terms-in-description" class="anchor"></a>Usual terms in DESCRIPTION</h3>
+<ul>
+<li><p>Fill <code>BugReports</code> and <code>URL</code>.</p></li>
+<li><p>Using the <code>Authors@R</code> notation allows a much richer specification of author roles, correct parsing of given vs family names, and email addresses.</p></li>
+</ul>
+<p>In the current implementation, developers may specify an ORCID url for an author in the optional <code>comment</code> field of <code>Authors@R</code>, e.g.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>Authors<span class="op">@</span>R<span class="op">:</span><span class="st"> </span><span class="kw">c</span>(<span class="kw">person</span>(<span class="dt">given =</span> <span class="st">"Carl"</span>,</span>
+<span id="cb7-2"><a href="#cb7-2"></a>             <span class="dt">family =</span> <span class="st">"Boettiger"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3"></a>             <span class="dt">role =</span> <span class="kw">c</span>(<span class="st">"aut"</span>, <span class="st">"cre"</span>, <span class="st">"cph"</span>),</span>
+<span id="cb7-4"><a href="#cb7-4"></a>             <span class="dt">email =</span> <span class="st">"cboettig@gmail.com"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5"></a>             <span class="dt">comment =</span> <span class="kw">c</span>(<span class="dt">ORCID =</span> <span class="st">"0000-0002-1642-628X"</span>)))</span></code></pre></div>
+<p>which will allow <code>codemetar</code> to associate an identifier with the person. This is clearly something of a hack since R’s <code>person</code> object lacks an explicit notion of <code>id</code>, and may be frowned upon.</p>
 </div>
+<div id="usual-terms-in-the-readme" class="section level3">
+<h3 class="hasAnchor">
+<a href="#usual-terms-in-the-readme" class="anchor"></a>Usual terms in the README</h3>
+<p>In the README, you can use badges for continuous integration, repo development status (repostatus.org or lifecycle.org), provider (<a href="https://docs.r-hub.io/#badges">e.g. for CRAN</a>).</p>
+</div>
+<div id="github-repo-topics" class="section level3">
+<h3 class="hasAnchor">
+<a href="#github-repo-topics" class="anchor"></a>GitHub repo topics</h3>
+<p>If your package source is hosted on GitHub and there’s a way for codemetar to determine that (URL in DESCRIPTION, or git remote URL) codemetar will use <a href="https://help.github.com/en/github/administering-a-repository/classifying-your-repository-with-topics">GitHub repo topics</a> as keywords in codemeta.json. If you also set keywords in DESCRIPTION (see next section), codemetar will merge the two lists.</p>
+</div>
+<div id="set-even-more-terms-via-description" class="section level3">
+<h3 class="hasAnchor">
+<a href="#set-even-more-terms-via-description" class="anchor"></a>Set even more terms via DESCRIPTION</h3>
+<p>In general, setting metadata via the places stated earlier is the best solution because that metadata is used by other tools (e.g. the URLs in DESCRIPTION can help the package users, not only codemetar).</p>
+<p>The DESCRIPTION file is the natural place to specify any metadata for an R package. The <code>codemetar</code> package can detect certain additional terms in the <a href="https://codemeta.github.io/terms">CodeMeta context</a>. Almost any additional codemeta field can be added to and read from the DESCRIPTION into a <code>codemeta.json</code> file (see <code>codemetar:::additional_codemeta_terms</code> for a list).</p>
+<p>CRAN requires that you prefix any additional such terms to indicate the use of <code>schema.org</code> explicitly, e.g. <code>keywords</code> would be specified in a DESCRIPTION file as:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>X<span class="op">-</span>schema.org<span class="op">-</span>keywords<span class="op">:</span><span class="st"> </span>metadata, codemeta, ropensci, citation, credit, linked<span class="op">-</span>data</span></code></pre></div>
+<p>Where applicable, these will override values otherwise guessed from the source repository. Use comma-separated lists to separate multiple values to a property, e.g. keywords.</p>
+<p>See the <a href="https://github.com/codemeta/codemetar/blob/master/DESCRIPTION">DESCRIPTION</a> file of the <code>codemetar</code> package for an example.</p>
+</div>
+</div>
+<div id="installation-and-usage-requirements" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation-and-usage-requirements" class="anchor"></a>Installation and usage requirements</h2>
+<p>You can install the latest version from CRAN using:</p>
+<div class="sourceCode" id="cb9"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"codemetar"</span>)</pre></div>
+<p>You can also install the development version of <code>codemetar</code> from GitHub with:</p>
+<div class="sourceCode" id="cb10"><pre class="r"><span class="co"># install.packages("remotes")</span>
+<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"ropensci/codemetar"</span>, <span class="kw">ref</span> <span class="kw">=</span> <span class="st">"dev"</span>)</pre></div>
+<p>For optimal results you need a good internet connection.</p>
+<p>The package queries</p>
+<ul>
+<li><p><code><a href="https://rdrr.io/r/utils/available.packages.html">utils::available.packages()</a></code> for CRAN and Bioconductor packages;</p></li>
+<li><p>GitHub API via the <a href="https://github.com/r-lib/gh"><code>gh</code> package</a>, if it finds a GitHub repo URL in DESCRIPTION or as git remote. GitHub API is queried to find the <a href="https://developer.github.com/v3/repos/contents/#get-the-readme">preferred README</a>, and the <a href="https://developer.github.com/v3/repos/#list-all-topics-for-a-repository">repo topics</a>. If you use codemetar for many packages having a <a href="https://github.com/r-lib/gh#environment-variables">GITHUB_PAT</a> is better;</p></li>
+<li><p><a href="https://docs.r-hub.io/#sysreqs">R-hub sysreqs API</a> to parse SystemRequirements.</p></li>
+</ul>
+<p>If your machine is offline, a more minimal codemeta.json will be created. If your internet connection is poor or there are firewalls, the codemeta creation might indefinitely hang.</p>
 </div>
 <div id="going-further" class="section level2">
 <h2 class="hasAnchor">
 <a href="#going-further" class="anchor"></a>Going further</h2>
-<p>Check out all the <a href="https://codemeta.github.io/codemetar/articles/index.html">codemetar vignettes</a> for tutorials on other cool stuff you can do with codemeta and json-ld.</p>
-<p><a href="https://ropensci.org"><img src="https://ropensci.org/public_images/ropensci_footer.png" alt="ropensci_footer"></a></p>
+<p>Check out all the <a href="https://docs.ropensci.org/codemetar/articles/index.html">codemetar man</a> for tutorials on other cool stuff you can do with codemeta and json-ld.</p>
+<p>A new feature is the creation of a minimal schemaorg.json for insertion on your website’s webpage for Search Engine Optimization, when the <code>write_minimeta</code> argument of <code><a href="reference/write_codemeta.html">write_codemeta()</a></code> is <code>TRUE</code>.</p>
+<p>You could e.g. use the code below in a chunk in README.Rmd with <code>results="asis"</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="r"><span class="kw pkg">glue</span><span class="kw ns">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">'&lt;script type="application/ld+json"&gt;
+      {glue::glue_collapse(readLines("schemaorg.json"), sep = "\n")}
+    &lt;/script&gt;'</span>)</pre></div>
+<p>Refer to <a href="https://developers.google.com/search/reference/overview">Google documentation</a> for more guidance.</p>
+<script type="application/ld+json">
+      {
+  "@context": "https://schema.org",
+  "type": "SoftwareSourceCode",
+  "author": [
+    {
+      "id": "https://orcid.org/0000-0002-2815-0399"
+    },
+    {
+      "id": "https://orcid.org/0000-0002-1642-628X"
+    }
+  ],
+  "codeRepository": "https://github.com/ropensci/codemetar",
+  "contributor": [
+    {
+      "id": "https://orcid.org/0000-0002-2378-4915",
+      "type": "Person",
+      "familyName": "Krystalli",
+      "givenName": "Anna"
+    },
+    {
+      "id": "https://orcid.org/0000-0002-2815-0399",
+      "type": "Person",
+      "familyName": "Salmon",
+      "givenName": "Maëlle"
+    },
+    {
+      "id": "https://orcid.org/0000-0001-5135-5758",
+      "type": "Person",
+      "familyName": "Leinweber",
+      "givenName": "Katrin"
+    },
+    {
+      "id": "https://orcid.org/0000-0002-2136-0000",
+      "type": "Person",
+      "familyName": "Ross",
+      "givenName": "Noam"
+    },
+    {
+      "type": "Person",
+      "familyName": "Smith",
+      "givenName": "Arfon"
+    },
+    {
+      "id": "https://orcid.org/0000-0002-4035-0289",
+      "type": "Person",
+      "familyName": "Ooms",
+      "givenName": "Jeroen"
+    },
+    {
+      "id": "https://orcid.org/0000-0002-1791-9449",
+      "type": "Person",
+      "familyName": "Meyer",
+      "givenName": "Sebastian"
+    },
+    {
+      "id": "https://orcid.org/0000-0003-0647-7726",
+      "type": "Person",
+      "familyName": "Rustler",
+      "givenName": "Michael"
+    },
+    {
+      "id": "https://orcid.org/0000-0001-9134-2871",
+      "type": "Person",
+      "familyName": "Sonnenberg",
+      "givenName": "Hauke"
+    },
+    {
+      "id": "https://orcid.org/0000-0002-0734-2199",
+      "type": "Person",
+      "familyName": "Kreutzer",
+      "givenName": "Sebastian"
+    }
+  ],
+  "copyrightHolder": {
+    "id": "https://orcid.org/0000-0002-1642-628X",
+    "type": "Person",
+    "email": "cboettig@gmail.com",
+    "familyName": "Boettiger",
+    "givenName": "Carl"
+  },
+  "description": "The 'Codemeta' Project defines a 'JSON-LD' format\n    for describing software metadata, as detailed at\n    <https://codemeta.github.io>. This package provides utilities to\n    generate, parse, and modify 'codemeta.json' files automatically for R\n    packages, as well as tools and examples for working with\n    'codemeta.json' 'JSON-LD' more generally.",
+  "funder": {
+    "type": "Organization",
+    "name": "rOpenSci"
+  },
+  "license": "https://spdx.org/licenses/GPL-3.0",
+  "name": "codemetar: Generate 'CodeMeta' Metadata for R Packages",
+  "programmingLanguage": {
+    "type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "provider": {
+    "id": "https://cran.r-project.org",
+    "type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
+  "version": "0.1.8.9000"
+}
+    </script><p><a href="https://ropensci.org"><img src="https://ropensci.org/public_images/ropensci_footer.png" alt="ropensci_footer"></a></p>
 </div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=codemetar">https://​cloud.r-project.org/​package=codemetar</a>
 </li>
-<li>Browse source code at <br><a href="https://github.com/ropensci/codemetar">https://​github.com/​ropensci/​codemetar</a>
+<li>Browse source code at <br><a href="https://github.com/ropensci/codemetar/">https://​github.com/​ropensci/​codemetar/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/ropensci/codemetar/issues">https://​github.com/​ropensci/​codemetar/​issues</a>
 </li>
@@ -181,21 +1290,28 @@
 <li><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></li>
 </ul>
 </div>
+<div class="community">
+<h2>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
+</ul>
+</div>
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Carl Boettiger <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0002-1642-628X" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID" height="16"></a> </li>
-<li>Maëlle Salmon <br><small class="roles"> Contributor, author </small> <a href="https://orcid.org/0000-0002-2815-0399" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID" height="16"></a> </li>
+<li>Carl Boettiger <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0002-1642-628X" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Maëlle Salmon <br><small class="roles"> Contributor, author </small> <a href="https://orcid.org/0000-0002-2815-0399" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>rOpenSci <br><small class="roles"> Funder </small>  <br><small>(https://ropensci.org/)</small>
 </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
 
-      <div class="dev-status">
+  <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="http://www.repostatus.org/#active"><img src="http://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></li>
+<li><a href="https://github.com/ropensci/codemetar/actions"><img src="https://github.com/ropensci/codemetar/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 <li><a href="https://travis-ci.org/ropensci/codemetar"><img src="https://travis-ci.org/ropensci/codemetar.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 <li><a href="https://ci.appveyor.com/project/cboettig/codemetar/branch/master"><img src="https://ci.appveyor.com/api/projects/status/csawpip238vvbd72/branch/master?svg=true" alt="AppVeyor Build status"></a></li>
 <li><a href="https://codecov.io/github/ropensci/codemetar?branch=master"><img src="https://img.shields.io/codecov/c/github/ropensci/codemetar/master.svg" alt="Coverage Status"></a></li>
@@ -206,24 +1322,75 @@
 </ul>
 </div>
 </div>
-
 </div>
 
 
-      <footer><div style="margin-top:-9px">
-  <p>codemetar is a part of <img src="https://github.com/ropensci/logos/raw/master/icon_lettering_color.png" height="40" alt="rOpenSci">. Learn more at <a href="https://ropensci.org">ropensci.org</a>.</p>
+      <footer><!-- begin footer --><div class="footer">
+    <div class="container">
+        <div class="row start bottom-8">
+            <div class="col-xs-2"> <img id="footerlogo" src="https://ropensci.org/img/icon_short_white.svg">
 </div>
+            <div class="col-xs-10">
+                <div class="row">
+                    <div class="col-md-4 col-xs-6">
+                        <a href="http://github.com/ropensci" target="_blank"><div class="icon fab fa-github"></div></a>
+                        <a href="http://github.com/ropenscilabs" target="_blank"><div class="icon fa fa-flask"></div></a>
+                        <a href="http://twitter.com/ropensci" target="_blank"><div class="icon fab fa-twitter"></div></a>
+                        <a href="http://vimeo.com/ropensci" target="_blank"><div class="icon fab fa-vimeo"></div></a>
+                    </div>
+                </div>
+                <div class="row top-4">
+                    <div class="col-md-2 col-sm-4">
+                        <ul>
+<h5 class="bottom-2">Info</h5>
+                            <li><a href="https://ropensci.org/about">Mission</a></li>
+                            <li><a href="https://ropensci.org/about#team">Team</a></li>
+                            <li><a href="https://ropensci.org/about#collaborators">Collaborators</a></li>
+                            <li><a href="https://ropensci.org/careers">Careers</a></li>
+                        </ul>
+</div>
+                    <div class="col-md-2 col-sm-4">
+                        <ul>
+<h5 class="bottom-2">Work</h5>
+                            <li><a href="https://ropensci.org/packages/">Packages</a></li>
+                            <li><a href="https://ropensci.org/blog/">Blog</a></li>
+                            <li><a href="https://ropensci.org/technotes/">Tech Notes</a></li>
+                            <li><a href="https://ropensci.org/tutorials/">Tutorials</a></li>
+                            <li><a href="https://ropensci.org/usecases/">Use Cases</a></li>
+                            <li><a href="https://ropensci.org/resources/">More Resources</a></li>
+                        </ul>
+</div>
+                    <div class="col-md-3 col-sm-4">
+                        <ul>
+<h5 class="bottom-2">Participate</h5>
+                            <li><a href="https://ropensci.org/contact/">Contact us</a></li>
+                            <li><a href="https://ropensci.org/community/">Community</a></li>
+                            <li><a href="https://ropensci.org/software-review/">Contribute software</a></li>
+                            <li><a href="https://ropensci.org/code-of-conduct">Code of conduct</a></li>
+                            <li><a href="https://ropensci.org/events/">Events</a></li>
+                            <li><a href="https://ropensci.org/commcalls/">Community calls</a></li>
+                            <li><a href="https://ropensci.org/donate/">Donate</a></li>
+                        </ul>
+</div>
+                    <div class="col-md-4 col-xs-12">
+                        <h5 class="bottom-2"></h5>
 
-<div class="author">
-  <p>
-    Developed by Carl Boettiger, Maëlle Salmon, rOpenSci.
-    Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a> &amp; <a href="https://ropensci.github.io/rotemplate/">rotemplate</a>.
-  </p>
+                        <p>rOpenSci is a fiscally sponsored project of <a href="http://numfocus.org" target="_blank">NumFOCUS</a></p>
+                        <a href="http://numfocus.org" target="_blank"></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- / end footer -->
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

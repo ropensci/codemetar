@@ -6,6 +6,8 @@
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![R build
+status](https://github.com/ropensci/codemetar/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/codemetar/actions)
 [![Travis-CI Build
 Status](https://travis-ci.org/ropensci/codemetar.svg?branch=master)](https://travis-ci.org/ropensci/codemetar)
 [![AppVeyor Build
@@ -76,19 +78,84 @@ much information as possible.
 
 ``` r
 codemetar::write_codemeta(find.package("codemetar"))
-[1] "/home/maelle/R/x86_64-pc-linux-gnu-library/3.6/codemetar"
 … Getting CRAN metadata from RStudio CRAN mirror
 ✓ Got CRAN metadata!
 … Getting Bioconductor metadata
 ✓ Got Bioconductor metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting Bioconductor metadata
+✓ Got Bioconductor metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting Bioconductor metadata
+✓ Got Bioconductor metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting Bioconductor metadata
+✓ Got Bioconductor metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
 … Getting sysreqs URL from sysreqs API
 ✓ Got sysreqs URL from sysreqs API!
 … Asking README URL from GitHub API
-✓ Got README URL!
+x Did not get README URL.
 … Asking README URL from GitHub API
-✓ Got README URL!
+x Did not get README URL.
 … Getting repo topics from GitHub API
-✓ Got repo topics!
+x Did not get repo topics.
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting Bioconductor metadata
+✓ Got Bioconductor metadata!
 ```
 
 <details closed>
@@ -112,16 +179,9 @@ codemetar::write_codemeta(find.package("codemetar"))
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Comprehensive R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  },
+  "runtimePlatform": "R version 4.0.0 (2020-04-24)",
   "author": [
     {
       "@type": "Person",
@@ -339,7 +399,7 @@ codemetar::write_codemeta(find.package("codemetar"))
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.0.0"
+      "version": ">= 3.2.0"
     },
     {
       "@type": "SoftwareApplication",
@@ -364,18 +424,6 @@ codemetar::write_codemeta(find.package("codemetar"))
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=crul"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "curl",
-      "name": "curl",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=curl"
     },
     {
       "@type": "SoftwareApplication",
@@ -415,21 +463,9 @@ codemetar::write_codemeta(find.package("codemetar"))
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "glue",
-      "name": "glue",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=glue"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "jsonlite",
       "name": "jsonlite",
-      "version": ">=\n        1.6",
+      "version": ">= 1.6",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -505,18 +541,6 @@ codemetar::write_codemeta(find.package("codemetar"))
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "readr",
-      "name": "readr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=readr"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "remotes",
       "name": "remotes",
       "provider": {
@@ -546,18 +570,6 @@ codemetar::write_codemeta(find.package("codemetar"))
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "tibble",
-      "name": "tibble",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=tibble"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "urltools",
       "name": "urltools",
       "provider": {
@@ -567,30 +579,6 @@ codemetar::write_codemeta(find.package("codemetar"))
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=urltools"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "usethis",
-      "name": "usethis",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=usethis"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "whisker",
-      "name": "whisker",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=whisker"
     },
     {
       "@type": "SoftwareApplication",
@@ -618,8 +606,8 @@ codemetar::write_codemeta(find.package("codemetar"))
     }
   ],
   "isPartOf": "https://ropensci.org",
-  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
-  "readme": "https://github.com/ropensci/codemetar/blob/master/README.md"
+  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data"],
+  "fileSize": "2429.096KB"
 }
 ```
 
@@ -636,15 +624,64 @@ package, e.g. for `testthat`. That will use information from
 
 ``` r
 codemetar::write_codemeta("testthat", path = "example-codemeta.json")
-[1] "/home/maelle/R/x86_64-pc-linux-gnu-library/3.6/testthat/."
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting Bioconductor metadata
+✓ Got Bioconductor metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting Bioconductor metadata
+✓ Got Bioconductor metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
 … Getting sysreqs URL from sysreqs API
 ✓ Got sysreqs URL from sysreqs API!
 … Asking README URL from GitHub API
-✓ Got README URL!
+x Did not get README URL.
 … Asking README URL from GitHub API
-✓ Got README URL!
+x Did not get README URL.
 … Getting repo topics from GitHub API
-✓ Got repo topics!
+x Did not get repo topics.
+… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
 ```
 
 <details closed>
@@ -664,14 +701,13 @@ codemetar::write_codemeta("testthat", path = "example-codemeta.json")
   "relatedLink": ["http://testthat.r-lib.org", "https://CRAN.R-project.org/package=testthat"],
   "issueTracker": "https://github.com/r-lib/testthat/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
+  "runtimePlatform": "R version 4.0.0 (2020-04-24)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -961,8 +997,7 @@ codemetar::write_codemeta("testthat", path = "example-codemeta.json")
       "sameAs": "https://CRAN.R-project.org/package=withr"
     }
   ],
-  "readme": "https://github.com/r-lib/testthat/blob/master/README.md",
-  "keywords": ["r", "unit-testing"],
+  "fileSize": "9546.886KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -1029,12 +1064,23 @@ usethis::use_git_hook("pre-commit",
     provided in this package (type `system.file("templates",
     "codemeta-github-actions.yml", package = "codemetar")`). You can use
     the `cm-skip` keyword in your commit message if you don’t want this
-    to run on a specific commit. If you take the GitHub actions route,
-    you should try to remember to run `git pull` before making any new
-    changes on your local project. However, if you forgot to pull and
-    already committed new changes, fret not, you can use ([`git pull
-    --rebase`](https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843))
-    to rewind you local changes on top of the current upstream `HEAD`.
+    to run on a specific commit. The example workflow provided is setup
+    to only run when a push is made to the master branch. This setup is
+    designed for if you’re using a [git
+    flow](https://nvie.com/posts/a-successful-git-branching-model/#the-main-branches)
+    setup where the master branch is only committed and pushed to via
+    pull requests. After each PR merge (and the completion of this
+    GitHub action), your master branch will always be up to date and so
+    long as you don’t make manual changes to the codemeta.json file, you
+    won’t have merge conflicts.
+
+Alternatively, you can have GitHub actions route run `codemetar` on each
+commit. If you do this you should try to remember to run `git pull`
+before making any new changes on your local project. However, if you
+forgot to pull and already committed new changes, fret not, you can use
+([`git pull
+--rebase`](https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843))
+to rewind you local changes on top of the current upstream `HEAD`.
 
 <details closed>
 
@@ -1045,6 +1091,7 @@ usethis::use_git_hook("pre-commit",
 
 on:
   push:
+    branches: master
     paths:
       - DESCRIPTION
       - .github/workflows/main.yml

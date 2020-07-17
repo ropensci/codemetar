@@ -1,51 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ropensci.github.io/codemetar/index.html</loc>
+    <loc>https://docs.ropensci.org/codemetar/index.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/codemetar/reference/add_context.html</loc>
+    <loc>https://docs.ropensci.org/codemetar/reference/codemetar-package.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/codemetar/reference/codemeta_validate.html</loc>
+    <loc>https://docs.ropensci.org/codemetar/reference/create_codemeta.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/codemetar/reference/codemetar-package.html</loc>
+    <loc>https://docs.ropensci.org/codemetar/reference/extract_badges.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/codemetar/reference/create_codemeta.html</loc>
+    <loc>https://docs.ropensci.org/codemetar/reference/give_opinions.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/codemetar/reference/crosswalk.html</loc>
+    <loc>https://docs.ropensci.org/codemetar/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/codemetar/reference/crosswalk_table.html</loc>
+    <loc>https://docs.ropensci.org/codemetar/reference/write_codemeta.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/codemetar/reference/drop_context.html</loc>
+    <loc>https://docs.ropensci.org/codemetar/articles/articles/examples-parsing-codemeta.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/codemetar/reference/extract_badges.html</loc>
+    <loc>https://docs.ropensci.org/codemetar/articles/articles/validation-in-json-ld.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/codemetar/reference/give_opinions.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/codemetar/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/codemetar/reference/write_codemeta.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/codemetar/articles/articles/examples-parsing-codemeta.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/codemetar/articles/articles/translating-codemeta.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/codemetar/articles/articles/validation-in-json-ld.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/codemetar/articles/codemeta-intro.html</loc>
+    <loc>https://docs.ropensci.org/codemetar/articles/codemetar.html</loc>
   </url>
 </urlset>

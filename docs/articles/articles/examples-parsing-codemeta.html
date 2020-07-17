@@ -6,22 +6,27 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Parsing Codemeta Data • codemetar</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<link href="../../ropensci.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
-<script src="../../pkgdown.js"></script><meta property="og:title" content="Parsing Codemeta Data">
-<meta property="og:description" content="">
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
+<script src="../../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
+<script src="../../pkgdown.js"></script><!-- ropensci --><link href="../../ropensci.css?nocache=123" rel="stylesheet">
+<meta property="og:title" content="Parsing Codemeta Data">
+<meta property="og:description" content="codemetar">
 <meta name="twitter:card" content="summary">
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-462421-8"></script><script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-462421-8');
+</script>
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -34,27 +39,27 @@
       </button>
 
       <div class="navbar-brand-container">
-        <a class="navbar-brand" href="../../index.html">codemetar</a>
-        <div class="info">
-          <span class="partof">part of  <a href="https://ropensci.org"><img src="https://d33wubrfki0l68.cloudfront.net/88338b7637e084df5c43e7a9e6293719dbaf10e2/30903/img/icon_lettering_white.svg" height="24" alt="rOpenSci"></a></span>
-          <span class="version label label-default version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8</span>
-        </div>
+        <a href="https://ropensci.org"><img src="https://ropensci.org/img/icon_short_white.svg" id="hexlogo" alt="rOpenSci"></a>
+        <a class="navbar-brand" href="../../index.html"><i>codemetar <small>v0.1.8.9000</small></i></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="../../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../../articles/codemetar.html">Intro</a>
 </li>
 <li>
   <a href="../../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
+    Advanced
      
     <span class="caret"></span>
   </a>
@@ -68,9 +73,6 @@
     <li>
       <a href="../../articles/articles/validation-in-json-ld.html">Validation in JSON-LD</a>
     </li>
-    <li>
-      <a href="../../articles/codemeta-intro.html">Codemeta intro</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -78,7 +80,7 @@
 </li>
         <li>
   <a href="https://github.com/ropensci/codemetar">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -91,13 +93,14 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+
+      </header><script src="examples-parsing-codemeta_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Parsing Codemeta Data</h1>
+      <h1 data-toc-skip>Parsing Codemeta Data</h1>
                         <h4 class="author">Carl Boettiger</h4>
             
-            <h4 class="date">2019-04-21</h4>
+            <h4 class="date">2020-07-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/codemetar/blob/master/vignettes/articles/examples-parsing-codemeta.Rmd"><code>vignettes/articles/examples-parsing-codemeta.Rmd</code></a></small>
       <div class="hidden name"><code>examples-parsing-codemeta.Rmd</code></div>
@@ -107,95 +110,106 @@
     
     
 <p>Here we illustrate some example use cases that involve parsing codemeta data.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(jsonld)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(jsonlite)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(codemetar)</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(purrr)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(printr)</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tibble)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">jsonld</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">jsonlite</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">magrittr</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">codemetar</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">purrr</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">printr</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tibble</span>)</pre></body></html></div>
+<pre><code>Warning: package 'tibble' was built under R version 4.0.2</code></pre>
 <p>We start with a simple example from the <code>codemeta.json</code> file of <code>codemetar</code> itself. First, we’ll just generate a copy of the codemeta record for the package:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../../reference/write_codemeta.html">write_codemeta</a></span>(<span class="st">"codemetar"</span>, <span class="st">"codemeta.json"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../../reference/write_codemeta.html">write_codemeta</a></span>(<span class="st">"codemetar"</span>, <span class="st">"codemeta.json"</span>)</pre></body></html></div>
+<pre><code>… Getting CRAN metadata from RStudio CRAN mirror
+✓ Got CRAN metadata!
+… Getting Bioconductor metadata
+✓ Got Bioconductor metadata!
+… Getting sysreqs URL from sysreqs API
+✓ Got sysreqs URL from sysreqs API!
+… Asking README URL from GitHub API
+✓ Got README URL!
+… Asking README URL from GitHub API
+✓ Got README URL!
+… Getting repo topics from GitHub API
+✓ Got repo topics!</code></pre>
 <p>We then digest this input using a JSON-LD “frame.” While not strictly necessary, this helps ensure the data matches the format we expect, even if the original file had errors or missing data. See the vignette “Validating in JSON-LD” in this package and the official <a href="https://json-ld.org/spec/latest/json-ld-framing/">JSON-LD docs</a> for details). The <code>codemetar</code> package includes a reasonably explicit frame to get us started:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">frame &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"schema/frame_schema.json"</span>, <span class="dt">package=</span><span class="st">"codemetar"</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">meta &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(<span class="st">"codemeta.json"</span>, frame) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(<span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extract">getElement</a></span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extract">getElement</a></span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">frame</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"schema/frame_schema.json"</span>, <span class="kw">package</span><span class="kw">=</span><span class="st">"codemetar"</span>)
+
+<span class="no">meta</span> <span class="kw">&lt;-</span>
+  <span class="fu"><a href="https://docs.ropensci.org/jsonld/reference/jsonld.html">jsonld_frame</a></span>(<span class="st">"codemeta.json"</span>, <span class="no">frame</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://jeroen.cran.dev/jsonlite/reference/fromJSON.html">fromJSON</a></span>(<span class="fl">FALSE</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/Extract.html">getElement</a></span>(<span class="st">"@graph"</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/Extract.html">getElement</a></span>(<span class="fl">1</span>)</pre></body></html></div>
 <p>Construct a citation</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">authors &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">lapply</a></span>(meta<span class="op">$</span>author, </a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">       <span class="cf">function</span>(author) </a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">         <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/person">person</a></span>(<span class="dt">given =</span> author<span class="op">$</span>given, </a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">                <span class="dt">family =</span> author<span class="op">$</span>family, </a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">                <span class="dt">email =</span> author<span class="op">$</span>email,</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">                <span class="dt">role =</span> <span class="st">"aut"</span>))</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">year &lt;-<span class="st"> </span>meta<span class="op">$</span>datePublished</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="cf">if</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NULL">is.null</a></span>(year)) </a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">  year &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/format">format</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.time">Sys.Date</a></span>(), <span class="st">"%Y"</span>)</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">bibitem &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/bibentry">bibentry</a></span>(</a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">     <span class="dt">bibtype =</span> <span class="st">"Manual"</span>,</a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">     <span class="dt">title =</span> meta<span class="op">$</span>name,</a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">     <span class="dt">author =</span> authors,</a>
-<a class="sourceLine" id="cb4-16" data-line-number="16">     <span class="dt">year =</span> year,</a>
-<a class="sourceLine" id="cb4-17" data-line-number="17">     <span class="dt">note =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"R package version "</span>, meta<span class="op">$</span>version),</a>
-<a class="sourceLine" id="cb4-18" data-line-number="18">     <span class="dt">url =</span> meta<span class="op">$</span>URL,</a>
-<a class="sourceLine" id="cb4-19" data-line-number="19">     <span class="dt">key =</span> meta<span class="op">$</span>identifier</a>
-<a class="sourceLine" id="cb4-20" data-line-number="20">   )</a></code></pre></div>
-<pre><code>Warning in bibentry(bibtype = "Manual", title = meta$name, author =
-authors, : Not all arguments are of the same length, the following need to
-be recycled: author</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/format">format</a></span>(bibitem, <span class="st">"bibtex"</span>))</a></code></pre></div>
-<pre><code>@Manual{/codemetar,
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">authors</span> <span class="kw">&lt;-</span>
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">meta</span>$<span class="no">author</span>,
+       <span class="kw">function</span>(<span class="no">author</span>)
+         <span class="fu"><a href="https://rdrr.io/r/utils/person.html">person</a></span>(<span class="kw">given</span> <span class="kw">=</span> <span class="no">author</span>$<span class="no">given</span>,
+                <span class="kw">family</span> <span class="kw">=</span> <span class="no">author</span>$<span class="no">family</span>,
+                <span class="kw">email</span> <span class="kw">=</span> <span class="no">author</span>$<span class="no">email</span>,
+                <span class="kw">role</span> <span class="kw">=</span> <span class="st">"aut"</span>))
+<span class="no">year</span> <span class="kw">&lt;-</span> <span class="no">meta</span>$<span class="no">datePublished</span>
+<span class="kw">if</span>(<span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span>(<span class="no">year</span>))
+  <span class="no">year</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span>(), <span class="st">"%Y"</span>)
+<span class="no">bibitem</span> <span class="kw">&lt;-</span>
+ <span class="fu"><a href="https://rdrr.io/r/utils/bibentry.html">bibentry</a></span>(
+     <span class="kw">bibtype</span> <span class="kw">=</span> <span class="st">"Manual"</span>,
+     <span class="kw">title</span> <span class="kw">=</span> <span class="no">meta</span>$<span class="no">name</span>,
+     <span class="kw">author</span> <span class="kw">=</span> <span class="no">authors</span>,
+     <span class="kw">year</span> <span class="kw">=</span> <span class="no">year</span>,
+     <span class="kw">note</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"R package version "</span>, <span class="no">meta</span>$<span class="no">version</span>),
+     <span class="kw">url</span> <span class="kw">=</span> <span class="no">meta</span>$<span class="no">URL</span>,
+     <span class="kw">key</span> <span class="kw">=</span> <span class="no">meta</span>$<span class="no">identifier</span>
+   )</pre></body></html></div>
+<pre><code>Warning in bibentry(bibtype = "Manual", title = meta$name, author = authors, :
+Not all arguments are of the same length, the following need to be recycled:
+author</code></pre>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span>(<span class="no">bibitem</span>, <span class="st">"bibtex"</span>))</pre></body></html></div>
+<pre><code>@Manual{,
   title = {codemetar: Generate 'CodeMeta' Metadata for R Packages},
-  year = {2019},
-  note = {R package version 0.1.8},
+  year = {2020},
+  note = {R package version 0.1.8.9000},
 }</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">bibitem</a></code></pre></div>
-<pre><code>(2019). _codemetar: Generate 'CodeMeta' Metadata for R Packages_.
-R package version 0.1.8.</code></pre>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">bibitem</span></pre></body></html></div>
+<pre><code>(2020). _codemetar: Generate 'CodeMeta' Metadata for R Packages_. R
+package version 0.1.8.9000.</code></pre>
 <div id="parsing-the-ropensci-corpus" class="section level2">
 <h2 class="hasAnchor">
 <a href="#parsing-the-ropensci-corpus" class="anchor"></a>Parsing the ropensci corpus</h2>
 <p>The ropensci corpus consists of a list of codemeta files for all packages provided by the rOpenSci project, &lt;ropensci.org&gt;. This provides a good test-case for how a large collection of codemeta files can be manipulated to help us get a better picture of the corpus.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/download.file">download.file</a></span>(<span class="st">"https://github.com/codemeta/codemetar/raw/master/inst/notebook/ropensci.json"</span>,</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">              <span class="st">"ropensci.json"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span>(<span class="st">"https://github.com/codemeta/codemetar/raw/master/inst/notebook/ropensci.json"</span>,
+              <span class="st">"ropensci.json"</span>)</pre></body></html></div>
 <p>As before, it is helpful, though not essential, to start off by framing the input data.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">frame &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"schema/frame_schema.json"</span>, <span class="dt">package=</span><span class="st">"codemetar"</span>)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">corpus &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(<span class="st">"ropensci.json"</span>, frame) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>(<span class="dt">simplifyVector =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extract">getElement</a></span>(<span class="st">"@graph"</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">frame</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"schema/frame_schema.json"</span>, <span class="kw">package</span><span class="kw">=</span><span class="st">"codemetar"</span>)
+
+<span class="no">corpus</span> <span class="kw">&lt;-</span>
+    <span class="fu"><a href="https://docs.ropensci.org/jsonld/reference/jsonld.html">jsonld_frame</a></span>(<span class="st">"ropensci.json"</span>, <span class="no">frame</span>) <span class="kw">%&gt;%</span>
+    <span class="fu"><a href="https://jeroen.cran.dev/jsonlite/reference/fromJSON.html">fromJSON</a></span>(<span class="kw">simplifyVector</span> <span class="kw">=</span> <span class="fl">FALSE</span>) <span class="kw">%&gt;%</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/Extract.html">getElement</a></span>(<span class="st">"@graph"</span>)</pre></body></html></div>
 <p>We’re now ready to start exploring. As usual, functions from <code>purrr</code> prove very useful for iterating through large JSON files. First, we look at some basic summary data:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">## deal with nulls explicitly by starting with map</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">pkgs &lt;-<span class="st"> </span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(corpus, <span class="st">"name"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://purrr.tidyverse.org/reference/keep.html">compact</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/character">as.character</a></span>()</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co"># keep only those with package identifiers (names)</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5">keep &lt;-<span class="st"> </span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_lgl</a></span>(corpus, <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(.x<span class="op">$</span>identifier) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb12-6" data-line-number="6">corpus &lt;-<span class="st"> </span>corpus[keep]</a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">## now we can just do</span></a>
-<a class="sourceLine" id="cb12-9" data-line-number="9">all_pkgs &lt;-<span class="st"> </span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(corpus, <span class="st">"name"</span>)</a>
-<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(all_pkgs)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="co">## deal with nulls explicitly by starting with map</span>
+<span class="no">pkgs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(<span class="no">corpus</span>, <span class="st">"name"</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/keep.html">compact</a></span>() <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>()
+
+<span class="co"># keep only those with package identifiers (names)</span>
+<span class="no">keep</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_lgl</a></span>(<span class="no">corpus</span>, ~ <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">.x</span>$<span class="no">identifier</span>) <span class="kw">&gt;</span> <span class="fl">0</span>)
+<span class="no">corpus</span> <span class="kw">&lt;-</span> <span class="no">corpus</span>[<span class="no">keep</span>]
+
+<span class="co">## now we can just do</span>
+<span class="no">all_pkgs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(<span class="no">corpus</span>, <span class="st">"name"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">all_pkgs</span>)</pre></body></html></div>
 <pre><code>[1] "AntWeb: programmatic interface to the AntWeb"                                
 [2] "aRxiv: Interface to the arXiv API"                                           
 [3] "chromer: Interface to Chromosome Counts Database API"                        
 [4] "ckanr: Client for the Comprehensive Knowledge Archive Network ('CKAN') 'API'"
 [5] "dashboard: A package status dashboard"                                       
 [6] "ggit: Git Graphics"                                                          </code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co">## 60 unique maintainers</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(corpus, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="co">## 60 unique maintainers</span>
+<span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(<span class="no">corpus</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>() <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>()</pre></body></html></div>
 <pre><code>[1] 61</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co">## Mostly Scott</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(corpus, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>Warning: Calling `as_tibble()` on a vector is discouraged, because the behavior is likely to change in the future. Use `tibble::enframe(name = NULL)` instead.
-This warning is displayed once per session.</code></pre>
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="co">## Mostly Scott</span>
+<span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(<span class="no">corpus</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"maintainer"</span>, <span class="st">"familyName"</span>)) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">value</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span>(<span class="kw">sort</span><span class="kw">=</span><span class="fl">TRUE</span>)</pre></body></html></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">value</th>
@@ -448,11 +462,11 @@ This warning is displayed once per session.</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co">## number of co-authors ... </span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span>(corpus, <span class="cf">function</span>(r) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(r<span class="op">$</span>author)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co">## number of co-authors ... </span>
+<span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span>(<span class="no">corpus</span>, <span class="kw">function</span>(<span class="no">r</span>) <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">r</span>$<span class="no">author</span>)) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">value</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span>(<span class="kw">sort</span><span class="kw">=</span><span class="fl">TRUE</span>)</pre></body></html></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">value</th>
@@ -489,11 +503,11 @@ This warning is displayed once per session.</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co">## Contributors isn't used as much...</span></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span>(corpus, <span class="cf">function</span>(r) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(r<span class="op">$</span>contributor)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="co">## Contributors isn't used as much...</span>
+<span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span>(<span class="no">corpus</span>, <span class="kw">function</span>(<span class="no">r</span>) <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">r</span>$<span class="no">contributor</span>)) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">value</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span>(<span class="kw">sort</span><span class="kw">=</span><span class="fl">TRUE</span>)</pre></body></html></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">value</th>
@@ -527,10 +541,10 @@ This warning is displayed once per session.</code></pre>
 </tbody>
 </table>
 <p>Numbers (n) of packages with a total of (value) dependencies:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span>(corpus, <span class="cf">function</span>(r) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(r<span class="op">$</span>softwareRequirements))  <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span>(<span class="no">corpus</span>, <span class="kw">function</span>(<span class="no">r</span>) <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">r</span>$<span class="no">softwareRequirements</span>))  <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">value</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span>(<span class="kw">sort</span><span class="kw">=</span><span class="fl">TRUE</span>)</pre></body></html></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">value</th>
@@ -616,24 +630,24 @@ This warning is displayed once per session.</code></pre>
 </tbody>
 </table>
 <p>which dependencies are used most frequently?</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">corpus <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span>(<span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb21-3" data-line-number="3">  <span class="co">## single, unboxed dep</span></a>
-<a class="sourceLine" id="cb21-4" data-line-number="4">  <span class="cf">if</span>(<span class="st">"name"</span> <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(x<span class="op">$</span>softwareRequirements))</a>
-<a class="sourceLine" id="cb21-5" data-line-number="5">    dep &lt;-<span class="st"> </span>x<span class="op">$</span>name</a>
-<a class="sourceLine" id="cb21-6" data-line-number="6">  <span class="cf">else</span> <span class="cf">if</span>(<span class="st">"name"</span> <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(x<span class="op">$</span>softwareRequirements[[<span class="dv">1</span>]]))</a>
-<a class="sourceLine" id="cb21-7" data-line-number="7">    dep &lt;-<span class="st"> </span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(x<span class="op">$</span>softwareRequirements, <span class="st">"name"</span>)</a>
-<a class="sourceLine" id="cb21-8" data-line-number="8">  <span class="cf">else</span> { <span class="co">## No requirementsß</span></a>
-<a class="sourceLine" id="cb21-9" data-line-number="9">    dep &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb21-10" data-line-number="10">  }</a>
-<a class="sourceLine" id="cb21-11" data-line-number="11">  </a>
-<a class="sourceLine" id="cb21-12" data-line-number="12">  <span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="dt">identifier =</span> x<span class="op">$</span>identifier, <span class="dt">dep =</span> dep)</a>
-<a class="sourceLine" id="cb21-13" data-line-number="13">}) -&gt;<span class="st"> </span>dep_df</a>
-<a class="sourceLine" id="cb21-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb21-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb21-16" data-line-number="16">dep_df <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-17" data-line-number="17"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(dep) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-18" data-line-number="18"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">corpus</span> <span class="kw">%&gt;%</span>
+<span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span>(<span class="kw">function</span>(<span class="no">x</span>){
+  <span class="co">## single, unboxed dep</span>
+  <span class="kw">if</span>(<span class="st">"name"</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">x</span>$<span class="no">softwareRequirements</span>))
+    <span class="no">dep</span> <span class="kw">&lt;-</span> <span class="no">x</span>$<span class="no">name</span>
+  <span class="kw">else</span> <span class="kw">if</span>(<span class="st">"name"</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">x</span>$<span class="no">softwareRequirements</span><span class="kw">[[</span><span class="fl">1</span>]]))
+    <span class="no">dep</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(<span class="no">x</span>$<span class="no">softwareRequirements</span>, <span class="st">"name"</span>)
+  <span class="kw">else</span> { <span class="co">## No requirementsß</span>
+    <span class="no">dep</span> <span class="kw">&lt;-</span> <span class="fl">NA</span>
+  }
+
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="kw">identifier</span> <span class="kw">=</span> <span class="no">x</span>$<span class="no">identifier</span>, <span class="kw">dep</span> <span class="kw">=</span> <span class="no">dep</span>)
+}) <span class="kw">-&gt;</span> <span class="no">dep_df</span>
+
+
+<span class="no">dep_df</span> <span class="kw">%&gt;%</span>
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">dep</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span>(<span class="kw">sort</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">dep</th>
@@ -901,131 +915,131 @@ This warning is displayed once per session.</code></pre>
 <td align="right">3</td>
 </tr>
 <tr class="even">
-<td align="left">NA</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
 <td align="left">base64enc</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">bibtex</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Biostrings</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">crayon</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">devtools</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">downloader</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">fauxpas</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">gdata</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">gistr</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">graphics</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">grid</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">htmltools</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">htmlwidgets</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">httpcode</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">igraph</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">jqr</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">MASS</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">miniUI</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">ncdf4</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">png</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">R.cache</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">R.utils</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rcrossref</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rentrez</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">reshape</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rmapshaper</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rplos</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rvertnet</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">shinyjs</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">storr</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">tm</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
 <td align="right">2</td>
 </tr>
 <tr class="even">
@@ -1535,17 +1549,17 @@ This warning is displayed once per session.</code></pre>
 </tbody>
 </table>
 <p>Alternate approach using a frame instead of <code>purrr</code> functions for subsetting the data. Note that this gets all Depends and suggests (really all <code>SoftwareApplication</code> types mentioned)</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">dep_frame &lt;-<span class="st"> '{</span></a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="st">  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",</span></a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="st">  "@explicit": "true",</span></a>
-<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="st">  "name": {}</span></a>
-<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="st">}'</span></a>
-<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/jsonld/topics/jsonld">jsonld_frame</a></span>(<span class="st">"ropensci.json"</span>, dep_frame) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb22-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">fromJSON</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb22-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extract">getElement</a></span>(<span class="st">"@graph"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(type <span class="op">==</span><span class="st"> "SoftwareApplication"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(name) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb22-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">tally</a></span>(<span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="no">dep_frame</span> <span class="kw">&lt;-</span> <span class="st">'{
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@explicit": "true",
+  "name": {}
+}'</span>
+<span class="fu"><a href="https://docs.ropensci.org/jsonld/reference/jsonld.html">jsonld_frame</a></span>(<span class="st">"ropensci.json"</span>, <span class="no">dep_frame</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://jeroen.cran.dev/jsonlite/reference/fromJSON.html">fromJSON</a></span>() <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/Extract.html">getElement</a></span>(<span class="st">"@graph"</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">type</span> <span class="kw">==</span> <span class="st">"SoftwareApplication"</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">name</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span>(<span class="kw">sort</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -2698,37 +2712,86 @@ This warning is displayed once per session.</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co">#  summarise(count(name))</span></a></code></pre></div>
+<div class="sourceCode" id="cb24"><html><body><pre class="r">#  summarise(count(name))</pre></body></html></div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#parsing-the-ropensci-corpus">Parsing the ropensci corpus</a></li>
-      </ul>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
 
 
-      <footer><div style="margin-top:-9px">
-  <p>codemetar is a part of <img src="https://github.com/ropensci/logos/raw/master/icon_lettering_color.png" height="40" alt="rOpenSci">. Learn more at <a href="https://ropensci.org">ropensci.org</a>.</p>
-</div>
 
-<div class="author">
-  <p>
-    Developed by Carl Boettiger, Maëlle Salmon, rOpenSci.
-    Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a> &amp; <a href="https://ropensci.github.io/rotemplate/">rotemplate</a>.
-  </p>
+      <footer><!-- begin footer --><div class="footer">
+    <div class="container">
+        <div class="row start bottom-8">
+            <div class="col-xs-2"> <img id="footerlogo" src="https://ropensci.org/img/icon_short_white.svg">
 </div>
+            <div class="col-xs-10">
+                <div class="row">
+                    <div class="col-md-4 col-xs-6">
+                        <a href="http://github.com/ropensci" target="_blank"><div class="icon fab fa-github"></div></a>
+                        <a href="http://github.com/ropenscilabs" target="_blank"><div class="icon fa fa-flask"></div></a>
+                        <a href="http://twitter.com/ropensci" target="_blank"><div class="icon fab fa-twitter"></div></a>
+                        <a href="http://vimeo.com/ropensci" target="_blank"><div class="icon fab fa-vimeo"></div></a>
+                    </div>
+                </div>
+                <div class="row top-4">
+                    <div class="col-md-2 col-sm-4">
+                        <ul>
+<h5 class="bottom-2">Info</h5>
+                            <li><a href="https://ropensci.org/about">Mission</a></li>
+                            <li><a href="https://ropensci.org/about#team">Team</a></li>
+                            <li><a href="https://ropensci.org/about#collaborators">Collaborators</a></li>
+                            <li><a href="https://ropensci.org/careers">Careers</a></li>
+                        </ul>
+</div>
+                    <div class="col-md-2 col-sm-4">
+                        <ul>
+<h5 class="bottom-2">Work</h5>
+                            <li><a href="https://ropensci.org/packages/">Packages</a></li>
+                            <li><a href="https://ropensci.org/blog/">Blog</a></li>
+                            <li><a href="https://ropensci.org/technotes/">Tech Notes</a></li>
+                            <li><a href="https://ropensci.org/tutorials/">Tutorials</a></li>
+                            <li><a href="https://ropensci.org/usecases/">Use Cases</a></li>
+                            <li><a href="https://ropensci.org/resources/">More Resources</a></li>
+                        </ul>
+</div>
+                    <div class="col-md-3 col-sm-4">
+                        <ul>
+<h5 class="bottom-2">Participate</h5>
+                            <li><a href="https://ropensci.org/contact/">Contact us</a></li>
+                            <li><a href="https://ropensci.org/community/">Community</a></li>
+                            <li><a href="https://ropensci.org/software-review/">Contribute software</a></li>
+                            <li><a href="https://ropensci.org/code-of-conduct">Code of conduct</a></li>
+                            <li><a href="https://ropensci.org/events/">Events</a></li>
+                            <li><a href="https://ropensci.org/commcalls/">Community calls</a></li>
+                            <li><a href="https://ropensci.org/donate/">Donate</a></li>
+                        </ul>
+</div>
+                    <div class="col-md-4 col-xs-12">
+                        <h5 class="bottom-2"></h5>
+
+                        <p>rOpenSci is a fiscally sponsored project of <a href="http://numfocus.org" target="_blank">NumFOCUS</a></p>
+                        <a href="http://numfocus.org" target="_blank"></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- / end footer -->
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
