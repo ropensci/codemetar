@@ -113,7 +113,7 @@ get_sys_links <- function(pkg, description = "", verbose = FALSE) {
 
   data <- get_url_rhub("get", unique(c(
     get_rhub_json_names("pkg", pkg),
-    get_rhub_json_names("map", curl::curl_escape(description))
+    get_rhub_json_names("map", utils::URLencode(description, reserved = TRUE))
   )))
 
   if (verbose) {

@@ -52,13 +52,13 @@ get_pkg_name <- function(entry) {
                  silent = TRUE))
 
   if (is(reviews, "try-error")) {
-    return(tibble::tibble(
+    return(df(
       review = 0,
       package = "Nope"
     ))
   }
 
-  tibble::tibble(
+  df(
     review = purrr::map_dbl(reviews, "iss_no"),
     package = purrr::map_chr(reviews, get_pkg_name)
   )

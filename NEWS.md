@@ -16,6 +16,8 @@
 
 * New argument `write_minimeta` for `write_codemeta()` indicating whether to also create the file schemaorg.json that  corresponds to the metadata Google would validate, to be inserted to a webpage for SEO. It is saved as "schemaorg.json" alongside `path` (by default, "codemeta.json"). This functionality requires the `jsonld` package (listed under `Suggests`).
 
+* Updated the GitHub action template to only run on pushes to the master branch and added an explanation of how that works to the readme. (@jonkeane)
+
 ## Bug fixes
 
 * Fix for detecting rOpenSci review badge (@sckott, #236)

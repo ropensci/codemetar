@@ -71,26 +71,9 @@ is_IRI <- function(string) {
 # from usethis cf https://github.com/r-lib/usethis/blob/2abb0422a97808cc573fa5900a8efcfed4c2d5b4/R/git.R#L68
 # this is GPL-3 code
 # now with gert not git2r
-uses_git <- function(path = usethis::proj_get()) {
+uses_git <- function(path) {
 
   !is.null(tryCatch(gert::git_find(path), error = function(e){NULL}))
-}
-
-# from usethis cf https://github.com/r-lib/usethis/blob/4fb556788d2588facaaa8560242d2c83f2261d6e/R/helpers.R#L55
-# this is GPL-3 code
-render_template <- function(template, data = list(), package = "codemetar") {
-
-  template_path <- find_template(template, package = package)
-
-  strsplit(whisker::whisker.render(readLines(template_path), data), "\n")[[1]]
-}
-
-# find_template-----------------------------------------------------------------
-# from usethis cf https://github.com/r-lib/usethis/blob/4fb556788d2588facaaa8560242d2c83f2261d6e/R/helpers.R#L60
-# this is GPL-3 code
-find_template <- function(template_name, package = "usethis") {
-
-  package_file(package, "templates", template_name)
 }
 
 # get_url_status_code ----------------------------------------------------------
@@ -257,4 +240,57 @@ call_if <- function(condition, x, FUN, ...) {
 # bind df -----------------------
 bind_df <- function(dfs) {
   do.call("rbind", dfs)
+}
+
+# df -----------------------
+df <- function(...) {
+  data.frame(
+    ...,
+    stringsAsFactors = FALSE
+    )
+}
+
+# use_build_ignore -----------------------
+# Adapted from https://github.com/r-lib/usethis/blob/85327feeec22ab2f6f46efcd2d3d0a4b010f132b/R/ignore.R#L23
+use_build_ignore <- function(thing, path) {
+  thing <- escape_path(thing)
+  write_union(
+    file.path(
+      path,
+      ".Rbuildignore"
+      ),
+    thing
+    )
+}
+
+# write_union --------------------
+# from https://github.com/r-lib/usethis/blob/368714a4f487dce4719ac8a002383d719f73cd64/R/write.R#L45
+write_union <- function(path, lines) {
+
+  if (file.exists(path)) {
+    existing_lines <- readLines(path, encoding = "UTF-8", warn = FALSE)
+  } else {
+    existing_lines <- character()
+  }
+
+  new <- setdiff(lines, existing_lines)
+  if (length(new) == 0) {
+    return(invisible(FALSE))
+  }
+
+  all <- c(existing_lines, new)
+  base::writeLines(
+    all,
+    con = path,
+    useBytes = TRUE
+    )
+
+}
+
+# escape_path ------------------
+# from https://github.com/r-lib/usethis/blob/85327feeec22ab2f6f46efcd2d3d0a4b010f132b/R/ignore.R#L31
+escape_path <- function(x) {
+  x <- gsub("\\.", "\\\\.", x)
+  x <- gsub("/$", "", x)
+  paste0("^", x, "$")
 }

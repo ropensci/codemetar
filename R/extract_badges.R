@@ -5,7 +5,7 @@ parse_md_badge <- function(badge) {
 
   get_destination <- function(x) xml2::xml_attr(x, "destination")
 
-  tibble::tibble(
+  df(
     text = xml2::xml_text(image),
     link = get_destination(badge),
     image_link = get_destination(image)
@@ -38,7 +38,7 @@ parse_html_badge <- function(badge) {
 
   image <- get_image_from_badge(badge, name = "img")
 
-  tibble::tibble(
+  df(
     text = xml2::xml_attr(image, "alt"),
     link = xml2::xml_attr(badge, "href"),
     image_link = xml2::xml_attr(image, "src")
@@ -62,7 +62,7 @@ extract_html_badges <- function(path) {
   }
 
   badges <- doc[table_start:table_end] %>%
-    glue::glue_collapse() %>%
+    paste0(collapse = "") %>%
     xml2::read_html() %>%
     xml2::xml_find_all("//a")
 
@@ -91,7 +91,7 @@ extract_html_badges <- function(path) {
 #'
 #' @param path Path to Markdown file
 #'
-#' @return A tibble with for each badge its text, link and link to
+#' @return A data.frame with for each badge its text, link and link to
 #' its image.
 #' @export
 #'
