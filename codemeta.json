@@ -439,18 +439,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "usethis",
-      "name": "usethis",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=usethis"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "xml2",
       "name": "xml2",
       "provider": {
@@ -477,7 +465,7 @@
   "isPartOf": "https://ropensci.org",
   "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
-  "fileSize": "2253.643KB",
+  "fileSize": "2254.792KB",
   "contIntegration": ["https://travis-ci.org/ropensci/codemetar", "https://ci.appveyor.com/project/cboettig/codemetar/branch/master", "https://codecov.io/github/ropensci/codemetar?branch=master"],
   "developmentStatus": "http://www.repostatus.org/#active",
   "review": {
