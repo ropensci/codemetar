@@ -5,7 +5,7 @@ articles:
   examples-parsing-codemeta: articles/examples-parsing-codemeta.html
   validation-in-json-ld: articles/validation-in-json-ld.html
   codemetar: codemetar.html
-last_built: 2020-07-17T03:45Z
+last_built: 2020-07-17T03:48Z
 urls:
   reference: https://docs.ropensci.org/codemetar/reference
   article: https://docs.ropensci.org/codemetar/articles

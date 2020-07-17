@@ -1,4 +1,4 @@
-# codemetar (development version)
+# codemetar 0.1.9 2020-07-16
 
 ## Deprecation
 
