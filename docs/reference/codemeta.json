@@ -1,4 +1,0 @@
-{
-  "@context": ["http://purl.org/codemeta/2.0", "http://schema.org"],
-  "@type": "SoftwareSourceCode"
-}
