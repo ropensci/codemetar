@@ -69,9 +69,9 @@ information is hard for search engines, software repositories, and other
 developers to find and integrate.
 
 By generating a \code{codemeta.json} file, you turn your metadata into a
-format that can \href{https://docs.ropensci.org/codemetar/crosswalk}{easily crosswalk} between
-metadata in many other software languages. CodeMeta is built on
-\href{https://schema.org}{schema.org} a simple \href{https://developers.google.com/search/docs/guides/intro-structured-data}{structured data}
+format that can easily crosswalk between metadata in many other software
+languages. CodeMeta is built on \href{https://schema.org}{schema.org} a
+simple \href{https://developers.google.com/search/docs/guides/intro-structured-data}{structured data}
 format developed by major search engines like Google and Bing to improve
 discoverability in search. CodeMeta is also understood by significant
 software archiving efforts such as \href{https://www.softwareheritage.org/}{Software Heritage} Project, which seeks to
@@ -96,9 +96,8 @@ being done if DESCRIPTION is newer than codemeta.json.
 \item You can use the \href{https://github.com/lorenzwalthert/precommit}{precommit package} in which
 there’s a “codemeta-description-updated” hook.
 \item If that’s your only pre-commit hook (i.e. you don’t have one
-created by e.g. \code{usethis::use_readme_rmd()}), then you can
-create it
-using
+created by e.g. \code{usethis::use_readme_rmd()}), then you can
+create it using
 }
 }\if{html}{\out{
 <!-- end list -->
@@ -112,12 +111,22 @@ usethis::use_git_hook("pre-commit",
 \url{https://github.com/features/actions}, and to the example workflow
 provided in this package (type \code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}). You can use
 the \code{cm-skip} keyword in your commit message if you don’t want this
-to run on a specific commit. If you take the GitHub actions route,
-you should try to remember to run \verb{git pull} before making any new
-changes on your local project. However, if you forgot to pull and
-already committed new changes, fret not, you can use (\href{https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843}{\verb{git pull --rebase}})
-to rewind you local changes on top of the current upstream \code{HEAD}.
-}\if{html}{\out{
+to run on a specific commit. The example workflow provided is setup
+to only run when a push is made to the master branch. This setup is
+designed for if you’re using a \href{https://nvie.com/posts/a-successful-git-branching-model/#the-main-branches}{git flow}
+setup where the master branch is only committed and pushed to via
+pull requests. After each PR merge (and the completion of this
+GitHub action), your master branch will always be up to date and so
+long as you don’t make manual changes to the codemeta.json file, you
+won’t have merge conflicts.
+}
+
+Alternatively, you can have GitHub actions route run \code{codemetar} on each
+commit. If you do this you should try to remember to run \verb{git pull}
+before making any new changes on your local project. However, if you
+forgot to pull and already committed new changes, fret not, you can use
+(\href{https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843}{\verb{git pull --rebase}})
+to rewind you local changes on top of the current upstream \code{HEAD}.\if{html}{\out{
 <details closed>
 }}
 \if{html}{\out{
@@ -127,6 +136,7 @@ to rewind you local changes on top of the current upstream \code{HEAD}.
 \if{html}{\out{<div class="yaml">}}\preformatted{
 on:
   push:
+    branches: master
     paths:
       - DESCRIPTION
       - .github/workflows/main.yml
@@ -168,6 +178,7 @@ adds "codemeta.json" to .Rbuildignore.
 
 \examples{
 \donttest{
-write_codemeta("codemetar", path = "example_codemetar_codemeta.json")
+codemeta <- tempfile()
+write_codemeta("codemetar", path = codemeta)
 }
 }

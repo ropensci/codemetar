@@ -20,3 +20,4 @@ inst/notebook/*
 _pkgdown.yml
 pkgdown
 ^\.github$
+^CRAN-RELEASE$

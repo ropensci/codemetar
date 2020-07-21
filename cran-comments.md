@@ -1,9 +1,9 @@
 Dear CRAN Maintainers,
 
-This release addresses some of the recent failing checks on Solaris
-due to internet timeout related issue.
-Several other minor improvements are also included, as detailed
-in the package NEWS.md.
+This release addresses some of the recent failing checks due to changes
+in json-ld dependency.  Apologies we were unable to address these by your
+previous deadline to avoid being archived.  We believe everything should
+be fixed now.  As always, details in NEWS.md.
 
 Thanks!
 

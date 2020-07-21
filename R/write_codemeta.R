@@ -42,7 +42,8 @@
 #'
 #' @examples
 #' \donttest{
-#' write_codemeta("codemetar", path = "example_codemetar_codemeta.json")
+#' codemeta <- tempfile()
+#' write_codemeta("codemetar", path = codemeta)
 #' }
 write_codemeta <- function(
   pkg = ".", path = "codemeta.json", root = ".", id = NULL, use_filesize = TRUE,

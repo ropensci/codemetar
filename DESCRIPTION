@@ -1,7 +1,7 @@
 Type: Package
 Package: codemetar
 Title: Generate 'CodeMeta' Metadata for R Packages
-Version: 0.1.8.9000
+Version: 0.1.9
 Authors@R: 
     c(person(given = "Carl",
              family = "Boettiger",
@@ -99,7 +99,7 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 X-schema.org-isPartOf: https://ropensci.org
 X-schema.org-keywords: metadata, codemeta, ropensci, citation,
     credit, linked-data
