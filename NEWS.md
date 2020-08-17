@@ -1,3 +1,7 @@
+# codemetar 0.1.10 2020-08-11
+
+* Bugfix: `guess_fileSize()` properly handles `.Rbuildignore` (#299, @ThierryO).
+
 # codemetar 0.1.9 2020-07-16
 
 ## Deprecation
