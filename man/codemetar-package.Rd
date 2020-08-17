@@ -90,6 +90,7 @@ Other contributors:
   \item Michael Rustler (\href{https://orcid.org/0000-0003-0647-7726}{ORCID}) [contributor]
   \item Hauke Sonnenberg (\href{https://orcid.org/0000-0001-9134-2871}{ORCID}) [contributor]
   \item Sebastian Kreutzer (\href{https://orcid.org/0000-0002-0734-2199}{ORCID}) [contributor]
+  \item Thierry Onkelinx (\href{https://orcid.org/0000-0001-8804-4216}{ORCID}) [contributor]
 }
 
 }
