@@ -50,6 +50,7 @@ guess_fileSize <- function(root = ".", .ignore = NULL) {
   rbuildignore_path <- file.path(root, ".Rbuildignore")
   if (file.exists(rbuildignore_path) && is.null(.ignore)) {
     .ignore <- readLines(normalizePath(rbuildignore_path), warn = FALSE)
+    .ignore <- .ignore[.ignore != ""] # eliminate blank lines
 
   } else {
     .ignore <- " "
