@@ -1,3 +1,8 @@
+# codemetar 0.1.10 2020-08-11
+
+* Bugfix: `guess_fileSize()` properly handles `.Rbuildignore` (#299, @ThierryO).
+* Bugfix: `create_codemetar()` handles minimal packages (#298, @ThierryO).
+
 # codemetar 0.1.9 2020-07-16
 
 ## Deprecation

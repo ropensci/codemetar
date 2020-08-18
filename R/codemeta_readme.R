@@ -95,8 +95,9 @@ guess_ropensci_review <- function(readme) {
 # find the readme
 .guess_readme_url <- function(root, verbose = FALSE, cm) {
 
-  if (!urltools::domain(cm$codeRepository) %in%
-      github_domains()) {
+  if (is.null(cm$codeRepository) ||
+      !urltools::domain(cm$codeRepository) %in% github_domains()
+  ) {
       return(NULL)
   }
 
