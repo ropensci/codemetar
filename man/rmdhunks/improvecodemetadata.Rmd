@@ -43,3 +43,7 @@ X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-da
 Where applicable, these will override values otherwise guessed from the source repository.  Use comma-separated lists to separate multiple values to a property, e.g. keywords.  
 
 See the [DESCRIPTION](https://github.com/codemeta/codemetar/blob/master/DESCRIPTION) file of the `codemetar` package for an example.  
+
+### Set the branch that codemetar references
+
+There are a number of places that codemetar will reference a github branch if your code is hosted on github (e.g. for release notes, readme, etc.). By default, codemetar will use the name "master" but you can change that to whatever your default branch is by setting the option "codemeta_branch" (e.g. `options(codemeta_branch = "main")` before calling `write_codemeta()` to use the branch named "main" as the default branch).
