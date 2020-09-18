@@ -78,8 +78,9 @@ software archiving efforts such as \href{https://www.softwareheritage.org/}{Soft
 permanently archive all open source software.
 
 For more general information about the CodeMeta Project for defining
-software metadata, see \url{https://codemeta.github.io}. In particular, new
-users might want to start with the \href{https://codemeta.github.io/user-guide/}{User Guide}, while those looking to
+software metadata, see
+\if{html}{\out{<a href="https://codemeta.github.io" class="uri">}}https://codemeta.github.io\if{html}{\out{</a>}}.
+In particular, new users might want to start with the \href{https://codemeta.github.io/user-guide/}{User Guide}, while those looking to
 learn more about JSON-LD and consuming existing codemeta files should
 see the \href{https://codemeta.github.io/developer-guide/}{Developer Guide}.
 
@@ -100,20 +101,21 @@ created by e.g. \code{usethis::use_readme_rmd()}), then you can
 create it using
 }
 }\if{html}{\out{
-<!-- end list -->
+<!-- -->
 }}
-\if{html}{\out{<div class="r">}}\preformatted{script = readLines(system.file("templates", "description-codemetajson-pre-commit.sh", package = "codemetar"))
+\preformatted{script = readLines(system.file("templates", "description-codemetajson-pre-commit.sh", package = "codemetar"))
 usethis::use_git_hook("pre-commit",
                      script = script)
-}\if{html}{\out{</div>}}
+}
 \itemize{
 \item You could use GitHub actions. Refer to GitHub actions docs
-\url{https://github.com/features/actions}, and to the example workflow
-provided in this package (type \code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}). You can use
-the \code{cm-skip} keyword in your commit message if you don’t want this
-to run on a specific commit. The example workflow provided is setup
-to only run when a push is made to the master branch. This setup is
-designed for if you’re using a \href{https://nvie.com/posts/a-successful-git-branching-model/#the-main-branches}{git flow}
+\if{html}{\out{<a href="https://github.com/features/actions" class="uri">}}https://github.com/features/actions\if{html}{\out{</a>}},
+and to the example workflow provided in this package (type
+\code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}).
+You can use the \code{cm-skip} keyword in your commit message if you
+don’t want this to run on a specific commit. The example workflow
+provided is setup to only run when a push is made to the master
+branch. This setup is designed for if you’re using a \href{https://nvie.com/posts/a-successful-git-branching-model/#the-main-branches}{git flow}
 setup where the master branch is only committed and pushed to via
 pull requests. After each PR merge (and the completion of this
 GitHub action), your master branch will always be up to date and so
@@ -128,13 +130,11 @@ forgot to pull and already committed new changes, fret not, you can use
 (\href{https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843}{\verb{git pull --rebase}})
 to rewind you local changes on top of the current upstream \code{HEAD}.\if{html}{\out{
 <details closed>
+<summary>
+<span title="Click to Expand"> click here to see the workflow </span>
+</summary>
 }}
-\if{html}{\out{
-<summary> <span title="Click to Expand"> click here to see the workflow
-</span> </summary>
-}}
-\if{html}{\out{<div class="yaml">}}\preformatted{
-on:
+\preformatted{on:
   push:
     branches: master
     paths:
@@ -158,7 +158,7 @@ jobs:
         run: |
           git commit codemeta.json -m 'Re-build codemeta.json' || echo "No changes to commit"
           git push https://$\{\{github.actor\}\}:$\{\{secrets.GITHUB_TOKEN\}\}@github.com/$\{\{github.repository\}\}.git HEAD:$\{\{ github.ref \}\} || echo "No changes to commit"
-}\if{html}{\out{</div>}}\if{html}{\out{
+}\if{html}{\out{
 </details>
 }}
 \if{html}{\out{

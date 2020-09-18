@@ -1,5 +1,6 @@
-# codemetar 0.1.10 2020-08-11
+# codemetar dev 
 
+* Bug Fix: now able to parse a README where badges are in a table with non badges links.
 * Bugfix: `guess_fileSize()` properly handles `.Rbuildignore` (#299, @ThierryO).
 * Bugfix: `create_codemetar()` handles minimal packages (#298, @ThierryO).
 

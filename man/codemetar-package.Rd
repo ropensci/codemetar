@@ -33,17 +33,18 @@ software archiving efforts such as \href{https://www.softwareheritage.org/}{Soft
 permanently archive all open source software.
 
 For more general information about the CodeMeta Project for defining
-software metadata, see \url{https://codemeta.github.io}. In particular, new
-users might want to start with the \href{https://codemeta.github.io/user-guide/}{User Guide}, while those looking to
+software metadata, see
+\if{html}{\out{<a href="https://codemeta.github.io" class="uri">}}https://codemeta.github.io\if{html}{\out{</a>}}.
+In particular, new users might want to start with the \href{https://codemeta.github.io/user-guide/}{User Guide}, while those looking to
 learn more about JSON-LD and consuming existing codemeta files should
 see the \href{https://codemeta.github.io/developer-guide/}{Developer Guide}.
 
 \strong{Why codemetar?} The ‘Codemeta’ Project defines a ‘JSON-LD’ format for
 describing software metadata, as detailed at
-\url{https://codemeta.github.io}. This package provides utilities to
-\strong{generate, parse, and modify codemeta.jsonld files automatically for R
-packages}, as well as tools and examples for \strong{working with codemeta
-json-ld more generally}.
+\if{html}{\out{<a href="https://codemeta.github.io" class="uri">}}https://codemeta.github.io\if{html}{\out{</a>}}.
+This package provides utilities to \strong{generate, parse, and modify
+codemeta.jsonld files automatically for R packages}, as well as tools
+and examples for \strong{working with codemeta json-ld more generally}.
 
 It has three main goals:
 \itemize{
@@ -57,7 +58,8 @@ codemeta.json file, as well as general manipulation of codemeta
 files.
 \item Support the ability to crosswalk between terms used in other
 metadata standards, as identified by the Codemeta Project Community,
-see \url{https://codemeta.github.io/crosswalk}
+see
+\if{html}{\out{<a href="https://codemeta.github.io/crosswalk" class="uri">}}https://codemeta.github.io/crosswalk\if{html}{\out{</a>}}
 }
 }
 \seealso{
