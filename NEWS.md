@@ -1,5 +1,6 @@
 # codemetar dev 
 
+* Use R.Version() instead of R.version to allow mocking in tests.
 * Bug Fix: now able to parse a README where badges are in a table with non badges links.
 * Bugfix: `guess_fileSize()` properly handles `.Rbuildignore` (#299, @ThierryO).
 * Bugfix: `create_codemetar()` handles minimal packages (#298, @ThierryO).
