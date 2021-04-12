@@ -70,7 +70,7 @@ write_codemeta <- function(
   # Create or update codemeta and save to disk
   create_codemeta(pkg = pkg, root = root, use_filesize = use_filesize,
                   verbose = verbose) %>%
-    jsonlite::write_json(path, pretty = TRUE, auto_unbox = TRUE, ...)
+    jsonlite::write_json(file.path(pkg, path), pretty = TRUE, auto_unbox = TRUE, ...)
 
   # Create minimeta and save to disk
   if (write_minimeta) {
@@ -81,7 +81,7 @@ write_codemeta <- function(
                              package="codemetar")
    jsonld::jsonld_frame("codemeta.json", schemaorg) %>%
      jsonld::jsonld_compact('{"@context": "https://schema.org"}') %>%
-     writeLines(file.path(dirname(path), "inst", "schemaorg.json"))
+     writeLines(file.path(dirname(file.path(pkg, path)), "inst", "schemaorg.json"))
 
 
   }
