@@ -52,7 +52,7 @@ codemeta.json file, as well as general manipulation of codemeta
 files.
 \item Support the ability to crosswalk between terms used in other
 metadata standards, as identified by the Codemeta Project Community,
-see \url{https://codemeta.github.io/crosswalk}
+see \url{https://codemeta.github.io/crosswalk/}
 }
 }
 \seealso{

@@ -32,7 +32,7 @@ If your package source is hosted on GitHub and there's a way for codemetar to de
 
 In general, setting metadata via the places stated earlier is the best solution because that metadata is used by other tools (e.g. the URLs in DESCRIPTION can help the package users, not only codemetar).
 
-The DESCRIPTION file is the natural place to specify any metadata for an R package.  The `codemetar` package can detect certain additional terms in the [CodeMeta context](https://codemeta.github.io/terms).  Almost any additional codemeta field can be added to and read from the DESCRIPTION into a `codemeta.json` file (see `codemetar:::additional_codemeta_terms` for a list).  
+The DESCRIPTION file is the natural place to specify any metadata for an R package.  The `codemetar` package can detect certain additional terms in the [CodeMeta context](https://codemeta.github.io/terms/).  Almost any additional codemeta field can be added to and read from the DESCRIPTION into a `codemeta.json` file (see `codemetar:::additional_codemeta_terms` for a list).  
 
 CRAN requires that you prefix any additional such terms to indicate the use of `schema.org` explicitly, e.g. `keywords` would be specified in a DESCRIPTION file as:
 

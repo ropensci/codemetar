@@ -9,4 +9,4 @@ glue::glue('<script type="application/ld+json">
     </script>')
 ```
 
-Refer to [Google documentation](https://developers.google.com/search/reference/overview) for more guidance.
+Refer to [Google documentation](https://developers.google.com/search/docs) for more guidance.
