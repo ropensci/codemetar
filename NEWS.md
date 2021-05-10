@@ -2,7 +2,8 @@
 
 * `write_codemetar()` can now be called from anywhere within a package directory structure. (#305, @mpadge)
 * Breaking change: `write_codemeta()` writes the JSON file at `path` relative to `pkg`, not the current directory. (#303, @ThierryO)
-* Breaking change: Relatedtly, it is no longer possible to use `write_codemeta()` on an installed packages, in that case one would have to use `create_codemeta()` together with `jsonlite::write_json()`.
+* Added  documentation for changing the default branch (#302, @jonkeane)
+* Breaking change: Relatedly, it is no longer possible to use `write_codemeta()` on an installed packages, in that case one would have to use `create_codemeta()` together with `jsonlite::write_json()`.
 * Use R.Version() instead of R.version to allow mocking in tests.
 * Bug fix: now able to parse a README where badges are in a table with non badges links.
 * Bug fix: `guess_fileSize()` properly handles `.Rbuildignore` (#299, @ThierryO).
