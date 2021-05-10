@@ -1,5 +1,3 @@
-context("test-extract_badges.R")
-
 test_that("we can parse md and html badges", {
   f <- system.file("examples/README_fakepackage.md", package="codemetar")
   badges <- extract_badges(f)

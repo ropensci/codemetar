@@ -1,5 +1,3 @@
-testthat::context("utils.R")
-
 testthat::test_that("get_root_path is covered", {
 
   x <- get_root_path("jsonld")

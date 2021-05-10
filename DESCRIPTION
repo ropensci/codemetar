@@ -98,7 +98,7 @@ Suggests:
     knitr,
     printr,
     rmarkdown,
-    testthat (>= 2.1.0)
+    testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
@@ -108,3 +108,4 @@ X-schema.org-isPartOf: https://ropensci.org
 X-schema.org-keywords: metadata, codemeta, ropensci, citation,
     credit, linked-data
 Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3

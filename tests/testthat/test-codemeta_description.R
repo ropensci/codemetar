@@ -1,5 +1,3 @@
-testthat::context("codemeta_description.R")
-
 testthat::test_that("We can use a preset id", {
   skip_if_offline()
   skip_on_cran()

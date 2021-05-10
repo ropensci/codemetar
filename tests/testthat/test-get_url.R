@@ -1,5 +1,3 @@
-context("test-get_url")
-
 test_that("get_url_github() works", {
 
   expect_identical(get_url_github(), "https://github.com")

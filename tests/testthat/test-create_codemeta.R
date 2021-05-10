@@ -1,5 +1,3 @@
-testthat::context("write_codemeta")
-
 testthat::test_that("we can create a codemeta document given a package name", {
   skip_on_cran()
   skip_if_offline()
