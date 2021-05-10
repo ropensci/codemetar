@@ -176,11 +176,17 @@ add_language_terms <- function(codemeta) {
 
   ## According to schema.org, programmingLanguage doesn't have a version;
   ## but runtimePlatform, a plain string, does.
-  codemeta$runtimePlatform <- R.Version()$version.string
+  codemeta$runtimePlatform <- get_r_version()
 
   codemeta
 }
 
+get_r_version <- function() {
+  if (identical(Sys.getenv("TESTTHAT"), "true")) {
+    return("R 1.0.0")
+  }
+  R.Version()$version.string
+}
 # add_person_terms -------------------------------------------------------------
 add_person_terms <- function(codemeta, descr) {
 
