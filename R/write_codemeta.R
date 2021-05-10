@@ -41,9 +41,9 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
-#' codemeta <- tempfile()
-#' write_codemeta("codemetar", path = codemeta)
+#' \dontrun{
+#' # from anywhere in the package source directory
+#' write_codemeta()
 #' }
 write_codemeta <- function(
   pkg = ".", path = "codemeta.json", root = ".", id = NULL, use_filesize = TRUE,

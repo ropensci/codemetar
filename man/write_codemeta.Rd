@@ -78,9 +78,8 @@ software archiving efforts such as \href{https://www.softwareheritage.org/}{Soft
 permanently archive all open source software.
 
 For more general information about the CodeMeta Project for defining
-software metadata, see
-\if{html}{\out{<a href="https://codemeta.github.io" class="uri">}}https://codemeta.github.io\if{html}{\out{</a>}}.
-In particular, new users might want to start with the \href{https://codemeta.github.io/user-guide/}{User Guide}, while those looking to
+software metadata, see \url{https://codemeta.github.io}. In particular, new
+users might want to start with the \href{https://codemeta.github.io/user-guide/}{User Guide}, while those looking to
 learn more about JSON-LD and consuming existing codemeta files should
 see the \href{https://codemeta.github.io/developer-guide/}{Developer Guide}.
 
@@ -100,17 +99,14 @@ there’s a “codemeta-description-updated” hook.
 created by e.g. \code{usethis::use_readme_rmd()}), then you can
 create it using
 }
-}\if{html}{\out{
-<!-- -->
-}}
-\preformatted{script = readLines(system.file("templates", "description-codemetajson-pre-commit.sh", package = "codemetar"))
+}\if{html}{\out{<div class="r">}}\preformatted{script = readLines(system.file("templates", "description-codemetajson-pre-commit.sh", package = "codemetar"))
 usethis::use_git_hook("pre-commit",
                      script = script)
-}
+}\if{html}{\out{</div>}}
 \itemize{
 \item You could use GitHub actions. Refer to GitHub actions docs
-\if{html}{\out{<a href="https://github.com/features/actions" class="uri">}}https://github.com/features/actions\if{html}{\out{</a>}},
-and to the example workflow provided in this package (type
+\url{https://github.com/features/actions}, and to the example workflow
+provided in this package (type
 \code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}).
 You can use the \code{cm-skip} keyword in your commit message if you
 don’t want this to run on a specific commit. The example workflow
@@ -134,7 +130,7 @@ to rewind you local changes on top of the current upstream \code{HEAD}.\if{html}
 <span title="Click to Expand"> click here to see the workflow </span>
 </summary>
 }}
-\preformatted{on:
+\if{html}{\out{<div class="yaml">}}\preformatted{on:
   push:
     branches: master
     paths:
@@ -158,7 +154,7 @@ jobs:
         run: |
           git commit codemeta.json -m 'Re-build codemeta.json' || echo "No changes to commit"
           git push https://$\{\{github.actor\}\}:$\{\{secrets.GITHUB_TOKEN\}\}@github.com/$\{\{github.repository\}\}.git HEAD:$\{\{ github.ref \}\} || echo "No changes to commit"
-}\if{html}{\out{
+}\if{html}{\out{</div>}}\if{html}{\out{
 </details>
 }}
 \if{html}{\out{
@@ -177,8 +173,8 @@ adds "codemeta.json" to .Rbuildignore.
 }
 
 \examples{
-\donttest{
-codemeta <- tempfile()
-write_codemeta("codemetar", path = codemeta)
+\dontrun{
+# from anywhere in the package source directory
+write_codemeta()
 }
 }
