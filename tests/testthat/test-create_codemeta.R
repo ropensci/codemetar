@@ -1,7 +1,7 @@
 testthat::test_that("we can create a codemeta document given a package name", {
   skip_on_cran()
   skip_if_offline()
-  testthat::expect_snapshot(
+  testthat::expect_silent(
     create_codemeta("utils", path = path, verbose = FALSE)
   )
 
