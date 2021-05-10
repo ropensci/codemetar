@@ -1,5 +1,3 @@
-testthat::context("utils.R")
-
 testthat::test_that("get_root_path is covered", {
 
   x <- get_root_path("jsonld")
@@ -29,3 +27,9 @@ testthat::test_that("example_file works", {
 
 })
 
+testthat::test_that("dot_to_package", {
+  p0 <- get_root_path("desc")
+  withr::local_dir(new = file.path(p0, "R"))
+  testthat::expect_error(dot_to_package("."),
+                         "Unable to find root directory")
+})

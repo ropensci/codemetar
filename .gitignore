@@ -6,3 +6,4 @@
 vignettes/.build.timestamp
 .DS_Store
 inst/doc
+docs

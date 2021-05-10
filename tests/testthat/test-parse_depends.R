@@ -1,5 +1,3 @@
-testthat::context("parse_depends.R")
-
 testthat::test_that("Test the various cases for dependencies", {
 
   skip_if_offline()

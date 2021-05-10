@@ -32,7 +32,7 @@ If your package source is hosted on GitHub and there's a way for codemetar to de
 
 In general, setting metadata via the places stated earlier is the best solution because that metadata is used by other tools (e.g. the URLs in DESCRIPTION can help the package users, not only codemetar).
 
-The DESCRIPTION file is the natural place to specify any metadata for an R package.  The `codemetar` package can detect certain additional terms in the [CodeMeta context](https://codemeta.github.io/terms).  Almost any additional codemeta field can be added to and read from the DESCRIPTION into a `codemeta.json` file (see `codemetar:::additional_codemeta_terms` for a list).  
+The DESCRIPTION file is the natural place to specify any metadata for an R package.  The `codemetar` package can detect certain additional terms in the [CodeMeta context](https://codemeta.github.io/terms/).  Almost any additional codemeta field can be added to and read from the DESCRIPTION into a `codemeta.json` file (see `codemetar:::additional_codemeta_terms` for a list).  
 
 CRAN requires that you prefix any additional such terms to indicate the use of `schema.org` explicitly, e.g. `keywords` would be specified in a DESCRIPTION file as:
 
@@ -43,3 +43,7 @@ X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-da
 Where applicable, these will override values otherwise guessed from the source repository.  Use comma-separated lists to separate multiple values to a property, e.g. keywords.  
 
 See the [DESCRIPTION](https://github.com/codemeta/codemetar/blob/master/DESCRIPTION) file of the `codemetar` package for an example.  
+
+### Set the branch that codemetar references
+
+There are a number of places that codemetar will reference a github branch if your code is hosted on github (e.g. for release notes, readme, etc.). By default, codemetar will use the name "master" but you can change that to whatever your default branch is by setting the option "codemeta_branch" (e.g. `options(codemeta_branch = "main")` before calling `write_codemeta()` to use the branch named "main" as the default branch).

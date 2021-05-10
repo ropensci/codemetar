@@ -38,6 +38,10 @@ parse_html_badge <- function(badge) {
 
   image <- get_image_from_badge(badge, name = "img")
 
+  if (length(image) == 0) {
+    return(NULL)
+  }
+
   df(
     text = xml2::xml_attr(image, "alt"),
     link = xml2::xml_attr(badge, "href"),

@@ -3,7 +3,7 @@ testthat::context("crosswalk.R")
 # Define helper function that tests a json object
 test_json <- function(x, basename) {
 
-  testthat::expect_is(x, "json")
+  testthat::expect_s4_class(x, "json")
   testfile <- tempfile(pattern = "codemetatest", fileext = ".json")
   writeLines(x, testfile)
   testthat::expect_true(codemeta_validate(testfile))
@@ -54,7 +54,7 @@ testthat::test_that("R Package Description", {
   ## Test add and drop context
   new_json <- drop_context(cm_json)
   expect_null(jsonlite::fromJSON(new_json)$`@context`, NULL)
-  expect_is(
+  expect_type(
     jsonlite::fromJSON(
       add_context(new_json,
                   getOption("codemeta_context",
@@ -62,11 +62,11 @@ testthat::test_that("R Package Description", {
       "list")
 
   ## Test transforms between columns
-  expect_is(
+  expect_s4_class(
     crosswalk(cm_list, "R Package Description", "Zenodo"),
     "json")
 
-  expect_is(
+  expect_s3_class(
     crosswalk_table(from = "R Package Description", to = c("Zenodo", "Figshare")),
     "data.frame"
   )

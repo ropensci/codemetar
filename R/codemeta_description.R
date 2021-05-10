@@ -169,18 +169,24 @@ add_language_terms <- function(codemeta) {
 
   codemeta$programmingLanguage <- list(
     "@type" = "ComputerLanguage",
-    name = R.version$language,
+    name = R.Version()$language,
     # According to Crosswalk, we just want numvers and not R.version.string
     url = "https://r-project.org"
   )
 
   ## According to schema.org, programmingLanguage doesn't have a version;
   ## but runtimePlatform, a plain string, does.
-  codemeta$runtimePlatform <- R.version.string
+  codemeta$runtimePlatform <- get_r_version()
 
   codemeta
 }
 
+get_r_version <- function() {
+  if (identical(Sys.getenv("TESTTHAT"), "true")) {
+    return("R 1.0.0")
+  }
+  R.Version()$version.string
+}
 # add_person_terms -------------------------------------------------------------
 add_person_terms <- function(codemeta, descr) {
 

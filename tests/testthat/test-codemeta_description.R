@@ -1,5 +1,3 @@
-testthat::context("codemeta_description.R")
-
 testthat::test_that("We can use a preset id", {
   skip_if_offline()
   skip_on_cran()
@@ -10,6 +8,8 @@ testthat::test_that("We can use a preset id", {
 })
 
 testthat::test_that("We can parse additional terms", {
+  skip_if_offline()
+  skip_on_cran()
   cm <- codemeta_description(example_file("DESCRIPTION_ex1.dcf"))
   testthat::expect_equal(length(cm$keywords), 6)
   testthat::expect_equal(cm$isPartOf, "https://ropensci.org")
@@ -17,6 +17,8 @@ testthat::test_that("We can parse additional terms", {
 
 testthat::test_that("We can parse plain Authors: & Maintainers: entries", {
 
+  skip_if_offline()
+  skip_on_cran()
   authors <- codemeta_description(example_file("DESCRIPTION_ex1.dcf"))
   expect_true(authors$maintainer[[1]]$familyName == "Boettiger")
   expect_equal(length(authors$author), 0)

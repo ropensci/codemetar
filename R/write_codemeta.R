@@ -41,9 +41,9 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
-#' codemeta <- tempfile()
-#' write_codemeta("codemetar", path = codemeta)
+#' \dontrun{
+#' # from anywhere in the package source directory
+#' write_codemeta()
 #' }
 write_codemeta <- function(
   pkg = ".", path = "codemeta.json", root = ".", id = NULL, use_filesize = TRUE,
@@ -58,6 +58,10 @@ write_codemeta <- function(
   codemeta_json <- "codemeta.json"
 
   # Things that only happen inside a package folder...
+  if (pkg == ".") {
+    pkg <- dot_to_package(pkg)
+  }
+
   in_package <- length(pkg) <= 1 && is_package(pkg) && pkg %in% c(getwd(), ".")
 
   # ... and when the output file is codemeta.json. If path is something else
@@ -70,7 +74,7 @@ write_codemeta <- function(
   # Create or update codemeta and save to disk
   create_codemeta(pkg = pkg, root = root, use_filesize = use_filesize,
                   verbose = verbose) %>%
-    jsonlite::write_json(path, pretty = TRUE, auto_unbox = TRUE, ...)
+    jsonlite::write_json(file.path(pkg, path), pretty = TRUE, auto_unbox = TRUE, ...)
 
   # Create minimeta and save to disk
   if (write_minimeta) {
@@ -81,7 +85,7 @@ write_codemeta <- function(
                              package="codemetar")
    jsonld::jsonld_frame("codemeta.json", schemaorg) %>%
      jsonld::jsonld_compact('{"@context": "https://schema.org"}') %>%
-     writeLines(file.path(dirname(path), "inst", "schemaorg.json"))
+     writeLines(file.path(dirname(file.path(pkg, path)), "inst", "schemaorg.json"))
 
 
   }

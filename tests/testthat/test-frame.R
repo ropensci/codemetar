@@ -1,7 +1,3 @@
-
-testthat::context("test frame")
-
-
 testthat::test_that(
   "we have fully compacted non-schema.org terms:", {
     skip_on_cran()

@@ -1,5 +1,3 @@
-testthat::context("parse_people.R")
-
 testthat::test_that("parse_people person_to_schema method",{
 
   p <- person_to_schema("Carl Boettiger")

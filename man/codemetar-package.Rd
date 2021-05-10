@@ -6,12 +6,7 @@
 \alias{codemetar-package}
 \title{codemetar: generate codemeta metadata for R packages}
 \description{
-The 'Codemeta' Project defines a 'JSON-LD' format
-    for describing software metadata, as detailed at
-    <https://codemeta.github.io>. This package provides utilities to
-    generate, parse, and modify 'codemeta.json' files automatically for R
-    packages, as well as tools and examples for working with
-    'codemeta.json' 'JSON-LD' more generally.
+The 'Codemeta' Project defines a 'JSON-LD' format for describing software metadata, as detailed at <https://codemeta.github.io>. This package provides utilities to generate, parse, and modify 'codemeta.json' files automatically for R packages, as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
 }
 \details{
 \strong{Why bother creating a codemeta.json for your package?} R packages
@@ -57,14 +52,14 @@ codemeta.json file, as well as general manipulation of codemeta
 files.
 \item Support the ability to crosswalk between terms used in other
 metadata standards, as identified by the Codemeta Project Community,
-see \url{https://codemeta.github.io/crosswalk}
+see \url{https://codemeta.github.io/crosswalk/}
 }
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://github.com/ropensci/codemetar}
-  \item \url{https://docs.ropensci.org/codemetar}
+  \item \url{https://docs.ropensci.org/codemetar/}
   \item Report bugs at \url{https://github.com/ropensci/codemetar/issues}
 }
 
@@ -90,6 +85,7 @@ Other contributors:
   \item Michael Rustler (\href{https://orcid.org/0000-0003-0647-7726}{ORCID}) [contributor]
   \item Hauke Sonnenberg (\href{https://orcid.org/0000-0001-9134-2871}{ORCID}) [contributor]
   \item Sebastian Kreutzer (\href{https://orcid.org/0000-0002-0734-2199}{ORCID}) [contributor]
+  \item Thierry Onkelinx (\href{https://orcid.org/0000-0001-8804-4216}{ORCID}) [contributor]
 }
 
 }

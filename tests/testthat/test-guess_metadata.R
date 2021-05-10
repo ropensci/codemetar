@@ -1,5 +1,3 @@
-testthat::context("guess_metadata")
-
 testthat::test_that("guess_provider",{
 
   skip_on_cran()
@@ -59,7 +57,7 @@ testthat::test_that("guess_devStatus",{
 
 test_that("guess_readme", {
   testthat::skip_if_not(nzchar(Sys.getenv("GITHUB_PAT")))
-  testthat::expect_is(guess_readme_path(find.package("desc")), "character")
+  testthat::expect_type(guess_readme_path(find.package("desc")), "character")
 })
 
 test_that("guess_readme() matches a single README file", {
@@ -89,10 +87,10 @@ test_that("fileSize", {
   expect_null(guess_fileSize(NULL))
 
   ## this should just work fine
-  expect_is(guess_fileSize("."), "character")
+  expect_type(guess_fileSize("."), "character")
 
   ## test argument .ignore
-  expect_is(guess_fileSize(".", .ignore = " "), "character")
+  expect_type(guess_fileSize(".", .ignore = " "), "character")
 
 })
 
@@ -104,12 +102,12 @@ test_that("add_github_topics",{
   cm <- NULL
   cm$codeRepository <- "https://github.com/ropensci/codemetar"
   cm <- add_github_topics(cm)
-  testthat::expect_is(cm$keywords, "character")
+  testthat::expect_type(cm$keywords, "character")
 
   cm <- NULL
   cm$codeRepository <- "https://github.com/ropensci/codemetar#readme"
   cm <- add_github_topics(cm)
-  testthat::expect_is(cm$keywords, "character")
+  testthat::expect_type(cm$keywords, "character")
 
   cm <- NULL
   cm$codeRepository <- "https://github.com/maelle/notarepo"
@@ -129,7 +127,7 @@ testthat::test_that("rOpenSci peer-review", {
 
   f <- system.file("examples/README_fakepackage4.md", package="codemetar")
   review_info <- guess_ropensci_review(f)
-  testthat::expect_is(review_info, "list")
+  testthat::expect_type(review_info, "list")
   testthat::expect_equal(review_info$`@type`, "Review")
   testthat::expect_equal(review_info$url, "https://github.com/ropensci/software-review/issues/24")
   testthat::expect_equal(review_info$provider, "https://ropensci.org")

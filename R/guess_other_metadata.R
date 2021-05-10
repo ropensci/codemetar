@@ -47,22 +47,37 @@ guess_fileSize <- function(root = ".", .ignore = NULL) {
 
   ## check for .Rbuildignore, everything listed should be excluded since
   ## it will not become part of the final package
-  rbuildignore_path <- file.path(root,".Rbuildignore")
-  if (file.exists(rbuildignore_path) && is.null(.ignore)){
+  rbuildignore_path <- file.path(root, ".Rbuildignore")
+  if (file.exists(rbuildignore_path) && is.null(.ignore)) {
     .ignore <- readLines(normalizePath(rbuildignore_path), warn = FALSE)
+    .ignore <- .ignore[.ignore != ""] # eliminate blank lines
 
-  }else{
+  } else {
     .ignore <- " "
 
   }
 
   ## grep all files of interest (exclude hidden files)
-  files <- normalizePath(list.files(
-    path = normalizePath(root),
-    recursive = TRUE,
-    full.names = TRUE,
-    all.files = FALSE
-  ))
+  files <- normalizePath(
+    list.files(
+      path = normalizePath(root),
+      recursive = TRUE,
+      full.names = TRUE,
+      all.files = FALSE
+    ),
+    winslash = "/"
+  )
+
+  ## make paths relative to root
+  files <- gsub(paste0(normalizePath(root, winslash = "/"), "/"), "", files)
+
+  ## exclude full dirs matching an ignore pattern
+  dirs <- list.dirs(normalizePath(root))
+  dirs <- gsub(paste0(normalizePath(root, winslash = "/"), "/"), "", dirs)
+  ignore_dirs <- dirs[grepl(paste(.ignore, collapse = "|"), dirs, perl = TRUE)]
+  files <- files[
+    !grepl(paste0("^", ignore_dirs, collapse = "|"), files, perl = TRUE)
+  ]
 
   ## kick-out all files that do not belong to the R package
   files <-

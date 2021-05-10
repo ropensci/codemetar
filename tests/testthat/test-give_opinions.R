@@ -1,5 +1,3 @@
-context("test-give_opinions.R")
-
 # Define inline helper function to allow for short, clear tests
 contains <- function(hints, pattern) any(grepl(pattern, hints$fixme))
 expect_missing_error <- function(x) expect_error(x, "missing")
@@ -17,7 +15,7 @@ testthat::test_that("Message if no URL", {
   skip_if_offline()
   hints <- example_file("DESCRIPTION_no_URL") %>%
     give_opinions_desc()
-  expect_is(hints, "data.frame")
+  expect_s3_class(hints, "data.frame")
   expect_equal(hints$where, "DESCRIPTION")
   expect_true(contains(hints, "URL"))
 })
@@ -25,7 +23,7 @@ testthat::test_that("Message if no URL", {
 testthat::test_that("Message if no BugReports", {
   hints <- example_file("DESCRIPTION_no_bugreports") %>%
     give_opinions_desc()
-  expect_is(hints, "data.frame")
+  expect_s3_class(hints, "data.frame")
   expect_equal(hints$where[1], "DESCRIPTION")
   expect_true(contains(hints, "BugReports"))
 })
@@ -101,7 +99,7 @@ test_that("fixmes_as_df_or_message() works", {
   expect_missing_error(fixmes_as_df_or_message("fix!"))
 
   result <- fixmes_as_df_or_message("fix!", "my-package")
-  expect_is(result, "data.frame")
+  expect_s3_class(result, "data.frame")
   expect_identical(dim(result), c(1L, 2L))
   expect_identical(names(result), c("where", "fixme"))
   expect_identical(result$where, "my-package")

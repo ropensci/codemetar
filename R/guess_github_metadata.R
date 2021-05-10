@@ -46,8 +46,9 @@ guess_github <- function(root = ".") {
 
 github_path <- function(root, path, cm) {
 
-  if (!urltools::domain(cm$codeRepository) %in%
-      github_domains()) {
+  if (is.null(cm$codeRepository) ||
+      !urltools::domain(cm$codeRepository) %in% github_domains()
+  ) {
     return(NULL)
   }
 

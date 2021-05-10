@@ -1,5 +1,3 @@
-testthat::context("get_message.R")
-
 test_that("get_message() works", {
 
   expect_error(get_message(), "is missing, with no default")
