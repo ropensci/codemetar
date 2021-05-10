@@ -90,6 +90,7 @@ Imports:
     xml2,
     cli
 Suggests: 
+    withr,
     covr,
     details,
     dplyr (>= 0.7.0),
