@@ -17,6 +17,8 @@ testthat::test_that("We can parse additional terms", {
 
 testthat::test_that("We can parse plain Authors: & Maintainers: entries", {
 
+  skip_if_offline()
+  skip_on_cran()
   authors <- codemeta_description(example_file("DESCRIPTION_ex1.dcf"))
   expect_true(authors$maintainer[[1]]$familyName == "Boettiger")
   expect_equal(length(authors$author), 0)
