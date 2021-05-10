@@ -138,6 +138,36 @@ whether_provider_badge <- function(badges, provider_name) {
   )
 }
 
+# dot_to_package: convert pkg = "." to proper package path ------------------
+dot_to_package <- function(pkg = ".") {
+
+    # https://github.com/r-lib/rprojroot/blob/master/R/root.R#L115:
+    .max_depth <- 10L
+
+    files <- c("DESCRIPTION", "NAMESPACE", "man", "R")
+
+    if (pkg == "." | !all(files %in% list.files(pkg))) {
+
+        pkg <- normalizePath(pkg)
+
+        if (!all(files %in% list.files(pkg))) {
+
+            for (i in seq_len(.max_depth)) {
+
+                pkg <- normalizePath(file.path(pkg, ".."))
+
+                if (all(files %in% list.files(pkg)))
+                    return(pkg)
+            }
+        }
+    }
+
+    if (!all(files %in% list.files(pkg)))
+        stop("Unable to find root directory of an R package")
+
+    return(pkg)
+}
+
 # is_package: helper to find whether a path is a package project ---------------
 is_package <- function(path) {
 

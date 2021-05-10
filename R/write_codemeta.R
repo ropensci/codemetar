@@ -58,6 +58,10 @@ write_codemeta <- function(
   codemeta_json <- "codemeta.json"
 
   # Things that only happen inside a package folder...
+  if (pkg == ".") {
+    pkg <- dot_to_package(pkg)
+  }
+
   in_package <- length(pkg) <= 1 && is_package(pkg) && pkg %in% c(getwd(), ".")
 
   # ... and when the output file is codemeta.json. If path is something else
