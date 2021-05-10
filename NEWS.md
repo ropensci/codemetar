@@ -1,3 +1,5 @@
+# codemetar 0.2.0
+
 # codemetar dev 
 
 * `write_codemetar()` can now be called from anywhere within a package directory structure. (#305, @mpadge)
