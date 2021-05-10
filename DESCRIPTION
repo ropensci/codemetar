@@ -98,7 +98,8 @@ Suggests:
     knitr,
     printr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    usethis
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
