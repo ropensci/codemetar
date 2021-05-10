@@ -99,7 +99,7 @@ test_that("fixmes_as_df_or_message() works", {
   expect_missing_error(fixmes_as_df_or_message("fix!"))
 
   result <- fixmes_as_df_or_message("fix!", "my-package")
-  expect_is(result, "data.frame")
+  expect_s3_class(result, "data.frame")
   expect_identical(dim(result), c(1L, 2L))
   expect_identical(names(result), c("where", "fixme"))
   expect_identical(result$where, "my-package")

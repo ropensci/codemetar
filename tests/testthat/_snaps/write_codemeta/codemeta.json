@@ -1,9 +1,9 @@
 {
   "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
   "@type": "SoftwareSourceCode",
-  "identifier": "file505f6ed70044",
+  "identifier": "mypkg",
   "description": "What the package does (one paragraph).",
-  "name": "file505f6ed70044: What the Package Does (One Line, Title Case)",
+  "name": "mypkg: What the Package Does (One Line, Title Case)",
   "license": "`use_mit_license()`, `use_gpl3_license()` or friends to pick a\n    license",
   "version": "0.0.0.9000",
   "programmingLanguage": {

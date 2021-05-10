@@ -22,5 +22,5 @@ testthat::test_that("we can write codemeta given a codemeta object", {
   skip_on_cran()
   skip_if_offline()
   codemeta <- new_codemeta()
-  expect_is(create_codemeta("codemetar", codemeta, verbose = FALSE), "list")
+  expect_type(create_codemeta("codemetar", codemeta, verbose = FALSE), "list")
 })
