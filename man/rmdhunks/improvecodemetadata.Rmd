@@ -26,7 +26,7 @@ In the README, you can use badges for continuous integration, repo development s
 
 ### GitHub repo topics
 
-If your package source is hosted on GitHub and there's a way for codemetar to determine that (URL in DESCRIPTION, or git remote URL) codemetar will use [GitHub repo topics](https://help.github.com/en/github/administering-a-repository/classifying-your-repository-with-topics) as keywords in codemeta.json. If you also set keywords in DESCRIPTION (see next section), codemetar will merge the two lists.
+If your package source is hosted on GitHub and there's a way for codemetar to determine that (URL in DESCRIPTION, or git remote URL) codemetar will use [GitHub repo topics](https://docs.github.com/en/github/administering-a-repository/classifying-your-repository-with-topics) as keywords in codemeta.json. If you also set keywords in DESCRIPTION (see next section), codemetar will merge the two lists.
 
 ### Set even more terms via DESCRIPTION
 
@@ -42,7 +42,7 @@ X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit, linked-da
 
 Where applicable, these will override values otherwise guessed from the source repository.  Use comma-separated lists to separate multiple values to a property, e.g. keywords.  
 
-See the [DESCRIPTION](https://github.com/codemeta/codemetar/blob/master/DESCRIPTION) file of the `codemetar` package for an example.  
+See the [DESCRIPTION](https://github.com/ropensci/codemetar/blob/master/DESCRIPTION) file of the `codemetar` package for an example.  
 
 ### Set the branch that codemetar references
 

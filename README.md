@@ -112,7 +112,7 @@ library("magrittr")
   "description": "The 'Codemeta' Project defines a 'JSON-LD' format\n    for describing software metadata, as detailed at\n    <https://codemeta.github.io>. This package provides utilities to\n    generate, parse, and modify 'codemeta.json' files automatically for R\n    packages, as well as tools and examples for working with\n    'codemeta.json' 'JSON-LD' more generally.",
   "name": "codemetar: Generate 'CodeMeta' Metadata for R Packages",
   "codeRepository": "https://github.com/ropensci/codemetar",
-  "relatedLink": ["https://docs.ropensci.org/codemetar", "https://CRAN.R-project.org/package=codemetar"],
+  "relatedLink": ["https://docs.ropensci.org/codemetar/", "https://CRAN.R-project.org/package=codemetar"],
   "issueTracker": "https://github.com/ropensci/codemetar/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "0.1.10",
@@ -817,8 +817,8 @@ glue::glue('<script type="application/ld+json">
 ```
 
 Refer to [Google
-documentation](https://developers.google.com/search/docs)
-for more guidance.
+documentation](https://developers.google.com/search/docs) for more
+guidance.
 
 <script type="application/ld+json">
       {
