@@ -1,5 +1,6 @@
 # codemetar dev 
 
+* `write_codemetar()` can now be called from anywhere within a package directory structure. (#305, @mpadge)
 * Breaking change: `write_codemeta()` writes the JSON file at `path` relative to `pkg`, not the current directory. (#303, @ThierryO)
 * Breaking change: Relatedtly, it is no longer possible to use `write_codemeta()` on an installed packages, in that case one would have to use `create_codemeta()` together with `jsonlite::write_json()`.
 * Use R.Version() instead of R.version to allow mocking in tests.
