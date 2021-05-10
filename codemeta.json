@@ -15,7 +15,7 @@
   ],
   "issueTracker": "https://github.com/ropensci/codemetar/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.10",
+  "version": "0.2.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -472,7 +472,7 @@
   "isPartOf": "https://ropensci.org",
   "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data"],
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
-  "fileSize": "1444.962KB",
+  "fileSize": "1445.053KB",
   "contIntegration": ["https://travis-ci.org/ropensci/codemetar", "https://ci.appveyor.com/project/cboettig/codemetar/branch/master", "https://codecov.io/github/ropensci/codemetar?branch=master"],
   "developmentStatus": "https://www.repostatus.org/",
   "review": {
