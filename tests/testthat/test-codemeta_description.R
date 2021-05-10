@@ -8,6 +8,8 @@ testthat::test_that("We can use a preset id", {
 })
 
 testthat::test_that("We can parse additional terms", {
+  skip_if_offline()
+  skip_on_cran()
   cm <- codemeta_description(example_file("DESCRIPTION_ex1.dcf"))
   testthat::expect_equal(length(cm$keywords), 6)
   testthat::expect_equal(cm$isPartOf, "https://ropensci.org")
