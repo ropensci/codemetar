@@ -5,7 +5,7 @@
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
-developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+developed.](http://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/)
 [![R build
 status](https://github.com/ropensci/codemetar/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/codemetar/actions)
 [![Travis-CI Build
@@ -15,7 +15,7 @@ status](https://ci.appveyor.com/api/projects/status/csawpip238vvbd72/branch/mast
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/ropensci/codemetar/master.svg)](https://codecov.io/github/ropensci/codemetar?branch=master)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar)
-[![](http://badges.ropensci.org/130_status.svg)](https://github.com/ropensci/onboarding/issues/130)
+[![](http://badges.ropensci.org/130_status.svg)](https://github.com/ropensci/software-review/issues/130)
 [![DOI](https://zenodo.org/badge/86626030.svg)](https://zenodo.org/badge/latestdoi/86626030)
 [![CRAN RStudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/codemetar)](https://CRAN.R-project.org/package=codemetar)
@@ -39,7 +39,7 @@ It has three main goals:
     files.
 -   Support the ability to crosswalk between terms used in other
     metadata standards, as identified by the Codemeta Project Community,
-    see <https://codemeta.github.io/crosswalk>
+    see <https://codemeta.github.io/crosswalk/>
 
 ## Why create a codemeta.json for your package?
 
@@ -575,7 +575,7 @@ library("magrittr")
   "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
   "fileSize": "NAKB",
   "contIntegration": ["https://travis-ci.org/ropensci/codemetar", "https://ci.appveyor.com/project/cboettig/codemetar/branch/master", "https://codecov.io/github/ropensci/codemetar?branch=master"],
-  "developmentStatus": "http://www.repostatus.org/#active",
+  "developmentStatus": "https://www.repostatus.org/",
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/software-review/issues/130",
@@ -717,7 +717,7 @@ development status (repostatus.org or lifecycle.org), provider
 If your package source is hosted on GitHub and there’s a way for
 codemetar to determine that (URL in DESCRIPTION, or git remote URL)
 codemetar will use [GitHub repo
-topics](https://help.github.com/en/github/administering-a-repository/classifying-your-repository-with-topics)
+topics](https://docs.github.com/en/github/administering-a-repository/classifying-your-repository-with-topics)
 as keywords in codemeta.json. If you also set keywords in DESCRIPTION
 (see next section), codemetar will merge the two lists.
 
@@ -729,7 +729,7 @@ DESCRIPTION can help the package users, not only codemetar).
 
 The DESCRIPTION file is the natural place to specify any metadata for an
 R package. The `codemetar` package can detect certain additional terms
-in the [CodeMeta context](https://codemeta.github.io/terms). Almost any
+in the [CodeMeta context](https://codemeta.github.io/terms/). Almost any
 additional codemeta field can be added to and read from the DESCRIPTION
 into a `codemeta.json` file (see `codemetar:::additional_codemeta_terms`
 for a list).
@@ -745,7 +745,7 @@ source repository. Use comma-separated lists to separate multiple values
 to a property, e.g. keywords.
 
 See the
-[DESCRIPTION](https://github.com/codemeta/codemetar/blob/master/DESCRIPTION)
+[DESCRIPTION](https://github.com/ropensci/codemetar/blob/master/DESCRIPTION)
 file of the `codemetar` package for an example.
 
 ### Set the branch that codemetar references
@@ -817,7 +817,7 @@ glue::glue('<script type="application/ld+json">
 ```
 
 Refer to [Google
-documentation](https://developers.google.com/search/reference/overview)
+documentation](https://developers.google.com/search/docs)
 for more guidance.
 
 <script type="application/ld+json">
