@@ -1,9 +1,5 @@
 # codemetar 0.3.0
 
-# codemetar 0.2.0
-
-# codemetar dev 
-
 * `write_codemetar()` can now be called from anywhere within a package directory structure. (#305, @mpadge)
 * Breaking change: `write_codemeta()` writes the JSON file at `path` relative to `pkg`, not the current directory. (#303, @ThierryO)
 * Added  documentation for changing the default branch (#302, @jonkeane)
