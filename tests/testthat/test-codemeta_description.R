@@ -1,6 +1,6 @@
 testthat::test_that("We can use a preset id", {
-  skip_if_offline()
   skip_on_cran()
+  skip_if_offline()
   f <- package_file("codemetar", "DESCRIPTION")
   id <- "https://doi.org/10.looks.like/doi"
   cm <- codemeta_description(f, id = id)
@@ -8,17 +8,16 @@ testthat::test_that("We can use a preset id", {
 })
 
 testthat::test_that("We can parse additional terms", {
-  skip_if_offline()
   skip_on_cran()
+  skip_if_offline()
   cm <- codemeta_description(example_file("DESCRIPTION_ex1.dcf"))
   testthat::expect_equal(length(cm$keywords), 6)
   testthat::expect_equal(cm$isPartOf, "https://ropensci.org")
 })
 
 testthat::test_that("We can parse plain Authors: & Maintainers: entries", {
-
-  skip_if_offline()
   skip_on_cran()
+  skip_if_offline()
   authors <- codemeta_description(example_file("DESCRIPTION_ex1.dcf"))
   expect_true(authors$maintainer[[1]]$familyName == "Boettiger")
   expect_equal(length(authors$author), 0)
