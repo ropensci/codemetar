@@ -8,7 +8,7 @@ testthat::test_that("guess_provider",{
   a <- guess_provider("a4")
   expect_equal(a$name, "BioConductor")
   ## An R package
-  a <- guess_provider("Matrix")
+  a <- guess_provider("lattice")
   expect_equal(a$name, "Comprehensive R Archive Network (CRAN)")
 })
 
