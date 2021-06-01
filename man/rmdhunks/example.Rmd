@@ -1,15 +1,16 @@
 `codemetar` can take the path to the source package root to glean as much information as possible.
 
-```{r echo=FALSE, eval=TRUE}
-pkg <- "../.."
-codemetar::write_codemeta(pkg = pkg)
-```
-
 ```{r echo=TRUE, eval=FALSE}
 codemetar::write_codemeta()
 ```
 
-```{r eval = TRUE}
+```{r echo=FALSE, eval = identical(Sys.getenv("NOT_CRAN"), "true")}
+pkg <- "../.."
+codemetar::write_codemeta(pkg = pkg)
+```
+
+
+```{r eval = identical(Sys.getenv("NOT_CRAN"), "true")}
 library("magrittr")
 "../../codemeta.json" %>%
   details::details(summary = "codemetar's codemeta.json",
@@ -18,6 +19,6 @@ library("magrittr")
 
 By default most often from within your package folder you'll simply run `codemetar::write_codemeta()`.
 
-```{r echo = FALSE, results='hide'}
+```{r echo = FALSE, results='hide', eval = identical(Sys.getenv("NOT_CRAN"), "true")}
 file.remove(file.path(pkg, "codemeta.json"))
 ```

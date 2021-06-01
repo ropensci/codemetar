@@ -4,13 +4,14 @@ author: "Carl Boettiger"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{An introduction to the CodeMeta Project and codemetar package}
+  %\VignetteIndexEntry{Intro to codemetar, Codemeta creator for R packages}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 
 ```{r include=FALSE}
+Sys.setenv("ON_CRAN" = "true")
 knitr::opts_chunk$set(comment="")
 if(grepl("windows", tolower(Sys.info()[["sysname"]])))
   knitr::opts_chunk$set(comment="", error =TRUE)

@@ -4,35 +4,22 @@ Our previous fixes were not enough, which we missed on the test platforms we use
 
 
 ## Test environments
-* local Windows install
-* ubuntu 12.04 (on travis-ci, oldrel, devel and release)
-* win-builder (on appveyor-ci, stable, patch, oldrel and devel)
+
+* local Ubuntu install
+* GitHub Actions (macOS-latest, R release; Windows latest, R release, Windows latest, R 3.6; Ubuntu 16, R release and older versions) 
+* win-builder
+* R-hub
 
 ## R CMD check results
 
 0 errors | 0 warnings | 1 note
 
-We think the URL errors below are false positives.
-
 ```
-  URL: https://docs.r-hub.io/#badges
-    From: inst/doc/codemetar.html
-          README.md
-    Status: Error
-    Message: libcurl error code 35:
-      	schannel: next InitializeSecurityContext failed: SEC_E_ILLEGAL_MESSAGE (0x80090326) - This error usually occurs when a fatal SSL/TLS alert is received (e.g. handshake failed).
-  URL: https://docs.r-hub.io/#sysreqs
-    From: inst/doc/codemetar.html
-          README.md
-    Status: Error
-    Message: libcurl error code 35:
-      	schannel: next InitializeSecurityContext failed: SEC_E_ILLEGAL_MESSAGE (0x80090326) - This error usually occurs when a fatal SSL/TLS alert is received (e.g. handshake failed).
+New submission
+  
+  Package was archived on CRAN
+  
+  CRAN repository db overrides:
+    X-CRAN-Comment: Archived on 2021-05-15 as check problems were not
+      corrected in time.
 ```
-
-## Release summary
-
-We addressed the tests failing on Solaris.
-
-## Reverse dependencies
-
-The two reverse dependencies of codemetar do not actually use codemetar in their code.
