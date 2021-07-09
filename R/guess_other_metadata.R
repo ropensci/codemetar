@@ -72,7 +72,7 @@ guess_fileSize <- function(root = ".", .ignore = NULL) {
   files <- gsub(paste0(normalizePath(root, winslash = "/"), "/"), "", files)
 
   ## exclude full dirs matching an ignore pattern
-  dirs <- list.dirs(normalizePath(root))
+  dirs <- list.dirs(normalizePath(root, winslash = "/"))
   dirs <- gsub(paste0(normalizePath(root, winslash = "/"), "/"), "", dirs)
   ignore_dirs <- dirs[grepl(paste(.ignore, collapse = "|"), dirs, perl = TRUE)]
   files <- files[
