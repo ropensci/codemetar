@@ -58,6 +58,7 @@ guess_fileSize <- function(root = ".", .ignore = NULL) {
   }
 
   ## grep all files of interest (exclude hidden files)
+  ## winslash = "/" is used in all normalizePath() calls to allow gsub() matching.
   files <- normalizePath(
     list.files(
       path = normalizePath(root),
