@@ -58,6 +58,7 @@ guess_fileSize <- function(root = ".", .ignore = NULL) {
   }
 
   ## grep all files of interest (exclude hidden files)
+  ## winslash = "/" is used in all normalizePath() calls to allow gsub() matching.
   files <- normalizePath(
     list.files(
       path = normalizePath(root),
@@ -72,7 +73,7 @@ guess_fileSize <- function(root = ".", .ignore = NULL) {
   files <- gsub(paste0(normalizePath(root, winslash = "/"), "/"), "", files)
 
   ## exclude full dirs matching an ignore pattern
-  dirs <- list.dirs(normalizePath(root))
+  dirs <- list.dirs(normalizePath(root, winslash = "/"))
   dirs <- gsub(paste0(normalizePath(root, winslash = "/"), "/"), "", dirs)
   ignore_dirs <- dirs[grepl(paste(.ignore, collapse = "|"), dirs, perl = TRUE)]
   files <- files[
