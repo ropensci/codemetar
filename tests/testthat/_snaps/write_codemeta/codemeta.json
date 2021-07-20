@@ -1,0 +1,39 @@
+{
+  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@type": "SoftwareSourceCode",
+  "identifier": "mypkg",
+  "description": "What the package does (one paragraph).",
+  "name": "mypkg: What the Package Does (One Line, Title Case)",
+  "license": "`use_mit_license()`, `use_gpl3_license()` or friends to pick a\n    license",
+  "version": "0.0.0.9000",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R 1.0.0",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "First",
+      "familyName": "Last",
+      "email": "first.last@example.com",
+      "@id": "https://orcid.org/YOUR-ORCID-ID"
+    }
+  ],
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {},
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "First",
+      "familyName": "Last",
+      "email": "first.last@example.com",
+      "@id": "https://orcid.org/YOUR-ORCID-ID"
+    }
+  ],
+  "softwareSuggestions": [],
+  "softwareRequirements": [],
+  "fileSize": "0KB"
+}

@@ -5,7 +5,7 @@
 # also uses code coverage
 guess_ci <- function(readme) {
 
-  get_badge_links_matching(readme, "travis|appveyor|circleci|codecov|coveralls")
+  get_badge_links_matching(readme, "travis|appveyor|circleci|codecov|coveralls|github.*actions")
 }
 
 # guess_devStatus --------------------------------------------------------------
@@ -20,9 +20,7 @@ guess_devStatus <- function(readme) {
 get_badge_links_matching <- function(readme, pattern) {
 
   badges <- extract_badges(readme)
-
   if (length(links <- grep(pattern, badges$link, value = TRUE))) {
-
     links
   }
   # else NULL implicitly

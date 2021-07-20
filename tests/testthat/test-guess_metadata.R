@@ -17,6 +17,7 @@ testthat::test_that("guess_ci",{
  a <- guess_ci(f)
  testthat::expect_equal(a[1], "https://travis-ci.org/codemeta/codemetar")
  testthat::expect_equal(a[2], "https://codecov.io/github/codemeta/codemetar?branch=master")
+ testthat::expect_equal(a[3], "https://github.com/ropensci/codemetar/actions")
 
  f2 <- system.file("examples/README_ex2.md", package="codemetar")
  a2 <- guess_ci(f2)
