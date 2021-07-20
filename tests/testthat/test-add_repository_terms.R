@@ -1,4 +1,6 @@
 test_that("add_repository_terms works", {
+  skip_on_cran()
+  skip_if_offline()
   # Provide testdata
   codemeta <- new_codemeta()
   codemeta$package <- "abc"
@@ -11,7 +13,8 @@ test_that("add_repository_terms works", {
 })
 
 testthat::test_that("add_repository_terms works when there are several URLs", {
-
+  skip_on_cran()
+  skip_if_offline()
   cm <- add_repository_terms(new_codemeta(),
                              desc::desc(
                                example_file(
@@ -22,6 +25,8 @@ testthat::test_that("add_repository_terms works when there are several URLs", {
 })
 
 testthat::test_that("add_repository_terms works when there's a non GitHub code repository", {
+  skip_on_cran()
+  skip_if_offline()
   cm <- add_repository_terms(codemeta = new_codemeta(),
                              descr = desc::desc(
                                example_file(
@@ -40,6 +45,8 @@ testthat::test_that("add_repository_terms works when there's a non GitHub code r
 })
 
 testthat::test_that("add_repository_terms does not keep a direct link to README", {
+  skip_on_cran()
+  skip_if_offline()
   cm <- codemeta_description(example_file("DESCRIPTION_good_readmeinurl"))
   expect_equal(cm$codeRepository, "https://github.com/ropensci/codemetar")
   expect_true("https://ropensci.github.io/codemetar" %in%
@@ -49,7 +56,8 @@ testthat::test_that("add_repository_terms does not keep a direct link to README"
 })
 
 testthat::test_that("add_repository_terms updates the codeRepository URL", {
-
+  skip_on_cran()
+  skip_if_offline()
   cm <- new_codemeta()
   cm$codeRepository <- "lalala"
 
