@@ -52,7 +52,7 @@ By generating a `codemeta.json` file, you turn your metadata into a
 format that can easily crosswalk between metadata in many other software
 languages. CodeMeta is built on [schema.org](https://schema.org) a
 simple [structured
-data](https://developers.google.com/search/docs/guides/intro-structured-data)
+data](https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data)
 format developed by major search engines like Google and Bing to improve
 discoverability in search. CodeMeta is also understood by significant
 software archiving efforts such as [Software

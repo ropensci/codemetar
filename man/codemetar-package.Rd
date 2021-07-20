@@ -6,7 +6,12 @@
 \alias{codemetar-package}
 \title{codemetar: generate codemeta metadata for R packages}
 \description{
-The 'Codemeta' Project defines a 'JSON-LD' format for describing software metadata, as detailed at <https://codemeta.github.io>. This package provides utilities to generate, parse, and modify 'codemeta.json' files automatically for R packages, as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
+The 'Codemeta' Project defines a 'JSON-LD' format
+    for describing software metadata, as detailed at
+    <https://codemeta.github.io>. This package provides utilities to
+    generate, parse, and modify 'codemeta.json' files automatically for R
+    packages, as well as tools and examples for working with
+    'codemeta.json' 'JSON-LD' more generally.
 }
 \details{
 \strong{Why bother creating a codemeta.json for your package?} R packages
@@ -21,7 +26,7 @@ developers to find and integrate.
 By generating a \code{codemeta.json} file, you turn your metadata into a
 format that can easily crosswalk between metadata in many other software
 languages. CodeMeta is built on \href{https://schema.org}{schema.org} a
-simple \href{https://developers.google.com/search/docs/guides/intro-structured-data}{structured data}
+simple \href{https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data}{structured data}
 format developed by major search engines like Google and Bing to improve
 discoverability in search. CodeMeta is also understood by significant
 software archiving efforts such as \href{https://www.softwareheritage.org/}{Software Heritage} Project, which seeks to
