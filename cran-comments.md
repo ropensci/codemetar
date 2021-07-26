@@ -1,6 +1,7 @@
 Dear CRAN team,
 
-Our previous fixes were not enough, which we missed on the test platforms we used, we are sorry about that.
+Bugfix as described in NEWS.md
+
 
 
 ## Test environments

@@ -1,7 +1,11 @@
-# codemetar (development version)
+# codemetar 0.3.2
 
 * Skip on CRAN a test relying on internet connection.
 * Bug fix: Fix regression in Windows path handling (#315, @ms609).
+
+# codemeta 0.3.1
+
+* CRAN Solaris issues
 
 # codemetar 0.3.0
 
