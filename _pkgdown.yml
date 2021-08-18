@@ -32,8 +32,6 @@ navbar:
       menu:
       - text: Parsing Codemeta Data
         href: articles/articles/examples-parsing-codemeta.html
-      - text: Translating between schema using JSON-LD
-        href: articles/articles/translating-codemeta.html
       - text: Validation in JSON-LD
         href: articles/articles/validation-in-json-ld.html
     news:
