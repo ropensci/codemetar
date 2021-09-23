@@ -32,8 +32,11 @@ testthat::test_that("We can use encoding", {
 
 testthat::test_that("Test citation with encoding and citation line", {
   f <- system.file("examples/CITATION_ex2", package = "codemetar")
-  meta <- parse_package_meta(system.file("examples/DESCRIPTION_good",
-    package = "codemetar"
+
+  # Use meta of an installed package
+  meta <- parse_package_meta(file.path(
+    find.package("jsonlite"),
+    "DESCRIPTION"
   ))
 
   testthat::expect_s3_class(utils::readCitationFile(f, meta), "citation")
