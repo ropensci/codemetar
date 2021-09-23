@@ -1,3 +1,5 @@
+# codemetar (development version)
+
 # codemetar 0.3.2
 
 * Skip on CRAN a test relying on internet connection.

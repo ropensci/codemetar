@@ -99,7 +99,7 @@ there’s a “codemeta-description-updated” hook.
 created by e.g. \code{usethis::use_readme_rmd()}), then you can
 create it using
 }
-}\if{html}{\out{<div class="r">}}\preformatted{script = readLines(system.file("templates", "description-codemetajson-pre-commit.sh", package = "codemetar"))
+}\if{html}{\out{<div class="sourceCode r">}}\preformatted{script = readLines(system.file("templates", "description-codemetajson-pre-commit.sh", package = "codemetar"))
 usethis::use_git_hook("pre-commit",
                      script = script)
 }\if{html}{\out{</div>}}
@@ -130,7 +130,7 @@ to rewind you local changes on top of the current upstream \code{HEAD}.\if{html}
 <span title="Click to Expand"> click here to see the workflow </span>
 </summary>
 }}
-\if{html}{\out{<div class="yaml">}}\preformatted{on:
+\if{html}{\out{<div class="sourceCode yaml">}}\preformatted{on:
   push:
     branches: master
     paths:
