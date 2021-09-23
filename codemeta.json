@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "codemetar",
-  "description": "The 'Codemeta' Project defines a 'JSON-LD' format for\n    describing software metadata, as detailed at\n    <https://codemeta.github.io>. This package provides utilities to\n    generate, parse, and modify 'codemeta.json' files automatically for R\n    packages, as well as tools and examples for working with\n    'codemeta.json' 'JSON-LD' more generally.",
+  "description": "The 'Codemeta' Project defines a 'JSON-LD' format for describing software metadata, as detailed at <https://codemeta.github.io>. This package provides utilities to generate, parse, and modify 'codemeta.json' files automatically for R packages, as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.",
   "name": "codemetar: Generate 'CodeMeta' Metadata for R Packages",
   "codeRepository": "https://github.com/ropensci/codemetar",
   "relatedLink": [
@@ -453,7 +453,7 @@
   "isPartOf": "https://ropensci.org",
   "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
-  "fileSize": "1445.481KB",
+  "fileSize": "1468.425KB",
   "contIntegration": ["https://github.com/ropensci/codemetar/actions", "https://codecov.io/github/ropensci/codemetar?branch=master"],
   "developmentStatus": "https://www.repostatus.org/",
   "review": {

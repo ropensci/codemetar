@@ -76,3 +76,31 @@ testthat::test_that("Helper functions work correctly", {
   result <- add_additional_terms(codemeta, descr)
   expect_true(all(c("isPartOf", "keywords") %in% names(result)))
 })
+
+testthat::test_that("Clean line control on description", {
+  skip_on_cran()
+  skip_if_offline()
+
+  f <- example_file("DESCRIPTION_ex1.dcf")
+
+  # Pure description
+  raw <- desc::desc(f)
+
+
+  # Should have several lines
+  testthat::expect_length(unlist(strsplit(raw$get("Description"), "\n")), 3)
+
+  cm <- codemeta_description(f)
+  # We should expect a single line
+  testthat::expect_length(unlist(strsplit(cm$description, "\n")), 1)
+
+  # It should be the same
+  testthat::expect_identical(
+    clean_str(raw$get("Description")),
+    cm$description
+  )
+
+
+  # Snapshot
+  testthat::expect_snapshot_output(cm$description)
+})
