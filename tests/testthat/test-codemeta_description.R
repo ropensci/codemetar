@@ -36,7 +36,8 @@ testthat::test_that("We can parse plain Authors: & Maintainers: entries", {
 })
 
 testthat::test_that("Helper functions work correctly", {
-
+  skip_on_cran()
+  skip_if_offline()
   # Provide testdata
   codemeta <- new_codemeta()
   codemeta$package <- "abc"
