@@ -641,16 +641,18 @@ to rewind you local changes on top of the current upstream `HEAD`.
 
 <details closed>
 <summary>
-<span title="Click to Expand"> click here to see the workflow </span>
+<span title="Click to Expand"> click here to see the workflow (save this as `codemeta.yml` in `.github/workflows` directory in your package) </span>
 </summary>
 
 ``` yaml
 on:
   push:
-    branches: master
+    branches:
+      - main
+      - master
     paths:
       - DESCRIPTION
-      - .github/workflows/main.yml
+      - .github/workflows/codemeta.yml
 
 name: Render codemeta
 jobs:
@@ -661,10 +663,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: r-lib/actions/setup-r@v1
+      - name: Install remotes
+        run: Rscript -e 'install.packages("remotes")'
       - name: Install codemetar
-        run: Rscript -e 'install.packages("codemetar")'
-      - name: Render codemeta
-        run: Rscript -e 'codemetar::write_codemeta()'
+        run: Rscript -e 'remotes::install_github("ropensci/codemetar")'
       - name: Commit results
         run: |
           git commit codemeta.json -m 'Re-build codemeta.json' || echo "No changes to commit"
