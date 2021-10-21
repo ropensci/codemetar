@@ -96,22 +96,25 @@ being done if DESCRIPTION is newer than codemeta.json.
 \item You can use the \href{https://github.com/lorenzwalthert/precommit}{precommit package} in which
 there’s a “codemeta-description-updated” hook.
 \item If that’s your only pre-commit hook (i.e. you don’t have one
-created by e.g. \code{usethis::use_readme_rmd()}), then you can
-create it using
+created by e.g. \code{usethis::use_readme_rmd()}), then you can
+create it
+using
 }
-}\if{html}{\out{<div class="r">}}\preformatted{script = readLines(system.file("templates", "description-codemetajson-pre-commit.sh", package = "codemetar"))
+}\if{html}{\out{
+<!-- end list -->
+}}
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{script = readLines(system.file("templates", "description-codemetajson-pre-commit.sh", package = "codemetar"))
 usethis::use_git_hook("pre-commit",
                      script = script)
 }\if{html}{\out{</div>}}
 \itemize{
 \item You could use GitHub actions. Refer to GitHub actions docs
 \url{https://github.com/features/actions}, and to the example workflow
-provided in this package (type
-\code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}).
-You can use the \code{cm-skip} keyword in your commit message if you
-don’t want this to run on a specific commit. The example workflow
-provided is setup to only run when a push is made to the master
-branch. This setup is designed for if you’re using a \href{https://nvie.com/posts/a-successful-git-branching-model/#the-main-branches}{git flow}
+provided in this package (type \code{system.file("templates", "codemeta-github-actions.yml", package = "codemetar")}). You can use
+the \code{cm-skip} keyword in your commit message if you don’t want this
+to run on a specific commit. The example workflow provided is setup
+to only run when a push is made to the master branch. This setup is
+designed for if you’re using a \href{https://nvie.com/posts/a-successful-git-branching-model/#the-main-branches}{git flow}
 setup where the master branch is only committed and pushed to via
 pull requests. After each PR merge (and the completion of this
 GitHub action), your master branch will always be up to date and so
@@ -126,11 +129,13 @@ forgot to pull and already committed new changes, fret not, you can use
 (\href{https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase/38139843#38139843}{\verb{git pull --rebase}})
 to rewind you local changes on top of the current upstream \code{HEAD}.\if{html}{\out{
 <details closed>
-<summary>
-<span title="Click to Expand"> click here to see the workflow </span>
-</summary>
 }}
-\if{html}{\out{<div class="yaml">}}\preformatted{on:
+\if{html}{\out{
+<summary> <span title="Click to Expand"> click here to see the workflow
+</span> </summary>
+}}
+\if{html}{\out{<div class="sourceCode yaml">}}\preformatted{
+on:
   push:
     branches: master
     paths:

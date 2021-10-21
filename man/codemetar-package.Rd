@@ -6,12 +6,7 @@
 \alias{codemetar-package}
 \title{codemetar: generate codemeta metadata for R packages}
 \description{
-The 'Codemeta' Project defines a 'JSON-LD' format
-    for describing software metadata, as detailed at
-    <https://codemeta.github.io>. This package provides utilities to
-    generate, parse, and modify 'codemeta.json' files automatically for R
-    packages, as well as tools and examples for working with
-    'codemeta.json' 'JSON-LD' more generally.
+The 'Codemeta' Project defines a 'JSON-LD' format for describing software metadata, as detailed at <https://codemeta.github.io>. This package provides utilities to generate, parse, and modify 'codemeta.json' files automatically for R packages, as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
 }
 \details{
 \strong{Why bother creating a codemeta.json for your package?} R packages

@@ -103,7 +103,7 @@ Suggests:
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 X-schema.org-isPartOf: https://ropensci.org
 X-schema.org-keywords: metadata, codemeta, ropensci, citation,
     credit, linked-data
