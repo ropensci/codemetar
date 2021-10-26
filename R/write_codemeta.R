@@ -57,6 +57,7 @@ write_codemeta <- function(
 
   codemeta_json <- "codemeta.json"
 
+  stopifnot("`pkg` must be a single value" = length(pkg) == 1)
   # Things that only happen inside a package folder...
   if (pkg == ".") {
     pkg <- dot_to_package(pkg)
