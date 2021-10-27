@@ -57,6 +57,7 @@ write_codemeta <- function(
 
   codemeta_json <- "codemeta.json"
 
+  stopifnot("`pkg` must be a single value" = length(pkg) == 1)
   # Things that only happen inside a package folder...
   if (pkg == ".") {
     pkg <- dot_to_package(pkg)
@@ -73,7 +74,7 @@ write_codemeta <- function(
   }
   # Create or update codemeta and save to disk
   create_codemeta(pkg = pkg, root = root, use_filesize = use_filesize,
-                  verbose = verbose) %>%
+                  verbose = verbose, id = id, force_update = force_update) %>%
     jsonlite::write_json(file.path(pkg, path), pretty = TRUE, auto_unbox = TRUE, ...)
 
   # Create minimeta and save to disk
