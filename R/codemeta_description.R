@@ -85,7 +85,7 @@ codemeta_description <- function(file, id = NULL, codemeta = new_codemeta(),
   }
 
   codemeta$identifier <- package_name
-  codemeta$description <- descr$get("Description")
+  codemeta$description <- clean_str(descr$get("Description"))
   codemeta$name <- paste0(package_name, ": ", descr$get("Title"))
 
   ## add repository related terms

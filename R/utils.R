@@ -324,3 +324,28 @@ escape_path <- function(x) {
   x <- gsub("/$", "", x)
   paste0("^", x, "$")
 }
+
+
+# clean_str -----------------------
+clean_str <- function(str) {
+  # Collapse to single char
+  str <- paste(str, collapse = " ")
+  if (length(str) == 0 || is.null(str) || is.na(str) ||
+      str == "NA") {
+    return(NULL)
+  }
+
+  clean <- gsub("[\n\r]", " ", str)
+  clean <- gsub("\\s+", " ", clean)
+  clean <- gsub("\\s+", " ", clean)
+  clean <- gsub("\\{", "", clean)
+  clean <- gsub("\\}", "", clean)
+  # Collapse to single char
+  clean <- paste(clean, collapse = " ")
+
+  if (clean == "") {
+    return(NULL)
+  }
+
+  clean
+}
