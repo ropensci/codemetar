@@ -1,12 +1,8 @@
 ---
 title: "Validation in JSON-LD"
+subtitle: "Validating and consuming in JSON-LD in software development"
 author: "Carl Boettiger"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Validating and consuming in JSON-LD in software development}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ## Introduction
