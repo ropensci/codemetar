@@ -156,7 +156,7 @@ unwanted alteration of the user's git environment [issue #240](https://github.co
 # codemetar 0.1.3 2018-02-08
 
 * CRAN release
-* Switch to <http://purl.org> based URIs for the JSON-LD 
+* Switch to <https://purl.org/> based URIs for the JSON-LD 
   Context file instead of a DOI, due to frequent failure
   of content negotiation on DataCite servers
   ([#34](https://github.com/ropensci/codemetar/issues/34))
