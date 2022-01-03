@@ -10,7 +10,8 @@
 #' @export
 #' @examples
 #' \donttest{
-#' cm <- create_codemeta("jsonlite")
+#' path <- system.file("", package="codemeta")
+#' cm <- create_codemeta(path)
 #' cm$keywords <- list("metadata", "ropensci")
 #' }
 #' @importFrom jsonlite read_json
@@ -25,35 +26,12 @@ create_codemeta <- function(
   ...
 ) {
 
-  ## looks like we got a package name/path or Description file
-  if (is.character(pkg)) {
-    root <- get_root_path(pkg)
+  if(root != ".") warning("setting root is deprecated")
+  root <- get_root_path(pkg)
 
-    # Set string constants
-    json_file <- get_file("codemeta.json", root)
-
-    ## no cm provided, but codemeta.json found in pkg
-    cm <- if (file.exists(json_file)) {
-
-      ## Our package has an existing codemeta.json to update
-      jsonlite::read_json(json_file)
-
-      ## no cm, no existing codemeta.json found, start fresh
-    } else {
-      new_codemeta()
-    }
-
-    ## we got an existing codemeta object as pkg
-  } else if (is.list(pkg)) {
-    cm <- pkg
-
-    ## root should be set already, we might check that root has a DESCRIPTION,
-    ## but if not, methods below should return NULLs rather than error anyhow
-    root <- get_root_path(root)
-  }
+  cm <- codemeta::write_codemeta(path = pkg, file = NULL, id = id)
 
   if (verbose) {
-    root <- get_root_path(pkg)
 
     opinions <- give_opinions(root, verbose)
 
@@ -65,13 +43,8 @@ create_codemeta <- function(
     }
   }
 
-  ## get information from DESCRIPTION
-  cm <- codemeta_description(file.path(root, "DESCRIPTION"), id = id, cm,
-                             verbose = verbose)
-
   ## Guess these only if not set in current codemeta
   # try to identify a code repo
-
   more_work_cr <- function(codeRepository) {
     if (is.null(codeRepository)) {
       return(TRUE)
@@ -97,12 +70,6 @@ create_codemeta <- function(
     cm$readme <- guess_readme(root, verbose, cm)$readme_url
   }
 
-  if (use_filesize) {
-    if ((is.null(cm$fileSize) || force_update)) {
-      cm$fileSize <- guess_fileSize(root)
-    }
-  }
-
   # and if there's a readme
   readme <- guess_readme(root, verbose, cm)$readme_path
 
@@ -116,20 +83,7 @@ create_codemeta <- function(
     cm <- add_github_topics(cm, verbose)
   }
 
-  ## Citation metadata
-  if (is.character(pkg)) { ## Doesn't apply if pkg is a list (codemeta object)
 
-    cm$citation <- guess_citation(pkg)
-
-    # set string constant
-    url_schema <- "http://schema.org"
-
-    ## citations need schema.org context!
-    ## see https://github.com/codemeta/codemeta/issues/155
-    if (!any(grepl(url_schema, cm$`@context`))) {
-      cm$`@context` <- c(cm$`@context`, url_schema)
-    }
-  }
 
   ## Add provider link as relatedLink
   # Priority is given to the README
@@ -199,3 +153,16 @@ set_relatedLink_2 <- function(codemeta, provider_name) {
 
   codemeta
 }
+
+
+github_domains <- function() {
+  c("github.com", "www.github.com")
+}
+
+source_code_domains <- function() {
+  c(github_domains(),
+    "gitlab.com",
+    "r-forge.r-project.org",
+    "bitbucket.org")
+}
+

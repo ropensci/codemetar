@@ -24,6 +24,13 @@ knitr::opts_chunk$set(
 [![DOI](https://zenodo.org/badge/86626030.svg)](https://zenodo.org/badge/latestdoi/86626030)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/codemetar)](https://CRAN.R-project.org/package=codemetar)
 
+
+The [codemeta](https://cran.r-project.org/package=codemeta) package provides a more minimalist approach to generating codemeta based only on DESCRIPTION and CITATION files,
+while `codemetar` provides additional abilities to detect metadata from README and GitHub sources, and provide
+more user feedback, suggestions, and messaging.
+
+
+
 ```{r child='man/rmdhunks/goals.Rmd'} 
 ```
 

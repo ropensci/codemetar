@@ -1,13 +1,13 @@
 Dear CRAN team,
 
 Bugfix as described in NEWS.md
-
+Resolves previous CRAN check problems.
 
 
 ## Test environments
 
 * local Ubuntu install
-* GitHub Actions (macOS-latest, R release; Windows latest, R release, Windows latest, R 3.6; Ubuntu 16, R release and older versions) 
+* GitHub Actions (macOS-latest, R release; Windows latest, R release, Windows latest, Ubuntu R-devel) 
 * win-builder
 * R-hub
 

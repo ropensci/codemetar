@@ -45,7 +45,8 @@ than writing directly to a file.  See examples.
 }
 \examples{
 \donttest{
-cm <- create_codemeta("jsonlite")
+path <- system.file("", package="codemeta")
+cm <- create_codemeta(path)
 cm$keywords <- list("metadata", "ropensci")
 }
 }

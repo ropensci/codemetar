@@ -10,11 +10,17 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](https://www.rep
 status](https://github.com/ropensci/codemetar/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/codemetar/actions)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/ropensci/codemetar/master.svg)](https://codecov.io/github/ropensci/codemetar?branch=master)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar)
 [![](http://badges.ropensci.org/130_status.svg)](https://github.com/ropensci/software-review/issues/130)
 [![DOI](https://zenodo.org/badge/86626030.svg)](https://zenodo.org/badge/latestdoi/86626030)
 [![CRAN RStudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/codemetar)](https://CRAN.R-project.org/package=codemetar)
+
+The [codemeta](https://cran.r-project.org/package=codemeta) package
+provides a more minimalist approach to generating codemeta based only on
+DESCRIPTION and CITATION files, while `codemetar` provides additional
+abilities to detect metadata from README and GitHub sources, and provide
+more user feedback, suggestions, and messaging.
 
 **Why codemetar?** The ‘Codemeta’ Project defines a ‘JSON-LD’ format for
 describing software metadata, as detailed at
@@ -79,8 +85,6 @@ codemetar::write_codemeta()
     ✓ Got CRAN metadata!
     … Getting Bioconductor metadata
     ✓ Got Bioconductor metadata!
-    … Getting sysreqs URL from sysreqs API
-    ✓ Got sysreqs URL from sysreqs API!
     … Asking README URL from GitHub API
     ✓ Got README URL!
     … Asking README URL from GitHub API
@@ -102,25 +106,22 @@ library("magrittr")
 
 ``` json
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "codemetar",
-  "description": "The 'Codemeta' Project defines a 'JSON-LD' format\n    for describing software metadata, as detailed at\n    <https://codemeta.github.io>. This package provides utilities to\n    generate, parse, and modify 'codemeta.json' files automatically for R\n    packages, as well as tools and examples for working with\n    'codemeta.json' 'JSON-LD' more generally.",
+  "description": "The 'Codemeta' Project defines a 'JSON-LD' format for describing software metadata, as detailed at <https://codemeta.github.io>. This package provides utilities to generate, parse, and modify 'codemeta.json' files automatically for R packages, as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.",
   "name": "codemetar: Generate 'CodeMeta' Metadata for R Packages",
+  "relatedLink": "https://docs.ropensci.org/codemetar/",
   "codeRepository": "https://github.com/ropensci/codemetar",
-  "relatedLink": ["https://docs.ropensci.org/codemetar/", "https://CRAN.R-project.org/package=codemetar"],
   "issueTracker": "https://github.com/ropensci/codemetar/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.3.1",
+  "version": "0.3.3",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
+  "runtimePlatform": "R version 4.1.2 (2021-11-01)",
   "author": [
     {
       "@type": "Person",
@@ -363,14 +364,14 @@ library("magrittr")
       "sameAs": "https://CRAN.R-project.org/package=usethis"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.2.0"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "commonmark",
       "name": "commonmark",
@@ -382,7 +383,7 @@ library("magrittr")
       },
       "sameAs": "https://CRAN.R-project.org/package=commonmark"
     },
-    {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "crul",
       "name": "crul",
@@ -394,7 +395,7 @@ library("magrittr")
       },
       "sameAs": "https://CRAN.R-project.org/package=crul"
     },
-    {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "desc",
       "name": "desc",
@@ -406,7 +407,7 @@ library("magrittr")
       },
       "sameAs": "https://CRAN.R-project.org/package=desc"
     },
-    {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "gert",
       "name": "gert",
@@ -418,7 +419,7 @@ library("magrittr")
       },
       "sameAs": "https://CRAN.R-project.org/package=gert"
     },
-    {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "gh",
       "name": "gh",
@@ -430,7 +431,7 @@ library("magrittr")
       },
       "sameAs": "https://CRAN.R-project.org/package=gh"
     },
-    {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "jsonlite",
       "name": "jsonlite",
@@ -443,7 +444,7 @@ library("magrittr")
       },
       "sameAs": "https://CRAN.R-project.org/package=jsonlite"
     },
-    {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
@@ -455,7 +456,7 @@ library("magrittr")
       },
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
     },
-    {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "memoise",
       "name": "memoise",
@@ -467,12 +468,12 @@ library("magrittr")
       },
       "sameAs": "https://CRAN.R-project.org/package=memoise"
     },
-    {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "methods",
       "name": "methods"
     },
-    {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "pingr",
       "name": "pingr",
@@ -484,7 +485,7 @@ library("magrittr")
       },
       "sameAs": "https://CRAN.R-project.org/package=pingr"
     },
-    {
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
@@ -496,7 +497,7 @@ library("magrittr")
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    {
+    "13": {
       "@type": "SoftwareApplication",
       "identifier": "remotes",
       "name": "remotes",
@@ -508,7 +509,7 @@ library("magrittr")
       },
       "sameAs": "https://CRAN.R-project.org/package=remotes"
     },
-    {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "sessioninfo",
       "name": "sessioninfo",
@@ -520,12 +521,12 @@ library("magrittr")
       },
       "sameAs": "https://CRAN.R-project.org/package=sessioninfo"
     },
-    {
+    "15": {
       "@type": "SoftwareApplication",
       "identifier": "stats",
       "name": "stats"
     },
-    {
+    "16": {
       "@type": "SoftwareApplication",
       "identifier": "urltools",
       "name": "urltools",
@@ -537,7 +538,7 @@ library("magrittr")
       },
       "sameAs": "https://CRAN.R-project.org/package=urltools"
     },
-    {
+    "17": {
       "@type": "SoftwareApplication",
       "identifier": "xml2",
       "name": "xml2",
@@ -549,7 +550,7 @@ library("magrittr")
       },
       "sameAs": "https://CRAN.R-project.org/package=xml2"
     },
-    {
+    "18": {
       "@type": "SoftwareApplication",
       "identifier": "cli",
       "name": "cli",
@@ -560,26 +561,33 @@ library("magrittr")
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=cli"
-    }
-  ],
+    },
+    "19": {
+      "@type": "SoftwareApplication",
+      "identifier": "codemeta",
+      "name": "codemeta",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=codemeta"
+    },
+    "SystemRequirements": null
+  },
   "isPartOf": "https://ropensci.org",
   "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
-  "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
   "fileSize": "NAKB",
-  "contIntegration": "https://codecov.io/github/ropensci/codemetar?branch=master",
+  "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
+  "contIntegration": ["https://github.com/ropensci/codemetar/actions", "https://codecov.io/github/ropensci/codemetar?branch=master"],
   "developmentStatus": "https://www.repostatus.org/",
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/software-review/issues/130",
     "provider": "https://ropensci.org"
-  },
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Comprehensive R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  },
-  "readme": "https://github.com/ropensci/codemetar/blob/master/README.md"
+  }
 }
 ```
 
@@ -641,18 +649,16 @@ to rewind you local changes on top of the current upstream `HEAD`.
 
 <details closed>
 <summary>
-<span title="Click to Expand"> click here to see the workflow (save this as `codemeta.yml` in `.github/workflows` directory in your package) </span>
+<span title="Click to Expand"> click here to see the workflow </span>
 </summary>
 
 ``` yaml
 on:
   push:
-    branches:
-      - main
-      - master
+    branches: master
     paths:
       - DESCRIPTION
-      - .github/workflows/codemeta.yml
+      - .github/workflows/main.yml
 
 name: Render codemeta
 jobs:
@@ -663,10 +669,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: r-lib/actions/setup-r@v1
-      - name: Install remotes
-        run: Rscript -e 'install.packages("remotes")'
       - name: Install codemetar
-        run: Rscript -e 'remotes::install_github("ropensci/codemetar")'
+        run: Rscript -e 'install.packages("codemetar")'
+      - name: Render codemeta
+        run: Rscript -e 'codemetar::write_codemeta()'
       - name: Commit results
         run: |
           git commit codemeta.json -m 'Re-build codemeta.json' || echo "No changes to commit"
@@ -755,16 +761,16 @@ There are a number of places that codemetar will reference a github
 branch if your code is hosted on github (e.g. for release notes, readme,
 etc.). By default, codemetar will use the name “master” but you can
 change that to whatever your default branch is by setting the option
-“codemeta\_branch” (e.g. `options(codemeta_branch = "main")` before
+“codemeta_branch” (e.g. `options(codemeta_branch = "main")` before
 calling `write_codemeta()` to use the branch named “main” as the default
 branch).
 
 ## Installation and usage requirements
 
-You can install the latest version from rOpenSci R-universe using:
+You can install the latest version from CRAN using:
 
 ``` r
-install.packages("codemetar", repos = 'https://ropensci.r-universe.dev')
+install.packages("codemetar")
 ```
 
 You can also install the development version of `codemetar` from GitHub
@@ -772,7 +778,7 @@ with:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("ropensci/codemetar")
+remotes::install_github("ropensci/codemetar", ref = "dev")
 ```
 
 For optimal results you need a good internet connection.
@@ -788,7 +794,7 @@ The package queries
     and the [repo
     topics](https://developer.github.com/v3/repos/#list-all-topics-for-a-repository).
     If you use codemetar for many packages having a
-    [GITHUB\_PAT](https://github.com/r-lib/gh#environment-variables) is
+    [GITHUB_PAT](https://github.com/r-lib/gh#environment-variables) is
     better;
 
 -   [R-hub sysreqs API](https://docs.r-hub.io/#sysreqs) to parse
@@ -925,4 +931,4 @@ guidance.
 }
     </script>
 
-[![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
+[![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)

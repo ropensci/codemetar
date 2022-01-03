@@ -1,5 +1,12 @@
 # codemetar (development version)
 
+# codmetar 0.3.3
+
+* Now uses the existing `codemeta` package on CRAN for all core functionality.
+* This package provides more advanced metadata detection than the minimalist `codemeta`
+* Return to CRAN
+
+
 # codemetar 0.3.2
 
 * Skip on CRAN a test relying on internet connection.
