@@ -39,6 +39,7 @@
   return(data)
 }
 
+#' @importFrom memoise memoise
 # CRAN -------------------------------------------------------------------------
 CRAN <- memoise::memoise(.CRAN)
 
