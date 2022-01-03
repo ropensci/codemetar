@@ -761,10 +761,10 @@ branch).
 
 ## Installation and usage requirements
 
-You can install the latest version from CRAN using:
+You can install the latest version from rOpenSci R-universe using:
 
 ``` r
-install.packages("codemetar")
+install.packages("codemetar", repos = 'https://ropensci.r-universe.dev')
 ```
 
 You can also install the development version of `codemetar` from GitHub
@@ -772,7 +772,7 @@ with:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("ropensci/codemetar", ref = "dev")
+remotes::install_github("ropensci/codemetar")
 ```
 
 For optimal results you need a good internet connection.
