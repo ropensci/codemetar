@@ -83,8 +83,6 @@ codemetar::write_codemeta()
 
     … Getting CRAN metadata from RStudio CRAN mirror
     ✓ Got CRAN metadata!
-    … Getting Bioconductor metadata
-    ✓ Got Bioconductor metadata!
     … Asking README URL from GitHub API
     ✓ Got README URL!
     … Asking README URL from GitHub API
@@ -111,7 +109,7 @@ library("magrittr")
   "identifier": "codemetar",
   "description": "The 'Codemeta' Project defines a 'JSON-LD' format for describing software metadata, as detailed at <https://codemeta.github.io>. This package provides utilities to generate, parse, and modify 'codemeta.json' files automatically for R packages, as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.",
   "name": "codemetar: Generate 'CodeMeta' Metadata for R Packages",
-  "relatedLink": "https://docs.ropensci.org/codemetar/",
+  "relatedLink": ["https://docs.ropensci.org/codemetar/", "https://CRAN.R-project.org/package=codemetar"],
   "codeRepository": "https://github.com/ropensci/codemetar",
   "issueTracker": "https://github.com/ropensci/codemetar/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
@@ -121,7 +119,13 @@ library("magrittr")
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.2 (2021-11-01)",
+  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -777,8 +781,8 @@ You can also install the development version of `codemetar` from GitHub
 with:
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("ropensci/codemetar", ref = "dev")
+# install.packages("devtools")
+devtools::install_github("ropensci/codemetar")
 ```
 
 For optimal results you need a good internet connection.
