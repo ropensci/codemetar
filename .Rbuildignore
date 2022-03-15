@@ -22,3 +22,5 @@ pkgdown
 ^\.github$
 ^CRAN-RELEASE$
 ^CRAN-SUBMISSION$
+^doc$
+^Meta$
