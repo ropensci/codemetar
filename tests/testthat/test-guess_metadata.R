@@ -56,10 +56,6 @@ testthat::test_that("guess_devStatus",{
   expect_equal(status, "https://www.tidyverse.org/lifecycle/#maturing")
 })
 
-test_that("guess_readme", {
-  testthat::skip_if_not(nzchar(Sys.getenv("GITHUB_PAT")))
-  testthat::expect_type(guess_readme_path(find.package("desc")), "character")
-})
 
 test_that("guess_readme() matches a single README file", {
   testthat::skip_if_not(nzchar(Sys.getenv("GITHUB_PAT")))
