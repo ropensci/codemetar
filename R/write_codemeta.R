@@ -9,7 +9,7 @@
 #' @includeRmd man/rmdhunks/whybother.Rmd
 #' @includeRmd man/rmdhunks/uptodate.Rmd
 #'
-#' @param pkg package path to package root, or package name, or description file
+#' @param pkg package path to package root, or description file
 #'   (character), or a codemeta object (list)
 #' @param path file name of the output, leave at default "codemeta.json"
 #' @param root if pkg is a codemeta object, optionally give the path to package

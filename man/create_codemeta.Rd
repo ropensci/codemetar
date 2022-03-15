@@ -15,7 +15,7 @@ create_codemeta(
 )
 }
 \arguments{
-\item{pkg}{package path to package root, or package name, or description file
+\item{pkg}{package path to package root, or description file
 (character), or a codemeta object (list)}
 
 \item{root}{if pkg is a codemeta object, optionally give the path to package

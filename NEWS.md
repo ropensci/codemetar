@@ -1,6 +1,12 @@
 # codemetar (development version)
 
-# codmetar 0.3.3
+# codemetar 0.3.4
+
+* bugfix vignette
+* increase test suite stability (compatible with recent `desc` release)
+* document changed behavior: `write_codemeta()` no longer takes installed package name. 
+
+# codemetar 0.3.3
 
 * Now uses the existing `codemeta` package on CRAN for all core functionality.
 * This package provides more advanced metadata detection than the minimalist `codemeta`

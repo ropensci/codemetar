@@ -18,7 +18,7 @@ write_codemeta(
 )
 }
 \arguments{
-\item{pkg}{package path to package root, or package name, or description file
+\item{pkg}{package path to package root, or description file
 (character), or a codemeta object (list)}
 
 \item{path}{file name of the output, leave at default "codemeta.json"}
