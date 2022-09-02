@@ -1,5 +1,9 @@
 # codemetar (development version)
 
+# codemetar 0.3.5
+
+* HTML5 validation of docs [#333]
+
 # codemetar 0.3.4
 
 * bugfix vignette
