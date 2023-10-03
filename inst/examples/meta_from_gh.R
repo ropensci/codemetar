@@ -11,7 +11,7 @@ codemeta <- "https://doi.org/10.5063/schema/codemeta-2.0"
 #github <- codemetar::crosswalk("GitHub")
 
 github <-
-  "https://github.com/codemeta/codemeta/raw/master/crosswalk.csv" %>%
+  "https://github.com/codemeta/codemeta/raw/main/crosswalk.csv" %>%
   read_csv() %>%
   select(Property, `GitHub`) %>%
   filter(!is.na(`GitHub`))
