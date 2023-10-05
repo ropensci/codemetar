@@ -19,8 +19,7 @@ Code
 
 All code for this package is found in `R/`, (except compiled source
 code, if used, which is in `/src`).  All functions should be thoroughly
-documented with `roxygen2` notation; see Documentation. Code should
-conform to our [Style guide](https://github.com/ropensci/onboarding/blob/master/packaging_guide.md)
+documented with `roxygen2` notation; see Documentation. 
 
 Testing
 -------

@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.1 (2022-06-23)",
+  "runtimePlatform": "R version 4.2.0 (2022-04-22)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -477,10 +477,10 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
-  "fileSize": "1439.517KB",
-  "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
-  "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
-  "contIntegration": ["https://github.com/ropensci/codemetar/actions", "https://codecov.io/github/ropensci/codemetar?branch=master"],
+  "fileSize": "1439.388KB",
+  "releaseNotes": "https://github.com/ropensci/codemetar/blob/main/NEWS.md",
+  "readme": "https://github.com/ropensci/codemetar/blob/main/README.md",
+  "contIntegration": ["https://github.com/ropensci/codemetar/actions", "https://codecov.io/github/ropensci/codemetar?branch=main"],
   "developmentStatus": "https://www.repostatus.org/",
   "review": {
     "@type": "Review",

@@ -60,7 +60,7 @@ github_path <- function(root, path, cm) {
     github$repo
     )
 
-  branch <- getOption("codemeta_branch", "master")
+  branch <- getOption("codemeta_branch", "main")
 
   paste(base, "blob", branch, path, sep = "/")
 }
