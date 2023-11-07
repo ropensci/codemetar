@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.0 (2022-04-22)",
+  "runtimePlatform": "R version 4.3.2 (2023-10-31)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
