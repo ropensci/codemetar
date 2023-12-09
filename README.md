@@ -9,7 +9,7 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](https://www.rep
 [![R build
 status](https://github.com/ropensci/codemetar/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/codemetar/actions)
 [![Coverage
-Status](https://img.shields.io/codecov/c/github/ropensci/codemetar/master.svg)](https://codecov.io/github/ropensci/codemetar?branch=master)
+Status](https://img.shields.io/codecov/c/github/ropensci/codemetar/main.svg)](https://codecov.io/github/ropensci/codemetar?branch=main)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar)
 [![](https://badges.ropensci.org/130_status.svg)](https://github.com/ropensci/software-review/issues/130)
 [![DOI](https://zenodo.org/badge/86626030.svg)](https://zenodo.org/badge/latestdoi/86626030)
@@ -31,17 +31,16 @@ json-ld more generally**.
 
 It has three main goals:
 
--   Quickly **generate a valid codemeta.json file from any valid R
-    package**. To do so, we automatically extract as much metadata as
-    possible using the DESCRIPTION file, as well as extracting metadata
-    from other common best-practices such as the presence of Travis and
-    other badges in README, etc.
--   Facilitate the addition of further metadata fields into a
-    codemeta.json file, as well as general manipulation of codemeta
-    files.
--   Support the ability to crosswalk between terms used in other
-    metadata standards, as identified by the Codemeta Project Community,
-    see <https://codemeta.github.io/crosswalk/>
+- Quickly **generate a valid codemeta.json file from any valid R
+  package**. To do so, we automatically extract as much metadata as
+  possible using the DESCRIPTION file, as well as extracting metadata
+  from other common best-practices such as the presence of Travis and
+  other badges in README, etc.
+- Facilitate the addition of further metadata fields into a
+  codemeta.json file, as well as general manipulation of codemeta files.
+- Support the ability to crosswalk between terms used in other metadata
+  standards, as identified by the Codemeta Project Community, see
+  <https://codemeta.github.io/crosswalk/>
 
 ## Why create a codemeta.json for your package?
 
@@ -82,13 +81,13 @@ codemetar::write_codemeta()
 ```
 
     … Getting CRAN metadata from RStudio CRAN mirror
-    ✓ Got CRAN metadata!
+    ✔ Got CRAN metadata!
     … Asking README URL from GitHub API
-    ✓ Got README URL!
+    ✔ Got README URL!
     … Asking README URL from GitHub API
-    ✓ Got README URL!
+    ✔ Got README URL!
     … Getting repo topics from GitHub API
-    ✓ Got repo topics!
+    ✔ Got repo topics!
 
 ``` r
 library("magrittr")
@@ -103,6 +102,7 @@ library("magrittr")
 </summary>
 
 ``` json
+
 {
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
@@ -113,13 +113,13 @@ library("magrittr")
   "codeRepository": "https://github.com/ropensci/codemetar",
   "issueTracker": "https://github.com/ropensci/codemetar/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.3.3",
+  "version": "0.3.5",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
+  "runtimePlatform": "R version 4.2.0 (2022-04-22)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -584,8 +584,8 @@ library("magrittr")
   "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
   "fileSize": "NAKB",
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/master/NEWS.md",
-  "readme": "https://github.com/ropensci/codemetar/blob/master/README.md",
-  "contIntegration": ["https://github.com/ropensci/codemetar/actions", "https://codecov.io/github/ropensci/codemetar?branch=master"],
+  "readme": "https://github.com/ropensci/codemetar/blob/main/README.md",
+  "contIntegration": ["https://github.com/ropensci/codemetar/actions", "https://codecov.io/github/ropensci/codemetar?branch=main"],
   "developmentStatus": "https://www.repostatus.org/",
   "review": {
     "@type": "Review",
@@ -609,19 +609,18 @@ up to date with `DESCRIPTION`? `codemetar` itself no longer supports
 automatic sync, but there are quite a few methods available out there.
 Choose one that fits well into your workflow!
 
--   You could rely on `devtools::release()` since it will ask you
-    whether you updated codemeta.json when such a file exists.
+- You could rely on `devtools::release()` since it will ask you whether
+  you updated codemeta.json when such a file exists.
 
--   You could use a git pre-commit hook that prevents a commit from
-    being done if DESCRIPTION is newer than codemeta.json.
+- You could use a git pre-commit hook that prevents a commit from being
+  done if DESCRIPTION is newer than codemeta.json.
 
-    -   You can use the [precommit
-        package](https://github.com/lorenzwalthert/precommit) in which
-        there’s a “codemeta-description-updated” hook.
+  - You can use the [precommit
+    package](https://github.com/lorenzwalthert/precommit) in which
+    there’s a “codemeta-description-updated” hook.
 
-    -   If that’s your only pre-commit hook (i.e. you don’t have one
-        created by e.g. `usethis::use_readme_rmd()`), then you can
-        create it using
+  - If that’s your only pre-commit hook (i.e. you don’t have one created
+    by e.g. `usethis::use_readme_rmd()`), then you can create it using
 
 ``` r
 script = readLines(system.file("templates", "description-codemetajson-pre-commit.sh", package = "codemetar"))
@@ -629,20 +628,20 @@ usethis::use_git_hook("pre-commit",
                      script = script)
 ```
 
--   You could use GitHub actions. Refer to GitHub actions docs
-    <https://github.com/features/actions>, and to the example workflow
-    provided in this package (type
-    `system.file("templates", "codemeta-github-actions.yml", package = "codemetar")`).
-    You can use the `cm-skip` keyword in your commit message if you
-    don’t want this to run on a specific commit. The example workflow
-    provided is setup to only run when a push is made to the master
-    branch. This setup is designed for if you’re using a [git
-    flow](https://nvie.com/posts/a-successful-git-branching-model/#the-main-branches)
-    setup where the master branch is only committed and pushed to via
-    pull requests. After each PR merge (and the completion of this
-    GitHub action), your master branch will always be up to date and so
-    long as you don’t make manual changes to the codemeta.json file, you
-    won’t have merge conflicts.
+- You could use GitHub actions. Refer to GitHub actions docs
+  <https://github.com/features/actions>, and to the example workflow
+  provided in this package (type
+  `system.file("templates", "codemeta-github-actions.yml", package = "codemetar")`).
+  You can use the `cm-skip` keyword in your commit message if you don’t
+  want this to run on a specific commit. The example workflow provided
+  is setup to only run when a push is made to the master branch. This
+  setup is designed for if you’re using a [git
+  flow](https://nvie.com/posts/a-successful-git-branching-model/#the-main-branches)
+  setup where the master branch is only committed and pushed to via pull
+  requests. After each PR merge (and the completion of this GitHub
+  action), your master branch will always be up to date and so long as
+  you don’t make manual changes to the codemeta.json file, you won’t
+  have merge conflicts.
 
 Alternatively, you can have GitHub actions route run `codemetar` on each
 commit. If you do this you should try to remember to run `git pull`
@@ -657,6 +656,7 @@ to rewind you local changes on top of the current upstream `HEAD`.
 </summary>
 
 ``` yaml
+
 on:
   push:
     branches: master
@@ -698,11 +698,11 @@ To ensure you have metadata in the usual places, you can run
 
 ### Usual terms in DESCRIPTION
 
--   Fill `BugReports` and `URL`.
+- Fill `BugReports` and `URL`.
 
--   Using the `Authors@R` notation allows a much richer specification of
-    author roles, correct parsing of given vs family names, and email
-    addresses.
+- Using the `Authors@R` notation allows a much richer specification of
+  author roles, correct parsing of given vs family names, and email
+  addresses.
 
 In the current implementation, developers may specify an ORCID url for
 an author in the optional `comment` field of `Authors@R`, e.g.
@@ -789,20 +789,20 @@ For optimal results you need a good internet connection.
 
 The package queries
 
--   `utils::available.packages()` for CRAN and Bioconductor packages;
+- `utils::available.packages()` for CRAN and Bioconductor packages;
 
--   GitHub API via the [`gh` package](https://github.com/r-lib/gh), if
-    it finds a GitHub repo URL in DESCRIPTION or as git remote. GitHub
-    API is queried to find the [preferred
-    README](https://developer.github.com/v3/repos/contents/#get-the-readme),
-    and the [repo
-    topics](https://developer.github.com/v3/repos/#list-all-topics-for-a-repository).
-    If you use codemetar for many packages having a
-    [GITHUB_PAT](https://github.com/r-lib/gh#environment-variables) is
-    better;
+- GitHub API via the [`gh` package](https://github.com/r-lib/gh), if it
+  finds a GitHub repo URL in DESCRIPTION or as git remote. GitHub API is
+  queried to find the [preferred
+  README](https://developer.github.com/v3/repos/contents/#get-the-readme),
+  and the [repo
+  topics](https://developer.github.com/v3/repos/#list-all-topics-for-a-repository).
+  If you use codemetar for many packages having a
+  [GITHUB_PAT](https://github.com/r-lib/gh#environment-variables) is
+  better;
 
--   [R-hub sysreqs API](https://docs.r-hub.io/#sysreqs) to parse
-    SystemRequirements.
+- [R-hub sysreqs API](https://docs.r-hub.io/#sysreqs) to parse
+  SystemRequirements.
 
 If your machine is offline, a more minimal codemeta.json will be
 created. If your internet connection is poor or there are firewalls, the
