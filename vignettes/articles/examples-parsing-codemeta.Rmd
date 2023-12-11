@@ -71,7 +71,7 @@ bibitem
 The ropensci corpus consists of a list of codemeta files for all packages provided by the rOpenSci project, <ropensci.org>.  This provides a good test-case for how a large collection of codemeta files can be manipulated to help us get a better picture of the corpus.  
 
 ```{r}
-download.file("https://github.com/codemeta/codemetar/raw/master/inst/notebook/ropensci.json",
+download.file("https://github.com/codemeta/codemetar/raw/main/inst/notebook/ropensci.json",
               "ropensci.json")
 ```
 
