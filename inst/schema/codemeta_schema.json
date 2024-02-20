@@ -145,7 +145,7 @@
           "type":["array", "string"]
       },
       "licenseId": {
-          "description":"The name of the license agreement governing the use and redistribution of the software. e.g. 'Apache-2.0', 'GPL-3.0', 'LGPL-3.0'",
+          "description":"The name of the license agreement governing the use and redistribution of the software. e.g. 'Apache-2.0', 'GPL-3.0-only', 'LGPL-3.0-or-later'",
           "type":"string"
       },
       "title":{
