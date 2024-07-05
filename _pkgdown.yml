@@ -16,7 +16,7 @@ navbar:
     - reference
     - articles
     - news
-    right: github
+    right: [search, github]
   components:
     home:
       icon: fas fa-home fa-lg
