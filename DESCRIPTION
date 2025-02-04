@@ -22,7 +22,7 @@ Authors@R:
              comment = c(ORCID = "0000-0002-2815-0399")),
       person(given = "rOpenSci",
              role = "fnd",
-             comment = "https://ropensci.org/"),
+             comment = c(ROR = "019jywm96")),
       person(given = "Katrin",
              family = "Leinweber",
              role = "ctb",
