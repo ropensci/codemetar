@@ -22,7 +22,7 @@ which will allow `codemetar` to associate an identifier with the person.  This i
 
 ### Usual terms in the README
 
-In the README, you can use badges for continuous integration, repo development status (repostatus.org or lifecycle.org), provider ([e.g. for CRAN](https://docs.r-hub.github.io/#badges)).
+In the README, you can use badges for continuous integration, repo development status (repostatus.org or lifecycle.org), provider ([e.g. for CRAN](https://r-hub.github.io/rhub)).
 
 ### GitHub repo topics
 
