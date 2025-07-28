@@ -50,5 +50,5 @@ get_url_github <- function(...) {
 # get_url_rhub -----------------------------------------------------------------
 get_url_rhub <- function(a, b) {
 
-  sprintf("https://sysreqs.r-hub.io/%s/%s", a, b)
+  sprintf("https://sysreqs.r-hub.github.io/%s/%s", a, b)
 }
