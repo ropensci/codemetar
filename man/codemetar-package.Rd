@@ -48,11 +48,10 @@ possible using the DESCRIPTION file, as well as extracting metadata
 from other common best-practices such as the presence of Travis and
 other badges in README, etc.
 \item Facilitate the addition of further metadata fields into a
-codemeta.json file, as well as general manipulation of codemeta
-files.
-\item Support the ability to crosswalk between terms used in other
-metadata standards, as identified by the Codemeta Project Community,
-see \url{https://codemeta.github.io/crosswalk/}
+codemeta.json file, as well as general manipulation of codemeta files.
+\item Support the ability to crosswalk between terms used in other metadata
+standards, as identified by the Codemeta Project Community, see
+\url{https://codemeta.github.io/crosswalk/}
 }
 }
 \seealso{
@@ -76,7 +75,7 @@ Other contributors:
 \itemize{
   \item Anna Krystalli (\href{https://orcid.org/0000-0002-2378-4915}{ORCID}) [reviewer, contributor]
   \item Toph Allen (\href{https://orcid.org/0000-0003-4580-091X}{ORCID}) [reviewer]
-  \item rOpenSci (https://ropensci.org/) [funder]
+  \item rOpenSci (019jywm96) [funder]
   \item Katrin Leinweber (\href{https://orcid.org/0000-0001-5135-5758}{ORCID}) [contributor]
   \item Noam Ross (\href{https://orcid.org/0000-0002-2136-0000}{ORCID}) [contributor]
   \item Arfon Smith [contributor]

@@ -9,7 +9,7 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](https://www.rep
 [![R build
 status](https://github.com/ropensci/codemetar/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/codemetar/actions)
 [![Coverage
-Status](https://img.shields.io/codecov/c/github/ropensci/codemetar/main.svg)](https://codecov.io/github/ropensci/codemetar?branch=main)
+Status](https://img.shields.io/codecov/c/github/ropensci/codemetar/main.svg)](https://app.codecov.io/github/ropensci/codemetar?branch=main)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar)
 [![](https://badges.ropensci.org/130_status.svg)](https://github.com/ropensci/software-review/issues/130)
 [![DOI](https://zenodo.org/badge/86626030.svg)](https://zenodo.org/badge/latestdoi/86626030)
@@ -585,7 +585,7 @@ library("magrittr")
   "fileSize": "NAKB",
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/main/NEWS.md",
   "readme": "https://github.com/ropensci/codemetar/blob/main/README.md",
-  "contIntegration": ["https://github.com/ropensci/codemetar/actions", "https://codecov.io/github/ropensci/codemetar?branch=main"],
+  "contIntegration": ["https://github.com/ropensci/codemetar/actions", "https://app.codecov.io/github/ropensci/codemetar?branch=main"],
   "developmentStatus": "https://www.repostatus.org/",
   "review": {
     "@type": "Review",
@@ -721,7 +721,7 @@ explicit notion of `id`, and may be frowned upon.
 
 In the README, you can use badges for continuous integration, repo
 development status (repostatus.org or lifecycle.org), provider
-([e.g. for CRAN](https://docs.r-hub.io/#badges)).
+([e.g. for CRAN](https://r-hub.github.io/rhub/)).
 
 ### GitHub repo topics
 
@@ -801,7 +801,7 @@ The package queries
   [GITHUB_PAT](https://github.com/r-lib/gh#environment-variables) is
   better;
 
-- [R-hub sysreqs API](https://docs.r-hub.io/#sysreqs) to parse
+- [R-hub sysreqs API](https://r-hub.github.io/rhub/) to parse
   SystemRequirements.
 
 If your machine is offline, a more minimal codemeta.json will be

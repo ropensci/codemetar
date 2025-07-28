@@ -33,7 +33,7 @@ existing codemeta.json file}
 DESCRIPTION has no URL. -- See \code{\link{give_opinions}};
 and indicating the progress of internet downloads.}
 
-\item{...}{additional arguments to \code{\link{write_json}}}
+\item{...}{additional arguments to \code{\link[jsonlite]{write_json}}}
 }
 \value{
 a codemeta list object

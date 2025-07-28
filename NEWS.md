@@ -1,5 +1,9 @@
 # codemetar (development version)
 
+# codemetar 0.3.6
+
+* rebuild docs for CRAN
+
 # codemetar 0.3.5
 
 * HTML5 validation of docs [#333]

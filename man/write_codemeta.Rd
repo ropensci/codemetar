@@ -45,7 +45,7 @@ corresponds to the metadata Google would validate, to be inserted to a
 webpage for SEO. It is saved as "inst/schemaorg.json" alongside \code{path} (by
 default, "codemeta.json").}
 
-\item{...}{additional arguments to \code{\link{write_json}}}
+\item{...}{additional arguments to \code{\link[jsonlite]{write_json}}}
 }
 \value{
 writes out the codemeta.json file, and schemaorg.json if \code{write_codemeta}

@@ -27,7 +27,7 @@
 #' corresponds to the metadata Google would validate, to be inserted to a
 #' webpage for SEO. It is saved as "inst/schemaorg.json" alongside `path` (by
 #' default, "codemeta.json").
-#' @param ...  additional arguments to \code{\link{write_json}}
+#' @param ...  additional arguments to \code{\link[jsonlite]{write_json}}
 #' @section Technical details:
 #'  If pkg is a codemeta object, the function will attempt to update any
 #'   fields it can guess (i.e. from the DESCRIPTION file), overwriting any

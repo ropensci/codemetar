@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/)
 [![R build status](https://github.com/ropensci/codemetar/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/codemetar/actions)
-[![Coverage Status](https://img.shields.io/codecov/c/github/ropensci/codemetar/main.svg)](https://codecov.io/github/ropensci/codemetar?branch=main)
+[![Coverage Status](https://img.shields.io/codecov/c/github/ropensci/codemetar/main.svg)](https://app.codecov.io/github/ropensci/codemetar?branch=main)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/codemetar)](https://cran.r-project.org/package=codemetar)
 [![](https://badges.ropensci.org/130_status.svg)](https://github.com/ropensci/software-review/issues/130)
 [![DOI](https://zenodo.org/badge/86626030.svg)](https://zenodo.org/badge/latestdoi/86626030)
