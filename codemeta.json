@@ -476,9 +476,10 @@
     "SystemRequirements": null
   },
   "isPartOf": "https://ropensci.org",
-  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data"],
+  "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
   "fileSize": "1439.911KB",
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/main/NEWS.md",
+  "readme": "https://github.com/ropensci/codemetar/blob/main/README.md",
   "contIntegration": ["https://github.com/ropensci/codemetar/actions", "https://app.codecov.io/github/ropensci/codemetar?branch=main"],
   "developmentStatus": "https://www.repostatus.org/",
   "review": {
