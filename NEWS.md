@@ -140,7 +140,7 @@ unwanted alteration of the user's git environment [issue #240](https://github.co
     
     * If codeRepository is guessed to be a GitHub repo (via the URL field of DESCRIPTION or via git remote URL), the repo topics are queried via GitHub API V3 and added to the keywords (in combination with keywords stored in the X-schema.org-keywords field of DESCRIPTION)
     
-    * SystemRequirements are now parsed using https://sysreqs.r-hub.io/, outputting URLs then stored in softwareRequirements
+    * SystemRequirements are now parsed using `sysreqs`, outputting URLs then stored in softwareRequirements
 
 * Help to remind to update codemeta.json regularly: Writing codemeta.json for the first time adds a git pre-commit hook and suggests adding a release question for devtools::release.
 
