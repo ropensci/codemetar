@@ -8,6 +8,9 @@ on:
 
 name: R-CMD-check-HTML5
 
+permissions:
+  contents: read
+
 jobs:
   R-CMD-check:
     runs-on: ubuntu-latest
@@ -16,7 +19,7 @@ jobs:
       R_KEEP_PKG_SOURCE: yes
       _R_CHECK_RD_VALIDATE_RD2HTML_: TRUE
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Install pdflatex
         run: sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
