@@ -1,4 +1,6 @@
-# codemetar (development version)
+# codemetar 0.3.7
+
+* Fix R-devel check failure by replacing fragile dependency on dplyr in tests.
 
 # codemetar 0.3.6
 
