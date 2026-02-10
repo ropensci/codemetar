@@ -28,7 +28,7 @@ testthat::test_that("Message if no BugReports", {
   expect_true(contains(hints, "BugReports"))
 })
 
-testthat::test_that("No message if ok description",{
+testthat::test_that("No message if ok description", {
   skip_on_cran()
   skip_if_offline()
 
@@ -62,7 +62,6 @@ test_that("badges in README", {
 })
 
 test_that("read_description_if_null() works", {
-
   file <- example_file("DESCRIPTION_good")
   description <- desc::desc(file)
 
@@ -75,7 +74,6 @@ test_that("read_description_if_null() works", {
 })
 
 test_that("add_url_fixmes() works", {
-
   skip_on_cran()
   skip_if_offline()
 
@@ -94,7 +92,6 @@ test_that("add_url_fixmes() works", {
 })
 
 test_that("fixmes_as_df_or_message() works", {
-
   expect_missing_error(fixmes_as_df_or_message())
   expect_missing_error(fixmes_as_df_or_message("fix!"))
 
@@ -107,14 +104,31 @@ test_that("fixmes_as_df_or_message() works", {
 })
 
 test_that("try_to_give_opinions_readme() works", {
-
   expect_missing_error(try_to_give_opinions_readme())
   expect_null(try_to_give_opinions_readme(example_file("DESCRIPTION_good")))
-  expect_null(try_to_give_opinions_readme(package_file("dplyr", "DESCRIPTION")))
+
+  # Create a synthetic package conform to standards
+  dir <- tempfile()
+  dir.create(dir)
+  on.exit(unlink(dir, recursive = TRUE))
+
+  # minimal DESCRIPTION
+  desc_path <- file.path(dir, "DESCRIPTION")
+  cat(
+    "Package: testpkg\nTitle: Test Package\nVersion: 0.0.1\n",
+    file = desc_path
+  )
+
+  # minimal README with lifecycle badge
+  readme_path <- file.path(dir, "README.md")
+  # A valid lifecycle badge
+  badge <- "[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)"
+  cat("# testpkg\n\n", badge, "\n", file = readme_path)
+
+  expect_null(try_to_give_opinions_readme(desc_path))
 })
 
 test_that("has_provider_but_no_badge() works", {
-
   expect_missing_error(has_provider_but_no_badge())
   expect_false(has_provider_but_no_badge(NULL))
   expect_true(has_provider_but_no_badge(list(name = "my-provider")))
@@ -127,4 +141,3 @@ test_that("has_provider_but_no_badge() works", {
   provider <- list(name = "Comprehensive R Archive Network (CRAN)")
   expect_false(has_provider_but_no_badge(provider, file))
 })
-
