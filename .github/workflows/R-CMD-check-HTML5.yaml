@@ -6,13 +6,13 @@ on:
   pull_request:
     branches: [main, master]
 
-name: R-CMD-check-HTML5
+name: R-CMD-check (HTML5)
 
 permissions:
   contents: read
 
 jobs:
-  R-CMD-check:
+  HTML5-check:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
