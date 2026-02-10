@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/ropensci/codemetar",
   "issueTracker": "https://github.com/ropensci/codemetar/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.5.1 (2025-06-13)",
+  "runtimePlatform": "R version 4.5.2 (2025-10-31)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -477,7 +477,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["metadata", "codemeta", "ropensci", "citation", "credit", "linked-data", "json-ld", "r", "rstats", "r-package", "peer-reviewed"],
-  "fileSize": "1439.911KB",
+  "fileSize": "1440.557KB",
   "releaseNotes": "https://github.com/ropensci/codemetar/blob/main/NEWS.md",
   "readme": "https://github.com/ropensci/codemetar/blob/main/README.md",
   "contIntegration": ["https://github.com/ropensci/codemetar/actions", "https://app.codecov.io/github/ropensci/codemetar?branch=main"],
