@@ -25,3 +25,6 @@ pkgdown
 ^CRAN-SUBMISSION$
 ^doc$
 ^Meta$
+^.*\.log$
+^reproduce_issue\.R$
+^repro_fix\.R$
